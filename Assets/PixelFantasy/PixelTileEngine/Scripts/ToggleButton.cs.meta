@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: bb897a8623de4bb6916d06b5a4a096f8
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 271664
+  packageName: 'Pixel Hero Maker [Megapack]'
+  packageVersion: 3.1
+  assetPath: Assets/PixelFantasy/PixelTileEngine/Scripts/ToggleButton.cs
+  uploadId: 704089

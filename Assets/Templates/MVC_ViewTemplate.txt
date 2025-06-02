@@ -1,0 +1,6 @@
+using UnityEngine;
+
+public class #name#View : BaseView
+{
+    public #name#ViewModel Model => GetModel<#name#ViewModel>();
+}

@@ -1,0 +1,3 @@
+public class #name#Unit : BaseUnit<#name#UnitModel<IBaseData>>
+{
+}

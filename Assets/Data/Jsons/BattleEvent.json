@@ -1,0 +1,38 @@
+[
+  {
+    "id": 20000,
+    "nameId": "BE_FIRE_BALL",
+    "Type": "Damage",
+    "TriggerType": "Projectile",
+    "TargetType": "Single",
+    "PrefabName": "Slash_Projectile",
+    "HitEffectPrefabName": ""
+  },
+  {
+    "id": 20001,
+    "nameId": "BE_SLASH_PROJECTILE",
+    "Type": "Damage",
+    "TriggerType": "Projectile",
+    "TargetType": "Single",
+    "PrefabName": "Slash_Projectile",
+    "HitEffectPrefabName": ""
+  },
+  {
+    "id": 20002,
+    "nameId": "BE_SLASH_RANGE",
+    "Type": "Damage",
+    "TriggerType": "Range",
+    "TargetType": "Single",
+    "PrefabName": "",
+    "HitEffectPrefabName": "Slash_Hit"
+  },
+  {
+    "id": 20003,
+    "nameId": "BE_HEAL",
+    "Type": "Buff",
+    "TriggerType": "None",
+    "TargetType": "Single",
+    "PrefabName": "",
+    "HitEffectPrefabName": ""
+  }
+]

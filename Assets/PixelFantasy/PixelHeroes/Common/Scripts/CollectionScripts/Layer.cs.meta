@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 9c0deca20392462c80565f8351f3faea
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 271664
+  packageName: 'Pixel Hero Maker [Megapack]'
+  packageVersion: 3.1
+  assetPath: Assets/PixelFantasy/PixelHeroes/Common/Scripts/CollectionScripts/Layer.cs
+  uploadId: 704089

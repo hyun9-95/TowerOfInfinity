@@ -1,0 +1,71 @@
+using UnityEngine;
+
+[CreateAssetMenu(menuName = "ScriptableCharacterModule/CollisionDamage")]
+public class CollisionDamageModule : ScriptableCharacterModule
+{
+    public override ModuleType GetModuleType()
+    {
+        return ModuleType.CollisionDamage;
+    }
+
+    public override IModuleModel CreateModuleModel()
+    {
+        return new CollisionDamageModuleModel();
+    }
+
+    public override void OnEventTriggerEnter2D(Collider2D collision, CharacterUnitModel model, IModuleModel IModuleModel)
+    {
+        if (IModuleModel is CollisionDamageModuleModel moduleModel)
+        {
+            if (IsTriggerTarget(collision))
+            {
+                var targetModel = BattleSceneManager.Instance.GetCharacterModel(collision.gameObject.GetInstanceID());
+
+                if (targetModel != null)
+                    moduleModel.CollisionEnterTargetTimer[collision.gameObject] = new CollisionDamageInfo(FloatDefine.DEFAULT_COLLISION_DAMAGE_INTERVAL, targetModel);
+            }
+        }
+    }
+
+    public override void OnEventTriggerStay2D(Collider2D collision, CharacterUnitModel model, IModuleModel IModuleModel)
+    {
+        if (IModuleModel is CollisionDamageModuleModel moduleModel)
+        {
+            if (!moduleModel.CollisionEnterTargetTimer.TryGetValue(collision.gameObject, out var info))
+                return;
+
+            info.timer += Time.fixedDeltaTime;
+
+            if (info.timer >= FloatDefine.DEFAULT_COLLISION_DAMAGE_INTERVAL)
+            {
+                info.timer = 0f;
+                SendCollisionDamage(info, model);
+            }
+        }
+    }
+
+    public override void OnEventTriggerExit2D(Collider2D collision, CharacterUnitModel model, IModuleModel IModuleModel)
+    {
+        if (IModuleModel is CollisionDamageModuleModel moduleModel)
+            moduleModel.CollisionEnterTargetTimer.Remove(collision.gameObject);
+    }
+
+    private void SendCollisionDamage(CollisionDamageInfo info, CharacterUnitModel owner)
+    {
+        var model = BattleEventFactory.CreateBattleEventModel(BattleEventType.Damage);
+        model.SetSender(owner);
+        model.SetRecevier(info.targetModel);
+        model.SetValue(owner.GetStatValue(StatType.Attack));
+
+        var battleEvent = BattleEventFactory.Create(BattleEventType.Damage);
+        battleEvent.SetModel(model);
+
+        info.targetModel.EnqueueBattleEvent(battleEvent);
+    }
+
+    private bool IsTriggerTarget(Collider2D collision)
+    {
+        return collision.gameObject.CheckLayer(LayerFlag.Character)
+            && collision.gameObject.CompareTag(StringDefine.BATTLE_TAG_ALLY);
+    }
+}

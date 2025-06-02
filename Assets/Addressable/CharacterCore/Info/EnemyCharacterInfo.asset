@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31a0591725d79134eb4126ffce8d9786, type: 3}
+  m_Name: EnemyCharacterInfo
+  m_EditorClassIdentifier: 
+  characterPrefabName: Bat_Enemy
+  characterStateGroup: {fileID: 11400000, guid: 5594d9720d6e46b4c890b66409e49fe9, type: 2}
+  characterModuleGroup: {fileID: 11400000, guid: 39db33b00d299904f865504e2c86b58c, type: 2}

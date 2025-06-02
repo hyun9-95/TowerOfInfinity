@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "114205046362",
+    "project_id": "towerofinfinity-68c7d",
+    "storage_bucket": "towerofinfinity-68c7d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:114205046362:android:b6300b53b9461bd0054a63",
+        "android_client_info": {
+          "package_name": "com.Jhg.TowerOfInfinity"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "114205046362-o0druma449gk3amo4urutbg8vjsen6ri.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDfDbD77jM-iMCGwNp0zZJ0k1KoN8mpSBk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "114205046362-o0druma449gk3amo4urutbg8vjsen6ri.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

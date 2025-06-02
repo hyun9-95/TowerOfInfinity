@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 343a1924357128a499fa327e3b00672c
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 271664
+  packageName: 'Pixel Hero Maker [Megapack]'
+  packageVersion: 3.1
+  assetPath: Assets/PixelFantasy/PixelHeroes/Common/Scripts/ExampleScripts/CharacterAnimation.cs
+  uploadId: 704089

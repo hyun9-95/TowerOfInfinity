@@ -1,0 +1,9 @@
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+
+[JsonConverter(typeof(StringEnumConverter))]
+public enum #name#Define
+{
+	None = 0,
+#nameList#
+}

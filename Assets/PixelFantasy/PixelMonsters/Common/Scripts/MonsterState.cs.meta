@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: abe1d4a6bbae4d738eb6e47ad56a2791
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 271664
+  packageName: 'Pixel Hero Maker [Megapack]'
+  packageVersion: 3.1
+  assetPath: Assets/PixelFantasy/PixelMonsters/Common/Scripts/MonsterState.cs
+  uploadId: 704089

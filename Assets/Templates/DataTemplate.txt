@@ -1,0 +1,79 @@
+using System.Collections.Generic;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
+using UnityEngine;
+using System.Linq;
+using System;
+
+public class Data#name#Container : IBaseDataContainer<Data#name#>
+{
+    private Dictionary<int, Data#name#> dicById = null;
+    private Dictionary<string, Data#name#> dicByNameId = null;
+	private Data#name#[] datas = null;
+    public string FileName => "#name#";
+	public bool Deserialized => dicById != null && dicByNameId != null && datas != null;
+	
+    public void DeserializeJson(string json)
+    {
+        try
+        {
+            JArray jArray = JArray.Parse(json);
+            foreach(var jObj in jArray)
+            {
+                Data#name# data = JsonConvert.DeserializeObject<Data#name#>(jObj.ToString());
+				
+				if (dicById == null)
+					dicById = new();
+						
+                if (!dicById.ContainsKey(data.Id))
+                {
+                    dicById.Add(data.Id, data);
+                }
+                else
+                {
+                    Debug.LogError($"ID 중복 {data.GetType()} / {data.Id}");
+                }
+				
+				if (dicByNameId == null)
+					dicByNameId = new();
+						
+                if (!dicByNameId.ContainsKey(data.NameId))
+                {
+                    dicByNameId.Add(data.NameId, data);
+                }
+                else
+                {
+                    Debug.LogError($"NameID 중복 {data.GetType()} / {data.NameId}");
+                }
+            }
+			datas = dicById.Values.ToArray();
+        }
+        catch (Exception e)
+        {
+            Debug.LogError("Json Parsing 실패 !!");
+            Debug.LogError(e.StackTrace);
+        }
+    }
+    public Data#name# GetById(int id)
+    {
+        if (dicById.ContainsKey(id))
+            return dicById[id];
+
+        return default;
+    }
+    public Data#name# GetByNameId(string nameId)
+    {
+        if (dicByNameId.ContainsKey(nameId))
+            return dicByNameId[nameId];
+
+        return default;
+    }
+	public Data#name# Find(Predicate<Data#name#> predicate)
+    {
+        return Array.Find(datas, predicate);
+    }
+    public Data#name#[] FindAll(Predicate<Data#name#> predicate)
+    {
+        return Array.FindAll(datas, predicate);
+    }
+}

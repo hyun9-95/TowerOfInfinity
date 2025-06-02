@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: e0e66d6b2acc20546ae9f93c26feeaae
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 271664
+  packageName: 'Pixel Hero Maker [Megapack]'
+  packageVersion: 3.1
+  assetPath: Assets/PixelFantasy/PixelHeroes/Common/Scripts/CharacterScripts/Firearm.cs
+  uploadId: 704089

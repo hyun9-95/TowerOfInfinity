@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Character_Bat
+  m_EditorClassIdentifier: 
+  m_GroupName: Character_Bat
+  m_GUID: f763562e22afedf4b99a52982f307645
+  m_SerializeEntries:
+  - m_GUID: 154990ef4bb3439ca7a516a947d12450
+    m_Address: Bat_Sprite
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 78d4453a57569ac4ca0e4c1184475396
+    m_Address: Bat
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 949206a06e2fc5b438843f6d9a428c7b
+    m_Address: Bat_Stat
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a290b6ba89ad53a41a673edd052832ed
+    m_Address: Bat_SpriteLibrary
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: b2e122fb37aac1c4fa864114c9951dfe, type: 2}
+    - {fileID: 11400000, guid: 5516fa6133fee6446be9936d77a6c1a6, type: 2}

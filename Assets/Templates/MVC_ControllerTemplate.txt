@@ -1,0 +1,10 @@
+using UnityEngine;
+
+public class #name#Controller : BaseController<#name#View, #name#ViewModel>
+{
+    public override UIType UIType => UIType.#name#View;
+	
+	protected override void Enter()
+    {
+	}
+}

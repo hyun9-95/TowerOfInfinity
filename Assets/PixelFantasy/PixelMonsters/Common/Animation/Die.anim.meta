@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: c80c3191324371b4c9a765948e6deb63
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 271664
+  packageName: 'Pixel Hero Maker [Megapack]'
+  packageVersion: 3.1
+  assetPath: Assets/PixelFantasy/PixelMonsters/Common/Animation/Die.anim
+  uploadId: 704089

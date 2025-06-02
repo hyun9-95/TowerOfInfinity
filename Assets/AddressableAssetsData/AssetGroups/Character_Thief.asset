@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Character_Thief
+  m_EditorClassIdentifier: 
+  m_GroupName: Character_Thief
+  m_GUID: 3702edc57c9e1ae4db9eeef3e66b4565
+  m_SerializeEntries:
+  - m_GUID: 2d0b2e1a3c6e6314baa54e7c73f5b7b1
+    m_Address: Thief_SpriteLibrary
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6dc7b1e3601781b4fb031e51efa7c732
+    m_Address: Thief_Stat
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c3b4c196b94983747b2738c46a7a0b77
+    m_Address: Thief_Sprite
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f19713df161c16e44b3a04e99cd042eb
+    m_Address: Thief
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: aad992375f2c2f54aaedc817fcd10b88, type: 2}
+    - {fileID: 11400000, guid: 3b9b37d86f6eb8c4fa5ff569359bf0ce, type: 2}

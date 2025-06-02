@@ -1,0 +1,36 @@
+#pragma warning disable CS1998
+using Cysharp.Threading.Tasks;
+using UnityEngine;
+
+public class ProjectileBattleEventTrigger : BattleEventTrigger
+{
+    public override async UniTask Process()
+    {
+        await ProcessProjectile();
+    }
+
+    private async UniTask ProcessProjectile()
+    {
+        var projectileUnit = await ObjectPoolManager.Instance.SpawnTimedMono<ProjectileUnit>(Model.PrefabName, Model.Sender.Transform.position, Quaternion.identity);
+
+        if (projectileUnit == null)
+            return;
+
+        if (projectileUnit.Model == null)
+            projectileUnit.SetModel(new ProjectileUnitModel());
+
+        var projectileUnitModel = projectileUnit.Model;
+        var fixedDirection = OnGetFixedDirection(projectileUnit.DirectionType);
+
+        projectileUnitModel.SetDirection(Model.Direction == Vector2.zero ? fixedDirection : Model.Direction);
+        projectileUnitModel.SetOnUpdateDirection(OnGetFixedDirection);
+        projectileUnitModel.SetDistance(Model.Range);
+        projectileUnitModel.SetSpeed(Model.Speed);
+        projectileUnitModel.SetScale(Model.Scale);
+        projectileUnitModel.SetStartPosition(Model.Sender.Transform.position);
+        projectileUnitModel.SetOnEventHit(OnEventHit);
+        projectileUnitModel.SetGetOverTargetCount(IsOverTargetCount);
+
+        projectileUnit.ShowAsync().Forget();
+    }
+}

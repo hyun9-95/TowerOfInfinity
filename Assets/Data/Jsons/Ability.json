@@ -1,0 +1,26 @@
+[
+  {
+    "id": 50000,
+    "nameId": "WEAPON_SLASH",
+    "Type": "Weapon",
+    "BattleEvent": "BE_SLASH_RANGE"
+  },
+  {
+    "id": 50001,
+    "nameId": "WEAPON_SLASH_PROJECTILE",
+    "Type": "Weapon",
+    "BattleEvent": "BE_SLASH_PROJECTILE"
+  },
+  {
+    "id": 51000,
+    "nameId": "ACTIVE_SKILL_SLASH",
+    "Type": "ActiveSkill",
+    "BattleEvent": "BE_SLASH_PROJECTILE"
+  },
+  {
+    "id": 52000,
+    "nameId": "PASSIVE_SKILL_HEAL",
+    "Type": "PassiveSkill",
+    "BattleEvent": "BE_HEAL"
+  }
+]

@@ -1,0 +1,317 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterCore
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterCore
+  m_GUID: 5370838ca9de5464c8899ac0fc7a6304
+  m_SerializeEntries:
+  - m_GUID: 00546ff0608fd7e4fa7423014ccd5308
+    m_Address: PlayerAnim_Block
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 034701bcc4d926d4e9930476ca547bc7
+    m_Address: PlayerAnim_Fall
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 03dc15cca8842b44bb215b06a2f9b6f5
+    m_Address: PlayerAnim_Idle
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 03e3dbb226f56964f81eccdf341ef1c4
+    m_Address: LeaderCharacterInfo
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 03f4e27132fc84b4ba9e5784561d9cf2
+    m_Address: PlayerAnim_Land
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 08330702a7b646e42a690c717c989d88
+    m_Address: EnemyAnim_Heal
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0d36fde1e3b112c4197f128200bd159e
+    m_Address: CollisionDamage
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0ebcb74036ea8dd4dab117dd05d31f97
+    m_Address: PlayerRollState
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0f672a7c426d4e6488c6b2f9bce5a618
+    m_Address: PlayerAnim_Fire
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 14541f74f5ffd574c983de36f0de8f13
+    m_Address: EnemyAnim_Attack
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 168b98fe679654b42b41d797e841ef95
+    m_Address: BasePlayerCharacter
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1a0b7a6e6ecb845468fa3e9f38572fd5
+    m_Address: PlayerAnim_SitDown
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1cd847ba144e20b4fb5d7daa80b06d16
+    m_Address: ServentStateGroup
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2d2cbefa7fb4fc749a2d2077a63241af
+    m_Address: EnemyAnim_Idle
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 321706d203e47f34ebddd922dc1d26ed
+    m_Address: PlayerAnim_Move
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 39db33b00d299904f865504e2c86b58c
+    m_Address: EnemyModuleGroup
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3b8644d45f6e0ae44a3c90d71c7ef9ba
+    m_Address: LeaderStateGroup
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3f669f6d112971a4ca167399c23c3769
+    m_Address: BaseEnemyCharacter
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 48908527277e83b46a3f35423cfb8332
+    m_Address: PlayerAnim_Crawl
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4f4211a8e47e5a541bab5585d8846157
+    m_Address: CharacterDeadState
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5594d9720d6e46b4c890b66409e49fe9
+    m_Address: EnemyStateGroup
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 59a42dbd6dc254f4eaaa5fdaadb10347
+    m_Address: PlayerAnim_Climb
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5a11e86ea29e95c48a3ff82e843b235c
+    m_Address: EnemyController
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5a598c3fc9b0ad54c84a604825cab475
+    m_Address: EnemyAnim_Die
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5ee077a16e6e8c5439ce163bd7ac1fa4
+    m_Address: PlayerAnim_Hit
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 609a645bcd47085479c8bbaf1ce1ca64
+    m_Address: PlayerAnim_Roll
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 71896c1259c0e8d4eba469bac78074bb
+    m_Address: PlayerAnim_Heal
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8163616aa18fdcc45b83131876690838
+    m_Address: EnemyAnim_Hit
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 87e601a8b80ba604c8d64b393374338b
+    m_Address: PlayerAttackState
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 924d4f4addf17ca429912ce8d1068b0f
+    m_Address: PlayerAnim_StandUp
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 92edc707b5d92e446bf12ed654a7cae7
+    m_Address: ServentCharacterInfo
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 954bba01c65f10c49aed5d15f492ff48
+    m_Address: PlayerMoveState
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9a17bd711b3b9014ab4168ea1ab7d632
+    m_Address: PlayerController
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a2a62a9fab85c1748b30191dbf8fa225
+    m_Address: PlayerAnim_Crouch
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a99c731654ac58f4e9f10dd4e08ad27e
+    m_Address: EnemyAnim_Move
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c416b029ce5a7ef40844964be7b376b6
+    m_Address: PlayerAnim_Jump
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c612e26ecce44414d8ed38190f3a3f85
+    m_Address: CharacterIdleState
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cb6c0daa6143982449cbf7559ae50e2d
+    m_Address: PlayerSkillState
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d3242428398f72d4893874d034caa39a
+    m_Address: PlayerAnim_Die
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d412026ffdca4ff48ba109ff477c144e
+    m_Address: PlayerAnim_Slash
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d5f24f5a56c9a3249ac51c06943f5fff
+    m_Address: PlayerAnim_BowShot
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e30580ce83dd9d84997fdf985e903f9c
+    m_Address: EnemyCharacterInfo
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e91b8eadf733b784b945369305e78b8a
+    m_Address: EnemyAnim_Ready
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ec9f3b78544a02549bbc69840cc6baff
+    m_Address: PlayerModuleGroup
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f284874aaf492bd4296a6fa09defca36
+    m_Address: EnemyAnim_Fire
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f799c4289bae6c148ba46d8e9e97b990
+    m_Address: CharacterFollowState
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fae39367ca2a52847a8331b4fba004bf
+    m_Address: PlayerAnim_Push
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fd3d3d551198fbd47b29f143798c100e
+    m_Address: PlayerAnim_Jab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ff5ff53eb92fcc64192765753ea4a062
+    m_Address: PlayerAnim_Ready
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: ed6de23972ea6984098c6898b02c6053, type: 2}
+    - {fileID: 11400000, guid: fd80478d8217d3e40b18aadbbc30a129, type: 2}

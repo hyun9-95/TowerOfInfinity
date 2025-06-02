@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 768b897ac4414966ba08d5c42f59fdcd
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 271664
+  packageName: 'Pixel Hero Maker [Megapack]'
+  packageVersion: 3.1
+  assetPath: Assets/PixelFantasy/PixelTileEngine/Resources/SpriteCollection.asset
+  uploadId: 704089

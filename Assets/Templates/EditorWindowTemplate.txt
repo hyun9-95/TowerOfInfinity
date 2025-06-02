@@ -1,0 +1,29 @@
+#if UNITY_EDITOR
+using UnityEngine;
+using UnityEditor;
+
+namespace Tools
+{
+    public class #name#EditorWindow : BaseEdtiorWindow
+    {
+        private const float width = 400f;
+        private const float height = 300f;
+        private const float spacing = 5f;
+
+        [MenuItem("Tools/")]
+        public static void OpenDataUploaderWindow()
+        {
+            #name#EditorWindow window = (#name#EditorWindow)GetWindow(typeof(#name#EditorWindow));
+            window.InitializeWindow(window, width, height, spacing);
+        }
+
+        protected override void InitializeParameters()
+        {
+        }
+
+        protected override void DrawActionButton()
+        {
+        }
+    }
+}
+#endif

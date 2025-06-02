@@ -1,0 +1,18 @@
+[
+  {
+    "id": 10000,
+    "nameId": "CHAR_THIEF",
+    "PrefabName": "Thief",
+    "Default_Weapon": "WEAPON_SLASH_PROJECTILE",
+    "ActiveSkill": "None",
+    "PassiveSkill": "None"
+  },
+  {
+    "id": 11000,
+    "nameId": "CHAR_BAT",
+    "PrefabName": "Bat",
+    "Default_Weapon": "None",
+    "ActiveSkill": "None",
+    "PassiveSkill": "None"
+  }
+]

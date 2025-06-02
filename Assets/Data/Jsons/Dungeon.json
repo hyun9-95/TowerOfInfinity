@@ -1,0 +1,9 @@
+[
+  {
+    "id": 40000,
+    "nameId": "DUNGEON_ATLANTIS",
+    "EnemyGroups": [
+      "ENEMY_GROUP_ATLANTIS"
+    ]
+  }
+]

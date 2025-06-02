@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 18d3788c2c0f415f90eab509e9627bc2
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 271664
+  packageName: 'Pixel Hero Maker [Megapack]'
+  packageVersion: 3.1
+  assetPath: Assets/PixelFantasy/PixelTileEngine/Prefabs/InventoryItem.prefab
+  uploadId: 704089

@@ -1,0 +1,5 @@
+	
+	public int Id => id;
+    public string NameId => nameId;
+    public bool IsNull => id == 0 || string.IsNullOrEmpty(nameId);
+}

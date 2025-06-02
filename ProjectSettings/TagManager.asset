@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 3
+  tags:
+  - BATTLE_ALLY
+  - BATTLE_ENEMY
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - Character
+  - Water
+  - UI
+  - Background
+  - Obstacle
+  - Effect
+  - Camera
+  - Object
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 2320343209
+    locked: 0
+  - name: BackgroundDetail
+    uniqueID: 795965705
+    locked: 0
+  - name: Obstacle
+    uniqueID: 2523222317
+    locked: 0
+  - name: Object
+    uniqueID: 1148060041
+    locked: 0
+  - name: Character
+    uniqueID: 2711878829
+    locked: 0
+  - name: Effect
+    uniqueID: 2557143231
+    locked: 0
+  - name: UI
+    uniqueID: 1149573575
+    locked: 0
+  m_RenderingLayers:
+  - Default

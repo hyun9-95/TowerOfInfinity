@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Character_GreenOgre
+  m_EditorClassIdentifier: 
+  m_GroupName: Character_GreenOgre
+  m_GUID: 90a5499a617287748bdd306cb04ae221
+  m_SerializeEntries:
+  - m_GUID: 05c6dd067f4bc7c42b47ea9814766ffc
+    m_Address: GreenOgre_Stat
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0863c57f4d634095a4869c3052affe04
+    m_Address: GreenOgre_SpriteLibrary
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7549dec4a99f37348bc7cea2193fcf24
+    m_Address: GreenOgre_Enemy
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b55edc564f1b4955864cdd369d1f5a4c
+    m_Address: GreenOgre_Sprite
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: be528b57f818fac459451f5ba9dd9b3e, type: 2}
+    - {fileID: 11400000, guid: d1d135b2c99972a4ba508408457db804, type: 2}

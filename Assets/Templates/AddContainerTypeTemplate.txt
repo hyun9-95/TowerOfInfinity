@@ -1,0 +1,1 @@
+{ typeof(#name#), json => AddDataContainer<#name#>(json) },

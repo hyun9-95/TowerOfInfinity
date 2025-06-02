@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31a0591725d79134eb4126ffce8d9786, type: 3}
+  m_Name: LeaderCharacterInfo
+  m_EditorClassIdentifier: 
+  characterPrefabName: Thief_Player
+  characterStateGroup: {fileID: 11400000, guid: 3b8644d45f6e0ae44a3c90d71c7ef9ba, type: 2}
+  characterModuleGroup: {fileID: 11400000, guid: ec9f3b78544a02549bbc69840cc6baff, type: 2}
