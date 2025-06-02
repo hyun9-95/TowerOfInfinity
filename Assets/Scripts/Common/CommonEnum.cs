@@ -73,8 +73,8 @@ public enum FlowType
 
 public enum LoadDataType
 {
-    LocalPath,
-    FireBase,
+    Local,
+    Remote,
 }
 
 public enum StatType

@@ -29,7 +29,7 @@ public class IntroController : BaseController<IntroViewModel>
     {
         switch (Model.LoadDataType)
         {
-            case LoadDataType.LocalPath:
+            case LoadDataType.Local:
                 LocalDataLoader localDataLoader = new();
                 localDataLoader.SetLocalJsonDataPath(PathDefine.Json);
                 localDataLoader.SetOnSuccessLoadData(OnSuccessDataLoader);
@@ -47,7 +47,7 @@ public class IntroController : BaseController<IntroViewModel>
         Model.SetLoadingState(IntroViewModel.LoadingState.ResourceLoading);
         View.UpdateLoadingUI();
 
-        if (Model.LoadDataType == LoadDataType.LocalPath)
+        if (Model.LoadDataType == LoadDataType.Local)
         {
             AddressableManager.Instance.LoadLocalAddressableBuildAsync();
         }
