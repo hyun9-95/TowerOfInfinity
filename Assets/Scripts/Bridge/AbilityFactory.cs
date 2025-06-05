@@ -40,7 +40,10 @@ public static class AbilityFactory
             return null;
 
         if (!abilityBalanceDic.TryGetValue(abilityDefine, out AbilityBalance abilityBalance))
+        {
+            Logger.Error($"AbilityBalance not set : {abilityDefine}");
             return null;
+        }
 
         AbilityModel abilityModel = new AbilityModel();
         abilityModel.SetByAbilityData(abilityData, owner, abilityBalance);

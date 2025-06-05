@@ -25,6 +25,11 @@ public class AbilityModel : IBaseUnitModel
         AbilityBalance = abilityBalance;
     }
 
+    public void SetOwner(CharacterUnitModel owner)
+    {
+        Owner = owner;
+    }
+
     public BattleEventTriggerModel CreateTriggerModel()
     {
         BattleEventTriggerModel triggerModel = BattleEventTriggerFactory.CreateTriggerModel();

@@ -23,6 +23,7 @@ public class CharacterUnitModel : IBaseUnitModel
     public float Hp { get; private set; }
     public PathFindType PathFindType { get; private set; }
     public bool IsFlipX { get; private set; }
+    public HashSet<Weapon> Weapons => weapons;
     #endregion
 
     #region Value
@@ -99,10 +100,13 @@ public class CharacterUnitModel : IBaseUnitModel
 
         weapons.Add(weapon);
 
-        if (pendingWeapons == null)
-            pendingWeapons = new Queue<Weapon>();
+        if (!weapon.IsProcessing)
+        {
+            if (pendingWeapons == null)
+                pendingWeapons = new Queue<Weapon>();
 
-        pendingWeapons.Enqueue(weapon);
+            pendingWeapons.Enqueue(weapon);
+        }
     }
 
     public void RemoveWeapon(Weapon weapon)

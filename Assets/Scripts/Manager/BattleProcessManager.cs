@@ -34,6 +34,7 @@ public class BattleProcessManager : BaseMonoManager<BattleProcessManager>
         {
             battleUIController = controller;
             battleViewModel = controller.GetModel<BattleViewModel>();
+            battleViewModel.SetOnChangeCharacter(OnChangeCharacter);
         }
     }
 
@@ -41,7 +42,7 @@ public class BattleProcessManager : BaseMonoManager<BattleProcessManager>
     {
         var expGainerModel = expGainer.Model;
 
-        expGainerModel.SetOnExpGain(BattleInfo.OnExpGain);
+        BattleInfo.OnExpGain(exp);
 
         if (expGainerModel.Level != BattleInfo.Level)
         {
@@ -59,6 +60,27 @@ public class BattleProcessManager : BaseMonoManager<BattleProcessManager>
         battleUIModel.SetNextBattleExp(BattleInfo.NextBattleExp);
 
         battleUIController.Refresh().Forget();
+    }
+
+    private void OnChangeCharacter(CharacterUnit changeTarget)
+    {
+        if (changeTarget == null)
+            return;
+
+        CharacterUnit origin = BattleInfo.CurrentCharacter;
+
+        var originModel = origin.Model;
+        var changeTargetModel = changeTarget.Model;
+
+        // 무기의 Owner 변경
+        foreach (var weapon in originModel.Weapons)
+        {
+            weapon.Model.SetOwner(changeTargetModel);
+            changeTargetModel.AddWeapon(weapon);
+        }
+
+        // expGainer의 Owner 변경
+        expGainer.Model.SetOwner(changeTargetModel);
     }
 
     private void FixedUpdate()

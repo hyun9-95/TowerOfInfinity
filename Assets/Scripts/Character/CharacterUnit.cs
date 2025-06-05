@@ -121,7 +121,9 @@ public class CharacterUnit : PoolableMono
         activated = false;
 
         moduleGroup.OnEventUpdate(Model, moduleModelDic);
-        weaponProcessor.Cancel(Model);
+
+        if (Model.IsDead)
+            weaponProcessor.Cancel(Model);
     }
 
     private void OnFlipX(bool isFlip)

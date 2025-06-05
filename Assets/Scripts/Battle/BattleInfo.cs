@@ -21,6 +21,8 @@ public class BattleInfo
             return expTable.Values[Level - 1];
         } 
     }
+
+    public CharacterUnit CurrentCharacter { get; set; }
     #endregion
 
     #region Value
@@ -56,5 +58,10 @@ public class BattleInfo
             Level++;
             BattleExp = 0;
         }
+    }
+
+    public void SetCurrentCharacter(CharacterUnit character)
+    {
+        CurrentCharacter = character;
     }
 }

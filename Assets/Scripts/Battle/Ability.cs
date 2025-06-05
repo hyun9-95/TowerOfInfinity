@@ -3,7 +3,7 @@ using Cysharp.Threading.Tasks;
 
 public abstract class Ability
 {
-    protected AbilityModel Model { get; private set; }
+    public AbilityModel Model { get; private set; }
 
     public void SetModel(AbilityModel model)
     {

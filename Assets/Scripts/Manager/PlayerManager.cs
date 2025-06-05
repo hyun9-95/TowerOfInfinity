@@ -1,6 +1,7 @@
 #pragma warning disable CS1998
 using Cysharp.Threading.Tasks;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
@@ -53,11 +54,52 @@ public class PlayerManager : BaseMonoManager<PlayerManager>
             return null;
         }
 
+        return await CreateCharacter(transform, MyUser.LeaderCharacter);
+    }
+
+    public async UniTask<List<CharacterUnit>> CreateSubCharacters(Transform transform)
+    {
+        if (MyUser == null)
+        {
+            Logger.Null($"{MyUser}");
+            return null;
+        }
+
+        var characterUnits = new List<CharacterUnit>();
+
+        foreach (var userCharacter in MyUser.UserCharacters)
+        {
+            if (userCharacter == null)
+            {
+                Logger.Null($"{userCharacter}");
+                continue;
+            }
+
+            if (userCharacter == MyUser.LeaderCharacter)
+                continue;
+
+            var character = await CreateCharacter(transform, userCharacter);
+
+            if (character != null)
+                characterUnits.Add(character);
+        }
+
+        return characterUnits;
+    }
+
+    private async UniTask<CharacterUnit> CreateCharacter(Transform transform, UserCharacter userCharacter)
+    {
+        if (MyUser == null)
+        {
+            Logger.Null($"{MyUser}");
+            return null;
+        }
+
         return await CharacterFactory.Instance.SpawnLeaderPlayerCharacter(
-            MyUser.LeaderCharacter.CharacterDataId,
-            MyUser.LeaderCharacter.WeaponDataId,
-            MyUser.LeaderCharacter.ActiveSkillDataId,
-            MyUser.LeaderCharacter.PassiveSkillDataId,
+            userCharacter.CharacterDataId,
+            userCharacter.WeaponDataId,
+            userCharacter.ActiveSkillDataId,
+            userCharacter.PassiveSkillDataId,
             transform: transform);
     }
 }
