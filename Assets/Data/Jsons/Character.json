@@ -8,6 +8,14 @@
     "PassiveSkill": "None"
   },
   {
+    "id": 10001,
+    "nameId": "CHAR_ARCHER",
+    "PrefabName": "Archer",
+    "Default_Weapon": "WEAPON_ARROW",
+    "ActiveSkill": "None",
+    "PassiveSkill": "None"
+  },
+  {
     "id": 11000,
     "nameId": "CHAR_BAT",
     "PrefabName": "Bat",

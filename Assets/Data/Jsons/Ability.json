@@ -12,6 +12,12 @@
     "BattleEvent": "BE_SLASH_PROJECTILE"
   },
   {
+    "id": 50002,
+    "nameId": "WEAPON_ARROW",
+    "Type": "Weapon",
+    "BattleEvent": "BE_ARROW_PROJECTILE"
+  },
+  {
     "id": 51000,
     "nameId": "ACTIVE_SKILL_SLASH",
     "Type": "ActiveSkill",

@@ -34,5 +34,14 @@
     "TargetType": "Single",
     "PrefabName": "",
     "HitEffectPrefabName": ""
+  },
+  {
+    "id": 20004,
+    "nameId": "BE_ARROW_PROJECTILE",
+    "Type": "Damage",
+    "TriggerType": "Projectile",
+    "TargetType": "Single",
+    "PrefabName": "Arrow_Projectile",
+    "HitEffectPrefabName": ""
   }
 ]
