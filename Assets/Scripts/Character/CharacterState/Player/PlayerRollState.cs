@@ -34,10 +34,10 @@ public class PlayerRollState : ScriptableCharacterState
 
     }
 
-    private async UniTask DelayAddForce(CharacterUnitModel pcModel)
+    private async UniTask DelayAddForce(CharacterUnitModel model)
     {
         await UniTaskUtils.DelaySeconds(rollDelay, cancellationToken: TokenPool.Get(GetHashCode()));
-        pcModel.ActionHandler.OnAddForce(pcModel.InputWrapper.Movement.normalized,
-            FloatDefine.DEFAULT_MOVE_SPEED * speedMultiplier);
+        model.ActionHandler.OnAddForce(model.InputWrapper.Movement.normalized,
+            model.GetStatValue(StatType.MoveSpeed) * speedMultiplier);
     }
 }

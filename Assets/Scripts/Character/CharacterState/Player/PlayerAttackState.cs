@@ -15,7 +15,7 @@ public class PlayerAttackState : ScriptableCharacterState
 
     public override bool CheckExitCondition(CharacterUnitModel model)
     {
-        return model.CurrentAnimState != AnimState;
+        return model.DefaultWeapon.IsProcessing && model.CurrentAnimState != AnimState;
     }
 
     public override void OnStateAction(CharacterUnitModel model)
@@ -26,7 +26,7 @@ public class PlayerAttackState : ScriptableCharacterState
             model.GetStatValue(StatType.MoveSpeed), true);
         }
         
-        if (!model.DefaultWeapon.IsProcessing)
+        if (!model.DefaultWeapon.IsProcessing && model.CurrentAnimState == CharacterAnimState.Attack)
             model.DefaultWeapon.ActivateOneTime().Forget();
     }
 }

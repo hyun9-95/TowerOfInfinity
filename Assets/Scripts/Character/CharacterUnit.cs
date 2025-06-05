@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -67,20 +66,28 @@ public class CharacterUnit : PoolableMono
 
     private Dictionary<ModuleType, IModuleModel> moduleModelDic;
 
-    private Dictionary<CharacterAnimState, CharacterAnimState> reversedAnimStateResolver = new Dictionary<CharacterAnimState, CharacterAnimState>();
+    private Dictionary<CharacterAnimState, CharacterAnimState> reversedAnimStateResolver = null;
+    private Dictionary<int, CharacterAnimState> shortNameHashDic = new Dictionary<int, CharacterAnimState>();
 
-    protected virtual void FixedUpdate()
+    protected virtual void Update()
     {
         if (!activated)
             return;
 
         PrepareState();
+    }
+
+    private void LateUpdate()
+    {
+        if (!activated)
+            return;
+
         UpdateState();
     }
 
     public virtual void Initialize()
     {
-        InitializeReversedAnimStateResolver();
+        InitializeAnimState();
         InitializeModel();
         InitializeComponent();
         InitializeModule();
@@ -193,7 +200,6 @@ public class CharacterUnit : PoolableMono
         }
 
         CurrentState.OnStateAction(Model);
-        RefreshAnimState();
     }
 
     private void SelectState()
@@ -213,9 +219,20 @@ public class CharacterUnit : PoolableMono
 
     private void RefreshAnimState()
     {
-        var animStateValue = animator.GetInteger(StringDefine.CHARACTER_ANIM_STATE_KEY);
-        var reversedAnimState = ReversAnimState((CharacterAnimState)animStateValue);
-        Model.SetCurrentAnimState(reversedAnimState);
+        var currentStateInfo = animator.GetCurrentAnimatorStateInfo(0);
+
+        if (shortNameHashDic.TryGetValue(currentStateInfo.shortNameHash, out CharacterAnimState animState))
+        {
+            if (reversedAnimStateResolver != null)
+            {
+                var reversedAnimState = ReverseAnimState(animState);
+                Model.SetCurrentAnimState(reversedAnimState);
+            }
+            else
+            {
+                Model.SetCurrentAnimState(animState);
+            }
+        }
     }
 
     private ScriptableCharacterState FindCandidateState()
@@ -273,9 +290,18 @@ public class CharacterUnit : PoolableMono
         return actionHandler;
     }
 
-    private void InitializeReversedAnimStateResolver()
+    private void InitializeAnimState()
     {
-        reversedAnimStateResolver = animStateResolver.ToDictionary(pair => pair.Value, pair => pair.Key);
+        if (animStateResolver.Count > 0)
+            reversedAnimStateResolver = animStateResolver.ToDictionary(pair => pair.Value, pair => pair.Key);
+
+        var values = (CharacterAnimState[])System.Enum.GetValues(typeof(CharacterAnimState));
+
+        for (int i = 0; i < values.Length; i++)
+        {
+            CharacterAnimState state = values[i];
+            shortNameHashDic[Animator.StringToHash(state.ToString())] = state;
+        }
     }
 
 
@@ -287,12 +313,12 @@ public class CharacterUnit : PoolableMono
         return (int)animStateResolver[animState];
     }
 
-    private CharacterAnimState ReversAnimState(CharacterAnimState animState)
+    private CharacterAnimState ReverseAnimState(CharacterAnimState animState)
     {
-        if (reversedAnimStateResolver == null || !reversedAnimStateResolver.ContainsKey(animState))
-            return CharacterAnimState.Idle;
+        if (reversedAnimStateResolver.TryGetValue(animState, out CharacterAnimState reversedAnimState))
+            return reversedAnimState;
 
-        return reversedAnimStateResolver[animState];
+        return animState;
     }
 
     private IPathFinder CreatePathFinder()

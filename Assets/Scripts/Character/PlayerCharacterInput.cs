@@ -23,7 +23,7 @@ public class PlayerCharacterInput : MonoBehaviour
         OwnerModel.EnableInput(true);
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         GetInput();
         SetInputWrapper();
@@ -31,8 +31,8 @@ public class PlayerCharacterInput : MonoBehaviour
     
     private void GetInput()
     {
-        moveX = Input.GetAxis("Horizontal");
-        moveY = Input.GetAxis("Vertical");
+        moveX = Input.GetAxisRaw("Horizontal");
+        moveY = Input.GetAxisRaw("Vertical");
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {

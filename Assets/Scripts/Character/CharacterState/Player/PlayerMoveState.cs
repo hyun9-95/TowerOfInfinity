@@ -22,6 +22,6 @@ public class PlayerMoveState : ScriptableCharacterState
     public override void OnStateAction(CharacterUnitModel model)
     {
         model.ActionHandler.OnMovement(model.InputWrapper.Movement,
-            FloatDefine.DEFAULT_MOVE_SPEED, true);
+            model.GetStatValue(StatType.MoveSpeed), true);
     }
 }
