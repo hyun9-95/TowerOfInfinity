@@ -10,37 +10,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: AbilityCore
+  m_Name: Character_Archer
   m_EditorClassIdentifier: 
-  m_GroupName: AbilityCore
-  m_GUID: 17a2683674eb55a489d4af097df17402
+  m_GroupName: Character_Archer
+  m_GUID: 228c54dfe501b754cb851c625028409e
   m_SerializeEntries:
-  - m_GUID: 0396ae8ed0625f64496ec6266f2886f3
-    m_Address: WEAPON_ARROW
+  - m_GUID: 5e1eb3508cf34a34092577229c4530ee
+    m_Address: Archer
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 77889c79742451844ac5e150b21b8f16
-    m_Address: WEAPON_SLASH_PROJECTILE
+  - m_GUID: 71ba9966371355a42b5f2416935ec4a9
+    m_Address: Archer_Stat
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 7d633e527c69b0b489ae39b493ce8693
-    m_Address: WEAPON_SLASH
+  - m_GUID: 8aeb402c74d7c0e478aeed6ae1c0e4a6
+    m_Address: Archer_SpriteLibrary
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 93319b05db5eb154ba2306b1c5901050
-    m_Address: ACTIVE_SKILL_SLASH
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Main
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: f6dbac22b225ec1498aab81eff2b2216
-    m_Address: PASSIVE_SKILL_HEAL
+  - m_GUID: b88078eab448a39429716acd77e40144
+    m_Address: Archer_SpriteSheet
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
@@ -49,5 +43,5 @@ MonoBehaviour:
   m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: d41add52fa7ae444a92b844bc02cf306, type: 2}
-    - {fileID: 11400000, guid: 3c061850ba9cedc459f1ae963a34f18b, type: 2}
+    - {fileID: 11400000, guid: 90a5a4db1413b144b98fc5e748fa77fa, type: 2}
+    - {fileID: 11400000, guid: 412c7cd12ce33ee418848ed5c11b2257, type: 2}
