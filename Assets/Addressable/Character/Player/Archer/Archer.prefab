@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &8674338121941581397
+--- !u!1001 &8233469050011098006
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -11,14 +11,10 @@ PrefabInstance:
     - target: {fileID: 3128268920574224160, guid: 168b98fe679654b42b41d797e841ef95, type: 3}
       propertyPath: baseStat
       value: 
-      objectReference: {fileID: 11400000, guid: 6dc7b1e3601781b4fb031e51efa7c732, type: 2}
-    - target: {fileID: 4884866706097201598, guid: 168b98fe679654b42b41d797e841ef95, type: 3}
-      propertyPath: baseStat
-      value: 
-      objectReference: {fileID: 11400000, guid: 6dc7b1e3601781b4fb031e51efa7c732, type: 2}
+      objectReference: {fileID: 11400000, guid: 71ba9966371355a42b5f2416935ec4a9, type: 2}
     - target: {fileID: 5788301345535835846, guid: 168b98fe679654b42b41d797e841ef95, type: 3}
       propertyPath: m_Name
-      value: Thief
+      value: Archer
       objectReference: {fileID: 0}
     - target: {fileID: 7004756419646656658, guid: 168b98fe679654b42b41d797e841ef95, type: 3}
       propertyPath: m_LocalPosition.x
@@ -63,11 +59,11 @@ PrefabInstance:
     - target: {fileID: 7767598542808246975, guid: 168b98fe679654b42b41d797e841ef95, type: 3}
       propertyPath: m_SpriteLibraryAsset
       value: 
-      objectReference: {fileID: 11400000, guid: 2d0b2e1a3c6e6314baa54e7c73f5b7b1, type: 2}
+      objectReference: {fileID: 11400000, guid: 8aeb402c74d7c0e478aeed6ae1c0e4a6, type: 2}
     - target: {fileID: 8752414428341692763, guid: 168b98fe679654b42b41d797e841ef95, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 4176362632249098406, guid: c3b4c196b94983747b2738c46a7a0b77, type: 3}
+      objectReference: {fileID: 4176362632249098406, guid: b88078eab448a39429716acd77e40144, type: 3}
     - target: {fileID: 8752414428341692763, guid: 168b98fe679654b42b41d797e841ef95, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
