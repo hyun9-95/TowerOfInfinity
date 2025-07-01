@@ -15,7 +15,7 @@ MonoBehaviour:
   m_GroupName: Ability_Arrow_Projectile
   m_GUID: a5b978107c0cfc342a0d6b59e5b1cb0e
   m_SerializeEntries:
-  - m_GUID: 87571cccaa25b39408b965ff8539eb95
+  - m_GUID: 47dc26c4533bad54e957a0c073bb17b6
     m_Address: Arrow_Projectile_Sprite
     m_ReadOnly: 0
     m_SerializedLabels:
