@@ -172,8 +172,11 @@ public class AStar
 
     private List<AStarNode> CreatePath(AStarNode start, AStarNode end, bool diagonal = false)
     {
-        if (start == null || end == null)
+        if (end == null)
+        {
+            Logger.Error($"End node is null!");
             return null;
+        }
 
         ResetNode();
 
