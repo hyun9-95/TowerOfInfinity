@@ -172,12 +172,6 @@ public class AStar
 
     private List<AStarNode> CreatePath(AStarNode start, AStarNode end, bool diagonal = false)
     {
-        if (end == null)
-        {
-            Logger.Error($"End node is null!");
-            return null;
-        }
-
         ResetNode();
 
         PriorityQueue<AStarNode> openSet = new PriorityQueue<AStarNode>();
@@ -234,6 +228,9 @@ public class AStar
     {
         AStarNode startNode = GetNodeFromWorld(start);
         AStarNode endNode = GetNodeFromWorld(end);
+
+        if (startNode == null || endNode == null)
+            return null;
 
         return CreatePath(startNode, endNode, diagonal);
     }

@@ -25,6 +25,8 @@ public class AStarPathFinder : IPathFinder
 
     public Vector2 OnPathFind(Vector3 pos)
     {
+        currentPath = AStarManager.Instance.FindPath(rigidBody2D.position, pos);
+
         repathTimer += Time.fixedDeltaTime;
 
         bool isElapsedCoolTime = repathTimer >= repathCoolTime;
@@ -37,7 +39,6 @@ public class AStarPathFinder : IPathFinder
 
         if (needRebuildPath)
         {
-            currentPath = AStarManager.Instance.FindPath(rigidBody2D.position, pos);
             currentPathIndex = 0;
             repathTimer = 0;
         }
@@ -47,7 +48,8 @@ public class AStarPathFinder : IPathFinder
 
         if (currentPath == null || currentPath.Count == 0 || currentPathIndex >= currentPath.Count)
         {
-            moveDir = (new Vector2(pos.x, pos.y) - currentPos).normalized;
+            Vector2 targetPos = pos;
+            moveDir = (targetPos - currentPos).normalized;
 
             // 실제 이동
             rigidBody2D.MovePosition(

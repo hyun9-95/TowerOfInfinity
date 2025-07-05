@@ -21,7 +21,7 @@ public abstract class BackgroundSceneManager<T> : MonoBehaviour where T : Backgr
     public Transform PlayerStartTransform => playerTransform;
     public CinemachineCamera CinemachineCamera => cinemachineCamera;
     public int ChunkSize => chunkSize;
-    public bool UseAStar => walkableMaps != null;
+    public bool UseAStar => walkableMaps != null || walkableMaps.Length > 0;
     #endregion
 
     #region Value

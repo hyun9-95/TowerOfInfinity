@@ -30,6 +30,7 @@ public class BattleFlow : BaseFlow<BattleFlowModel>
 
         await battleSceneManager.PrepareBattle(Model.DataDungeon);
         await battleUIManager.Prepare();
+        await ShowBattleView();
     }
 
     public override async UniTask Process()
@@ -41,5 +42,14 @@ public class BattleFlow : BaseFlow<BattleFlowModel>
     public override async UniTask Exit()
     {
         await AddressableManager.Instance.UnloadSceneAsync(Model.BattleSceneDefine);
+    }
+
+    private async UniTask ShowBattleView()
+    {
+        BattleViewController battleViewController = new BattleViewController();
+        BattleViewModel viewModel = new BattleViewModel();
+        battleViewController.SetModel(viewModel);
+
+        await UIManager.Instance.ChangeView(battleViewController, true);
     }
 }
