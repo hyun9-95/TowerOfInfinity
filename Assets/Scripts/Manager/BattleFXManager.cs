@@ -3,7 +3,10 @@
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-public class BattleUIManager : BaseMonoManager<BattleUIManager>
+/// <summary>
+/// 대미지나 효과등의 단발성 UI나 이펙트를 관리한다.
+/// </summary>
+public class BattleFXManager : BaseMonoManager<BattleFXManager>
 {
     [SerializeField]
     private Transform damageParent;

@@ -1,6 +1,9 @@
 using Cysharp.Threading.Tasks;
 using System;
 
+/// <summary>
+/// 전투의 기본 UI 및 입력을 관리한다.
+/// </summary>
 public class BattleViewController : BaseController<BattleViewModel>, IObserver
 {
     public override UIType UIType => UIType.BattleView;

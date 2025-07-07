@@ -1,6 +1,9 @@
 #pragma warning disable CS1998
 using Cysharp.Threading.Tasks;
 
+/// <summary>
+/// 전반적인 전투 로직을 관리한다.
+/// </summary>
 public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
 {
     #region Property

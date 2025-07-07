@@ -8,7 +8,7 @@ public class BattleFlow : BaseFlow<BattleFlowModel>
 
     private BattleSceneManager battleSceneManager;
     private BattleSystemManager battleSystemManager;
-    private BattleUIManager battleUIManager;
+    private BattleFXManager battleUIManager;
     private BattleViewController battleViewController;
     private BattleTeam battleTeam;
 
@@ -28,7 +28,7 @@ public class BattleFlow : BaseFlow<BattleFlowModel>
         }
 
         battleSystemManager = BattleSystemManager.Instance;
-        battleUIManager = BattleUIManager.Instance;
+        battleUIManager = BattleFXManager.Instance;
 
         battleTeam = await battleSceneManager.CreateBattleTeam(PlayerManager.Instance.MyUser.UserTeams);
         await battleSceneManager.PrepareBattle(Model.DataDungeon);

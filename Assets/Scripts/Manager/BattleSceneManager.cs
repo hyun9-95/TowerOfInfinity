@@ -2,6 +2,9 @@
 using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
 
+/// <summary>
+/// 전투 씬 초기 세팅 및, 적과 아군의 스폰을 담당한다.
+/// </summary>
 public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>
 {
     #region Property
