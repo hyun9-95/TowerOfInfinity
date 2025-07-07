@@ -56,7 +56,7 @@ public abstract class BaseController
         await baseView.ShowAsync();
     }
 
-    public async UniTask Exit()
+    public virtual async UniTask Exit()
     {
         GameObject.Destroy(baseView.gameObject);
     }

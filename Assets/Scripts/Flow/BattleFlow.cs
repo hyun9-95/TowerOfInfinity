@@ -9,6 +9,7 @@ public class BattleFlow : BaseFlow<BattleFlowModel>
     private BattleSceneManager battleSceneManager;
     private BattleProcessManager battleProcessManager;
     private BattleUIManager battleUIManager;
+    private BattleViewController battleViewController;
 
     public override async UniTask LoadingProcess()
     {
@@ -33,23 +34,23 @@ public class BattleFlow : BaseFlow<BattleFlowModel>
         await ShowBattleView();
     }
 
+    private async UniTask ShowBattleView()
+    {
+        battleViewController = new BattleViewController();
+        BattleViewModel viewModel = new BattleViewModel();
+        battleViewController.SetModel(viewModel);
+
+        await UIManager.Instance.ChangeView(battleViewController, true);
+    }
+
     public override async UniTask Process()
     {
         await battleSceneManager.StartBattle();
-        await battleProcessManager.StartBattle(battleSceneManager.LeaderCharacter);
+        await battleProcessManager.StartBattle(battleSceneManager.LeaderCharacter, battleViewController);
     }
 
     public override async UniTask Exit()
     {
         await AddressableManager.Instance.UnloadSceneAsync(Model.BattleSceneDefine);
-    }
-
-    private async UniTask ShowBattleView()
-    {
-        BattleViewController battleViewController = new BattleViewController();
-        BattleViewModel viewModel = new BattleViewModel();
-        battleViewController.SetModel(viewModel);
-
-        await UIManager.Instance.ChangeView(battleViewController, true);
     }
 }

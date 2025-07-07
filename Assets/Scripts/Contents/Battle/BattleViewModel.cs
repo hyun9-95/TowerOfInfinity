@@ -6,10 +6,16 @@ public class BattleViewModel : IBaseViewModel
     public int Level { get; private set; }
     public float BattleExp { get; private set; }
     public float NextBattleExp { get; private set; }
-    public Action<CharacterUnit> OnChangeCharacter { get; private set; }
+    public CharacterUnitModel[] CharacterUnitModels { get; private set; }
+    public Action<CharacterUnitModel> OnChangeCharacter { get; private set; }
     #endregion
 
     #region Value
+    public void SetCharacterUnitModels(CharacterUnitModel[] characterUnitModels)
+    {
+        CharacterUnitModels = characterUnitModels;
+    }
+
     public void SetLevel(int level)
     {
         Level = level;
@@ -25,7 +31,7 @@ public class BattleViewModel : IBaseViewModel
         NextBattleExp = exp;
     }
 
-    public void SetOnChangeCharacter(Action<CharacterUnit> action)
+    public void SetOnChangeCharacter(Action<CharacterUnitModel> action)
     {
         OnChangeCharacter = action;
     }

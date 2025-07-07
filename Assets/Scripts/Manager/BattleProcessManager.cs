@@ -10,32 +10,40 @@ public class BattleProcessManager : BaseMonoManager<BattleProcessManager>
 
     #region Value
     private BattleExpGainer expGainer;
-    private BattleViewController battleUIController;
-    private BattleViewModel battleViewModel;
     #endregion
 
-    public async UniTask StartBattle(CharacterUnit characterUnit)
+    public async UniTask StartBattle(CharacterUnit characterUnit, BattleViewController viewController)
+    {
+        InitializBattleInfo();
+        InitilalizeExpGainer(characterUnit);
+        InitializeBattleViewEvent(viewController);
+    }
+
+    private void InitializBattleInfo()
+    {
+        BattleInfo = new BattleInfo();
+        BattleInfo.SetExpTable();
+        BattleInfo.SetLevel(0);
+        BattleInfo.SetBattleExp(0);
+    }
+
+    private void InitilalizeExpGainer(CharacterUnit characterUnit)
     {
         expGainer = characterUnit.GetComponentInChildren<BattleExpGainer>();
 
         if (expGainer == null)
             return;
 
-        BattleInfo BattleInfo = new BattleInfo();
-        BattleInfo.SetExpTable();
-        BattleInfo.SetLevel(0);
-        BattleInfo.SetBattleExp(0);
-
         expGainer.Model.SetOnExpGain(OnExpGain);
         expGainer.Model.SetOwner(characterUnit.Model);
         expGainer.Activate(true);
+    }
 
-        if (UIManager.Instance.GetCurrentController() is BattleViewController controller)
-        {
-            battleUIController = controller;
-            battleViewModel = controller.GetModel<BattleViewModel>();
-            battleViewModel.SetOnChangeCharacter(OnChangeCharacter);
-        }
+    // 입력이 필요한 이벤트를 BattleViewController에 등록한다.
+    private void InitializeBattleViewEvent(BattleViewController viewController)
+    {
+        var viewModel = viewController.GetModel<BattleViewModel>();
+        viewModel.SetOnChangeCharacter(OnChangeCharacter);
     }
 
     private void OnExpGain(float exp)
@@ -48,29 +56,23 @@ public class BattleProcessManager : BaseMonoManager<BattleProcessManager>
         {
             expGainerModel.SetLevel(BattleInfo.Level);
             expGainer.UpdateRadius();
-            OnChangeLevel();
         }
+
+        BattleObserverParam param = new BattleObserverParam();
+        param.SetBattleInfo(BattleInfo);
+
+        // 경험치 획득 시 UI 갱신해준다.
+        ObserverManager.NotifyObserver(BattleObserverID.ExpGain, param);
     }
 
-    private void OnChangeLevel()
+    private void OnChangeCharacter(CharacterUnitModel changeTargetModel)
     {
-        var battleUIModel = battleUIController.GetModel<BattleViewModel>();
-        battleUIModel.SetLevel(BattleInfo.Level);
-        battleUIModel.SetBattleExp(BattleInfo.BattleExp);
-        battleUIModel.SetNextBattleExp(BattleInfo.NextBattleExp);
-
-        battleUIController.Refresh().Forget();
-    }
-
-    private void OnChangeCharacter(CharacterUnit changeTarget)
-    {
-        if (changeTarget == null)
+        if (changeTargetModel == null)
             return;
 
         CharacterUnit origin = BattleInfo.CurrentCharacter;
 
         var originModel = origin.Model;
-        var changeTargetModel = changeTarget.Model;
 
         // 무기의 Owner 변경
         foreach (var weapon in originModel.Weapons)

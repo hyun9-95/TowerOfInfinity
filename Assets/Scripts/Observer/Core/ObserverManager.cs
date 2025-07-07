@@ -10,6 +10,18 @@ public class ObserverManager
         observers.Clear();
     }
 
+    public static void AddObserver<T>(T[] ids, IObserver addObserver) where T : Enum
+    {
+        foreach (var id in ids)
+            AddObserver(id, addObserver);
+    }
+
+    public static void RemoveObserver<T>(T[] ids, IObserver removeObserver) where T : Enum
+    {
+        foreach (var id in ids)
+            RemoveObserver(id, removeObserver);
+    }
+
     public static void AddObserver(Enum id, IObserver addObserver)
     {
         if (observers.ContainsKey(id))
