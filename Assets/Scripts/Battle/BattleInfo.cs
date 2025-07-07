@@ -22,12 +22,16 @@ public class BattleInfo
         } 
     }
 
-    public CharacterUnit CurrentCharacter { get; set; }
+    public BattleTeam BattleTeam { get; private set; }
     #endregion
 
     #region Value
     private DataBalance expTable;
     #endregion
+    public void SetBattleTeam(BattleTeam battleTeam)
+    {
+        BattleTeam = battleTeam;
+    }
 
     public void SetLevel(int level)
     {
@@ -60,8 +64,8 @@ public class BattleInfo
         }
     }
 
-    public void SetCurrentCharacter(CharacterUnit character)
+    public void CreateBattleTeam()
     {
-        CurrentCharacter = character;
+
     }
 }

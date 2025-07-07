@@ -95,11 +95,6 @@ public class PlayerManager : BaseMonoManager<PlayerManager>
             return null;
         }
 
-        return await CharacterFactory.Instance.SpawnLeaderPlayerCharacter(
-            userCharacter.CharacterDataId,
-            userCharacter.WeaponDataId,
-            userCharacter.ActiveSkillDataId,
-            userCharacter.PassiveSkillDataId,
-            transform: transform);
+        return await CharacterFactory.Instance.CreateCharacter(transform, userCharacter);
     }
 }

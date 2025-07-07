@@ -1,8 +1,7 @@
 #pragma warning disable CS1998
 using Cysharp.Threading.Tasks;
-using UnityEngine;
 
-public class BattleProcessManager : BaseMonoManager<BattleProcessManager>
+public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
 {
     #region Property
     public BattleInfo BattleInfo { get; private set; } = new BattleInfo();
@@ -12,16 +11,17 @@ public class BattleProcessManager : BaseMonoManager<BattleProcessManager>
     private BattleExpGainer expGainer;
     #endregion
 
-    public async UniTask StartBattle(CharacterUnit characterUnit, BattleViewController viewController)
+    public async UniTask StartBattle(BattleTeam battleTeam, BattleViewController viewController)
     {
-        InitializBattleInfo();
-        InitilalizeExpGainer(characterUnit);
+        InitializBattleInfo(battleTeam);
+        InitilalizeExpGainer(battleTeam.CurrentCharacter);
         InitializeBattleViewEvent(viewController);
     }
 
-    private void InitializBattleInfo()
+    private void InitializBattleInfo(BattleTeam battleTeam)
     {
         BattleInfo = new BattleInfo();
+        BattleInfo.SetBattleTeam(battleTeam);
         BattleInfo.SetExpTable();
         BattleInfo.SetLevel(0);
         BattleInfo.SetBattleExp(0);
@@ -65,12 +65,16 @@ public class BattleProcessManager : BaseMonoManager<BattleProcessManager>
         ObserverManager.NotifyObserver(BattleObserverID.ExpGain, param);
     }
 
-    private void OnChangeCharacter(CharacterUnitModel changeTargetModel)
+    private void OnChangeCharacter(int changeIndex)
     {
-        if (changeTargetModel == null)
+        var changeTarget = BattleInfo.BattleTeam.GetCharacterUnit(changeIndex);
+
+        if (changeTarget == null)
             return;
 
-        CharacterUnit origin = BattleInfo.CurrentCharacter;
+        var changeTargetModel = changeTarget.Model;
+
+        CharacterUnit origin = BattleInfo.BattleTeam.CurrentCharacter;
 
         var originModel = origin.Model;
 
@@ -83,15 +87,5 @@ public class BattleProcessManager : BaseMonoManager<BattleProcessManager>
 
         // expGainer의 Owner 변경
         expGainer.Model.SetOwner(changeTargetModel);
-    }
-
-    private void FixedUpdate()
-    {
-        
-    }
-
-    private void UpdateProcess()
-    {
-
     }
 }

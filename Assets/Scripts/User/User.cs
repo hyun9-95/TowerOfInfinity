@@ -1,9 +1,22 @@
+using System.Collections.Generic;
+using System.ComponentModel.Design;
+
 public class User
 {
     #region Property
     public UserSaveInfo UserSaveInfo { get; private set; }
     public UserCharacter[] UserCharacters { get; private set; }
-    public UserCharacter LeaderCharacter { get; private set; }
+    public UserCharacter[] UserTeams { get; private set; } = new UserCharacter[3];
+    public UserCharacter LeaderCharacter
+    {
+        get
+        {
+            if (UserTeams == null || UserTeams.Length == 0)
+                return null;
+
+            return UserTeams[0];
+        }
+    }
     #endregion
 
     #region Value
@@ -35,20 +48,29 @@ public class User
             int passiveSkillDataId = userSaveInfo.CharacterPassiveSkillDic.ContainsKey(dataCharacterId) ?
                 userSaveInfo.CharacterPassiveSkillDic[dataCharacterId] : 0;
 
+            int slotIndex = userSaveInfo.CharacterSlotIndexDic.ContainsKey(dataCharacterId) ?
+                userSaveInfo.CharacterSlotIndexDic[dataCharacterId] : -1;
+
             UserCharacter userCharacter = new UserCharacter();
             userCharacter.SetCharacterDataId(dataCharacterId);
             userCharacter.SetWeaponDataId(weaponDataId);
             userCharacter.SetActiveSkillDataId(activeSkillDataId);
             userCharacter.SetPassiveSkillDataId(passiveSkillDataId);
+            userCharacter.SetSlotIndex(userSaveInfo.CharacterSlotIndexDic[i]);
 
             UserCharacters[i] = userCharacter;
 
-            if (userCharacter.CharacterDataId == userSaveInfo.LeaderCharacterDataId)
-                LeaderCharacter = userCharacter;
-        }
+            if (slotIndex > 0 && slotIndex < UserTeams.Length)
+            {
+                if (UserTeams[i] != null)
+                {
+                    Logger.Error($"중복 인덱스 ! => {userCharacter.CharacterDataId}");
+                    continue;
+                }
 
-        if (LeaderCharacter == null)
-            LeaderCharacter = UserCharacters[0];
+                UserTeams[i] = userCharacter;
+            }
+        }
     }
     #endregion
 }

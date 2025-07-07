@@ -5,6 +5,7 @@ public class UserCharacter
     public int WeaponDataId { get; private set; }
     public int ActiveSkillDataId { get; private set; }  
     public int PassiveSkillDataId { get; private set; }
+    public int SlotIndex { get; private set; }
     #endregion
 
     #region Value
@@ -29,6 +30,11 @@ public class UserCharacter
     public void SetPassiveSkillDataId(int dataPassiveSkillId)
     {
         PassiveSkillDataId = dataPassiveSkillId;
+    }
+
+    public void SetSlotIndex(int slotIndex)
+    {
+        SlotIndex = slotIndex;
     }
     #endregion
 }

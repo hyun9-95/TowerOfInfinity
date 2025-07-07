@@ -10,9 +10,6 @@ public class UserSaveInfo
     public string Id { get; private set; }
 
     [JsonProperty]
-    public int LeaderCharacterDataId { get; private set; }
-
-    [JsonProperty]
     public int[] CharacterDataIds { get; private set; }
 
     [JsonProperty]
@@ -23,6 +20,9 @@ public class UserSaveInfo
 
     [JsonProperty]
     public Dictionary<int, int> CharacterPassiveSkillDic { get; private set; }
+
+    [JsonProperty]
+    public Dictionary<int, int> CharacterSlotIndexDic { get; private set; }
     #endregion
 
     #region Value
@@ -37,11 +37,6 @@ public class UserSaveInfo
         if (string.IsNullOrEmpty(Id))
         {
             Id = SystemInfo.deviceUniqueIdentifier;
-        }
-
-        if (LeaderCharacterDataId == 0)
-        {
-            LeaderCharacterDataId = IntDefine.DEFAULT_CHARACTER_PLAYER_ID;
         }
 
         if (CharacterDataIds == null)
@@ -60,6 +55,9 @@ public class UserSaveInfo
 
         if (CharacterPassiveSkillDic == null)
             CharacterPassiveSkillDic = new Dictionary<int, int>();
+
+        if (CharacterSlotIndexDic == null)
+            CharacterSlotIndexDic = new Dictionary<int, int>();
     }
     #endregion
 }

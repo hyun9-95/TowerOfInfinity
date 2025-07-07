@@ -7,9 +7,10 @@ public class BattleFlow : BaseFlow<BattleFlowModel>
     public override FlowType FlowType => FlowType.BattleFlow;
 
     private BattleSceneManager battleSceneManager;
-    private BattleProcessManager battleProcessManager;
+    private BattleSystemManager battleSystemManager;
     private BattleUIManager battleUIManager;
     private BattleViewController battleViewController;
+    private BattleTeam battleTeam;
 
     public override async UniTask LoadingProcess()
     {
@@ -26,9 +27,10 @@ public class BattleFlow : BaseFlow<BattleFlowModel>
             return;
         }
 
-        battleProcessManager = BattleProcessManager.Instance;
+        battleSystemManager = BattleSystemManager.Instance;
         battleUIManager = BattleUIManager.Instance;
 
+        battleTeam = await battleSceneManager.CreateBattleTeam(PlayerManager.Instance.MyUser.UserTeams);
         await battleSceneManager.PrepareBattle(Model.DataDungeon);
         await battleUIManager.Prepare();
         await ShowBattleView();
@@ -46,7 +48,7 @@ public class BattleFlow : BaseFlow<BattleFlowModel>
     public override async UniTask Process()
     {
         await battleSceneManager.StartBattle();
-        await battleProcessManager.StartBattle(battleSceneManager.LeaderCharacter, battleViewController);
+        await battleSystemManager.StartBattle(battleTeam, battleViewController);
     }
 
     public override async UniTask Exit()

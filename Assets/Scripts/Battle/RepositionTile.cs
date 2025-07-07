@@ -16,13 +16,13 @@ public class RepositionTile : MonoBehaviour
         if (!BattleSceneManager.Instance)
             return;
 
-        Vector3 playerPos = BattleSceneManager.Instance.LeaderCharacter.transform.position;
+        Vector3 playerPos = BattleSceneManager.Instance.CurrentCharacter.transform.position;
         Vector3 pos = transform.position;
 
         float diffX = Mathf.Abs(playerPos.x - pos.x);
         float diffY = Mathf.Abs(playerPos.y - pos.y);
 
-        Vector3 playerDir = BattleSceneManager.Instance.LeaderCharacter.Model.InputWrapper.Movement;
+        Vector3 playerDir = BattleSceneManager.Instance.CurrentCharacter.Model.InputWrapper.Movement;
         float dirX = playerDir.x < 0 ? -1 : 1;
         float dirY = playerDir.y < 0 ? -1 : 1;
 

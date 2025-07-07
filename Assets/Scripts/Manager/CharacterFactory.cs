@@ -138,6 +138,16 @@ public class CharacterFactory : BaseManager<CharacterFactory>
         return characterInfoDic[characterType];
     }
 
+    public async UniTask<CharacterUnit> CreateCharacter(Transform transform, UserCharacter userCharacter)
+    {
+        return await SpawnLeaderPlayerCharacter(
+            userCharacter.CharacterDataId,
+            userCharacter.WeaponDataId,
+            userCharacter.ActiveSkillDataId,
+            userCharacter.PassiveSkillDataId,
+            transform: transform);
+    }
+
     private string GetCharacterInfoPath(CharacterType characterType)
     {
         return characterType switch
