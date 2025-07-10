@@ -7,9 +7,12 @@ using UnityEngine;
 
 public abstract class BattleEventTrigger
 {
+    protected virtual bool UseTrigger => true;
     protected BattleEventTriggerModel Model { get; private set; }
 
     protected int currentTargetCount = 0;
+
+    protected Dictionary<CharacterUnitModel, int> targetHitCount;
 
     public void SetModel(BattleEventTriggerModel skillInfoValue)
     {
@@ -19,6 +22,10 @@ public abstract class BattleEventTrigger
     public void Reset()
     {
         currentTargetCount = 0;
+
+        if (targetHitCount != null)
+            targetHitCount.Clear();
+
         Model = null;
     }
 
@@ -76,7 +83,7 @@ public abstract class BattleEventTrigger
 
     protected void OnEventHit(Collider2D hitTarget)
     {
-        if (IsOverTargetCount())
+        if (IsOverTargetCount(currentTargetCount))
             return;
 
         if (hitTarget == null)
@@ -94,22 +101,59 @@ public abstract class BattleEventTrigger
         {
             case BattleEventTargetType.Single:
             case BattleEventTargetType.Multiple:
-                SendBattleEvent(model);
-
-                if (!string.IsNullOrEmpty(Model.HitEffectPrefabName))
-                    OnSpawnHitEffect(hitTarget.transform.position).Forget();
-
-                currentTargetCount++;
-
-                if (IsOverTargetCount())
-                    OnComplete();
-
-                return;
-                
+                if (UseTrigger)
+                {
+                    ProcessBattleEvent(model, hitTarget);
+                }
+                else
+                {
+                    ProcessNoneTriggerBattleEvent(model, hitTarget);
+                }   
+                break;
+               
             default:
                 Logger.Error($"이 타입으로 사용하면 안되는 타겟타입 : {Model.TargetType}");
                 return;
         }
+    }
+
+    private void ProcessBattleEvent(CharacterUnitModel targetModel, Collider2D hitTarget)
+    {
+        SendBattleEvent(targetModel);
+
+        if (!string.IsNullOrEmpty(Model.HitEffectPrefabName))
+            OnSpawnHitEffect(hitTarget.transform.position).Forget();
+
+        currentTargetCount++;
+
+        if (IsOverTargetCount(currentTargetCount))
+            OnComplete();
+    }
+
+    private void ProcessNoneTriggerBattleEvent(CharacterUnitModel targetModel, Collider2D hitTarget)
+    {
+        if (targetHitCount == null)
+            targetHitCount = new Dictionary<CharacterUnitModel, int>();
+
+        if (!targetHitCount.ContainsKey(targetModel))
+        {
+            ProcessBattleEvent(targetModel, hitTarget);
+            targetHitCount[targetModel] = 1;
+            return;
+        }
+
+        int hitCount = targetHitCount[targetModel];
+
+        if (IsOverTargetCount(hitCount))
+            return;
+
+        ProcessBattleEvent(targetModel, hitTarget);
+        targetHitCount[targetModel]++;
+    }
+
+    protected bool IsOverTargetCount(int count)
+    {
+        return count >= Model.TargetCount;
     }
 
     protected bool IsOverTargetCount()

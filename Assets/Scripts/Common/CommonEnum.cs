@@ -21,6 +21,7 @@ public enum BattleEventTriggerType
     None,
     Projectile,
     Range,
+    Collider,
     Movement,
 }
 

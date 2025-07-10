@@ -3,7 +3,7 @@
     "id": 10000,
     "nameId": "CHAR_THIEF",
     "PrefabName": "Thief",
-    "Default_Weapon": "WEAPON_SLASH_PROJECTILE",
+    "Default_Weapon": "WEAPON_STING",
     "ActiveSkill": "None",
     "PassiveSkill": "None"
   },
@@ -12,6 +12,14 @@
     "nameId": "CHAR_ARCHER",
     "PrefabName": "Archer",
     "Default_Weapon": "WEAPON_ARROW",
+    "ActiveSkill": "None",
+    "PassiveSkill": "None"
+  },
+  {
+    "id": 10002,
+    "nameId": "CHAR_GUARD",
+    "PrefabName": "Guard",
+    "Default_Weapon": "WEAPON_STING",
     "ActiveSkill": "None",
     "PassiveSkill": "None"
   },

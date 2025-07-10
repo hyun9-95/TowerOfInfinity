@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
+using System.Linq;
 
 public class User
 {
@@ -35,6 +37,8 @@ public class User
     {
         UserCharacters = new UserCharacter[userSaveInfo.CharacterDataIds.Length];
 
+        Array.Sort(userSaveInfo.CharacterDataIds, (a, b) => a.CompareTo(b));
+        
         for (int i = 0; i < userSaveInfo.CharacterDataIds.Length; i++)
         {
             int dataCharacterId = userSaveInfo.CharacterDataIds[i];
@@ -56,11 +60,11 @@ public class User
             userCharacter.SetWeaponDataId(weaponDataId);
             userCharacter.SetActiveSkillDataId(activeSkillDataId);
             userCharacter.SetPassiveSkillDataId(passiveSkillDataId);
-            userCharacter.SetSlotIndex(userSaveInfo.CharacterSlotIndexDic[i]);
+            userCharacter.SetSlotIndex(slotIndex);
 
             UserCharacters[i] = userCharacter;
 
-            if (slotIndex > 0 && slotIndex < UserTeams.Length)
+            if (slotIndex >= 0 && slotIndex < UserTeams.Length)
             {
                 if (UserTeams[i] != null)
                 {
@@ -70,6 +74,13 @@ public class User
 
                 UserTeams[i] = userCharacter;
             }
+        }
+
+        if (LeaderCharacter == null)
+        {
+            var firstCharacter = UserCharacters[0];
+            firstCharacter.SetSlotIndex(0);
+            UserTeams[0] = firstCharacter;
         }
     }
     #endregion

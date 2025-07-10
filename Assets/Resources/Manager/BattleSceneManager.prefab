@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1534334896952178064}
   - component: {fileID: 8686986426514634383}
   m_Layer: 0
-  m_Name: BattleProcessManager
+  m_Name: BattleSystemManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -310,7 +310,7 @@ GameObject:
   - component: {fileID: 8337176972195935679}
   - component: {fileID: 5965236406475043180}
   m_Layer: 0
-  m_Name: BattleUIManager
+  m_Name: BattleFXManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -343,6 +343,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 068a7ff70efe5de4ba35f88407294c99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageParent: {fileID: 0}
 --- !u!1 &6620468501725758362
 GameObject:
   m_ObjectHideFlags: 0

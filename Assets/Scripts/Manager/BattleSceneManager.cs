@@ -26,6 +26,7 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>
     public async UniTask<BattleTeam> CreateBattleTeam(UserCharacter[] userTeams)
     {
         playerBattleTeam = await CreatePlayerBattleTeam(userTeams);
+        SetCurrentCharacter(playerBattleTeam.CurrentCharacter);
 
         return playerBattleTeam;
     }
@@ -63,16 +64,17 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>
 
         await UniTask.NextFrame();
 
-        var leaderCharacter = playerBattleTeam.CurrentCharacter;
-
-        SetFollowCamera(leaderCharacter.transform);
-        AddLiveCharacter(leaderCharacter.gameObject.GetInstanceID(), leaderCharacter.Model);
-
         var battleTeam = new BattleTeam();
         battleTeam.SetCharacterUnits(playerCharacters);
         battleTeam.SetCurrentIndex(leaderIndex);
 
         return battleTeam;
+    }
+
+    private void SetCurrentCharacter(CharacterUnit leaderCharacter)
+    {
+        SetFollowCamera(leaderCharacter.transform);
+        AddLiveCharacter(leaderCharacter.gameObject.GetInstanceID(), leaderCharacter.Model);
     }
 
     private void CreateEnemyGenerator(DataDungeon dataDungeon)

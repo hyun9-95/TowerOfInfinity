@@ -140,6 +140,12 @@ public class CharacterFactory : BaseManager<CharacterFactory>
 
     public async UniTask<CharacterUnit> CreateCharacter(Transform transform, UserCharacter userCharacter)
     {
+        if (userCharacter == null)
+        {
+            Logger.Error("User Character is null");
+            return null;
+        }
+
         return await SpawnLeaderPlayerCharacter(
             userCharacter.CharacterDataId,
             userCharacter.WeaponDataId,

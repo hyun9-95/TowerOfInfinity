@@ -18,6 +18,12 @@
     "BattleEvent": "BE_ARROW_PROJECTILE"
   },
   {
+    "id": 50003,
+    "nameId": "WEAPON_STING",
+    "Type": "Weapon",
+    "BattleEvent": "BE_STING"
+  },
+  {
     "id": 51000,
     "nameId": "ACTIVE_SKILL_SLASH",
     "Type": "ActiveSkill",

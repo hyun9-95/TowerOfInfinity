@@ -39,6 +39,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bd232ad5f1fe24d4a949d392865334a1
+    m_Address: WEAPON_STING
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f6dbac22b225ec1498aab81eff2b2216
     m_Address: PASSIVE_SKILL_HEAL
     m_ReadOnly: 0

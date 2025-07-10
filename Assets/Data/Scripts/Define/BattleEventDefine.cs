@@ -10,5 +10,6 @@ public enum BattleEventDefine
 	BE_SLASH_RANGE = 20002,
 	BE_HEAL = 20003,
 	BE_ARROW_PROJECTILE = 20004,
+	BE_STING = 20005,
 
 }

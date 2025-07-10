@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Ability_Sting_Range
+  m_EditorClassIdentifier: 
+  m_GroupName: Ability_Sting_Range
+  m_GUID: 52a62e12f3d00a343a555714db50576c
+  m_SerializeEntries:
+  - m_GUID: 8ed0d2dd23003bb4cb3b8ee58ab030db
+    m_Address: Slash_Angled_04_Blue_M
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: af289244727bd9d4781db4c7aba5ee4c
+    m_Address: Sting_Range
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cfb95e4c2a2ba2249bbd64c0c14156f2
+    m_Address: Slash_Angled_04_Blue_SpriteSheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: cb0f5ec57b0a9024a9284d676277dacc, type: 2}
+    - {fileID: 11400000, guid: cc886585d017206478b872283d967da1, type: 2}

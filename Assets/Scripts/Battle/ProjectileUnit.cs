@@ -63,15 +63,12 @@ public class ProjectileUnit : PoolableBaseUnit<ProjectileUnitModel>
     private void Launch()
     {
         launched = true;
-
+        bool isFlip = direction.x < 0;
         transform.position = Model.StartPosition;
-        transform.localPosition += LocalPosOffset;
+        transform.localPosition += isFlip ? GetFlipLocalPos(isFlip) : LocalPosOffset;
         startPosition = transform.position;
         direction = Model.StartDirection;
-        effectSprite.flipY = direction.x < 0;
-
-        RotateSpriteToDirection();
-
+        effectSprite.flipX = isFlip;
         hitCollider.enabled = true;
         effectSprite.RestoreAlpha();
         transform.localScale = originScale * Model.Scale;

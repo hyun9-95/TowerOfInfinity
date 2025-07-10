@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class RangeBattleEventTrigger : BattleEventTrigger
 {
+    protected override bool UseTrigger => false;
+
     public async override UniTask Process()
     {
-        await ProcessRangeAttack();
+        await ProcessRangeEvent();
     }
 
-    private async UniTask ProcessRangeAttack()
+    private async UniTask ProcessRangeEvent()
     {
         if (!string.IsNullOrEmpty(Model.PrefabName))
         {
@@ -24,6 +26,8 @@ public class RangeBattleEventTrigger : BattleEventTrigger
 
             var hitTargetEffectUnitModel = hitTargetEffect.Model;
             hitTargetEffectUnitModel.SetRange(Model.Range);
+            hitTargetEffectUnitModel.SetFlip(Model.Sender.IsFlipX);
+            hitTargetEffectUnitModel.SetOnEventHit(OnEventHit);
 
             hitTargetEffect.ShowAsync().Forget();
         }

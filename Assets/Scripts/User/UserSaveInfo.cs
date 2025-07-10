@@ -39,7 +39,7 @@ public class UserSaveInfo
             Id = SystemInfo.deviceUniqueIdentifier;
         }
 
-        if (CharacterDataIds == null)
+        if (CharacterDataIds == null || CharacterDataIds.Length == 0)
         {
             CharacterDataIds = new int[]
             {

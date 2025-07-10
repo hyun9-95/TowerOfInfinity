@@ -140,7 +140,7 @@ GameObject:
   - component: {fileID: 5807743396759864640}
   - component: {fileID: 5534474234083689269}
   m_Layer: 5
-  m_Name: BattleUIManager
+  m_Name: BattleFXManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

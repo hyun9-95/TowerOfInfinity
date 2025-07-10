@@ -15,7 +15,7 @@ namespace Tools
         private int Version => GetParameter<int>("Version");
         
 
-        [MenuItem("Tools/Data/Generate Data From Excel Folder")]
+        [MenuItem("Tools/Data/Generate Data From Excel Folder  %F3")]
         public static void OpenDataGeneratorWindow()
         {
             DataGeneratorEditorWindow window = (DataGeneratorEditorWindow)GetWindow(typeof(DataGeneratorEditorWindow));

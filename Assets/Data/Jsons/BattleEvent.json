@@ -43,5 +43,14 @@
     "TargetType": "Single",
     "PrefabName": "Arrow_Projectile",
     "HitEffectPrefabName": ""
+  },
+  {
+    "id": 20005,
+    "nameId": "BE_STING",
+    "Type": "Damage",
+    "TriggerType": "Collider",
+    "TargetType": "Single",
+    "PrefabName": "Sting_Collider",
+    "HitEffectPrefabName": ""
   }
 ]

@@ -31,7 +31,7 @@ public class BookmarkAsset : EditorWindow
     }
 
 
-    [MenuItem("Tools/Util/BookmarkAsset/Open Custom Asset2 %F3", false, 15)]
+    //[MenuItem("Tools/Util/BookmarkAsset/Open Custom Asset2 %F3", false, 15)]
     public static void OpenShortCut_Ctrl_F3()
     {
         string path = PlayerPrefs.GetString(PlayerPrefsKey + Shortcuts.Ctrl_F3);
@@ -39,7 +39,7 @@ public class BookmarkAsset : EditorWindow
         OpenShortcuts(Shortcuts.Ctrl_F3, path);
     }
 
-    [MenuItem("Tools/Util/BookmarkAsset/Open Custom Asset3 %F4", false, 15)]
+    //[MenuItem("Tools/Util/BookmarkAsset/Open Custom Asset3 %F4", false, 15)]
     public static void OpenShortCut_Ctrl_F4()
     {
         string path = PlayerPrefs.GetString(PlayerPrefsKey + Shortcuts.Ctrl_F4);
