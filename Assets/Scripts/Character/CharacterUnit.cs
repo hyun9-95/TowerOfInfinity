@@ -114,6 +114,10 @@ public class CharacterUnit : PoolableMono
 
         bodySprite.RestoreAlpha();
         activated = true;
+
+        // 패시브 스킬 활성화
+        if (Model.PassiveSkill != null)
+            Model.PassiveSkill.Activate();
     }
 
     protected virtual void OnDeactivate()
