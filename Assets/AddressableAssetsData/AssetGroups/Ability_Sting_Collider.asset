@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Ability_Sting_Range
+  m_Name: Ability_Sting_Collider
   m_EditorClassIdentifier: 
-  m_GroupName: Ability_Sting_Range
-  m_GUID: 52a62e12f3d00a343a555714db50576c
+  m_GroupName: Ability_Sting_Collider
+  m_GUID: f0ad73495ace1c24c9535ea6f916afd0
   m_SerializeEntries:
   - m_GUID: 8ed0d2dd23003bb4cb3b8ee58ab030db
     m_Address: Slash_Angled_04_Blue_M
@@ -22,7 +22,7 @@ MonoBehaviour:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: af289244727bd9d4781db4c7aba5ee4c
-    m_Address: Sting_Range
+    m_Address: Sting_Collider
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
@@ -37,5 +37,5 @@ MonoBehaviour:
   m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: cb0f5ec57b0a9024a9284d676277dacc, type: 2}
-    - {fileID: 11400000, guid: cc886585d017206478b872283d967da1, type: 2}
+    - {fileID: 11400000, guid: ca20841181d44f24c9475afae1ea0c68, type: 2}
+    - {fileID: 11400000, guid: 73eab50c3cf22394bb7b332c898c472d, type: 2}

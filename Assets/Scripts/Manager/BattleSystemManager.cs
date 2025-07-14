@@ -4,7 +4,7 @@ using Cysharp.Threading.Tasks;
 /// <summary>
 /// 전반적인 전투 로직을 관리한다.
 /// </summary>
-public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
+public class BattleSystemManager : BaseManager<BattleSystemManager>
 {
     #region Property
     public BattleInfo BattleInfo { get; private set; } = new BattleInfo();
@@ -14,11 +14,10 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
     private BattleExpGainer expGainer;
     #endregion
 
-    public async UniTask StartBattle(BattleTeam battleTeam, BattleViewController viewController)
+    public async UniTask Prepare(BattleTeam battleTeam)
     {
         InitializBattleInfo(battleTeam);
         InitilalizeExpGainer(battleTeam.CurrentCharacter);
-        InitializeBattleViewEvent(viewController);
     }
 
     private void InitializBattleInfo(BattleTeam battleTeam)
@@ -42,10 +41,12 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
         expGainer.Activate(true);
     }
 
-    // 입력이 필요한 이벤트를 BattleViewController에 등록한다.
-    private void InitializeBattleViewEvent(BattleViewController viewController)
+    // 입력이 필요한 이벤트를 BattleViewModel에 등록한다.
+    public void BindingBattleViewEvent(BattleViewModel viewModel)
     {
-        var viewModel = viewController.GetModel<BattleViewModel>();
+        if (viewModel == null)
+            return;
+
         viewModel.SetOnChangeCharacter(OnChangeCharacter);
     }
 

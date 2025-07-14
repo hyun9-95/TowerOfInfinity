@@ -8,18 +8,20 @@ public class BattleInfo
 
     public float BattleExp { get; private set; }
 
-    public float NextBattleExp 
+    public float NextBattleExp
     {
-        get 
+        get
         {
             if (expTable.IsNull)
                 return 0;
 
-            if (expTable.ValueCount >= Level)
-                return 0;
+            int nextLevel = Level + 1;
 
-            return expTable.Values[Level - 1];
-        } 
+            if (nextLevel >= expTable.ValueCount)
+                return expTable.Values[expTable.ValueCount - 1];
+
+            return expTable.Values[nextLevel];
+        }
     }
 
     public BattleTeam BattleTeam { get; private set; }

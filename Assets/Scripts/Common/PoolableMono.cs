@@ -1,5 +1,3 @@
-
-
 public class PoolableMono : AddressableMono
 {
     protected virtual void OnDisable()
@@ -10,6 +8,7 @@ public class PoolableMono : AddressableMono
 
     private void ReturnPool()
     {
-        ObjectPoolManager.Instance.ReturnToPool(gameObject, gameObject.name);
+        if (ObjectPoolManager.Instance)
+            ObjectPoolManager.Instance.ReturnToPool(gameObject, gameObject.name);
     }
 }

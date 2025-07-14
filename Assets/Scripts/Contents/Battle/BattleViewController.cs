@@ -30,9 +30,7 @@ public class BattleViewController : BaseController<BattleViewModel>, IObserver
 
     private void Refresh(BattleInfo battleInfo)
     {
-        Model.SetLevel(battleInfo.Level);
-        Model.SetBattleExp(battleInfo.BattleExp);
-        Model.SetNextBattleExp(battleInfo.NextBattleExp);
+        Model.SetByBattleInfo(battleInfo);
 
         View.ShowAsync().Forget();
     }

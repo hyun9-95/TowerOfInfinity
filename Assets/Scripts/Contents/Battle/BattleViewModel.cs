@@ -16,6 +16,13 @@ public class BattleViewModel : IBaseViewModel
         CharacterUnitModels = characterUnitModels;
     }
 
+    public void SetByBattleInfo(BattleInfo battleInfo)
+    {
+        SetLevel(battleInfo.Level);
+        SetBattleExp(battleInfo.BattleExp);
+        SetNextBattleExp(battleInfo.NextBattleExp);
+    }
+
     public void SetLevel(int level)
     {
         Level = level;
