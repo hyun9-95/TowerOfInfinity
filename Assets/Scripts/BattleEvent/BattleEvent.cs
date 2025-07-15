@@ -13,7 +13,15 @@ public abstract class BattleEvent
         Model = null;
     }
 
-    public abstract void Process();
+    public abstract void OnStart();
+
+    public virtual void OnUpdate()
+    {
+    }
+
+    public virtual void OnEnd()
+    {
+    }
 
     public virtual void ReturnToPool()
     {

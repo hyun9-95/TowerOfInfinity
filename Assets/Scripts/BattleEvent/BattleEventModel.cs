@@ -8,7 +8,11 @@ public class BattleEventModel
 
     public CharacterUnitModel Receiver { get; private set; }
 
+    public StatType AffectStat { get; private set; }
+
     public float Value { get; private set; }
+
+    public float Duration { get; private set; }
 
     public void Reset()
     {
@@ -19,7 +23,7 @@ public class BattleEventModel
         Value = 0f;
     }
 
-    public void SetSkillDataId(int skillDataId)
+    public void SetDataId(int skillDataId)
     {
         SkillDataId = skillDataId;
     }
@@ -37,6 +41,16 @@ public class BattleEventModel
     public void SetRecevier(CharacterUnitModel recevier)
     {
         Receiver = recevier;
+    }
+
+    public void SetAffectStat(StatType statType)
+    {
+        AffectStat = statType;
+    }
+
+    public void SetDuration(float duration)
+    {
+        Duration = duration;
     }
 
     public void SetValue(float value)

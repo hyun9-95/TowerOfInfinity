@@ -1,56 +1,86 @@
 [
   {
     "id": 20000,
-    "nameId": "BE_FIRE_BALL",
+    "nameId": "BE_SLASH_RANGE",
     "Type": "Damage",
-    "TriggerType": "Projectile",
-    "TargetType": "Single",
-    "PrefabName": "Slash_Projectile",
-    "HitEffectPrefabName": ""
+    "StatusEffect": "None",
+    "AffectStat": "Attack",
+    "Value": [
+      10.0,
+      15.0,
+      20.0,
+      25.0,
+      30.0
+    ],
+    "Duration": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
   },
   {
     "id": 20001,
     "nameId": "BE_SLASH_PROJECTILE",
     "Type": "Damage",
-    "TriggerType": "Projectile",
-    "TargetType": "Single",
-    "PrefabName": "Slash_Projectile",
-    "HitEffectPrefabName": ""
+    "StatusEffect": "None",
+    "AffectStat": "Attack",
+    "Value": [
+      10.0,
+      15.0,
+      20.0,
+      25.0,
+      30.0
+    ],
+    "Duration": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
   },
   {
     "id": 20002,
-    "nameId": "BE_SLASH_RANGE",
+    "nameId": "BE_ARROW_PROJECTILE",
     "Type": "Damage",
-    "TriggerType": "Range",
-    "TargetType": "Single",
-    "PrefabName": "",
-    "HitEffectPrefabName": "Slash_Hit"
+    "StatusEffect": "None",
+    "AffectStat": "Attack",
+    "Value": [
+      10.0,
+      15.0,
+      20.0,
+      25.0,
+      30.0
+    ],
+    "Duration": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
   },
   {
     "id": 20003,
-    "nameId": "BE_HEAL",
-    "Type": "Buff",
-    "TriggerType": "None",
-    "TargetType": "Single",
-    "PrefabName": "",
-    "HitEffectPrefabName": ""
-  },
-  {
-    "id": 20004,
-    "nameId": "BE_ARROW_PROJECTILE",
-    "Type": "Damage",
-    "TriggerType": "Projectile",
-    "TargetType": "Single",
-    "PrefabName": "Arrow_Projectile",
-    "HitEffectPrefabName": ""
-  },
-  {
-    "id": 20005,
     "nameId": "BE_STING",
     "Type": "Damage",
-    "TriggerType": "Collider",
-    "TargetType": "Single",
-    "PrefabName": "Sting_Collider",
-    "HitEffectPrefabName": ""
+    "StatusEffect": "None",
+    "AffectStat": "Attack",
+    "Value": [
+      10.0,
+      15.0,
+      20.0,
+      25.0,
+      30.0
+    ],
+    "Duration": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
   }
 ]

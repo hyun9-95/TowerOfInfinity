@@ -11,7 +11,6 @@ public class IntroFlow : BaseFlow<IntroFlowModel>
     {
         await TransitionManager.Instance.In(TransitionType.Default);
         await LoadData(Model.LoadDataType);
-        await AbilityFactory.InitializeAbilityBalanceDic();
     }
 
     private async UniTask LoadData(LoadDataType loadDataType)

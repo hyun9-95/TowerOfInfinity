@@ -11,14 +11,14 @@ public struct DataBattleEvent : IBaseData
     private readonly string nameId;
     [JsonProperty(PropertyName = "Type")]
     public readonly BattleEventType Type;
-    [JsonProperty(PropertyName = "TriggerType")]
-    public readonly BattleEventTriggerType TriggerType;
-    [JsonProperty(PropertyName = "TargetType")]
-    public readonly BattleEventTargetType TargetType;
-    [JsonProperty(PropertyName = "PrefabName")]
-    public readonly string PrefabName;
-    [JsonProperty(PropertyName = "HitEffectPrefabName")]
-    public readonly string HitEffectPrefabName;
+    [JsonProperty(PropertyName = "StatusEffect")]
+    public readonly StatusEffectType StatusEffect;
+    [JsonProperty(PropertyName = "AffectStat")]
+    public readonly StatType AffectStat;
+    [JsonProperty(PropertyName = "Value")]
+    public readonly float[] Value;
+    [JsonProperty(PropertyName = "Duration")]
+    public readonly float[] Duration;
 	
 	public int Id => id;
     public string NameId => nameId;

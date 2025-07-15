@@ -6,8 +6,10 @@ public class CharacterUnitModel : IBaseUnitModel
 {
     #region Property
     public int CharacterDataId { get; private set; }
+    public int Level { get; private set; }
     public CharacterDefine CharacterDefine { get; private set; }
     public CharacterAnimState CurrentAnimState { get; private set; }
+    public StatusEffectType CurrentStatusEffect { get; private set; }
     public TeamTag TeamTag { get; private set; }
     public CharacterStateActionHandler ActionHandler { get; private set; }
     public Transform Transform { get; private set; }
