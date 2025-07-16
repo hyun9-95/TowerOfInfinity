@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class DamageBattleEvent : BattleEvent
 {
-    public override void Process()
+    public override void OnStart()
     {
         var damage = Formula.GetNormalDamage(Model.Sender, Model.Receiver, Model.Value);
         Model.Receiver.ReduceHp(damage);

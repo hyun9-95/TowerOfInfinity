@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class BattleEventProcessor
 {
+    public CharacterUnitModel OwnerModel { get; private set; }
+
     public void Process(CharacterUnitModel model)
     {
         while (model.BattleEventCount > 0)
@@ -12,7 +14,7 @@ public class BattleEventProcessor
                 continue;
 
             if (battleEvent.IsValid)
-                battleEvent.Process();
+                battleEvent.OnStart();
 
             battleEvent.ReturnToPool();
         }

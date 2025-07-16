@@ -22,7 +22,7 @@ public enum BattleEventTriggerType
     Projectile,
     Range,
     Collider,
-    Movement,
+    Instant,
 }
 
 public enum BattleEventTargetType
@@ -180,4 +180,13 @@ public enum DamageType
     Critical,
     Heal,
     Max,
+}
+
+/// <summary>
+/// 상태 효과
+/// </summary>
+public enum StatusEffectType
+{
+    None,
+    Vanish,
 }

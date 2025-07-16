@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class BattleEventTriggerModel
 {
-    public DataBattleEvent EventData { get; private set; }
+    public int AbilityDataId { get; private set; }
+    public DataBattleEvent BattleEventData { get; private set; }
 
     public BattleEventTriggerType TriggerType { get; private set; }
 
@@ -24,7 +25,8 @@ public class BattleEventTriggerModel
 
     public float Scale { get; private set; }
 
-    public float Value { get; private set; }
+    public float Duration { get; private set; }
+
 
     public BattleEventTriggerModel Clone()
     {
@@ -33,7 +35,7 @@ public class BattleEventTriggerModel
 
     public void Reset()
     {
-        EventData = default;
+        BattleEventData = default;
         TriggerType = BattleEventTriggerType.None;
         TargetType = BattleEventTargetType.None;
         Direction = Vector2.zero;
@@ -44,38 +46,39 @@ public class BattleEventTriggerModel
         Speed = 0f;
     }
 
-    public void SetSkillInfoByData(DataBattleEvent battleEvent)
+    public void SetInfoByData(DataAbility abilityData, int level)
     {
-        if (battleEvent.IsNull)
+        if (abilityData.IsNull)
             return;
 
-        EventData = battleEvent;
-        TriggerType = battleEvent.TriggerType;
-        TargetType = battleEvent.TargetType;
-        PrefabName = battleEvent.PrefabName;
-        HitEffectPrefabName = battleEvent.HitEffectPrefabName;
+        AbilityDataId = abilityData.Id;
+        TriggerType = abilityData.TriggerType;
+        TargetType = abilityData.TargetType;
+        PrefabName = abilityData.PrefabName;
+        HitEffectPrefabName = abilityData.HitEffectPrefabName;
+        TargetCount = abilityData.TargetCount[level];
+        Range = abilityData.Range[level];
+        Speed = abilityData.Speed[level];
+        Duration = abilityData.Duration[level];
+        Scale = abilityData.Scale[level];
+
+        if (BattleEventData.IsNull)
+        {
+            BattleEventData = DataManager.Instance.
+                                GetDataById<DataBattleEvent>((int)abilityData.BattleEvent);
+        }
     }
     
-    public void SetBalance(AbilityBalance balance, int level)
-    {
-        if (balance == null)
-            return;
-
-        TargetCount = balance.GetTargetCount(level);
-        Range = balance.GetRange(level);
-        Speed = balance.GetSpeed(level);
-        Value = balance.GetValue(level);
-        Scale = balance.GetScale(level);
-    }
-
     public BattleEvent CreateBattleEvent(CharacterUnitModel receiver)
     {
-        var battleEventModel = BattleEventFactory.CreateBattleEventModel(EventData.Type);
+        var battleEventModel = BattleEventFactory.CreateBattleEventModel(BattleEventData.Type);
         battleEventModel.SetRecevier(receiver);
         battleEventModel.SetSender(Sender);
-        battleEventModel.SetSkillDataId(EventData.Id);
-        battleEventModel.SetBattleEventType(EventData.Type);
-        battleEventModel.SetValue(Value);
+        battleEventModel.SetDataId(BattleEventData.Id);
+        battleEventModel.SetBattleEventType(BattleEventData.Type);
+        battleEventModel.SetAffectStat(BattleEventData.AffectStat);
+        battleEventModel.SetValue(BattleEventData.Value[Sender.Level]);
+        battleEventModel.SetDuration(BattleEventData.Duration[Sender.Level]);
 
         var battleEvent = BattleEventFactory.Create(battleEventModel.BattleEventType);
         battleEvent.SetModel(battleEventModel);
