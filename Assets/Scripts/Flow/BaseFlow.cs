@@ -12,6 +12,8 @@ public abstract class BaseFlow
 
     public abstract FlowType FlowType { get; }
 
+    public virtual TransitionType TransitionType => TransitionType.Default;
+
     protected IBaseFlowModel baseModel;
 
     public T GetModel<T>() where T : IBaseFlowModel
@@ -24,11 +26,19 @@ public abstract class BaseFlow
         baseModel = model;
     }
 
+    /// <summary>
+    /// 시작 전 Transition In
+    /// </summary>
+    /// <returns></returns>
     public virtual async UniTask LoadingProcess()
     {
 
     }
 
+    /// <summary>
+    /// 완료 후 Transition Out (Forget)
+    /// </summary>
+    /// <returns></returns>
     public virtual async UniTask Process()
     {
 

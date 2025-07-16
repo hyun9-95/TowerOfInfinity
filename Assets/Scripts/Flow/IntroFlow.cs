@@ -9,36 +9,36 @@ public class IntroFlow : BaseFlow<IntroFlowModel>
 
     public override async UniTask LoadingProcess()
     {
-        await TransitionManager.Instance.In(TransitionType.Default);
-        await LoadData(Model.LoadDataType);
-        await AbilityFactory.InitializeAbilityBalanceDic();
     }
 
-    private async UniTask LoadData(LoadDataType loadDataType)
+    private async UniTask ShowIntroView(LoadDataType loadDataType)
     {
-        await TransitionManager.Instance.Out(TransitionType.Default);
-
-        IntroController dataLoadingController = new IntroController();
+        IntroController IntroController = new IntroController();
         IntroViewModel viewModel = new IntroViewModel();
         viewModel.SetLoadDataType(loadDataType);
+        viewModel.SetOnComplteLoading(OnCompleteLoading);
 
-        dataLoadingController.SetModel(viewModel);
+        IntroController.SetModel(viewModel);
 
         // 로딩은 기본 Resources 경로에 포함
-        await UIManager.Instance.ChangeView(dataLoadingController, false);
+        await UIManager.Instance.ChangeView(IntroController, false);
     }
 
     public override async UniTask Process()
     {
+        await ShowIntroView(Model.LoadDataType);
+    }
+
+    private void OnCompleteLoading()
+    {
         LobbyFlowModel lobbyFlowModel = new LobbyFlowModel();
         lobbyFlowModel.SetLobbySceneDefine(SceneDefine.Lobby_Sanctuary);
 
-        await FlowManager.Instance.ChangeFlow(FlowType.LobbyFlow, lobbyFlowModel);
+        FlowManager.Instance.ChangeFlow(FlowType.LobbyFlow, lobbyFlowModel).Forget();
     }
 
     public override async UniTask Exit()
     {
         await AddressableManager.Instance.UnloadSceneAsync(SceneDefine.IntroScene);
     }
-
 }

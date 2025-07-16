@@ -32,7 +32,9 @@ public class FlowManager : BaseManager<FlowManager>
 
         currentFlow = newFlow;
 
+        await TransitionManager.Instance.In(newFlow.TransitionType);
         await currentFlow.LoadingProcess();
         await currentFlow.Process();
+        TransitionManager.Instance.Out(newFlow.TransitionType).Forget();
     }
 }
