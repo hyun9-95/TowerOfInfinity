@@ -9,7 +9,6 @@ public class CharacterUnitModel : IBaseUnitModel
     public int Level { get; private set; }
     public CharacterDefine CharacterDefine { get; private set; }
     public CharacterAnimState CurrentAnimState { get; private set; }
-    public StatusEffectType CurrentStatusEffect { get; private set; }
     public TeamTag TeamTag { get; private set; }
     public CharacterStateActionHandler ActionHandler { get; private set; }
     public Transform Transform { get; private set; }
@@ -139,7 +138,7 @@ public class CharacterUnitModel : IBaseUnitModel
     /// </summary>
     /// <param name="statType"></param>
     /// <returns></returns>
-    public float GetStatValue(StatType statType)
+    public float GetStatValue(StatType statType, StatReferenceCondition condition = StatReferenceCondition.BaseStat)
     {
         return baseStat.GetStat(statType).Value;
     }

@@ -11,14 +11,26 @@ public struct DataBattleEvent : IBaseData
     private readonly string nameId;
     [JsonProperty(PropertyName = "Type")]
     public readonly BattleEventType Type;
-    [JsonProperty(PropertyName = "StatusEffect")]
-    public readonly StatusEffectType StatusEffect;
     [JsonProperty(PropertyName = "AffectStat")]
     public readonly StatType AffectStat;
-    [JsonProperty(PropertyName = "Value")]
-    public readonly float[] Value;
+    [JsonProperty(PropertyName = "BattleEventCategory")]
+    public readonly BattleEventCategory BattleEventCategory;
+    [JsonProperty(PropertyName = "BattleEventGroup")]
+    public readonly BattleEventGroup BattleEventGroup;
+    [JsonProperty(PropertyName = "StatReference")]
+    public readonly StatReference StatReference;
+    [JsonProperty(PropertyName = "StatReferenceCondition")]
+    public readonly StatReferenceCondition StatReferenceCondition;
+    [JsonProperty(PropertyName = "StatusDirection")]
+    public readonly StatusDirection StatusDirection;
+    [JsonProperty(PropertyName = "Stackable")]
+    public readonly bool Stackable;
     [JsonProperty(PropertyName = "Duration")]
     public readonly float[] Duration;
+    [JsonProperty(PropertyName = "Value")]
+    public readonly float[] Value;
+    [JsonProperty(PropertyName = "ApplyIntervalSeconds")]
+    public readonly float[] ApplyIntervalSeconds;
 	
 	public int Id => id;
     public string NameId => nameId;

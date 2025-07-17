@@ -14,43 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_GroupName: AbilityCore
   m_GUID: 17a2683674eb55a489d4af097df17402
-  m_SerializeEntries:
-  - m_GUID: 0396ae8ed0625f64496ec6266f2886f3
-    m_Address: WEAPON_ARROW
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Main
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 77889c79742451844ac5e150b21b8f16
-    m_Address: WEAPON_SLASH_PROJECTILE
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Main
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 7d633e527c69b0b489ae39b493ce8693
-    m_Address: WEAPON_SLASH
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Main
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 93319b05db5eb154ba2306b1c5901050
-    m_Address: ACTIVE_SKILL_SLASH
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Main
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: bd232ad5f1fe24d4a949d392865334a1
-    m_Address: WEAPON_STING
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Main
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: f6dbac22b225ec1498aab81eff2b2216
-    m_Address: PASSIVE_SKILL_HEAL
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Main
-    FlaggedDuringContentUpdateRestriction: 0
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
   m_SchemaSet:

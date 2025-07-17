@@ -182,11 +182,37 @@ public enum DamageType
     Max,
 }
 
-/// <summary>
-/// 상태 효과
-/// </summary>
-public enum StatusEffectType
+public enum BattleEventCategory
 {
     None,
-    Vanish,
+    Passive,
+    Active,
+}
+
+public enum BattleEventGroup
+{
+    None,
+    Buff,
+    Debuff,
+}
+
+public enum StatusDirection
+{
+    None,
+    Increase,
+    Decrease,
+}
+
+public enum StatReference
+{
+    None,
+    Sender,
+    Receiver,
+}
+
+public enum StatReferenceCondition
+{
+    None,
+    BaseStat,
+    CurrentStat,
 }
