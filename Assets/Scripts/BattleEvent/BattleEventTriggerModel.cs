@@ -3,6 +3,7 @@ using UnityEngine;
 public class BattleEventTriggerModel
 {
     public int AbilityDataId { get; private set; }
+    public int Level { get; private set; }
     public DataBattleEvent BattleEventData { get; private set; }
 
     public BattleEventTriggerType TriggerType { get; private set; }
@@ -52,6 +53,7 @@ public class BattleEventTriggerModel
             return;
 
         AbilityDataId = abilityData.Id;
+        Level = level;
         TriggerType = abilityData.TriggerType;
         TargetType = abilityData.TargetType;
         PrefabName = abilityData.PrefabName;
@@ -69,21 +71,12 @@ public class BattleEventTriggerModel
         }
     }
     
-    public BattleEvent CreateBattleEvent(CharacterUnitModel receiver)
+    public BattleEventModel CreateBattleEventModel(CharacterUnitModel receiver)
     {
-        var battleEventModel = BattleEventFactory.CreateBattleEventModel(BattleEventData.Type);
-        battleEventModel.SetRecevier(receiver);
-        battleEventModel.SetSender(Sender);
-        battleEventModel.SetDataId(BattleEventData.Id);
-        battleEventModel.SetBattleEventType(BattleEventData.Type);
-        battleEventModel.SetAffectStat(BattleEventData.AffectStat);
-        battleEventModel.SetValue(BattleEventData.Value[Sender.Level]);
-        battleEventModel.SetDuration(BattleEventData.Duration[Sender.Level]);
+        var battleEventModel = new BattleEventModel();
+        battleEventModel.Initialize(Sender, receiver, BattleEventData, Level);
 
-        var battleEvent = BattleEventFactory.Create(battleEventModel.BattleEventType);
-        battleEvent.SetModel(battleEventModel);
-
-        return battleEvent;
+        return battleEventModel;
     }
 
     public void SetSender(CharacterUnitModel owner)

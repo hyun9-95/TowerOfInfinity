@@ -172,10 +172,9 @@ public abstract class BattleEventTrigger
 
     protected void SendBattleEvent(CharacterUnitModel target)
     {
-        var battleEvent = Model.CreateBattleEvent(target);
+        var battleEventModel = Model.CreateBattleEventModel(target);
 
-        if (battleEvent != null)
-            target.EnqueueBattleEvent(battleEvent);
+        target.EventProcessorWrapper.SendBattleEvent(battleEventModel);
     }
 
     protected Vector2 OnGetFixedDirection(DirectionType directionType)

@@ -61,7 +61,7 @@ public class CharacterUnit : PoolableMono
     private ScriptableCharacterState defaultState;
     private bool activated = false;
 
-    private static readonly BattleEventProcessor battleEventProcessor = new BattleEventProcessor();
+    private BattleEventProcessor battleEventProcessor = new BattleEventProcessor();
     private static readonly WeaponProcessor weaponProcessor = new WeaponProcessor();
 
     private Dictionary<ModuleType, IModuleModel> moduleModelDic;
@@ -184,7 +184,7 @@ public class CharacterUnit : PoolableMono
         RefreshAnimState();
 
         moduleGroup.OnEventUpdate(Model, moduleModelDic);
-        battleEventProcessor.Process(Model);
+        battleEventProcessor.Update();
         weaponProcessor.Process(Model);
     }
 
@@ -284,6 +284,9 @@ public class CharacterUnit : PoolableMono
         Model.SetBaseStat(baseStat);
         Model.SetTransform(transform);
         Model.SetAgent(agent);
+
+        battleEventProcessor.SetOwner(Model);
+        Model.SetEventProcessorWrapper(new BattleEventProcessorWrapper(battleEventProcessor));
     }
 
     private CharacterStateActionHandler CreateActionHandler()

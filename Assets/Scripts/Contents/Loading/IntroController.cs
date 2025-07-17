@@ -23,6 +23,8 @@ public class IntroController : BaseController<IntroViewModel>
         await LoadResources();
         await LoadDatas();
         await LoadUser();
+
+        Model.OnCompleteLoading?.Invoke();
     }
 
     private void InitializeDataLoader()

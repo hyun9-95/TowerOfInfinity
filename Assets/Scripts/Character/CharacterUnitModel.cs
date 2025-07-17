@@ -15,7 +15,7 @@ public class CharacterUnitModel : IBaseUnitModel
     public CharacterUnitModel Target { get; private set; }
     public InputWrapper InputWrapper { get; private set; } 
     public NavMeshAgent Agent { get; private set; }
-    public int BattleEventCount => battleEventQueue.Count;
+    public BattleEventProcessorWrapper EventProcessorWrapper { get; private set; }
     public int PendingWeaponCount => pendingWeapons != null ? pendingWeapons.Count : 0;
     public bool IsDead => Hp <= 0;
     public Weapon DefaultWeapon { get; private set; }
@@ -29,8 +29,6 @@ public class CharacterUnitModel : IBaseUnitModel
 
     #region Value
     private ScriptableCharacterStat baseStat;
-
-    private Queue<BattleEvent> battleEventQueue = new Queue<BattleEvent>();
     private HashSet<Weapon> weapons;
     private Queue<Weapon> pendingWeapons;
     #endregion
@@ -43,6 +41,11 @@ public class CharacterUnitModel : IBaseUnitModel
     public void SetActionHandler(CharacterStateActionHandler handler)
     {
         ActionHandler = handler;
+    }
+
+    public void SetEventProcessorWrapper(BattleEventProcessorWrapper wrapper)
+    {
+        EventProcessorWrapper = wrapper;
     }
 
     public void EnableInput(bool value)
@@ -166,25 +169,6 @@ public class CharacterUnitModel : IBaseUnitModel
     public void SetAgent(NavMeshAgent agent)
     {
         Agent = agent;
-    }
-
-    public void EnqueueBattleEvent(BattleEvent battleEvent)
-    {
-        if (battleEventQueue == null)
-            battleEventQueue = new Queue<BattleEvent>();
-
-        battleEventQueue.Enqueue(battleEvent);
-    }
-
-    public BattleEvent DequeueBattleEvent()
-    {
-        if (battleEventQueue == null)
-            return null;
-
-        if (battleEventQueue.Count == 0)
-            return null;
-
-        return battleEventQueue.Dequeue();
     }
 
     public Weapon DequeuePendingWeapon()

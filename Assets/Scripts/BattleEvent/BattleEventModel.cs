@@ -3,9 +3,9 @@ public class BattleEventModel
     public CharacterUnitModel Sender { get; private set; }
     public CharacterUnitModel Receiver { get; private set; }
     public int DataID { get; private set; }
-    public BattleEventType BattleEventType { get; private set; }
-    public BattleEventCategory EffectCategoryType { get; private set; }
-    public BattleEventGroup EffectGroupType { get; private set; }
+    public BattleEventType EventType { get; private set; }
+    public BattleEventCategory Category { get; private set; }
+    public BattleEventGroup Group { get; private set; }
     public StatType AffectStat { get; private set; }
     public StatReference StatReference { get; private set; }
     public StatReferenceCondition StatReferenceCondition { get; private set; }
@@ -15,47 +15,21 @@ public class BattleEventModel
     public float Value { get; private set; }
     public float ApplyIntervalSeconds { get; private set; }
 
-    public void Reset()
-    {
-        DataID = 0;
-        BattleEventType = default;
-        Sender = null;
-        Receiver = null;
-        Value = 0f;
-    }
-
-    public void SetDataId(int skillDataId)
-    {
-        DataID = skillDataId;
-    }
-
-    public void SetBattleEventType(BattleEventType processType)
-    {
-        BattleEventType = processType;
-    }
-
-    public void SetSender(CharacterUnitModel sender)
+    public void Initialize(CharacterUnitModel sender, CharacterUnitModel receiver, DataBattleEvent dataBattleEvent, int level)
     {
         Sender = sender;
-    }
-
-    public void SetRecevier(CharacterUnitModel recevier)
-    {
-        Receiver = recevier;
-    }
-
-    public void SetAffectStat(StatType statType)
-    {
-        AffectStat = statType;
-    }
-
-    public void SetDuration(float duration)
-    {
-        Duration = duration;
-    }
-
-    public void SetValue(float value)
-    {
-        Value = value;
+        Receiver = receiver;
+        DataID = dataBattleEvent.Id;
+        EventType = dataBattleEvent.Type;
+        Category = dataBattleEvent.BattleEventCategory;
+        Group = dataBattleEvent.BattleEventGroup;
+        AffectStat = dataBattleEvent.AffectStat;
+        StatReference = dataBattleEvent.StatReference;
+        StatReferenceCondition = dataBattleEvent.StatReferenceCondition;
+        StatusDirection = dataBattleEvent.StatusDirection;
+        Stackable = dataBattleEvent.Stackable;
+        Duration = dataBattleEvent.Duration[level];
+        Value = dataBattleEvent.Value[level];
+        ApplyIntervalSeconds = dataBattleEvent.ApplyIntervalSeconds[level];
     }
 }

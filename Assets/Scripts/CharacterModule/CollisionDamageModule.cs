@@ -3,6 +3,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "ScriptableCharacterModule/CollisionDamage")]
 public class CollisionDamageModule : ScriptableCharacterModule
 {
+    private DataBattleEvent defaultDamageEventData;
+
     public override ModuleType GetModuleType()
     {
         return ModuleType.CollisionDamage;
@@ -52,15 +54,12 @@ public class CollisionDamageModule : ScriptableCharacterModule
 
     private void SendCollisionDamage(CollisionDamageInfo info, CharacterUnitModel owner)
     {
-        var model = BattleEventFactory.CreateBattleEventModel(BattleEventType.Damage);
-        model.SetSender(owner);
-        model.SetRecevier(info.targetModel);
-        model.SetValue(owner.GetStatValue(StatType.Attack));
+        if (defaultDamageEventData.IsNull)
+            defaultDamageEventData = DataManager.Instance.GetDataById<DataBattleEvent>((int)BattleEventDefine.BE_COLLISION_DAMAGE);
 
-        var battleEvent = BattleEventFactory.Create(BattleEventType.Damage);
-        battleEvent.SetModel(model);
-
-        info.targetModel.EnqueueBattleEvent(battleEvent);
+        var eventModel = new BattleEventModel();
+        eventModel.Initialize(owner, info.targetModel, defaultDamageEventData, owner.Level);
+        info.targetModel.EventProcessorWrapper.SendBattleEvent(eventModel);
     }
 
     private bool IsTriggerTarget(Collider2D collision)
