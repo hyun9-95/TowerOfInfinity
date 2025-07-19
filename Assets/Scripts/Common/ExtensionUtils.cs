@@ -130,6 +130,12 @@ public static class ExtensionUtils
 
     public static void FadeOff(this SpriteRenderer renderer, float duration, GameObject gameObject, Action callback = null)
     {
+        if (duration == 0)
+        {
+            SetAlpha(renderer, 0);
+            return;
+        }
+
         renderer.DOFade(0f, duration).SetEase(Ease.Linear).OnComplete(() =>
         {
             gameObject.SafeSetActive(false);
@@ -138,6 +144,11 @@ public static class ExtensionUtils
     }
 
     public static void RestoreAlpha(this SpriteRenderer renderer, float alpha = 1f)
+    {
+        SetAlpha(renderer, alpha);
+    }
+
+    public static void SetAlpha(this SpriteRenderer renderer, float alpha)
     {
         var color = renderer.color;
         color.a = alpha;

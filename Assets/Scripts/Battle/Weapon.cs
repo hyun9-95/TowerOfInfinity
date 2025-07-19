@@ -22,10 +22,14 @@ public class Weapon : Ability
         }
     }
 
-    public async UniTask ActivateOneTime()
+    public async UniTask ActivateOneTime(float delay = 0)
     {
         isProcessing = true;
         token = TokenPool.Get(GetHashCode());
+
+        if (delay > 0)
+            await UniTaskUtils.DelaySeconds(delay, cancellationToken: token);
+
         OnProcess();
         await UniTaskUtils.DelaySeconds(Model.CoolTime, cancellationToken: token);
         isProcessing = false;

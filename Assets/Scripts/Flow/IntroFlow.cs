@@ -26,7 +26,7 @@ public class IntroFlow : BaseFlow<IntroFlowModel>
 
     public override async UniTask Process()
     {
-        await ShowIntroView(Model.LoadDataType);
+        ShowIntroView(Model.LoadDataType).Forget();
     }
 
     private void OnCompleteLoading()

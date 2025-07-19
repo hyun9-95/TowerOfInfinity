@@ -26,6 +26,7 @@ public class ColliderTriggerEnterUnit : PoolableBaseUnit<HitTargetRangeUnitModel
     private float originRadius;
     private CircleCollider2D circleCollider;
     private BoxCollider2D boxCollider;
+    private bool followTarget = false;
 
     private void Awake()
     {
@@ -71,16 +72,35 @@ public class ColliderTriggerEnterUnit : PoolableBaseUnit<HitTargetRangeUnitModel
         if (useFlip)
             Flip(Model.IsFlip);
 
-        transform.localPosition += useFlip ? GetFlipLocalPos(Model.IsFlip) : LocalPosOffset;
+        var offset = useFlip ? GetFlipLocalPos(Model.IsFlip) : LocalPosOffset;
+
+        if (Model.FollowTarget != null)
+        {
+            FollowAsync(offset).Forget();
+        }
+        else
+        {
+            transform.localPosition += offset;
+        }
 
         ShowRenderer();
 
         if (detectTime > 0)
-            await UniTaskUtils.DelaySeconds(detectTime);
+            await UniTaskUtils.DelaySeconds(detectTime, TokenPool.Get(GetHashCode()));
 
         EnableCollider();
 
         await base.ShowAsync();
+    }
+
+    protected async UniTask FollowAsync(Vector3 localPosOffset)
+    {
+        while (!gameObject.CheckSafeNull() && gameObject.activeSelf)
+        {
+            transform.position = Model.FollowTarget.transform.position;
+            transform.localPosition += localPosOffset;
+            await UniTask.NextFrame(TokenPool.Get(GetHashCode()));
+        }
     }
 
     protected virtual void OnTriggerEnter2D(Collider2D other)

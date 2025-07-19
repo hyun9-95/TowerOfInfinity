@@ -5,9 +5,18 @@ public class HitTargetUnitModel : IBaseUnitModel
 {
     public Action<Collider2D> OnEventHit { get; private set; }
 
+    public Transform FollowTarget { get; private set; }
+
     public Func<bool> IsOverTargetCount { get; private set; }
 
     public bool IsComplete { get; private set; }
+
+    public bool IsFlip { get; private set; }
+
+    public void SetFollowTarget(Transform target)
+    {
+        FollowTarget = target;
+    }
 
     public void SetOnEventHit(Action<Collider2D> onEventHit)
     {
@@ -22,5 +31,10 @@ public class HitTargetUnitModel : IBaseUnitModel
     public void SetComplete(bool complete)
     {
         IsComplete = complete;
+    }
+
+    public void SetFlip(bool flip)
+    {
+        IsFlip = flip;
     }
 }

@@ -15,8 +15,6 @@ public class LobbyFlow : BaseFlow<LobbyFlowModel>
 
     public override async UniTask LoadingProcess()
     {
-        await TransitionManager.Instance.In(TransitionType.Default);
-
         var loadedScene = await AddressableManager.Instance.LoadSceneAsyncWithName(Model.LobbySceneDefine, UnityEngine.SceneManagement.LoadSceneMode.Single);
 
         if (!loadedScene.IsValid())
@@ -40,8 +38,6 @@ public class LobbyFlow : BaseFlow<LobbyFlowModel>
         InitializeBattlePortal();
         await ActiveCharacters();
         await ShowLobbyView();
-
-        await TransitionManager.Instance.Out(TransitionType.Default);
     }
 
     public override async UniTask Exit()

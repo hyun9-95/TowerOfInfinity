@@ -27,6 +27,6 @@ public class PlayerAttackState : ScriptableCharacterState
         }
         
         if (!model.DefaultWeapon.IsProcessing && model.CurrentAnimState == CharacterAnimState.Attack)
-            model.DefaultWeapon.ActivateOneTime().Forget();
+            model.DefaultWeapon.ActivateOneTime(GetAnimationDelay(AnimState)).Forget();
     }
 }

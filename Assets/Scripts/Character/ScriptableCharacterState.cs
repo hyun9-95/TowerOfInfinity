@@ -23,4 +23,13 @@ public abstract class ScriptableCharacterState : ScriptableObject
     public virtual void OnExitState(CharacterUnitModel model)
     {
     }
+
+    protected float GetAnimationDelay(CharacterAnimState state)
+    {
+        return state switch
+        {
+            CharacterAnimState.Attack => 0.2f,
+            _ => 0f,
+        };
+    }
 }

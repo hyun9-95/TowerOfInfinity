@@ -2,7 +2,7 @@ public class PoolableMono : AddressableMono
 {
     protected virtual void OnDisable()
     {
-        TokenPool.Dispose(GetHashCode());
+        TokenPool.Cancel(GetHashCode());
         ReturnPool();
     }
 
