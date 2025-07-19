@@ -172,6 +172,11 @@ public class AStar
 
     private List<AStarNode> CreatePath(AStarNode start, AStarNode end, bool diagonal = false)
     {
+        if (start == null || end == null || !start.isWalkable || !end.isWalkable)
+        {
+            return null;
+        }
+
         ResetNode();
 
         PriorityQueue<AStarNode> openSet = new PriorityQueue<AStarNode>();
@@ -224,23 +229,56 @@ public class AStar
         return null; // 경로 없음
     }
 
-    private List<AStarNode> CreatePath(Vector3Int start, Vector3Int end, bool diagonal)
+    private AStarNode FindNearestWalkableNode(Vector3 worldPosition, int searchRadius = 5)
     {
-        AStarNode startNode = GetNodeFromWorld(start);
-        AStarNode endNode = GetNodeFromWorld(end);
+        AStarNode startNode = GetNodeFromWorld(worldPosition);
 
-        if (startNode == null || endNode == null)
-            return null;
+        if (startNode != null && startNode.isWalkable)
+            return startNode;
 
-        return CreatePath(startNode, endNode, diagonal);
+        Vector3Int originCell = layoutGrid.WorldToCell(worldPosition);
+        Queue<Vector3Int> queue = new Queue<Vector3Int>();
+        queue.Enqueue(originCell);
+
+        HashSet<Vector3Int> searchedCells = new HashSet<Vector3Int>();
+        searchedCells.Add(originCell);
+
+        while(queue.Count > 0)
+        {
+            Vector3Int currentCell = queue.Dequeue();
+
+            if (nodeMap.TryGetValue(currentCell, out AStarNode node) && node.isWalkable)
+            {
+                return node; // 가장 먼저 발견된 걸을 수 있는 노드 반환
+            }
+
+            // 현재 셀로부터의 거리가 탐색 반경을 초과하면 더 이상 탐색하지 않음
+            if (Vector3Int.Distance(originCell, currentCell) > searchRadius)
+            {
+                continue;
+            }
+
+            // 이웃 셀 탐색
+            foreach (var dir in directions)
+            {
+                Vector3Int neighborCell = currentCell + dir;
+                if (!searchedCells.Contains(neighborCell))
+                {
+                    searchedCells.Add(neighborCell);
+                    queue.Enqueue(neighborCell);
+                }
+            }
+        }
+
+        return null; // 주변에서 걸을 수 있는 노드를 찾지 못함
     }
 
     public List<AStarNode> CreatePath(Vector3 start, Vector3 end)
     {
-        Vector3Int startCell = layoutGrid.WorldToCell(start);
-        Vector3Int endCell = layoutGrid.WorldToCell(end);
+        AStarNode startNode = FindNearestWalkableNode(start);
+        AStarNode endNode = FindNearestWalkableNode(end);
 
-        return CreatePath(startCell, endCell, true);
+        return CreatePath(startNode, endNode, true);
     }
     #endregion
 

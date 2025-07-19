@@ -8,53 +8,90 @@ public class AStarPathFinder : IPathFinder
     private Func<Vector3, Vector3, List<AStarNode>> onGetPaths;
 
     private Rigidbody2D rigidBody2D;
-    private float repathCoolTime;
     private float nextNodeThreshold;
-    private float repathTimer;
     private int currentPathIndex;
     private List<AStarNode> currentPath = new List<AStarNode>();
+    private Vector3 currentTargetPosition;
 
-    public AStarPathFinder(Rigidbody2D rigidBody2D, float repathCoolTime, float nextNodeThreshold, Func<float> onGetMoveSpeed, Func<Vector3, Vector3, List<AStarNode>> onGetPaths)
+    public AStarPathFinder(Rigidbody2D rigidBody2D, float nextNodeThreshold, Func<float> onGetMoveSpeed, Func<Vector3, Vector3, List<AStarNode>> onGetPaths)
     {
         this.rigidBody2D = rigidBody2D;
-        this.repathCoolTime = repathCoolTime;
         this.nextNodeThreshold = nextNodeThreshold;
         this.onGetMoveSpeed = onGetMoveSpeed;
         this.onGetPaths = onGetPaths;
     }
 
-    public Vector2 OnPathFind(Vector3 pos)
+    public void OnPathFind(Vector3 targetPosition)
     {
-        currentPath = AStarManager.Instance.FindPath(rigidBody2D.position, pos);
+        currentTargetPosition = targetPosition;
+        currentPath = AStarManager.Instance.FindPath(rigidBody2D.position, targetPosition);
 
-        repathTimer += Time.fixedDeltaTime;
+        if (currentPath != null && currentPath.Count > 0)
+        {
+            int closestNodeIndex = 0;
+            float minDistance = float.MaxValue;
+            for (int i = 0; i < currentPath.Count; i++)
+            {
+                float distance = Vector2.Distance(rigidBody2D.position, currentPath[i].WorldPos);
+                if (distance < minDistance)
+                {
+                    minDistance = distance;
+                    closestNodeIndex = i;
+                }
+            }
 
-        bool isElapsedCoolTime = repathTimer >= repathCoolTime;
+            // 가장 가까운 노드가 경로의 마지막 노드가 아니라면, 전진 방향을 확인한다.
+            if (closestNodeIndex < currentPath.Count - 1)
+            {
+                Vector2 closestNodePos = currentPath[closestNodeIndex].WorldPos;
+                Vector2 nextNodePos = currentPath[closestNodeIndex + 1].WorldPos;
 
-        bool needRebuildPath =
-            isElapsedCoolTime ||                       // 목표 지점이 바뀜
-            currentPath == null ||                      // 경로가 없거나
-            currentPath.Count == 0 ||                   // 노드가 비어 있거나
-            currentPathIndex >= currentPath.Count;      // 경로가 끝났음
+                // 가장 가까운 노드에서, 다음에 이동할 노드의 방향
+                Vector2 pathDir = (nextNodePos - closestNodePos).normalized;
 
-        if (needRebuildPath)
+                // 현재 위치에서, 가장 가까운 노드의 방향
+                Vector2 closestNodeDir = (closestNodePos - rigidBody2D.position).normalized;
+
+                // 경로 진행 방향과, 현재 위치에서 가장 가까운 노드로의 방향을 내적.
+                // 값이 음수이면, 가장 가까운 노드가 캐릭터의 뒤에 있다는 의미. 그 다음 노드를 목표로 삼는다.
+                if (Vector2.Dot(pathDir, closestNodeDir) < 0)
+                {
+                    currentPathIndex = closestNodeIndex + 1;
+                }
+                else
+                {
+                    currentPathIndex = closestNodeIndex;
+                }
+            }
+            else
+            {
+                // 가장 가까운 노드가 마지막 노드이면, 그냥 그 노드를 목표로 삼는다.
+                currentPathIndex = closestNodeIndex;
+            }
+        }
+        else
         {
             currentPathIndex = 0;
-            repathTimer = 0;
         }
+    }
 
+    /// <summary>
+    /// 계산된 경로 따라 이동.. 이동 방향 반환
+    /// </summary>
+    /// <returns></returns>
+    public Vector2 OnMoveAlongPath()
+    {
         Vector2 currentPos = rigidBody2D.position;
         Vector2 moveDir = Vector2.zero;
 
         if (currentPath == null || currentPath.Count == 0 || currentPathIndex >= currentPath.Count)
         {
-            Vector2 targetPos = pos;
+            // 경로를 못찾았다면 타겟방향으로 이동
+            // RepositionTile에 의해 타일이 재배치되는 경우, 현재 타일을 밟고 있지 않아서 경로를 못찾을 수 있다.
+            Vector2 targetPos = currentTargetPosition;
             moveDir = (targetPos - currentPos).normalized;
-
-            // 실제 이동
             rigidBody2D.MovePosition(
-                currentPos + moveDir *
-                onGetMoveSpeed.Invoke() * Time.fixedDeltaTime);
+                currentPos + onGetMoveSpeed.Invoke() * Time.fixedDeltaTime * moveDir);
         }
         else
         {
@@ -62,13 +99,17 @@ public class AStarPathFinder : IPathFinder
             Vector2 targetPos = new Vector2(targetNode.xPos, targetNode.yPos);
             moveDir = (targetPos - currentPos).normalized;
 
-            // 실제 이동
-            rigidBody2D.MovePosition(
-                currentPos + moveDir *
-                onGetMoveSpeed.Invoke() * Time.fixedDeltaTime);
+            Vector2 beforeMoveDelta = targetPos - currentPos;
 
-            // 다음 노드로 전환
-            if (Vector2.Distance(currentPos, targetPos) < nextNodeThreshold)
+            rigidBody2D.MovePosition(
+                currentPos + onGetMoveSpeed.Invoke() * Time.fixedDeltaTime * moveDir);
+
+            Vector2 afterMoveDelta = targetPos - rigidBody2D.position;
+
+            // 1. 일정거리만큼 가까워졌거나
+            // 2. 이미 다음 목표 노드를 지나쳤다면
+            // => 다음 경로를 찾는다.
+            if (afterMoveDelta.magnitude < nextNodeThreshold || Vector2.Dot(beforeMoveDelta, afterMoveDelta) < 0)
                 currentPathIndex++;
         }
 
@@ -79,15 +120,5 @@ public class AStarPathFinder : IPathFinder
     {
         currentPath = null;
         currentPathIndex = 0;
-        repathTimer = 0;
-        rigidBody2D.linearVelocity = Vector2.zero;
-    }
-
-    public void RecalculatePath()
-    {
-        if (currentPath == null || currentPath.Count == 0)
-            return;
-
-        repathTimer = repathCoolTime;
     }
 }

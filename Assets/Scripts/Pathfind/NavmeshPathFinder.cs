@@ -12,7 +12,7 @@ public class NavmeshPathFinder : IPathFinder
         this.agent = agent;
     }
 
-    public Vector2 OnPathFind(Vector3 pos)
+    public Vector2 OnPathFindDirection(Vector3 pos)
     {
         if (agent == null)
             return Vector2.zero;

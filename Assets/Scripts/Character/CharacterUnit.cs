@@ -45,10 +45,6 @@ public class CharacterUnit : PoolableMono
     [SerializeField]
     protected SerializableDictionary<CharacterAnimState, CharacterAnimState> animStateResolver;
 
-    [Tooltip("경로를 다시 계산하기까지 기다리는 시간")]
-    [SerializeField]
-    protected float repathCoolTime = 0.25f;
-
     [Tooltip("현재 노드에 도착했는지 판단할 거리")]
     [SerializeField]
     protected float nextNodeThreshold = 0.5f;
@@ -284,7 +280,7 @@ public class CharacterUnit : PoolableMono
         Model.InitializeStat(baseStat);
         Model.SetTransform(transform);
         Model.SetAgent(agent);
-
+ 
         battleEventProcessor.SetOwner(Model);
         Model.SetEventProcessorWrapper(new BattleEventProcessorWrapper(battleEventProcessor));
     }
@@ -339,7 +335,7 @@ public class CharacterUnit : PoolableMono
         }
         else
         {
-            AStarPathFinder aStarPathFinder = new AStarPathFinder(rigidBody2D, repathCoolTime, nextNodeThreshold,
+            AStarPathFinder aStarPathFinder = new AStarPathFinder(rigidBody2D, FloatDefine.ASTAR_NEXT_NODE_THRESHOLD,
                 OnGetMoveSpeed, OnGetAStarPaths);
             return aStarPathFinder;
         }

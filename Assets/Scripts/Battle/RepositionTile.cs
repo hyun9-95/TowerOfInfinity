@@ -39,6 +39,6 @@ public class RepositionTile : MonoBehaviour
         transform.position += offset;
 
         if (BattleSceneManager.Instance)
-            BattleSceneManager.Instance.RecalculatePath();
+            BattleSceneManager.Instance.RefreshAStarGrid();
     }
 }

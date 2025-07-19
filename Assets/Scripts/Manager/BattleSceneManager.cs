@@ -148,13 +148,8 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>
     }
     #endregion
 
-    public void RecalculatePath()
+    public void RefreshAStarGrid()
     {
         AStarManager.Instance.RefreshAStarGrid();
-
-        enemyCharacters.ForEach(x => x.Model.ActionHandler.PathFinder.RecalculatePath());
-        playerBattleTeam.CharacterUnits.ForEach(x => x.Model.ActionHandler.PathFinder.RecalculatePath());
-
-        Logger.Log("Recalculate Path");
     }
 }

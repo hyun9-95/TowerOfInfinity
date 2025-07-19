@@ -55,11 +55,31 @@ public class CharacterStateActionHandler
         DeadAsync().Forget();
     }
 
-    public void OnPathFind(Vector3 targetPos)
+    public void OnNavmeshPathFind(Vector3 targetPos)
     {
-        var dir = pathFinder.OnPathFind(targetPos);
+        if (pathFinder is NavmeshPathFinder navmeshPathFinder)
+        {
+            var dir = navmeshPathFinder.OnPathFindDirection(targetPos);
+            Flip(dir);
+        }
+    }
 
-        Flip(dir);
+    public void OnAStarUpdatePath(Vector3 targetPos)
+    {
+        if (pathFinder is AStarPathFinder astarPathFinder)
+            astarPathFinder.OnPathFind(targetPos);
+    }
+
+    /// <summary>
+    /// 계산된 경로 따라 이동
+    /// </summary>
+    public void OnAStarMoveAlongPath()
+    {
+        if (pathFinder is AStarPathFinder astarFinder)
+        {
+            var dir = astarFinder.OnMoveAlongPath();
+            Flip(dir);
+        }
     }
 
     public void OnStopPathFind()

@@ -29,6 +29,7 @@ public class CharacterUnitModel : IBaseUnitModel
     public PathFindType PathFindType { get; private set; }
     public bool IsFlipX { get; private set; }
     public HashSet<Weapon> Weapons => weapons;
+    public float RepathTimer { get; private set; }
     #endregion
 
     #region Value
@@ -198,6 +199,11 @@ public class CharacterUnitModel : IBaseUnitModel
     public void SetAgent(NavMeshAgent agent)
     {
         Agent = agent;
+    }
+
+    public void SetRepathTimer(float timer)
+    {
+        RepathTimer = timer;
     }
 
     public Weapon DequeuePendingWeapon()

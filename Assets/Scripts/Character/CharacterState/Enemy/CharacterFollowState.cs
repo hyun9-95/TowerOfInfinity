@@ -16,9 +16,36 @@ public class CharacterFollowState : ScriptableCharacterState
         return model.Target == null || IsStoppingDistance(model) || model.Target.IsDead;
     }
 
+    public override void OnEnterState(CharacterUnitModel model)
+    {
+        if (model.PathFindType == PathFindType.AStar)
+        {
+            model.ActionHandler.OnAStarUpdatePath(model.Target.Transform.position);
+            model.SetRepathTimer(0);
+        }
+        else
+        {
+            model.ActionHandler.OnNavmeshPathFind(model.Target.Transform.position);
+        }
+    }
+
     public override void OnStateAction(CharacterUnitModel model)
     {
-        model.ActionHandler.OnPathFind(model.Target.Transform.position);
+        if (model.PathFindType == PathFindType.AStar)
+        {
+            model.ActionHandler.OnAStarMoveAlongPath();
+            model.SetRepathTimer(model.RepathTimer + Time.deltaTime);
+
+            if (model.RepathTimer >= FloatDefine.ASTAR_REPATH_COOLTIME)
+            {
+                model.SetRepathTimer(0);
+                model.ActionHandler.OnAStarUpdatePath(model.Target.Transform.position);
+            }
+        }
+        else
+        {
+            model.ActionHandler.OnNavmeshPathFind(model.Target.Transform.position);
+        }
     }
 
     public override void OnExitState(CharacterUnitModel model)
