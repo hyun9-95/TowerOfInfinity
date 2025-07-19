@@ -15,6 +15,12 @@ MonoBehaviour:
   m_GroupName: UI_Battle
   m_GUID: bc1c7bd3d12d2fe4c88918d312773eac
   m_SerializeEntries:
+  - m_GUID: 91101566ca50f2643a0ad7e42a36b5ae
+    m_Address: HpBar
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ed3567715d98c0849a612c3483f19fbf
     m_Address: BattleView
     m_ReadOnly: 0
