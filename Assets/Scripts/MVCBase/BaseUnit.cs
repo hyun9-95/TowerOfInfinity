@@ -13,7 +13,7 @@ public class BaseUnit<T> : BaseUnit where T : IBaseUnitModel
     }
 }
 
-public abstract class BaseUnit : MonoBehaviour
+public abstract class BaseUnit : AddressableMono
 {
     public virtual void Refresh() { }
 

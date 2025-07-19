@@ -6,10 +6,13 @@ using UnityEngine;
 /// <summary>
 /// 대미지나 효과등의 단발성 UI나 이펙트를 관리한다.
 /// </summary>
-public class BattleFXManager : BaseManager<BattleFXManager>
+public class BattleFXManager : BaseMonoManager<BattleFXManager>
 {
     [SerializeField]
     private Transform damageParent;
+
+    [SerializeField]
+    private HpBarUnit hpBarUnit;
 
     private DamageNumbersGroup damageNumbersGroup;
 
@@ -30,6 +33,21 @@ public class BattleFXManager : BaseManager<BattleFXManager>
     public void ShowDamage(DamageType damageType, Transform tr, string text)
     {
         damageNumbersGroup.ShowDamage(damageType, tr, text);
+    }
+    #endregion
+
+    #region HPBar
+    public async UniTask ShowHpBar(CharacterUnitModel owner)
+    {
+        if (hpBarUnit.Model == null)
+            hpBarUnit.SetModel(new HpBarUnitModel());
+
+        hpBarUnit.Hide();
+        
+        var model = hpBarUnit.Model;
+        model.SetOwner(owner);
+
+        await hpBarUnit.ShowAsync();
     }
     #endregion
 }

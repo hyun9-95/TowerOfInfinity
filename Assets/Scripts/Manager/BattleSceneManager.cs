@@ -107,6 +107,7 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>
     public async UniTask StartBattle()
     {
         await ActiveCharacters();
+        await ShowHpBar();
         await UniTaskUtils.DelaySeconds(FloatDefine.DEFAULT_BATTLE_START_DELAY);
 
         enemyGenerator.StartGenerateAsync().Forget();
@@ -119,6 +120,11 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>
             character.Initialize();
             character.Activate();
         }
+    }
+
+    private async UniTask ShowHpBar()
+    {
+        await BattleFXManager.Instance.ShowHpBar(CurrentCharacter.Model);
     }
     #endregion
 

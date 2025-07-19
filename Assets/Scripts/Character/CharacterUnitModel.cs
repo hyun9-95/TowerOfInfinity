@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -22,6 +23,9 @@ public class CharacterUnitModel : IBaseUnitModel
     public ActiveSkill ActiveSkill { get; private set; }
     public PassiveSkill PassiveSkill { get; private set; }
     public float Hp { get; private set; }
+    public float Attack { get; private set; }
+    public float Defense { get; private set; }
+    public float MoveSpeed { get; private set; }
     public PathFindType PathFindType { get; private set; }
     public bool IsFlipX { get; private set; }
     public HashSet<Weapon> Weapons => weapons;
@@ -31,6 +35,7 @@ public class CharacterUnitModel : IBaseUnitModel
     private ScriptableCharacterStat baseStat;
     private HashSet<Weapon> weapons;
     private Queue<Weapon> pendingWeapons;
+    private Dictionary<StatType, float> statModifiers = new Dictionary<StatType, float>();
     #endregion
     public void SetCharacterDataId(int id)
     {
@@ -58,11 +63,19 @@ public class CharacterUnitModel : IBaseUnitModel
         TeamTag = teamTag;
     }
 
-    public void SetBaseStat(ScriptableCharacterStat scriptableBaseStat)
+    public void InitializeStat(ScriptableCharacterStat scriptableBaseStat)
     {
         baseStat = scriptableBaseStat;
 
         Hp = baseStat.GetStat(StatType.MaxHp).Value;
+        
+        foreach (StatType statType in Enum.GetValues(typeof(StatType)))
+        {
+            if (statType == StatType.Max)
+                continue;
+
+            statModifiers[statType] = 0;
+        }
     }
 
     public void SetIsFlipX(bool value)
@@ -136,14 +149,30 @@ public class CharacterUnitModel : IBaseUnitModel
         return baseStat.GetStat(statType);
     }
 
-    /// <summary>
-    /// 버프등 최종 스탯 계산식 추가하기
-    /// </summary>
-    /// <param name="statType"></param>
-    /// <returns></returns>
     public float GetStatValue(StatType statType, StatReferenceCondition condition = StatReferenceCondition.BaseStat)
     {
+        if (condition == StatReferenceCondition.BaseStat)
+            return GetBaseStatValue(statType);
+
+        if (condition == StatReferenceCondition.CurrentStat)
+            return GetCurrentStatValue(statType);
+
+        return 0;
+    }
+
+    private float GetBaseStatValue(StatType statType)
+    {
         return baseStat.GetStat(statType).Value;
+    }
+
+    private float GetCurrentStatValue(StatType statType)
+    {
+        return GetBaseStatValue(statType) + statModifiers[statType];
+    }
+
+    public void ChangeStatValue(StatType statType, float value)
+    {
+        statModifiers[statType] = value;
     }
 
     public void SetCurrentAnimState(CharacterAnimState animState)

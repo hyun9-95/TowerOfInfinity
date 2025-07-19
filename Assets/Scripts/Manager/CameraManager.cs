@@ -25,6 +25,13 @@ public class CameraManager : BaseMonoManager<CameraManager>
 
         return cinemachineBrain.OutputCamera.transform.position;
     }
+
+    public Vector3 GetWorldToScreenPoint(Vector3 pos)
+    {
+        return worldCamera.WorldToScreenPoint(pos);
+    }
+
+
     public Camera GetUICamera(UICanvasType canvasType)
     {
         int index = (int)canvasType;

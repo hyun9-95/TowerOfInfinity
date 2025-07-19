@@ -281,7 +281,7 @@ public class CharacterUnit : PoolableMono
     private void InitializeModel()
     {
         Model.SetActionHandler(CreateActionHandler());
-        Model.SetBaseStat(baseStat);
+        Model.InitializeStat(baseStat);
         Model.SetTransform(transform);
         Model.SetAgent(agent);
 
