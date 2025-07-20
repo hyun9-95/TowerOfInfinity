@@ -135,21 +135,21 @@ public class CharacterUnit : PoolableMono
     {
         if (Model.PathFindType == PathFindType.Navmesh)
         {
-            if (agent == null)
-                return;
-
-            if (agent.isOnNavMesh)
+            if (agent != null)
             {
-                // 2D로 사용시 로테이션 돌아가는 것 방지
-                agent.updateUpAxis = false;
-                agent.updateRotation = false;
-                transform.rotation = Quaternion.identity;
+                if (agent.isOnNavMesh)
+                {
+                    // 2D로 사용시 로테이션 돌아가는 것 방지
+                    agent.updateUpAxis = false;
+                    agent.updateRotation = false;
+                    transform.rotation = Quaternion.identity;
 
-                agent.enabled = true;
-            }
-            else
-            {
-                agent.enabled = false;
+                    agent.enabled = true;
+                }
+                else
+                {
+                    agent.enabled = false;
+                }
             }
         }
         else if (Model.PathFindType == PathFindType.AStar)
