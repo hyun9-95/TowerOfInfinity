@@ -178,7 +178,6 @@ MonoBehaviour:
   animStateResolver:
     keys: 
     values: 
-  nextNodeThreshold: 0.5
   debugLog: 0
 --- !u!61 &2477859979652061185
 BoxCollider2D:
@@ -261,7 +260,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0.5}
-  m_Radius: 0.45
+  m_Radius: 0.5
 --- !u!50 &4362995998241216317
 Rigidbody2D:
   serializedVersion: 5
