@@ -81,6 +81,14 @@ public class AStarPathFinder : IPathFinder
     /// <returns></returns>
     public Vector2 OnMoveAlongPath()
     {
+#if UNITY_EDITOR
+        if (currentPath != null)
+        {
+            for (int i = 0; i < currentPath.Count - 1; i++)
+                Debug.DrawLine(currentPath[i].WorldPos, currentPath[i + 1].WorldPos, Color.yellow, FloatDefine.ASTAR_REPATH_COOLTIME);
+        }
+#endif
+
         Vector2 currentPos = rigidBody2D.position;
         Vector2 moveDir = Vector2.zero;
 
