@@ -6,6 +6,8 @@ public class BattleEnemyGenerator
 {
     public BattleEnemyGeneratorModel Model;
 
+    private float minDistance;
+
     public BattleEnemyGenerator(BattleEnemyGeneratorModel battleEnemyGeneratorModel)
     {
         Model = battleEnemyGeneratorModel;
@@ -13,11 +15,12 @@ public class BattleEnemyGenerator
 
     public async UniTask StartGenerateAsync()
     {
-        var camera = CameraManager.Instance.GetWorldCamera();
+        // 카메라 영역에서 벗어나기 위한 중심점으로부터의 최소 거리
+        minDistance = CameraManager.Instance.DiagonalLengthFromCenter;
 
         while (!TokenPool.Get(GetHashCode()).IsCancellationRequested)
         {
-            var spawnPos = GetValidSpawnPosition(camera);
+            var spawnPos = GetValidSpawnPosition();
 
             if (spawnPos == Vector3.zero)
                 continue;
@@ -52,24 +55,17 @@ public class BattleEnemyGenerator
     /// <summary>
     /// 카메라 영역에서 보이지 않는 랜덤 생성 포지션
     /// </summary>
-    public Vector3 GetValidSpawnPosition(Camera camera)
+    public Vector3 GetValidSpawnPosition()
     {
         Vector3 cameraCenter = CameraManager.Instance.GetBrainOutputPosition();
-        Vector3 bottomLeft = camera.ViewportToWorldPoint(new Vector3(0, 0, 0));
-        Vector3 topRight = camera.ViewportToWorldPoint(new Vector3(1, 1, 0));
 
-        float camHalfWidth = Mathf.Abs(topRight.x - bottomLeft.x) / 2f;
-        float camHalfHeight = Mathf.Abs(topRight.y - bottomLeft.y) / 2f;
-
-        // 대각선 거리 = 카메라에서 보이는 최소 거리
-        float minDistance = Mathf.Sqrt(camHalfWidth * camHalfWidth + camHalfHeight * camHalfHeight);
-
-        //랜덤 각도
+        // 랜덤 각도
         float angle = Random.Range(0f, 360f) * Mathf.Deg2Rad;
         Vector2 direction = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
 
-        //랜덤 거리
-        float distance = Random.Range(minDistance, minDistance + 1f);
+        // 랜덤 거리 (카메라 범위에서 벗어난 거리 + offset)
+        float offset = 0.5f;
+        float distance = Random.Range(minDistance, minDistance + offset);
 
         Vector3 validPos = cameraCenter + (Vector3)(direction * distance);
         validPos.z = 0;
