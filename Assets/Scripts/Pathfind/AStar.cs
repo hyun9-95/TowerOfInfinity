@@ -53,26 +53,19 @@ public class AStar
                 {
                     xPos = worldPos.x,
                     yPos = worldPos.y,
-                    isWalkable = false
+                    isWalkable = true
                 };
 
-                for (int i = 0; i < walkableMaps.Length; i++)
+                foreach (var obstacle in obstacleMaps)
                 {
-                    var tilemap = walkableMaps[i];
-                    
-                    Vector3Int localCell = tilemap.WorldToCell(worldPos);
-                    if (tilemap.HasTile(localCell))
+                    if (obstacle == null)
+                        continue;
+
+                    Vector3Int localCell = obstacle.WorldToCell(worldPos);
+                    if (obstacle.HasTile(localCell))
                     {
-                        // 매칭되는 장애물 타일이 있을 경우 NOT WALKABLE
-                        if (i < obstacleMaps.Length)
-                        {
-                            var obstacleMap = obstacleMaps[i];
-                            node.isWalkable = obstacleMap == null || obstacleMap.HasTile(localCell) == false;
-                        }
-                        else
-                        {
-                            node.isWalkable = true;
-                        }
+                        // 장애물 타일이 있을 경우 NOT WALKABLE
+                        node.isWalkable = false;
                         break;
                     }
                 }
@@ -80,6 +73,11 @@ public class AStar
                 nodeMap[cellPos] = node;
             }
         }
+
+#if UNITY_EDITOR
+        var viewer = GameManager.Instance.gameObject.AddComponent<AStarGridViewer>();
+        viewer.SetNodeMap(nodeMap, layoutGrid);
+#endif
     }
 
     private BoundsInt CalculateMergedWorldBounds()
