@@ -22,7 +22,7 @@ public class AStar
         Vector3Int.up, Vector3Int.down, Vector3Int.left, Vector3Int.right
     };
 
-    private Vector3Int[] diagonals = new Vector3Int[]
+    private Vector3Int[] diagonalDirections = new Vector3Int[]
     {
             new Vector3Int(-1,  1, 0),
             new Vector3Int( 1,  1, 0),
@@ -141,12 +141,30 @@ public class AStar
         if (!diagonal)
             return neighbors;
 
-        foreach (var diag in diagonals)
+        foreach (var diagDireciton in diagonalDirections)
         {
-            Vector3Int neighborPos = cellPos + diag;
+            Vector3Int neighborPos = cellPos + diagDireciton;
 
-            if (nodeMap.TryGetValue(neighborPos, out var neighbor))
-                neighbors.Add(neighbor);
+            if (nodeMap.TryGetValue(neighborPos, out var diagonalNode))
+            {
+                // 대각선 방향 노드의 이웃을 검사
+                // 벽을 통과하지 않도록, 상하좌우 노드가 walkable일 경우에만 대각선 이동이 가능하다.
+                var diagonalNeighborNodes = GetNeighborNodes(diagonalNode, false);
+
+                bool isValidDiagonal = true;
+
+                foreach (var diagNeighborNode in diagonalNeighborNodes)
+                {
+                    if (diagNeighborNode.isWalkable == false)
+                    {
+                        isValidDiagonal = false;
+                        break;
+                    }    
+                }
+
+                if (isValidDiagonal)
+                    neighbors.Add(diagonalNode);
+            }
         }
 
         return neighbors;
@@ -155,9 +173,7 @@ public class AStar
     public void ResetNode()
     {
         foreach (var node in nodeMap.Values)
-        {
             node.Reset();
-        }
     }
 
     #region Pathfind
@@ -174,10 +190,9 @@ public class AStar
     private List<AStarNode> CreatePath(AStarNode start, AStarNode end, bool diagonal = false)
     {
         if (start == null || end == null || !start.isWalkable || !end.isWalkable)
-        {
             return null;
-        }
 
+        // 경로 재계산 시 마다, Node를 리셋해줘야함.
         ResetNode();
 
         PriorityQueue<AStarNode> openSet = new PriorityQueue<AStarNode>();
@@ -230,7 +245,7 @@ public class AStar
         return null; // 경로 없음
     }
 
-    private AStarNode FindNearestWalkableNode(Vector3 worldPosition, int searchRadius = 5)
+    private AStarNode FindNearestWalkableNode(Vector3 worldPosition, int searchRadius = 3)
     {
         AStarNode startNode = GetNodeFromWorld(worldPosition);
 
@@ -248,16 +263,13 @@ public class AStar
         {
             Vector3Int currentCell = queue.Dequeue();
 
+            // 가장 먼저 발견된 걸을 수 있는 노드 반환
             if (nodeMap.TryGetValue(currentCell, out AStarNode node) && node.isWalkable)
-            {
-                return node; // 가장 먼저 발견된 걸을 수 있는 노드 반환
-            }
+                return node;
 
             // 현재 셀로부터의 거리가 탐색 반경을 초과하면 더 이상 탐색하지 않음
             if (Vector3Int.Distance(originCell, currentCell) > searchRadius)
-            {
                 continue;
-            }
 
             // 이웃 셀 탐색
             foreach (var dir in directions)
@@ -276,7 +288,8 @@ public class AStar
 
     public List<AStarNode> CreatePath(Vector3 start, Vector3 end)
     {
-        AStarNode startNode = FindNearestWalkableNode(start);
+        // StartNode는 유효하지 않다면 타겟 방향으로 그냥 이동하기 때문에 인접노드를 검색할 필요는 없음.
+        AStarNode startNode = GetNodeFromWorld(start);
         AStarNode endNode = FindNearestWalkableNode(end);
 
         return CreatePath(startNode, endNode, true);

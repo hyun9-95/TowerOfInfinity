@@ -45,10 +45,6 @@ public class CharacterUnit : PoolableMono
     [SerializeField]
     protected SerializableDictionary<CharacterAnimState, CharacterAnimState> animStateResolver;
 
-    [Tooltip("현재 노드에 도착했는지 판단할 거리")]
-    [SerializeField]
-    protected float nextNodeThreshold = 0.5f;
-
     [SerializeField]
     private bool debugLog;
 
