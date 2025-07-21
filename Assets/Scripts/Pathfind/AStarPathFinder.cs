@@ -28,14 +28,15 @@ public class AStarPathFinder : IPathFinder
 
         if (currentPath != null && currentPath.Count > 0)
         {
+            // 전진하지 못하고 와리가리하는 상황 방지를 위해 필요함!
             int closestNodeIndex = 0;
-            float minDistance = float.MaxValue;
+            float minSqrDistance = float.MaxValue;
             for (int i = 0; i < currentPath.Count; i++)
             {
-                float distance = Vector2.Distance(rigidBody2D.position, currentPath[i].WorldPos);
-                if (distance < minDistance)
+                float sqrDistance = (rigidBody2D.position - (Vector2)currentPath[i].WorldPos).sqrMagnitude;
+                if (sqrDistance < minSqrDistance)
                 {
-                    minDistance = distance;
+                    minSqrDistance = sqrDistance;
                     closestNodeIndex = i;
                 }
             }
