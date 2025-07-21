@@ -15,6 +15,15 @@ public class FlowManager : BaseManager<FlowManager>
     {
         Logger.Log($"Change Flow {flowType}");
 
+        var newFlow = FlowFactory.Create(flowType);
+        newFlow.SetModel(baseFlowModel);
+
+        if (newFlow == null)
+            return;
+
+        // Transition In
+        await TransitionManager.Instance.In(newFlow.TransitionType);
+
         if (currentFlow != null)
         {
             var prevType = currentFlow.FlowType;
@@ -27,17 +36,11 @@ public class FlowManager : BaseManager<FlowManager>
             Logger.Log($"Exit Prev Flow {prevType} => For Change Flow {flowType}");
         }
 
-        var newFlow = FlowFactory.Create(flowType);
-        newFlow.SetModel(baseFlowModel);
-
-        if (newFlow == null)
-            return;
-
         currentFlow = newFlow;
-
-        await TransitionManager.Instance.In(newFlow.TransitionType);
         await currentFlow.LoadingProcess();
         await currentFlow.Process();
+
+        // Transition Out
         TransitionManager.Instance.Out(newFlow.TransitionType).Forget();
     }
 }
