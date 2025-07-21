@@ -22,4 +22,11 @@ public class AStarManager : BaseManager<AStarManager>
     {
         return aStar.CreatePath(start, end);
     }
+
+    public bool IsWalkablePos(Vector3 pos)
+    {
+        var node = aStar.GetNodeFromWorld(pos);
+
+        return node != null && node.isWalkable;
+    }
 }

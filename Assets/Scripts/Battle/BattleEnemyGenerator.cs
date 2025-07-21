@@ -18,6 +18,10 @@ public class BattleEnemyGenerator
         while (!TokenPool.Get(GetHashCode()).IsCancellationRequested)
         {
             var spawnPos = GetValidSpawnPosition(camera);
+
+            if (spawnPos == Vector3.zero)
+                continue;
+
             var currentWave = Model.GetCurrentWave();
 
             if (currentWave != null)
@@ -48,9 +52,6 @@ public class BattleEnemyGenerator
     /// <summary>
     /// 카메라 영역에서 보이지 않는 랜덤 생성 포지션
     /// </summary>
-    /// <param name="camera"></param>
-    /// <param name="maxRadius"></param>
-    /// <returns></returns>
     public Vector3 GetValidSpawnPosition(Camera camera)
     {
         Vector3 cameraCenter = CameraManager.Instance.GetBrainOutputPosition();
@@ -73,6 +74,19 @@ public class BattleEnemyGenerator
         Vector3 validPos = cameraCenter + (Vector3)(direction * distance);
         validPos.z = 0;
 
-        return validPos;
+        // AStar를 사용중이라면, 현재 위치가 걸을 수 있는 위치인지 체크하고 반환한다.
+        if (Model.CheckWalkablePosOnSpawn)
+        {
+            if (AStarManager.Instance.IsWalkablePos(validPos))
+                return validPos;
+        }
+        else
+        {
+            // 사용 중 아니면 그냥 반환
+            return validPos;
+        }
+
+        // 걸을 수 없다면, 다음 프레임에 재시도한다.
+        return Vector3.zero;
     }
 }

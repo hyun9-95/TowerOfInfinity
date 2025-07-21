@@ -17,6 +17,8 @@ public class BattleEnemyGeneratorModel
     public float SpawnIntervalSeconds { get; private set; }
 
     public Action<CharacterUnit> OnSpawnEnemy { get; private set; }
+
+    public bool CheckWalkablePosOnSpawn { get; private set; }
     #endregion
 
     #region Value
@@ -42,6 +44,11 @@ public class BattleEnemyGeneratorModel
     public void SetOnSpawnEnemy(Action<CharacterUnit> func)
     {
         OnSpawnEnemy = func;
+    }
+
+    public void SetCheckWalkablePosOnSpawn(bool value)
+    {
+        CheckWalkablePosOnSpawn = value;
     }
 
     public CharacterDefine[] GetCurrentWave()

@@ -83,6 +83,7 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>
         enemyGeneratorModel.SetDataDungeon(dataDungeon);
         enemyGeneratorModel.SetCurrentWave(0);
         enemyGeneratorModel.SetSpawnInterval(5f);
+        enemyGeneratorModel.SetCheckWalkablePosOnSpawn(UseAStar);
         enemyGeneratorModel.SetOnSpawnEnemy(OnSpawnEnemy);
 
         enemyGenerator = new BattleEnemyGenerator(enemyGeneratorModel);
