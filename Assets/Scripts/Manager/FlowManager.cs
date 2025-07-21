@@ -1,6 +1,7 @@
 #pragma warning disable CS1998
 
 using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 public class FlowManager : BaseManager<FlowManager>
 {
@@ -21,6 +22,8 @@ public class FlowManager : BaseManager<FlowManager>
             await prevFlow.Exit();
             currentFlow = null;
 
+            AddressableManager.Instance.ReleaseAllHandles();
+            await Resources.UnloadUnusedAssets();
             Logger.Log($"Exit Prev Flow {prevType} => For Change Flow {flowType}");
         }
 

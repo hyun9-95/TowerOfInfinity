@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.AddressableAssets;
 
 [CreateAssetMenu(menuName = "ScriptableCharacterInfo")]
 public class ScriptableCharacterInfo : ScriptableObject
