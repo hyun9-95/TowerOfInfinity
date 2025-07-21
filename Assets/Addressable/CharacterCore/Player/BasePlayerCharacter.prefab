@@ -76,7 +76,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1583088467
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -173,12 +173,11 @@ MonoBehaviour:
   rigidBody2D: {fileID: 4362995998241216317}
   bodySprite: {fileID: 8752414428341692763}
   agent: {fileID: 0}
-  characterCollider2D: {fileID: 2477859979652061185}
+  characterCollider2D: {fileID: 7448756835893251589}
   baseStat: {fileID: 0}
   animStateResolver:
     keys: 
     values: 
-  repathCoolTime: 0.25
   nextNodeThreshold: 0.5
   debugLog: 0
 --- !u!61 &2477859979652061185
@@ -194,7 +193,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -257,12 +256,12 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0.5}
-  m_Radius: 0.5
+  m_Radius: 0.45
 --- !u!50 &4362995998241216317
 Rigidbody2D:
   serializedVersion: 5
@@ -271,7 +270,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5788301345535835846}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -279,10 +278,10 @@ Rigidbody2D:
   m_LinearDamping: 5
   m_AngularDamping: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 4b1c6f7475961704286628d9fc21c1f2, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 136
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -321,6 +320,6 @@ SortingGroup:
   m_GameObject: {fileID: 5788301345535835846}
   m_Enabled: 1
   m_SortingLayerID: -1583088467
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 99
   m_SortAtRoot: 0

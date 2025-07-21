@@ -75,7 +75,10 @@ public class AStar
         }
 
 #if UNITY_EDITOR
-        var viewer = GameManager.Instance.gameObject.AddComponent<AStarGridViewer>();
+        var viewer = GameManager.Instance.gameObject.GetComponent<AStarGridViewer>();
+        if (viewer == null)
+            viewer = GameManager.Instance.gameObject.AddComponent<AStarGridViewer>();
+
         viewer.SetNodeMap(nodeMap, layoutGrid);
 #endif
     }
@@ -279,70 +282,4 @@ public class AStar
         return CreatePath(startNode, endNode, true);
     }
     #endregion
-
-#if UNITY_EDITOR
-    [SerializeField]
-    private bool isTest;
-
-    private AStarNode testStartNode;
-    private AStarNode testEndNode;
-
-    private void Update()
-    {
-        if (!isTest)
-            return;
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            Vector3 worldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            testStartNode = GetNodeFromWorld(worldPos);
-
-            CreateGrid();
-        }
-
-        if (Input.GetMouseButtonDown(1))
-        {
-            Vector3 worldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            testEndNode = GetNodeFromWorld(worldPos);
-        }
-
-        if (Input.GetKeyUp(KeyCode.Space))
-        {
-            TestPathfind();
-        }
-    }
-
-
-    public void TestPathfind()
-    {
-        List<AStarNode> path = CreatePath(testStartNode, testEndNode, true);
-
-        if (path != null && path.Count > 1)
-        {
-            for (int i = 0; i < path.Count - 1; i++)
-            {
-                Vector3 startWorldPos = new Vector3(path[i].xPos, path[i].yPos, 0f);
-                Vector3 endWorldPos = new Vector3(path[i + 1].xPos, path[i + 1].yPos, 0f);
-
-                Debug.DrawLine(startWorldPos, endWorldPos, Color.cyan, 5f);
-            }
-        }
-    }
-
-    private void OnDrawGizmos()
-    {
-        if (nodeMap != null && isTest)
-        {
-            foreach (var kvp in nodeMap)
-            {
-                var node = kvp.Value;
-                Gizmos.color = node.isWalkable ? Color.green : Color.red;
-                Vector3 drawPos = new Vector3(node.xPos, node.yPos, 0f);
-                Vector3 drawSize = layoutGrid.cellSize;
-                drawPos -= layoutGrid.cellGap / 2;
-                Gizmos.DrawWireCube(drawPos, drawSize);
-            }
-        }
-    }
-#endif
 }

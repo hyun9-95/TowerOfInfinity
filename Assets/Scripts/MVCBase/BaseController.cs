@@ -58,6 +58,9 @@ public abstract class BaseController
 
     public virtual async UniTask Exit()
     {
+        if (baseView.CheckSafeNull())
+            return;
+
         GameObject.Destroy(baseView.gameObject);
     }
 }

@@ -157,17 +157,6 @@ public class CharacterUnit : PoolableMono
             if (agent != null)
                 agent.enabled = false;
         }
-
-        if (Model.TeamTag == TeamTag.Ally)
-        {
-            rigidBody2D.bodyType = RigidbodyType2D.Kinematic;
-            characterCollider2D.isTrigger = true;
-        }
-        else
-        {
-            rigidBody2D.bodyType = RigidbodyType2D.Dynamic;
-            characterCollider2D.isTrigger = false;
-        }
     }
 
     private void InitializeModule()
