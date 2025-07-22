@@ -1,6 +1,6 @@
 public static class Formula
 {
-    public static float GetNormalDamage(CharacterUnitModel sender, CharacterUnitModel receiver, float attackValue)
+    public static float GetDamageAmount(CharacterUnitModel sender, CharacterUnitModel receiver, float attackValue, DamageType damageType)
     {
         float def = receiver.GetStatValue(StatType.Defense);
         float attack = attackValue;
@@ -11,11 +11,6 @@ public static class Formula
             damage = 1;
 
         return damage;
-    }
-
-    public static void SendDamage(CharacterUnitModel sender, CharacterUnitModel receiver, float attackValue)
-    {
-        receiver.ReduceHp(GetNormalDamage(sender, receiver, attackValue));
     }
 
     public static float GetExpGainRangeRadius(int level)

@@ -84,7 +84,11 @@ public class CharacterUnitModel : IBaseUnitModel
         IsFlipX = value;
     }
 
-    public void ReduceHp(float value)
+    /// <summary>
+    /// BattleSystemManager 외에 호출 금지
+    /// </summary>
+    /// <param name="value"></param>
+    public void AddDamage(float value)
     {
         AddHp(-value);
     }

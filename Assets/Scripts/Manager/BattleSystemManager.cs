@@ -1,5 +1,6 @@
 #pragma warning disable CS1998
 using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 /// <summary>
 /// 전반적인 전투 로직을 관리한다.
@@ -12,12 +13,17 @@ public class BattleSystemManager : BaseManager<BattleSystemManager>
 
     #region Value
     private BattleExpGainer expGainer;
+    private DamageNumbersGroup damageNumbersGroup;
+    private Transform objectContainer;
     #endregion
 
-    public async UniTask Prepare(BattleTeam battleTeam)
+    public async UniTask Prepare(BattleTeam battleTeam, Transform objectContainerValue)
     {
         InitializBattleInfo(battleTeam);
         InitilalizeExpGainer(battleTeam.CurrentCharacter);
+
+        objectContainer = objectContainerValue;
+        await InitializeDamageGroup();
     }
 
     private void InitializBattleInfo(BattleTeam battleTeam)
@@ -39,6 +45,14 @@ public class BattleSystemManager : BaseManager<BattleSystemManager>
         expGainer.Model.SetOnExpGain(OnExpGain);
         expGainer.Model.SetOwner(characterUnit.Model);
         expGainer.Activate(true);
+    }
+
+    private async UniTask InitializeDamageGroup()
+    {
+        if (damageNumbersGroup == null)
+            damageNumbersGroup = await AddressableManager.Instance.InstantiateAddressableMonoAsync<DamageNumbersGroup>(typeof(DamageNumbersGroup).Name, objectContainer);
+
+        damageNumbersGroup.PrewarmPool();
     }
 
     // 입력이 필요한 이벤트를 BattleViewModel에 등록한다.
@@ -91,5 +105,19 @@ public class BattleSystemManager : BaseManager<BattleSystemManager>
 
         // expGainer의 Owner 변경
         expGainer.Model.SetOwner(changeTargetModel);
+    }
+
+    public void OnDamage(CharacterUnitModel sender, CharacterUnitModel receiver, float value, DamageType damageType)
+    {
+        var damageAmount = Formula.GetDamageAmount(sender, receiver, value, damageType);
+
+        var finalDamage = damageAmount;
+        receiver.AddDamage(finalDamage);
+
+        Logger.BattleLog($"{sender.CharacterDefine} -> {receiver.CharacterDefine} : {finalDamage} / Remain HP : {receiver.Hp}");
+
+        // 적인 경우에만 대미지를 표시.
+        if (receiver.TeamTag == TeamTag.Enemy)
+            damageNumbersGroup.ShowDamage(damageType, receiver.Transform, finalDamage.ToString());
     }
 }

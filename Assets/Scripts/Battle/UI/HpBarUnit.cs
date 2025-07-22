@@ -36,8 +36,17 @@ public class HpBarUnit : BaseUnit<HpBarUnitModel>
             return;
 
         hpBar.fillAmount = Model.GetHpBarValue();
-        Vector3 screenPos = CameraManager.Instance.GetWorldToScreenPoint(Model.Owner.Transform.position);
-        transform.position = screenPos + (Vector3)localOffset;
+
+        Vector3 screenPos = Model.BattleUICamera.WorldToScreenPoint(Model.Owner.Transform.position);
+
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            Model.BattleUICanvasRect,
+            screenPos,
+            Model.BattleUICamera,
+            out Vector2 localPoint
+        );
+
+        rectTransform.anchoredPosition = localPoint + localOffset;
     }
 
     private void OnDisable()

@@ -8,7 +8,7 @@ public class BattleFlow : BaseFlow<BattleFlowModel>
 
     private BattleSceneManager battleSceneManager;
     private BattleSystemManager battleSystemManager;
-    private BattleFXManager battleFXManager;
+    private BattleUIManager battleFXManager;
     private BattleViewController battleViewController;
     private BattleTeam battleTeam;
 
@@ -29,11 +29,11 @@ public class BattleFlow : BaseFlow<BattleFlowModel>
 
         // BattleSceneManager 하위의 매니저들
         battleSystemManager = BattleSystemManager.Instance;
-        battleFXManager = BattleFXManager.Instance;
+        battleFXManager = BattleUIManager.Instance;
 
         battleTeam = await battleSceneManager.CreateBattleTeam(PlayerManager.Instance.MyUser.UserTeams);
         await battleSceneManager.PrepareBattle(Model.DataDungeon);
-        await battleSystemManager.Prepare(battleTeam);
+        await battleSystemManager.Prepare(battleTeam, battleSceneManager.ObjectContainter);
         await battleFXManager.Prepare();
 
         await ShowBattleView(battleSystemManager.BattleInfo);

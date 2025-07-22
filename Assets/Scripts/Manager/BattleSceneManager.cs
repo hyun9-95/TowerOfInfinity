@@ -1,6 +1,7 @@
 #pragma warning disable CS1998
 using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
+using UnityEngine;
 
 /// <summary>
 /// 전투 씬 초기 세팅 및, 적과 아군의 스폰을 담당한다.
@@ -12,7 +13,7 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>
     #endregion
 
     #region Value
-   
+
     private BattleEnemyGenerator enemyGenerator;
     private List<CharacterUnit> enemyCharacters = new();
     private BattleTeam playerBattleTeam = new ();
@@ -125,7 +126,7 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>
 
     private async UniTask ShowHpBar()
     {
-        await BattleFXManager.Instance.ShowHpBar(CurrentCharacter.Model);
+        await BattleUIManager.Instance.ShowHpBar(CurrentCharacter.Model);
     }
     #endregion
 

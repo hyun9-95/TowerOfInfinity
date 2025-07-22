@@ -57,6 +57,7 @@ public enum UICanvasType
     View,
     Popup,
     Front,
+    UIWorld,
 }
 
 public enum SoundType
