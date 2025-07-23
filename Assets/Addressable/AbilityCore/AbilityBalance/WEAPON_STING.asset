@@ -16,6 +16,30 @@ MonoBehaviour:
   Speed: []
   Range: []
   Duration: []
-  TargetCount: []
-  Scale: []
-  CoolTime: []
+  TargetCount:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  Scale:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  CoolTime:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0

@@ -13,6 +13,30 @@ MonoBehaviour:
   m_Name: BE_ARROW_PROJECTILE
   m_EditorClassIdentifier: 
   type: 20002
-  duration: []
-  value: []
-  applyIntervalSeconds: []
+  duration:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  value:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  applyIntervalSeconds:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0

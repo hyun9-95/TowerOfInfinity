@@ -4,7 +4,7 @@ using UnityEngine;
 public class AbilityBalanceEditorWindow : BalanceEditorWindowBase<AbilityBalanceEditorWindow, ScriptableAbilityBalance, AbilityDefine>
 {
     protected override string EditorTitle => "Ability Balance Editor";
-    protected override string[] TabTitles => new string[] { "편집", "목록" };
+    protected override string[] TabTitles => new string[] { "편집", "관리" };
     protected override string AssetFilter => "t:ScriptableAbilityBalance";
 
     [MenuItem("Tools/Ability Balance/Editor")]
@@ -46,5 +46,10 @@ public class AbilityBalanceEditorWindow : BalanceEditorWindowBase<AbilityBalance
     protected override void SetBalanceType(ScriptableAbilityBalance balance, AbilityDefine define)
     {
         balance.SetType(define);
+    }
+
+    protected override void ResetBalanceValues(ScriptableAbilityBalance balance)
+    {
+        balance.ResetBalanceValues();
     }
 }
