@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dceb0da3ed51b6e47a7efb36ff83fcff, type: 3}
-  m_Name: WEAPON_SLASH
+  m_Script: {fileID: 11500000, guid: ed11842cc8ba12d40aca11dedabb0006, type: 3}
+  m_Name: BE_DAMAGE_ONE_SHOT_ATTACK
   m_EditorClassIdentifier: 
-  type: 50000
-  Speed:
+  type: 20000
+  duration:
   - 0
   - 0
   - 0
@@ -22,7 +22,7 @@ MonoBehaviour:
   - 0
   - 0
   - 0
-  Range:
+  value:
   - 0
   - 0
   - 0
@@ -31,34 +31,7 @@ MonoBehaviour:
   - 0
   - 0
   - 0
-  Duration:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  TargetCount:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  Scale:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  CoolTime:
+  applyIntervalSeconds:
   - 0
   - 0
   - 0

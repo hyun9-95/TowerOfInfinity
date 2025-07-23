@@ -5,9 +5,8 @@ using Newtonsoft.Json.Converters;
 public enum AbilityDefine
 {
 	None = 0,
-	WEAPON_SLASH = 50000,
-	WEAPON_SLASH_PROJECTILE = 50001,
-	WEAPON_ARROW = 50002,
-	WEAPON_STING = 50003,
+	WEAPON_SLASH_PROJECTILE = 50000,
+	WEAPON_ARROW = 50001,
+	WEAPON_STING = 50002,
 
 }

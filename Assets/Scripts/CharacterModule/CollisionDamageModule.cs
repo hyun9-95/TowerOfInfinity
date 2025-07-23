@@ -55,7 +55,7 @@ public class CollisionDamageModule : ScriptableCharacterModule
     private void SendCollisionDamage(CollisionDamageInfo info, CharacterUnitModel owner)
     {
         if (defaultDamageEventData.IsNull)
-            defaultDamageEventData = DataManager.Instance.GetDataById<DataBattleEvent>((int)BattleEventDefine.BE_COLLISION_DAMAGE);
+            defaultDamageEventData = DataManager.Instance.GetDataById<DataBattleEvent>((int)BattleEventDefine.BE_DAMAGE_ONE_SHOT_ATTACK);
 
         var eventModel = new BattleEventModel();
         eventModel.Initialize(owner, info.targetModel, defaultDamageEventData, owner.Level);

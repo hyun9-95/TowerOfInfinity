@@ -53,10 +53,6 @@ namespace Tools
 
             Logger.Log($"{fileNameWithExtension} {(File.Exists(savePath) ? "Edited" : "Created")}");
             File.WriteAllText(savePath, generatedValue);
-
-            // BattleEvent 변경 시 필수 갱신
-            if (savePath.Contains("BattleEvent"))
-                BattleEventEditorUtil.RefreshAll();
         }
     }
 }

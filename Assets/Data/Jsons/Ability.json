@@ -1,16 +1,6 @@
 [
   {
     "id": 50000,
-    "nameId": "WEAPON_SLASH",
-    "Type": "Weapon",
-    "BattleEvent": "BE_SLASH_RANGE",
-    "TriggerType": "Range",
-    "TargetType": "Single",
-    "PrefabName": "",
-    "HitEffectPrefabName": "Slash_Hit"
-  },
-  {
-    "id": 50001,
     "nameId": "WEAPON_SLASH_PROJECTILE",
     "Type": "Weapon",
     "BattleEvent": "BE_SLASH_PROJECTILE",
@@ -20,7 +10,7 @@
     "HitEffectPrefabName": ""
   },
   {
-    "id": 50002,
+    "id": 50001,
     "nameId": "WEAPON_ARROW",
     "Type": "Weapon",
     "BattleEvent": "BE_ARROW_PROJECTILE",
@@ -30,7 +20,7 @@
     "HitEffectPrefabName": ""
   },
   {
-    "id": 50003,
+    "id": 50002,
     "nameId": "WEAPON_STING",
     "Type": "Weapon",
     "BattleEvent": "BE_STING",

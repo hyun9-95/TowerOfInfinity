@@ -1,62 +1,14 @@
 [
   {
     "id": 20000,
-    "nameId": "BE_SLASH_RANGE",
+    "nameId": "BE_DAMAGE_ONE_SHOT_ATTACK",
     "Type": "Damage",
     "AffectStat": "Attack",
     "BattleEventCategory": "Active",
     "BattleEventGroup": "None",
     "StatReference": "Sender",
     "StatReferenceCondition": "CurrentStat",
-    "StatusDirection": "None",
-    "Stackable": "False"
-  },
-  {
-    "id": 20001,
-    "nameId": "BE_SLASH_PROJECTILE",
-    "Type": "Damage",
-    "AffectStat": "Attack",
-    "BattleEventCategory": "Active",
-    "BattleEventGroup": "None",
-    "StatReference": "Sender",
-    "StatReferenceCondition": "CurrentStat",
-    "StatusDirection": "None",
-    "Stackable": "False"
-  },
-  {
-    "id": 20002,
-    "nameId": "BE_ARROW_PROJECTILE",
-    "Type": "Damage",
-    "AffectStat": "Attack",
-    "BattleEventCategory": "Active",
-    "BattleEventGroup": "None",
-    "StatReference": "Sender",
-    "StatReferenceCondition": "CurrentStat",
-    "StatusDirection": "None",
-    "Stackable": "False"
-  },
-  {
-    "id": 20003,
-    "nameId": "BE_STING",
-    "Type": "Damage",
-    "AffectStat": "Attack",
-    "BattleEventCategory": "Active",
-    "BattleEventGroup": "None",
-    "StatReference": "Sender",
-    "StatReferenceCondition": "CurrentStat",
-    "StatusDirection": "None",
-    "Stackable": "False"
-  },
-  {
-    "id": 20004,
-    "nameId": "BE_COLLISION_DAMAGE",
-    "Type": "Damage",
-    "AffectStat": "Attack",
-    "BattleEventCategory": "Active",
-    "BattleEventGroup": "None",
-    "StatReference": "Sender",
-    "StatReferenceCondition": "CurrentStat",
-    "StatusDirection": "None",
+    "StatusDirection": "Increase",
     "Stackable": "False"
   }
 ]
