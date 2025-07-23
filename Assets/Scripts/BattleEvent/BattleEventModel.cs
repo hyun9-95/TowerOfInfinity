@@ -31,15 +31,12 @@ public class BattleEventModel
         StatusDirection = dataBattleEvent.StatusDirection;
         Stackable = dataBattleEvent.Stackable;
 
-        if (dataBattleEvent.LevelBalance != BattleEventBalanceDefine.None)
+        var levelBalance = BattleEventBalanceFactory.Instance.GetLevelBalance(dataBattleEvent.Id);
+        if (levelBalance != null)
         {
-            var levelBalance = BattleEventBalanceFactory.Instance.GetLevelBalance(dataBattleEvent.LevelBalance);
-            if (levelBalance != null)
-            {
-                Duration = levelBalance.GetDuration(level);
-                Value = levelBalance.GetValue(level);
-                ApplyIntervalSeconds = levelBalance.GetApplyIntervalSeconds(level);
-            }
+            Duration = levelBalance.GetDuration(level);
+            Value = levelBalance.GetValue(level);
+            ApplyIntervalSeconds = levelBalance.GetApplyIntervalSeconds(level);
         }
     }
 }

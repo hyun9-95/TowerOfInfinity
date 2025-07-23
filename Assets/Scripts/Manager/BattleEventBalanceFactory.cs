@@ -5,13 +5,13 @@ using System.Collections.Generic;
 
 public class BattleEventBalanceFactory : BaseManager<BattleEventBalanceFactory>
 {
-    private Dictionary<BattleEventBalanceDefine, ScriptableBattleEventBalance> beBalanceDic = new Dictionary<BattleEventBalanceDefine, ScriptableBattleEventBalance>();
+    private Dictionary<BattleEventDefine, ScriptableBattleEventBalance> beBalanceDic = new Dictionary<BattleEventDefine, ScriptableBattleEventBalance>();
 
     public async UniTask Initialize()
     {
-        foreach (BattleEventBalanceDefine define in Enum.GetValues(typeof(BattleEventBalanceDefine)))
+        foreach (BattleEventDefine define in Enum.GetValues(typeof(BattleEventDefine)))
         {
-            if (define == BattleEventBalanceDefine.None)
+            if (define == BattleEventDefine.None)
                 continue;
 
             var levelBalance = await AddressableManager.Instance.LoadScriptableObject<ScriptableBattleEventBalance>(define.ToString(), false);
@@ -27,8 +27,10 @@ public class BattleEventBalanceFactory : BaseManager<BattleEventBalanceFactory>
         }
     }
 
-    public ScriptableBattleEventBalance GetLevelBalance(BattleEventBalanceDefine define)
+    public ScriptableBattleEventBalance GetLevelBalance(int id)
     {
+        BattleEventDefine define = (BattleEventDefine)id;
+        
         if (beBalanceDic.TryGetValue(define, out var levelBalance))
             return levelBalance;
 

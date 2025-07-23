@@ -4,7 +4,14 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "ScriptableBattleEventBalance")]
 public class ScriptableBattleEventBalance : ScriptableObject
 {
-    public BattleEventBalanceDefine Type;
+    [SerializeField]
+    private BattleEventDefine type;
+    public BattleEventDefine Type => type;
+
+    public void SetType(BattleEventDefine newType)
+    {
+        type = newType;
+    }
 
     [SerializeField]
     private float[] duration;

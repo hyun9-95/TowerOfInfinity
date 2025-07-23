@@ -25,8 +25,6 @@ public struct DataBattleEvent : IBaseData
     public readonly StatusDirection StatusDirection;
     [JsonProperty(PropertyName = "Stackable")]
     public readonly bool Stackable;
-    [JsonProperty(PropertyName = "LevelBalance")]
-    public readonly BattleEventBalanceDefine LevelBalance;
 	
 	public int Id => id;
     public string NameId => nameId;

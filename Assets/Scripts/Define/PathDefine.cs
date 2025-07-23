@@ -20,6 +20,8 @@ public class PathDefine
     public const string DataDefinePath = "Assets/Data/Scripts/Define";
 
     public const string PATH_USER_SAVE_INFO = "UserSaveInfo/{0}";
+    
+    public const string PATH_BATTLE_EVENT_BALANCE_FOLDER = "Assets/Addressable/AbilityCore/BattleEventBalance";
     #endregion
 
     #region Resources
