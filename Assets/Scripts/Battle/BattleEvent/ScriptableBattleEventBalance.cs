@@ -5,12 +5,12 @@ using UnityEngine;
 public class ScriptableBattleEventBalance : ScriptableObject
 {
     [SerializeField]
-    private BattleEventDefine type;
-    public BattleEventDefine Type => type;
+    private BattleEventDefine define;
+    public BattleEventDefine Define => define;
 
     public void SetType(BattleEventDefine newType)
     {
-        type = newType;
+        define = newType;
     }
 
     [SerializeField]
@@ -61,5 +61,12 @@ public class ScriptableBattleEventBalance : ScriptableObject
             value[i] = 0f;
             applyIntervalSeconds[i] = 0f;
         }
+    }
+
+    public void DeepCopy(ScriptableBattleEventBalance source)
+    {
+        duration = source.duration != null ? (float[])source.duration.Clone() : null;
+        value = source.value != null ? (float[])source.value.Clone() : null;
+        applyIntervalSeconds = source.applyIntervalSeconds != null ? (float[])source.applyIntervalSeconds.Clone() : null;
     }
 }

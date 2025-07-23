@@ -21,19 +21,19 @@ public class BattleEventBalanceEditorWindow : BalanceEditorWindowBase<BattleEven
 
     protected override void DrawBalanceSettings(SerializedObject serializedObject)
     {
-        DrawArrayPropertyField(serializedObject, "duration", "지속 시간");
         DrawArrayPropertyField(serializedObject, "value", "값");
+        DrawArrayPropertyField(serializedObject, "duration", "지속 시간");
         DrawArrayPropertyField(serializedObject, "applyIntervalSeconds", "적용 간격");
     }
 
     protected override BattleEventDefine GetDefineFromBalance(ScriptableBattleEventBalance balance)
     {
-        return balance.Type;
+        return balance.Define;
     }
 
     protected override bool IsDefineSelected(BattleEventDefine define, ScriptableBattleEventBalance balance)
     {
-        return define == balance.Type;
+        return define == balance.Define;
     }
 
     protected override bool IsNone(BattleEventDefine define)

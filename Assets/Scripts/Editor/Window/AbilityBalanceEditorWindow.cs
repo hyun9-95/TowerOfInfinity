@@ -20,12 +20,12 @@ public class AbilityBalanceEditorWindow : BalanceEditorWindowBase<AbilityBalance
 
     protected override void DrawBalanceSettings(SerializedObject serializedObject)
     {
-        DrawArrayPropertyField(serializedObject, "Speed", "속도");
-        DrawArrayPropertyField(serializedObject, "Range", "범위");
-        DrawArrayPropertyField(serializedObject, "Duration", "지속 시간");
-        DrawArrayPropertyField(serializedObject, "Scale", "스케일");
-        DrawArrayPropertyField(serializedObject, "TargetCount", "타겟 수");
         DrawArrayPropertyField(serializedObject, "CoolTime", "쿨타임");
+        DrawArrayPropertyField(serializedObject, "Duration", "지속 시간");
+        DrawArrayPropertyField(serializedObject, "TargetCount", "타겟 수");
+        DrawArrayPropertyField(serializedObject, "Range", "범위");
+        DrawArrayPropertyField(serializedObject, "Speed", "속도");
+        DrawArrayPropertyField(serializedObject, "Scale", "스케일");
     }
 
     protected override AbilityDefine GetDefineFromBalance(ScriptableAbilityBalance balance)

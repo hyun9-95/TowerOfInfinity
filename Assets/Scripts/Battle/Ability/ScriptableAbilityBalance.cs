@@ -68,8 +68,8 @@ public class ScriptableAbilityBalance : ScriptableObject
         if (TargetCount == null || TargetCount.Length == 0)
             return 0;
         if (level >= TargetCount.Length)
-            return (int)TargetCount[TargetCount.Length - 1];
-        return (int)TargetCount[level];
+            return TargetCount[TargetCount.Length - 1];
+        return TargetCount[level];
     }
 
     public float GetCoolTime(int level)
@@ -99,5 +99,15 @@ public class ScriptableAbilityBalance : ScriptableObject
             Scale[i] = 0f;
             CoolTime[i] = 0f;
         }
+    }
+
+    public void DeepCopy(ScriptableAbilityBalance source)
+    {
+        Speed = source.Speed != null ? (float[])source.Speed.Clone() : null;
+        Range = source.Range != null ? (float[])source.Range.Clone() : null;
+        Duration = source.Duration != null ? (float[])source.Duration.Clone() : null;
+        TargetCount = source.TargetCount != null ? (int[])source.TargetCount.Clone() : null;
+        Scale = source.Scale != null ? (float[])source.Scale.Clone() : null;
+        CoolTime = source.CoolTime != null ? (float[])source.CoolTime.Clone() : null;
     }
 }

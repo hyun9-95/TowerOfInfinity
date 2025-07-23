@@ -35,6 +35,17 @@ public static class AbilityEditorUtil
                 AssetDatabase.CreateAsset(newBalance, fullPath);
                 createdAssets.Add(fileName);
             }
+            else
+            {
+                // 파일이 이미 존재하는 경우
+                ScriptableAbilityBalance existingBalance = AssetDatabase.LoadAssetAtPath<ScriptableAbilityBalance>(fullPath);
+                if (existingBalance != null && !existingBalance.Type.Equals(define))
+                {
+                    existingBalance.SetType(define);
+                    EditorUtility.SetDirty(existingBalance);
+                    Logger.Log($"{fileName} 타입 갱신 {existingBalance.Type} => {define}");
+                }
+            }
         }
 
         if (createdAssets.Count > 0)

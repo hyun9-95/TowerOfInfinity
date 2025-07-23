@@ -186,7 +186,7 @@ public abstract class BalanceEditorWindowBase<T, U, V> : EditorWindow
             {
                 jsonFilePath = Path.Combine(Application.dataPath, "Data/Jsons/BattleEvent.json");
                 jsonName = "BattleEvent";
-                idToMatch = (int)(object)battleEventBalance.Type;
+                idToMatch = (int)(object)battleEventBalance.Define;
             }
 
             if (string.IsNullOrEmpty(jsonFilePath) || !File.Exists(jsonFilePath))

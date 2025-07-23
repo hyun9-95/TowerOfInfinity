@@ -132,7 +132,7 @@ public class BalanceCopyEditorWindow : EditorWindow
             if (GUILayout.Button("확인 (값 복사)", GUILayout.Height(40)))
             {
                 if (EditorUtility.DisplayDialog("값 복사 확인",
-                    $"'{sourceBalance.name}'의 값을 '{targetBalance.name}'으로 복사하시겠습니까? 이 작업은 되돌릴 수 없습니다.",
+                    $"'{targetBalance.name}'의 값을 '{sourceBalance.name}'으로 복사하시겠습니까? 이 작업은 되돌릴 수 없습니다.",
                     "복사", "취소"))
                 {
                     CopyScriptableObjectValues(sourceBalance, targetBalance);
@@ -153,26 +153,13 @@ public class BalanceCopyEditorWindow : EditorWindow
             return;
         }
 
-        // SerializedObject를 사용하여 모든 직렬화된 필드를 복사
-        SerializedObject serializedSource = new SerializedObject(source);
-        SerializedObject serializedTarget = new SerializedObject(target);
-
-        SerializedProperty iterator = serializedSource.GetIterator();
-        if (iterator.NextVisible(true)) // EnterChildren을 true로 설정하여 모든 자식 속성 포함
+        if (source is ScriptableBattleEventBalance beSource && target is ScriptableBattleEventBalance beTarget)
         {
-            while (iterator.NextVisible(false)) // 다음 형제 속성으로 이동
-            {
-                // 'm_Script' 필드는 복사하지 않음 (ScriptableObject의 스크립트 참조)
-                if (iterator.name == "m_Script" || iterator.name == "type")
-                    continue;
-
-                SerializedProperty targetProperty = serializedTarget.FindProperty(iterator.name);
-                if (targetProperty != null)
-                {
-                    serializedTarget.CopyFromSerializedProperty(iterator);
-                }
-            }
+            beSource.DeepCopy(beTarget); 
         }
-        serializedTarget.ApplyModifiedProperties();
+        else if (source is ScriptableAbilityBalance aSource && target is ScriptableAbilityBalance aTarget)
+        {
+            aSource.DeepCopy(aTarget);
+        }
     }
 }
