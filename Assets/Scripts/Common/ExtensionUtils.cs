@@ -154,4 +154,18 @@ public static class ExtensionUtils
         color.a = alpha;
         renderer.color = color;
     }
+
+    public static void FollowWorldPosition(this RectTransform rectTransform, Vector3 pos, Camera worldCamera, RectTransform parentRect, Vector2 offset)
+    {
+        Vector3 screenPos = worldCamera.WorldToScreenPoint(pos);
+
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            parentRect,
+            screenPos,
+            worldCamera,
+            out Vector2 localPoint
+        );
+
+        rectTransform.anchoredPosition = localPoint + offset;
+    }
 }

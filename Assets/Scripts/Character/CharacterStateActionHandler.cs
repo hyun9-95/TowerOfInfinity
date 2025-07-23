@@ -7,7 +7,7 @@ public class CharacterStateActionHandler
     public IPathFinder PathFinder => pathFinder;
 
     private Action onDeactivate;
-    private Action<bool> onFlipY;
+    private Action<bool> onFlipX;
 
     private Animator animator;
     private Rigidbody2D rigidBody2D;
@@ -31,7 +31,7 @@ public class CharacterStateActionHandler
 
     public void SetOnFlipX(Action<bool> action)
     {
-        onFlipY = action;
+        onFlipX = action;
     }
 
     public void OnMovement(Vector2 movement, float speed, bool enableFlip)
@@ -91,7 +91,7 @@ public class CharacterStateActionHandler
     {
         bodySprite.flipX = movement.x < 0;
 
-        onFlipY?.Invoke(bodySprite.flipX);
+        onFlipX?.Invoke(bodySprite.flipX);
     }
 
     private async UniTask DeadAsync()
