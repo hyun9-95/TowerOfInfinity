@@ -1,6 +1,6 @@
 public struct BattleEventFactory
 {
-    public BattleEvent CreateNewBattleStatusEffect(BattleEventType eventType)
+    public BattleEvent CreateNewBattleEvent(BattleEventType eventType)
     {
         switch (eventType)
         {

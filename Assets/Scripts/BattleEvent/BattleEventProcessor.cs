@@ -49,54 +49,53 @@ public class BattleEventProcessor
         if (owner == null || sender == null)
             return;
 
-        var battleStatusEffect = factory.CreateNewBattleStatusEffect(model.EventType);
+        var battleEvent = factory.CreateNewBattleEvent(model.EventType);
 
-        if (battleStatusEffect == null)
+        if (battleEvent == null)
             return;
 
-        if (!battleStatusEffect.CheckStartCondition(sender, owner, model))
+        if (!battleEvent.CheckStartCondition(sender, owner, model))
             return;
 
-        battleStatusEffect.Initialize(model);
+        battleEvent.Initialize(model);
 
         // 지속시간이 없는 경우 바로 실행 => 종료
-        if (battleStatusEffect.Model.Duration == 0 && battleStatusEffect.Model.Category != BattleEventCategory.Passive)
+        if (battleEvent.Model.Duration == 0 && battleEvent.Model.Category != BattleEventCategory.Passive)
         {
             // 즉발인데 옵저버 사용하는 경우는 없어야함
-            battleStatusEffect.OnStart();
-            battleStatusEffect.OnUpdate();
-            battleStatusEffect.OnEnd();
+            battleEvent.OnStart();
+            battleEvent.OnEnd();
         }
         else
         {
-            PendingStatusEffect(battleStatusEffect);
+            PendingBattleEvent(battleEvent);
         }
     }
 
     public void Update()
     {
         // 대기중인 효과들을 업데이트 목록에 추가
-        ProcessPendingBattleStatusEffects();
+        ProcessPendingBattleEvents();
 
         // 업데이트 목록의 효과들 지속시간 갱신 및 처리
-        UpdateAllBattleStatusEffects();
+        UpdateAllBattleEvents();
     }
 
-    private void ProcessPendingBattleStatusEffects()
+    private void ProcessPendingBattleEvents()
     {
         while (pendingEvents.Count > 0)
         {
-            var battleStatusEffect = pendingEvents.Dequeue();
+            var battleEvent = pendingEvents.Dequeue();
 
-            if (battleStatusEffect == null)
+            if (battleEvent == null)
                 continue;
 
             // 업데이트 목록에 추가
-            AddToStatusEffectDic(battleStatusEffect);
+            CategorizeEvent(battleEvent);
         }
     }
 
-    private void UpdateAllBattleStatusEffects()
+    private void UpdateAllBattleEvents()
     {
         tempUpdateList.Clear();
         tempRemoveList.Clear();
@@ -104,74 +103,74 @@ public class BattleEventProcessor
         tempUpdateList.AddRange(uniqueEventDic.Values);
         tempUpdateList.AddRange(stackableEventDic.Values);
 
-        foreach (var statusEffect in tempUpdateList)
+        foreach (var battleEvent in tempUpdateList)
         {
-            if (statusEffect == null)
+            if (battleEvent == null)
                 continue;
 
-            UpdateBattleStatusEffect(statusEffect, tempRemoveList);
+            UpdateBattleEvents(battleEvent, tempRemoveList);
         }
 
         // 종료된 효과 제거
-        RemoveBattleStatusEffects(tempRemoveList);
+        RemoveBattleEvents(tempRemoveList);
     }
 
-    private void PendingStatusEffect(BattleEvent battleStatusEffect)
+    private void PendingBattleEvent(BattleEvent battleEvent)
     {
-        if (battleStatusEffect.IsStackable)
+        if (battleEvent.IsStackable)
         {
-            if (!stackableEventCountDic.ContainsKey(battleStatusEffect.Model.EventType))
-                stackableEventCountDic[battleStatusEffect.Model.EventType] = 0;
+            if (!stackableEventCountDic.ContainsKey(battleEvent.Model.EventType))
+                stackableEventCountDic[battleEvent.Model.EventType] = 0;
 
-            if (stackableEventDic.TryGetValue(battleStatusEffect.Model.DataID, out BattleEvent existingStatusEffect))
+            if (stackableEventDic.TryGetValue(battleEvent.Model.DataID, out BattleEvent existingEvent))
             {
                 // 동일한 효과의 경우 지속시간만 갱신
-                existingStatusEffect.SetRemainDuration(battleStatusEffect.Model.Duration);
+                existingEvent.SetRemainDuration(battleEvent.Model.Duration);
             }
             else
             {
-                EnqueueBattleStatusEffect(battleStatusEffect);
+                EnqueueBattleEvent(battleEvent);
             }
         }
         else
         {
-            if (uniqueEventDic.TryGetValue(battleStatusEffect.Model.EventType, out BattleEvent existingStatusEffect))
+            if (uniqueEventDic.TryGetValue(battleEvent.Model.EventType, out BattleEvent existingEvent))
             {
-                bool isEqual = existingStatusEffect.Model.DataID == battleStatusEffect.Model.DataID;
+                bool isEqual = existingEvent.Model.DataID == battleEvent.Model.DataID;
 
                 if (isEqual)
                 {
                     // 동일한 효과의 경우 지속시간만 갱신
-                    existingStatusEffect.SetRemainDuration(battleStatusEffect.Model.Duration);
+                    existingEvent.SetRemainDuration(battleEvent.Model.Duration);
                     return;
                 }
                 else
                 {
                     // 기존 효과가 있다면 종료 처리
-                    existingStatusEffect.OnEnd();
-                    existingStatusEffect.RemoveObserverIds();
+                    existingEvent.OnEnd();
+                    existingEvent.RemoveObserverIds();
                 }
             }
 
             // 새로운 효과 적용
-            EnqueueBattleStatusEffect(battleStatusEffect);
+            EnqueueBattleEvent(battleEvent);
         }
     }
 
-    private void EnqueueBattleStatusEffect(BattleEvent battleStatusEffect)
+    private void EnqueueBattleEvent(BattleEvent battleEvent)
     {
-        battleStatusEffect.OnStart();
-        battleStatusEffect.AddObserverIds();
-        pendingEvents.Enqueue(battleStatusEffect);
+        battleEvent.OnStart();
+        battleEvent.AddObserverIds();
+        pendingEvents.Enqueue(battleEvent);
     }
 
-    private void AddToStatusEffectDic(BattleEvent battleStatusEffect)
+    private void CategorizeEvent(BattleEvent battleEvent)
     {
-        if (battleStatusEffect.IsStackable)
+        if (battleEvent.IsStackable)
         {
-            stackableEventDic[battleStatusEffect.Model.DataID] = battleStatusEffect;
+            stackableEventDic[battleEvent.Model.DataID] = battleEvent;
 
-            var statusType = battleStatusEffect.Model.EventType;
+            var statusType = battleEvent.Model.EventType;
 
             if (!stackableEventCountDic.ContainsKey(statusType))
                 stackableEventCountDic[statusType] = 0;
@@ -180,80 +179,100 @@ public class BattleEventProcessor
         }
         else
         {
-            uniqueEventDic[battleStatusEffect.Model.EventType] = battleStatusEffect;
+            uniqueEventDic[battleEvent.Model.EventType] = battleEvent;
         }
 
-        if (battleStatusEffect.Model.Group == BattleEventGroup.None)
+        if (battleEvent.Model.Group == BattleEventGroup.None)
             return;
 
         // 버프/디버프 그룹 분류
-        var groupType = battleStatusEffect.Model.Group;
+        var groupType = battleEvent.Model.Group;
 
         if (!eventGroupDic.ContainsKey(groupType))
             eventGroupDic[groupType] = new Dictionary<int, BattleEvent>();
 
-        eventGroupDic[groupType][battleStatusEffect.Model.DataID] = battleStatusEffect;
+        eventGroupDic[groupType][battleEvent.Model.DataID] = battleEvent;
     }
 
-    private void UpdateBattleStatusEffect(BattleEvent battleStatusEffect, List<BattleEvent> statusEffectToRemove)
+    private void UpdateBattleEvents(BattleEvent battleEvent, List<BattleEvent> eventToRemove)
     {
         // 패시브의 경우 지속시간이 없다.
-        if (battleStatusEffect.Model.Category == BattleEventCategory.Passive)
+        if (battleEvent.Model.Category == BattleEventCategory.Passive)
             return;
 
-        battleStatusEffect.ReduceDuration();
+        battleEvent.ReduceDuration();
 
-        if (battleStatusEffect.CheckEndCondition())
+        if (battleEvent.CheckEndCondition())
         {
-            statusEffectToRemove.Add(battleStatusEffect);
+            eventToRemove.Add(battleEvent);
         }
         else
         {
-            battleStatusEffect.OnUpdate();
+            battleEvent.OnUpdate();
         }
     }
 
-    private void RemoveBattleStatusEffects(List<BattleEvent> statusEffectToRemove)
+    private void RemoveBattleEvents(List<BattleEvent> eventToRemove)
     {
-        foreach (var statusEffect in statusEffectToRemove)
+        foreach (var battleEvent in eventToRemove)
         {
-            if (statusEffect == null)
+            if (battleEvent == null)
                 continue;
 
-            statusEffect.OnEnd();
-            statusEffect.RemoveObserverIds();
+            battleEvent.OnEnd();
+            battleEvent.RemoveObserverIds();
 
-            var statusType = statusEffect.Model.EventType;
+            var statusType = battleEvent.Model.EventType;
 
-            if (statusEffect.IsStackable)
+            if (battleEvent.IsStackable)
             {
-                stackableEventDic.Remove(statusEffect.Model.DataID);
+                stackableEventDic.Remove(battleEvent.Model.DataID);
 
-                if (stackableEventCountDic.ContainsKey(statusEffect.Model.EventType))
+                if (stackableEventCountDic.ContainsKey(battleEvent.Model.EventType))
                 {
-                    stackableEventCountDic[statusEffect.Model.EventType] =
-                        Mathf.Max(0, stackableEventCountDic[statusEffect.Model.EventType] - 1);
+                    stackableEventCountDic[battleEvent.Model.EventType] =
+                        Mathf.Max(0, stackableEventCountDic[battleEvent.Model.EventType] - 1);
                 }
             }
             else
             {
-                uniqueEventDic.Remove(statusEffect.Model.EventType);
+                uniqueEventDic.Remove(battleEvent.Model.EventType);
             }
 
             // 버프/디버프 그룹에서 제거
-            if (statusEffect.Model.Group == BattleEventGroup.None)
+            if (battleEvent.Model.Group == BattleEventGroup.None)
                 continue;
 
-            if (eventGroupDic.TryGetValue(statusEffect.Model.Group, out var groupDic))
-                groupDic.Remove(statusEffect.Model.DataID);
+            if (eventGroupDic.TryGetValue(battleEvent.Model.Group, out var groupDic))
+                groupDic.Remove(battleEvent.Model.DataID);
         }
 
-        if (statusEffectToRemove.Count > 0)
-            statusEffectToRemove.Clear();
+        if (eventToRemove.Count > 0)
+            eventToRemove.Clear();
+    }
+
+    private void StopAllBattleEvent()
+    {
+        List<BattleEvent> eventToStopList = new List<BattleEvent>();
+
+        eventToStopList.AddRange(uniqueEventDic.Values);
+        eventToStopList.AddRange(stackableEventDic.Values);
+
+        foreach (var battleEvent in eventToStopList)
+        {
+            if (battleEvent == null)
+                continue;
+
+            battleEvent.OnEnd();
+            battleEvent.RemoveObserverIds();
+        }
     }
 
     public void Clear()
     {
+        // 먼저 모든 상태 효과를 종료 처리
+        StopAllBattleEvent();
+
         pendingEvents.Clear();
         uniqueEventDic.Clear();
         stackableEventCountDic.Clear();
@@ -262,7 +281,7 @@ public class BattleEventProcessor
     }
 
     #region Util
-    public bool IsBattleStatusEffect(BattleEventType statusType)
+    public bool IsProcessingBattleEvent(BattleEventType statusType)
     {
         if (uniqueEventDic.ContainsKey(statusType))
             return true;
@@ -284,7 +303,7 @@ public class BattleEventProcessor
         return 0;
     }
 
-    public IEnumerable<BattleEvent> GetStatusEffectsByEffectGroup(BattleEventGroup effectGroupType)
+    public IEnumerable<BattleEvent> GetBattleEventsByEffectGroup(BattleEventGroup effectGroupType)
     {
         if (eventGroupDic.TryGetValue(effectGroupType, out var groupDic))
             return groupDic.Values;
