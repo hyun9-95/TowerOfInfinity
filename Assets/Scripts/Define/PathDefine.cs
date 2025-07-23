@@ -22,6 +22,7 @@ public class PathDefine
     public const string PATH_USER_SAVE_INFO = "UserSaveInfo/{0}";
     
     public const string PATH_BATTLE_EVENT_BALANCE_FOLDER = "Assets/Addressable/AbilityCore/BattleEventBalance";
+    public const string PATH_ABILITY_BALANCE_FOLDER = "Assets/Addressable/AbilityCore/AbilityBalance";
     #endregion
 
     #region Resources
