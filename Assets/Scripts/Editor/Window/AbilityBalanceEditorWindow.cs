@@ -20,12 +20,37 @@ public class AbilityBalanceEditorWindow : BalanceEditorWindowBase<AbilityBalance
 
     protected override void DrawBalanceSettings(SerializedObject serializedObject)
     {
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("Speed"), new GUIContent("속도"));
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("Range"), new GUIContent("범위"));
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("Duration"), new GUIContent("지속 시간"));
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("Scale"), new GUIContent("스케일"));
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("TargetCount"), new GUIContent("타겟 수"));
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("CoolTime"), new GUIContent("쿨타임"));
+        DrawArrayPropertyField(serializedObject, "Speed", "속도");
+        DrawArrayPropertyField(serializedObject, "Range", "범위");
+        DrawArrayPropertyField(serializedObject, "Duration", "지속 시간");
+        DrawArrayPropertyField(serializedObject, "Scale", "스케일");
+        DrawArrayPropertyField(serializedObject, "TargetCount", "타겟 수");
+        DrawArrayPropertyField(serializedObject, "CoolTime", "쿨타임");
+    }
+
+    private void DrawArrayPropertyField(SerializedObject serializedObject, string propertyName, string label)
+    {
+        SerializedProperty property = serializedObject.FindProperty(propertyName);
+        EditorGUILayout.BeginVertical(EditorStyles.helpBox);
+        EditorGUILayout.PropertyField(property, new GUIContent(label));
+
+        EditorGUILayout.BeginHorizontal();
+        GUILayout.FlexibleSpace();
+
+        if (GUILayout.Button("Preset"))
+        {
+            float initialValue = 0f;
+            if (property.isArray && property.arraySize > 0)
+            {
+                initialValue = property.GetArrayElementAtIndex(0).floatValue;
+            }
+            ArrayValuePresetEditorWindow.ShowWindow(property, IntDefine.MAX_ABILITY_LEVEL, initialValue);
+        }
+
+        EditorGUILayout.EndHorizontal();
+
+        EditorGUILayout.EndVertical();
+        EditorGUILayout.Space(5);
     }
 
     protected override AbilityDefine GetDefineFromBalance(ScriptableAbilityBalance balance)

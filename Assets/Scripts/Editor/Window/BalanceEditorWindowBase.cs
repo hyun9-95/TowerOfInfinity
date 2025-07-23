@@ -13,7 +13,8 @@ public abstract class BalanceEditorWindowBase<T, U, V> : EditorWindow
     protected V selectedDefine;
     protected U currentBalance;
     protected string assetPath;
-    private Vector2 scrollPos;
+    private Vector2 editScrollPos;
+    private Vector2 listScrollPos;
     private Vector2 searchScrollPos;
     private int selectedTab = 0;
     private string searchQuery = "";
@@ -120,7 +121,9 @@ public abstract class BalanceEditorWindowBase<T, U, V> : EditorWindow
             SerializedObject serializedObject = new SerializedObject(currentBalance);
             serializedObject.Update();
 
+            editScrollPos = EditorGUILayout.BeginScrollView(editScrollPos);
             DrawBalanceSettings(serializedObject);
+            EditorGUILayout.EndScrollView();
 
             serializedObject.ApplyModifiedProperties();
 
@@ -128,6 +131,7 @@ public abstract class BalanceEditorWindowBase<T, U, V> : EditorWindow
                 EditorUtility.SetDirty(currentBalance);
 
             EditorGUILayout.Space(10);
+
             if (GUILayout.Button("저장", GUILayout.Height(30)))
                 AssetDatabase.SaveAssets();
         }
@@ -211,7 +215,7 @@ public abstract class BalanceEditorWindowBase<T, U, V> : EditorWindow
         EditorGUILayout.LabelField("목록", EditorStyles.boldLabel);
         EditorGUILayout.Space(5);
 
-        scrollPos = EditorGUILayout.BeginScrollView(scrollPos);
+        listScrollPos = EditorGUILayout.BeginScrollView(listScrollPos);
 
         string[] guids = AssetDatabase.FindAssets(AssetFilter, new string[] { assetPath });
 
