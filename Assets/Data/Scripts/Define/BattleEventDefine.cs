@@ -6,5 +6,6 @@ public enum BattleEventDefine
 {
 	None = 0,
 	BE_DAMAGE_ONE_SHOT_ATTACK = 20000,
+	BE_DAMAGE_COLLISION = 20001,
 
 }

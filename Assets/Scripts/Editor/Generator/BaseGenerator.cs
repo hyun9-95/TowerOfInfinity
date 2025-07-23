@@ -51,6 +51,12 @@ namespace Tools
             if (File.Exists(savePath) && File.ReadAllText(savePath) == generatedValue)
                 return;
 
+            if (savePath.Contains("BattleEvent.json"))
+                BattleEventEditorUtil.RefreshAll();
+
+            if (savePath.Contains("Ability.json"))
+                AbilityEditorUtil.RefreshAll();
+
             Logger.Log($"{fileNameWithExtension} {(File.Exists(savePath) ? "Edited" : "Created")}");
             File.WriteAllText(savePath, generatedValue);
         }

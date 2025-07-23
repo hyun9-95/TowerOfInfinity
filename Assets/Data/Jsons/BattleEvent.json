@@ -10,5 +10,17 @@
     "StatReferenceCondition": "CurrentStat",
     "StatusDirection": "Increase",
     "Stackable": "False"
+  },
+  {
+    "id": 20001,
+    "nameId": "BE_DAMAGE_COLLISION",
+    "Type": "Damage",
+    "AffectStat": "Attack",
+    "BattleEventCategory": "Active",
+    "BattleEventGroup": "None",
+    "StatReference": "Sender",
+    "StatReferenceCondition": "CurrentStat",
+    "StatusDirection": "Increase",
+    "Stackable": "False"
   }
 ]
