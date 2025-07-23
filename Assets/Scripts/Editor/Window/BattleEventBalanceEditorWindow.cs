@@ -26,29 +26,6 @@ public class BattleEventBalanceEditorWindow : BalanceEditorWindowBase<BattleEven
         DrawArrayPropertyField(serializedObject, "applyIntervalSeconds", "적용 간격");
     }
 
-    private void DrawArrayPropertyField(SerializedObject serializedObject, string propertyName, string label)
-    {
-        SerializedProperty property = serializedObject.FindProperty(propertyName);
-        EditorGUILayout.BeginVertical(EditorStyles.helpBox);
-        EditorGUILayout.PropertyField(property, new GUIContent(label));
-
-        EditorGUILayout.BeginHorizontal();
-        GUILayout.FlexibleSpace();
-        if (GUILayout.Button("ValuePreset", GUILayout.Width(100)))
-        {
-            float initialValue = 0f;
-            if (property.isArray && property.arraySize > 0)
-            {
-                initialValue = property.GetArrayElementAtIndex(0).floatValue;
-            }
-            ArrayValuePresetEditorWindow.ShowWindow(property, IntDefine.MAX_ABILITY_LEVEL, initialValue);
-        }
-        EditorGUILayout.EndHorizontal();
-
-        EditorGUILayout.EndVertical();
-        EditorGUILayout.Space(5);
-    }
-
     protected override BattleEventDefine GetDefineFromBalance(ScriptableBattleEventBalance balance)
     {
         return balance.Type;

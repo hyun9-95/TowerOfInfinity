@@ -48,9 +48,7 @@ public abstract class BalanceEditorWindowBase<T, U, V> : EditorWindow
 
     protected virtual void DrawEditTab()
     {
-        EditorGUILayout.Space(5);
-        EditorGUILayout.LabelField("편집", EditorStyles.boldLabel);
-        EditorGUILayout.Space(5);
+        EditorGUILayout.Space();
 
         // 검색창
         searchQuery = EditorGUILayout.TextField("Search", searchQuery);
@@ -176,9 +174,7 @@ public abstract class BalanceEditorWindowBase<T, U, V> : EditorWindow
 
     protected void DrawManageTab()
     {
-        EditorGUILayout.Space(5);
-        EditorGUILayout.LabelField("관리", EditorStyles.boldLabel);
-        EditorGUILayout.Space(10);
+        EditorGUILayout.Space();
 
         showResetOptions = EditorGUILayout.Foldout(showResetOptions, "Utils", true);
 
@@ -241,6 +237,59 @@ public abstract class BalanceEditorWindowBase<T, U, V> : EditorWindow
         }
 
         EditorGUILayout.EndScrollView();
+    }
+
+    protected void DrawArrayPropertyField(SerializedObject serializedObject, string propertyName, string label)
+    {
+        SerializedProperty property = serializedObject.FindProperty(propertyName);
+        EditorGUILayout.BeginVertical(EditorStyles.helpBox);
+
+        string currentValues = "";
+        if (property.isArray)
+        {
+            for (int i = 0; i < property.arraySize; i++)
+            {
+                if (property.GetArrayElementAtIndex(i).propertyType == SerializedPropertyType.Float)
+                {
+                    currentValues += property.GetArrayElementAtIndex(i).floatValue.ToString("F2");
+                }
+                else if (property.GetArrayElementAtIndex(i).propertyType == SerializedPropertyType.Integer)
+                {
+                    currentValues += property.GetArrayElementAtIndex(i).intValue.ToString();
+                }
+
+                if (i < property.arraySize - 1)
+                {
+                    currentValues += " / ";
+                }
+            }
+        }
+
+        EditorGUILayout.BeginHorizontal();
+        EditorGUILayout.LabelField(label, GUILayout.Width(EditorGUIUtility.labelWidth - 4)); // 라벨
+
+        GUIStyle rightAlignedStyle = new GUIStyle(GUI.skin.label);
+        rightAlignedStyle.alignment = TextAnchor.MiddleRight;
+        EditorGUILayout.LabelField(currentValues, rightAlignedStyle);
+        EditorGUILayout.EndHorizontal();
+
+        EditorGUILayout.PropertyField(property, GUIContent.none); // 실제 PropertyField는 라벨 없이 그림
+
+        EditorGUILayout.BeginHorizontal();
+        GUILayout.FlexibleSpace();
+        if (GUILayout.Button("Preset"))
+        {
+            float initialValue = 0f;
+            if (property.isArray && property.arraySize > 0)
+            {
+                initialValue = property.GetArrayElementAtIndex(0).floatValue;
+            }
+            ArrayValuePresetEditorWindow.ShowWindow(property, IntDefine.MAX_ABILITY_LEVEL, initialValue);
+        }
+        EditorGUILayout.EndHorizontal();
+
+        EditorGUILayout.EndVertical();
+        EditorGUILayout.Space(5);
     }
 
     protected abstract V GetDefineFromBalance(U balance);
