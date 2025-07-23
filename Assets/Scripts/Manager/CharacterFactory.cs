@@ -1,5 +1,4 @@
 using Cysharp.Threading.Tasks;
-using Mono.Cecil.Cil;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -165,5 +164,10 @@ public class CharacterFactory : BaseManager<CharacterFactory>
             CharacterType.NPC => PathDefine.CHARACTER_INFO_NPC,
             _ => string.Empty,
         };
+    }
+
+    public void Clear()
+    {
+        characterInfoDic.Clear();
     }
 }

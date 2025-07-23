@@ -50,4 +50,10 @@ public static class BattleEventTriggerFactory
         usedModel.Reset();
         triggerModelPool.Push(usedModel);
     }
+
+    public static void Clear()
+    {
+        triggerPool.Clear();
+        triggerModelPool.Clear();
+    }
 }
