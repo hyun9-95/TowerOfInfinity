@@ -4,6 +4,8 @@ using System.IO;
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 public abstract class BalanceEditorWindowBase<T, U, V> : EditorWindow
     where T : EditorWindow
@@ -19,6 +21,7 @@ public abstract class BalanceEditorWindowBase<T, U, V> : EditorWindow
     private int selectedTab = 0;
     private string searchQuery = "";
     private bool showResetOptions = false;
+    private bool showJsonData = false;
 
     protected abstract string EditorTitle { get; }
     protected abstract string[] TabTitles { get; }
@@ -95,7 +98,6 @@ public abstract class BalanceEditorWindowBase<T, U, V> : EditorWindow
             selectedDefine = (V)(object)EditorGUILayout.EnumPopup("Select", selectedDefine);
         }
 
-        EditorGUILayout.Space(15);
 
         if (currentBalance != null)
         {
@@ -113,6 +115,9 @@ public abstract class BalanceEditorWindowBase<T, U, V> : EditorWindow
                     return;
             }
 
+            DrawJsonData();
+
+            EditorGUILayout.Space(15);
             EditorGUILayout.LabelField("편집 중: " + currentBalance.name, EditorStyles.boldLabel);
             EditorGUILayout.Space(5);
 
@@ -130,8 +135,18 @@ public abstract class BalanceEditorWindowBase<T, U, V> : EditorWindow
 
             EditorGUILayout.Space(10);
 
-            if (GUILayout.Button("저장", GUILayout.Height(30)))
+            EditorGUILayout.BeginHorizontal();
+
+            Color originalColor = GUI.backgroundColor;
+            GUI.backgroundColor = new Color(56f / 255f, 116f / 255f, 217f / 255f);
+
+            if (GUILayout.Button("저장", GUILayout.Height(40)))
                 AssetDatabase.SaveAssets();
+
+            GUI.backgroundColor = originalColor;
+
+            EditorGUILayout.EndHorizontal();
+            EditorGUILayout.Space(5);
         }
         else
         {
@@ -139,6 +154,89 @@ public abstract class BalanceEditorWindowBase<T, U, V> : EditorWindow
             {
                 LoadAssetForEdit();
             }
+        }
+    }
+
+    protected void DrawJsonData()
+    {
+        if (currentBalance == null)
+            return;
+
+        showJsonData = EditorGUILayout.Foldout(showJsonData, "JSON Data", true);
+
+        if (showJsonData)
+        {
+            EditorGUILayout.BeginVertical(EditorStyles.helpBox);
+            EditorGUILayout.Space(5);
+
+            string jsonFilePath = string.Empty;
+            string jsonName = string.Empty;
+            int idToMatch = -1;
+
+            if (currentBalance is ScriptableAbilityBalance abilityBalance)
+            {
+                jsonFilePath = Path.Combine(Application.dataPath, "Data/Jsons/Ability.json");
+                jsonName = "Ability";
+                idToMatch = (int)(object)abilityBalance.Type;
+            }
+            else if (currentBalance is ScriptableBattleEventBalance battleEventBalance)
+            {
+                jsonFilePath = Path.Combine(Application.dataPath, "Data/Jsons/BattleEvent.json");
+                jsonName = "BattleEvent";
+                idToMatch = (int)(object)battleEventBalance.Type;
+            }
+
+            if (string.IsNullOrEmpty(jsonFilePath) || !File.Exists(jsonFilePath))
+            {
+                EditorGUILayout.HelpBox($"JSON 파일 경로를 찾을 수 없거나 파일이 존재하지 않습니다: {jsonFilePath}", MessageType.Warning);
+                EditorGUILayout.EndVertical();
+                return;
+            }
+
+            try
+            {
+                string jsonContent = File.ReadAllText(jsonFilePath);
+                JArray jsonArray = JArray.Parse(jsonContent);
+
+                JToken matchedData = jsonArray.FirstOrDefault(item =>
+                {
+                    if (item["id"] != null && item["id"].Type == JTokenType.Integer)
+                    {
+                        return item["id"].Value<int>() == idToMatch;
+                    }
+                    return false;
+                });
+
+                if (matchedData != null)
+                {
+                    EditorGUILayout.Space();
+
+                    foreach (JProperty property in matchedData.Children<JProperty>())
+                    {
+                        if (property.Name.Equals("id", StringComparison.OrdinalIgnoreCase) ||
+                            property.Name.Equals("nameId", StringComparison.OrdinalIgnoreCase))
+                        {
+                            continue;
+                        }
+
+                        EditorGUILayout.BeginHorizontal();
+                        EditorGUILayout.LabelField(property.Name, GUILayout.Width(EditorGUIUtility.labelWidth - 4));
+                        EditorGUILayout.SelectableLabel(property.Value.ToString(), EditorStyles.textField, GUILayout.ExpandWidth(true), GUILayout.Height(20f));
+                        EditorGUILayout.EndHorizontal();
+                    }
+                }
+                else
+                {
+                    EditorGUILayout.HelpBox($"JSON 파일에서 ID {idToMatch}에 해당하는 데이터를 찾을 수 없습니다.", MessageType.Info);
+                }
+            }
+            catch (Exception e)
+            {
+                EditorGUILayout.HelpBox($"JSON 데이터를 로드하거나 파싱하는 중 오류 발생: {e.Message}", MessageType.Error);
+            }
+
+            EditorGUILayout.Space(5);
+            EditorGUILayout.EndVertical();
         }
     }
 
