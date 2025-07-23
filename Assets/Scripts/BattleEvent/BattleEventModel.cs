@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class BattleEventModel
 {
     public CharacterUnitModel Sender { get; private set; }
@@ -28,8 +30,16 @@ public class BattleEventModel
         StatReferenceCondition = dataBattleEvent.StatReferenceCondition;
         StatusDirection = dataBattleEvent.StatusDirection;
         Stackable = dataBattleEvent.Stackable;
-        Duration = dataBattleEvent.Duration[level];
-        Value = dataBattleEvent.Value[level];
-        ApplyIntervalSeconds = dataBattleEvent.ApplyIntervalSeconds[level];
+
+        if (dataBattleEvent.LevelBalance != BattleEventBalanceDefine.None)
+        {
+            var levelBalance = BattleEventBalanceFactory.Instance.GetLevelBalance(dataBattleEvent.LevelBalance);
+            if (levelBalance != null)
+            {
+                Duration = levelBalance.GetDuration(level);
+                Value = levelBalance.GetValue(level);
+                ApplyIntervalSeconds = levelBalance.GetApplyIntervalSeconds(level);
+            }
+        }
     }
 }

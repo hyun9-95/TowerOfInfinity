@@ -150,7 +150,7 @@ public class AddressableManager : BaseManager<AddressableManager>
     /// <summary>
     /// 사용 후 꼭 참조해제하기!!!!
     /// </summary>
-    private async UniTask<T> LoadAssetAsyncWithName<T>(string assetName) where T : UnityEngine.Object
+    private async UniTask<T> LoadAssetAsyncWithName<T>(string assetName, bool isHandle = true) where T : UnityEngine.Object
     {
         if (!IsContain(assetName))
             return null;
@@ -164,14 +164,18 @@ public class AddressableManager : BaseManager<AddressableManager>
             return null;
         }
 
-        assetHandles[asset] = handle;
+        if (isHandle)
+            assetHandles[asset] = handle;
 
         return asset;
     }
 
-    public async UniTask<T> LoadScriptableObject<T>(string infoName) where T : ScriptableObject
+    /// <summary>
+    /// 참조가 해제되지 않게 유지하려면 isHandle을 false로..
+    /// </summary>
+    public async UniTask<T> LoadScriptableObject<T>(string infoName, bool isHandle = true) where T : ScriptableObject
     {
-        return await LoadAssetAsyncWithName<T>(infoName);
+        return await LoadAssetAsyncWithName<T>(infoName, isHandle);
     }
 
     /// <summary>

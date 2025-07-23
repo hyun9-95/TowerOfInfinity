@@ -25,12 +25,8 @@ public struct DataBattleEvent : IBaseData
     public readonly StatusDirection StatusDirection;
     [JsonProperty(PropertyName = "Stackable")]
     public readonly bool Stackable;
-    [JsonProperty(PropertyName = "Duration")]
-    public readonly float[] Duration;
-    [JsonProperty(PropertyName = "Value")]
-    public readonly float[] Value;
-    [JsonProperty(PropertyName = "ApplyIntervalSeconds")]
-    public readonly float[] ApplyIntervalSeconds;
+    [JsonProperty(PropertyName = "LevelBalance")]
+    public readonly BattleEventBalanceDefine LevelBalance;
 	
 	public int Id => id;
     public string NameId => nameId;
