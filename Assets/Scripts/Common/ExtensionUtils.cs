@@ -168,4 +168,12 @@ public static class ExtensionUtils
 
         rectTransform.anchoredPosition = localPoint + offset;
     }
+
+#if UNITY_EDITOR
+    public static void InitializeWindow(this UnityEditor.EditorWindow window, float width, float height)
+    {
+        window.minSize = new Vector2(width, height);
+        window.maxSize = new Vector2(width * 2, height);
+    }
+#endif
 }

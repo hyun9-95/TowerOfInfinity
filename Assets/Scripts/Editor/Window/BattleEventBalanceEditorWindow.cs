@@ -2,141 +2,51 @@ using UnityEditor;
 using UnityEngine;
 using System.IO;
 
-public class BattleEventBalanceEditorWindow : EditorWindow
+public class BattleEventBalanceEditorWindow : BalanceEditorWindowBase<BattleEventBalanceEditorWindow, ScriptableBattleEventBalance, BattleEventDefine>
 {
-    private BattleEventDefine selectedDefine;
-    private ScriptableBattleEventBalance currentBalance;
-    private string assetPath = PathDefine.PATH_BATTLE_EVENT_BALANCE_FOLDER;
-    private Vector2 scrollPos;
+    protected override string EditorTitle => "Battle Event Balance Editor";
+    protected override string[] TabTitles => new string[] { "편집", "목록" };
+    protected override string AssetFilter => "t:ScriptableBattleEventBalance";
 
     [MenuItem("Tools/Battle Event Balance/Editor")]
     public static void ShowWindow()
     {
-        GetWindow<BattleEventBalanceEditorWindow>("Battle Event Balance Editor");
+        ShowWindow<BattleEventBalanceEditorWindow>("Battle Event Balance Editor");
     }
 
-    private int selectedTab = 0;
-
-    private void OnGUI()
+    private void OnEnable()
     {
-        EditorGUILayout.LabelField("Battle Event Balance Editor", EditorStyles.boldLabel);
-
-        selectedTab = GUILayout.Toolbar(selectedTab, new string[] { "편집", "목록" });
-
-        switch (selectedTab)
-        {
-            case 0:
-                DrawEditTab();
-                break;
-
-            case 1:
-                DrawListTab();
-                break;
-        }
+        assetPath = PathDefine.PATH_BATTLE_EVENT_BALANCE_FOLDER;
     }
 
-    private void DrawEditTab()
+    protected override void DrawBalanceSettings(SerializedObject serializedObject)
     {
-        EditorGUILayout.Space();
-        EditorGUILayout.LabelField("편집", EditorStyles.boldLabel);
-
-        selectedDefine = (BattleEventDefine)EditorGUILayout.EnumPopup("Select", selectedDefine);
-
-        if (currentBalance != null)
-        {
-            if (selectedDefine != currentBalance.Type)
-            {
-                if (selectedDefine == BattleEventDefine.None)
-                {
-                    currentBalance = null;
-                    return;
-                }
-
-                LoadAssetForEdit();
-
-                if (currentBalance == null)
-                    return;
-            }
-
-            EditorGUILayout.Space();
-            EditorGUILayout.LabelField("편집 중: " + currentBalance.name, EditorStyles.boldLabel);
-
-            SerializedObject serializedObject = new SerializedObject(currentBalance);
-            serializedObject.Update();
-
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("duration"), new GUIContent("지속 시간"));
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("value"), new GUIContent("값"));
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("applyIntervalSeconds"), new GUIContent("적용 간격"));
-
-            serializedObject.ApplyModifiedProperties();
-
-            if (GUI.changed)
-                EditorUtility.SetDirty(currentBalance);
-
-            if (GUILayout.Button("저장"))
-                AssetDatabase.SaveAssets();
-        }
-        else
-        {
-            if (GUILayout.Button("Open"))
-                LoadAssetForEdit();
-        }
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("duration"), new GUIContent("지속 시간"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("value"), new GUIContent("값"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("applyIntervalSeconds"), new GUIContent("적용 간격"));
     }
 
-    private void LoadAssetForEdit()
+    protected override BattleEventDefine GetDefineFromBalance(ScriptableBattleEventBalance balance)
     {
-        if (selectedDefine == BattleEventDefine.None)
-        {
-            EditorUtility.DisplayDialog("오류", "BattleEventDefine을 선택하세요.", "확인");
-            return;
-        }
-
-        string fileName = selectedDefine.ToString() + ".asset";
-        string fullPath = Path.Combine(assetPath, fileName);
-
-        if (File.Exists(fullPath))
-        {
-            currentBalance = AssetDatabase.LoadAssetAtPath<ScriptableBattleEventBalance>(fullPath);
-        }
-        else
-        {
-            EditorUtility.DisplayDialog("알림", "해당 타입의 Balance가 존재하지 않습니다.\n갱신해주세요.", "확인");
-            currentBalance = null;
-        }
+        return balance.Type;
     }
 
-    private void DrawListTab()
+    protected override bool IsDefineSelected(BattleEventDefine define, ScriptableBattleEventBalance balance)
     {
-        EditorGUILayout.Space();
-        EditorGUILayout.LabelField("목록", EditorStyles.boldLabel);
+        return define == balance.Type;
+    }
 
-        scrollPos = EditorGUILayout.BeginScrollView(scrollPos);
+    protected override bool IsNone(BattleEventDefine define)
+    {
+        return define == BattleEventDefine.None;
+    }
 
-        string[] guids = AssetDatabase.FindAssets("t:ScriptableBattleEventBalance", new string[] { assetPath });
-
-        foreach (string guid in guids)
-        {
-            string path = AssetDatabase.GUIDToAssetPath(guid);
-            ScriptableBattleEventBalance balance = AssetDatabase.LoadAssetAtPath<ScriptableBattleEventBalance>(path);
-
-            if (balance != null)
-            {
-                EditorGUILayout.BeginHorizontal();
-                EditorGUILayout.LabelField(balance.name);
-                if (GUILayout.Button("Edit", GUILayout.Width(60)))
-                {
-                    selectedDefine = balance.Type;
-                    currentBalance = balance;
-                    selectedTab = 0;
-                    GUI.changed = true;
-                }
-                EditorGUILayout.EndHorizontal();
-            }
-        }
-
-        EditorGUILayout.EndScrollView();
+    protected override void SetBalanceType(ScriptableBattleEventBalance balance, BattleEventDefine define)
+    {
+        balance.SetType(define);
     }
 }
+
 
 public static class BattleEventEditorUtil
 {
@@ -212,3 +122,4 @@ public static class BattleEventEditorUtil
             Logger.Log("ScriptableBattleEventBalance - 변경 사항이 없음.");
     }
 }
+
