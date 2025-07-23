@@ -29,11 +29,11 @@ public class ArrayValuePresetEditorWindow : EditorWindow
         window.arraySize = size;
         window.initialValue = initialValue_;
         window.InitializeWindow();
+        window.InitializeWindow(300, 150);
     }
 
     private void InitializeWindow()
     {
-        minSize = new Vector2(300, 200);
         linearStartValue = initialValue;
         stepStartValue = initialValue;
         logStartValue = initialValue; // Log는 0이 될 수 없으므로 주의

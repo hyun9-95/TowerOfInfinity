@@ -137,8 +137,12 @@ public abstract class BalanceEditorWindowBase<T, U, V> : EditorWindow
 
             EditorGUILayout.BeginHorizontal();
 
+            // 복제 버튼 추가
+            if (GUILayout.Button("복제", GUILayout.Height(40)))
+                BalanceCopyEditorWindow.ShowWindow(currentBalance, typeof(U), typeof(V));
+
             Color originalColor = GUI.backgroundColor;
-            GUI.backgroundColor = new Color(56f / 255f, 116f / 255f, 217f / 255f);
+            GUI.backgroundColor = new Color(56f / 255f, 116f / 255f, 217f / 255f); // 유니티 툴바 선택 색상과 유사한 파란색
 
             if (GUILayout.Button("저장", GUILayout.Height(40)))
                 AssetDatabase.SaveAssets();
@@ -167,7 +171,6 @@ public abstract class BalanceEditorWindowBase<T, U, V> : EditorWindow
         if (showJsonData)
         {
             EditorGUILayout.BeginVertical(EditorStyles.helpBox);
-            EditorGUILayout.Space(5);
 
             string jsonFilePath = string.Empty;
             string jsonName = string.Empty;
@@ -209,8 +212,6 @@ public abstract class BalanceEditorWindowBase<T, U, V> : EditorWindow
 
                 if (matchedData != null)
                 {
-                    EditorGUILayout.Space();
-
                     foreach (JProperty property in matchedData.Children<JProperty>())
                     {
                         if (property.Name.Equals("id", StringComparison.OrdinalIgnoreCase) ||
@@ -235,7 +236,6 @@ public abstract class BalanceEditorWindowBase<T, U, V> : EditorWindow
                 EditorGUILayout.HelpBox($"JSON 데이터를 로드하거나 파싱하는 중 오류 발생: {e.Message}", MessageType.Error);
             }
 
-            EditorGUILayout.Space(5);
             EditorGUILayout.EndVertical();
         }
     }
