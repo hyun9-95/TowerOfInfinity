@@ -49,10 +49,7 @@ namespace Tools
             }
 
             if (File.Exists(savePath) && File.ReadAllText(savePath) == generatedValue)
-            {
-                Logger.Log($"{fileNameWithExtension} No changed");
                 return;
-            }
 
             Logger.Log($"{fileNameWithExtension} {(File.Exists(savePath) ? "Edited" : "Created")}");
             File.WriteAllText(savePath, generatedValue);

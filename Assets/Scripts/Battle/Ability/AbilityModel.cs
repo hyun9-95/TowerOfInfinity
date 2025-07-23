@@ -2,17 +2,16 @@ public class AbilityModel : IBaseUnitModel
 {
     public DataAbility AbilityData { get; private set; }
     public CharacterUnitModel Owner { get; private set; }
+    public float CoolTime => abilityBalance.GetCoolTime(Owner.Level);
 
-    public float CoolTime => AbilityData.CoolTime[Owner.Level];
-
-    private DataBattleEvent battleEventData;
+    private ScriptableAbilityBalance abilityBalance;
 
     public void SetByAbilityData(DataAbility ability, CharacterUnitModel owner)
     {
         if (ability.IsNull)
             return;
 
-        battleEventData = DataManager.Instance.GetDataById<DataBattleEvent>((int)ability.BattleEvent);
+        abilityBalance = AbilityBalanceFactory.Instance.GetAbilityBalance(ability.Id);
 
         Owner = owner;
         AbilityData = ability;
@@ -26,7 +25,7 @@ public class AbilityModel : IBaseUnitModel
     public BattleEventTriggerModel CreateTriggerModel()
     {
         BattleEventTriggerModel triggerModel = BattleEventTriggerFactory.CreateTriggerModel();
-        triggerModel.SetInfoByData(AbilityData, Owner.Level);
+        triggerModel.SetInfoByData(AbilityData, Owner.Level, abilityBalance);
         triggerModel.SetSender(Owner);
 
         return triggerModel;

@@ -47,7 +47,7 @@ public class BattleEventTriggerModel
         Speed = 0f;
     }
 
-    public void SetInfoByData(DataAbility abilityData, int level)
+    public void SetInfoByData(DataAbility abilityData, int level, ScriptableAbilityBalance balance)
     {
         if (abilityData.IsNull)
             return;
@@ -58,11 +58,11 @@ public class BattleEventTriggerModel
         TargetType = abilityData.TargetType;
         PrefabName = abilityData.PrefabName;
         HitEffectPrefabName = abilityData.HitEffectPrefabName;
-        TargetCount = abilityData.TargetCount[level];
-        Range = abilityData.Range[level];
-        Speed = abilityData.Speed[level];
-        Duration = abilityData.Duration[level];
-        Scale = abilityData.Scale[level];
+        TargetCount = balance.GetTargetCount(level);
+        Range = balance.GetRange(level);
+        Speed = balance.GetSpeed(level);
+        Duration = balance.GetDuration(level);
+        Scale = balance.GetScale(level);
 
         if (BattleEventData.IsNull)
         {

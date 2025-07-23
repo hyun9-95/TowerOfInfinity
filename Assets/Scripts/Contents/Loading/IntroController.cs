@@ -63,6 +63,7 @@ public class IntroController : BaseController<IntroViewModel>
         await UniTask.WaitUntil(() => { return !Model.DataLoader.IsLoading; });
 
         DataManager.Instance.GenerateDataContainerByDataDic(Model.LocalDataLoader.DicJsonByFileName);
+        await AbilityBalanceFactory.Instance.Initialize();
         await BattleEventBalanceFactory.Instance.Initialize();
     }
 

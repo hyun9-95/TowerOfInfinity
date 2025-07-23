@@ -21,18 +21,6 @@ public struct DataAbility : IBaseData
     public readonly string PrefabName;
     [JsonProperty(PropertyName = "HitEffectPrefabName")]
     public readonly string HitEffectPrefabName;
-    [JsonProperty(PropertyName = "Speed")]
-    public readonly float[] Speed;
-    [JsonProperty(PropertyName = "Range")]
-    public readonly float[] Range;
-    [JsonProperty(PropertyName = "Duration")]
-    public readonly float[] Duration;
-    [JsonProperty(PropertyName = "Scale")]
-    public readonly float[] Scale;
-    [JsonProperty(PropertyName = "TargetCount")]
-    public readonly int[] TargetCount;
-    [JsonProperty(PropertyName = "CoolTime")]
-    public readonly float[] CoolTime;
 	
 	public int Id => id;
     public string NameId => nameId;

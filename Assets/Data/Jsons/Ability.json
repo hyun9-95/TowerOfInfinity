@@ -7,49 +7,7 @@
     "TriggerType": "Range",
     "TargetType": "Single",
     "PrefabName": "",
-    "HitEffectPrefabName": "Slash_Hit",
-    "Speed": [
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0
-    ],
-    "Range": [
-      1.0,
-      1.0,
-      1.0,
-      1.0,
-      1.0
-    ],
-    "Duration": [
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0
-    ],
-    "Scale": [
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0
-    ],
-    "TargetCount": [
-      1,
-      1,
-      1,
-      1,
-      1
-    ],
-    "CoolTime": [
-      2.0,
-      2.0,
-      2.0,
-      2.0,
-      2.0
-    ]
+    "HitEffectPrefabName": "Slash_Hit"
   },
   {
     "id": 50001,
@@ -59,49 +17,7 @@
     "TriggerType": "Projectile",
     "TargetType": "Single",
     "PrefabName": "Slash_Projectile",
-    "HitEffectPrefabName": "",
-    "Speed": [
-      10.0,
-      10.0,
-      10.0,
-      10.0,
-      10.0
-    ],
-    "Range": [
-      2.0,
-      2.0,
-      2.0,
-      2.0,
-      2.0
-    ],
-    "Duration": [
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0
-    ],
-    "Scale": [
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0
-    ],
-    "TargetCount": [
-      1,
-      1,
-      2,
-      2,
-      3
-    ],
-    "CoolTime": [
-      3.0,
-      2.8,
-      2.6,
-      2.4,
-      2.2
-    ]
+    "HitEffectPrefabName": ""
   },
   {
     "id": 50002,
@@ -111,49 +27,7 @@
     "TriggerType": "Projectile",
     "TargetType": "Single",
     "PrefabName": "Arrow_Projectile",
-    "HitEffectPrefabName": "",
-    "Speed": [
-      10.0,
-      10.0,
-      10.0,
-      10.0,
-      10.0
-    ],
-    "Range": [
-      2.0,
-      2.0,
-      2.0,
-      2.0,
-      2.0
-    ],
-    "Duration": [
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0
-    ],
-    "Scale": [
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0
-    ],
-    "TargetCount": [
-      1,
-      1,
-      1,
-      2,
-      2
-    ],
-    "CoolTime": [
-      2.0,
-      2.5,
-      2.0,
-      1.5,
-      1.0
-    ]
+    "HitEffectPrefabName": ""
   },
   {
     "id": 50003,
@@ -163,48 +37,6 @@
     "TriggerType": "Collider",
     "TargetType": "Single",
     "PrefabName": "Sting_Collider",
-    "HitEffectPrefabName": "",
-    "Speed": [
-      10.0,
-      10.0,
-      10.0,
-      10.0,
-      10.0
-    ],
-    "Range": [
-      2.0,
-      2.0,
-      2.0,
-      2.0,
-      2.0
-    ],
-    "Duration": [
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0
-    ],
-    "Scale": [
-      0.0,
-      0.0,
-      0.0,
-      0.0,
-      0.0
-    ],
-    "TargetCount": [
-      1,
-      1,
-      1,
-      2,
-      2
-    ],
-    "CoolTime": [
-      2.0,
-      2.5,
-      2.0,
-      1.5,
-      1.0
-    ]
+    "HitEffectPrefabName": ""
   }
 ]
