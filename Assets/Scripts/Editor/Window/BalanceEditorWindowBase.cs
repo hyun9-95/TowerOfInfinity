@@ -282,7 +282,16 @@ public abstract class BalanceEditorWindowBase<T, U, V> : EditorWindow
             float initialValue = 0f;
             if (property.isArray && property.arraySize > 0)
             {
-                initialValue = property.GetArrayElementAtIndex(0).floatValue;
+                SerializedProperty element = property.GetArrayElementAtIndex(0);
+
+                if (element.propertyType == SerializedPropertyType.Float)
+                {
+                    initialValue = element.floatValue;
+                }
+                else if (element.propertyType == SerializedPropertyType.Integer)
+                {
+                    initialValue = element.intValue; // float으로 변환돼도 무방
+                }
             }
             ArrayValuePresetEditorWindow.ShowWindow(property, IntDefine.MAX_ABILITY_LEVEL, initialValue);
         }

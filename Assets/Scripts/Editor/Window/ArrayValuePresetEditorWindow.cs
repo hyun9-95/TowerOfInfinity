@@ -94,7 +94,18 @@ public class ArrayValuePresetEditorWindow : EditorWindow
         for (int i = 0; i < arraySize; i++)
         {
             float value = CalculateValue(i);
-            targetProperty.GetArrayElementAtIndex(i).floatValue = value;
+            SerializedProperty element = targetProperty.GetArrayElementAtIndex(i);
+
+            switch (element.propertyType)
+            {
+                case SerializedPropertyType.Float:
+                    element.floatValue = value;
+                    break;
+
+                case SerializedPropertyType.Integer:
+                    element.intValue = Mathf.RoundToInt(value);
+                    break;
+            }
         }
 
         targetProperty.serializedObject.ApplyModifiedProperties();

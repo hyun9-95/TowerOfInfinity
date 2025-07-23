@@ -16,15 +16,7 @@ MonoBehaviour:
   Speed: []
   Range: []
   Duration: []
-  TargetCount:
-  - 1
-  - 1
-  - 2
-  - 2
-  - 3
-  - 3
-  - 4
-  - 4
+  TargetCount: 0100000001000000020000000200000003000000030000000400000004000000
   Scale:
   - 0
   - 0.1

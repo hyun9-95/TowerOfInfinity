@@ -22,7 +22,7 @@ public class ScriptableAbilityBalance : ScriptableObject
     private float[] Duration;
 
     [SerializeField]
-    private float[] TargetCount;
+    private int[] TargetCount;
 
     [SerializeField]
     private float[] Scale;
@@ -86,7 +86,7 @@ public class ScriptableAbilityBalance : ScriptableObject
         Speed = new float[IntDefine.MAX_ABILITY_LEVEL];
         Range = new float[IntDefine.MAX_ABILITY_LEVEL];
         Duration = new float[IntDefine.MAX_ABILITY_LEVEL];
-        TargetCount = new float[IntDefine.MAX_ABILITY_LEVEL];
+        TargetCount = new int[IntDefine.MAX_ABILITY_LEVEL];
         Scale = new float[IntDefine.MAX_ABILITY_LEVEL];
         CoolTime = new float[IntDefine.MAX_ABILITY_LEVEL];
 
@@ -95,7 +95,7 @@ public class ScriptableAbilityBalance : ScriptableObject
             Speed[i] = 0f;
             Range[i] = 0f;
             Duration[i] = 0f;
-            TargetCount[i] = 0f;
+            TargetCount[i] = 0;
             Scale[i] = 0f;
             CoolTime[i] = 0f;
         }
