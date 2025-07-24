@@ -19,20 +19,16 @@ public enum CharacterAnimState
 public enum BattleEventTriggerType
 {
     None,
-    Projectile,
-    Range,
-    Collider,
-    Instant,
+    Projectile,     // 투사체로 검출
+    Range,          // 범위로 검출
+    Collider,       // 콜라이더로 검출
 }
 
 public enum BattleEventTargetType
 {
     None,
-    Self,
-    Single,
-    Multiple,
-    AllAllies,
-    AllEnemies,
+    Ally,
+    Enemy,
 }
 
 public enum BattleEventType
@@ -215,10 +211,4 @@ public enum StatReferenceCondition
     None,
     BaseStat,
     CurrentStat,
-}
-
-public enum HitCountingType
-{
-    Total,
-    PerTarget,
 }

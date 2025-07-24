@@ -22,7 +22,7 @@ public class ProjectileBattleEventTrigger : BattleEventTrigger
         var projectileUnitModel = projectileUnit.Model;
         var fixedDirection = OnGetFixedDirection(projectileUnit.DirectionType);
 
-        projectileUnitModel.SetDirection(Model.Direction == Vector2.zero ? fixedDirection : Model.Direction);
+        projectileUnitModel.SetDirection(fixedDirection);
         projectileUnitModel.SetOnUpdateDirection(OnGetFixedDirection);
         projectileUnitModel.SetDistance(Model.Range);
         projectileUnitModel.SetSpeed(Model.Speed);

@@ -28,7 +28,6 @@ public class PlayerSkillState : ScriptableCharacterState
             if (skillInfo != null)
             {
                 animState = CharacterAnimState.Slash;
-                skillInfo.SetDirection(model.InputWrapper.Movement);
                 skillInfo.SetSender(model);
 
                 BattleEventTrigger battleSkillTrigger = BattleEventTriggerFactory.Create(skillInfo.TriggerType);

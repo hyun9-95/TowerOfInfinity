@@ -6,12 +6,10 @@ using UnityEngine;
 
 public abstract class BattleEventTrigger
 {
-   protected BattleEventTriggerModel Model { get; private set; }
+    protected BattleEventTriggerModel Model { get; private set; }
 
     protected int currentHitCount = 0;
-
-    protected Dictionary<CharacterUnitModel, int> targetHitCount;
-
+ 
     public void SetModel(BattleEventTriggerModel skillInfoValue)
     {
         Model = skillInfoValue;
@@ -20,50 +18,7 @@ public abstract class BattleEventTrigger
     public void Reset()
     {
         currentHitCount = 0;
-
-        if (targetHitCount != null)
-            targetHitCount.Clear();
-
         Model = null;
-    }
-
-    protected List<CharacterUnitModel> OnFindMultipleTargets(Collider2D[] colliders)
-    {
-        if (colliders == null || colliders.Length == 0)
-            return null;
-
-        List<CharacterUnitModel> targets = new List<CharacterUnitModel>();
-
-        switch (Model.TargetType)
-        {
-            case BattleEventTargetType.Multiple:
-                // 모든 타겟 추가
-                foreach (var collider in colliders)
-                {
-                    if (collider == null)
-                        continue;
-
-                    var targetModel = GetTargetModel(collider);
-
-                    if (targetModel != null)
-                        targets.Add(targetModel);
-                }
-                break;
-
-            default:
-                Logger.Log($"이 타입은 여기서 체크하면 안된다. {Model.TargetType}");
-                return null;
-        }
-
-        return targets;
-    }
-
-    protected CharacterUnitModel OnFindSingleTarget(Collider2D collider)
-    {
-        if (collider == null || Model.TargetType != BattleEventTargetType.Single)
-            return null;
-
-        return GetTargetModel(collider);
     }
 
     protected CharacterUnitModel GetTargetModel(Collider2D collider)
@@ -95,18 +50,7 @@ public abstract class BattleEventTrigger
         if (model.TeamTag == Model.Sender.TeamTag)
             return;
 
-        switch (Model.HitCountingType)
-        {
-            // 단순 HitCount로 계산
-            case HitCountingType.Total:
-                ProcessTotalHits(model, hitTarget);
-                break;
-
-            // 타겟별로 히트카운트를 따로 계산
-            case HitCountingType.PerTarget:
-                ProcessHitsPerTarget(model, hitTarget);
-                break;
-        }
+        ProcessTotalHits(model, hitTarget);
     }
 
     private void ProcessTotalHits(CharacterUnitModel targetModel, Collider2D hitTarget)
@@ -127,27 +71,6 @@ public abstract class BattleEventTrigger
 
         if (IsOverHitCount(currentHitCount))
             OnComplete();
-    }
-
-    private void ProcessHitsPerTarget(CharacterUnitModel targetModel, Collider2D hitTarget)
-    {
-        if (targetHitCount == null)
-            targetHitCount = new Dictionary<CharacterUnitModel, int>();
-
-        if (!targetHitCount.ContainsKey(targetModel))
-        {
-            ProcessTotalHits(targetModel, hitTarget);
-            targetHitCount[targetModel] = 1;
-            return;
-        }
-
-        int hitCount = targetHitCount[targetModel];
-
-        if (IsOverHitCount(hitCount))
-            return;
-
-        ProcessTotalHits(targetModel, hitTarget);
-        targetHitCount[targetModel]++;
     }
 
     protected bool IsOverHitCount(int count)
