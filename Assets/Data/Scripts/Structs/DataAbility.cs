@@ -11,8 +11,8 @@ public struct DataAbility : IBaseData
     private readonly string nameId;
     [JsonProperty(PropertyName = "Type")]
     public readonly AbilityType Type;
-    [JsonProperty(PropertyName = "BattleEvent")]
-    public readonly BattleEventDefine BattleEvent;
+    [JsonProperty(PropertyName = "BattleEvents")]
+    public readonly BattleEventDefine[] BattleEvents;
     [JsonProperty(PropertyName = "TriggerType")]
     public readonly BattleEventTriggerType TriggerType;
     [JsonProperty(PropertyName = "TargetType")]

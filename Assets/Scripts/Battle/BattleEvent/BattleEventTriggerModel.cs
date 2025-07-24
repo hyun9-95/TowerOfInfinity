@@ -1,10 +1,11 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class BattleEventTriggerModel
 {
     public int AbilityDataId { get; private set; }
     public int Level { get; private set; }
-    public DataBattleEvent BattleEventData { get; private set; }
+    public List<DataBattleEvent> BattleEventDatas { get; private set; } = new List<DataBattleEvent>();
 
     public BattleEventTriggerType TriggerType { get; private set; }
 
@@ -36,7 +37,7 @@ public class BattleEventTriggerModel
 
     public void Reset()
     {
-        BattleEventData = default;
+        BattleEventDatas.Clear();
         TriggerType = BattleEventTriggerType.None;
         TargetType = BattleEventTargetType.None;
         Direction = Vector2.zero;
@@ -64,19 +65,38 @@ public class BattleEventTriggerModel
         Duration = balance.GetDuration(level);
         Scale = balance.GetScale(level);
 
-        if (BattleEventData.IsNull)
+        if (BattleEventDatas.Count == 0)
         {
-            BattleEventData = DataManager.Instance.
-                                GetDataById<DataBattleEvent>((int)abilityData.BattleEvent);
+            foreach (var battleEventDefine in abilityData.BattleEvents)
+            {
+                var battleEventData = DataManager.Instance.GetDataById<DataBattleEvent>((int)battleEventDefine);
+                if (!battleEventData.IsNull)
+                {
+                    BattleEventDatas.Add(battleEventData);
+                }
+            }
         }
     }
     
     public BattleEventModel CreateBattleEventModel(CharacterUnitModel receiver)
     {
         var battleEventModel = new BattleEventModel();
-        battleEventModel.Initialize(Sender, receiver, BattleEventData, Level);
+        battleEventModel.Initialize(Sender, receiver, BattleEventDatas[0], Level);
 
         return battleEventModel;
+    }
+
+    public BattleEventModel[] CreateBattleEventModels(CharacterUnitModel receiver)
+    {
+        var battleEventModels = new BattleEventModel[BattleEventDatas.Count];
+        for (int i = 0; i < BattleEventDatas.Count; i++)
+        {
+            var battleEventModel = new BattleEventModel();
+            battleEventModel.Initialize(Sender, receiver, BattleEventDatas[i], Level);
+            battleEventModels[i] = battleEventModel;
+        }
+
+        return battleEventModels;
     }
 
     public void SetSender(CharacterUnitModel owner)

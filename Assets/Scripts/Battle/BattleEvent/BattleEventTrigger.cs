@@ -4,10 +4,9 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public abstract class BattleEventTrigger
 {
-    protected virtual bool UseTrigger => true;
+    protected virtual HitCountingType CountingType => HitCountingType.Total;
     protected BattleEventTriggerModel Model { get; private set; }
 
     protected int currentTargetCount = 0;
@@ -97,29 +96,27 @@ public abstract class BattleEventTrigger
         if (model.TeamTag == Model.Sender.TeamTag)
             return;
 
-        switch (Model.TargetType)
+        switch (CountingType)
         {
-            case BattleEventTargetType.Single:
-            case BattleEventTargetType.Multiple:
-                if (UseTrigger)
-                {
-                    ProcessBattleEvent(model, hitTarget);
-                }
-                else
-                {
-                    ProcessNoneTriggerBattleEvent(model, hitTarget);
-                }   
+            case HitCountingType.Total:
+                ProcessTotalHits(model, hitTarget);
                 break;
-               
-            default:
-                Logger.Error($"이 타입으로 사용하면 안되는 타겟타입 : {Model.TargetType}");
-                return;
+            case HitCountingType.PerTarget:
+                ProcessHitsPerTarget(model, hitTarget);
+                break;
         }
     }
 
-    private void ProcessBattleEvent(CharacterUnitModel targetModel, Collider2D hitTarget)
+    private void ProcessTotalHits(CharacterUnitModel targetModel, Collider2D hitTarget)
     {
-        SendBattleEvent(targetModel);
+        if (Model.BattleEventDatas.Count == 1)
+        {
+            SendBattleEvent(targetModel);
+        }
+        else
+        {
+            SendBattleEvents(targetModel);
+        }
 
         if (!string.IsNullOrEmpty(Model.HitEffectPrefabName))
             OnSpawnHitEffect(hitTarget.transform.position).Forget();
@@ -130,14 +127,14 @@ public abstract class BattleEventTrigger
             OnComplete();
     }
 
-    private void ProcessNoneTriggerBattleEvent(CharacterUnitModel targetModel, Collider2D hitTarget)
+    private void ProcessHitsPerTarget(CharacterUnitModel targetModel, Collider2D hitTarget)
     {
         if (targetHitCount == null)
             targetHitCount = new Dictionary<CharacterUnitModel, int>();
 
         if (!targetHitCount.ContainsKey(targetModel))
         {
-            ProcessBattleEvent(targetModel, hitTarget);
+            ProcessTotalHits(targetModel, hitTarget);
             targetHitCount[targetModel] = 1;
             return;
         }
@@ -147,7 +144,7 @@ public abstract class BattleEventTrigger
         if (IsOverTargetCount(hitCount))
             return;
 
-        ProcessBattleEvent(targetModel, hitTarget);
+        ProcessTotalHits(targetModel, hitTarget);
         targetHitCount[targetModel]++;
     }
 
@@ -173,8 +170,16 @@ public abstract class BattleEventTrigger
     protected void SendBattleEvent(CharacterUnitModel target)
     {
         var battleEventModel = Model.CreateBattleEventModel(target);
-
         target.EventProcessorWrapper.SendBattleEvent(battleEventModel);
+    }
+
+    protected void SendBattleEvents(CharacterUnitModel target)
+    {
+        var battleEventModels = Model.CreateBattleEventModels(target);
+        foreach (var battleEventModel in battleEventModels)
+        {
+            target.EventProcessorWrapper.SendBattleEvent(battleEventModel);
+        }
     }
 
     protected Vector2 OnGetFixedDirection(DirectionType directionType)
