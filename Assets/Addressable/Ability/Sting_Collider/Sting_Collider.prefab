@@ -52,9 +52,11 @@ MonoBehaviour:
   effectSprite: {fileID: 0}
   effectParticle: {fileID: 3948468271430011930}
   particleSystemRenderer: {fileID: 3948468271430011933}
+  detectType: 0
   colliderSizeType: 0
   hitCollider: {fileID: 6781900405216177287}
   useFlip: 1
+  useTargetFollow: 1
   detectStartTime: 0
   detectEndTime: 0.05
 --- !u!61 &6781900405216177287

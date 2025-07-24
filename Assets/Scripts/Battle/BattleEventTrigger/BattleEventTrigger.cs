@@ -23,7 +23,10 @@ public abstract class BattleEventTrigger
     protected async UniTask<T> SpawnUnitAsync<T>(string prefabName, Vector3 position, Quaternion rotation) where T : PoolableMono, IBattleEventTriggerUnit
     {
         var unit = await ObjectPoolManager.Instance.SpawnPoolableMono<T>(prefabName, position, rotation);
-        
+
+        if (Model.Scale > 0)
+            unit.transform.localScale += unit.transform.localScale * Model.Scale;
+
         return unit;
     }
 

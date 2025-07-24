@@ -20,7 +20,6 @@ public class ColliderEnterBattleEventTrigger : BattleEventTrigger
             colliderTriggerEnterUnit.SetModel(new RangeTriggerUnitModel());
 
         var colliderTriggerEnterUnitModel = colliderTriggerEnterUnit.Model;
-        colliderTriggerEnterUnitModel.SetRange(Model.Range);
         colliderTriggerEnterUnitModel.SetFlip(Model.Sender.IsFlipX);
         colliderTriggerEnterUnitModel.SetFollowTarget(Model.Sender.Transform);
         colliderTriggerEnterUnitModel.SetOnEventHit(OnEventHit);

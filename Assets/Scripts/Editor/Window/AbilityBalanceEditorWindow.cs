@@ -25,7 +25,7 @@ public class AbilityBalanceEditorWindow : BalanceEditorWindowBase<AbilityBalance
         DrawArrayPropertyField(serializedObject, "SendCount", "처리 횟수");
         DrawArrayPropertyField(serializedObject, "Range", "범위");
         DrawArrayPropertyField(serializedObject, "Speed", "속도");
-        DrawArrayPropertyField(serializedObject, "Scale", "스케일");
+        DrawArrayPropertyField(serializedObject, "Scale", "유닛 스케일");
     }
 
     protected override AbilityDefine GetDefineFromBalance(ScriptableAbilityBalance balance)

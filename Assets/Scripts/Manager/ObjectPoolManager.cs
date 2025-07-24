@@ -10,7 +10,7 @@ public class ObjectPoolManager : BaseMonoManager<ObjectPoolManager>
 
     private Dictionary<string, Queue<GameObject>> poolDictionary = new Dictionary<string, Queue<GameObject>>();
     private Dictionary<string, Transform> poolParentDictionary = new Dictionary<string, Transform>();
-    
+    private Dictionary<int, Vector3> originScaleDic = new Dictionary<int, Vector3>();
 
     private Transform GetPoolParent(string key)
     {
@@ -41,8 +41,11 @@ public class ObjectPoolManager : BaseMonoManager<ObjectPoolManager>
         if (poolDictionary[name].Count > 0)
         {
             go = poolDictionary[name].Dequeue();
-            go.transform.position = position;
-            go.transform.rotation = rotation;
+            go.transform.SetPositionAndRotation(position, rotation);
+
+            if (originScaleDic.TryGetValue(go.GetInstanceID(), out Vector3 originScale))
+                go.transform.localScale = originScale;
+
             go.SetActive(true);
         }
         else
@@ -53,8 +56,8 @@ public class ObjectPoolManager : BaseMonoManager<ObjectPoolManager>
             if (go == null)
                 return null;
 
-            go.transform.position = position;
-            go.transform.rotation = rotation;
+            go.transform.SetPositionAndRotation(position, rotation);
+            originScaleDic[go.GetInstanceID()] = go.transform.localScale;
         }
 
         return go;

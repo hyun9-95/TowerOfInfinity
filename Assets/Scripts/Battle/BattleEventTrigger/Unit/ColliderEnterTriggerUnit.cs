@@ -2,7 +2,7 @@ using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 
-public class ColliderEnterTriggerUnit : PoolableBaseUnit<RangeTriggerUnitModel>, IBattleEventTriggerUnit
+public class ColliderEnterTriggerUnit : PoolableBaseUnit<BattleEventTriggerUnitModel>, IBattleEventTriggerUnit
 {
     protected enum ColliderSizeType
     {
@@ -10,8 +10,15 @@ public class ColliderEnterTriggerUnit : PoolableBaseUnit<RangeTriggerUnitModel>,
         Dynamic,
     }
 
+    protected enum ColliderDetectType
+    {
+        Enter,
+        Stay,
+        Exit,
+    }
+
     [SerializeField]
-    protected ColliderSizeType colliderSizeType;
+    protected ColliderDetectType detectType;
 
     [SerializeField]
     protected Collider2D hitCollider;
@@ -20,36 +27,18 @@ public class ColliderEnterTriggerUnit : PoolableBaseUnit<RangeTriggerUnitModel>,
     protected bool useFlip;
 
     [SerializeField]
+    protected bool useTargetFollow;
+
+    [SerializeField]
     protected float detectStartTime;
 
     [SerializeField]
     protected float detectEndTime;
 
-    private Vector2 originSize;
-    private float originRadius;
-    private CircleCollider2D circleCollider;
-    private BoxCollider2D boxCollider;
-    private bool followTarget = false;
 
     private void Awake()
     {
         hitCollider.enabled = false;
-
-        if (colliderSizeType == ColliderSizeType.Dynamic)
-        {
-            if (hitCollider is CircleCollider2D circleColliderTemp)
-            {
-                circleCollider = circleColliderTemp;
-                circleCollider.radius = originRadius;
-            }
-
-            if (hitCollider is BoxCollider2D boxColliderTemp)
-            {
-                boxCollider = boxColliderTemp;
-                originSize = boxCollider.size;
-            }
-        }
-
         HideRenderer();
     }
 
@@ -58,18 +47,6 @@ public class ColliderEnterTriggerUnit : PoolableBaseUnit<RangeTriggerUnitModel>,
         if (detectStartTime > 0)
             await UniTaskUtils.DelaySeconds(detectStartTime, TokenPool.Get(GetHashCode()));
 
-        if (colliderSizeType == ColliderSizeType.Dynamic)
-        {
-            if (circleCollider != null)
-            {
-                circleCollider.radius = originRadius * Model.Range;
-            }
-            else if (boxCollider != null)
-            {
-                boxCollider.size = new Vector2(originSize.x * Model.Range, originSize.y * Model.Range);
-            }
-        }
-        
         hitCollider.enabled = true;
 
         if (detectEndTime > 0)
@@ -91,7 +68,7 @@ public class ColliderEnterTriggerUnit : PoolableBaseUnit<RangeTriggerUnitModel>,
 
         var offset = useFlip ? GetFlipLocalPos(Model.IsFlip) : LocalPosOffset;
 
-        if (Model.FollowTarget != null)
+        if (Model.FollowTarget != null && useTargetFollow)
         {
             FollowAsync(offset).Forget();
         }
@@ -116,7 +93,31 @@ public class ColliderEnterTriggerUnit : PoolableBaseUnit<RangeTriggerUnitModel>,
         }
     }
 
-    protected virtual void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (detectType != ColliderDetectType.Enter)
+            return;
+
+        OnDetectHit(other);
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (detectType != ColliderDetectType.Stay)
+            return;
+
+        OnDetectHit(other);
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (detectType != ColliderDetectType.Exit)
+            return;
+
+        OnDetectHit(other);
+    }
+
+    protected virtual void OnDetectHit(Collider2D other)
     {
         if (!other.gameObject.CheckLayer(LayerFlag.Character))
             return;
