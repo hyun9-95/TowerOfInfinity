@@ -220,9 +220,20 @@ public abstract class BalanceEditorWindowBase<T, U, V> : EditorWindow
                             continue;
                         }
 
+                        string valueAsString;
+                        if (property.Value.Type == JTokenType.Array)
+                        {
+                            var array = (JArray)property.Value;
+                            valueAsString = string.Join(", ", array.Select(t => t.ToString()));
+                        }
+                        else
+                        {
+                            valueAsString = property.Value.ToString();
+                        }
+
                         EditorGUILayout.BeginHorizontal();
                         EditorGUILayout.LabelField(property.Name, GUILayout.Width(EditorGUIUtility.labelWidth - 4));
-                        EditorGUILayout.SelectableLabel(property.Value.ToString(), EditorStyles.textField, GUILayout.ExpandWidth(true), GUILayout.Height(20f));
+                        EditorGUILayout.SelectableLabel(valueAsString, EditorStyles.textField, GUILayout.ExpandWidth(true), GUILayout.Height(20f));
                         EditorGUILayout.EndHorizontal();
                     }
                 }
