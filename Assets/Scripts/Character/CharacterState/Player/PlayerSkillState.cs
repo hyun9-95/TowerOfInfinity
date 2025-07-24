@@ -25,15 +25,15 @@ public class PlayerSkillState : ScriptableCharacterState
         {
             BattleEventTriggerModel skillInfo = null;
 
-            if (skillInfo != null)
-            {
-                animState = CharacterAnimState.Slash;
-                skillInfo.SetSender(model);
-
-                BattleEventTrigger battleSkillTrigger = BattleEventTriggerFactory.Create(skillInfo.TriggerType);
-                battleSkillTrigger.SetModel(skillInfo);
-                battleSkillTrigger.Process().Forget();
-            }
+            //if (skillInfo != null)
+            //{
+            //    animState = CharacterAnimState.Slash;
+            //    skillInfo.SetSender(model);
+            //
+            //    BattleEventTrigger battleSkillTrigger = BattleEventTriggerFactory.Create(skillInfo.TriggerType);
+            //    battleSkillTrigger.SetModel(skillInfo);
+            //    battleSkillTrigger.Process().Forget();
+            //}
         }
     }
 

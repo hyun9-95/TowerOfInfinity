@@ -72,7 +72,7 @@ public class CharacterUnitModel : IBaseUnitModel
         
         foreach (StatType statType in Enum.GetValues(typeof(StatType)))
         {
-            if (statType == StatType.Max)
+            if (statType == StatType.None)
                 continue;
 
             statModifiers[statType] = 0;

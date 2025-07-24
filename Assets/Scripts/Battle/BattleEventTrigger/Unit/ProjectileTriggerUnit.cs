@@ -21,7 +21,7 @@ public class ProjectileTriggerUnit : PoolableBaseUnit<ProjectileTriggerUnitModel
     private Vector3 originScale;
     private Vector2 direction;
 
-    private bool launched;
+    private bool acitvate;
 
     private void Awake()
     {
@@ -57,12 +57,11 @@ public class ProjectileTriggerUnit : PoolableBaseUnit<ProjectileTriggerUnitModel
         base.OnDisable();
 
         hitCollider.enabled = false;
-        launched = false;
+        acitvate = false;
     }
 
     private void Launch()
     {
-        launched = true;
         bool isFlip = direction.x < 0;
         transform.position = Model.StartPosition;
         transform.localPosition += isFlip ? GetFlipLocalPos(isFlip) : LocalPosOffset;
@@ -73,22 +72,17 @@ public class ProjectileTriggerUnit : PoolableBaseUnit<ProjectileTriggerUnitModel
         effectSprite.RestoreAlpha();
         transform.localScale = originScale * Model.Scale;
         gameObject.SafeSetActive(true);
+
+        acitvate = true;
     }
 
     private void FixedUpdate()
     {
-        if (launched == false)
+        if (acitvate == false)
             return;
 
-        UpdateDirection();
         UpdateMove();
         CheckDisable();
-    }
-
-    protected void UpdateDirection()
-    {
-        if (!directionType.IsFixedType())
-            direction = Model.OnUpdateDirection(directionType);
     }
 
     private void UpdateMove()
@@ -98,19 +92,19 @@ public class ProjectileTriggerUnit : PoolableBaseUnit<ProjectileTriggerUnitModel
 
     private void CheckDisable()
     {
-        if (IsDisable())
+        if (CheckDisableCondition())
         {
-            launched = false;
+            acitvate = false;
             effectSprite.FadeOff(fadeTime, gameObject);
         }
     }
 
-    private bool IsDisable()
+    private bool CheckDisableCondition()
     {
         if (Model.Distance <= Vector3.Distance(transform.position, startPosition))
             return true;
 
-        if (Model.IsOverSendCount())
+        if (!acitvate)
             return true;
 
         return false;
@@ -128,6 +122,9 @@ public class ProjectileTriggerUnit : PoolableBaseUnit<ProjectileTriggerUnitModel
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (!acitvate)
+            return;
+
         Model.OnEventHit(other);
     }
 }

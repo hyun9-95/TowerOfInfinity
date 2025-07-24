@@ -13,8 +13,6 @@ public class ProjectileTriggerUnitModel : BattleEventTriggerUnitModel
 
     public Vector3 StartPosition { get; private set; }
 
-    public Func<DirectionType, Vector2> OnUpdateDirection { get; private set; }
-
     public void SetStartPosition(Vector3 pos)
     {
         StartPosition = pos;
@@ -39,10 +37,4 @@ public class ProjectileTriggerUnitModel : BattleEventTriggerUnitModel
     {
         Distance = value;
     }
-
-    public void SetOnUpdateDirection(Func<DirectionType, Vector2> onUpdateDirection)
-    {
-        OnUpdateDirection = onUpdateDirection;
-    }
-   
 }

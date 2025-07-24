@@ -55,7 +55,8 @@ MonoBehaviour:
   colliderSizeType: 0
   hitCollider: {fileID: 6781900405216177287}
   useFlip: 1
-  detectTime: 0
+  detectStartTime: 0
+  detectEndTime: 0.05
 --- !u!61 &6781900405216177287
 BoxCollider2D:
   m_ObjectHideFlags: 0

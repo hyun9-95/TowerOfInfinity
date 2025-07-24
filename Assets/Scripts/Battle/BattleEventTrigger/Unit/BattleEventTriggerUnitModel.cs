@@ -7,30 +7,16 @@ public class BattleEventTriggerUnitModel : IBaseUnitModel
 
     public Transform FollowTarget { get; private set; }
 
-    public Func<bool> IsOverSendCount { get; private set; }
-
-    public bool IsComplete { get; private set; }
-
     public bool IsFlip { get; private set; }
-
-    public void SetFollowTarget(Transform target)
-    {
-        FollowTarget = target;
-    }
 
     public void SetOnEventHit(Action<Collider2D> onEventHit)
     {
         OnEventHit = onEventHit;
     }
 
-    public void SetGetOverSendCount(Func<bool> isOverSendCount)
+    public void SetFollowTarget(Transform target)
     {
-        IsOverSendCount = isOverSendCount;
-    }
-
-    public void SetComplete(bool complete)
-    {
-        IsComplete = complete;
+        FollowTarget = target;
     }
 
     public void SetFlip(bool flip)

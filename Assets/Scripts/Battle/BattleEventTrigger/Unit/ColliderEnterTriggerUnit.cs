@@ -20,7 +20,10 @@ public class ColliderEnterTriggerUnit : PoolableBaseUnit<RangeTriggerUnitModel>,
     protected bool useFlip;
 
     [SerializeField]
-    protected float detectTime;
+    protected float detectStartTime;
+
+    [SerializeField]
+    protected float detectEndTime;
 
     private Vector2 originSize;
     private float originRadius;
@@ -85,10 +88,21 @@ public class ColliderEnterTriggerUnit : PoolableBaseUnit<RangeTriggerUnitModel>,
 
         ShowRenderer();
 
-        if (detectTime > 0)
-            await UniTaskUtils.DelaySeconds(detectTime, TokenPool.Get(GetHashCode()));
+        if (detectStartTime > 0)
+            await UniTaskUtils.DelaySeconds(detectStartTime, TokenPool.Get(GetHashCode()));
 
         EnableCollider();
+
+        if (detectEndTime > 0)
+        {
+            await UniTaskUtils.DelaySeconds(detectEndTime, TokenPool.Get(GetHashCode()));
+        }
+        else
+        {
+            await UniTask.NextFrame();
+        }
+
+        hitCollider.enabled = false;
 
         await base.ShowAsync();
     }

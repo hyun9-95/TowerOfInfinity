@@ -23,14 +23,11 @@ public class ProjectileBattleEventTrigger : BattleEventTrigger
         var fixedDirection = OnGetFixedDirection(projectileUnit.DirectionType);
 
         projectileUnitModel.SetDirection(fixedDirection);
-        projectileUnitModel.SetOnUpdateDirection(OnGetFixedDirection);
         projectileUnitModel.SetDistance(Model.Range);
         projectileUnitModel.SetSpeed(Model.Speed);
         projectileUnitModel.SetScale(Model.Scale);
         projectileUnitModel.SetStartPosition(Model.Sender.Transform.position);
         projectileUnitModel.SetOnEventHit(OnEventHit);
-        projectileUnitModel.SetGetOverSendCount(IsOverTargetCount);
-
         projectileUnit.ShowAsync().Forget();
     }
 }

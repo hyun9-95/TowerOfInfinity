@@ -5,11 +5,11 @@ public class BattleEventTriggerModel
 {
     public int AbilityDataId { get; private set; }
     public int Level { get; private set; }
+    public CharacterUnitModel Sender { get; private set; }
     public List<DataBattleEvent> BattleEventDatas { get; private set; } = new List<DataBattleEvent>();
     public BattleEventTriggerType TriggerType { get; private set; }
     public BattleEventTargetType TargetType { get; private set; }
     public TeamTag TargetTeamTag { get; private set; }
-    public CharacterUnitModel Sender { get; private set; }
     public string PrefabName { get; private set; }
     public string HitEffectPrefabName { get; private set; }
     public int SendCount { get; private set; }
@@ -23,27 +23,24 @@ public class BattleEventTriggerModel
         return MemberwiseClone() as BattleEventTriggerModel;
     }
 
-    public void SetSender(CharacterUnitModel owner)
-    {
-        Sender = owner;
-    }
-
-    public void SetInfoByData(DataAbility abilityData, int level, ScriptableAbilityBalance balance)
+    public void Initialize(CharacterUnitModel sender, DataAbility abilityData, ScriptableAbilityBalance balance)
     {
         if (abilityData.IsNull)
             return;
 
         AbilityDataId = abilityData.Id;
-        Level = level;
+        Sender = sender;
+
+        Level = sender.Level;
         TriggerType = abilityData.TriggerType;
         TargetType = abilityData.TargetType;
         PrefabName = abilityData.PrefabName;
         HitEffectPrefabName = abilityData.HitEffectPrefabName;
-        SendCount = balance.GetSendCount(level);
-        Range = balance.GetRange(level);
-        Speed = balance.GetSpeed(level);
-        Duration = balance.GetDuration(level);
-        Scale = balance.GetScale(level);
+        SendCount = balance.GetSendCount(Level);
+        Range = balance.GetRange(Level);
+        Speed = balance.GetSpeed(Level);
+        Duration = balance.GetDuration(Level);
+        Scale = balance.GetScale(Level);
 
         TargetTeamTag = abilityData.TargetType == BattleEventTargetType.Ally ?
             Sender.TeamTag : GetOppositeTeamTag(Sender.TeamTag);
@@ -62,12 +59,16 @@ public class BattleEventTriggerModel
 
     public void Reset()
     {
+        AbilityDataId = 0;
+        Level = 0;
         BattleEventDatas.Clear();
         TriggerType = BattleEventTriggerType.None;
         TargetType = BattleEventTargetType.None;
         SendCount = 0;
         Sender = null;
         PrefabName = string.Empty;
+        HitEffectPrefabName = string.Empty;
+        TargetTeamTag = TeamTag.Ally;
         Range = 0f;
         Speed = 0f;
         Scale = 0f;

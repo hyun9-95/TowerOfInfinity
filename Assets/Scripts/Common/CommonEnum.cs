@@ -76,11 +76,11 @@ public enum LoadDataType
 
 public enum StatType
 {
+    None,
     MaxHp,
     Attack,
     Defense,
     MoveSpeed,
-    Max = 99,
 }
 
 public enum PortalType

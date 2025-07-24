@@ -25,8 +25,7 @@ public class AbilityModel : IBaseUnitModel
     public BattleEventTriggerModel CreateTriggerModel()
     {
         BattleEventTriggerModel triggerModel = BattleEventTriggerFactory.CreateTriggerModel();
-        triggerModel.SetInfoByData(AbilityData, Owner.Level, abilityBalance);
-        triggerModel.SetSender(Owner);
+        triggerModel.Initialize(Owner, AbilityData, abilityBalance);
 
         return triggerModel;
     }

@@ -7,8 +7,6 @@ using UnityEngine;
 public abstract class BattleEventTrigger
 {
     protected BattleEventTriggerModel Model { get; private set; }
-    protected List<IBattleEventTriggerUnit> activeUnits = new List<IBattleEventTriggerUnit>();
-
     protected int currentSendCount = 0;
  
     public void SetModel(BattleEventTriggerModel skillInfoValue)
@@ -20,32 +18,16 @@ public abstract class BattleEventTrigger
     {
         currentSendCount = 0;
         Model = null;
-        activeUnits.Clear();
     }
 
     protected async UniTask<T> SpawnUnitAsync<T>(string prefabName, Vector3 position, Quaternion rotation) where T : PoolableMono, IBattleEventTriggerUnit
     {
         var unit = await ObjectPoolManager.Instance.SpawnPoolableMono<T>(prefabName, position, rotation);
         
-        if (unit != null)
-            activeUnits.Add(unit);
-
         return unit;
     }
 
-    protected void DeactivateAllUnits()
-    {
-        foreach (var unit in activeUnits)
-        {
-            // 켜져있는것만.. 이미 꺼져있는건 ObjectPool로 돌아갔을 것
-            if (unit is MonoBehaviour monoBehaviour && monoBehaviour.gameObject.activeSelf)
-                monoBehaviour.gameObject.SetActive(false);
-        }
-
-        activeUnits.Clear();
-    }
-
-    protected CharacterUnitModel GetTargetModel(Collider2D collider)
+    private CharacterUnitModel GetTargetModel(Collider2D collider)
     {
         var targetModel = BattleSceneManager.Instance.GetCharacterModel(collider.gameObject.GetInstanceID());
 
@@ -57,25 +39,6 @@ public abstract class BattleEventTrigger
     }
 
     public virtual async UniTask Process() { }
-
-    protected void OnEventHit(Collider2D hitTarget)
-    {
-        if (IsOverSendCount(currentSendCount))
-            return;
-
-        if (hitTarget == null)
-            return;
-
-        var model = GetTargetModel(hitTarget);
-
-        if (model == null)
-            return;
-
-        if (model.TeamTag == Model.Sender.TeamTag)
-            return;
-
-        SendBattleEventToTarget(model, hitTarget);
-    }
 
     private void SendBattleEventToTarget(CharacterUnitModel targetModel, Collider2D hitTarget = null)
     {
@@ -94,20 +57,10 @@ public abstract class BattleEventTrigger
         currentSendCount++;
 
         if (IsOverSendCount(currentSendCount))
-            OnComplete();
+            Complete();
     }
 
-    protected bool IsOverSendCount(int count)
-    {
-        return count >= Model.SendCount;
-    }
-
-    protected bool IsOverTargetCount()
-    {
-        return currentSendCount >= Model.SendCount;
-    }
-
-    protected async UniTask OnSpawnHitEffect(Vector3 pos)
+    private async UniTask OnSpawnHitEffect(Vector3 pos)
     {
         var hitEffect = await ObjectPoolManager.Instance.SpawnPoolableMono<TimedPoolableMono>
             (Model.HitEffectPrefabName, position: pos, Quaternion.identity);
@@ -116,19 +69,69 @@ public abstract class BattleEventTrigger
         hitEffect.Flip(hitEffect.transform.position.x < Model.Sender.Transform.position.x);
     }
 
-    protected void SendBattleEvent(CharacterUnitModel target)
+    private void SendBattleEvent(CharacterUnitModel target)
     {
         var battleEventModel = Model.CreateBattleEventModel(target);
         target.EventProcessorWrapper.SendBattleEvent(battleEventModel);
     }
 
-    protected void SendBattleEvents(CharacterUnitModel target)
+    private void SendBattleEvents(CharacterUnitModel target)
     {
         var battleEventModels = Model.CreateBattleEventModels(target);
         foreach (var battleEventModel in battleEventModels)
         {
             target.EventProcessorWrapper.SendBattleEvent(battleEventModel);
         }
+    }
+
+    private void Complete()
+    {
+        ReturnToPool();
+    }
+
+    private void ReturnToPool()
+    {
+        BattleEventTriggerFactory.ReturnToPool(Model);
+        BattleEventTriggerFactory.ReturnToPool(this);
+    }
+
+    private bool IsOverSendCount(int count)
+    {
+        return count >= Model.SendCount;
+    }
+
+    #region OnEvent
+    protected void OnEventHit(Collider2D hitTarget)
+    {
+        if (Model == null)
+            return;
+
+        if (IsOverSendCount(currentSendCount))
+            return;
+
+        if (hitTarget == null)
+            return;
+
+        var targetModel = GetTargetModel(hitTarget);
+
+        if (targetModel == null)
+            return;
+
+        if (targetModel.TeamTag != Model.TargetTeamTag)
+            return;
+
+        SendBattleEventToTarget(targetModel, hitTarget);
+    }
+
+    protected void OnEventSend(CharacterUnitModel targetModel)
+    {
+        if (targetModel == null)
+            return;
+
+        if (targetModel.TeamTag != Model.TargetTeamTag)
+            return;
+
+        SendBattleEventToTarget(targetModel);
     }
 
     protected Vector2 OnGetFixedDirection(DirectionType directionType)
@@ -145,16 +148,5 @@ public abstract class BattleEventTrigger
 
         return direction;
     }
-
-    protected virtual void OnComplete()
-    {
-        DeactivateAllUnits();
-        ReturnToPool();
-    }
-
-    private void ReturnToPool()
-    {
-        BattleEventTriggerFactory.ReturnToPool(Model);
-        BattleEventTriggerFactory.ReturnToPool(this);
-    }
+    #endregion
 }
