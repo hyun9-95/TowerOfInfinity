@@ -3,9 +3,11 @@
     "id": 50000,
     "nameId": "WEAPON_SLASH_PROJECTILE",
     "Type": "Weapon",
-    "BattleEvent": "BE_DAMAGE_ONE_SHOT_ATTACK",
+    "BattleEvents": [
+      "BE_DAMAGE_ONE_SHOT_ATTACK"
+    ],
     "TriggerType": "Projectile",
-    "TargetType": "Multiple",
+    "TargetType": "Enemy",
     "PrefabName": "Slash_Projectile",
     "HitEffectPrefabName": ""
   },
@@ -13,9 +15,11 @@
     "id": 50001,
     "nameId": "WEAPON_ARROW",
     "Type": "Weapon",
-    "BattleEvent": "BE_DAMAGE_ONE_SHOT_ATTACK",
+    "BattleEvents": [
+      "BE_DAMAGE_ONE_SHOT_ATTACK"
+    ],
     "TriggerType": "Projectile",
-    "TargetType": "Multiple",
+    "TargetType": "Enemy",
     "PrefabName": "Arrow_Projectile",
     "HitEffectPrefabName": ""
   },
@@ -23,9 +27,11 @@
     "id": 50002,
     "nameId": "WEAPON_STING",
     "Type": "Weapon",
-    "BattleEvent": "BE_DAMAGE_ONE_SHOT_ATTACK",
+    "BattleEvents": [
+      "BE_DAMAGE_ONE_SHOT_ATTACK"
+    ],
     "TriggerType": "Collider",
-    "TargetType": "Multiple",
+    "TargetType": "Enemy",
     "PrefabName": "Sting_Collider",
     "HitEffectPrefabName": ""
   }
