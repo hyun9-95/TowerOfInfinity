@@ -24,6 +24,7 @@ public abstract class BattleEventTrigger
     {
         var unit = await ObjectPoolManager.Instance.SpawnPoolableMono<T>(prefabName, position, rotation);
 
+        // 오브젝트 풀에서 재사용할 때 localScale값 리셋하므로 별도 리셋처리 필요 X
         if (Model.Scale > 0)
             unit.transform.localScale += unit.transform.localScale * Model.Scale;
 

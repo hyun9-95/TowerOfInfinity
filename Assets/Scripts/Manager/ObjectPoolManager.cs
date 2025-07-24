@@ -95,6 +95,7 @@ public class ObjectPoolManager : BaseMonoManager<ObjectPoolManager>
         }
 
         poolParentDictionary.Clear();
+        originScaleDic.Clear();
     }
 
     public void ReturnToPool(GameObject obj, string name)
