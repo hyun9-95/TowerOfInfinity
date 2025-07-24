@@ -17,7 +17,7 @@ public class ColliderBattleEventTrigger : BattleEventTrigger
             return;
 
         if (colliderTriggerEnterUnit.Model == null)
-            colliderTriggerEnterUnit.SetModel(new HitTargetRangeUnitModel());
+            colliderTriggerEnterUnit.SetModel(new RangeTriggerUnitModel());
 
         var colliderTriggerEnterUnitModel = colliderTriggerEnterUnit.Model;
         colliderTriggerEnterUnitModel.SetRange(Model.Range);

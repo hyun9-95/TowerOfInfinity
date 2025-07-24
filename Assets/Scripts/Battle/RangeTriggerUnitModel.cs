@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class HitTargetRangeUnitModel : HitTargetUnitModel
+public class RangeTriggerUnitModel : BattleEventTriggerUnitModel
 {
     public float Range { get; private set; }
 

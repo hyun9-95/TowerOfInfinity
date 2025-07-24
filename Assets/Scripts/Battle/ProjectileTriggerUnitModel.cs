@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class ProjectileUnitModel : HitTargetUnitModel
+public class ProjectileTriggerUnitModel : BattleEventTriggerUnitModel
 {
     public float Speed { get; private set; } = 1f;
 

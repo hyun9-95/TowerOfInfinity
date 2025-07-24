@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class HitTargetUnitModel : IBaseUnitModel
+public class BattleEventTriggerUnitModel : IBaseUnitModel
 {
     public Action<Collider2D> OnEventHit { get; private set; }
 

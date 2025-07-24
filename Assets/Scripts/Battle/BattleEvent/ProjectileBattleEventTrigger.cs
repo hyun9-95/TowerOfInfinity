@@ -17,7 +17,7 @@ public class ProjectileBattleEventTrigger : BattleEventTrigger
             return;
 
         if (projectileUnit.Model == null)
-            projectileUnit.SetModel(new ProjectileUnitModel());
+            projectileUnit.SetModel(new ProjectileTriggerUnitModel());
 
         var projectileUnitModel = projectileUnit.Model;
         var fixedDirection = OnGetFixedDirection(projectileUnit.DirectionType);

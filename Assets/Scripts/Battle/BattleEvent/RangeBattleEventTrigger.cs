@@ -20,7 +20,7 @@ public class RangeBattleEventTrigger : BattleEventTrigger
                 return;
 
             if (hitTargetEffect.Model == null)
-                hitTargetEffect.SetModel(new HitTargetRangeUnitModel());
+                hitTargetEffect.SetModel(new RangeTriggerUnitModel());
 
             var hitTargetEffectUnitModel = hitTargetEffect.Model;
             hitTargetEffectUnitModel.SetRange(Model.Range);
