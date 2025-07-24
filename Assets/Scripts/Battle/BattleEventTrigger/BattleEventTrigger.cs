@@ -7,6 +7,7 @@ using UnityEngine;
 public abstract class BattleEventTrigger
 {
     protected BattleEventTriggerModel Model { get; private set; }
+    protected List<IBattleEventTriggerUnit> activeUnits = new List<IBattleEventTriggerUnit>();
 
     protected int currentHitCount = 0;
  
@@ -19,6 +20,29 @@ public abstract class BattleEventTrigger
     {
         currentHitCount = 0;
         Model = null;
+        activeUnits.Clear();
+    }
+
+    protected async UniTask<T> SpawnUnitAsync<T>(string prefabName, Vector3 position, Quaternion rotation) where T : PoolableMono, IBattleEventTriggerUnit
+    {
+        var unit = await ObjectPoolManager.Instance.SpawnPoolableMono<T>(prefabName, position, rotation);
+        
+        if (unit != null)
+            activeUnits.Add(unit);
+
+        return unit;
+    }
+
+    protected void DeactivateAllUnits()
+    {
+        foreach (var unit in activeUnits)
+        {
+            // 켜져있는것만.. 이미 꺼져있는건 ObjectPool로 돌아갔을 것
+            if (unit is MonoBehaviour monoBehaviour && monoBehaviour.gameObject.activeSelf)
+                monoBehaviour.gameObject.SetActive(false);
+        }
+
+        activeUnits.Clear();
     }
 
     protected CharacterUnitModel GetTargetModel(Collider2D collider)
@@ -85,7 +109,7 @@ public abstract class BattleEventTrigger
 
     protected async UniTask OnSpawnHitEffect(Vector3 pos)
     {
-        var hitEffect = await ObjectPoolManager.Instance.SpawnTimedMono<TimedPoolableMono>
+        var hitEffect = await ObjectPoolManager.Instance.SpawnPoolableMono<TimedPoolableMono>
             (Model.HitEffectPrefabName, position: pos, Quaternion.identity);
 
         hitEffect.transform.localPosition += hitEffect.LocalPosOffset;
@@ -124,10 +148,11 @@ public abstract class BattleEventTrigger
 
     protected virtual void OnComplete()
     {
-        
+        DeactivateAllUnits();
+        ReturnToPool();
     }
 
-    public virtual void ReturnToPool()
+    private void ReturnToPool()
     {
         BattleEventTriggerFactory.ReturnToPool(Model);
         BattleEventTriggerFactory.ReturnToPool(this);

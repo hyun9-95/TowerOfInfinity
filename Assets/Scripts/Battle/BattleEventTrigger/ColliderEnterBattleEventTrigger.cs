@@ -10,7 +10,7 @@ public class ColliderEnterBattleEventTrigger : BattleEventTrigger
 
     private async UniTask ProcessColliderEvent()
     {
-        var colliderTriggerEnterUnit = await ObjectPoolManager.Instance.SpawnTimedMono<ColliderEnterTriggerUnit>
+        var colliderTriggerEnterUnit = await SpawnUnitAsync<ColliderEnterTriggerUnit>
             (Model.PrefabName, Model.Sender.Transform.position, Quaternion.identity);
 
         if (colliderTriggerEnterUnit == null)

@@ -13,7 +13,7 @@ public class RangeBattleEventTrigger : BattleEventTrigger
     {
         if (!string.IsNullOrEmpty(Model.PrefabName))
         {
-            var hitTargetEffect = await ObjectPoolManager.Instance.SpawnTimedMono<HitTargetRangeTriggerUnit>
+            var hitTargetEffect = await SpawnUnitAsync<HitTargetRangeTriggerUnit>
             (Model.PrefabName, Model.Sender.Transform.position, Quaternion.identity);
 
             if (hitTargetEffect == null)
@@ -42,10 +42,5 @@ public class RangeBattleEventTrigger : BattleEventTrigger
             foreach (var collider in colliders)
                 OnEventHit(collider);
         }
-    }
-
-    protected override void OnComplete()
-    {
-        base.OnComplete();
     }
 }

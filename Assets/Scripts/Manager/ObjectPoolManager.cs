@@ -71,17 +71,6 @@ public class ObjectPoolManager : BaseMonoManager<ObjectPoolManager>
         return go.GetComponent<T>();
     }
 
-    public async UniTask<T> SpawnTimedMono<T>(string name, Vector3 position = default, Quaternion rotation = default)
-        where T : TimedPoolableMono
-    {
-        var go = await Spawn(name, position, rotation);
-
-        if (go == null)
-            return null;
-
-        return go.GetComponent<T>();
-    }
-
     public void Clear()
     {
         foreach (var pool in poolDictionary.Values)
