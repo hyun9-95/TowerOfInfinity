@@ -11,7 +11,7 @@ public class ProjectileBattleEventTrigger : BattleEventTrigger
 
     private async UniTask ProcessProjectile()
     {
-        var projectileUnit = await ObjectPoolManager.Instance.SpawnTimedMono<ProjectileUnit>(Model.PrefabName, Model.Sender.Transform.position, Quaternion.identity);
+        var projectileUnit = await ObjectPoolManager.Instance.SpawnTimedMono<ProjectileTriggerUnit>(Model.PrefabName, Model.Sender.Transform.position, Quaternion.identity);
 
         if (projectileUnit == null)
             return;

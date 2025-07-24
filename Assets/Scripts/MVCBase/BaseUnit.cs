@@ -28,7 +28,7 @@ public abstract class BaseUnit : AddressableMono
     }
 }
 
-public class PoolableBaseUnit<T> : PoolableBaseUnit where T : IBaseUnitModel
+public class PoolableBaseUnit<T> : PoolableBaseUnit where T : IBaseUnitModel 
 {
     public T Model { get; private set; }
     public void SetModel(T model)

@@ -13,7 +13,7 @@ public class RangeBattleEventTrigger : BattleEventTrigger
     {
         if (!string.IsNullOrEmpty(Model.PrefabName))
         {
-            var hitTargetEffect = await ObjectPoolManager.Instance.SpawnTimedMono<HitTargetRangeUnit>
+            var hitTargetEffect = await ObjectPoolManager.Instance.SpawnTimedMono<HitTargetRangeTriggerUnit>
             (Model.PrefabName, Model.Sender.Transform.position, Quaternion.identity);
 
             if (hitTargetEffect == null)

@@ -1,7 +1,7 @@
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-public class HitTargetRangeUnit : PoolableBaseUnit<RangeTriggerUnitModel>
+public class HitTargetRangeTriggerUnit : PoolableBaseUnit<RangeTriggerUnitModel>, IBattleEventTriggerUnit
 {
     [SerializeField]
     private float detectTime = 0f;

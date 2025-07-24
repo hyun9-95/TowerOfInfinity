@@ -1,7 +1,7 @@
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-public class ProjectileUnit : PoolableBaseUnit<ProjectileTriggerUnitModel>
+public class ProjectileTriggerUnit : PoolableBaseUnit<ProjectileTriggerUnitModel>, IBattleEventTriggerUnit
 {
     public DirectionType DirectionType => directionType;
 

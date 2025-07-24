@@ -17,7 +17,7 @@ public static class BattleEventTriggerFactory
         {
             BattleEventTriggerType.Projectile => new ProjectileBattleEventTrigger(),
             BattleEventTriggerType.Range => new RangeBattleEventTrigger(),
-            BattleEventTriggerType.Collider => new ColliderBattleEventTrigger(),
+            BattleEventTriggerType.Collider => new ColliderEnterBattleEventTrigger(),
             // BattleEventTriggerType.Movement => new MovementBattleEventTrigger(),
             _ => null
         };

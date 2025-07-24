@@ -1,7 +1,7 @@
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-public class ColliderBattleEventTrigger : BattleEventTrigger
+public class ColliderEnterBattleEventTrigger : BattleEventTrigger
 {
     public async override UniTask Process()
     {
@@ -10,7 +10,7 @@ public class ColliderBattleEventTrigger : BattleEventTrigger
 
     private async UniTask ProcessColliderEvent()
     {
-        var colliderTriggerEnterUnit = await ObjectPoolManager.Instance.SpawnTimedMono<ColliderTriggerEnterUnit>
+        var colliderTriggerEnterUnit = await ObjectPoolManager.Instance.SpawnTimedMono<ColliderEnterTriggerUnit>
             (Model.PrefabName, Model.Sender.Transform.position, Quaternion.identity);
 
         if (colliderTriggerEnterUnit == null)

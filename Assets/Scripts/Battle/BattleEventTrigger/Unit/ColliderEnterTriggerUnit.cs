@@ -2,7 +2,7 @@ using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 
-public class ColliderTriggerEnterUnit : PoolableBaseUnit<RangeTriggerUnitModel>
+public class ColliderEnterTriggerUnit : PoolableBaseUnit<RangeTriggerUnitModel>, IBattleEventTriggerUnit
 {
     protected enum ColliderSizeType
     {
