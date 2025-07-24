@@ -22,7 +22,7 @@ public class ScriptableAbilityBalance : ScriptableObject
     private float[] Duration;
 
     [SerializeField]
-    private int[] HitCount;
+    private int[] SendCount;
 
     [SerializeField]
     private float[] Scale;
@@ -63,15 +63,13 @@ public class ScriptableAbilityBalance : ScriptableObject
         return Scale[level];
     }
 
-    public int GetHitCount(int level)
+    public int GetSendCount(int level)
     {
-        if (HitCount == null || HitCount.Length == 0)
+        if (SendCount == null || SendCount.Length == 0)
             return 0;
-
-        if (level >= HitCount.Length)
-            return HitCount[HitCount.Length - 1];
-
-        return HitCount[level];
+        if (level >= SendCount.Length)
+            return SendCount[SendCount.Length - 1];
+        return SendCount[level];
     }
 
     public float GetCoolTime(int level)
@@ -88,7 +86,7 @@ public class ScriptableAbilityBalance : ScriptableObject
         Speed = new float[IntDefine.MAX_ABILITY_LEVEL];
         Range = new float[IntDefine.MAX_ABILITY_LEVEL];
         Duration = new float[IntDefine.MAX_ABILITY_LEVEL];
-        HitCount = new int[IntDefine.MAX_ABILITY_LEVEL];
+        SendCount = new int[IntDefine.MAX_ABILITY_LEVEL];
         Scale = new float[IntDefine.MAX_ABILITY_LEVEL];
         CoolTime = new float[IntDefine.MAX_ABILITY_LEVEL];
 
@@ -97,7 +95,7 @@ public class ScriptableAbilityBalance : ScriptableObject
             Speed[i] = 0f;
             Range[i] = 0f;
             Duration[i] = 0f;
-            HitCount[i] = 0;
+            SendCount[i] = 0;
             Scale[i] = 0f;
             CoolTime[i] = 0f;
         }
@@ -108,7 +106,7 @@ public class ScriptableAbilityBalance : ScriptableObject
         Speed = source.Speed != null ? (float[])source.Speed.Clone() : null;
         Range = source.Range != null ? (float[])source.Range.Clone() : null;
         Duration = source.Duration != null ? (float[])source.Duration.Clone() : null;
-        HitCount = source.HitCount != null ? (int[])source.HitCount.Clone() : null;
+        SendCount = source.SendCount != null ? (int[])source.SendCount.Clone() : null;
         Scale = source.Scale != null ? (float[])source.Scale.Clone() : null;
         CoolTime = source.CoolTime != null ? (float[])source.CoolTime.Clone() : null;
     }

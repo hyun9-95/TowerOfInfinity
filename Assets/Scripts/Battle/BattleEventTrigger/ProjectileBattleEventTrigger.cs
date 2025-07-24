@@ -29,7 +29,7 @@ public class ProjectileBattleEventTrigger : BattleEventTrigger
         projectileUnitModel.SetScale(Model.Scale);
         projectileUnitModel.SetStartPosition(Model.Sender.Transform.position);
         projectileUnitModel.SetOnEventHit(OnEventHit);
-        projectileUnitModel.SetGetOverTargetCount(IsOverTargetCount);
+        projectileUnitModel.SetGetOverSendCount(IsOverTargetCount);
 
         projectileUnit.ShowAsync().Forget();
     }

@@ -12,7 +12,7 @@ public class BattleEventTriggerModel
     public CharacterUnitModel Sender { get; private set; }
     public string PrefabName { get; private set; }
     public string HitEffectPrefabName { get; private set; }
-    public int HitCount { get; private set; }
+    public int SendCount { get; private set; }
     public float Range { get; private set; }
     public float Speed { get; private set; }
     public float Scale { get; private set; }
@@ -39,7 +39,7 @@ public class BattleEventTriggerModel
         TargetType = abilityData.TargetType;
         PrefabName = abilityData.PrefabName;
         HitEffectPrefabName = abilityData.HitEffectPrefabName;
-        HitCount = balance.GetHitCount(level);
+        SendCount = balance.GetSendCount(level);
         Range = balance.GetRange(level);
         Speed = balance.GetSpeed(level);
         Duration = balance.GetDuration(level);
@@ -65,7 +65,7 @@ public class BattleEventTriggerModel
         BattleEventDatas.Clear();
         TriggerType = BattleEventTriggerType.None;
         TargetType = BattleEventTargetType.None;
-        HitCount = 0;
+        SendCount = 0;
         Sender = null;
         PrefabName = string.Empty;
         Range = 0f;

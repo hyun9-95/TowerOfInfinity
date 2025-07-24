@@ -110,7 +110,7 @@ public class ProjectileTriggerUnit : PoolableBaseUnit<ProjectileTriggerUnitModel
         if (Model.Distance <= Vector3.Distance(transform.position, startPosition))
             return true;
 
-        if (Model.IsOverTargetCount())
+        if (Model.IsOverSendCount())
             return true;
 
         return false;

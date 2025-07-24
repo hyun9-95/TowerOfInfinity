@@ -7,7 +7,7 @@ public class BattleEventTriggerUnitModel : IBaseUnitModel
 
     public Transform FollowTarget { get; private set; }
 
-    public Func<bool> IsOverTargetCount { get; private set; }
+    public Func<bool> IsOverSendCount { get; private set; }
 
     public bool IsComplete { get; private set; }
 
@@ -23,9 +23,9 @@ public class BattleEventTriggerUnitModel : IBaseUnitModel
         OnEventHit = onEventHit;
     }
 
-    public void SetGetOverTargetCount(Func<bool> isOverTargetCount)
+    public void SetGetOverSendCount(Func<bool> isOverSendCount)
     {
-        IsOverTargetCount = isOverTargetCount;
+        IsOverSendCount = isOverSendCount;
     }
 
     public void SetComplete(bool complete)

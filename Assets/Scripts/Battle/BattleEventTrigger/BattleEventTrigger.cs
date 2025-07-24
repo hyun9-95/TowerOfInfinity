@@ -9,7 +9,7 @@ public abstract class BattleEventTrigger
     protected BattleEventTriggerModel Model { get; private set; }
     protected List<IBattleEventTriggerUnit> activeUnits = new List<IBattleEventTriggerUnit>();
 
-    protected int currentHitCount = 0;
+    protected int currentSendCount = 0;
  
     public void SetModel(BattleEventTriggerModel skillInfoValue)
     {
@@ -18,7 +18,7 @@ public abstract class BattleEventTrigger
 
     public void Reset()
     {
-        currentHitCount = 0;
+        currentSendCount = 0;
         Model = null;
         activeUnits.Clear();
     }
@@ -60,7 +60,7 @@ public abstract class BattleEventTrigger
 
     protected void OnEventHit(Collider2D hitTarget)
     {
-        if (IsOverHitCount(currentHitCount))
+        if (IsOverSendCount(currentSendCount))
             return;
 
         if (hitTarget == null)
@@ -74,10 +74,10 @@ public abstract class BattleEventTrigger
         if (model.TeamTag == Model.Sender.TeamTag)
             return;
 
-        ProcessTotalHits(model, hitTarget);
+        SendBattleEventToTarget(model, hitTarget);
     }
 
-    private void ProcessTotalHits(CharacterUnitModel targetModel, Collider2D hitTarget)
+    private void SendBattleEventToTarget(CharacterUnitModel targetModel, Collider2D hitTarget = null)
     {
         if (Model.BattleEventDatas.Count == 1)
         {
@@ -88,23 +88,23 @@ public abstract class BattleEventTrigger
             SendBattleEvents(targetModel);
         }
 
-        if (!string.IsNullOrEmpty(Model.HitEffectPrefabName))
+        if (hitTarget != null && !string.IsNullOrEmpty(Model.HitEffectPrefabName))
             OnSpawnHitEffect(hitTarget.transform.position).Forget();
 
-        currentHitCount++;
+        currentSendCount++;
 
-        if (IsOverHitCount(currentHitCount))
+        if (IsOverSendCount(currentSendCount))
             OnComplete();
     }
 
-    protected bool IsOverHitCount(int count)
+    protected bool IsOverSendCount(int count)
     {
-        return count >= Model.HitCount;
+        return count >= Model.SendCount;
     }
 
     protected bool IsOverTargetCount()
     {
-        return currentHitCount >= Model.HitCount;
+        return currentSendCount >= Model.SendCount;
     }
 
     protected async UniTask OnSpawnHitEffect(Vector3 pos)
