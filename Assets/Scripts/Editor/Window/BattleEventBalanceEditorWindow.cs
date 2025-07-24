@@ -22,6 +22,7 @@ public class BattleEventBalanceEditorWindow : BalanceEditorWindowBase<BattleEven
     protected override void DrawBalanceSettings(SerializedObject serializedObject)
     {
         DrawArrayPropertyField(serializedObject, "value", "값");
+        DrawArrayPropertyField(serializedObject, "value2", "값2");
         DrawArrayPropertyField(serializedObject, "duration", "지속 시간");
         DrawArrayPropertyField(serializedObject, "applyIntervalSeconds", "적용 간격");
     }

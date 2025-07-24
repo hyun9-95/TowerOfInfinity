@@ -17,6 +17,9 @@ public class ScriptableBattleEventBalance : ScriptableObject
     private float[] value;
 
     [SerializeField]
+    private float[] value2;
+
+    [SerializeField]
     private float[] duration;
 
     [SerializeField]
@@ -40,6 +43,15 @@ public class ScriptableBattleEventBalance : ScriptableObject
         return value[level];
     }
 
+    public float GetValue2(int level)
+    {
+        if (value2 == null || value2.Length == 0)
+            return 0f;
+        if (level >= value2.Length)
+            return value2[value2.Length - 1];
+        return value2[level];
+    }
+
     public float GetApplyIntervalSeconds(int level)
     {
         if (applyIntervalSeconds == null || applyIntervalSeconds.Length == 0)
@@ -53,12 +65,14 @@ public class ScriptableBattleEventBalance : ScriptableObject
     {
         duration = new float[IntDefine.MAX_ABILITY_LEVEL];
         value = new float[IntDefine.MAX_ABILITY_LEVEL];
+        value2 = new float[IntDefine.MAX_ABILITY_LEVEL];
         applyIntervalSeconds = new float[IntDefine.MAX_ABILITY_LEVEL];
 
         for (int i = 0; i < IntDefine.MAX_ABILITY_LEVEL; i++)
         {
             duration[i] = 0f;
             value[i] = 0f;
+            value2[i] = 0f;
             applyIntervalSeconds[i] = 0f;
         }
     }
@@ -67,6 +81,7 @@ public class ScriptableBattleEventBalance : ScriptableObject
     {
         duration = source.duration != null ? (float[])source.duration.Clone() : null;
         value = source.value != null ? (float[])source.value.Clone() : null;
+        value2 = source.value2 != null ? (float[])source.value2.Clone() : null;
         applyIntervalSeconds = source.applyIntervalSeconds != null ? (float[])source.applyIntervalSeconds.Clone() : null;
     }
 }

@@ -15,6 +15,7 @@ public class BattleEventModel
     public bool Stackable { get; private set; }
     public float Duration { get; private set; }
     public float Value { get; private set; }
+    public float Value2 { get; private set; }
     public float ApplyIntervalSeconds { get; private set; }
 
     public void Initialize(CharacterUnitModel sender, CharacterUnitModel receiver, DataBattleEvent dataBattleEvent, int level)
@@ -36,6 +37,7 @@ public class BattleEventModel
         {
             Duration = levelBalance.GetDuration(level);
             Value = levelBalance.GetValue(level);
+            Value2 = levelBalance.GetValue2(level);
             ApplyIntervalSeconds = levelBalance.GetApplyIntervalSeconds(level);
         }
     }

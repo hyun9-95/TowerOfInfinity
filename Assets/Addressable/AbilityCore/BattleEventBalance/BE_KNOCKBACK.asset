@@ -13,30 +13,8 @@ MonoBehaviour:
   m_Name: BE_KNOCKBACK
   m_EditorClassIdentifier: 
   define: 20002
-  duration:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
   value:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  applyIntervalSeconds:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
+  - 1
+  value2: []
+  duration: []
+  applyIntervalSeconds: []
