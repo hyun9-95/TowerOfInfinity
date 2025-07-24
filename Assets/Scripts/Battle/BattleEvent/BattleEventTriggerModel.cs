@@ -9,6 +9,8 @@ public class BattleEventTriggerModel
 
     public BattleEventTriggerType TriggerType { get; private set; }
 
+    public HitCountingType HitCountingType { get; private set; }
+
     public BattleEventTargetType TargetType { get; private set; }
 
     public CharacterUnitModel Sender { get; private set; }
@@ -19,7 +21,7 @@ public class BattleEventTriggerModel
 
     public Vector2 Direction { get; private set; }
 
-    public int TargetCount { get; private set; }
+    public int HitCount { get; private set; }
 
     public float Range { get; private set; }
 
@@ -41,7 +43,7 @@ public class BattleEventTriggerModel
         TriggerType = BattleEventTriggerType.None;
         TargetType = BattleEventTargetType.None;
         Direction = Vector2.zero;
-        TargetCount = 0;
+        HitCount = 0;
         Sender = null;
         PrefabName = string.Empty;
         Range = 0f;
@@ -59,7 +61,7 @@ public class BattleEventTriggerModel
         TargetType = abilityData.TargetType;
         PrefabName = abilityData.PrefabName;
         HitEffectPrefabName = abilityData.HitEffectPrefabName;
-        TargetCount = balance.GetTargetCount(level);
+        HitCount = balance.GetHitCount(level);
         Range = balance.GetRange(level);
         Speed = balance.GetSpeed(level);
         Duration = balance.GetDuration(level);
@@ -106,7 +108,7 @@ public class BattleEventTriggerModel
 
     public void SetBattleTargetCount(int value)
     {
-        TargetCount = value;
+        HitCount = value;
     }
 
     public void SetDirection(Vector3 value)

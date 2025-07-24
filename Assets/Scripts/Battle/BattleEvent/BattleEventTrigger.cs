@@ -6,10 +6,9 @@ using UnityEngine;
 
 public abstract class BattleEventTrigger
 {
-    protected virtual HitCountingType CountingType => HitCountingType.Total;
-    protected BattleEventTriggerModel Model { get; private set; }
+   protected BattleEventTriggerModel Model { get; private set; }
 
-    protected int currentTargetCount = 0;
+    protected int currentHitCount = 0;
 
     protected Dictionary<CharacterUnitModel, int> targetHitCount;
 
@@ -20,7 +19,7 @@ public abstract class BattleEventTrigger
 
     public void Reset()
     {
-        currentTargetCount = 0;
+        currentHitCount = 0;
 
         if (targetHitCount != null)
             targetHitCount.Clear();
@@ -82,7 +81,7 @@ public abstract class BattleEventTrigger
 
     protected void OnEventHit(Collider2D hitTarget)
     {
-        if (IsOverTargetCount(currentTargetCount))
+        if (IsOverHitCount(currentHitCount))
             return;
 
         if (hitTarget == null)
@@ -96,11 +95,14 @@ public abstract class BattleEventTrigger
         if (model.TeamTag == Model.Sender.TeamTag)
             return;
 
-        switch (CountingType)
+        switch (Model.HitCountingType)
         {
+            // 단순 HitCount로 계산
             case HitCountingType.Total:
                 ProcessTotalHits(model, hitTarget);
                 break;
+
+            // 타겟별로 히트카운트를 따로 계산
             case HitCountingType.PerTarget:
                 ProcessHitsPerTarget(model, hitTarget);
                 break;
@@ -121,9 +123,9 @@ public abstract class BattleEventTrigger
         if (!string.IsNullOrEmpty(Model.HitEffectPrefabName))
             OnSpawnHitEffect(hitTarget.transform.position).Forget();
 
-        currentTargetCount++;
+        currentHitCount++;
 
-        if (IsOverTargetCount(currentTargetCount))
+        if (IsOverHitCount(currentHitCount))
             OnComplete();
     }
 
@@ -141,21 +143,21 @@ public abstract class BattleEventTrigger
 
         int hitCount = targetHitCount[targetModel];
 
-        if (IsOverTargetCount(hitCount))
+        if (IsOverHitCount(hitCount))
             return;
 
         ProcessTotalHits(targetModel, hitTarget);
         targetHitCount[targetModel]++;
     }
 
-    protected bool IsOverTargetCount(int count)
+    protected bool IsOverHitCount(int count)
     {
-        return count >= Model.TargetCount;
+        return count >= Model.HitCount;
     }
 
     protected bool IsOverTargetCount()
     {
-        return currentTargetCount >= Model.TargetCount;
+        return currentHitCount >= Model.HitCount;
     }
 
     protected async UniTask OnSpawnHitEffect(Vector3 pos)

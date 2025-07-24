@@ -340,9 +340,14 @@ public abstract class BalanceEditorWindowBase<T, U, V> : EditorWindow
     protected void DrawArrayPropertyField(SerializedObject serializedObject, string propertyName, string label)
     {
         SerializedProperty property = serializedObject.FindProperty(propertyName);
+
+        if (property == null)
+            return;
+
         EditorGUILayout.BeginVertical(EditorStyles.helpBox);
 
         string currentValues = "";
+
         if (property.isArray)
         {
             for (int i = 0; i < property.arraySize; i++)

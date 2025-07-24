@@ -1,3 +1,5 @@
+using System;
+
 public enum CharacterAnimState
 {
     Idle = 0,
@@ -12,6 +14,31 @@ public enum CharacterAnimState
     Attack = 10,
 
     Die = 99,
+}
+
+public enum BattleEventTriggerType
+{
+    None,
+    Projectile,
+    Range,
+    Collider,
+    Instant,
+}
+
+public enum BattleEventTargetType
+{
+    None,
+    Self,
+    Single,
+    Multiple,
+    AllAllies,
+    AllEnemies,
+}
+
+public enum BattleEventType
+{
+    Damage,
+    KnockBack,
 }
 
 public enum PlayerInput
@@ -51,35 +78,32 @@ public enum LoadDataType
     Remote,
 }
 
+public enum StatType
+{
+    MaxHp,
+    Attack,
+    Defense,
+    MoveSpeed,
+    Max = 99,
+}
+
 public enum PortalType
 {
     WarpToBattle,
 }
 
-public enum TransitionType
-{
-    //Diagnoal Rectangle
-    Default,
-}
-
-public enum PathFindType
-{
-    Navmesh,
-    AStar,
-}
-
 [System.Flags]
 public enum LayerFlag
 {
-    None = 0,
-    Default = 1 << 0,
-    TransparentFX = 1 << 1,
-    IgnoreRaycast = 1 << 2,
-    Character = 1 << 3,
-    Water = 1 << 4,
-    UI = 1 << 5,
-    Background = 1 << 6,
-    Obstacle = 1 << 7,
+    None = 0,           
+    Default = 1 << 0,     
+    TransparentFX = 1 << 1,      
+    IgnoreRaycast = 1 << 2,     
+    Character = 1 << 3,  
+    Water = 1 << 4,    
+    UI = 1 << 5,     
+    Background = 1 << 6,    
+    Obstacle = 1 << 7,      
     Effect = 1 << 8,
     Camera = 1 << 9,
     Object = 1 << 10,
@@ -100,11 +124,29 @@ public enum LayerInt
     Object,
 }
 
+public enum TransitionType
+{
+    //Diagnoal Rectangle
+    Default,
+}
+
+public enum PathFindType
+{
+    Navmesh,
+    AStar,
+}
+
 public enum AbilityType
 {
     Weapon,
     ActiveSkill,
     PassiveSkill,
+}
+
+public enum TeamTag
+{
+    Ally,
+    Enemy,
 }
 
 public enum ModuleType
@@ -138,25 +180,6 @@ public enum DamageType
     Critical,
     Heal,
     Max,
-}
-
-public enum BattleEventTriggerType
-{
-    None,
-    Projectile,
-    Range,
-    Collider,
-    Instant,
-}
-
-public enum BattleEventTargetType
-{
-    None,
-    Self,
-    Single,
-    Multiple,
-    AllAllies,
-    AllEnemies,
 }
 
 public enum BattleEventCategory
@@ -196,6 +219,6 @@ public enum StatReferenceCondition
 
 public enum HitCountingType
 {
-    Total,       // 전체 타격 횟수를 제한
-    PerTarget    // 개별 타겟당 타격 횟수를 제한
+    Total,
+    PerTarget,
 }

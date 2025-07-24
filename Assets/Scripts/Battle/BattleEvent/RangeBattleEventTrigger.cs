@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class RangeBattleEventTrigger : BattleEventTrigger
 {
-    protected override HitCountingType CountingType => HitCountingType.PerTarget;
-
     public async override UniTask Process()
     {
         await ProcessRangeEvent();
