@@ -53,8 +53,11 @@ public class ColliderEnterTriggerUnit : PoolableBaseUnit<RangeTriggerUnitModel>,
         HideRenderer();
     }
 
-    protected void EnableCollider()
+    protected async UniTask EnableColliderAsync()
     {
+        if (detectStartTime > 0)
+            await UniTaskUtils.DelaySeconds(detectStartTime, TokenPool.Get(GetHashCode()));
+
         if (colliderSizeType == ColliderSizeType.Dynamic)
         {
             if (circleCollider != null)
@@ -68,6 +71,17 @@ public class ColliderEnterTriggerUnit : PoolableBaseUnit<RangeTriggerUnitModel>,
         }
         
         hitCollider.enabled = true;
+
+        if (detectEndTime > 0)
+        {
+            await UniTaskUtils.DelaySeconds(detectEndTime, TokenPool.Get(GetHashCode()));
+        }
+        else
+        {
+            await UniTask.NextFrame();
+        }
+
+        hitCollider.enabled = false;
     }
 
     public override async UniTask ShowAsync()
@@ -88,22 +102,7 @@ public class ColliderEnterTriggerUnit : PoolableBaseUnit<RangeTriggerUnitModel>,
 
         ShowRenderer();
 
-        if (detectStartTime > 0)
-            await UniTaskUtils.DelaySeconds(detectStartTime, TokenPool.Get(GetHashCode()));
-
-        EnableCollider();
-
-        if (detectEndTime > 0)
-        {
-            await UniTaskUtils.DelaySeconds(detectEndTime, TokenPool.Get(GetHashCode()));
-        }
-        else
-        {
-            await UniTask.NextFrame();
-        }
-
-        hitCollider.enabled = false;
-
+        await EnableColliderAsync();
         await base.ShowAsync();
     }
 
