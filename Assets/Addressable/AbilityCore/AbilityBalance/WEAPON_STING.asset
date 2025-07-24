@@ -16,7 +16,7 @@ MonoBehaviour:
   Speed: []
   Range: []
   Duration: []
-  TargetCount: 0100000001000000020000000200000003000000030000000400000004000000
+  SendCount: 
   Scale:
   - 0
   - 0.1

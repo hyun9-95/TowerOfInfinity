@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: BE_DAMAGE_ONE_SHOT_ATTACK
   m_EditorClassIdentifier: 
   define: 20000
-  duration: []
   value:
   - 1
   - 1.1
@@ -23,4 +22,6 @@ MonoBehaviour:
   - 1.5
   - 1.6
   - 1.7
+  value2: []
+  duration: []
   applyIntervalSeconds: []

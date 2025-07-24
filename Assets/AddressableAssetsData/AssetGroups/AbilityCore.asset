@@ -15,6 +15,12 @@ MonoBehaviour:
   m_GroupName: AbilityCore
   m_GUID: f79eb956c802c184796d5ff624cfa1bf
   m_SerializeEntries:
+  - m_GUID: 0cbc034ec5e409c479c596c35e31a6f3
+    m_Address: BE_KNOCKBACK
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1431d70326999ff469f7cc7cdb2ce349
     m_Address: WEAPON_SLASH_PROJECTILE
     m_ReadOnly: 0
