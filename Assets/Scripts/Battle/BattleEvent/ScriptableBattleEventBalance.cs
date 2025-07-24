@@ -14,10 +14,10 @@ public class ScriptableBattleEventBalance : ScriptableObject
     }
 
     [SerializeField]
-    private float[] duration;
+    private float[] value;
 
     [SerializeField]
-    private float[] value;
+    private float[] duration;
 
     [SerializeField]
     private float[] applyIntervalSeconds;

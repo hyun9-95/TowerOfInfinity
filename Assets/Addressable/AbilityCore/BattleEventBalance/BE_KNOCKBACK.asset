@@ -10,10 +10,33 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ed11842cc8ba12d40aca11dedabb0006, type: 3}
-  m_Name: BE_DAMAGE_COLLISION
+  m_Name: BE_KNOCKBACK
   m_EditorClassIdentifier: 
-  define: 20001
-  duration: []
+  define: 20002
+  duration:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
   value:
-  - 1
-  applyIntervalSeconds: []
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  applyIntervalSeconds:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0

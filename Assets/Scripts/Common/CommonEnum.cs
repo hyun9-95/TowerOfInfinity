@@ -38,7 +38,6 @@ public enum BattleEventTargetType
 public enum BattleEventType
 {
     Damage,
-    Buff,
     KnockBack,
 }
 

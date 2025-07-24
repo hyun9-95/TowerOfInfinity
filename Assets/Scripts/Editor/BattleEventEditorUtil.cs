@@ -9,6 +9,11 @@ public static class BattleEventEditorUtil
     [MenuItem("Tools/Battle Event Balance/Refresh All")]
     public static void RefreshAll()
     {
+        RefreshAll(true);
+    }
+
+    public static void RefreshAll(bool allowDelete)
+    {
         System.Array enumValues = System.Enum.GetValues(typeof(BattleEventDefine));
         System.Collections.Generic.List<string> createdAssets = new System.Collections.Generic.List<string>();
 
@@ -53,35 +58,39 @@ public static class BattleEventEditorUtil
             Logger.Success(message);
         }
 
-        // 기존 에셋 중 BattleEventDefine에 없는 에셋 제거
-        string[] existingAssets = Directory.GetFiles(assetPath, "*.asset");
         System.Collections.Generic.List<string> deletedAssets = new System.Collections.Generic.List<string>();
 
-        foreach (string asset in existingAssets)
+        if (allowDelete)
         {
-            string assetName = Path.GetFileNameWithoutExtension(asset);
-            bool foundInEnum = false;
-            foreach (BattleEventDefine define in enumValues)
+            // 기존 에셋 중 BattleEventDefine에 없는 에셋 제거
+            string[] existingAssets = Directory.GetFiles(assetPath, "*.asset");
+
+            foreach (string asset in existingAssets)
             {
-                if (define.ToString() == assetName)
+                string assetName = Path.GetFileNameWithoutExtension(asset);
+                bool foundInEnum = false;
+                foreach (BattleEventDefine define in enumValues)
                 {
-                    foundInEnum = true;
-                    break;
+                    if (define.ToString() == assetName)
+                    {
+                        foundInEnum = true;
+                        break;
+                    }
+                }
+
+                if (!foundInEnum)
+                {
+                    AssetDatabase.DeleteAsset(asset);
+                    deletedAssets.Add(assetName);
                 }
             }
 
-            if (!foundInEnum)
+            if (deletedAssets.Count > 0)
             {
-                AssetDatabase.DeleteAsset(asset);
-                deletedAssets.Add(assetName);
+                AssetDatabase.SaveAssets();
+                string message = "다음 BattleEventBalance 에셋이 제거됨:\n" + string.Join("\n", deletedAssets);
+                EditorUtility.DisplayDialog("제거 완료", message, "확인");
             }
-        }
-
-        if (deletedAssets.Count > 0)
-        {
-            AssetDatabase.SaveAssets();
-            string message = "다음 BattleEventBalance 에셋이 제거됨:\n" + string.Join("\n", deletedAssets);
-            EditorUtility.DisplayDialog("제거 완료", message, "확인");
         }
 
         if (createdAssets.Count == 0 && deletedAssets.Count == 0)

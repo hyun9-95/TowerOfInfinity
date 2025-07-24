@@ -22,5 +22,17 @@
     "StatReferenceCondition": "CurrentStat",
     "StatusDirection": "Increase",
     "Stackable": "False"
+  },
+  {
+    "id": 20002,
+    "nameId": "BE_KNOCKBACK",
+    "Type": "KnockBack",
+    "AffectStat": "None",
+    "BattleEventCategory": "Active",
+    "BattleEventGroup": "None",
+    "StatReference": "Sender",
+    "StatReferenceCondition": "None",
+    "StatusDirection": "None",
+    "Stackable": "False"
   }
 ]
