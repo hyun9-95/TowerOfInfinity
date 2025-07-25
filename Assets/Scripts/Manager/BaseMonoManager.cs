@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class BaseMonoManager<T> : MonoBehaviour where T : BaseMonoManager<T>, new()
+public abstract class BaseMonoManager<T> : TrackableMono where T : BaseMonoManager<T>, new()
 {
     private static T instance;
 

@@ -13,7 +13,7 @@ public class AbilityBalanceFactory : BaseManager<AbilityBalanceFactory>
             if (define == AbilityDefine.None)
                 continue;
 
-            var abilityBalance = await AddressableManager.Instance.LoadScriptableObject<ScriptableAbilityBalance>(define.ToString(), false);
+            var abilityBalance = await AddressableManager.Instance.LoadStaticScriptableObject<ScriptableAbilityBalance>(define.ToString());
             
             if (abilityBalance != null)
             {

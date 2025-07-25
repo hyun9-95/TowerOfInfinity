@@ -24,14 +24,7 @@ public class ObjectPoolManager : BaseMonoManager<ObjectPoolManager>
         return parent;
     }
 
-    /// <summary>
-    /// 사용 후 꼭 해제할 것
-    /// </summary>
-    /// <param name="name"></param>
-    /// <param name="position"></param>
-    /// <param name="rotation"></param>
-    /// <returns></returns>
-    public async UniTask<GameObject> Spawn(string name, Vector3 position = default, Quaternion rotation = default)
+    private async UniTask<GameObject> Spawn(string name, Vector3 position = default, Quaternion rotation = default)
     {
         if (!poolDictionary.ContainsKey(name))
             poolDictionary[name] = new Queue<GameObject>();
@@ -76,24 +69,13 @@ public class ObjectPoolManager : BaseMonoManager<ObjectPoolManager>
 
     public void Clear()
     {
-        foreach (var pool in poolDictionary.Values)
-        {
-            while (pool.Count > 0)
-            {
-                var go = pool.Dequeue();
-                if (go != null)
-                    AddressableManager.Instance.ReleaseGameObject(go);
-            }
-        }
-
-        poolDictionary.Clear();
-
         foreach (var parent in poolParentDictionary.Values)
         {
             if (parent != null)
                 GameObject.Destroy(parent.gameObject);
         }
 
+        poolDictionary.Clear();
         poolParentDictionary.Clear();
         originScaleDic.Clear();
     }

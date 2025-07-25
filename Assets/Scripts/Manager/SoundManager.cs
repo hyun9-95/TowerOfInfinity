@@ -1,5 +1,4 @@
 using Cysharp.Threading.Tasks;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SoundManager : BaseMonoManager<SoundManager>
@@ -49,6 +48,6 @@ public class SoundManager : BaseMonoManager<SoundManager>
         if (source == null)
             return;
 
-        await AddressableManager.Instance.SafeLoadAsync(source, path);
+        await AddressableManager.Instance.SafeLoadAsync(source, path, this);
     }
 }

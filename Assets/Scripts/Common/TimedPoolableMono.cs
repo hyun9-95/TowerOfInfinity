@@ -94,7 +94,8 @@ public class TimedPoolableMono : PoolableMono
 
     protected override void OnDisable()
     {
-        base.OnDisable();
         isCheckingLifeTime = false;
+
+        base.OnDisable();
     }
 }
