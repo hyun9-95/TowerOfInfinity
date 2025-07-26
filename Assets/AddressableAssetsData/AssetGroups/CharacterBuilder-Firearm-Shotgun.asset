@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterBuilder-Firearm-Shotgun
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterBuilder-Firearm-Shotgun
+  m_GUID: 2a8cce438cea575428b68e3e5b6b49b9
+  m_SerializeEntries:
+  - m_GUID: c4ed4ca83b529d14bbb8f96fc0f885a2
+    m_Address: CharacterBuilder/Firearm/Shotgun
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 727c6754c92d55c4193d1e171cb8a08c, type: 2}
+    - {fileID: 11400000, guid: 122f569189527dc469f3df1cdbf50b5d, type: 2}

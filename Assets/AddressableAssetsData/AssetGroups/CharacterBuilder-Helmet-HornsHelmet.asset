@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterBuilder-Helmet-HornsHelmet
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterBuilder-Helmet-HornsHelmet
+  m_GUID: b494227db4c0ba04f87387cacfa1bcba
+  m_SerializeEntries:
+  - m_GUID: dce42d64c30c3d54f95d49ee084404bc
+    m_Address: CharacterBuilder/Helmet/HornsHelmet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: ff6324920befb3647a5e72e3a4b84cf2, type: 2}
+    - {fileID: 11400000, guid: 3a3fe370e19c55d478c5fc74cd7232e0, type: 2}

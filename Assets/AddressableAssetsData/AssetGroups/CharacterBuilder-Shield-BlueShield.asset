@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterBuilder-Shield-BlueShield
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterBuilder-Shield-BlueShield
+  m_GUID: b739fcf73cdc9d741991adb8096f7b9f
+  m_SerializeEntries:
+  - m_GUID: a17493a2488a6454b970293343633aff
+    m_Address: CharacterBuilder/Shield/BlueShield
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 3a68bc79473583e4ea529237c52b6640, type: 2}
+    - {fileID: 11400000, guid: 749796937f6657f4aba4060cd869f8f7, type: 2}

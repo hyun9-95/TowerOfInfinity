@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterBuilder-Weapon-Lance
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterBuilder-Weapon-Lance
+  m_GUID: d4b8035bdf65bf54bbdc49074b2f624e
+  m_SerializeEntries:
+  - m_GUID: cce153a57c41289478e5ec67bb2e05ce
+    m_Address: CharacterBuilder/Weapon/Lance
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 3ad7921d4905dba4aae923e3b9df4750, type: 2}
+    - {fileID: 11400000, guid: 9f20c92ef513da84cb3d9e7e37bbeb83, type: 2}

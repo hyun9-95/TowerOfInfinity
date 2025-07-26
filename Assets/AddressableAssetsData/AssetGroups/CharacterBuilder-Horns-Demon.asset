@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterBuilder-Horns-Demon
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterBuilder-Horns-Demon
+  m_GUID: 9f24ded02f44a1c4bbb3709d0d512def
+  m_SerializeEntries:
+  - m_GUID: fa7307cd673c904459c34fc2f1e607d8
+    m_Address: CharacterBuilder/Horns/Demon
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: b1389a896b520bd4aae77edec07ae91b, type: 2}
+    - {fileID: 11400000, guid: 4c1ebf22370cc3a4d98d7ec885ea5c4d, type: 2}

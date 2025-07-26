@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterBuilder-Helmet-Maid
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterBuilder-Helmet-Maid
+  m_GUID: cb60c55c4a5143c40979a8412be2a530
+  m_SerializeEntries:
+  - m_GUID: b277c5679e877374598f37efe1dc7f36
+    m_Address: CharacterBuilder/Helmet/Maid
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: c9667b153515993449acb36b8667de59, type: 2}
+    - {fileID: 11400000, guid: d5bc66728c16e58468c965447f8b3a08, type: 2}

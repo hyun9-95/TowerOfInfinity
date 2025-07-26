@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterBuilder-Weapon-BlacksmithHammer
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterBuilder-Weapon-BlacksmithHammer
+  m_GUID: 6d4fa7eac48e7d84b9bc315250f2478d
+  m_SerializeEntries:
+  - m_GUID: ba823637260199741a3e3c6b1b87a2c1
+    m_Address: CharacterBuilder/Weapon/BlacksmithHammer
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 949289f0675f18c46a0f6c2b3773bb0a, type: 2}
+    - {fileID: 11400000, guid: 2821ce765e9006d4f9657fe28f4aabce, type: 2}

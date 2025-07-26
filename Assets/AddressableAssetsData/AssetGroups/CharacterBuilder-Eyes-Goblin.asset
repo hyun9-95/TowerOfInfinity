@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterBuilder-Eyes-Goblin
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterBuilder-Eyes-Goblin
+  m_GUID: ff55abc29685a5e4aab9233f213bcefa
+  m_SerializeEntries:
+  - m_GUID: b6ef603e3afe68e4293e8214ff61e92f
+    m_Address: CharacterBuilder/Eyes/Goblin
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: aeaf627b21c3d8c49972dfbaa9bc06c7, type: 2}
+    - {fileID: 11400000, guid: d506ae4043ca3cf40919ee0881025b5b, type: 2}

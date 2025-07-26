@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterBuilder-Helmet-ThiefHood
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterBuilder-Helmet-ThiefHood
+  m_GUID: c7113df9859864f49a16a2d5df48876b
+  m_SerializeEntries:
+  - m_GUID: d0a484a27f44acc4ca53e91294946c24
+    m_Address: CharacterBuilder/Helmet/ThiefHood
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 11d2d4041d21d3b4d80dae7cdc824141, type: 2}
+    - {fileID: 11400000, guid: 218055335875ca1459a3f920e4c870ae, type: 2}

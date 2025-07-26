@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterBuilder-Armor-FarmerClothes
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterBuilder-Armor-FarmerClothes
+  m_GUID: eef2477167b217d49a8cfe3927fb19ad
+  m_SerializeEntries:
+  - m_GUID: 1e64467b13ce8e048b39ba67f03ce8f7
+    m_Address: CharacterBuilder/Armor/FarmerClothes
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 878c2d073fcd5434da9a44ed67a0e774, type: 2}
+    - {fileID: 11400000, guid: 88c846bd7753a7e4ab942a2ceb62fa0d, type: 2}

@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterBuilder-Bracers-NinjaTunic
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterBuilder-Bracers-NinjaTunic
+  m_GUID: 118441ec5909a6c42b98e74a4943ab26
+  m_SerializeEntries:
+  - m_GUID: 862d35ab0aee9ea438dc1fe546be9060
+    m_Address: CharacterBuilder/Bracers/NinjaTunic
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: b1d7b7d2d631dfa41a3e24ac4a452a48, type: 2}
+    - {fileID: 11400000, guid: 46cf117b6c45e1a41a9c98339fb7e913, type: 2}

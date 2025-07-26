@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterBuilder-Arms-Werewolf
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterBuilder-Arms-Werewolf
+  m_GUID: e0807f9b5b22f4a459084c08a094a4b1
+  m_SerializeEntries:
+  - m_GUID: 940bb242d60bbf244b09441e2d865dfc
+    m_Address: CharacterBuilder/Arms/Werewolf
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 6c228a3f929ac1847a2f464d00b668fe, type: 2}
+    - {fileID: 11400000, guid: d81ab5e0290410542af5286e79c23c05, type: 2}

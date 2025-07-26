@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterBuilder-Eyes-FireLizard
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterBuilder-Eyes-FireLizard
+  m_GUID: 6eb6ee45015270648994ceace59c969e
+  m_SerializeEntries:
+  - m_GUID: 9372936880c05f943907124a536944a1
+    m_Address: CharacterBuilder/Eyes/FireLizard
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 00c6033b11e4f8d41a9b025cdbe96a6a, type: 2}
+    - {fileID: 11400000, guid: 19f0cd76b518a4349b3b7763105d6e42, type: 2}

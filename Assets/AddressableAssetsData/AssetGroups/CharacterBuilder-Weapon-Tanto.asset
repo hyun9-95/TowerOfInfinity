@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterBuilder-Weapon-Tanto
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterBuilder-Weapon-Tanto
+  m_GUID: 4be432d73aff9c049a17ef0b20e24ab0
+  m_SerializeEntries:
+  - m_GUID: ebcb1258e2ef14347af8dee645823343
+    m_Address: CharacterBuilder/Weapon/Tanto
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 90ac2e91fcdb3b549aa59f55c93a49e7, type: 2}
+    - {fileID: 11400000, guid: 1d4fe6d40439e1d43a4e14b4a410d089, type: 2}

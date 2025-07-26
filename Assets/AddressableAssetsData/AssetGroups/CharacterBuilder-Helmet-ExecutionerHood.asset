@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterBuilder-Helmet-ExecutionerHood
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterBuilder-Helmet-ExecutionerHood
+  m_GUID: dccd2a07229bd8e438770a6e7343f531
+  m_SerializeEntries:
+  - m_GUID: bc9e6544be663c34e9451aaca815516d
+    m_Address: CharacterBuilder/Helmet/ExecutionerHood
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: afebe13b801a29f44b0c4e648e21a15b, type: 2}
+    - {fileID: 11400000, guid: 0be1efd7d789c5649823fad0dd6934e4, type: 2}

@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterBuilder-Hair-Hair9
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterBuilder-Hair-Hair9
+  m_GUID: 3b78fa6aafab58f418741ddd0784bad6
+  m_SerializeEntries:
+  - m_GUID: adcdf59faab3da74f84ca70edd5e9da0
+    m_Address: CharacterBuilder/Hair/Hair9
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 027ebf8d7143a4d499eceacaabe59cf5, type: 2}
+    - {fileID: 11400000, guid: 97a043e98b087e144a478fcda859ef7f, type: 2}

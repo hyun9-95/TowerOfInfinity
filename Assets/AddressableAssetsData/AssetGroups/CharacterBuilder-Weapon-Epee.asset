@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterBuilder-Weapon-Epee
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterBuilder-Weapon-Epee
+  m_GUID: 8a0c11d3891f1e042af630d8ffc56b71
+  m_SerializeEntries:
+  - m_GUID: bcf27ef65716d0f4996fb2f4772ace42
+    m_Address: CharacterBuilder/Weapon/Epee
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 15d1da1b47c8cbb4f838a038d93e4806, type: 2}
+    - {fileID: 11400000, guid: 0c155433d8d905543801f526223d82c4, type: 2}

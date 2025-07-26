@@ -62,6 +62,15 @@ public class AddressableBuildGenerator : BaseGenerator
 
     private string GetEntryName(string assetPath)
     {
+        // 파츠별로 골라서 사용하기 때문에, 모든 파츠를 그룹 세분화해야 메모리가 덜 로드된다.
+        if (assetPath.Contains("Assets/Addressable/CharacterBuilder/"))
+        {
+            string uniqueGroupName = assetPath.Replace("Assets/Addressable/", "");
+            string[] split = uniqueGroupName.Split(".");
+            uniqueGroupName = split[0];
+            return uniqueGroupName;
+        }
+
         string[] pathParts = assetPath.Split('/');
         string parentFolder = pathParts[2];
 

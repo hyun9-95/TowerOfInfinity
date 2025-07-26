@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterBuilder-Body-ZombieA
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterBuilder-Body-ZombieA
+  m_GUID: f9f45e7d21587a44487824ca546a711d
+  m_SerializeEntries:
+  - m_GUID: 4b73a603a2c143e488e6aa0e25535cbe
+    m_Address: CharacterBuilder/Body/ZombieA
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 982f09c64513b2941aaf24165cc7d05d, type: 2}
+    - {fileID: 11400000, guid: 92524bf046d41ba4ab8a721271e31707, type: 2}

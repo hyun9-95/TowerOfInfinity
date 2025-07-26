@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterBuilder-Eyes-Demon
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterBuilder-Eyes-Demon
+  m_GUID: 9832c6f8a5a29024fa64bca668c061bc
+  m_SerializeEntries:
+  - m_GUID: 3cec034494e28ca49becfdcefdabe7aa
+    m_Address: CharacterBuilder/Eyes/Demon
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: c75d528aa44727e42bdf632eb6aa5e2b, type: 2}
+    - {fileID: 11400000, guid: e7176e37f0b8f7647bb35c5eb124a25d, type: 2}

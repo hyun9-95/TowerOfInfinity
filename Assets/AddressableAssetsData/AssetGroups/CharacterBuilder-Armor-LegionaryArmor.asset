@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterBuilder-Armor-LegionaryArmor
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterBuilder-Armor-LegionaryArmor
+  m_GUID: b6de14ed18c9296439f2e70dbe9e297f
+  m_SerializeEntries:
+  - m_GUID: 1a80803e5a3577446874725ebd53cb9c
+    m_Address: CharacterBuilder/Armor/LegionaryArmor
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 89fe98a99e53b9b409c4d4a41b13f009, type: 2}
+    - {fileID: 11400000, guid: 953904c9f15031941917edfa38d839bf, type: 2}

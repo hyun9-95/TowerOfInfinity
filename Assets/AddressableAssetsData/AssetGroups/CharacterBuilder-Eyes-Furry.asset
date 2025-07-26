@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterBuilder-Eyes-Furry
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterBuilder-Eyes-Furry
+  m_GUID: f36da202d5b11a74aa1e75fdb7e2101e
+  m_SerializeEntries:
+  - m_GUID: c22e1089abb98b34ca7859b1459865f0
+    m_Address: CharacterBuilder/Eyes/Furry
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: adf5f58d47c70dd409adeb8f5c6479ee, type: 2}
+    - {fileID: 11400000, guid: 1c49869ac152f3646af91e9419cf52bc, type: 2}

@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterBuilder-Weapon-Longsword
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterBuilder-Weapon-Longsword
+  m_GUID: de175fb8710dec44eb404f93b38bac19
+  m_SerializeEntries:
+  - m_GUID: b279aa2bf772ef647ab25b87b235aa4f
+    m_Address: CharacterBuilder/Weapon/Longsword
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: c680ba4add5269f4c874fc47265b4a5a, type: 2}
+    - {fileID: 11400000, guid: 103eafcab84cc7541b548f3b1140e1aa, type: 2}

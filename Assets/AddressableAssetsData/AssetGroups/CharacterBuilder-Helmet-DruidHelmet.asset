@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterBuilder-Helmet-DruidHelmet
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterBuilder-Helmet-DruidHelmet
+  m_GUID: 869100b38cb370c4f88989e28909f80d
+  m_SerializeEntries:
+  - m_GUID: 2dde58a06cc0e47419834c9c87d9fd0c
+    m_Address: CharacterBuilder/Helmet/DruidHelmet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 84e0d62a070d4e54e9076c9579c77a65, type: 2}
+    - {fileID: 11400000, guid: 33f8c533ed1a86541b477dde93098d18, type: 2}

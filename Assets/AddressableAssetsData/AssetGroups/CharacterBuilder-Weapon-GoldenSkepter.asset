@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterBuilder-Weapon-GoldenSkepter
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterBuilder-Weapon-GoldenSkepter
+  m_GUID: 0d7dbf14e6a139448ba97dfb52bd457b
+  m_SerializeEntries:
+  - m_GUID: 2498c64326adf974c81a38ebb96ecac6
+    m_Address: CharacterBuilder/Weapon/GoldenSkepter
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 58fd26caf958a9644af14745a2e35d2b, type: 2}
+    - {fileID: 11400000, guid: 83131311d2c3805408a68f0c10b84948, type: 2}

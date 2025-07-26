@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterBuilder-Body-Skeleton
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterBuilder-Body-Skeleton
+  m_GUID: ec64aaa6b874d27449c30eb6699c5244
+  m_SerializeEntries:
+  - m_GUID: 68a9d97afd7b37940a69ef60a8e0ee81
+    m_Address: CharacterBuilder/Body/Skeleton
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 3670e74466986964690281bfd0dbf638, type: 2}
+    - {fileID: 11400000, guid: 77816f8c673647b49ae75357f5ec8dff, type: 2}

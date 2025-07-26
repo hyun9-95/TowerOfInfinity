@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterBuilder-Helmet-SantaHood
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterBuilder-Helmet-SantaHood
+  m_GUID: 9f34152be6fa1eb48b3680c430125109
+  m_SerializeEntries:
+  - m_GUID: 9e6a414c1d4319742a18e2ab840d79b9
+    m_Address: CharacterBuilder/Helmet/SantaHood
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 0be246921ca76cd4097635c347cddfe4, type: 2}
+    - {fileID: 11400000, guid: f8f9014a2eaf7744d8ef683085a23db1, type: 2}

@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterBuilder-Armor-Executioner
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterBuilder-Armor-Executioner
+  m_GUID: ac04c2298b0a36640990a6a49aa33abd
+  m_SerializeEntries:
+  - m_GUID: fc058800bd6ac60458bab967348fe859
+    m_Address: CharacterBuilder/Armor/Executioner
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: d3e21479f70cc7f418297cd037d1dca1, type: 2}
+    - {fileID: 11400000, guid: 3770436f99cf7eb46b020c29f281405d, type: 2}
