@@ -69,13 +69,14 @@ public class ObjectPoolManager : BaseMonoManager<ObjectPoolManager>
 
     public void Clear()
     {
+        poolDictionary.Clear();
+
         foreach (var parent in poolParentDictionary.Values)
         {
             if (parent != null)
                 GameObject.Destroy(parent.gameObject);
         }
 
-        poolDictionary.Clear();
         poolParentDictionary.Clear();
         originScaleDic.Clear();
     }
