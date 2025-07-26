@@ -1,0 +1,263 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterBuilder_Bracers
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterBuilder_Bracers
+  m_GUID: 6d9266f25074d6c4a8cc757fb085fb5e
+  m_SerializeEntries:
+  - m_GUID: 001e6143222281c43b65530611132d53
+    m_Address: CharacterBuilder/Bracers/Angel
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 045364269315cdc4f8080b46e08efdba
+    m_Address: CharacterBuilder/Bracers/SantaTunic
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 095530cc3a1db7340a7622ca10b8f6b7
+    m_Address: CharacterBuilder/Bracers/GreenElfTunic
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0ee23fb3bb60fbd4faaa68ee993b6fb1
+    m_Address: CharacterBuilder/Bracers/Priest
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1c1cef316a06c7d49ba2a7a0d1a6debe
+    m_Address: CharacterBuilder/Bracers/Chief
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1fd4db7a3551a6f4e9542acf30d059ce
+    m_Address: CharacterBuilder/Bracers/DemigodArmour
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2169db5f37ffb124390f9e9c77405d5a
+    m_Address: CharacterBuilder/Bracers/PirateRobe
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 248d36eb15b078945ad26219e52453ac
+    m_Address: CharacterBuilder/Bracers/GuardianTunic
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 293d2347c241c58438e8316f45bd6096
+    m_Address: CharacterBuilder/Bracers/MilitiamanArmor
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2f4fd13c9ccf74448a7133f2c867c383
+    m_Address: CharacterBuilder/Bracers/ThiefTunic
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 31a23e7753c5a424b927bdc97f5acf1c
+    m_Address: CharacterBuilder/Bracers/Samurai
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 324ece6fd6746c44ea8544207991c51a
+    m_Address: CharacterBuilder/Bracers/BlueKnight
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3730f29d3c5668d4eac899aadeeb7114
+    m_Address: CharacterBuilder/Bracers/MonkRobe
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4c5097f43ae77e548a3b7493c791a220
+    m_Address: CharacterBuilder/Bracers/PilotArmor
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4ea5987b2b01d4f4dbba4f19ae1c7392
+    m_Address: CharacterBuilder/Bracers/HeavyKnightArmor
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5267bb623aef0114aa9a95dbada95f7d
+    m_Address: CharacterBuilder/Bracers/NecromancerRobe
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 534059442c78b9341bfee0183013f91d
+    m_Address: CharacterBuilder/Bracers/DeathRobe
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 541eb3edf0d21db49b53de7c209e905b
+    m_Address: CharacterBuilder/Bracers/BlueWizardTunic
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5595ea2c64a1d5e4fba6d2460aa08aa9
+    m_Address: CharacterBuilder/Bracers/FireWizardRobe
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 559b1250035f60042970c3935e302601
+    m_Address: CharacterBuilder/Bracers/Executioner
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 60cf5e3408579d64baa9bdba3b186099
+    m_Address: CharacterBuilder/Bracers/SaboteurArmour
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6db6973167f02434787047f91f7bf9ae
+    m_Address: CharacterBuilder/Bracers/HaloweenTunic
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7e926b65cc9c3c84fa64284ca37a5b3d
+    m_Address: CharacterBuilder/Bracers/DeerCostume
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8059375aa30ca9047b333bd2a5695770
+    m_Address: CharacterBuilder/Bracers/Gladiator
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 81f4102bf3af7e240a5c4bfced43f9de
+    m_Address: CharacterBuilder/Bracers/LegionaryArmor
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 832d37bd7b50aa5469e5795c6c053316
+    m_Address: CharacterBuilder/Bracers/PlagueDoctor
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 862d35ab0aee9ea438dc1fe546be9060
+    m_Address: CharacterBuilder/Bracers/NinjaTunic
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 96f73a7962aee7c478453ec41ab550ad
+    m_Address: CharacterBuilder/Bracers/Spartan
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: aae82b73cce669645ae0222863267408
+    m_Address: CharacterBuilder/Bracers/Hellsing
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c5a6b97214e0123428e65a29025997ca
+    m_Address: CharacterBuilder/Bracers/Dracula
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: caf8c0331ad6f994c837380b7f73c9d7
+    m_Address: CharacterBuilder/Bracers/CaptainArmor
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d249ae30003b8b84eb4a0be7c2ecaf28
+    m_Address: CharacterBuilder/Bracers/Panda
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e0f99aee5953b024c88c92871f840f7a
+    m_Address: CharacterBuilder/Bracers/ClericRobe
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e19ddeaf93150a04fa335d26132aa38a
+    m_Address: CharacterBuilder/Bracers/HornsKnight
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e8a490fe969374c4e96bea66de559ed7
+    m_Address: CharacterBuilder/Bracers/ArcherTunic
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: eb5e72fb4873ae84cb8bbf4b075fd7c6
+    m_Address: CharacterBuilder/Bracers/DruidRobe
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ecb5ad866d535d84bba28434183202bf
+    m_Address: CharacterBuilder/Bracers/HolowKnight
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f0da25ac6a007554783bdf871a0bcda6
+    m_Address: CharacterBuilder/Bracers/Link
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f2e33fb21d58aa344a6ef162757731bb
+    m_Address: CharacterBuilder/Bracers/MusketeerTunic
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fe49833bcb214174ba525759b9c7d304
+    m_Address: CharacterBuilder/Bracers/IronKnight
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 0b17f72b82091854186263eba469a7a2, type: 2}
+    - {fileID: 11400000, guid: 110df24fc57b45a44b3aa658b152987d, type: 2}

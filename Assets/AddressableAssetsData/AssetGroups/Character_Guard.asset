@@ -16,25 +16,25 @@ MonoBehaviour:
   m_GUID: 6c305d3b84a5f6f47a19df9d1c60bcfa
   m_SerializeEntries:
   - m_GUID: 316a6945ec80d964981c7623758aef4c
-    m_Address: Guard
+    m_Address: Character/Player/Guard/Guard
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 57519a3daa5b01f4892533db86751a45
-    m_Address: Guard_SpriteSheet
+    m_Address: Character/Player/Guard/Guard_SpriteSheet
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9ca1ec5afd2f4da42b73e543edab1dd8
-    m_Address: Guard_SpriteLibrary
+    m_Address: Character/Player/Guard/Guard_SpriteLibrary
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ecc0edbe6043a4b40b9d9bc9af733a4e
-    m_Address: Guard_Stat
+    m_Address: Character/Player/Guard/Guard_Stat
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main

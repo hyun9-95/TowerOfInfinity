@@ -15,7 +15,7 @@ public class LobbyFlow : BaseFlow<LobbyFlowModel>
 
     public override async UniTask LoadingProcess()
     {
-        var loadedScene = await AddressableManager.Instance.LoadSceneAsyncWithName(Model.LobbySceneDefine, UnityEngine.SceneManagement.LoadSceneMode.Single);
+        var loadedScene = await AddressableManager.Instance.LoadSceneAsync(Model.LobbySceneDefine, UnityEngine.SceneManagement.LoadSceneMode.Single);
 
         if (!loadedScene.IsValid())
             return;

@@ -115,7 +115,6 @@ public class AddressableBuildGenerator : BaseGenerator
         // 기존 라벨 제거함
         entry.labels.Clear();
 
-        string assetName = Path.GetFileNameWithoutExtension(assetPath);
         string labelName = GetLabelName(assetPath);
 
         // 라벨 추가
@@ -127,9 +126,13 @@ public class AddressableBuildGenerator : BaseGenerator
             entry.SetLabel(labelName, true);
         }
 
-        // 어드레스를 이름으로 설정.
-        entry.SetAddress(excludeNames.Contains(assetName) ? assetPath : assetName);
-        AddToAddressableDic(assetName, assetPath);
+        string newAddress = assetPath.Replace("Assets/Addressable/", "");
+        string[] split = newAddress.Split(".");
+        newAddress = split[0];
+
+        // 어드레스를 새로운 규칙에 따라 설정.
+        entry.SetAddress(excludeNames.Contains(newAddress) ? assetPath : newAddress);
+        AddToAddressableDic(newAddress, assetPath);
     }
 
     private AddressableAssetGroup FindDefaultGroup(AddressableAssetSettings addressableSettings)
@@ -142,19 +145,19 @@ public class AddressableBuildGenerator : BaseGenerator
         return defaultGroup;
     }
 
-    private void AddToAddressableDic(string name, string address)
+    private void AddToAddressableDic(string address, string path)
     {
-        if (excludeNames.Contains(name))
+        if (excludeNames.Contains(address))
             return;
 
-        if (!addressableDic.ContainsKey(name))
+        if (!addressableDic.ContainsKey(address))
         {
-            addressableDic.Add(name, address);
-            Logger.Log($"Add to AddressableDic {name} : {address}");
+            addressableDic.Add(address, path);
+            Logger.Log($"Add to AddressableDic {address} : {path}");
         }
         else
         {
-            Logger.Error($"Duplicate name... {name}");
+            Logger.Error($"Duplicate path... {address}");
         }
     }
 
@@ -252,17 +255,18 @@ public class AddressableBuildGenerator : BaseGenerator
             if (AssetDatabase.IsValidFolder(assetPath))
                 continue;
 
-            string assetName = Path.GetFileNameWithoutExtension(assetPath);
+            string assetAddress = assetPath.Replace("Assets/Addressable/", "");
+            assetAddress = Path.GetFileNameWithoutExtension(assetAddress);
 
             // 중복 체크 및 추가
-            if (!buildInfoDic.ContainsKey(assetName))
+            if (!buildInfoDic.ContainsKey(assetAddress))
             {
-                buildInfoDic.Add(assetName, assetPath);
-                Logger.Log($"Add to BuildInfoDic {assetName} : {assetPath}");
+                buildInfoDic.Add(assetAddress, assetPath);
+                Logger.Log($"Add to BuildInfoDic {assetAddress} : {assetPath}");
             }
             else
             {
-                Logger.Error($"Duplicate asset name found: {assetName}");
+                Logger.Error($"Duplicate asset address found: {assetAddress}");
             }
         }
 

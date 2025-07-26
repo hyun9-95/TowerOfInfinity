@@ -7,12 +7,20 @@ namespace TowerOfInfinity.CharacterBuilder
     public class AddressableSpriteData : ScriptableObject
     {
         [System.Serializable]
-        public class LayerData
+        public class PartData
         {
-            public string LayerName;
-            public List<string> Addresses; // Changed to a list of strings
+            public string PartName;
+            public string Address;
         }
 
-        public List<LayerData> Layers;
+        [System.Serializable]
+        public class LayerEntry // LayerData 대신 LayerEntry로 이름 변경 (혼동 방지)
+        {
+            public string LayerName;
+            public List<PartData> Parts; // PartsData 대신 Parts로 이름 변경 (간결성)
+        }
+
+        // 이 리스트가 인스펙터에 표시됩니다。
+        public List<LayerEntry> LayerEntries = new List<LayerEntry>();
     }
 }

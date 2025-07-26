@@ -14,7 +14,7 @@ public class BattleFlow : BaseFlow<BattleFlowModel>
 
     public override async UniTask LoadingProcess()
     {
-        var loadedScene = await AddressableManager.Instance.LoadSceneAsyncWithName(Model.BattleSceneDefine, UnityEngine.SceneManagement.LoadSceneMode.Single);
+        var loadedScene = await AddressableManager.Instance.LoadSceneAsync(Model.BattleSceneDefine, UnityEngine.SceneManagement.LoadSceneMode.Single);
 
         if (!loadedScene.IsValid())
             return;

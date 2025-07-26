@@ -105,7 +105,7 @@ namespace TowerOfInfinity.CharacterBuilder
             }
 
             if (layerPartData.ContainsKey("Head")) processedLayersPixels.Add("Head", getProcessedPixels("Head", layerPartData["Head"], null, changed));
-            if (layerPartData.ContainsKey("Ears") && (Helmet == "" || Helmet.Contains("[ShowEars]")))
+            if (layerPartData.ContainsKey("Ears") && (Helmet == "" || Helmet.Contains("ShowEars")))
             {
                 processedLayersPixels.Add("Ears", getProcessedPixels("Ears", layerPartData["Ears"], null, changed));
             }
@@ -207,31 +207,31 @@ namespace TowerOfInfinity.CharacterBuilder
 
         private async UniTask LoadAndStoreTexture(string layerName, string address)
         {
-            Texture2D texture = await AddressableManager.Instance.LoadAssetAsyncWithName<Texture2D>(address);
+            Texture2D texture = await AddressableManager.Instance.LoadAssetAsync<Texture2D>(address);
+            
             if (texture != null)
             {
                 _loadedTextures[layerName] = texture;
-
-                Debug.LogError($"load success: {layerName} : {address}");
             }
             else
             {
-                Debug.LogError($"load failed : {address}");
+                Logger.Error($"Character Parts Load Failed : {address}");
             }
         }
 
         private string GetAddressFromAddressableData(string layerName, string partName)
         {
-            if (AddressableData == null || AddressableData.Layers == null) return null;
+            if (AddressableData == null || AddressableData.LayerEntries == null) return null;
 
-            foreach (var layerData in AddressableData.Layers)
+            // LayerEntries 리스트에서 해당 LayerName을 가진 LayerEntry를 찾습니다.
+            var layerEntry = AddressableData.LayerEntries.FirstOrDefault(entry => entry.LayerName == layerName);
+
+            if (layerEntry != null && layerEntry.Parts != null)
             {
-                if (layerData.LayerName == layerName)
+                var part = layerEntry.Parts.FirstOrDefault(p => p.PartName == partName);
+                if (part != null)
                 {
-                    if (layerData.Addresses != null && layerData.Addresses.Count > 0)
-                    {
-                        return layerData.Addresses.FirstOrDefault(addr => addr.Contains(partName));
-                    }
+                    return part.Address;
                 }
             }
             return null;

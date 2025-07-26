@@ -16,25 +16,25 @@ MonoBehaviour:
   m_GUID: 90a5499a617287748bdd306cb04ae221
   m_SerializeEntries:
   - m_GUID: 05c6dd067f4bc7c42b47ea9814766ffc
-    m_Address: GreenOgre_Stat
+    m_Address: Character/Enemy/GreenOgre/GreenOgre_Stat
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 0863c57f4d634095a4869c3052affe04
-    m_Address: GreenOgre_SpriteLibrary
+    m_Address: Character/Enemy/GreenOgre/GreenOgre_SpriteLibrary
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7549dec4a99f37348bc7cea2193fcf24
-    m_Address: GreenOgre_Enemy
+    m_Address: Character/Enemy/GreenOgre/GreenOgre_Enemy
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b55edc564f1b4955864cdd369d1f5a4c
-    m_Address: GreenOgre_Sprite
+    m_Address: Character/Enemy/GreenOgre/GreenOgre_Sprite
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main

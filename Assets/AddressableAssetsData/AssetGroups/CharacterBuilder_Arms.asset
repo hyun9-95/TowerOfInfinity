@@ -1,0 +1,119 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterBuilder_Arms
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterBuilder_Arms
+  m_GUID: c9500e85b26131d47b6dcb64d7049cca
+  m_SerializeEntries:
+  - m_GUID: 15af6177cc4414346a51b4933efe080d
+    m_Address: CharacterBuilder/Arms/Elf
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 219f4a9999cd9364784bc00e8bf0278f
+    m_Address: CharacterBuilder/Arms/Furry
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 55a1863a04f2a0c43a6ff403ea922cde
+    m_Address: CharacterBuilder/Arms/Demon
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7c8eeb66639df88418ec5fd8c442d1a8
+    m_Address: CharacterBuilder/Arms/Orc
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7ec0e3881a79f124084cc057cddd9cc4
+    m_Address: CharacterBuilder/Arms/Goblin
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 940bb242d60bbf244b09441e2d865dfc
+    m_Address: CharacterBuilder/Arms/Werewolf
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 956ac4b706661ea41a9e6ab0f7759290
+    m_Address: CharacterBuilder/Arms/Skeleton
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a9129f435184da94dbb07e89409a6c5f
+    m_Address: CharacterBuilder/Arms/Human
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: acabcf3567274ed4dbdbefd57683a951
+    m_Address: CharacterBuilder/Arms/Vampire
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: af626964aa5a11c498be4ba417ac680b
+    m_Address: CharacterBuilder/Arms/ZombieB
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b28128e1c2c9a9f4fb14df182dd6193a
+    m_Address: CharacterBuilder/Arms/ZombieA
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bbdbada36ca0fb544951bc3485bd1b34
+    m_Address: CharacterBuilder/Arms/Merman
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ccab82eb4fa1a1b478da5180e72d86b8
+    m_Address: CharacterBuilder/Arms/FireLizard
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cf01be21c0fd8d243b06f1c85b7756ed
+    m_Address: CharacterBuilder/Arms/DarkElf
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dac0f3ddfb827834bb723bba33c5c103
+    m_Address: CharacterBuilder/Arms/Lizard
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ea0988ea4e642a744a76c4069ae9f243
+    m_Address: CharacterBuilder/Arms/Demigod
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 7ea49e7dd991a1747aee865539ee2cd5, type: 2}
+    - {fileID: 11400000, guid: f65fa00a1978021458be834518a0eea4, type: 2}

@@ -1,19 +1,23 @@
 using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.Generic;
+using System.Text;
 
 public class AbilityBalanceFactory : BaseManager<AbilityBalanceFactory>
 {
     private Dictionary<AbilityDefine, ScriptableAbilityBalance> abilityBalanceDic = new Dictionary<AbilityDefine, ScriptableAbilityBalance>();
+    private string folderPath = "AbilityCore/AbilityBalance/";
 
     public async UniTask Initialize()
     {
+        StringBuilder sb = new StringBuilder();
         foreach (AbilityDefine define in Enum.GetValues(typeof(AbilityDefine)))
         {
             if (define == AbilityDefine.None)
                 continue;
 
-            var abilityBalance = await AddressableManager.Instance.LoadScriptableObject<ScriptableAbilityBalance>(define.ToString(), false);
+            string balancePath = sb.Append(folderPath).Append(define.ToString()).ToString();
+            var abilityBalance = await AddressableManager.Instance.LoadScriptableObject<ScriptableAbilityBalance>(balancePath, false);
             
             if (abilityBalance != null)
             {
@@ -23,6 +27,8 @@ public class AbilityBalanceFactory : BaseManager<AbilityBalanceFactory>
             {
                 Logger.Error("Failed to load ability balance data for: " + define);
             }
+
+            sb.Clear();
         }
     }
 

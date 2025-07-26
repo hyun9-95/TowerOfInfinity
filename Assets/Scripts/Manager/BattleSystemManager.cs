@@ -50,7 +50,10 @@ public class BattleSystemManager : BaseManager<BattleSystemManager>
     private async UniTask InitializeDamageGroup()
     {
         if (damageNumbersGroup == null)
-            damageNumbersGroup = await AddressableManager.Instance.InstantiateAddressableMonoAsync<DamageNumbersGroup>(typeof(DamageNumbersGroup).Name, objectContainer);
+        {
+            damageNumbersGroup = await AddressableManager.Instance.
+                InstantiateAddressableMonoAsync<DamageNumbersGroup>(PathDefine.DAMAGE_GROUP, objectContainer);
+        }
 
         damageNumbersGroup.PrewarmPool();
     }

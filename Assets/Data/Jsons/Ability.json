@@ -8,7 +8,7 @@
     ],
     "TriggerType": "Projectile",
     "TargetType": "Enemy",
-    "PrefabName": "Slash_Projectile",
+    "PrefabName": "Ability/Slash_Projectile/Slash_Projectile",
     "HitEffectPrefabName": ""
   },
   {
@@ -20,7 +20,7 @@
     ],
     "TriggerType": "Projectile",
     "TargetType": "Enemy",
-    "PrefabName": "Arrow_Projectile",
+    "PrefabName": "Ability/Arrow_Projectile/Arrow_Projectile",
     "HitEffectPrefabName": ""
   },
   {
@@ -32,7 +32,7 @@
     ],
     "TriggerType": "Collider",
     "TargetType": "Enemy",
-    "PrefabName": "Sting_Collider",
+    "PrefabName": "Ability/Sting_Collider/Sting_Collider",
     "HitEffectPrefabName": ""
   }
 ]

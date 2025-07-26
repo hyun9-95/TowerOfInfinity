@@ -16,7 +16,7 @@ MonoBehaviour:
   m_GUID: 5866a94d4f545b141a962ee490633633
   m_SerializeEntries:
   - m_GUID: 839628d527fa1e745a696b25900ac9e3
-    m_Address: AddressablePath
+    m_Address: BuildInfo/AddressablePath
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main

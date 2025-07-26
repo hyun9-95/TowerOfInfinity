@@ -16,19 +16,19 @@ MonoBehaviour:
   m_GUID: c55465e552fa9e744ad255cd00999e9e
   m_SerializeEntries:
   - m_GUID: ccd5a4cc73ce6b04d97e156b5a09190e
-    m_Address: BattleExpGem
+    m_Address: BattleCore/BattleExpGem
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f3f696c75307484409dceaf7823f4f70
-    m_Address: ore_008
+    m_Address: BattleCore/ore_008
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: fe5d6914dc883d44fbd4c466a9312ec2
-    m_Address: BattleExpGainer
+    m_Address: BattleCore/BattleExpGainer
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main

@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: UI_LobbyView
+  m_EditorClassIdentifier: 
+  m_GroupName: UI_LobbyView
+  m_GUID: 15749d6148c04684d8b71657402a3ddb
+  m_SerializeEntries:
+  - m_GUID: 0db7be8c38168b7408d3ad3a119741ac
+    m_Address: UI/LobbyView/LobbyView
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 0ff2e4ca4eb7ceb45adaab8fa222855e, type: 2}
+    - {fileID: 11400000, guid: a0fcde6ee9f7398488c5dd0a210661db, type: 2}

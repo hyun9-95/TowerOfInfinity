@@ -16,25 +16,25 @@ MonoBehaviour:
   m_GUID: f763562e22afedf4b99a52982f307645
   m_SerializeEntries:
   - m_GUID: 154990ef4bb3439ca7a516a947d12450
-    m_Address: Bat_Sprite
+    m_Address: Character/Enemy/Bat/Bat_Sprite
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 78d4453a57569ac4ca0e4c1184475396
-    m_Address: Bat
+    m_Address: Character/Enemy/Bat/Bat
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 949206a06e2fc5b438843f6d9a428c7b
-    m_Address: Bat_Stat
+    m_Address: Character/Enemy/Bat/Bat_Stat
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a290b6ba89ad53a41a673edd052832ed
-    m_Address: Bat_SpriteLibrary
+    m_Address: Character/Enemy/Bat/Bat_SpriteLibrary
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main

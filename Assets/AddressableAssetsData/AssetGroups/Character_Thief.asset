@@ -16,25 +16,25 @@ MonoBehaviour:
   m_GUID: 3702edc57c9e1ae4db9eeef3e66b4565
   m_SerializeEntries:
   - m_GUID: 2d0b2e1a3c6e6314baa54e7c73f5b7b1
-    m_Address: Thief_SpriteLibrary
+    m_Address: Character/Player/Thief/Thief_SpriteLibrary
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6dc7b1e3601781b4fb031e51efa7c732
-    m_Address: Thief_Stat
+    m_Address: Character/Player/Thief/Thief_Stat
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c3b4c196b94983747b2738c46a7a0b77
-    m_Address: Thief_Sprite
+    m_Address: Character/Player/Thief/Thief_Sprite
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f19713df161c16e44b3a04e99cd042eb
-    m_Address: Thief
+    m_Address: Character/Player/Thief/Thief
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main

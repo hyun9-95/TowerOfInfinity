@@ -16,25 +16,25 @@ MonoBehaviour:
   m_GUID: d64c118108685824e9f76446d5327bb6
   m_SerializeEntries:
   - m_GUID: 0279081965bf9da449f9adebe85bb89c
-    m_Address: RedDragon_Stat
+    m_Address: Character/Enemy/RedDragon/RedDragon_Stat
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 0e0c49562085468e8b180291b8414bf8
-    m_Address: RedDragon_Sprite
+    m_Address: Character/Enemy/RedDragon/RedDragon_Sprite
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2665e1e32d173c847b6fa757aa1f728e
-    m_Address: RedDragon_Enemy
+    m_Address: Character/Enemy/RedDragon/RedDragon_Enemy
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d4c895e82f6d4953a3ade3227c0abb2a
-    m_Address: RedDragon_SpriteLibrary
+    m_Address: Character/Enemy/RedDragon/RedDragon_SpriteLibrary
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main

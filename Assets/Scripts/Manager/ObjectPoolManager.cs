@@ -43,7 +43,7 @@ public class ObjectPoolManager : BaseMonoManager<ObjectPoolManager>
         }
         else
         {
-            go = await AddressableManager.Instance.InstantiateAsyncWithName(name, GetPoolParent(name));
+            go = await AddressableManager.Instance.InstantiateAsync(name, GetPoolParent(name));
             go.name = name;
 
             if (go == null)

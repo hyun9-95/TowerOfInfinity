@@ -16,25 +16,25 @@ MonoBehaviour:
   m_GUID: 228c54dfe501b754cb851c625028409e
   m_SerializeEntries:
   - m_GUID: 5e1eb3508cf34a34092577229c4530ee
-    m_Address: Archer
+    m_Address: Character/Player/Archer/Archer
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 71ba9966371355a42b5f2416935ec4a9
-    m_Address: Archer_Stat
+    m_Address: Character/Player/Archer/Archer_Stat
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8aeb402c74d7c0e478aeed6ae1c0e4a6
-    m_Address: Archer_SpriteLibrary
+    m_Address: Character/Player/Archer/Archer_SpriteLibrary
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b88078eab448a39429716acd77e40144
-    m_Address: Archer_SpriteSheet
+    m_Address: Character/Player/Archer/Archer_SpriteSheet
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main

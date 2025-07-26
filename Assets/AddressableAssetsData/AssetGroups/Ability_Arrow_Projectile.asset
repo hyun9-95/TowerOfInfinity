@@ -16,13 +16,13 @@ MonoBehaviour:
   m_GUID: a5b978107c0cfc342a0d6b59e5b1cb0e
   m_SerializeEntries:
   - m_GUID: 39c55ceb84939834ea552efadae17091
-    m_Address: Arrow_Projectile_Sprite
+    m_Address: Ability/Arrow_Projectile/Arrow_Projectile_Sprite
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c53fee7f106696a4798eca48862c6f6d
-    m_Address: Arrow_Projectile
+    m_Address: Ability/Arrow_Projectile/Arrow_Projectile
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main

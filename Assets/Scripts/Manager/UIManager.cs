@@ -67,7 +67,7 @@ public class UIManager : BaseMonoManager<UIManager>
 
     private async UniTask<bool> EnterUI(BaseController controller, bool addressable = true, bool transition = false)
     {
-        string name = controller.UIType.ToString();
+        string address = string.Format(PathDefine.UI_VIEW_FORMAT, controller.UIType);
 
         BaseView view = GetViewHistory(controller.UIType);
 
@@ -75,18 +75,15 @@ public class UIManager : BaseMonoManager<UIManager>
         {
             if (addressable)
             {
-                view = await AddressableManager.Instance.InstantiateAddressableMonoAsync<BaseView>(name, GetUITargetRect(controller.UICanvasType));
+                view = await AddressableManager.Instance.InstantiateAddressableMonoAsync<BaseView>(address, GetUITargetRect(controller.UICanvasType));
             }
             else
             {
-                string replaceText = controller.IsView ? "View" : "Popup";
-                string resourcesFolderName = name.Replace(replaceText, "");
-                string resourcesName = string.Format(PathDefine.Resources_UI_View, resourcesFolderName, name);
-                var viewObject = Resources.Load<GameObject>(resourcesName);
+                var viewObject = Resources.Load<GameObject>(address);
 
                 if (viewObject == null)
                 {
-                    Logger.Null(resourcesName);
+                    Logger.Null(address);
                     return false;
                 }
 
@@ -103,7 +100,7 @@ public class UIManager : BaseMonoManager<UIManager>
 
         if (view == null)
         {
-            Logger.Null(name);
+            Logger.Null(address);
             return false;
         }
 

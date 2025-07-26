@@ -16,13 +16,13 @@ MonoBehaviour:
   m_GUID: c98f2ed5fa2d1da43a363a7da757425f
   m_SerializeEntries:
   - m_GUID: 8f4ff9fb980dbac4da5e8531d11832b3
-    m_Address: Lobby_Sanctuary
+    m_Address: Scenes/Lobby_Sanctuary/Lobby_Sanctuary
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a9c519900136c8440a40c918ae727238
-    m_Address: Assets/Addressable/Scenes/Lobby_Sanctuary/Lobby_Sanctuary/NavMesh-NavigationSurface.asset
+    m_Address: Scenes/Lobby_Sanctuary/Lobby_Sanctuary/NavMesh-NavigationSurface
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main

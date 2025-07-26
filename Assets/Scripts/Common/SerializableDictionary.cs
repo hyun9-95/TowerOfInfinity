@@ -25,17 +25,22 @@ public class SerializableDictionary<TKey, TValue> : Dictionary<TKey, TValue>, IS
 
     public void OnAfterDeserialize()
     {
-        this.Clear();
-
+        this.Clear(); // 딕셔너리를 명확하게 비웁니다.
         if (keys.Count != values.Count)
         {
-            Debug.LogError("Serialized keys and values count mismatch!");
-            return;
+            Debug.LogError("There are " + keys.Count + " keys and " + values.Count + " values after deserialization. Make sure that both key and value types are serializable.");
         }
-
         for (int i = 0; i < keys.Count; i++)
         {
-            this.Add(keys[i], values[i]);
+            // 중복 키를 방지하고, 기존 값을 덮어쓰거나 새로 추가합니다.
+            if (this.ContainsKey(keys[i]))
+            {
+                this[keys[i]] = values[i];
+            }
+            else
+            {
+                this.Add(keys[i], values[i]);
+            }
         }
     }
 }

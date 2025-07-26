@@ -16,19 +16,19 @@ MonoBehaviour:
   m_GUID: 9b0cce2a3fdb94641bd1ddd8b6a264fb
   m_SerializeEntries:
   - m_GUID: 0cbaf643d95604c49bb1511973c10a47
-    m_Address: Assets/Addressable/Scenes/Battle_Atlantis/Battle_Atlantis/NavMesh-NavigationSurface.asset
+    m_Address: Scenes/Battle_Atlantis/Battle_Atlantis/NavMesh-NavigationSurface
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d69e162b299ce954e81ccfae7d808800
-    m_Address: Battle_Atlantis_RuleTile
+    m_Address: Scenes/Battle_Atlantis/Battle_Atlantis/Battle_Atlantis_RuleTile
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: fbbc8f21be9e21747923ada694c38a54
-    m_Address: Battle_Atlantis
+    m_Address: Scenes/Battle_Atlantis/Battle_Atlantis
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main

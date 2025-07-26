@@ -1,0 +1,311 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterBuilder_Helmet
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterBuilder_Helmet
+  m_GUID: b3fd83e4669763e4094c92167692d8b0
+  m_SerializeEntries:
+  - m_GUID: 00247365d51736044af382c463b92196
+    m_Address: CharacterBuilder/Helmet/BanditBandana
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 03478b38cb522e546aefec013adc91f3
+    m_Address: CharacterBuilder/Helmet/DeathHood
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 06b60c878d9ad42418b7317b3f18bf20
+    m_Address: CharacterBuilder/Helmet/Priest
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0b220918eb6da1341963ae2cc55863fc
+    m_Address: CharacterBuilder/Helmet/FireWizardHood
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 123348516f811a64090eda4bb73059a1
+    m_Address: CharacterBuilder/Helmet/BlueKnightHelmet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 17547edacad629b46b117df02864cd68
+    m_Address: CharacterBuilder/Helmet/IronKnightHelmet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 21355321d7fed944ead26a5d8f707242
+    m_Address: CharacterBuilder/Helmet/VikingHelmet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2724dd267b6dd734aa1f021ff414c0fc
+    m_Address: CharacterBuilder/Helmet/DeerHorns_ShowEars
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2869d58e1277822499d55e14d7d7ea65
+    m_Address: CharacterBuilder/Helmet/Squaw
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2cc06d4fe24132d459d01895aa4200d3
+    m_Address: CharacterBuilder/Helmet/BlueWizzardHat
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2dde58a06cc0e47419834c9c87d9fd0c
+    m_Address: CharacterBuilder/Helmet/DruidHelmet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2ef0cdf5d42ac7845a9a817b8b2cab0c
+    m_Address: CharacterBuilder/Helmet/PirateHelmet_ShowEars
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3317c18e1f16ab24f845d022f6dc2098
+    m_Address: CharacterBuilder/Helmet/PirateBandana_ShowEars
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3ce42bbb24d322b4ea04aaab8520a393
+    m_Address: CharacterBuilder/Helmet/SantaHoodBeard
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 40d138156977e2e49896cd74935e7c59
+    m_Address: CharacterBuilder/Helmet/Apache
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 43cddecb64cb6af4d81870e17c431ff7
+    m_Address: CharacterBuilder/Helmet/MusketeerHat_ShowEars
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 453e6b603817e0d45900f9cc26246f00
+    m_Address: CharacterBuilder/Helmet/SamuraiHelmet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 548ebc261716eaf4e830541ffe13a7a4
+    m_Address: CharacterBuilder/Helmet/SantaHelperCap_ShowEars
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 54b0907f2e4a57744adc57c707452e43
+    m_Address: CharacterBuilder/Helmet/BanditPatch_ShowEars
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 57047481663ecb6479be624864b53a68
+    m_Address: CharacterBuilder/Helmet/MinerHelment
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 591ad7793250182469ba5bb2d399bb18
+    m_Address: CharacterBuilder/Helmet/ClericHood
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5e9e3edde77ad024bafc6e5e294d00e1
+    m_Address: CharacterBuilder/Helmet/CaptainHelmet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5ecc384c6fe3ea74c85122d80bd190bb
+    m_Address: CharacterBuilder/Helmet/HeavyKnightHelmet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 634b91b6ea28c694891b04051b6b16cb
+    m_Address: CharacterBuilder/Helmet/PlagueDoctor
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 733c598d2f4d91142a221fba6f583a1b
+    m_Address: CharacterBuilder/Helmet/Panda
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 73908eda2d3b68a41be31cc092af2af5
+    m_Address: CharacterBuilder/Helmet/Hellsing
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8ee6a9977ca5801409f5d76b9b3009e9
+    m_Address: CharacterBuilder/Helmet/Angel
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 93ce3bccce3b94c4ead6a42305e6b765
+    m_Address: CharacterBuilder/Helmet/Pharaon
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 95736146ab552814aba87781562ff532
+    m_Address: CharacterBuilder/Helmet/Box
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9e6a414c1d4319742a18e2ab840d79b9
+    m_Address: CharacterBuilder/Helmet/SantaHood
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a0981a39dcc2d88468cc3e7e62e4b0c0
+    m_Address: CharacterBuilder/Helmet/ArcherHood
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: aa30028d662adc94f9b6c78bbc8d9d04
+    m_Address: CharacterBuilder/Helmet/LegionaryHelmet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b277c5679e877374598f37efe1dc7f36
+    m_Address: CharacterBuilder/Helmet/Maid
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b374c7a9467850345876284657d8a571
+    m_Address: CharacterBuilder/Helmet/Link
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b6c0ee4fcc948614280a4f52aa8df8fe
+    m_Address: CharacterBuilder/Helmet/PumpkinHead
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bb0f9214128e2ca469b949f8ecacdd5c
+    m_Address: CharacterBuilder/Helmet/HolowKnightHelmet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bc9e6544be663c34e9451aaca815516d
+    m_Address: CharacterBuilder/Helmet/ExecutionerHood
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bd5a938556c308441b2cd38dafb000bf
+    m_Address: CharacterBuilder/Helmet/HornsKnightHelmet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c2a88e7c7ce00084997533d64cd321f4
+    m_Address: CharacterBuilder/Helmet/GuardianHelmet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ccd7347a7dfe2e64ab1ff66c152e476e
+    m_Address: CharacterBuilder/Helmet/MilitiamanHelmet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d0a484a27f44acc4ca53e91294946c24
+    m_Address: CharacterBuilder/Helmet/ThiefHood
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d3d6f0a3e92ad434ba1eb744d871620d
+    m_Address: CharacterBuilder/Helmet/Gladiator
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dce42d64c30c3d54f95d49ee084404bc
+    m_Address: CharacterBuilder/Helmet/HornsHelmet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e6b87f3f59be3db41a3f4d61c015dc66
+    m_Address: CharacterBuilder/Helmet/ChiefHat_ShowEars
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e9655ec7414ca6c46821e4dbd6a4ec06
+    m_Address: CharacterBuilder/Helmet/PilotHelment
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f9f970d04c3fa944490a1a096f1e2db4
+    m_Address: CharacterBuilder/Helmet/Spartan
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fb2180f90b21f114389d8383c56e55f5
+    m_Address: CharacterBuilder/Helmet/NecromancerHood
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fbe9d827277142747a6e22df2c16d292
+    m_Address: CharacterBuilder/Helmet/NinjaMask
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: d1ec61ea194ec004292ee5bf83bc305b, type: 2}
+    - {fileID: 11400000, guid: 510816b1ec19e7544926f50db6e9b7f2, type: 2}

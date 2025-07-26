@@ -16,19 +16,19 @@ MonoBehaviour:
   m_GUID: f0ad73495ace1c24c9535ea6f916afd0
   m_SerializeEntries:
   - m_GUID: 8ed0d2dd23003bb4cb3b8ee58ab030db
-    m_Address: Slash_Angled_04_Blue_M
+    m_Address: Ability/Sting_Collider/Slash_Angled_04_Blue_M
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: af289244727bd9d4781db4c7aba5ee4c
-    m_Address: Sting_Collider
+    m_Address: Ability/Sting_Collider/Sting_Collider
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: cfb95e4c2a2ba2249bbd64c0c14156f2
-    m_Address: Slash_Angled_04_Blue_SpriteSheet
+    m_Address: Ability/Sting_Collider/Slash_Angled_04_Blue_SpriteSheet
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main

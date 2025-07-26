@@ -1,0 +1,107 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterBuilder_Shield
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterBuilder_Shield
+  m_GUID: 8f516c3c2b9689a48a3c85c4c8714a8b
+  m_SerializeEntries:
+  - m_GUID: 02ec9052989cec24cba93f6835a1c1e0
+    m_Address: CharacterBuilder/Shield/GoldenEagle
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 159717aba028e544ebe27b7624eb8bbb
+    m_Address: CharacterBuilder/Shield/IronBuckler
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 16e62482c4148df40956a92cfcf75113
+    m_Address: CharacterBuilder/Shield/RoyalGreatShield
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3efecafbb25d2314ca546a7f2b332f0b
+    m_Address: CharacterBuilder/Shield/SteelShield
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7e44c77abd1fab8459daa5c646e6bdc1
+    m_Address: CharacterBuilder/Shield/WoodenBuckler
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 98c529f7045882849bc74e45137fbffc
+    m_Address: CharacterBuilder/Shield/LegionShield
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 99aba3977058daa4bb5b41d39a212060
+    m_Address: CharacterBuilder/Shield/Dreadnought
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a17493a2488a6454b970293343633aff
+    m_Address: CharacterBuilder/Shield/BlueShield
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a4ca5e68755c49d49a4dae2dad2ed720
+    m_Address: CharacterBuilder/Shield/CrusaderShield
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: aa644cdb77b2a4d4085b502d1a5ef4fc
+    m_Address: CharacterBuilder/Shield/KnightShield
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bb942eb424e133c4c90f82a5c9a5adb2
+    m_Address: CharacterBuilder/Shield/TowerShield
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c9762e289a4557543be6de3d082b9362
+    m_Address: CharacterBuilder/Shield/BrassRoundShield
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dcaaafb6bdbc0b74b896be38f49233d7
+    m_Address: CharacterBuilder/Shield/GuardianShield
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f2dbed3104f91fa4c87ad9facff454d5
+    m_Address: CharacterBuilder/Shield/AncientGreatShield
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 348d8b053f8a79a4f98d5c82e93271a6, type: 2}
+    - {fileID: 11400000, guid: 8a50f5a288c553949a19f16e32938913, type: 2}

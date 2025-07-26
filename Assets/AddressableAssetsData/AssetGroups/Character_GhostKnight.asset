@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Character_GhostKnight
+  m_EditorClassIdentifier: 
+  m_GroupName: Character_GhostKnight
+  m_GUID: b57e6874d0004ce4285fa53cd8987d7b
+  m_SerializeEntries:
+  - m_GUID: 17960a2dc02467843a9468f646ade820
+    m_Address: Character/Player/GhostKnight/GhostKnight_SpriteLibrary
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 72484ae47ecbd284cacc676b27d20486
+    m_Address: Character/Player/GhostKnight/GhostKnight_SpriteSheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 55634e59f13ee754fa16589237ec46f0, type: 2}
+    - {fileID: 11400000, guid: 8b6984b2258a8b24d98595a0e6230690, type: 2}
