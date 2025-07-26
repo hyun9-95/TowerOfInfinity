@@ -39,7 +39,7 @@ public class SoundManager : BaseMonoManager<SoundManager>
         if (volumeRatio > 1)
             volumeRatio = 1;
 
-        float volume = GameManager.Instance.Settings.GetVolume(soundType);
+        float volume = GameManager.Settings.GetVolume(soundType);
 
         return volume * volumeRatio;
     }

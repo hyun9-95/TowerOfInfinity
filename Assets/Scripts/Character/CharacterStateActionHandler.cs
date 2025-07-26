@@ -6,7 +6,6 @@ public class CharacterStateActionHandler
 {
     public IPathFinder PathFinder => pathFinder;
 
-    private Action onDeactivate;
     private Action<bool> onFlipX;
 
     private Animator animator;
@@ -15,6 +14,11 @@ public class CharacterStateActionHandler
     private GameObject gameObject;
     private IPathFinder pathFinder;
 
+    #region Hit
+    private bool blinking = false;
+    private Color originColor;
+    #endregion
+
     public CharacterStateActionHandler(Animator animator, Rigidbody2D rigidBody2D, SpriteRenderer bodySprite, GameObject gameObject, IPathFinder pathFinder)
     {
         this.animator = animator;
@@ -22,11 +26,8 @@ public class CharacterStateActionHandler
         this.bodySprite = bodySprite;
         this.gameObject = gameObject;
         this.pathFinder = pathFinder;
-    }
 
-    public void SetOnDeactivate(Action action)
-    {
-        onDeactivate = action;
+        originColor = bodySprite.color;
     }
 
     public void SetOnFlipX(Action<bool> action)
@@ -48,11 +49,6 @@ public class CharacterStateActionHandler
     public void OnAddForce(Vector2 direction, float force)
     {
         rigidBody2D.AddForce(direction * force, ForceMode2D.Impulse);
-    }
-
-    public void OnDead()
-    {
-        DeadAsync().Forget();
     }
 
     public void OnNavmeshPathFind(Vector3 targetPos)
@@ -87,6 +83,30 @@ public class CharacterStateActionHandler
         pathFinder.OnStopPathFind();
     }
 
+    public async UniTask OnHitEffectAsync(Color hitColor)
+    {
+        if (blinking)
+            return;
+
+        blinking = true;
+
+        int blinkCount = 0;
+
+        while (blinkCount < IntDefine.HitBlinkCount && blinking)
+        {
+            bodySprite.color = hitColor;
+            await UniTaskUtils.DelaySeconds(FloatDefine.HitBlinkInterval, TokenPool.Get(GetHashCode()));
+
+            bodySprite.color = originColor;
+            await UniTaskUtils.DelaySeconds(FloatDefine.HitBlinkInterval / 2, TokenPool.Get(GetHashCode()));
+
+            blinkCount++;
+        }
+
+        bodySprite.color = originColor;
+        blinking = false;
+    }
+
     private void Flip(Vector2 movement)
     {
         bodySprite.flipX = movement.x < 0;
@@ -94,25 +114,8 @@ public class CharacterStateActionHandler
         onFlipX?.Invoke(bodySprite.flipX);
     }
 
-    private async UniTask DeadAsync()
+    public void Cancel()
     {
-        onDeactivate?.Invoke();
-
-        var targetModel = BattleSceneManager.Instance.GetCharacterModel(gameObject.GetInstanceID());
-        var expGemModel = targetModel != null && targetModel.TeamTag == TeamTag.Enemy ? new BattleExpGemModel() : null;
-
-        if (BattleSceneManager.Instance != null)
-            BattleSceneManager.Instance.RemoveLiveCharacter(gameObject.GetInstanceID());
-
-        await UniTask.WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f);
-
-        bodySprite.FadeOff(1, gameObject);
-
-        if (expGemModel != null)
-        {
-            var exp = await ObjectPoolManager.Instance.SpawnPoolableMono<BattleExpGem>(PathDefine.BATTLE_EXP_GEM, gameObject.transform.position, Quaternion.identity);
-            exp.SetModel(expGemModel);
-            exp.ShowAsync().Forget();
-        }
+        TokenPool.Cancel(GetHashCode());
     }
 }

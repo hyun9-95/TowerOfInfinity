@@ -175,6 +175,7 @@ MonoBehaviour:
   bodySprite: {fileID: 375275871827160082}
   agent: {fileID: 6394723101900763941}
   characterCollider2D: {fileID: 7747473371373772593}
+  triggerCollider2D: {fileID: 1264580057160532463}
   baseStat: {fileID: 0}
   animStateResolver:
     keys: 

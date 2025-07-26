@@ -16,4 +16,6 @@ public class FloatDefine
     /// 다음 노드까지 이동했다고 판단할 거리
     /// </summary>
     public const float ASTAR_NEXT_NODE_THRESHOLD = 0.5f;
+
+    public const float HitBlinkInterval = 0.1f;
 }

@@ -14,7 +14,9 @@ public abstract class ScriptableCharacterState : ScriptableObject
         return false;
     }
 
-    public abstract void OnStateAction(CharacterUnitModel model);
+    public virtual void OnStateAction(CharacterUnitModel model)
+    {
+    }
 
     public virtual void OnEnterState(CharacterUnitModel model)
     {

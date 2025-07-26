@@ -31,6 +31,16 @@ public class IntroFlow : BaseFlow<IntroFlowModel>
 
     private void OnCompleteLoading()
     {
+        if (GameManager.Config.IsEnterBattleDirectly)
+        {
+            BattleFlowModel battleFlowModel = new BattleFlowModel();
+            battleFlowModel.SetBattleSceneDefine(SceneDefine.Battle_Atlantis);
+            battleFlowModel.SetDataDungeon(DataManager.Instance.GetDataById<DataDungeon>((int)DungeonDefine.DUNGEON_ATLANTIS));
+
+            FlowManager.Instance.ChangeFlow(FlowType.BattleFlow, battleFlowModel).Forget();
+            return;
+        }
+
         LobbyFlowModel lobbyFlowModel = new LobbyFlowModel();
         lobbyFlowModel.SetLobbySceneDefine(SceneDefine.Lobby_Sanctuary);
 

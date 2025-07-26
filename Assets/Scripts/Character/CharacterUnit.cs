@@ -1,7 +1,9 @@
+using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UIElements;
 
 public class CharacterUnit : PoolableMono
 {
@@ -40,6 +42,9 @@ public class CharacterUnit : PoolableMono
     protected Collider2D characterCollider2D;
 
     [SerializeField]
+    protected Collider2D triggerCollider2D;
+
+    [SerializeField]
     protected ScriptableCharacterStat baseStat;
 
     [SerializeField]
@@ -52,6 +57,7 @@ public class CharacterUnit : PoolableMono
     private ScriptableCharacterModuleGroup moduleGroup;
     private ScriptableCharacterState defaultState;
     private bool activated = false;
+    private bool enablePhysics = false;
 
     private BattleEventProcessor battleEventProcessor = new BattleEventProcessor();
     private static readonly WeaponProcessor weaponProcessor = new WeaponProcessor();
@@ -75,6 +81,7 @@ public class CharacterUnit : PoolableMono
             return;
 
         UpdateState();
+        UpdatePhysics();
     }
 
     public virtual void Initialize()
@@ -96,30 +103,39 @@ public class CharacterUnit : PoolableMono
             return;
         }
 
+        bodySprite.RestoreAlpha();
+        characterCollider2D.enabled = true;
+        triggerCollider2D.enabled = true;
+
         // 우선순위대로 정렬하므로
         // 가장 마지막에 있는 것이 기본 상태가 된다.
         stateGroup.Sort();
         defaultState = stateGroup.StateList.Last();
         ChangeState(defaultState);
 
-        gameObject.SafeSetActive(true);
-
-        bodySprite.RestoreAlpha();
         activated = true;
+        gameObject.SafeSetActive(true);
 
         // 패시브 스킬 활성화
         if (Model.PassiveSkill != null)
             Model.PassiveSkill.Activate();
     }
 
-    protected virtual void OnDeactivate()
+    private void OnDeactivate()
     {
         activated = false;
+
+        characterCollider2D.enabled = false;
+        triggerCollider2D.enabled = false;
 
         moduleGroup.OnEventUpdate(Model, moduleModelDic);
 
         if (Model.IsDead)
             weaponProcessor.Cancel(Model);
+
+        Model.ActionHandler.Cancel();
+
+        DeadAsync().Forget();
     }
 
     private void OnFlipX(bool isFlip)
@@ -153,6 +169,9 @@ public class CharacterUnit : PoolableMono
             if (agent != null)
                 agent.enabled = false;
         }
+
+        characterCollider2D.enabled = false;
+        triggerCollider2D.enabled = false;
     }
 
     private void InitializeModule()
@@ -187,6 +206,30 @@ public class CharacterUnit : PoolableMono
         }
 
         CurrentState.OnStateAction(Model);
+
+        if (CurrentState is CharacterDeadState)
+            OnDeactivate();
+    }
+
+    protected void UpdatePhysics()
+    {
+        if (IsEnablePhysics())
+        {
+            
+        }
+        else
+        {
+            rigidBody2D.linearVelocity = Vector2.zero;
+            rigidBody2D.angularVelocity = 0;
+        }
+    }
+
+    private bool IsEnablePhysics()
+    {
+        if (battleEventProcessor.IsProcessingBattleEvent(BattleEventType.KnockBack))
+            return true;
+
+        return false;
     }
 
     private void SelectState()
@@ -274,7 +317,6 @@ public class CharacterUnit : PoolableMono
     {
         var pathFinder = CreatePathFinder();
         var actionHandler = new CharacterStateActionHandler(animator, rigidBody2D, bodySprite, gameObject, pathFinder);
-        actionHandler.SetOnDeactivate(OnDeactivate);
         actionHandler.SetOnFlipX(OnFlipX);
 
         return actionHandler;
@@ -293,7 +335,6 @@ public class CharacterUnit : PoolableMono
             shortNameHashDic[Animator.StringToHash(state.ToString())] = state;
         }
     }
-
 
     private int ResolveAnimState(CharacterAnimState animState)
     {
@@ -321,7 +362,7 @@ public class CharacterUnit : PoolableMono
         else
         {
             AStarPathFinder aStarPathFinder = new AStarPathFinder(rigidBody2D, FloatDefine.ASTAR_NEXT_NODE_THRESHOLD,
-                OnGetMoveSpeed, OnGetAStarPaths);
+                OnGetMoveSpeed);
             return aStarPathFinder;
         }
     }
@@ -331,9 +372,24 @@ public class CharacterUnit : PoolableMono
         return Model.GetStatValue(StatType.MoveSpeed);
     }
 
-    private List<AStarNode> OnGetAStarPaths(Vector3 start, Vector3 pos)
+    private async UniTask DeadAsync()
     {
-        return AStarManager.Instance.FindPath(start, pos);
+        var targetModel = BattleSceneManager.Instance.GetCharacterModel(gameObject.GetInstanceID());
+        var expGemModel = targetModel != null && targetModel.TeamTag == TeamTag.Enemy ? new BattleExpGemModel() : null;
+
+        if (BattleSceneManager.Instance != null)
+            BattleSceneManager.Instance.RemoveLiveCharacter(gameObject.GetInstanceID());
+
+        await UniTask.WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f);
+
+        bodySprite.FadeOff(1, gameObject);
+
+        if (expGemModel != null)
+        {
+            var exp = await ObjectPoolManager.Instance.SpawnPoolableMono<BattleExpGem>(PathDefine.BATTLE_EXP_GEM, gameObject.transform.position, Quaternion.identity);
+            exp.SetModel(expGemModel);
+            exp.ShowAsync().Forget();
+        }
     }
 
     #region Collision

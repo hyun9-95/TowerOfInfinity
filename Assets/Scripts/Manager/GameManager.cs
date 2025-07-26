@@ -4,11 +4,16 @@ using UnityEngine;
 public class GameManager : BaseMonoManager<GameManager>
 {
     #region Property
-    public GameSettings Settings => settings;
+    public static GameSettings Settings => Instance.settings;
+
+    public static Config Config => Instance.config;
 
     #endregion
     [SerializeField]
     private LoadDataType loadDataType;
+
+    [SerializeField]
+    private Config config;
 
     private GameSettings settings;
 

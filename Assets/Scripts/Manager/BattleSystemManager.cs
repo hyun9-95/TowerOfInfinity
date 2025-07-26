@@ -119,5 +119,18 @@ public class BattleSystemManager : BaseManager<BattleSystemManager>
         // 적인 경우에만 대미지를 표시.
         if (receiver.TeamTag == TeamTag.Enemy)
             damageNumbersGroup.ShowDamage(damageType, receiver.Transform, finalDamage.ToString());
+
+        if (!receiver.IsDead)
+            receiver.ActionHandler.OnHitEffectAsync(GetHitColorByDamageType(damageType)).Forget();
+    }
+
+    private Color GetHitColorByDamageType(DamageType damageType)
+    {
+        Color hitColor = new Color32(255, 100, 100, 255);
+
+        if (damageType == DamageType.Heal)
+            hitColor = new Color32(100, 255, 100, 255);
+
+        return hitColor;
     }
 }

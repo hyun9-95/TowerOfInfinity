@@ -7,9 +7,12 @@ public class CharacterDeadState : ScriptableCharacterState
 
     public override CharacterAnimState AnimState => CharacterAnimState.Die;
 
+    public override void OnEnterState(CharacterUnitModel model)
+    {
+    }
+
     public override void OnStateAction(CharacterUnitModel model)
     {
-        model.ActionHandler.OnDead();
     }
 
     public override bool CheckEnterCondition(CharacterUnitModel model)

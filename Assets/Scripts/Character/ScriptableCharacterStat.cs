@@ -8,14 +8,11 @@ public class ScriptableCharacterStat : ScriptableObject
 
     public Stat GetStat(StatType statType)
     {
-        if (statType == StatType.None)
-            return default;
-
         if (stats == null)
             return default;
 
         // None이 있으므로 1빼줌
-        int index = (int)statType - 1;
+        int index = (int)statType;
 
         if (index >= stats.Length)
             return default;

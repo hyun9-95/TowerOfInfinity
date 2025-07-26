@@ -5,7 +5,6 @@ using UnityEngine;
 public class AStarPathFinder : IPathFinder
 {
     private Func<float> onGetMoveSpeed;
-    private Func<Vector3, Vector3, List<AStarNode>> onGetPaths;
 
     private Rigidbody2D rigidBody2D;
     private float nextNodeThreshold;
@@ -13,12 +12,11 @@ public class AStarPathFinder : IPathFinder
     private List<AStarNode> currentPath = new List<AStarNode>();
     private Vector3 currentTargetPosition;
 
-    public AStarPathFinder(Rigidbody2D rigidBody2D, float nextNodeThreshold, Func<float> onGetMoveSpeed, Func<Vector3, Vector3, List<AStarNode>> onGetPaths)
+    public AStarPathFinder(Rigidbody2D rigidBody2D, float nextNodeThreshold, Func<float> onGetMoveSpeed)
     {
         this.rigidBody2D = rigidBody2D;
         this.nextNodeThreshold = nextNodeThreshold;
         this.onGetMoveSpeed = onGetMoveSpeed;
-        this.onGetPaths = onGetPaths;
     }
 
     public void OnPathFind(Vector3 targetPosition)
@@ -83,7 +81,7 @@ public class AStarPathFinder : IPathFinder
     public Vector2 OnMoveAlongPath()
     {
 #if UNITY_EDITOR
-        if (currentPath != null)
+        if (GameManager.Config.IsDebugAStar && currentPath != null)
         {
             for (int i = 0; i < currentPath.Count - 1; i++)
                 Debug.DrawLine(currentPath[i].WorldPos, currentPath[i + 1].WorldPos, Color.yellow, FloatDefine.ASTAR_REPATH_COOLTIME);

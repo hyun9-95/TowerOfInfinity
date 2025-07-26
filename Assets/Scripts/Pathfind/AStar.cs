@@ -75,11 +75,14 @@ public class AStar
         }
 
 #if UNITY_EDITOR
-        var viewer = GameManager.Instance.gameObject.GetComponent<AStarGridViewer>();
-        if (viewer == null)
-            viewer = GameManager.Instance.gameObject.AddComponent<AStarGridViewer>();
+        if (GameManager.Config.IsDebugAStar)
+        {
+            var viewer = GameManager.Instance.gameObject.GetComponent<AStarGridViewer>();
+            if (viewer == null)
+                viewer = GameManager.Instance.gameObject.AddComponent<AStarGridViewer>();
 
-        viewer.SetNodeMap(nodeMap, layoutGrid);
+            viewer.SetNodeMap(nodeMap, layoutGrid);
+        }
 #endif
     }
 

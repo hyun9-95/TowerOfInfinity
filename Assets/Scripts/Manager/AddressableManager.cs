@@ -1,10 +1,7 @@
 #pragma warning disable CS1998
 using Cysharp.Threading.Tasks;
-using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -147,9 +144,6 @@ public class AddressableManager : BaseManager<AddressableManager>
         return true;
     }
 
-    /// <summary>
-    /// 사용 후 꼭 참조해제하기!!!!
-    /// </summary>
     private async UniTask<T> LoadAssetAsyncWithName<T>(string assetName, bool isHandle = true) where T : UnityEngine.Object
     {
         if (!IsContain(assetName))
