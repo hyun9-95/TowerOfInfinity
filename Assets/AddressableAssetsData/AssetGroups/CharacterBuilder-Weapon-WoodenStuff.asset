@@ -14,7 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_GroupName: CharacterBuilder-Weapon-WoodenStuff
   m_GUID: e0cda32c6e295a9478bfaa7c42c0b7a2
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 89f7f4601f44c3044a81dad83e5b2b0c
+    m_Address: CharacterBuilder/Weapon/WoodenStuff
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
   m_SchemaSet:
