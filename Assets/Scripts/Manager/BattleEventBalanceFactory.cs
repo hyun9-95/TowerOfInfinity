@@ -14,7 +14,7 @@ public class BattleEventBalanceFactory : BaseManager<BattleEventBalanceFactory>
             if (define == BattleEventDefine.None)
                 continue;
 
-            var levelBalance = await AddressableManager.Instance.LoadStaticScriptableObject<ScriptableBattleEventBalance>(define.ToString());
+            var levelBalance = await AddressableManager.Instance.LoadScriptableObject<ScriptableBattleEventBalance>(define.ToString(), false);
             
             if (levelBalance != null)
             {

@@ -28,7 +28,6 @@ public class AddressableManager : BaseManager<AddressableManager>
     private bool clearBundle;
 
     private Dictionary<GameObject, AsyncOperationHandle<GameObject>> instantiatedHandles = new Dictionary<GameObject, AsyncOperationHandle<GameObject>>();
-    private Dictionary<TrackableMono, List<AsyncOperationHandle>> addressableMonoHandles = new Dictionary<TrackableMono, List<AsyncOperationHandle>>();
     private Dictionary<UnityEngine.Object, AsyncOperationHandle> assetHandles = new Dictionary<UnityEngine.Object, AsyncOperationHandle>();
     private Dictionary<string, AsyncOperationHandle<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>> sceneHandles = new Dictionary<string, AsyncOperationHandle<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>>();
     private HashSet<string> loadedScenes = new HashSet<string>();
@@ -151,7 +150,7 @@ public class AddressableManager : BaseManager<AddressableManager>
     /// <summary>
     /// 사용 후 꼭 참조해제하기!!!!
     /// </summary>
-    private async UniTask<T> LoadAssetAsyncWithName<T>(string assetName, TrackableMono tracker, bool isHandle = true) where T : UnityEngine.Object
+    private async UniTask<T> LoadAssetAsyncWithName<T>(string assetName, bool isHandle = true) where T : UnityEngine.Object
     {
         if (!IsContain(assetName))
             return null;
@@ -166,41 +165,17 @@ public class AddressableManager : BaseManager<AddressableManager>
         }
 
         if (isHandle)
-        {
-            if (tracker != null)
-            {
-                if (addressableMonoHandles.TryGetValue(tracker, out var assetHandleList))
-                {
-                    assetHandleList.Add(handle);
-                }
-                else
-                {
-                    var newAssetHandles = new List<AsyncOperationHandle>();
-                    newAssetHandles.Add(handle);
-                    addressableMonoHandles[tracker] = newAssetHandles;
-                }
-            }
-
             assetHandles[asset] = handle;
-        }
 
         return asset;
     }
 
     /// <summary>
-    /// Tracker를 등록하지 않으면 Flow 변경시에 해제된다.
+    /// 참조가 해제되지 않게 유지하려면 isHandle을 false로..
     /// </summary>
-    public async UniTask<T> LoadScriptableObject<T>(string infoName, TrackableMono tracker = null) where T : ScriptableObject
+    public async UniTask<T> LoadScriptableObject<T>(string infoName, bool isHandle = true) where T : ScriptableObject
     {
-        return await LoadAssetAsyncWithName<T>(infoName, tracker, true);
-    }
-
-    /// <summary>
-    /// 해제되지 않아야하는 ScriptableObject를 불러올 때 사용한다.
-    /// </summary>
-    public async UniTask<T> LoadStaticScriptableObject<T>(string infoName) where T : ScriptableObject
-    {
-        return await LoadAssetAsyncWithName<T>(infoName, null, false);
+        return await LoadAssetAsyncWithName<T>(infoName, isHandle);
     }
 
     /// <summary>
@@ -241,27 +216,8 @@ public class AddressableManager : BaseManager<AddressableManager>
 
         if (instantiatedHandles.TryGetValue(go, out var handle))
         {
-            if (handle.IsValid())
-                Addressables.ReleaseInstance(handle);
-
+            Addressables.ReleaseInstance(handle);
             instantiatedHandles.Remove(go);
-        }
-    }
-
-    public void ReleaseTrackerAssets(TrackableMono tracker)
-    {
-        if (tracker == null)
-            return;
-
-        if (addressableMonoHandles.TryGetValue(tracker, out var handles))
-        {
-            foreach (var handle in handles)
-            {
-                if (handle.IsValid())
-                    Addressables.Release(handle);
-            }
-
-            addressableMonoHandles.Remove(tracker);
         }
     }
 
@@ -272,9 +228,7 @@ public class AddressableManager : BaseManager<AddressableManager>
 
         if (assetHandles.TryGetValue(asset, out var handle))
         {
-            if (handle.IsValid())
-                Addressables.Release(handle);
-
+            Addressables.Release(handle);
             assetHandles.Remove(asset);
         }
     }
@@ -316,55 +270,55 @@ public class AddressableManager : BaseManager<AddressableManager>
     }
 
     #region SafeLoad
-    public async UniTask SafeLoadAsync(Image image, string path, TrackableMono tracker)
+    public async UniTask SafeLoadAsync(Image image, string path)
     {
         var cachedSprite = image.sprite;
-        image.sprite = await LoadAssetAsyncWithName<Sprite>(path, tracker);
+        image.sprite = await LoadAssetAsyncWithName<Sprite>(path);
 
         if (cachedSprite != null)
             ReleaseAsset(cachedSprite);
     }
 
-    public async UniTask SafeLoadAsync(AudioSource audioSource, string path, TrackableMono tracker)
+    public async UniTask SafeLoadAsync(AudioSource audioSource, string path)
     {
         var cachedClip = audioSource.clip;
-        audioSource.clip = await LoadAssetAsyncWithName<AudioClip>(path, tracker);
+        audioSource.clip = await LoadAssetAsyncWithName<AudioClip>(path);
 
         if (cachedClip != null)
             ReleaseAsset(cachedClip);
     }
 
-    public async UniTask SafeLoadAsync(SpriteRenderer spriteRenderer, string path, TrackableMono tracker)
+    public async UniTask SafeLoadAsync(SpriteRenderer spriteRenderer, string path)
     {
         var cachedSprite = spriteRenderer.sprite;
-        spriteRenderer.sprite = await LoadAssetAsyncWithName<Sprite>(path, tracker);
+        spriteRenderer.sprite = await LoadAssetAsyncWithName<Sprite>(path);
 
         if (cachedSprite != null)
             ReleaseAsset(cachedSprite);
     }
 
-    public async UniTask SafeLoadAsync(RawImage rawImage, string path, TrackableMono tracker)
+    public async UniTask SafeLoadAsync(RawImage rawImage, string path)
     {
         var cachedTexture = rawImage.texture;
-        rawImage.texture = await LoadAssetAsyncWithName<Texture>(path, tracker);
+        rawImage.texture = await LoadAssetAsyncWithName<Texture>(path);
 
         if (cachedTexture != null)
             ReleaseAsset(cachedTexture);
     }
 
-    public async UniTask SafeLoadAsync(VideoPlayer videoPlayer, string path, TrackableMono tracker)
+    public async UniTask SafeLoadAsync(VideoPlayer videoPlayer, string path)
     {
         var cachedClip = videoPlayer.clip;
-        videoPlayer.clip = await LoadAssetAsyncWithName<VideoClip>(path, tracker);
+        videoPlayer.clip = await LoadAssetAsyncWithName<VideoClip>(path);
 
         if (cachedClip != null)
             ReleaseAsset(cachedClip);
     }
 
-    public async UniTask SafeLoadAsync(Animator animator, string path, TrackableMono tracker)
+    public async UniTask SafeLoadAsync(Animator animator, string path)
     {
         var cachedController = animator.runtimeAnimatorController;
-        animator.runtimeAnimatorController = await LoadAssetAsyncWithName<RuntimeAnimatorController>(path, tracker);
+        animator.runtimeAnimatorController = await LoadAssetAsyncWithName<RuntimeAnimatorController>(path);
 
         if (cachedController != null)
             ReleaseAsset(cachedController);

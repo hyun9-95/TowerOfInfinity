@@ -1,20 +1,12 @@
 using UnityEngine;
 
-public class AddressableMono : TrackableMono
-{
-    public override void OnDestroy()
-    {
-        base.OnDestroy();
-
-        AddressableManager.Instance.ReleaseGameObject(gameObject);
-    }
-}
-
-public class TrackableMono : MonoBehaviour
+public class AddressableMono : MonoBehaviour
 {
     public virtual void OnDestroy()
     {
+        Logger.Log($"{gameObject.name} destroyed.");
+
         if (gameObject != null)
-            AddressableManager.Instance.ReleaseTrackerAssets(this);
+            AddressableManager.Instance.ReleaseGameObject(gameObject);
     }
 }

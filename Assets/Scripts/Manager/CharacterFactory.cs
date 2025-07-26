@@ -132,7 +132,7 @@ public class CharacterFactory : BaseManager<CharacterFactory>
     private async UniTask<ScriptableCharacterInfo> GetCharacterInfo(CharacterType characterType)
     {
         if (!characterInfoDic.ContainsKey(characterType))
-            characterInfoDic[characterType] = await AddressableManager.Instance.LoadScriptableObject<ScriptableCharacterInfo>(GetCharacterInfoPath(characterType), null);
+            characterInfoDic[characterType] = await AddressableManager.Instance.LoadScriptableObject<ScriptableCharacterInfo>(GetCharacterInfoPath(characterType));
 
         return characterInfoDic[characterType];
     }
