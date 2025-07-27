@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 866932ef98b71f2429dff4ad26f608a6
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 268989
+  packageName: Classic Pixel UI
+  packageVersion: 1.0
+  assetPath: Assets/ClassicPixelRPGUI/Scripts/UI/TooltipElement.cs
+  uploadId: 622858

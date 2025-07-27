@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: 954a7cc809ef4bd39e1784b38ef72675
+timeCreated: 1658918088
+AssetOrigin:
+  serializedVersion: 1
+  productId: 268989
+  packageName: Classic Pixel UI
+  packageVersion: 1.0
+  assetPath: Assets/ClassicPixelRPGUI/Scripts/UI/Equipment/InventorySlotItemGrab.cs
+  uploadId: 622858

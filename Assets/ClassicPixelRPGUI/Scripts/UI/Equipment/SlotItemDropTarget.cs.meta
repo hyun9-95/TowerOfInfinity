@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: d3bf0eba7e7a4b7b92c3fe1d8df56b00
+timeCreated: 1658825677
+AssetOrigin:
+  serializedVersion: 1
+  productId: 268989
+  packageName: Classic Pixel UI
+  packageVersion: 1.0
+  assetPath: Assets/ClassicPixelRPGUI/Scripts/UI/Equipment/SlotItemDropTarget.cs
+  uploadId: 622858

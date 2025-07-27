@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d9b773eee1160b8459cd50476be3d6cb
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 268989
+  packageName: Classic Pixel UI
+  packageVersion: 1.0
+  assetPath: Assets/ClassicPixelRPGUI/Animations/Diablo.anim
+  uploadId: 622858
