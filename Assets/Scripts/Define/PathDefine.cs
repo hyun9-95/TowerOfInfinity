@@ -38,6 +38,7 @@ public class PathDefine
     public const string NORMAL_DAMAGE = "UI/NormalDamage";
     public const string UI_VIEW_FORMAT = "UI/{0}/{0}";
     public const string CHARACTER_BUILDER_PARTS_FORMAT = "CharacterBuilder/{0}/{1}";
+    public const string CHARACTER_PARTS_DATA = "CharacterParts/PartsData";
     #endregion
 
     #region property

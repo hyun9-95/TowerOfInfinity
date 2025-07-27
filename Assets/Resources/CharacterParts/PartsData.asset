@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 590949abde118c74c96c0c968d22389f, type: 3}
-  m_Name: AddressableSpriteData
+  m_Name: PartsData
   m_EditorClassIdentifier: 
   LayerEntries:
   - LayerName: Cape

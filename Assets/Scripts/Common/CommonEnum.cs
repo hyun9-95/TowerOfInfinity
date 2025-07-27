@@ -212,3 +212,21 @@ public enum StatReferenceCondition
     BaseStat,
     CurrentStat,
 }
+
+public enum CharacterPartsName
+{
+    Head,
+    Ears,
+    Eyes,
+    Body,
+    Hair,
+    Armor,
+    Helmet,
+    Weapon,
+    Firearm,
+    Shield,
+    Cape,
+    Back,
+    Mask,
+    Horns,
+}

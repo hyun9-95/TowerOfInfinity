@@ -2,6 +2,7 @@
 using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -27,6 +28,7 @@ public class AddressableManager : BaseManager<AddressableManager>
     private Dictionary<GameObject, AsyncOperationHandle<GameObject>> instantiatedHandles = new Dictionary<GameObject, AsyncOperationHandle<GameObject>>();
     private Dictionary<UnityEngine.Object, AsyncOperationHandle> assetHandles = new Dictionary<UnityEngine.Object, AsyncOperationHandle>();
     private Dictionary<string, AsyncOperationHandle<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>> sceneHandles = new Dictionary<string, AsyncOperationHandle<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>>();
+    private Dictionary<GameObject, List<AsyncOperationHandle>> trackingAssetHandles = new Dictionary<GameObject, List<AsyncOperationHandle>>();
     private HashSet<string> loadedScenes = new HashSet<string>();
 
     #region Initialize Addressable
@@ -160,7 +162,7 @@ public class AddressableManager : BaseManager<AddressableManager>
         return true;
     }
 
-    public async UniTask<T> LoadAssetAsync<T>(string address, bool isHandle = true) where T : UnityEngine.Object
+    private async UniTask<T> LoadAssetAsync<T>(string address, bool isHandle = true) where T : UnityEngine.Object
     {
         if (!IsContain(address))
             return null;
@@ -176,6 +178,45 @@ public class AddressableManager : BaseManager<AddressableManager>
 
         if (isHandle)
             assetHandles[asset] = handle;
+
+        return asset;
+    }
+
+    /// <summary>
+    /// Tracker가 파괴되었으면 ReleaseGameObject 호출 필요
+    /// </summary>
+    public async UniTask<T> LoadAssetAsyncWithTracker<T>(string address, GameObject tracker) where T : UnityEngine.Object
+    {
+        if (!IsContain(address))
+            return null;
+
+        if (tracker == null)
+        {
+            Logger.Error("Tracker를 등록해야 로드가 가능!");
+            return null;
+        }
+
+        var handle = Addressables.LoadAssetAsync<T>(address);
+        var asset = await handle;
+
+        if (asset == null)
+        {
+            Addressables.Release(handle);
+            return null;
+        }
+
+        if (tracker != null)
+        {
+            if (trackingAssetHandles.
+                TryGetValue(tracker, out List<AsyncOperationHandle> trackingHandles))
+            {
+                trackingHandles.Add(handle);
+            }
+            else
+            {
+                trackingAssetHandles.Add(tracker, new List<AsyncOperationHandle>() { handle });
+            }
+        }
 
         return asset;
     }
@@ -220,7 +261,7 @@ public class AddressableManager : BaseManager<AddressableManager>
     }
 
     public void ReleaseGameObject(GameObject go)
-    {
+    { 
         if (go == null)
             return;
 
@@ -229,9 +270,18 @@ public class AddressableManager : BaseManager<AddressableManager>
             Addressables.ReleaseInstance(handle);
             instantiatedHandles.Remove(go);
         }
+
+        if (trackingAssetHandles.TryGetValue(go, out var handles))
+        {
+            foreach (var trackingHandle in handles)
+            {
+                if (trackingHandle.IsValid())
+                    trackingHandle.Release();
+            }
+        }
     }
 
-    public void ReleaseAsset(UnityEngine.Object asset)
+    private void ReleaseAsset(UnityEngine.Object asset)
     {
         if (asset == null)
             return;
@@ -243,13 +293,27 @@ public class AddressableManager : BaseManager<AddressableManager>
         }
     }
 
+    public void ReleaseFromTracker(Object asset, GameObject tracker)
+    {
+        if (trackingAssetHandles.TryGetValue(tracker, out var handles))
+        {
+            foreach (var trackingHandle in handles)
+            {
+                if (trackingHandle.IsValid() && (Object)trackingHandle.Result == asset)
+                {
+                    trackingHandle.Release();
+                    break;
+                }
+            }
+        }
+    }
+
     public void ReleaseAllHandles()
     {
-        foreach (var handle in instantiatedHandles.Values)
-        {
-            if (handle.IsValid())
-                Addressables.ReleaseInstance(handle);
-        }
+        var goArray = instantiatedHandles.Keys.ToArray();
+
+        foreach (var go in goArray)
+            ReleaseGameObject(go);
 
         instantiatedHandles.Clear();
 

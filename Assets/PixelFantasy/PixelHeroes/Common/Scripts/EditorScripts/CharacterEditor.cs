@@ -20,7 +20,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.EditorScripts
     {
         public SpriteCollection SpriteCollection;
         public List<LayerEditor> Layers;
-        public CharacterBuilder CharacterBuilder;
+        public CharacterScripts.CharacterBuilder CharacterBuilder;
         public Sprite EmptyIcon;
 
         public static event Action<string> SliceTextureRequest = _ => {};

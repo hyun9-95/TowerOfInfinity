@@ -7,7 +7,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.Editor
     /// <summary>
     /// Adds "Rebuild" button to CharacterBuilder script.
     /// </summary>
-    [CustomEditor(typeof(CharacterBuilder))]
+    [CustomEditor(typeof(CharacterScripts.CharacterBuilder))]
     public class CharacterBuilderEditor : UnityEditor.Editor
     {
         public override void OnInspectorGUI()
@@ -16,7 +16,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.Editor
 
             if (GUILayout.Button("Rebuild"))
             {
-                ((CharacterBuilder) target).Rebuild();
+                ((CharacterScripts.CharacterBuilder)target).Rebuild();
             }
         }
     }

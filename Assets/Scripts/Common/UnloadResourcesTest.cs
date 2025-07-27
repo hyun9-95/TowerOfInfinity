@@ -6,7 +6,7 @@ using UnityEngine;
 public class UnloadResourcesTest : MonoBehaviour
 {
     [SerializeField]
-    private CharacterBuilder characterBuilder;
+    private Assets.PixelFantasy.PixelHeroes.Common.Scripts.CharacterScripts.CharacterBuilder characterBuilder;
 
     private void Update()
     {

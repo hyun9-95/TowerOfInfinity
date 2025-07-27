@@ -7,7 +7,7 @@ public class AddressableSpriteDataImporter : EditorWindow
 {
     private TextAsset jsonFile; // 사용자가 .json 파일을 드래그 앤 드롭할 수 있도록
     private string jsonString = ""; // 또는 JSON을 직접 붙여넣을 수 있도록
-    private AddressableSpriteData targetAddressableData;
+    private CharacterSpritePartsData targetAddressableData;
 
     [MenuItem("Tools/Import SpriteCollection to AddressableSpriteData")]
     public static void ShowWindow()
@@ -19,7 +19,7 @@ public class AddressableSpriteDataImporter : EditorWindow
     {
         GUILayout.Label("Import SpriteCollection JSON to AddressableSpriteData", EditorStyles.boldLabel);
 
-        targetAddressableData = (AddressableSpriteData)EditorGUILayout.ObjectField("Target Addressable Data", targetAddressableData, typeof(AddressableSpriteData), false);
+        targetAddressableData = (CharacterSpritePartsData)EditorGUILayout.ObjectField("Target Addressable Data", targetAddressableData, typeof(CharacterSpritePartsData), false);
 
         jsonFile = (TextAsset)EditorGUILayout.ObjectField("JSON File (Optional)", jsonFile, typeof(TextAsset), false);
 
@@ -48,7 +48,7 @@ public class AddressableSpriteDataImporter : EditorWindow
         }
     }
 
-    private void ImportFromJson(string json, AddressableSpriteData addressableData)
+    private void ImportFromJson(string json, CharacterSpritePartsData addressableData)
     {
         try
         {
@@ -64,17 +64,17 @@ public class AddressableSpriteDataImporter : EditorWindow
                     continue;
                 }
 
-                var newLayerEntry = new AddressableSpriteData.LayerEntry // LayerEntry로 변경
+                var newLayerEntry = new CharacterSpritePartsData.LayerEntry // LayerEntry로 변경
                 {
                     LayerName = exportLayer.name,
-                    Parts = new List<AddressableSpriteData.PartData>() // Parts로 변경
+                    Parts = new List<CharacterSpritePartsData.PartData>() // Parts로 변경
                 };
 
                 if (exportLayer.textureNames != null)
                 {
                     foreach (var textureName in exportLayer.textureNames)
                     {
-                    newLayerEntry.Parts.Add(new AddressableSpriteData.PartData
+                    newLayerEntry.Parts.Add(new CharacterSpritePartsData.PartData
                     {
                         PartName = textureName,
                         Address = string.Format(PathDefine.CHARACTER_BUILDER_PARTS_FORMAT, exportLayer.name, textureName)
