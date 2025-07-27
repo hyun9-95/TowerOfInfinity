@@ -7,8 +7,8 @@ public static class FlowFactory
             case FlowType.IntroFlow:
                 return new IntroFlow();
 
-            case FlowType.LobbyFlow:
-                return new LobbyFlow();
+            case FlowType.TownFlow:
+                return new TownFlow();
 
             case FlowType.BattleFlow:
                 return new BattleFlow();

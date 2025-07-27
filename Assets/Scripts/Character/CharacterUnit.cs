@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UIElements;
+using UnityEngine.U2D.Animation;
 
 public class CharacterUnit : PoolableMono
 {
@@ -36,6 +36,9 @@ public class CharacterUnit : PoolableMono
     protected SpriteRenderer bodySprite;
 
     [SerializeField]
+    protected SpriteLibrary spriteLibrary;
+
+    [SerializeField]
     protected NavMeshAgent agent;
 
     [SerializeField]
@@ -57,7 +60,6 @@ public class CharacterUnit : PoolableMono
     private ScriptableCharacterModuleGroup moduleGroup;
     private ScriptableCharacterState defaultState;
     private bool activated = false;
-    private bool enablePhysics = false;
 
     private BattleEventProcessor battleEventProcessor = new BattleEventProcessor();
     private static readonly WeaponProcessor weaponProcessor = new WeaponProcessor();

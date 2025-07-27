@@ -3,7 +3,7 @@ using Cysharp.Threading.Tasks;
 
 public class IntroFlow : BaseFlow<IntroFlowModel>
 {
-    public override UIType ViewType => UIType.LobbyView;
+    public override UIType ViewType => UIType.TownView;
 
     public override FlowType FlowType => FlowType.IntroFlow;
 
@@ -41,10 +41,10 @@ public class IntroFlow : BaseFlow<IntroFlowModel>
             return;
         }
 
-        LobbyFlowModel lobbyFlowModel = new LobbyFlowModel();
+        TownFlowModel lobbyFlowModel = new TownFlowModel();
         lobbyFlowModel.SetLobbySceneDefine(SceneDefine.Lobby_Sanctuary);
 
-        FlowManager.Instance.ChangeFlow(FlowType.LobbyFlow, lobbyFlowModel).Forget();
+        FlowManager.Instance.ChangeFlow(FlowType.TownFlow, lobbyFlowModel).Forget();
     }
 
     public override async UniTask Exit()

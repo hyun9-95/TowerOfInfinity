@@ -2,6 +2,7 @@ public enum UIType
 {
 	None,
 	IntroView,
-	LobbyView,
+	TownView,
 	BattleView,
+	CharacterCustomizationView,
 }

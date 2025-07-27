@@ -3,15 +3,15 @@ using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LobbyFlow : BaseFlow<LobbyFlowModel>
+public class TownFlow : BaseFlow<TownFlowModel>
 {
-    public override UIType ViewType => UIType.LobbyView;
-    public override FlowType FlowType => FlowType.LobbyFlow;
+    public override UIType ViewType => UIType.TownView;
+    public override FlowType FlowType => FlowType.TownFlow;
 
 
     private List<CharacterUnit> loadedCharacters = new List<CharacterUnit>();
 
-    private LobbySceneManager lobbySceneManager = null;
+    private TownSceneManager townSceneManager = null;
 
     public override async UniTask LoadingProcess()
     {
@@ -22,11 +22,11 @@ public class LobbyFlow : BaseFlow<LobbyFlowModel>
 
         await UniTask.NextFrame();
 
-        lobbySceneManager = loadedScene.GetRootComponent<LobbySceneManager>();
+        townSceneManager = loadedScene.GetRootComponent<TownSceneManager>();
 
-        if (lobbySceneManager == null)
+        if (townSceneManager == null)
         {
-            Logger.Null(lobbySceneManager.name);
+            Logger.Null(townSceneManager.name);
             return;
         }
 
@@ -48,23 +48,25 @@ public class LobbyFlow : BaseFlow<LobbyFlowModel>
 
     private async UniTask LoadPlayerCharacters()
     {
-        var playerTransform = lobbySceneManager.PlayerStartTransform;
+        var playerTransform = townSceneManager.PlayerStartTransform;
         var leaderCharacter = await PlayerManager.Instance.CreateLeaderCharacter(playerTransform);
 
         await UniTask.NextFrame();
 
-        lobbySceneManager.SetFollowCamera(leaderCharacter.transform);
+        townSceneManager.SetFollowCamera(leaderCharacter.transform);
 
         if (leaderCharacter != null)
         {
             leaderCharacter.Initialize();
             loadedCharacters.Add(leaderCharacter);
         }
+
+        TownSceneManager.Instance.SetPlayerCharacter(leaderCharacter);
     }
 
     private void InitializeBattlePortal()
     {
-        var battlePortal = lobbySceneManager.GetBattlePortal();
+        var battlePortal = townSceneManager.GetBattlePortal();
 
         if (battlePortal != null)
             battlePortal.Model.SetOnTriggerEnter(WarpToBattle);
@@ -78,8 +80,8 @@ public class LobbyFlow : BaseFlow<LobbyFlowModel>
 
     public async UniTask ShowLobbyView()
     {
-        LobbyController lobbyController = new LobbyController();
-        LobbyViewModel lobbyViewModel = new LobbyViewModel();
+        TownViewController lobbyController = new TownViewController();
+        TownViewModel lobbyViewModel = new TownViewModel();
         lobbyController.SetModel(lobbyViewModel);
 
         await UIManager.Instance.ChangeView(lobbyController, true);

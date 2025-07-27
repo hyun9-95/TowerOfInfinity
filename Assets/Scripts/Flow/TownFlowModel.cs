@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class LobbyFlowModel : IBaseFlowModel
+public class TownFlowModel : IBaseFlowModel
 {
     public SceneDefine LobbySceneDefine { get; private set; }
 

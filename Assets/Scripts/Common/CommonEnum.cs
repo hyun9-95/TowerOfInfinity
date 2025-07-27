@@ -64,7 +64,7 @@ public enum SoundType
 public enum FlowType
 {
     IntroFlow,
-    LobbyFlow,
+    TownFlow,
     BattleFlow,
 }
 

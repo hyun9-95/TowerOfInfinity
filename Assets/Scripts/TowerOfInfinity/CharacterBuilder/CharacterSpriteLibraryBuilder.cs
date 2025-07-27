@@ -26,8 +26,7 @@ public class CharacterSpriteLibraryBuilder : MonoBehaviour
 
         if (partsData == null)
         {
-            partsData = await AddressableManager.Instance.
-                LoadAssetAsyncWithTracker<CharacterSpritePartsData>(PathDefine.CHARACTER_PARTS_DATA, gameObject);
+            partsData = Resources.Load<CharacterSpritePartsData>(PathDefine.CHARACTER_PARTS_DATA);
         }
 
         var width = 576;
@@ -43,8 +42,13 @@ public class CharacterSpriteLibraryBuilder : MonoBehaviour
             {
                 string partName = partEnum.ToString();
                 string partValue = parts[index];
-                layersToLoad[partName] = GetAddressFromAddressableData(partName, partValue);
-                layerPartData[partName] = partValue;
+                string address = GetAddressFromAddressableData(partName, partValue);
+                
+                if (!string.IsNullOrEmpty(address))
+                {
+                    layersToLoad[partName] = address;
+                    layerPartData[partName] = partValue;
+                }
             }
         }
 
@@ -151,7 +155,21 @@ public class CharacterSpriteLibraryBuilder : MonoBehaviour
         if (mergedTexture == null)
             mergedTexture = new Texture2D(width, height) { filterMode = FilterMode.Point };
 
-        mergedTexture = TextureProcessor.MergeLayers(mergedTexture, finalOrderedPixels.ToArray());
+        // 병합할 레이어가 없는 경우 빈 텍스처 생성
+        if (finalOrderedPixels.Count == 0)
+        {
+            var emptyPixels = new Color32[width * height];
+            for (int i = 0; i < emptyPixels.Length; i++)
+            {
+                emptyPixels[i] = new Color32(0, 0, 0, 0); // 투명
+            }
+            mergedTexture.SetPixels32(emptyPixels);
+        }
+        else
+        {
+            mergedTexture = TextureProcessor.MergeLayers(mergedTexture, finalOrderedPixels.ToArray());
+        }
+        
         mergedTexture.Apply();
 
         if (sprites == null)
@@ -211,7 +229,8 @@ public class CharacterSpriteLibraryBuilder : MonoBehaviour
 
     private string GetAddressFromAddressableData(string layerName, string partName)
     {
-        if (partsData == null || partsData.LayerEntries == null) return null;
+        if (partsData == null || partsData.LayerEntries == null) 
+            return null;
 
         var layerEntry = partsData.LayerEntries.FirstOrDefault(entry => entry.LayerName == layerName);
 

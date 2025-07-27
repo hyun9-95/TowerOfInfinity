@@ -23,7 +23,7 @@ public class PlayerSkillState : ScriptableCharacterState
     {
         if (model.InputWrapper.IsSkillInput)
         {
-            BattleEventTriggerModel skillInfo = null;
+            //BattleEventTriggerModel skillInfo = null;
 
             //if (skillInfo != null)
             //{

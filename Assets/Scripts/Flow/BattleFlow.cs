@@ -3,7 +3,7 @@ using Cysharp.Threading.Tasks;
 
 public class BattleFlow : BaseFlow<BattleFlowModel>
 {
-    public override UIType ViewType => UIType.LobbyView;
+    public override UIType ViewType => UIType.TownView;
     public override FlowType FlowType => FlowType.BattleFlow;
 
     private BattleSceneManager battleSceneManager;

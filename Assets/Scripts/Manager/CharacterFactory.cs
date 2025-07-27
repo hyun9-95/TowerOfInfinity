@@ -5,7 +5,6 @@ using UnityEngine;
 public class CharacterFactory : BaseManager<CharacterFactory>
 {
     private Dictionary<CharacterType, ScriptableCharacterInfo> characterInfoDic = new Dictionary<CharacterType, ScriptableCharacterInfo>();
-    
     /// <summary>
     /// tr 없으면 pooling
     /// </summary>
