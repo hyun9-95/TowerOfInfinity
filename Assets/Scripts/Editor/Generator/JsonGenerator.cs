@@ -39,7 +39,9 @@ namespace Tools
                     string name = GetNaming(nameRow[j].ToString(), dataType);
                     string value = sheet.Rows[i][j].ToString();
 
-                   
+                    // nameId는 Define 추출용으로만 사용하고 JSON에서는 제외
+                    if (name.Contains("nameId"))
+                        continue;
 
                     if (value == "NULL")
                     {

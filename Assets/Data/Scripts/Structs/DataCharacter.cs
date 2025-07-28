@@ -7,8 +7,6 @@ public struct DataCharacter : IBaseData
 {
     [JsonProperty(PropertyName = "id")]
     private readonly int id;
-    [JsonProperty(PropertyName = "nameId")]
-    private readonly string nameId;
     [JsonProperty(PropertyName = "PrefabName")]
     public readonly string PrefabName;
     [JsonProperty(PropertyName = "Default_Weapon")]
@@ -19,6 +17,5 @@ public struct DataCharacter : IBaseData
     public readonly AbilityDefine PassiveSkill;
 	
 	public int Id => id;
-    public string NameId => nameId;
-    public bool IsNull => id == 0 || string.IsNullOrEmpty(nameId);
+    public bool IsNull => id == 0;
 }

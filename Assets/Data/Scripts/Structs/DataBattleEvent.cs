@@ -7,8 +7,6 @@ public struct DataBattleEvent : IBaseData
 {
     [JsonProperty(PropertyName = "id")]
     private readonly int id;
-    [JsonProperty(PropertyName = "nameId")]
-    private readonly string nameId;
     [JsonProperty(PropertyName = "Type")]
     public readonly BattleEventType Type;
     [JsonProperty(PropertyName = "AffectStat")]
@@ -27,6 +25,5 @@ public struct DataBattleEvent : IBaseData
     public readonly bool Stackable;
 	
 	public int Id => id;
-    public string NameId => nameId;
-    public bool IsNull => id == 0 || string.IsNullOrEmpty(nameId);
+    public bool IsNull => id == 0;
 }

@@ -7,12 +7,9 @@ public struct DataEnemyGroup : IBaseData
 {
     [JsonProperty(PropertyName = "id")]
     private readonly int id;
-    [JsonProperty(PropertyName = "nameId")]
-    private readonly string nameId;
     [JsonProperty(PropertyName = "Enemys")]
     public readonly CharacterDefine[] Enemys;
 	
 	public int Id => id;
-    public string NameId => nameId;
-    public bool IsNull => id == 0 || string.IsNullOrEmpty(nameId);
+    public bool IsNull => id == 0;
 }

@@ -1,7 +1,6 @@
 [
   {
     "id": 30000,
-    "nameId": "ENEMY_GROUP_ATLANTIS",
     "Enemys": [
       "CHAR_BAT"
     ]

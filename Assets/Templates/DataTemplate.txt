@@ -8,10 +8,9 @@ using System;
 public class Data#name#Container : IBaseDataContainer<Data#name#>
 {
     private Dictionary<int, Data#name#> dicById = null;
-    private Dictionary<string, Data#name#> dicByNameId = null;
 	private Data#name#[] datas = null;
     public string FileName => "#name#";
-	public bool Deserialized => dicById != null && dicByNameId != null && datas != null;
+	public bool Deserialized => dicById != null && datas != null;
 	
     public void DeserializeJson(string json)
     {
@@ -33,18 +32,6 @@ public class Data#name#Container : IBaseDataContainer<Data#name#>
                 {
                     Debug.LogError($"ID 중복 {data.GetType()} / {data.Id}");
                 }
-				
-				if (dicByNameId == null)
-					dicByNameId = new();
-						
-                if (!dicByNameId.ContainsKey(data.NameId))
-                {
-                    dicByNameId.Add(data.NameId, data);
-                }
-                else
-                {
-                    Debug.LogError($"NameID 중복 {data.GetType()} / {data.NameId}");
-                }
             }
 			datas = dicById.Values.ToArray();
         }
@@ -58,13 +45,6 @@ public class Data#name#Container : IBaseDataContainer<Data#name#>
     {
         if (dicById.ContainsKey(id))
             return dicById[id];
-
-        return default;
-    }
-    public Data#name# GetByNameId(string nameId)
-    {
-        if (dicByNameId.ContainsKey(nameId))
-            return dicByNameId[nameId];
 
         return default;
     }

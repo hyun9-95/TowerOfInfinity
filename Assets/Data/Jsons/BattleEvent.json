@@ -1,7 +1,6 @@
 [
   {
     "id": 20000,
-    "nameId": "BE_DAMAGE_ONE_SHOT_ATTACK",
     "Type": "Damage",
     "AffectStat": "Attack",
     "BattleEventCategory": "Active",
@@ -13,7 +12,6 @@
   },
   {
     "id": 20001,
-    "nameId": "BE_DAMAGE_COLLISION",
     "Type": "Damage",
     "AffectStat": "Attack",
     "BattleEventCategory": "Active",
@@ -25,7 +23,6 @@
   },
   {
     "id": 20002,
-    "nameId": "BE_KNOCKBACK",
     "Type": "KnockBack",
     "AffectStat": "None",
     "BattleEventCategory": "Active",

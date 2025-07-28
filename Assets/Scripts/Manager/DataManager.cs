@@ -18,10 +18,6 @@ public class DataManager : BaseManager<DataManager>
         return GetDataContainer<T>() != null ? GetDataContainer<T>().GetById(id) : default;
     }
 
-    public T GetDataByNameId<T>(string nameId) where T : IBaseData
-    {
-        return GetDataContainer<T>() != null ? GetDataContainer<T>().GetByNameId(nameId) : default;
-    }
 
     public T FindData<T>(Predicate<T> predicate) where T : IBaseData
     {

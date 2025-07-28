@@ -7,8 +7,6 @@ public struct DataAbility : IBaseData
 {
     [JsonProperty(PropertyName = "id")]
     private readonly int id;
-    [JsonProperty(PropertyName = "nameId")]
-    private readonly string nameId;
     [JsonProperty(PropertyName = "Type")]
     public readonly AbilityType Type;
     [JsonProperty(PropertyName = "BattleEvents")]
@@ -23,6 +21,5 @@ public struct DataAbility : IBaseData
     public readonly string HitEffectPrefabName;
 	
 	public int Id => id;
-    public string NameId => nameId;
-    public bool IsNull => id == 0 || string.IsNullOrEmpty(nameId);
+    public bool IsNull => id == 0;
 }

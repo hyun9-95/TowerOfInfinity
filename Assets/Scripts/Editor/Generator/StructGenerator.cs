@@ -45,6 +45,10 @@ namespace Tools
                 string name = GetNaming(columnNames[i]);
                 string modifier = GetAccessModifier(name);
 
+                // nameId는 Define 추출용으로만 사용하고 struct에서는 제외
+                if (name.Contains("nameId"))
+                    continue;
+
                 if (type.Contains("struct:"))
                 {
                     type = type.Replace("struct:", "");

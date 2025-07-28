@@ -1,7 +1,6 @@
 [
   {
     "id": 50000,
-    "nameId": "WEAPON_SLASH_PROJECTILE",
     "Type": "Weapon",
     "BattleEvents": [
       "BE_DAMAGE_ONE_SHOT_ATTACK"
@@ -13,7 +12,6 @@
   },
   {
     "id": 50001,
-    "nameId": "WEAPON_ARROW",
     "Type": "Weapon",
     "BattleEvents": [
       "BE_DAMAGE_ONE_SHOT_ATTACK"
@@ -25,7 +23,6 @@
   },
   {
     "id": 50002,
-    "nameId": "WEAPON_STING",
     "Type": "Weapon",
     "BattleEvents": [
       "BE_DAMAGE_ONE_SHOT_ATTACK"

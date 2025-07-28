@@ -34,7 +34,7 @@ namespace Tools
                 name = char.ToLower(name[0]) + name[1..];
 
             if (!string.IsNullOrEmpty(dataType) && dataType.Contains("struct:"))
-                name += "NameId";
+                name += "Id";
 
             return name;
         }

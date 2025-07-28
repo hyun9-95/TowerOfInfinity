@@ -8,11 +8,10 @@ using System.Reflection;
 public class DataContainer<T> where T : IBaseData
 {
     private readonly Dictionary<int, T> dicById = new();
-    private readonly Dictionary<string, T> dicByNameId = new();
     private List<string> propertyNames = null;
     private T[] datas = null;
 
-    public bool Deserialized => dicById != null && dicByNameId != null && datas != null;
+    public bool Deserialized => dicById != null && datas != null;
     public bool DeserializeJson(string json)
     {
         if (string.IsNullOrEmpty(json))
@@ -41,16 +40,6 @@ public class DataContainer<T> where T : IBaseData
         return default;
     }
 
-    public T GetByNameId(string nameId)
-    {
-        if (string.IsNullOrEmpty(nameId))
-            return default;
-
-        if (dicByNameId.ContainsKey(nameId))
-            return dicByNameId[nameId];
-
-        return default;
-    }
 
     public T Find(Predicate<T> predicate)
     {
@@ -87,21 +76,9 @@ public class DataContainer<T> where T : IBaseData
 
     private bool TryAddData(T data)
     {
-        if (data.NameId is null)
-        {
-            Logger.Null($"{typeof(T)}");
-            return false;
-        }
-
         if (!dicById.TryAdd(data.Id, data))
         {
             Logger.Error($"Duplicated Id : {data.GetType()} / {data.Id}");
-            return false;
-        }
-
-        if (!dicByNameId.TryAdd(data.NameId, data))
-        {
-            Logger.Error($"Duplicated NameId : {data.GetType()} / {data.NameId}");
             return false;
         }
 
