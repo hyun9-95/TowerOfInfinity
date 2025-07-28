@@ -2,25 +2,25 @@
   {
     "id": 70000,
     "Korean": "무한의 탑",
-    "English": "",
-    "SimplifiedChinese": ""
+    "English": "Tower of Infinity",
+    "SimplifiedChinese": "无限之塔"
   },
   {
     "id": 70001,
     "Korean": "데이터 로딩 중..",
-    "English": "",
-    "SimplifiedChinese": ""
+    "English": "Loading Data...",
+    "SimplifiedChinese": "数据加载中..."
   },
   {
     "id": 70002,
     "Korean": "리소스 로딩 중..",
-    "English": "",
-    "SimplifiedChinese": ""
+    "English": "Loading Resources...",
+    "SimplifiedChinese": "资源加载中..."
   },
   {
     "id": 70003,
     "Korean": "유저 정보 로딩 중..",
-    "English": "",
-    "SimplifiedChinese": ""
+    "English": "Loading User Info...",
+    "SimplifiedChinese": "用户信息加载中..."
   }
 ]

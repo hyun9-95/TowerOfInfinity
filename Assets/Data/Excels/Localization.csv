@@ -1,7 +1,7 @@
 ﻿아이디,이름,,,
 int,string,string,string,string
 Id,NameId,Korean,English,SimplifiedChinese
-70000,GAME_TITLE,무한의 탑,NULL,NULL
-70001,GAME_LOADING_DATA,데이터 로딩 중..,NULL,NULL
-70002,GAME_LOADING_RESOURCES,리소스 로딩 중..,NULL,NULL
-70003,GAME_LOADING_USER,유저 정보 로딩 중..,NULL,NULL
+70000,GAME_TITLE,무한의 탑,Tower of Infinity,无限之塔
+70001,GAME_LOADING_DATA,데이터 로딩 중..,Loading Data...,数据加载中...
+70002,GAME_LOADING_RESOURCES,리소스 로딩 중..,Loading Resources...,资源加载中...
+70003,GAME_LOADING_USER,유저 정보 로딩 중..,Loading User Info...,用户信息加载中...
