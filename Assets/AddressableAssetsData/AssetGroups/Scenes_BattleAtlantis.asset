@@ -10,25 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Scenes_Battle_Atlantis
+  m_Name: Scenes_BattleAtlantis
   m_EditorClassIdentifier: 
-  m_GroupName: Scenes_Battle_Atlantis
-  m_GUID: 9b0cce2a3fdb94641bd1ddd8b6a264fb
+  m_GroupName: Scenes_BattleAtlantis
+  m_GUID: 61d41a9e9ac07d9499cc47ba85553b1d
   m_SerializeEntries:
   - m_GUID: 0cbaf643d95604c49bb1511973c10a47
-    m_Address: Scenes/Battle_Atlantis/Battle_Atlantis/NavMesh-NavigationSurface
+    m_Address: Assets/Addressable/Scenes/Battle/BattleAtlantis/NavMesh-NavigationSurface.asset
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d69e162b299ce954e81ccfae7d808800
-    m_Address: Scenes/Battle_Atlantis/Battle_Atlantis/Battle_Atlantis_RuleTile
+    m_Address: Battle_Atlantis_RuleTile
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: fbbc8f21be9e21747923ada694c38a54
-    m_Address: Scenes/Battle_Atlantis/Battle_Atlantis
+    m_Address: Battle_Atlantis
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
@@ -37,5 +37,5 @@ MonoBehaviour:
   m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 72e90e6bbd17f7b44b10c47677549031, type: 2}
-    - {fileID: 11400000, guid: 711d60ff93e5b3c4b9c329f17327edb7, type: 2}
+    - {fileID: 11400000, guid: a982bc6cbb13eb34c8595533e83c94b1, type: 2}
+    - {fileID: 11400000, guid: ef1908e67b27c9f42b244274fdd4af9b, type: 2}

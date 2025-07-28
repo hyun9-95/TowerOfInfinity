@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5834b5087d578d24c926ce20cd31e6d6, type: 3}
-  m_Name: Scenes_Lobby_Sanctuary_ContentUpdateGroupSchema
+  m_Name: Scenes_BattleAtlantis_ContentUpdateGroupSchema
   m_EditorClassIdentifier: 
-  m_Group: {fileID: 11400000, guid: ba41fe0e5eefd9c4fbfdab5127031a1f, type: 2}
+  m_Group: {fileID: 11400000, guid: db0a2d098fba2654990e68a5bbdf08a7, type: 2}
   m_StaticContent: 0

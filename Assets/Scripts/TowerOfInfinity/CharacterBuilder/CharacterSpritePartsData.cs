@@ -12,12 +12,11 @@ public class CharacterSpritePartsData : ScriptableObject
     }
 
     [System.Serializable]
-    public class LayerEntry // LayerData 대신 LayerEntry로 이름 변경 (혼동 방지)
+    public class LayerEntry
     {
         public string LayerName;
-        public List<PartData> Parts; // PartsData 대신 Parts로 이름 변경 (간결성)
+        public List<PartData> Parts;
     }
 
-    // 이 리스트가 인스펙터에 표시됩니다。
     public List<LayerEntry> LayerEntries = new List<LayerEntry>();
 }

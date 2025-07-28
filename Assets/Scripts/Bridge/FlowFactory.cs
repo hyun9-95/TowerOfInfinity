@@ -12,6 +12,9 @@ public static class FlowFactory
 
             case FlowType.BattleFlow:
                 return new BattleFlow();
+
+            case FlowType.CustomizationFlow:
+                return new CustomizationFlow();
         }
 
         return null;

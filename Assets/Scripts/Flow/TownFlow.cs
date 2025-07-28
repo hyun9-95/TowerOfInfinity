@@ -53,6 +53,7 @@ public class TownFlow : BaseFlow<TownFlowModel>
 
         await UniTask.NextFrame();
 
+        leaderCharacter.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
         townSceneManager.SetFollowCamera(leaderCharacter.transform);
 
         if (leaderCharacter != null)

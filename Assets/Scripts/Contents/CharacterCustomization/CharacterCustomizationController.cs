@@ -1,11 +1,10 @@
 using Cysharp.Threading.Tasks;
 using System;
-using static UnityEditor.Profiling.HierarchyFrameDataView;
 
 public class CharacterCustomizationController : BaseController<CharacterCustomizationViewModel>
 {
     public override UIType UIType => UIType.CharacterCustomizationView;
-    public override UICanvasType UICanvasType => UICanvasType.Popup;
+    public override UICanvasType UICanvasType => UICanvasType.View;
 
     private CharacterCustomizationView View => GetView<CharacterCustomizationView>();
 

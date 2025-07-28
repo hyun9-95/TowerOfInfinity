@@ -22,6 +22,23 @@ public class CharacterCustomizationViewModel : IBaseViewModel
         SpriteLibrary = spriteLibrary;
     }
 
+    public void SetSpriteLibrary(SpriteLibrary spriteLibrary)
+    {
+        SpriteLibrary = spriteLibrary;
+    }
+
+    public void SetUserCharacterInfo(UserCharacterAppearanceInfo characterInfo)
+    {
+        if (characterInfo != null && characterInfo.parts != null)
+        {
+            InitializeParts(characterInfo.parts.Length);
+            for (int i = 0; i < characterInfo.parts.Length; i++)
+            {
+                Parts[i] = characterInfo.parts[i] ?? string.Empty;
+            }
+        }
+    }
+
     public void ChangePart(int index, string value)
     {
         if (index >= 0 && index < Parts.Count)

@@ -7,6 +7,8 @@ using UnityEngine.U2D.Animation;
 
 public class CharacterUnit : PoolableMono
 {
+    public SpriteLibrary SpriteLibrary => spriteLibrary;
+
     public CharacterUnitModel Model { get; private set; }
 
     public void SetModel(CharacterUnitModel model)

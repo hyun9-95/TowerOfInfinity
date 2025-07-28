@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Scenes_Lobby_Sanctuary
+  m_Name: Scenes_Town_Customization
   m_EditorClassIdentifier: 
-  m_GroupName: Scenes_Lobby_Sanctuary
-  m_GUID: c98f2ed5fa2d1da43a363a7da757425f
+  m_GroupName: Scenes_Town_Customization
+  m_GUID: c6b36b4fcaedd1b4889dbc57308309c8
   m_SerializeEntries:
-  - m_GUID: 8f4ff9fb980dbac4da5e8531d11832b3
-    m_Address: Scenes/Lobby_Sanctuary/Lobby_Sanctuary
+  - m_GUID: 4d6b4845bc5c72b4b8653e912b4ee192
+    m_Address: Town_Customization
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: a9c519900136c8440a40c918ae727238
-    m_Address: Scenes/Lobby_Sanctuary/Lobby_Sanctuary/NavMesh-NavigationSurface
+  - m_GUID: 84a535d36ad935a46a89aba5a0b277dd
+    m_Address: Assets/Addressable/Scenes/Town/Town_Customization/NavMesh-NavigationSurface.asset
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
@@ -31,5 +31,5 @@ MonoBehaviour:
   m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 9a41c5c950d9f08459908cb646887fba, type: 2}
-    - {fileID: 11400000, guid: cb92884c6aee9904eba1c1b323cb1d9e, type: 2}
+    - {fileID: 11400000, guid: 53278684e2d02a445911f43c6661f3ae, type: 2}
+    - {fileID: 11400000, guid: cad0101c818e27245a0e95cb4e93c200, type: 2}

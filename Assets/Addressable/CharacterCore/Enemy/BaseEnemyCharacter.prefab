@@ -173,6 +173,7 @@ MonoBehaviour:
   animator: {fileID: 106869835892434893}
   rigidBody2D: {fileID: 431284183106862956}
   bodySprite: {fileID: 375275871827160082}
+  spriteLibrary: {fileID: 4855611840243421220}
   agent: {fileID: 6394723101900763941}
   characterCollider2D: {fileID: 7747473371373772593}
   triggerCollider2D: {fileID: 1264580057160532463}

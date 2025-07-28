@@ -40,11 +40,19 @@ public class IntroFlow : BaseFlow<IntroFlowModel>
             FlowManager.Instance.ChangeFlow(FlowType.BattleFlow, battleFlowModel).Forget();
             return;
         }
+        else if (GameManager.Config.IsEnterCustomizationFlow)
+        {
+            CustomizationFlowModel customizationFlowModel = new CustomizationFlowModel();
+            
+            FlowManager.Instance.ChangeFlow(FlowType.CustomizationFlow, customizationFlowModel).Forget();
+        }
+        else
+        {
+            TownFlowModel lobbyFlowModel = new TownFlowModel();
+            lobbyFlowModel.SetLobbySceneDefine(SceneDefine.Town_Sanctuary);
 
-        TownFlowModel lobbyFlowModel = new TownFlowModel();
-        lobbyFlowModel.SetLobbySceneDefine(SceneDefine.Lobby_Sanctuary);
-
-        FlowManager.Instance.ChangeFlow(FlowType.TownFlow, lobbyFlowModel).Forget();
+            FlowManager.Instance.ChangeFlow(FlowType.TownFlow, lobbyFlowModel).Forget();
+        }
     }
 
     public override async UniTask Exit()

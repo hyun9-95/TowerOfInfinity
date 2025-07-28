@@ -135,11 +135,19 @@ public class AddressableBuildGenerator : BaseGenerator
             entry.SetLabel(labelName, true);
         }
 
-        string newAddress = assetPath.Replace("Assets/Addressable/", "");
-        string[] split = newAddress.Split(".");
-        newAddress = split[0];
+        string newAddress = null;
 
-        // 어드레스를 새로운 규칙에 따라 설정.
+        if (assetPath.Contains("Scenes"))
+        {
+            newAddress = Path.GetFileNameWithoutExtension(assetPath);
+        }
+        else
+        {
+            newAddress = assetPath.Replace("Assets/Addressable/", "");
+            string[] split = newAddress.Split(".");
+            newAddress = split[0];
+        }
+
         entry.SetAddress(excludeNames.Contains(newAddress) ? assetPath : newAddress);
         AddToAddressableDic(newAddress, assetPath);
     }

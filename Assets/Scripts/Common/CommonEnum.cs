@@ -66,6 +66,7 @@ public enum FlowType
     IntroFlow,
     TownFlow,
     BattleFlow,
+    CustomizationFlow,
 }
 
 public enum LoadDataType

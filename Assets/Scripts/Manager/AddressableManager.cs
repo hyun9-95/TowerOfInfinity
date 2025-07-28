@@ -86,11 +86,6 @@ public class AddressableManager : BaseManager<AddressableManager>
         return addressableBuildInfo.AddressableDic.ContainsKey(address);
     }
 
-    private string GetSceneAdress(SceneDefine define)
-    {
-        return $"Scenes/{define}/{define}";
-    }
-
     private bool IsAddressableScene(SceneDefine define)
     {
         return define switch
@@ -104,7 +99,7 @@ public class AddressableManager : BaseManager<AddressableManager>
     public async UniTask<Scene> LoadSceneAsync(SceneDefine define,
     UnityEngine.SceneManagement.LoadSceneMode loadSceneMode = UnityEngine.SceneManagement.LoadSceneMode.Single)
     {
-        string address = GetSceneAdress(define);
+        string address = define.ToString();
 
         if (IsAddressableScene(define))
         {
@@ -136,7 +131,7 @@ public class AddressableManager : BaseManager<AddressableManager>
 
     public async UniTask<bool> UnloadSceneAsync(SceneDefine define)
     {
-        string address = GetSceneAdress(define);
+        string address = define.ToString();
 
         if (!loadedScenes.Contains(address))
         {
