@@ -1,4 +1,4 @@
-﻿#if UNITY_EDITOR || LiveScriptReload_Enabled
+#if UNITY_EDITOR || LiveScriptReload_Enabled
 
 using System;
 using System.Collections.Generic;
@@ -222,7 +222,7 @@ namespace FastScriptReload.Runtime
                     return;
                 }
 
-                foreach (var instanceOfType in GameObject.FindObjectsOfType(originalType)) //TODO: perf - could find them in different way?
+                foreach (var instanceOfType in UnityEngine.Object.FindObjectsByType(originalType, FindObjectsSortMode.None)) //TODO: perf - could find them in different way?
                 {
                     onScriptHotReloadFn.Invoke(instanceOfType, null);
                 }
