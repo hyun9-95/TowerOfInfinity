@@ -114,3 +114,23 @@ The game uses a hierarchical flow system managed by `FlowManager`:
 - Battle events can be monitored through `ObserverManager` logging
 - Character states visible in Unity Inspector during play mode
 - Addressable handles tracked automatically for memory leak detection
+
+## Automation Workflows
+
+### `/translate-localization`
+Automatically translates and synchronizes localization data:
+
+1. **Read** `Assets/Data/Jsons/Localization.json`
+2. **Identify** empty English and SimplifiedChinese fields
+3. **Translate** Korean text to missing languages:
+   - Korean → English (natural translation)
+   - Korean → Simplified Chinese (natural translation)
+4. **Update** JSON file with translations
+5. **Convert** updated JSON back to `Assets/Data/Excels/Localization.csv`
+6. **Maintain** CSV format compatible with DataGenerator
+
+**Usage**: Simply type `/translate-localization` to execute the complete workflow.
+
+**Files Modified**:
+- `Assets/Data/Jsons/Localization.json` (updated with translations)
+- `Assets/Data/Excels/Localization.csv` (synchronized with JSON changes)
