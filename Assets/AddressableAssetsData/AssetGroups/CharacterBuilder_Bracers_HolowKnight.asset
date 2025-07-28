@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterBuilder_Bracers_HolowKnight
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterBuilder_Bracers_HolowKnight
+  m_GUID: 00843c1c9966c3645aaa80747513f879
+  m_SerializeEntries:
+  - m_GUID: ecb5ad866d535d84bba28434183202bf
+    m_Address: CharacterBuilder/Bracers/HolowKnight
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: b349b5c57ddd14641944254d74bbcea0, type: 2}
+    - {fileID: 11400000, guid: 9b16f7e7577dc134b89b774a45f89a68, type: 2}

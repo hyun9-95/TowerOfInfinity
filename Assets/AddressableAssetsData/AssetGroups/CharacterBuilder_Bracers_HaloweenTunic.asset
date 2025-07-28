@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterBuilder_Bracers_HaloweenTunic
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterBuilder_Bracers_HaloweenTunic
+  m_GUID: 05e555a22159bc64aaa8db03f376071f
+  m_SerializeEntries:
+  - m_GUID: 6db6973167f02434787047f91f7bf9ae
+    m_Address: CharacterBuilder/Bracers/HaloweenTunic
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: cc8b6bff1da5166459fca2c89f737eeb, type: 2}
+    - {fileID: 11400000, guid: ea31b29a3c5cb0c4ab182ed24f7a5b15, type: 2}

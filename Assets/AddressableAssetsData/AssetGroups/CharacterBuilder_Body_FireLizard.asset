@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterBuilder_Body_FireLizard
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterBuilder_Body_FireLizard
+  m_GUID: e5b38ab0d8f05f94c92c0329c0deec44
+  m_SerializeEntries:
+  - m_GUID: 8787a5f7423e20449b9127d50fb9f479
+    m_Address: CharacterBuilder/Body/FireLizard
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: c11d3e50cc90eff45a136da3789aba1d, type: 2}
+    - {fileID: 11400000, guid: 73688237066909d4284b44245be18b95, type: 2}

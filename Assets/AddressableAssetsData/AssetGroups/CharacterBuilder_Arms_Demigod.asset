@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterBuilder_Arms_Demigod
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterBuilder_Arms_Demigod
+  m_GUID: 1e7d1c6c5dc98ac47a0ba929e54193d0
+  m_SerializeEntries:
+  - m_GUID: ea0988ea4e642a744a76c4069ae9f243
+    m_Address: CharacterBuilder/Arms/Demigod
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 556b1eb99eac5f64ab3599bae6a488bc, type: 2}
+    - {fileID: 11400000, guid: 8e309d67504262a40a008e9380c6cfff, type: 2}

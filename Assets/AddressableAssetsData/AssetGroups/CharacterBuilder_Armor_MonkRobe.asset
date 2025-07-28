@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterBuilder_Armor_MonkRobe
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterBuilder_Armor_MonkRobe
+  m_GUID: f800b1c9fb603054dac0bc688d002c7d
+  m_SerializeEntries:
+  - m_GUID: 96aba450b1ed3bb46b8f3b551f97b008
+    m_Address: CharacterBuilder/Armor/MonkRobe
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 4b7b0bb77c61fa940aa56f71545f7274, type: 2}
+    - {fileID: 11400000, guid: aea5ea71ff4ce6f46a4f72b53b35b9cf, type: 2}

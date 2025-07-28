@@ -67,7 +67,7 @@ public class AddressableBuildGenerator : BaseGenerator
         {
             string uniqueGroupName = assetPath.Replace("Assets/Addressable/", "");
             string[] split = uniqueGroupName.Split(".");
-            uniqueGroupName = split[0];
+            uniqueGroupName = split[0].Replace("/", "_");
             return uniqueGroupName;
         }
 
@@ -173,10 +173,17 @@ public class AddressableBuildGenerator : BaseGenerator
     private void ClearNotUseEntries(AddressableAssetSettings addressableSettings, string[] guids)
     {
         HashSet<string> guidsHashSet = new HashSet<string>(guids);
+        List<AddressableAssetGroup> removeGroupList = new List<AddressableAssetGroup>();
 
         foreach (AddressableAssetGroup group in addressableSettings.groups)
         {
             List<AddressableAssetEntry> removeList = new List<AddressableAssetEntry>();
+
+            if (group == null)
+            {
+                removeGroupList.Add(group);
+                continue;
+            }
 
             foreach (AddressableAssetEntry entry in group.entries)
             {
@@ -187,6 +194,9 @@ public class AddressableBuildGenerator : BaseGenerator
             foreach (AddressableAssetEntry entryToRemove in removeList)
                 group.RemoveAssetEntry(entryToRemove);
         }
+
+        foreach (var group in removeGroupList)
+            addressableSettings.RemoveGroup(group);
     }
 
     private void RemoveEmptyGroups(AddressableAssetSettings addressableSettings)

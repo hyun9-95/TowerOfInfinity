@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterBuilder_Eyes_DarkElf
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterBuilder_Eyes_DarkElf
+  m_GUID: edb9c50bd0eff3f49b78dc73d0ec3903
+  m_SerializeEntries:
+  - m_GUID: 0a7477df1ad60f440ad16bcdfb4d1249
+    m_Address: CharacterBuilder/Eyes/DarkElf
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 54e2981bc71537a419d47ef3eb9cabf7, type: 2}
+    - {fileID: 11400000, guid: 539da2baa1dc11841a82106e54d6a852, type: 2}

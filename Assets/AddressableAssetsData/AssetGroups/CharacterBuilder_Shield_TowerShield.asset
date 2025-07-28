@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterBuilder_Shield_TowerShield
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterBuilder_Shield_TowerShield
+  m_GUID: 3c7ad8337a23e5e4385f0d9156ae24a7
+  m_SerializeEntries:
+  - m_GUID: bb942eb424e133c4c90f82a5c9a5adb2
+    m_Address: CharacterBuilder/Shield/TowerShield
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: e4c0f7b19401de24ba79ecdc54896774, type: 2}
+    - {fileID: 11400000, guid: 05667237c39ccc64596e713732c0c22a, type: 2}

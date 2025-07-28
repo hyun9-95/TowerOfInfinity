@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: UI_CharacterCustomizationView
+  m_EditorClassIdentifier: 
+  m_GroupName: UI_CharacterCustomizationView
+  m_GUID: b15ca85c83f6a2a4f99effe12355cfee
+  m_SerializeEntries:
+  - m_GUID: c525810f723ddc14e9738796ed95b289
+    m_Address: UI/CharacterCustomizationView/CharacterCustomizationView
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 1831c7dc6eafc664785af2d17ac76709, type: 2}
+    - {fileID: 11400000, guid: 6f42dad777d686046bd83e2912d9c634, type: 2}

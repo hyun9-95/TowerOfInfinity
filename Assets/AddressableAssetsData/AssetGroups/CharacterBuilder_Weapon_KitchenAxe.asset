@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterBuilder_Weapon_KitchenAxe
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterBuilder_Weapon_KitchenAxe
+  m_GUID: 06006715dd07ce247818883ed23f4028
+  m_SerializeEntries:
+  - m_GUID: 322509969ab07ee41a8b40a374da7187
+    m_Address: CharacterBuilder/Weapon/KitchenAxe
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 0d52580d0afbc3b42bb245577fa9fe67, type: 2}
+    - {fileID: 11400000, guid: b408986f7351ee04fb94bb38058b8a23, type: 2}

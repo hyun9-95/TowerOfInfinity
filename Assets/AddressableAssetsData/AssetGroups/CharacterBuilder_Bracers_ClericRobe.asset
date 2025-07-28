@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterBuilder_Bracers_ClericRobe
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterBuilder_Bracers_ClericRobe
+  m_GUID: 82e1d9283039c68489c9dade4d3502a1
+  m_SerializeEntries:
+  - m_GUID: e0f99aee5953b024c88c92871f840f7a
+    m_Address: CharacterBuilder/Bracers/ClericRobe
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: cd42300d47b9aca4091834308e8e52b8, type: 2}
+    - {fileID: 11400000, guid: 9d37d5581fe2cd44588740ea93057219, type: 2}

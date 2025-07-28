@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterBuilder_Mask_DarkMask
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterBuilder_Mask_DarkMask
+  m_GUID: 0f7f64a8a98c189478d797769d439066
+  m_SerializeEntries:
+  - m_GUID: e21712e62c163b643b3702b3c3d92bcc
+    m_Address: CharacterBuilder/Mask/DarkMask
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 35aab37f7e67fea46b3114bc1d7f01de, type: 2}
+    - {fileID: 11400000, guid: 67222ba011c0b7c41998ba3e90cf7907, type: 2}

@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterBuilder_Weapon_NatureWand
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterBuilder_Weapon_NatureWand
+  m_GUID: cb7e6ee2c7775f842aa1a7eeea51345e
+  m_SerializeEntries:
+  - m_GUID: 7d4d5d3b987d2e343a1cc1b0aab9a6b8
+    m_Address: CharacterBuilder/Weapon/NatureWand
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: c3dabef1606e0974aa606365a54fad76, type: 2}
+    - {fileID: 11400000, guid: c6b09edab2c1b3c43a8f45db175ad312, type: 2}

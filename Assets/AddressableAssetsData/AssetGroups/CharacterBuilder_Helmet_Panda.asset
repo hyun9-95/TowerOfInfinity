@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterBuilder_Helmet_Panda
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterBuilder_Helmet_Panda
+  m_GUID: 854ab9f4cf0be604f91bc52019f9ae2f
+  m_SerializeEntries:
+  - m_GUID: 733c598d2f4d91142a221fba6f583a1b
+    m_Address: CharacterBuilder/Helmet/Panda
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 2b1c0c29e3421684f865647dc6c5df8e, type: 2}
+    - {fileID: 11400000, guid: 61728ca86026ab54b906cd896afcc740, type: 2}

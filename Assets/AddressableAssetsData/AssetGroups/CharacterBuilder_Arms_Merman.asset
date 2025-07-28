@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterBuilder_Arms_Merman
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterBuilder_Arms_Merman
+  m_GUID: 106d86a2c2be8ed448d092a0c6c72c2a
+  m_SerializeEntries:
+  - m_GUID: bbdbada36ca0fb544951bc3485bd1b34
+    m_Address: CharacterBuilder/Arms/Merman
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: ffc1e517d6fbb3a4480cc578643ab168, type: 2}
+    - {fileID: 11400000, guid: 0a0214c7cc15ca441b8ad95059239ca8, type: 2}

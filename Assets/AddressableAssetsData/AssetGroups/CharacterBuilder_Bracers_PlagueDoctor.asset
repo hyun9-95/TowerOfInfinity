@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterBuilder_Bracers_PlagueDoctor
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterBuilder_Bracers_PlagueDoctor
+  m_GUID: b0e3f33348234684dbba75e43d88e75e
+  m_SerializeEntries:
+  - m_GUID: 832d37bd7b50aa5469e5795c6c053316
+    m_Address: CharacterBuilder/Bracers/PlagueDoctor
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 8bd3c93177061dc4e90a46bb6c036b84, type: 2}
+    - {fileID: 11400000, guid: d7b6f7400356cc14b9bf3aad902dc7c3, type: 2}

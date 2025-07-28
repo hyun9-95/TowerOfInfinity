@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterBuilder_Ears_Furry
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterBuilder_Ears_Furry
+  m_GUID: f1f6cca2d32c4cf4ab49487d4efa35fe
+  m_SerializeEntries:
+  - m_GUID: d2bde44d7a764204da103fedbfd0de3b
+    m_Address: CharacterBuilder/Ears/Furry
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: d2859cb475c6a9a46b3bc015b95b838b, type: 2}
+    - {fileID: 11400000, guid: 7ccb399d39aa5174199c235a179a059b, type: 2}

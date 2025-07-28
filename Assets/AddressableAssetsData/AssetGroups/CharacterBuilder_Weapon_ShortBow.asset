@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterBuilder_Weapon_ShortBow
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterBuilder_Weapon_ShortBow
+  m_GUID: 8f4979e3d6521b1459af5f3ee51d9cd9
+  m_SerializeEntries:
+  - m_GUID: 86eceb11c7852f247bb3586942449848
+    m_Address: CharacterBuilder/Weapon/ShortBow
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: e9b6114065733e048ac72a8083cc7df1, type: 2}
+    - {fileID: 11400000, guid: d074a5011f2a05d4cb34ae60c06b5960, type: 2}

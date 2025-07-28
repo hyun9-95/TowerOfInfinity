@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterBuilder_Weapon_Butcher
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterBuilder_Weapon_Butcher
+  m_GUID: 1bd1972637a44fb45a228fbe73bad6a5
+  m_SerializeEntries:
+  - m_GUID: ea358c5a3fd857b45ad63f4ef2a3c7bf
+    m_Address: CharacterBuilder/Weapon/Butcher
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 8d46200c328e5c047aac4bb2f6f4d3b1, type: 2}
+    - {fileID: 11400000, guid: 974614c2c81bdd84ebb8f051a6edab5d, type: 2}

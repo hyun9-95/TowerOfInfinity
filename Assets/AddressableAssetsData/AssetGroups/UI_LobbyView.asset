@@ -16,7 +16,7 @@ MonoBehaviour:
   m_GUID: 15749d6148c04684d8b71657402a3ddb
   m_SerializeEntries:
   - m_GUID: 0db7be8c38168b7408d3ad3a119741ac
-    m_Address: UI/LobbyView/LobbyView
+    m_Address: UI/LobbyView/TownView
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main

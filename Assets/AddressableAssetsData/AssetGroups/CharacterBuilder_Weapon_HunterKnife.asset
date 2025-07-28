@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterBuilder_Weapon_HunterKnife
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterBuilder_Weapon_HunterKnife
+  m_GUID: 14e3001e66ec2164db2fe0b1298a9baa
+  m_SerializeEntries:
+  - m_GUID: a05c0cb025049b245b63feb6b1369af7
+    m_Address: CharacterBuilder/Weapon/HunterKnife
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: fb9313874b4e7e24fa16d8e92e6ff5b0, type: 2}
+    - {fileID: 11400000, guid: f1eab7cd499a8a64e95dac66bc8308b1, type: 2}
