@@ -51,7 +51,7 @@ namespace Tools
 
                     if (dataType.Contains("[]"))
                     {
-                        string[] values = value.Split(',', StringSplitOptions.RemoveEmptyEntries);
+                        string[] values = value.Split(';', StringSplitOptions.RemoveEmptyEntries);
                         // ex "enum[]:CharacterDefine" → "enum:CharacterDefine"
                         System.Type arrayType = GetDataType(dataType.Replace("[]", ""));
 
@@ -61,12 +61,30 @@ namespace Tools
                             object arrayValue = GetConvertValue(dataType.Replace("[]", ""), values[k]);
                             array.SetValue(arrayValue, k);
                         }
-                        dataDic.Add(name, array);
+                        
+                        // 중복 키 처리
+                        if (dataDic.ContainsKey(name))
+                        {
+                            Logger.Error($"Duplicate key '{name}' found in row {i}. Skipping this column.");
+                        }
+                        else
+                        {
+                            dataDic.Add(name, array);
+                        }
                     }
                     else
                     {
                         object convertValue = GetConvertValue(dataType, value);
-                        dataDic.Add(name, convertValue);
+                        
+                        // 중복 키 처리
+                        if (dataDic.ContainsKey(name))
+                        {
+                            Logger.Error($"Duplicate key '{name}' found in row {i}. Skipping this column.");
+                        }
+                        else
+                        {
+                            dataDic.Add(name, convertValue);
+                        }
                     }
                 }
                 dataDicList.Add(dataDic);
@@ -84,6 +102,8 @@ namespace Tools
                     return typeof(int);
                 case "float":
                     return typeof(float);
+                case "bool":
+                    return typeof(bool);
                 default:
                     return typeof(string);
             }
@@ -101,8 +121,33 @@ namespace Tools
                     if (float.TryParse(value, out float floatValue))
                         return floatValue;
                     return 0f;
+                case "bool":
+                    return ConvertToBool(value);
                 default:
                     return value;
+            }
+        }
+
+        private bool ConvertToBool(string value)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+                return false;
+
+            string trimmedValue = value.Trim();
+            
+            switch (trimmedValue)
+            {
+                case "TRUE":
+                case "true":
+                case "1":
+                    return true;
+                case "FALSE":
+                case "false":
+                case "0":
+                    return false;
+                default:
+                    Logger.Warning($"Unable to parse bool value '{value}'. Supported formats: TRUE/true/1 for true, FALSE/false/0 for false. Defaulting to false.");
+                    return false;
             }
         }
     }

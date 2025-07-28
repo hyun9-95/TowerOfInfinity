@@ -17,7 +17,7 @@ namespace Tools
         private Dictionary<string, Type> useEnumTypes = new();
         private float spacing;
 
-        /// <summary> Window »çÀÌÁî ÃÊ±âÈ­ .. spacing - º¯¼ö »çÀÌ °£°İ </summary>
+        /// <summary> Window ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­ .. spacing - ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ </summary>
         protected void InitializeWindow(BaseEdtiorWindow window, float width, float height, float spacingValue)
         {
             window.minSize = new Vector2(width, height);
@@ -25,7 +25,7 @@ namespace Tools
             spacing = spacingValue;
         }
 
-        /// <summary> AddParameter·Î »ç¿ëÇÒ º¯¼öµéÀ» Ãß°¡ÇÏµµ·Ï ±¸Çö </summary>
+        /// <summary> AddParameterï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ïµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ </summary>
         protected abstract void InitializeParameters();
 
         protected abstract void DrawActionButton();
@@ -207,18 +207,29 @@ namespace Tools
 
         private string GetParameterLabel(string name)
         {
-            //ÆÄ½ºÄ® ÄÉÀÌ½º·Î ÀÛ¼ºµÈ name »çÀÌ »çÀÌ¿¡ ¶ç¾î¾²±â Ãß°¡
+            //ï¿½Ä½ï¿½Ä® ï¿½ï¿½ï¿½Ì½ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½ï¿½ï¿½ name ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¿ï¿½ ï¿½ï¿½î¾²ï¿½ï¿½ ï¿½ß°ï¿½
             //ex)LocalDataJson => Local Data Json
             return System.Text.RegularExpressions.Regex.Replace(name, @"(\p{Ll})(\p{Lu})", "$1 $2");
         }
 
-        /// <summary> nameÀº AddParameter¿¡¼­ Ãß°¡ÇÑ °Í°ú µ¿ÀÏÇØ¾ßÇÔ </summary>
+        /// <summary> nameï¿½ï¿½ AddParameterï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½ï¿½ ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ï¿½ï¿½ </summary>
         public T GetParameter<T>(string name)
         {
             if (!parameters.ContainsKey(name))
                 return default;
 
             return parameters[name] is T ? (T)parameters[name] : default;
+        }
+
+        /// <summary> Parameter ê°’ì„ ì„¤ì •í•©ë‹ˆë‹¤ </summary>
+        public void SetParameter<T>(string name, T value)
+        {
+            if (!defaultParameters.ContainsKey(name))
+            {
+                Logger.Warning($"Parameter '{name}' was not added with AddParameter. Adding it to parameters only.");
+            }
+
+            parameters[name] = value;
         }
 
         private bool CheckConditionalParameter(string name)

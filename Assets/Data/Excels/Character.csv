@@ -1,0 +1,16 @@
+﻿아이디,이름,캐릭터 타입,,,
+int,string,string,AbilityDefine,AbilityDefine,AbilityDefine
+Id,NameId,PrefabName,Default_Weapon,ActiveSkill,PassiveSkill
+10000,CHAR_THIEF,Character/Player/Thief/Thief,WEAPON_STING,None,None
+10001,CHAR_ARCHER,Character/Player/Archer/Archer,WEAPON_ARROW,None,None
+10002,CHAR_GUARD,Character/Player/Guard/Guard,WEAPON_STING,None,None
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+11000,CHAR_BAT,Character/Enemy/Bat/Bat,None,None,None

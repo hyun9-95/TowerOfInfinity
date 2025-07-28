@@ -1,0 +1,4 @@
+﻿아이디,이름,
+int,string,EnemyGroupDefine[]
+Id,NameId,EnemyGroups
+40000,DUNGEON_ATLANTIS,ENEMY_GROUP_ATLANTIS

@@ -11,20 +11,32 @@ namespace Tools
     public static class DataGenerator
     {
         private const string ExcelFileExtension = ".xlsx";
+        private const string CsvFileExtension = ".csv";
 
         //반복사용하는 generator만 빼놓음
         private static readonly StructGenerator structGenerator = new();
         private static readonly JsonGenerator jsonGenerator = new();
         private static readonly DataDefineGenerator dataDefineGenerator = new();
+        private static readonly CsvReader csvReader = new();
         
         private static float progress;
         private static string excelFolderPath;
         private static string jsonFolderPath;
         private static int version;
 
-        public static void GenerateDataFromExcelFoler(string excelFolderPathValue, string jsonFolderPathValue, int versionValue)
+        public static void GenerateDataFromExcelFolder(string excelFolderPathValue, string jsonFolderPathValue, int versionValue)
         {
-            if (!AssetDatabase.IsValidFolder(excelFolderPathValue))
+            GenerateDataFromFiles(excelFolderPathValue, jsonFolderPathValue, versionValue, ExcelFileExtension);
+        }
+
+        public static void GenerateDataFromCsvFolder(string csvFolderPathValue, string jsonFolderPathValue, int versionValue)
+        {
+            GenerateDataFromFiles(csvFolderPathValue, jsonFolderPathValue, versionValue, CsvFileExtension);
+        }
+
+        private static void GenerateDataFromFiles(string folderPathValue, string jsonFolderPathValue, int versionValue, string fileExtension)
+        {
+            if (!AssetDatabase.IsValidFolder(folderPathValue))
             {
                 Logger.Error("Invalid folder path");
                 return;
@@ -36,26 +48,34 @@ namespace Tools
                 return;
             }
 
-            Initialize(excelFolderPathValue, jsonFolderPathValue, versionValue);
+            Initialize(folderPathValue, jsonFolderPathValue, versionValue);
 
-            string[] excelFiles = Directory.GetFiles(excelFolderPath, $"*{ExcelFileExtension}");
+            string[] dataFiles = Directory.GetFiles(excelFolderPath, $"*{fileExtension}");
 
-            if (excelFiles.Length == 0)
+            if (dataFiles.Length == 0)
             {
-                Logger.Error($"There is no excel file in {excelFolderPath}.");
+                Logger.Error($"There is no {fileExtension} file in {excelFolderPath}.");
                 return;
             }
 
             try
             {
-                GenerateDataFromExcelFilePaths(excelFiles);
+                if (fileExtension == ExcelFileExtension)
+                {
+                    GenerateDataFromExcelFilePaths(dataFiles);
+                }
+                else if (fileExtension == CsvFileExtension)
+                {
+                    GenerateDataFromCsvFilePaths(dataFiles);
+                }
+                
                 GenerateContainerManager();
                 GenerateJsonList();
                 GenerateVersion();
             }
             catch (Exception e)
             {
-                Logger.Exception($"Error occured while generate data. => {excelFolderPathValue}", e);
+                Logger.Exception($"Error occured while generate data. => {folderPathValue}", e);
             }
             finally
             {
@@ -88,6 +108,21 @@ namespace Tools
             Logger.Log("----------------Check Excel End------------------");
         }
 
+        /// <summary> CSV 파일 처리 </summary>
+        public static void GenerateDataFromCsvFilePaths(string[] csvFiles)
+        {
+            Logger.Log("----------------Check CSV Start-----------------");
+            for (int i = 0; i < csvFiles.Length; i++)
+            {
+                string csvPath = csvFiles[i];
+
+                EditorUtility.DisplayProgressBar(excelFolderPath, $"Converting {csvPath}..", progress);
+                GenerateDataFromCsvPath(csvPath.Replace(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar));
+                progress += 1f / csvFiles.Length;
+            }
+            Logger.Log("----------------Check CSV End------------------");
+        }
+
         private static bool GenerateDataFromExcelPath(string readExcelPath)
         {
             using (FileStream fileStream = File.Open(readExcelPath, FileMode.Open, FileAccess.Read))
@@ -105,6 +140,31 @@ namespace Tools
                 GenerateDataDefineFromExcelSheet(readExcelPath, sheet);
 
                 return true;
+            }
+        }
+
+        private static bool GenerateDataFromCsvPath(string readCsvPath)
+        {
+            try
+            {
+                DataTable sheet = csvReader.ReadCsvToDataTable(readCsvPath);
+
+                if (sheet == null)
+                {
+                    Logger.Error($"Failed to read CSV file: {readCsvPath}");
+                    return false;
+                }
+
+                GenerateStructFromExcelSheet(readCsvPath, sheet);
+                GenerateJsonFromExcelSheet(readCsvPath, sheet);
+                GenerateDataDefineFromExcelSheet(readCsvPath, sheet);
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                Logger.Exception($"Error processing CSV file: {readCsvPath}", e);
+                return false;
             }
         }
 

@@ -1,0 +1,4 @@
+﻿아이디,이름,
+int,string,CharacterDefine[]
+Id,NameId,Enemys
+30000,ENEMY_GROUP_ATLANTIS,CHAR_BAT

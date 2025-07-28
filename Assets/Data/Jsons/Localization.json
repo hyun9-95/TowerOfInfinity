@@ -4,5 +4,23 @@
     "Korean": "무한의 탑",
     "English": "",
     "SimplifiedChinese": ""
+  },
+  {
+    "id": 70001,
+    "Korean": "데이터 로딩 중..",
+    "English": "",
+    "SimplifiedChinese": ""
+  },
+  {
+    "id": 70002,
+    "Korean": "리소스 로딩 중..",
+    "English": "",
+    "SimplifiedChinese": ""
+  },
+  {
+    "id": 70003,
+    "Korean": "유저 정보 로딩 중..",
+    "English": "",
+    "SimplifiedChinese": ""
   }
 ]

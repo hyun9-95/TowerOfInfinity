@@ -8,7 +8,7 @@
     "StatReference": "Sender",
     "StatReferenceCondition": "CurrentStat",
     "StatusDirection": "Increase",
-    "Stackable": "False"
+    "Stackable": false
   },
   {
     "id": 20001,
@@ -19,7 +19,7 @@
     "StatReference": "Sender",
     "StatReferenceCondition": "CurrentStat",
     "StatusDirection": "Increase",
-    "Stackable": "False"
+    "Stackable": false
   },
   {
     "id": 20002,
@@ -30,6 +30,6 @@
     "StatReference": "Sender",
     "StatReferenceCondition": "None",
     "StatusDirection": "None",
-    "Stackable": "False"
+    "Stackable": false
   }
 ]

@@ -1,0 +1,4 @@
+﻿아이디,이름,,
+int,string,float[],int
+Id,NameId,Values,ValueCount
+60000,BALANCE_BATTLE_EXP,100; 200; 300; 450; 650; 900; 1200; 1550; 1950; 2400,10
