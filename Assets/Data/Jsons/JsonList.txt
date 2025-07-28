@@ -1,1 +1,1 @@
-Ability.json,Balance.json,BattleEvent.json,Character.json,Dungeon.json,EnemyGroup.json
+Ability.json,Balance.json,BattleEvent.json,Character.json,Dungeon.json,EnemyGroup.json,Localization.json

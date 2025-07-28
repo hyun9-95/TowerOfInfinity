@@ -42,14 +42,18 @@ namespace Tools
                 for (int j = 0; j < sheet.Columns.Count; j++)
                 {
                     string dataType = dataTypeRow[j].ToString();
-                    string name = GetNaming(nameRow[j].ToString(), dataType);
+                    string originalName = nameRow[j].ToString();
+                    string name = GetNaming(originalName, dataType);
                     string value = sheet.Rows[i][j].ToString();
 
-                    if (name.Contains("nameId"))
+                    // 원본 컬럼명에서 NameId를 찾아야 함 (대소문자 구분 없이)
+                    if (originalName.Equals("NameId", StringComparison.OrdinalIgnoreCase) || 
+                        originalName.Equals("nameId", StringComparison.OrdinalIgnoreCase))
                     {
                         nameId = value;
                     }
-                    else if (name.Contains("id"))
+                    else if (originalName.Equals("Id", StringComparison.OrdinalIgnoreCase) || 
+                             originalName.Equals("id", StringComparison.OrdinalIgnoreCase))
                     {
                         id = value;
                     }
@@ -58,7 +62,11 @@ namespace Tools
                         break;
                 }
 
-                stringBuilder.AppendLine($"\t{nameId} = {id},");
+                // nameId와 id가 유효한 경우에만 추가
+                if (!string.IsNullOrWhiteSpace(nameId) && !string.IsNullOrWhiteSpace(id))
+                {
+                    stringBuilder.AppendLine($"\t{nameId} = {id},");
+                }
             }
 
             string newJson = GetDataTemplate(TemplatePathDefine.DataDefine, ("name", dataName), ("nameList", stringBuilder.ToString()));
