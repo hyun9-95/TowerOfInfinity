@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 25e0c086876f73a41a4c011ac3235ff5
+guid: 29482f99c9601e14b88ed144027c6b39
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - NeoDunggeunmo
+  - Silver
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
