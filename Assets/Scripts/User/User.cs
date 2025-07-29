@@ -1,11 +1,9 @@
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.Design;
-using System.Linq;
 
 public class User
 {
     #region Property
+    public int ID { get; set; }
     public UserSaveInfo UserSaveInfo { get; private set; }
     public UserCharacter[] UserCharacters { get; private set; }
     public UserCharacter[] UserTeams { get; private set; } = new UserCharacter[3];

@@ -23,12 +23,18 @@ public class GameManager : BaseMonoManager<GameManager>
         DontDestroyOnLoad(this);
 
         LoadGameSetting();
+        InitializeLocalization();
     }
 
     private void LoadGameSetting()
     {
         settings = new GameSettings();
         settings.LoadSettings();
+    }
+
+    private void InitializeLocalization()
+    {
+        LocalizationManager.Instance.SetLocalizationType(settings.Localization.Type);
     }
 
     private void Start()

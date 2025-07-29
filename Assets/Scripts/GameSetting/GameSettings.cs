@@ -2,14 +2,19 @@ using UnityEngine;
 
 public class GameSettings
 {
-    public Volume Volume => volume;
+    public VolumeSetting Volume => volume;
+    public LocalizationSetting Localization => localization;
 
-    private Volume volume;
+    private VolumeSetting volume;
+    private LocalizationSetting localization;
 
     public void LoadSettings()
     {
-        volume = new Volume();
+        volume = new VolumeSetting();
         volume.Load();
+
+        localization = new LocalizationSetting();
+        localization.Load();
     }
 
     public float GetVolume(SoundType soundType)
@@ -25,28 +30,10 @@ public class GameSettings
 
         return 1;
     }
-}
 
-
-public partial class Volume
-{
-    public float Bgm { get; private set; }
-    public float Ambience { get; private set; }
-
-    public void Load()
+    public LocalizationType GetLocalizationType()
     {
-        Bgm = PlayerPrefs.GetFloat(PlayerPrefsDefine.VOLUME_BGM_KEY, 0.5f);
-        Ambience = PlayerPrefs.GetFloat(PlayerPrefsDefine.VOLUME_BGM_KEY, 0.5f);
-    }
-
-    public void SetBgm()
-    {
-
-    }
-
-    public void SetAmbience()
-    {
-
+        return localization.Type;
     }
 }
 

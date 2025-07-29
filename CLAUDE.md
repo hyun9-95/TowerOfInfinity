@@ -118,19 +118,17 @@ The game uses a hierarchical flow system managed by `FlowManager`:
 ## Automation Workflows
 
 ### `/translate-localization`
-Automatically translates and synchronizes localization data:
+Directly translates missing localization data in CSV format:
 
-1. **Read** `Assets/Data/Jsons/Localization.json`
-2. **Identify** empty English and SimplifiedChinese fields
+1. **Read** `Assets/Data/Excels/Localization.csv`
+2. **Identify** empty English and SimplifiedChinese fields (empty cells in columns 4 and 5)
 3. **Translate** Korean text to missing languages:
    - Korean → English (natural translation)
    - Korean → Simplified Chinese (natural translation)
-4. **Update** JSON file with translations
-5. **Convert** updated JSON back to `Assets/Data/Excels/Localization.csv`
-6. **Maintain** CSV format compatible with DataGenerator
+4. **Update** CSV file directly with translations
+5. **Maintain** CSV format compatible with DataGenerator
 
 **Usage**: Simply type `/translate-localization` to execute the complete workflow.
 
 **Files Modified**:
-- `Assets/Data/Jsons/Localization.json` (updated with translations)
-- `Assets/Data/Excels/Localization.csv` (synchronized with JSON changes)
+- `Assets/Data/Excels/Localization.csv` (updated with translations)
