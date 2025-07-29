@@ -231,3 +231,19 @@ public enum CharacterPartsName
     Mask,
     Horns,
 }
+
+public enum CharacterRace
+{
+    Human,
+    Elf,
+    DarkElf,
+    Demon,
+    LizardMan,
+    Merman,
+    BeastMan,
+    Orc,
+    Goblin,
+    Vampire,
+    Undead,
+    Monster,
+}

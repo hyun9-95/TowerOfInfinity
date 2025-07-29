@@ -5,3 +5,15 @@ Id,NameId,Korean,English,SimplifiedChinese
 70001,GAME_LOADING_DATA,데이터 로딩 중..,Loading Data...,数据加载中...
 70002,GAME_LOADING_RESOURCES,리소스 로딩 중..,Loading Resources...,资源加载中...
 70003,GAME_LOADING_USER,유저 정보 로딩 중..,Loading User Info...,用户信息加载中...
+70004,ENUM_RACE_DARK_ELF,다크엘프,Dark Elf,黑暗精灵
+70005,ENUM_RACE_DEMON,악마,Demon,恶魔
+70006,ENUM_RACE_ELF,엘프,Elf,精灵
+70007,ENUM_RACE_LIZARDMAN,리자드맨,Lizardman,蜥蜴人
+70008,ENUM_RACE_BEASTMAN,수인,Beastman,兽人
+70009,ENUM_RACE_GOBLIN,고블린,Goblin,哥布林
+70010,ENUM_RACE_HUMAN,인간,Human,人类
+70011,ENUM_RACE_MERMAN,어인,Merman,鱼人
+70012,ENUM_RACE_ORC,오크,Orc,兽人
+70013,ENUM_RACE_MONSTER,괴물,Monster,怪物
+70014,ENUM_RACE_VAMPIRE,뱀파이어,Vampire,吸血鬼
+70015,ENUM_RACE_UNDEAD,언데드,Undead,不死族

@@ -22,5 +22,77 @@
     "Korean": "유저 정보 로딩 중..",
     "English": "Loading User Info...",
     "SimplifiedChinese": "用户信息加载中..."
+  },
+  {
+    "id": 70004,
+    "Korean": "다크엘프",
+    "English": "Dark Elf",
+    "SimplifiedChinese": "黑暗精灵"
+  },
+  {
+    "id": 70005,
+    "Korean": "악마",
+    "English": "Demon",
+    "SimplifiedChinese": "恶魔"
+  },
+  {
+    "id": 70006,
+    "Korean": "엘프",
+    "English": "Elf",
+    "SimplifiedChinese": "精灵"
+  },
+  {
+    "id": 70007,
+    "Korean": "리자드맨",
+    "English": "Lizardman",
+    "SimplifiedChinese": "蜥蜴人"
+  },
+  {
+    "id": 70008,
+    "Korean": "수인",
+    "English": "Beastman",
+    "SimplifiedChinese": "兽人"
+  },
+  {
+    "id": 70009,
+    "Korean": "고블린",
+    "English": "Goblin",
+    "SimplifiedChinese": "哥布林"
+  },
+  {
+    "id": 70010,
+    "Korean": "인간",
+    "English": "Human",
+    "SimplifiedChinese": "人类"
+  },
+  {
+    "id": 70011,
+    "Korean": "어인",
+    "English": "Merman",
+    "SimplifiedChinese": "鱼人"
+  },
+  {
+    "id": 70012,
+    "Korean": "오크",
+    "English": "Orc",
+    "SimplifiedChinese": "兽人"
+  },
+  {
+    "id": 70013,
+    "Korean": "괴물",
+    "English": "Monster",
+    "SimplifiedChinese": "怪物"
+  },
+  {
+    "id": 70014,
+    "Korean": "뱀파이어",
+    "English": "Vampire",
+    "SimplifiedChinese": "吸血鬼"
+  },
+  {
+    "id": 70015,
+    "Korean": "언데드",
+    "English": "Undead",
+    "SimplifiedChinese": "不死族"
   }
 ]
