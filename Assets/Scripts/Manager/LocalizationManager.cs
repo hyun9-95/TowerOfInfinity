@@ -13,14 +13,14 @@ public class LocalizationManager : BaseManager<LocalizationManager>
         localizationType = type;
     }
 
-    public string GetLocalization(LocalizationDefine define)
+    public static string GetLocalization(LocalizationDefine define)
     {
-        return GetLocalization(localContainer.GetById((int)define));
+        return GetLocalization(Instance.localContainer.GetById((int)define));
     }
 
-    public string GetLocalization(DataLocalization dataLocalization)
+    public static string GetLocalization(DataLocalization dataLocalization)
     {
-        return localizationType switch
+        return Instance.localizationType switch
         {
             LocalizationType.English => dataLocalization.English,
             LocalizationType.Korean => dataLocalization.Korean,
