@@ -7,6 +7,7 @@ public class CharacterCustomizationViewModel : IBaseViewModel
     public List<string> Parts { get; private set; }
     public Action<int, string> OnPartChanged { get; set; }
     public SpriteLibrary SpriteLibrary { get; private set; }
+    public bool AllowRaceChange { get; private set; }
 
     public void InitializeParts(int count)
     {
@@ -15,11 +16,6 @@ public class CharacterCustomizationViewModel : IBaseViewModel
         {
             Parts[i] = string.Empty;
         }
-    }
-
-    public void SetPlayerSpriteLibrary(SpriteLibrary spriteLibrary)
-    {
-        SpriteLibrary = spriteLibrary;
     }
 
     public void SetSpriteLibrary(SpriteLibrary spriteLibrary)
