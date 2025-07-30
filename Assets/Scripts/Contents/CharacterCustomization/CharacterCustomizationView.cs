@@ -40,7 +40,7 @@ public class CharacterCustomizationView : BaseView
         if (characterSpritePartsData == null || partDropdown == null)
             return;
 
-        var partsEnumArray = Enum.GetValues(typeof(CharacterPartsName)).Cast<CharacterPartsName>().ToArray();
+        var partsEnumArray = Enum.GetValues(typeof(CharacterPartsType)).Cast<CharacterPartsType>().ToArray();
         
         for (int i = 0; i < partDropdown.Length && i < partsEnumArray.Length; i++)
         {
@@ -167,7 +167,7 @@ public class CharacterCustomizationView : BaseView
             var partValue = Model.Parts[i];
             if (!string.IsNullOrEmpty(partValue))
             {
-                var partName = ((CharacterPartsName)i).ToString();
+                var partName = ((CharacterPartsType)i).ToString();
                 
                 // CharacterSpritePartsData에서 해당 파츠가 실제로 존재하는지 확인
                 var layerEntry = characterSpritePartsData.LayerEntries.FirstOrDefault(entry => entry.LayerName == partName);

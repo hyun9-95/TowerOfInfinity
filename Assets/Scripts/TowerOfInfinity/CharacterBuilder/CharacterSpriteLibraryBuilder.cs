@@ -18,7 +18,7 @@ public class CharacterSpriteLibraryBuilder : MonoBehaviour
 
     public async UniTask<SpriteLibraryAsset> Rebuild(string[] parts)
     {
-        var partsEnumArray = Enum.GetValues(typeof(CharacterPartsName));
+        var partsEnumArray = Enum.GetValues(typeof(CharacterPartsType));
 
         if (partsEnumArray.Length != parts.Length)
             return null;
@@ -34,7 +34,7 @@ public class CharacterSpriteLibraryBuilder : MonoBehaviour
         var layersToLoad = new Dictionary<string, string>();
         var layerPartData = new Dictionary<string, string>();
 
-        foreach (CharacterPartsName partEnum in partsEnumArray)
+        foreach (CharacterPartsType partEnum in partsEnumArray)
         {
             int index = (int)partEnum;
             if (index < parts.Length && !string.IsNullOrEmpty(parts[index]))
@@ -82,14 +82,14 @@ public class CharacterSpriteLibraryBuilder : MonoBehaviour
         {
             processedLayersPixels.Add("Body", getProcessedPixels("Body", layerPartData["Body"], null));
 
-            if (string.IsNullOrEmpty(parts[(int)CharacterPartsName.Firearm]) && layerPartData.ContainsKey("Arms"))
+            if (string.IsNullOrEmpty(parts[(int)CharacterPartsType.Firearm]) && layerPartData.ContainsKey("Arms"))
             {
                 processedLayersPixels.Add("Arms", getProcessedPixels("Arms", layerPartData["Body"], null));
             }
         }
 
         if (layerPartData.ContainsKey("Head")) processedLayersPixels.Add("Head", getProcessedPixels("Head", layerPartData["Head"], null));
-        if (layerPartData.ContainsKey("Ears") && (string.IsNullOrEmpty(parts[(int)CharacterPartsName.Helmet]) || parts[(int)CharacterPartsName.Helmet].Contains("ShowEars")))
+        if (layerPartData.ContainsKey("Ears") && (string.IsNullOrEmpty(parts[(int)CharacterPartsType.Helmet]) || parts[(int)CharacterPartsType.Helmet].Contains("ShowEars")))
         {
             processedLayersPixels.Add("Ears", getProcessedPixels("Ears", layerPartData["Ears"], null));
         }
@@ -98,7 +98,7 @@ public class CharacterSpriteLibraryBuilder : MonoBehaviour
         {
             processedLayersPixels.Add("Armor", getProcessedPixels("Armor", layerPartData["Armor"], null));
 
-            if (string.IsNullOrEmpty(parts[(int)CharacterPartsName.Firearm]) && layerPartData.ContainsKey("Bracers"))
+            if (string.IsNullOrEmpty(parts[(int)CharacterPartsType.Firearm]) && layerPartData.ContainsKey("Bracers"))
             {
                 processedLayersPixels.Add("Bracers", getProcessedPixels("Bracers", layerPartData["Armor"], null));
             }
@@ -107,7 +107,7 @@ public class CharacterSpriteLibraryBuilder : MonoBehaviour
         if (layerPartData.ContainsKey("Eyes")) processedLayersPixels.Add("Eyes", getProcessedPixels("Eyes", layerPartData["Eyes"], null));
         if (layerPartData.ContainsKey("Hair"))
         {
-            Color32[] hairMask = (string.IsNullOrEmpty(parts[(int)CharacterPartsName.Helmet]) || !processedLayersPixels.ContainsKey("Head")) ? null : processedLayersPixels["Head"];
+            Color32[] hairMask = (string.IsNullOrEmpty(parts[(int)CharacterPartsType.Helmet]) || !processedLayersPixels.ContainsKey("Head")) ? null : processedLayersPixels["Head"];
             processedLayersPixels.Add("Hair", getProcessedPixels("Hair", layerPartData["Hair"], hairMask));
         }
         if (layerPartData.ContainsKey("Cape")) processedLayersPixels.Add("Cape", getProcessedPixels("Cape", layerPartData["Cape"], null));
@@ -115,9 +115,9 @@ public class CharacterSpriteLibraryBuilder : MonoBehaviour
         if (layerPartData.ContainsKey("Weapon")) processedLayersPixels.Add("Weapon", getProcessedPixels("Weapon", layerPartData["Weapon"], null));
 
         if (layerPartData.ContainsKey("Mask")) processedLayersPixels.Add("Mask", getProcessedPixels("Mask", layerPartData["Mask"], null));
-        if (layerPartData.ContainsKey("Horns") && string.IsNullOrEmpty(parts[(int)CharacterPartsName.Horns])) processedLayersPixels.Add("Horns", getProcessedPixels("Horns", layerPartData["Horns"], null));
+        if (layerPartData.ContainsKey("Horns") && string.IsNullOrEmpty(parts[(int)CharacterPartsType.Horns])) processedLayersPixels.Add("Horns", getProcessedPixels("Horns", layerPartData["Horns"], null));
 
-        if (!string.IsNullOrEmpty(parts[(int)CharacterPartsName.Firearm]))
+        if (!string.IsNullOrEmpty(parts[(int)CharacterPartsType.Firearm]))
         {
             foreach (var layerName in new[] { "Head", "Ears", "Eyes", "Mask", "Hair", "Helmet" })
             {
@@ -195,7 +195,7 @@ public class CharacterSpriteLibraryBuilder : MonoBehaviour
             spriteLibraryAsset.AddCategoryLabel(sprite.Value, split[0], split[1]);
         }
 
-        if (!string.IsNullOrEmpty(parts[(int)CharacterPartsName.Cape]) && processedLayersPixels.ContainsKey("Cape"))
+        if (!string.IsNullOrEmpty(parts[(int)CharacterPartsType.Cape]) && processedLayersPixels.ContainsKey("Cape"))
         {
             CapeOverlay(processedLayersPixels["Cape"]);
         }

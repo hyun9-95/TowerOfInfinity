@@ -1,0 +1,2557 @@
+[
+  {
+    "id": 80000,
+    "Category": "Race",
+    "PartsType": "Head",
+    "PartsPath": "CharacterBuilder/Head/DarkElf",
+    "ColorCode": ""
+  },
+  {
+    "id": 80001,
+    "Category": "Race",
+    "PartsType": "Ears",
+    "PartsPath": "CharacterBuilder/Ears/DarkElf",
+    "ColorCode": ""
+  },
+  {
+    "id": 80002,
+    "Category": "Race",
+    "PartsType": "Eyes",
+    "PartsPath": "CharacterBuilder/Eyes/DarkElf",
+    "ColorCode": ""
+  },
+  {
+    "id": 80003,
+    "Category": "Race",
+    "PartsType": "Body",
+    "PartsPath": "CharacterBuilder/Body/DarkElf",
+    "ColorCode": ""
+  },
+  {
+    "id": 80004,
+    "Category": "Race",
+    "PartsType": "Arms",
+    "PartsPath": "CharacterBuilder/Arms/DarkElf",
+    "ColorCode": ""
+  },
+  {
+    "id": 80005,
+    "Category": "Race",
+    "PartsType": "Head",
+    "PartsPath": "CharacterBuilder/Head/Demigod",
+    "ColorCode": ""
+  },
+  {
+    "id": 80006,
+    "Category": "Race",
+    "PartsType": "Ears",
+    "PartsPath": "CharacterBuilder/Ears/Demigod",
+    "ColorCode": ""
+  },
+  {
+    "id": 80007,
+    "Category": "Race",
+    "PartsType": "Eyes",
+    "PartsPath": "CharacterBuilder/Eyes/Demigod",
+    "ColorCode": ""
+  },
+  {
+    "id": 80008,
+    "Category": "Race",
+    "PartsType": "Body",
+    "PartsPath": "CharacterBuilder/Body/Demigod",
+    "ColorCode": ""
+  },
+  {
+    "id": 80009,
+    "Category": "Race",
+    "PartsType": "Arms",
+    "PartsPath": "CharacterBuilder/Arms/Demigod",
+    "ColorCode": ""
+  },
+  {
+    "id": 80010,
+    "Category": "Race",
+    "PartsType": "Head",
+    "PartsPath": "CharacterBuilder/Head/Demon",
+    "ColorCode": ""
+  },
+  {
+    "id": 80011,
+    "Category": "Race",
+    "PartsType": "Ears",
+    "PartsPath": "CharacterBuilder/Ears/Demon",
+    "ColorCode": ""
+  },
+  {
+    "id": 80012,
+    "Category": "Race",
+    "PartsType": "Eyes",
+    "PartsPath": "CharacterBuilder/Eyes/Demon",
+    "ColorCode": ""
+  },
+  {
+    "id": 80013,
+    "Category": "Race",
+    "PartsType": "Body",
+    "PartsPath": "CharacterBuilder/Body/Demon",
+    "ColorCode": ""
+  },
+  {
+    "id": 80014,
+    "Category": "Race",
+    "PartsType": "Arms",
+    "PartsPath": "CharacterBuilder/Arms/Demon",
+    "ColorCode": ""
+  },
+  {
+    "id": 80015,
+    "Category": "Race",
+    "PartsType": "Horns",
+    "PartsPath": "CharacterBuilder/Horns/Demon",
+    "ColorCode": ""
+  },
+  {
+    "id": 80016,
+    "Category": "Race",
+    "PartsType": "Head",
+    "PartsPath": "CharacterBuilder/Head/Elf",
+    "ColorCode": ""
+  },
+  {
+    "id": 80017,
+    "Category": "Race",
+    "PartsType": "Ears",
+    "PartsPath": "CharacterBuilder/Ears/Elf",
+    "ColorCode": ""
+  },
+  {
+    "id": 80018,
+    "Category": "Race",
+    "PartsType": "Eyes",
+    "PartsPath": "CharacterBuilder/Eyes/Elf",
+    "ColorCode": ""
+  },
+  {
+    "id": 80019,
+    "Category": "Race",
+    "PartsType": "Body",
+    "PartsPath": "CharacterBuilder/Body/Elf",
+    "ColorCode": ""
+  },
+  {
+    "id": 80020,
+    "Category": "Race",
+    "PartsType": "Arms",
+    "PartsPath": "CharacterBuilder/Arms/Elf",
+    "ColorCode": ""
+  },
+  {
+    "id": 80021,
+    "Category": "Race",
+    "PartsType": "Head",
+    "PartsPath": "CharacterBuilder/Head/FireLizard",
+    "ColorCode": ""
+  },
+  {
+    "id": 80022,
+    "Category": "Race",
+    "PartsType": "Ears",
+    "PartsPath": "CharacterBuilder/Ears/FireLizard",
+    "ColorCode": ""
+  },
+  {
+    "id": 80023,
+    "Category": "Race",
+    "PartsType": "Eyes",
+    "PartsPath": "CharacterBuilder/Eyes/FireLizard",
+    "ColorCode": ""
+  },
+  {
+    "id": 80024,
+    "Category": "Race",
+    "PartsType": "Body",
+    "PartsPath": "CharacterBuilder/Body/FireLizard",
+    "ColorCode": ""
+  },
+  {
+    "id": 80025,
+    "Category": "Race",
+    "PartsType": "Arms",
+    "PartsPath": "CharacterBuilder/Arms/FireLizard",
+    "ColorCode": ""
+  },
+  {
+    "id": 80026,
+    "Category": "Race",
+    "PartsType": "Head",
+    "PartsPath": "CharacterBuilder/Head/Furry",
+    "ColorCode": ""
+  },
+  {
+    "id": 80027,
+    "Category": "Race",
+    "PartsType": "Ears",
+    "PartsPath": "CharacterBuilder/Ears/Furry",
+    "ColorCode": ""
+  },
+  {
+    "id": 80028,
+    "Category": "Race",
+    "PartsType": "Eyes",
+    "PartsPath": "CharacterBuilder/Eyes/Furry",
+    "ColorCode": ""
+  },
+  {
+    "id": 80029,
+    "Category": "Race",
+    "PartsType": "Body",
+    "PartsPath": "CharacterBuilder/Body/Furry",
+    "ColorCode": ""
+  },
+  {
+    "id": 80030,
+    "Category": "Race",
+    "PartsType": "Arms",
+    "PartsPath": "CharacterBuilder/Arms/Furry",
+    "ColorCode": ""
+  },
+  {
+    "id": 80031,
+    "Category": "Race",
+    "PartsType": "Head",
+    "PartsPath": "CharacterBuilder/Head/Goblin",
+    "ColorCode": ""
+  },
+  {
+    "id": 80032,
+    "Category": "Race",
+    "PartsType": "Ears",
+    "PartsPath": "CharacterBuilder/Ears/Goblin",
+    "ColorCode": ""
+  },
+  {
+    "id": 80033,
+    "Category": "Race",
+    "PartsType": "Eyes",
+    "PartsPath": "CharacterBuilder/Eyes/Goblin",
+    "ColorCode": ""
+  },
+  {
+    "id": 80034,
+    "Category": "Race",
+    "PartsType": "Body",
+    "PartsPath": "CharacterBuilder/Body/Goblin",
+    "ColorCode": ""
+  },
+  {
+    "id": 80035,
+    "Category": "Race",
+    "PartsType": "Arms",
+    "PartsPath": "CharacterBuilder/Arms/Goblin",
+    "ColorCode": ""
+  },
+  {
+    "id": 80036,
+    "Category": "Race",
+    "PartsType": "Head",
+    "PartsPath": "CharacterBuilder/Head/Human",
+    "ColorCode": ""
+  },
+  {
+    "id": 80037,
+    "Category": "Race",
+    "PartsType": "Ears",
+    "PartsPath": "CharacterBuilder/Ears/Human",
+    "ColorCode": ""
+  },
+  {
+    "id": 80038,
+    "Category": "Race",
+    "PartsType": "Eyes",
+    "PartsPath": "CharacterBuilder/Eyes/Human",
+    "ColorCode": ""
+  },
+  {
+    "id": 80039,
+    "Category": "Race",
+    "PartsType": "Body",
+    "PartsPath": "CharacterBuilder/Body/Human",
+    "ColorCode": ""
+  },
+  {
+    "id": 80040,
+    "Category": "Race",
+    "PartsType": "Arms",
+    "PartsPath": "CharacterBuilder/Arms/Human",
+    "ColorCode": ""
+  },
+  {
+    "id": 80041,
+    "Category": "Race",
+    "PartsType": "Head",
+    "PartsPath": "CharacterBuilder/Head/Lizard",
+    "ColorCode": ""
+  },
+  {
+    "id": 80042,
+    "Category": "Race",
+    "PartsType": "Ears",
+    "PartsPath": "CharacterBuilder/Ears/Lizard",
+    "ColorCode": ""
+  },
+  {
+    "id": 80043,
+    "Category": "Race",
+    "PartsType": "Eyes",
+    "PartsPath": "CharacterBuilder/Eyes/Lizard",
+    "ColorCode": ""
+  },
+  {
+    "id": 80044,
+    "Category": "Race",
+    "PartsType": "Body",
+    "PartsPath": "CharacterBuilder/Body/Lizard",
+    "ColorCode": ""
+  },
+  {
+    "id": 80045,
+    "Category": "Race",
+    "PartsType": "Arms",
+    "PartsPath": "CharacterBuilder/Arms/Lizard",
+    "ColorCode": ""
+  },
+  {
+    "id": 80046,
+    "Category": "Race",
+    "PartsType": "Head",
+    "PartsPath": "CharacterBuilder/Head/Merman",
+    "ColorCode": ""
+  },
+  {
+    "id": 80047,
+    "Category": "Race",
+    "PartsType": "Ears",
+    "PartsPath": "CharacterBuilder/Ears/Merman",
+    "ColorCode": ""
+  },
+  {
+    "id": 80048,
+    "Category": "Race",
+    "PartsType": "Eyes",
+    "PartsPath": "CharacterBuilder/Eyes/Merman",
+    "ColorCode": ""
+  },
+  {
+    "id": 80049,
+    "Category": "Race",
+    "PartsType": "Body",
+    "PartsPath": "CharacterBuilder/Body/Merman",
+    "ColorCode": ""
+  },
+  {
+    "id": 80050,
+    "Category": "Race",
+    "PartsType": "Arms",
+    "PartsPath": "CharacterBuilder/Arms/Merman",
+    "ColorCode": ""
+  },
+  {
+    "id": 80051,
+    "Category": "Race",
+    "PartsType": "Head",
+    "PartsPath": "CharacterBuilder/Head/Orc",
+    "ColorCode": ""
+  },
+  {
+    "id": 80052,
+    "Category": "Race",
+    "PartsType": "Ears",
+    "PartsPath": "CharacterBuilder/Ears/Orc",
+    "ColorCode": ""
+  },
+  {
+    "id": 80053,
+    "Category": "Race",
+    "PartsType": "Eyes",
+    "PartsPath": "CharacterBuilder/Eyes/Orc",
+    "ColorCode": ""
+  },
+  {
+    "id": 80054,
+    "Category": "Race",
+    "PartsType": "Body",
+    "PartsPath": "CharacterBuilder/Body/Orc",
+    "ColorCode": ""
+  },
+  {
+    "id": 80055,
+    "Category": "Race",
+    "PartsType": "Arms",
+    "PartsPath": "CharacterBuilder/Arms/Orc",
+    "ColorCode": ""
+  },
+  {
+    "id": 80056,
+    "Category": "Race",
+    "PartsType": "Head",
+    "PartsPath": "CharacterBuilder/Head/Skeleton",
+    "ColorCode": ""
+  },
+  {
+    "id": 80057,
+    "Category": "Race",
+    "PartsType": "Ears",
+    "PartsPath": "CharacterBuilder/Ears/Skeleton",
+    "ColorCode": ""
+  },
+  {
+    "id": 80058,
+    "Category": "Race",
+    "PartsType": "Eyes",
+    "PartsPath": "CharacterBuilder/Eyes/Skeleton",
+    "ColorCode": ""
+  },
+  {
+    "id": 80059,
+    "Category": "Race",
+    "PartsType": "Body",
+    "PartsPath": "CharacterBuilder/Body/Skeleton",
+    "ColorCode": ""
+  },
+  {
+    "id": 80060,
+    "Category": "Race",
+    "PartsType": "Arms",
+    "PartsPath": "CharacterBuilder/Arms/Skeleton",
+    "ColorCode": ""
+  },
+  {
+    "id": 80061,
+    "Category": "Race",
+    "PartsType": "Head",
+    "PartsPath": "CharacterBuilder/Head/Vampire",
+    "ColorCode": ""
+  },
+  {
+    "id": 80062,
+    "Category": "Race",
+    "PartsType": "Ears",
+    "PartsPath": "CharacterBuilder/Ears/Vampire",
+    "ColorCode": ""
+  },
+  {
+    "id": 80063,
+    "Category": "Race",
+    "PartsType": "Eyes",
+    "PartsPath": "CharacterBuilder/Eyes/Vampire",
+    "ColorCode": ""
+  },
+  {
+    "id": 80064,
+    "Category": "Race",
+    "PartsType": "Body",
+    "PartsPath": "CharacterBuilder/Body/Vampire",
+    "ColorCode": ""
+  },
+  {
+    "id": 80065,
+    "Category": "Race",
+    "PartsType": "Arms",
+    "PartsPath": "CharacterBuilder/Arms/Vampire",
+    "ColorCode": ""
+  },
+  {
+    "id": 80066,
+    "Category": "Race",
+    "PartsType": "Head",
+    "PartsPath": "CharacterBuilder/Head/Werewolf",
+    "ColorCode": ""
+  },
+  {
+    "id": 80067,
+    "Category": "Race",
+    "PartsType": "Ears",
+    "PartsPath": "CharacterBuilder/Ears/Werewolf",
+    "ColorCode": ""
+  },
+  {
+    "id": 80068,
+    "Category": "Race",
+    "PartsType": "Eyes",
+    "PartsPath": "CharacterBuilder/Eyes/Werewolf",
+    "ColorCode": ""
+  },
+  {
+    "id": 80069,
+    "Category": "Race",
+    "PartsType": "Body",
+    "PartsPath": "CharacterBuilder/Body/Werewolf",
+    "ColorCode": ""
+  },
+  {
+    "id": 80070,
+    "Category": "Race",
+    "PartsType": "Arms",
+    "PartsPath": "CharacterBuilder/Arms/Werewolf",
+    "ColorCode": ""
+  },
+  {
+    "id": 80071,
+    "Category": "Race",
+    "PartsType": "Head",
+    "PartsPath": "CharacterBuilder/Head/ZombieA",
+    "ColorCode": ""
+  },
+  {
+    "id": 80072,
+    "Category": "Race",
+    "PartsType": "Ears",
+    "PartsPath": "CharacterBuilder/Ears/ZombieA",
+    "ColorCode": ""
+  },
+  {
+    "id": 80073,
+    "Category": "Race",
+    "PartsType": "Eyes",
+    "PartsPath": "CharacterBuilder/Eyes/ZombieA",
+    "ColorCode": ""
+  },
+  {
+    "id": 80074,
+    "Category": "Race",
+    "PartsType": "Body",
+    "PartsPath": "CharacterBuilder/Body/ZombieA",
+    "ColorCode": ""
+  },
+  {
+    "id": 80075,
+    "Category": "Race",
+    "PartsType": "Arms",
+    "PartsPath": "CharacterBuilder/Arms/ZombieA",
+    "ColorCode": ""
+  },
+  {
+    "id": 80076,
+    "Category": "Race",
+    "PartsType": "Head",
+    "PartsPath": "CharacterBuilder/Head/ZombieB",
+    "ColorCode": ""
+  },
+  {
+    "id": 80077,
+    "Category": "Race",
+    "PartsType": "Ears",
+    "PartsPath": "CharacterBuilder/Ears/ZombieB",
+    "ColorCode": ""
+  },
+  {
+    "id": 80078,
+    "Category": "Race",
+    "PartsType": "Eyes",
+    "PartsPath": "CharacterBuilder/Eyes/ZombieB",
+    "ColorCode": ""
+  },
+  {
+    "id": 80079,
+    "Category": "Race",
+    "PartsType": "Body",
+    "PartsPath": "CharacterBuilder/Body/ZombieB",
+    "ColorCode": ""
+  },
+  {
+    "id": 80080,
+    "Category": "Race",
+    "PartsType": "Arms",
+    "PartsPath": "CharacterBuilder/Arms/ZombieB",
+    "ColorCode": ""
+  },
+  {
+    "id": 80081,
+    "Category": "Hair",
+    "PartsType": "Hair",
+    "PartsPath": "CharacterBuilder/Hair/Dracula",
+    "ColorCode": ""
+  },
+  {
+    "id": 80082,
+    "Category": "Hair",
+    "PartsType": "Hair",
+    "PartsPath": "CharacterBuilder/Hair/Hair1",
+    "ColorCode": ""
+  },
+  {
+    "id": 80083,
+    "Category": "Hair",
+    "PartsType": "Hair",
+    "PartsPath": "CharacterBuilder/Hair/Hair10",
+    "ColorCode": ""
+  },
+  {
+    "id": 80084,
+    "Category": "Hair",
+    "PartsType": "Hair",
+    "PartsPath": "CharacterBuilder/Hair/Hair11",
+    "ColorCode": ""
+  },
+  {
+    "id": 80085,
+    "Category": "Hair",
+    "PartsType": "Hair",
+    "PartsPath": "CharacterBuilder/Hair/Hair12",
+    "ColorCode": ""
+  },
+  {
+    "id": 80086,
+    "Category": "Hair",
+    "PartsType": "Hair",
+    "PartsPath": "CharacterBuilder/Hair/Hair13",
+    "ColorCode": ""
+  },
+  {
+    "id": 80087,
+    "Category": "Hair",
+    "PartsType": "Hair",
+    "PartsPath": "CharacterBuilder/Hair/Hair14",
+    "ColorCode": ""
+  },
+  {
+    "id": 80088,
+    "Category": "Hair",
+    "PartsType": "Hair",
+    "PartsPath": "CharacterBuilder/Hair/Hair15",
+    "ColorCode": ""
+  },
+  {
+    "id": 80089,
+    "Category": "Hair",
+    "PartsType": "Hair",
+    "PartsPath": "CharacterBuilder/Hair/Hair2",
+    "ColorCode": ""
+  },
+  {
+    "id": 80090,
+    "Category": "Hair",
+    "PartsType": "Hair",
+    "PartsPath": "CharacterBuilder/Hair/Hair3",
+    "ColorCode": ""
+  },
+  {
+    "id": 80091,
+    "Category": "Hair",
+    "PartsType": "Hair",
+    "PartsPath": "CharacterBuilder/Hair/Hair4",
+    "ColorCode": ""
+  },
+  {
+    "id": 80092,
+    "Category": "Hair",
+    "PartsType": "Hair",
+    "PartsPath": "CharacterBuilder/Hair/Hair5",
+    "ColorCode": ""
+  },
+  {
+    "id": 80093,
+    "Category": "Hair",
+    "PartsType": "Hair",
+    "PartsPath": "CharacterBuilder/Hair/Hair6",
+    "ColorCode": ""
+  },
+  {
+    "id": 80094,
+    "Category": "Hair",
+    "PartsType": "Hair",
+    "PartsPath": "CharacterBuilder/Hair/Hair7",
+    "ColorCode": ""
+  },
+  {
+    "id": 80095,
+    "Category": "Hair",
+    "PartsType": "Hair",
+    "PartsPath": "CharacterBuilder/Hair/Hair8",
+    "ColorCode": ""
+  },
+  {
+    "id": 80096,
+    "Category": "Hair",
+    "PartsType": "Hair",
+    "PartsPath": "CharacterBuilder/Hair/Hair9",
+    "ColorCode": ""
+  },
+  {
+    "id": 80097,
+    "Category": "Eqiuipment",
+    "PartsType": "Cape",
+    "PartsPath": "CharacterBuilder/Cape/Cape",
+    "ColorCode": ""
+  },
+  {
+    "id": 80098,
+    "Category": "Eqiuipment",
+    "PartsType": "Back",
+    "PartsPath": "CharacterBuilder/Back/BackSword",
+    "ColorCode": ""
+  },
+  {
+    "id": 80099,
+    "Category": "Eqiuipment",
+    "PartsType": "Back",
+    "PartsPath": "CharacterBuilder/Back/LargeBackpack",
+    "ColorCode": ""
+  },
+  {
+    "id": 80100,
+    "Category": "Eqiuipment",
+    "PartsType": "Back",
+    "PartsPath": "CharacterBuilder/Back/LeatherQuiver",
+    "ColorCode": ""
+  },
+  {
+    "id": 80101,
+    "Category": "Eqiuipment",
+    "PartsType": "Back",
+    "PartsPath": "CharacterBuilder/Back/SmallBackpack",
+    "ColorCode": ""
+  },
+  {
+    "id": 80102,
+    "Category": "Eqiuipment",
+    "PartsType": "Shield",
+    "PartsPath": "CharacterBuilder/Shield/AncientGreatShield",
+    "ColorCode": ""
+  },
+  {
+    "id": 80103,
+    "Category": "Eqiuipment",
+    "PartsType": "Shield",
+    "PartsPath": "CharacterBuilder/Shield/BlueShield",
+    "ColorCode": ""
+  },
+  {
+    "id": 80104,
+    "Category": "Eqiuipment",
+    "PartsType": "Shield",
+    "PartsPath": "CharacterBuilder/Shield/BrassRoundShield",
+    "ColorCode": ""
+  },
+  {
+    "id": 80105,
+    "Category": "Eqiuipment",
+    "PartsType": "Shield",
+    "PartsPath": "CharacterBuilder/Shield/CrusaderShield",
+    "ColorCode": ""
+  },
+  {
+    "id": 80106,
+    "Category": "Eqiuipment",
+    "PartsType": "Shield",
+    "PartsPath": "CharacterBuilder/Shield/Dreadnought",
+    "ColorCode": ""
+  },
+  {
+    "id": 80107,
+    "Category": "Eqiuipment",
+    "PartsType": "Shield",
+    "PartsPath": "CharacterBuilder/Shield/GoldenEagle",
+    "ColorCode": ""
+  },
+  {
+    "id": 80108,
+    "Category": "Eqiuipment",
+    "PartsType": "Shield",
+    "PartsPath": "CharacterBuilder/Shield/GuardianShield",
+    "ColorCode": ""
+  },
+  {
+    "id": 80109,
+    "Category": "Eqiuipment",
+    "PartsType": "Shield",
+    "PartsPath": "CharacterBuilder/Shield/IronBuckler",
+    "ColorCode": ""
+  },
+  {
+    "id": 80110,
+    "Category": "Eqiuipment",
+    "PartsType": "Shield",
+    "PartsPath": "CharacterBuilder/Shield/KnightShield",
+    "ColorCode": ""
+  },
+  {
+    "id": 80111,
+    "Category": "Eqiuipment",
+    "PartsType": "Shield",
+    "PartsPath": "CharacterBuilder/Shield/LegionShield",
+    "ColorCode": ""
+  },
+  {
+    "id": 80112,
+    "Category": "Eqiuipment",
+    "PartsType": "Shield",
+    "PartsPath": "CharacterBuilder/Shield/RoyalGreatShield",
+    "ColorCode": ""
+  },
+  {
+    "id": 80113,
+    "Category": "Eqiuipment",
+    "PartsType": "Shield",
+    "PartsPath": "CharacterBuilder/Shield/SteelShield",
+    "ColorCode": ""
+  },
+  {
+    "id": 80114,
+    "Category": "Eqiuipment",
+    "PartsType": "Shield",
+    "PartsPath": "CharacterBuilder/Shield/TowerShield",
+    "ColorCode": ""
+  },
+  {
+    "id": 80115,
+    "Category": "Eqiuipment",
+    "PartsType": "Shield",
+    "PartsPath": "CharacterBuilder/Shield/WoodenBuckler",
+    "ColorCode": ""
+  },
+  {
+    "id": 80116,
+    "Category": "Eqiuipment",
+    "PartsType": "Armor",
+    "PartsPath": "CharacterBuilder/Armor/Angel",
+    "ColorCode": ""
+  },
+  {
+    "id": 80117,
+    "Category": "Eqiuipment",
+    "PartsType": "Armor",
+    "PartsPath": "CharacterBuilder/Armor/Apache",
+    "ColorCode": ""
+  },
+  {
+    "id": 80118,
+    "Category": "Eqiuipment",
+    "PartsType": "Armor",
+    "PartsPath": "CharacterBuilder/Armor/ArcherTunic",
+    "ColorCode": ""
+  },
+  {
+    "id": 80119,
+    "Category": "Eqiuipment",
+    "PartsType": "Armor",
+    "PartsPath": "CharacterBuilder/Armor/BanditTunic",
+    "ColorCode": ""
+  },
+  {
+    "id": 80120,
+    "Category": "Eqiuipment",
+    "PartsType": "Armor",
+    "PartsPath": "CharacterBuilder/Armor/BlueKnight",
+    "ColorCode": ""
+  },
+  {
+    "id": 80121,
+    "Category": "Eqiuipment",
+    "PartsType": "Armor",
+    "PartsPath": "CharacterBuilder/Armor/BlueWizardTunic",
+    "ColorCode": ""
+  },
+  {
+    "id": 80122,
+    "Category": "Eqiuipment",
+    "PartsType": "Armor",
+    "PartsPath": "CharacterBuilder/Armor/Box",
+    "ColorCode": ""
+  },
+  {
+    "id": 80123,
+    "Category": "Eqiuipment",
+    "PartsType": "Armor",
+    "PartsPath": "CharacterBuilder/Armor/CaptainArmor",
+    "ColorCode": ""
+  },
+  {
+    "id": 80124,
+    "Category": "Eqiuipment",
+    "PartsType": "Armor",
+    "PartsPath": "CharacterBuilder/Armor/Chief",
+    "ColorCode": ""
+  },
+  {
+    "id": 80125,
+    "Category": "Eqiuipment",
+    "PartsType": "Armor",
+    "PartsPath": "CharacterBuilder/Armor/ClericRobe",
+    "ColorCode": ""
+  },
+  {
+    "id": 80126,
+    "Category": "Eqiuipment",
+    "PartsType": "Armor",
+    "PartsPath": "CharacterBuilder/Armor/DeathRobe",
+    "ColorCode": ""
+  },
+  {
+    "id": 80127,
+    "Category": "Eqiuipment",
+    "PartsType": "Armor",
+    "PartsPath": "CharacterBuilder/Armor/DeerCostume",
+    "ColorCode": ""
+  },
+  {
+    "id": 80128,
+    "Category": "Eqiuipment",
+    "PartsType": "Armor",
+    "PartsPath": "CharacterBuilder/Armor/DemigodArmour",
+    "ColorCode": ""
+  },
+  {
+    "id": 80129,
+    "Category": "Eqiuipment",
+    "PartsType": "Armor",
+    "PartsPath": "CharacterBuilder/Armor/Dracula",
+    "ColorCode": ""
+  },
+  {
+    "id": 80130,
+    "Category": "Eqiuipment",
+    "PartsType": "Armor",
+    "PartsPath": "CharacterBuilder/Armor/DruidRobe",
+    "ColorCode": ""
+  },
+  {
+    "id": 80131,
+    "Category": "Eqiuipment",
+    "PartsType": "Armor",
+    "PartsPath": "CharacterBuilder/Armor/ElfTunic",
+    "ColorCode": ""
+  },
+  {
+    "id": 80132,
+    "Category": "Eqiuipment",
+    "PartsType": "Armor",
+    "PartsPath": "CharacterBuilder/Armor/Executioner",
+    "ColorCode": ""
+  },
+  {
+    "id": 80133,
+    "Category": "Eqiuipment",
+    "PartsType": "Armor",
+    "PartsPath": "CharacterBuilder/Armor/FarmerClothes",
+    "ColorCode": ""
+  },
+  {
+    "id": 80134,
+    "Category": "Eqiuipment",
+    "PartsType": "Armor",
+    "PartsPath": "CharacterBuilder/Armor/FemaleOutfit",
+    "ColorCode": ""
+  },
+  {
+    "id": 80135,
+    "Category": "Eqiuipment",
+    "PartsType": "Armor",
+    "PartsPath": "CharacterBuilder/Armor/FemaleSwimmingSuit",
+    "ColorCode": ""
+  },
+  {
+    "id": 80136,
+    "Category": "Eqiuipment",
+    "PartsType": "Armor",
+    "PartsPath": "CharacterBuilder/Armor/FireWizardRobe",
+    "ColorCode": ""
+  },
+  {
+    "id": 80137,
+    "Category": "Eqiuipment",
+    "PartsType": "Armor",
+    "PartsPath": "CharacterBuilder/Armor/Gladiator",
+    "ColorCode": ""
+  },
+  {
+    "id": 80138,
+    "Category": "Eqiuipment",
+    "PartsType": "Armor",
+    "PartsPath": "CharacterBuilder/Armor/GuardianTunic",
+    "ColorCode": ""
+  },
+  {
+    "id": 80139,
+    "Category": "Eqiuipment",
+    "PartsType": "Armor",
+    "PartsPath": "CharacterBuilder/Armor/HeavyKnightArmor",
+    "ColorCode": ""
+  },
+  {
+    "id": 80140,
+    "Category": "Eqiuipment",
+    "PartsType": "Armor",
+    "PartsPath": "CharacterBuilder/Armor/Hellsing",
+    "ColorCode": ""
+  },
+  {
+    "id": 80141,
+    "Category": "Eqiuipment",
+    "PartsType": "Armor",
+    "PartsPath": "CharacterBuilder/Armor/HolowKnight",
+    "ColorCode": ""
+  },
+  {
+    "id": 80142,
+    "Category": "Eqiuipment",
+    "PartsType": "Armor",
+    "PartsPath": "CharacterBuilder/Armor/HornsKnight",
+    "ColorCode": ""
+  },
+  {
+    "id": 80143,
+    "Category": "Eqiuipment",
+    "PartsType": "Armor",
+    "PartsPath": "CharacterBuilder/Armor/IronKnight",
+    "ColorCode": ""
+  },
+  {
+    "id": 80144,
+    "Category": "Eqiuipment",
+    "PartsType": "Armor",
+    "PartsPath": "CharacterBuilder/Armor/LegionaryArmor",
+    "ColorCode": ""
+  },
+  {
+    "id": 80145,
+    "Category": "Eqiuipment",
+    "PartsType": "Armor",
+    "PartsPath": "CharacterBuilder/Armor/Link",
+    "ColorCode": ""
+  },
+  {
+    "id": 80146,
+    "Category": "Eqiuipment",
+    "PartsType": "Armor",
+    "PartsPath": "CharacterBuilder/Armor/Maid",
+    "ColorCode": ""
+  },
+  {
+    "id": 80147,
+    "Category": "Eqiuipment",
+    "PartsType": "Armor",
+    "PartsPath": "CharacterBuilder/Armor/MilitiamanArmor",
+    "ColorCode": ""
+  },
+  {
+    "id": 80148,
+    "Category": "Eqiuipment",
+    "PartsType": "Armor",
+    "PartsPath": "CharacterBuilder/Armor/MinerArmour",
+    "ColorCode": ""
+  },
+  {
+    "id": 80149,
+    "Category": "Eqiuipment",
+    "PartsType": "Armor",
+    "PartsPath": "CharacterBuilder/Armor/MonkRobe",
+    "ColorCode": ""
+  },
+  {
+    "id": 80150,
+    "Category": "Eqiuipment",
+    "PartsType": "Armor",
+    "PartsPath": "CharacterBuilder/Armor/MusketeerTunic",
+    "ColorCode": ""
+  },
+  {
+    "id": 80151,
+    "Category": "Eqiuipment",
+    "PartsType": "Armor",
+    "PartsPath": "CharacterBuilder/Armor/NecromancerRobe",
+    "ColorCode": ""
+  },
+  {
+    "id": 80152,
+    "Category": "Eqiuipment",
+    "PartsType": "Armor",
+    "PartsPath": "CharacterBuilder/Armor/NinjaTunic",
+    "ColorCode": ""
+  },
+  {
+    "id": 80153,
+    "Category": "Eqiuipment",
+    "PartsType": "Armor",
+    "PartsPath": "CharacterBuilder/Armor/Overalls",
+    "ColorCode": ""
+  },
+  {
+    "id": 80154,
+    "Category": "Eqiuipment",
+    "PartsType": "Armor",
+    "PartsPath": "CharacterBuilder/Armor/Panda",
+    "ColorCode": ""
+  },
+  {
+    "id": 80155,
+    "Category": "Eqiuipment",
+    "PartsType": "Armor",
+    "PartsPath": "CharacterBuilder/Armor/Pharaon",
+    "ColorCode": ""
+  },
+  {
+    "id": 80156,
+    "Category": "Eqiuipment",
+    "PartsType": "Armor",
+    "PartsPath": "CharacterBuilder/Armor/PilotArmor",
+    "ColorCode": ""
+  },
+  {
+    "id": 80157,
+    "Category": "Eqiuipment",
+    "PartsType": "Armor",
+    "PartsPath": "CharacterBuilder/Armor/PirateCostume",
+    "ColorCode": ""
+  },
+  {
+    "id": 80158,
+    "Category": "Eqiuipment",
+    "PartsType": "Armor",
+    "PartsPath": "CharacterBuilder/Armor/PirateRobe",
+    "ColorCode": ""
+  },
+  {
+    "id": 80159,
+    "Category": "Eqiuipment",
+    "PartsType": "Armor",
+    "PartsPath": "CharacterBuilder/Armor/PlagueDoctor",
+    "ColorCode": ""
+  },
+  {
+    "id": 80160,
+    "Category": "Eqiuipment",
+    "PartsType": "Armor",
+    "PartsPath": "CharacterBuilder/Armor/Priest",
+    "ColorCode": ""
+  },
+  {
+    "id": 80161,
+    "Category": "Eqiuipment",
+    "PartsType": "Armor",
+    "PartsPath": "CharacterBuilder/Armor/PumpkinOveralls",
+    "ColorCode": ""
+  },
+  {
+    "id": 80162,
+    "Category": "Eqiuipment",
+    "PartsType": "Armor",
+    "PartsPath": "CharacterBuilder/Armor/Samurai",
+    "ColorCode": ""
+  },
+  {
+    "id": 80163,
+    "Category": "Eqiuipment",
+    "PartsType": "Armor",
+    "PartsPath": "CharacterBuilder/Armor/SantaHelperTunic",
+    "ColorCode": ""
+  },
+  {
+    "id": 80164,
+    "Category": "Eqiuipment",
+    "PartsType": "Armor",
+    "PartsPath": "CharacterBuilder/Armor/SantaTunic",
+    "ColorCode": ""
+  },
+  {
+    "id": 80165,
+    "Category": "Eqiuipment",
+    "PartsType": "Armor",
+    "PartsPath": "CharacterBuilder/Armor/Spartan",
+    "ColorCode": ""
+  },
+  {
+    "id": 80166,
+    "Category": "Eqiuipment",
+    "PartsType": "Armor",
+    "PartsPath": "CharacterBuilder/Armor/Squaw",
+    "ColorCode": ""
+  },
+  {
+    "id": 80167,
+    "Category": "Eqiuipment",
+    "PartsType": "Armor",
+    "PartsPath": "CharacterBuilder/Armor/ThiefTunic",
+    "ColorCode": ""
+  },
+  {
+    "id": 80168,
+    "Category": "Eqiuipment",
+    "PartsType": "Armor",
+    "PartsPath": "CharacterBuilder/Armor/TravelerTunic",
+    "ColorCode": ""
+  },
+  {
+    "id": 80169,
+    "Category": "Eqiuipment",
+    "PartsType": "Mask",
+    "PartsPath": "CharacterBuilder/Mask/AnimeMask",
+    "ColorCode": ""
+  },
+  {
+    "id": 80170,
+    "Category": "Eqiuipment",
+    "PartsType": "Mask",
+    "PartsPath": "CharacterBuilder/Mask/BanditMask",
+    "ColorCode": ""
+  },
+  {
+    "id": 80171,
+    "Category": "Eqiuipment",
+    "PartsType": "Mask",
+    "PartsPath": "CharacterBuilder/Mask/BlackMask",
+    "ColorCode": ""
+  },
+  {
+    "id": 80172,
+    "Category": "Eqiuipment",
+    "PartsType": "Mask",
+    "PartsPath": "CharacterBuilder/Mask/DarkMask",
+    "ColorCode": ""
+  },
+  {
+    "id": 80173,
+    "Category": "Eqiuipment",
+    "PartsType": "Mask",
+    "PartsPath": "CharacterBuilder/Mask/Dracula",
+    "ColorCode": ""
+  },
+  {
+    "id": 80174,
+    "Category": "Eqiuipment",
+    "PartsType": "Mask",
+    "PartsPath": "CharacterBuilder/Mask/Glass",
+    "ColorCode": ""
+  },
+  {
+    "id": 80175,
+    "Category": "Eqiuipment",
+    "PartsType": "Mask",
+    "PartsPath": "CharacterBuilder/Mask/IronMask",
+    "ColorCode": ""
+  },
+  {
+    "id": 80176,
+    "Category": "Eqiuipment",
+    "PartsType": "Mask",
+    "PartsPath": "CharacterBuilder/Mask/PlagueDoctorMask",
+    "ColorCode": ""
+  },
+  {
+    "id": 80177,
+    "Category": "Eqiuipment",
+    "PartsType": "Mask",
+    "PartsPath": "CharacterBuilder/Mask/Shadow",
+    "ColorCode": ""
+  },
+  {
+    "id": 80178,
+    "Category": "Eqiuipment",
+    "PartsType": "Mask",
+    "PartsPath": "CharacterBuilder/Mask/SuperMask",
+    "ColorCode": ""
+  },
+  {
+    "id": 80179,
+    "Category": "Eqiuipment",
+    "PartsType": "Helmet",
+    "PartsPath": "CharacterBuilder/Helmet/Angel",
+    "ColorCode": ""
+  },
+  {
+    "id": 80180,
+    "Category": "Eqiuipment",
+    "PartsType": "Helmet",
+    "PartsPath": "CharacterBuilder/Helmet/Apache",
+    "ColorCode": ""
+  },
+  {
+    "id": 80181,
+    "Category": "Eqiuipment",
+    "PartsType": "Helmet",
+    "PartsPath": "CharacterBuilder/Helmet/ArcherHood",
+    "ColorCode": ""
+  },
+  {
+    "id": 80182,
+    "Category": "Eqiuipment",
+    "PartsType": "Helmet",
+    "PartsPath": "CharacterBuilder/Helmet/BanditBandana",
+    "ColorCode": ""
+  },
+  {
+    "id": 80183,
+    "Category": "Eqiuipment",
+    "PartsType": "Helmet",
+    "PartsPath": "CharacterBuilder/Helmet/BanditPatch [ShowEars]",
+    "ColorCode": ""
+  },
+  {
+    "id": 80184,
+    "Category": "Eqiuipment",
+    "PartsType": "Helmet",
+    "PartsPath": "CharacterBuilder/Helmet/BlueKnightHelmet",
+    "ColorCode": ""
+  },
+  {
+    "id": 80185,
+    "Category": "Eqiuipment",
+    "PartsType": "Helmet",
+    "PartsPath": "CharacterBuilder/Helmet/BlueWizzardHat",
+    "ColorCode": ""
+  },
+  {
+    "id": 80186,
+    "Category": "Eqiuipment",
+    "PartsType": "Helmet",
+    "PartsPath": "CharacterBuilder/Helmet/Box",
+    "ColorCode": ""
+  },
+  {
+    "id": 80187,
+    "Category": "Eqiuipment",
+    "PartsType": "Helmet",
+    "PartsPath": "CharacterBuilder/Helmet/CaptainHelmet",
+    "ColorCode": ""
+  },
+  {
+    "id": 80188,
+    "Category": "Eqiuipment",
+    "PartsType": "Helmet",
+    "PartsPath": "CharacterBuilder/Helmet/ChiefHat [ShowEars]",
+    "ColorCode": ""
+  },
+  {
+    "id": 80189,
+    "Category": "Eqiuipment",
+    "PartsType": "Helmet",
+    "PartsPath": "CharacterBuilder/Helmet/ClericHood",
+    "ColorCode": ""
+  },
+  {
+    "id": 80190,
+    "Category": "Eqiuipment",
+    "PartsType": "Helmet",
+    "PartsPath": "CharacterBuilder/Helmet/DeathHood",
+    "ColorCode": ""
+  },
+  {
+    "id": 80191,
+    "Category": "Eqiuipment",
+    "PartsType": "Helmet",
+    "PartsPath": "CharacterBuilder/Helmet/DeerHorns [ShowEars]",
+    "ColorCode": ""
+  },
+  {
+    "id": 80192,
+    "Category": "Eqiuipment",
+    "PartsType": "Helmet",
+    "PartsPath": "CharacterBuilder/Helmet/DruidHelmet",
+    "ColorCode": ""
+  },
+  {
+    "id": 80193,
+    "Category": "Eqiuipment",
+    "PartsType": "Helmet",
+    "PartsPath": "CharacterBuilder/Helmet/ExecutionerHood",
+    "ColorCode": ""
+  },
+  {
+    "id": 80194,
+    "Category": "Eqiuipment",
+    "PartsType": "Helmet",
+    "PartsPath": "CharacterBuilder/Helmet/FireWizardHood",
+    "ColorCode": ""
+  },
+  {
+    "id": 80195,
+    "Category": "Eqiuipment",
+    "PartsType": "Helmet",
+    "PartsPath": "CharacterBuilder/Helmet/Gladiator",
+    "ColorCode": ""
+  },
+  {
+    "id": 80196,
+    "Category": "Eqiuipment",
+    "PartsType": "Helmet",
+    "PartsPath": "CharacterBuilder/Helmet/GuardianHelmet",
+    "ColorCode": ""
+  },
+  {
+    "id": 80197,
+    "Category": "Eqiuipment",
+    "PartsType": "Helmet",
+    "PartsPath": "CharacterBuilder/Helmet/HeavyKnightHelmet",
+    "ColorCode": ""
+  },
+  {
+    "id": 80198,
+    "Category": "Eqiuipment",
+    "PartsType": "Helmet",
+    "PartsPath": "CharacterBuilder/Helmet/Hellsing",
+    "ColorCode": ""
+  },
+  {
+    "id": 80199,
+    "Category": "Eqiuipment",
+    "PartsType": "Helmet",
+    "PartsPath": "CharacterBuilder/Helmet/HolowKnightHelmet",
+    "ColorCode": ""
+  },
+  {
+    "id": 80200,
+    "Category": "Eqiuipment",
+    "PartsType": "Helmet",
+    "PartsPath": "CharacterBuilder/Helmet/HornsHelmet",
+    "ColorCode": ""
+  },
+  {
+    "id": 80201,
+    "Category": "Eqiuipment",
+    "PartsType": "Helmet",
+    "PartsPath": "CharacterBuilder/Helmet/HornsKnightHelmet",
+    "ColorCode": ""
+  },
+  {
+    "id": 80202,
+    "Category": "Eqiuipment",
+    "PartsType": "Helmet",
+    "PartsPath": "CharacterBuilder/Helmet/IronKnightHelmet",
+    "ColorCode": ""
+  },
+  {
+    "id": 80203,
+    "Category": "Eqiuipment",
+    "PartsType": "Helmet",
+    "PartsPath": "CharacterBuilder/Helmet/LegionaryHelmet",
+    "ColorCode": ""
+  },
+  {
+    "id": 80204,
+    "Category": "Eqiuipment",
+    "PartsType": "Helmet",
+    "PartsPath": "CharacterBuilder/Helmet/Link",
+    "ColorCode": ""
+  },
+  {
+    "id": 80205,
+    "Category": "Eqiuipment",
+    "PartsType": "Helmet",
+    "PartsPath": "CharacterBuilder/Helmet/Maid",
+    "ColorCode": ""
+  },
+  {
+    "id": 80206,
+    "Category": "Eqiuipment",
+    "PartsType": "Helmet",
+    "PartsPath": "CharacterBuilder/Helmet/MilitiamanHelmet",
+    "ColorCode": ""
+  },
+  {
+    "id": 80207,
+    "Category": "Eqiuipment",
+    "PartsType": "Helmet",
+    "PartsPath": "CharacterBuilder/Helmet/MinerHelment",
+    "ColorCode": ""
+  },
+  {
+    "id": 80208,
+    "Category": "Eqiuipment",
+    "PartsType": "Helmet",
+    "PartsPath": "CharacterBuilder/Helmet/MusketeerHat [ShowEars]",
+    "ColorCode": ""
+  },
+  {
+    "id": 80209,
+    "Category": "Eqiuipment",
+    "PartsType": "Helmet",
+    "PartsPath": "CharacterBuilder/Helmet/NecromancerHood",
+    "ColorCode": ""
+  },
+  {
+    "id": 80210,
+    "Category": "Eqiuipment",
+    "PartsType": "Helmet",
+    "PartsPath": "CharacterBuilder/Helmet/NinjaMask",
+    "ColorCode": ""
+  },
+  {
+    "id": 80211,
+    "Category": "Eqiuipment",
+    "PartsType": "Helmet",
+    "PartsPath": "CharacterBuilder/Helmet/Panda",
+    "ColorCode": ""
+  },
+  {
+    "id": 80212,
+    "Category": "Eqiuipment",
+    "PartsType": "Helmet",
+    "PartsPath": "CharacterBuilder/Helmet/Pharaon",
+    "ColorCode": ""
+  },
+  {
+    "id": 80213,
+    "Category": "Eqiuipment",
+    "PartsType": "Helmet",
+    "PartsPath": "CharacterBuilder/Helmet/PilotHelment",
+    "ColorCode": ""
+  },
+  {
+    "id": 80214,
+    "Category": "Eqiuipment",
+    "PartsType": "Helmet",
+    "PartsPath": "CharacterBuilder/Helmet/PirateBandana [ShowEars]",
+    "ColorCode": ""
+  },
+  {
+    "id": 80215,
+    "Category": "Eqiuipment",
+    "PartsType": "Helmet",
+    "PartsPath": "CharacterBuilder/Helmet/PirateHelmet [ShowEars]",
+    "ColorCode": ""
+  },
+  {
+    "id": 80216,
+    "Category": "Eqiuipment",
+    "PartsType": "Helmet",
+    "PartsPath": "CharacterBuilder/Helmet/PlagueDoctor",
+    "ColorCode": ""
+  },
+  {
+    "id": 80217,
+    "Category": "Eqiuipment",
+    "PartsType": "Helmet",
+    "PartsPath": "CharacterBuilder/Helmet/Priest",
+    "ColorCode": ""
+  },
+  {
+    "id": 80218,
+    "Category": "Eqiuipment",
+    "PartsType": "Helmet",
+    "PartsPath": "CharacterBuilder/Helmet/PumpkinHead",
+    "ColorCode": ""
+  },
+  {
+    "id": 80219,
+    "Category": "Eqiuipment",
+    "PartsType": "Helmet",
+    "PartsPath": "CharacterBuilder/Helmet/SamuraiHelmet",
+    "ColorCode": ""
+  },
+  {
+    "id": 80220,
+    "Category": "Eqiuipment",
+    "PartsType": "Helmet",
+    "PartsPath": "CharacterBuilder/Helmet/SantaHelperCap [ShowEars]",
+    "ColorCode": ""
+  },
+  {
+    "id": 80221,
+    "Category": "Eqiuipment",
+    "PartsType": "Helmet",
+    "PartsPath": "CharacterBuilder/Helmet/SantaHood",
+    "ColorCode": ""
+  },
+  {
+    "id": 80222,
+    "Category": "Eqiuipment",
+    "PartsType": "Helmet",
+    "PartsPath": "CharacterBuilder/Helmet/SantaHoodBeard",
+    "ColorCode": ""
+  },
+  {
+    "id": 80223,
+    "Category": "Eqiuipment",
+    "PartsType": "Helmet",
+    "PartsPath": "CharacterBuilder/Helmet/Spartan",
+    "ColorCode": ""
+  },
+  {
+    "id": 80224,
+    "Category": "Eqiuipment",
+    "PartsType": "Helmet",
+    "PartsPath": "CharacterBuilder/Helmet/Squaw",
+    "ColorCode": ""
+  },
+  {
+    "id": 80225,
+    "Category": "Eqiuipment",
+    "PartsType": "Helmet",
+    "PartsPath": "CharacterBuilder/Helmet/ThiefHood",
+    "ColorCode": ""
+  },
+  {
+    "id": 80226,
+    "Category": "Eqiuipment",
+    "PartsType": "Helmet",
+    "PartsPath": "CharacterBuilder/Helmet/VikingHelmet",
+    "ColorCode": ""
+  },
+  {
+    "id": 80227,
+    "Category": "Eqiuipment",
+    "PartsType": "Bracers",
+    "PartsPath": "CharacterBuilder/Bracers/Angel",
+    "ColorCode": ""
+  },
+  {
+    "id": 80228,
+    "Category": "Eqiuipment",
+    "PartsType": "Bracers",
+    "PartsPath": "CharacterBuilder/Bracers/ArcherTunic",
+    "ColorCode": ""
+  },
+  {
+    "id": 80229,
+    "Category": "Eqiuipment",
+    "PartsType": "Bracers",
+    "PartsPath": "CharacterBuilder/Bracers/BlueKnight",
+    "ColorCode": ""
+  },
+  {
+    "id": 80230,
+    "Category": "Eqiuipment",
+    "PartsType": "Bracers",
+    "PartsPath": "CharacterBuilder/Bracers/BlueWizardTunic",
+    "ColorCode": ""
+  },
+  {
+    "id": 80231,
+    "Category": "Eqiuipment",
+    "PartsType": "Bracers",
+    "PartsPath": "CharacterBuilder/Bracers/CaptainArmor",
+    "ColorCode": ""
+  },
+  {
+    "id": 80232,
+    "Category": "Eqiuipment",
+    "PartsType": "Bracers",
+    "PartsPath": "CharacterBuilder/Bracers/Chief",
+    "ColorCode": ""
+  },
+  {
+    "id": 80233,
+    "Category": "Eqiuipment",
+    "PartsType": "Bracers",
+    "PartsPath": "CharacterBuilder/Bracers/ClericRobe",
+    "ColorCode": ""
+  },
+  {
+    "id": 80234,
+    "Category": "Eqiuipment",
+    "PartsType": "Bracers",
+    "PartsPath": "CharacterBuilder/Bracers/DeathRobe",
+    "ColorCode": ""
+  },
+  {
+    "id": 80235,
+    "Category": "Eqiuipment",
+    "PartsType": "Bracers",
+    "PartsPath": "CharacterBuilder/Bracers/DeerCostume",
+    "ColorCode": ""
+  },
+  {
+    "id": 80236,
+    "Category": "Eqiuipment",
+    "PartsType": "Bracers",
+    "PartsPath": "CharacterBuilder/Bracers/DemigodArmour",
+    "ColorCode": ""
+  },
+  {
+    "id": 80237,
+    "Category": "Eqiuipment",
+    "PartsType": "Bracers",
+    "PartsPath": "CharacterBuilder/Bracers/Dracula",
+    "ColorCode": ""
+  },
+  {
+    "id": 80238,
+    "Category": "Eqiuipment",
+    "PartsType": "Bracers",
+    "PartsPath": "CharacterBuilder/Bracers/DruidRobe",
+    "ColorCode": ""
+  },
+  {
+    "id": 80239,
+    "Category": "Eqiuipment",
+    "PartsType": "Bracers",
+    "PartsPath": "CharacterBuilder/Bracers/Executioner",
+    "ColorCode": ""
+  },
+  {
+    "id": 80240,
+    "Category": "Eqiuipment",
+    "PartsType": "Bracers",
+    "PartsPath": "CharacterBuilder/Bracers/FireWizardRobe",
+    "ColorCode": ""
+  },
+  {
+    "id": 80241,
+    "Category": "Eqiuipment",
+    "PartsType": "Bracers",
+    "PartsPath": "CharacterBuilder/Bracers/Gladiator",
+    "ColorCode": ""
+  },
+  {
+    "id": 80242,
+    "Category": "Eqiuipment",
+    "PartsType": "Bracers",
+    "PartsPath": "CharacterBuilder/Bracers/GreenElfTunic",
+    "ColorCode": ""
+  },
+  {
+    "id": 80243,
+    "Category": "Eqiuipment",
+    "PartsType": "Bracers",
+    "PartsPath": "CharacterBuilder/Bracers/GuardianTunic",
+    "ColorCode": ""
+  },
+  {
+    "id": 80244,
+    "Category": "Eqiuipment",
+    "PartsType": "Bracers",
+    "PartsPath": "CharacterBuilder/Bracers/HaloweenTunic",
+    "ColorCode": ""
+  },
+  {
+    "id": 80245,
+    "Category": "Eqiuipment",
+    "PartsType": "Bracers",
+    "PartsPath": "CharacterBuilder/Bracers/HeavyKnightArmor",
+    "ColorCode": ""
+  },
+  {
+    "id": 80246,
+    "Category": "Eqiuipment",
+    "PartsType": "Bracers",
+    "PartsPath": "CharacterBuilder/Bracers/Hellsing",
+    "ColorCode": ""
+  },
+  {
+    "id": 80247,
+    "Category": "Eqiuipment",
+    "PartsType": "Bracers",
+    "PartsPath": "CharacterBuilder/Bracers/HolowKnight",
+    "ColorCode": ""
+  },
+  {
+    "id": 80248,
+    "Category": "Eqiuipment",
+    "PartsType": "Bracers",
+    "PartsPath": "CharacterBuilder/Bracers/HornsKnight",
+    "ColorCode": ""
+  },
+  {
+    "id": 80249,
+    "Category": "Eqiuipment",
+    "PartsType": "Bracers",
+    "PartsPath": "CharacterBuilder/Bracers/IronKnight",
+    "ColorCode": ""
+  },
+  {
+    "id": 80250,
+    "Category": "Eqiuipment",
+    "PartsType": "Bracers",
+    "PartsPath": "CharacterBuilder/Bracers/LegionaryArmor",
+    "ColorCode": ""
+  },
+  {
+    "id": 80251,
+    "Category": "Eqiuipment",
+    "PartsType": "Bracers",
+    "PartsPath": "CharacterBuilder/Bracers/Link",
+    "ColorCode": ""
+  },
+  {
+    "id": 80252,
+    "Category": "Eqiuipment",
+    "PartsType": "Bracers",
+    "PartsPath": "CharacterBuilder/Bracers/MilitiamanArmor",
+    "ColorCode": ""
+  },
+  {
+    "id": 80253,
+    "Category": "Eqiuipment",
+    "PartsType": "Bracers",
+    "PartsPath": "CharacterBuilder/Bracers/MonkRobe",
+    "ColorCode": ""
+  },
+  {
+    "id": 80254,
+    "Category": "Eqiuipment",
+    "PartsType": "Bracers",
+    "PartsPath": "CharacterBuilder/Bracers/MusketeerTunic",
+    "ColorCode": ""
+  },
+  {
+    "id": 80255,
+    "Category": "Eqiuipment",
+    "PartsType": "Bracers",
+    "PartsPath": "CharacterBuilder/Bracers/NecromancerRobe",
+    "ColorCode": ""
+  },
+  {
+    "id": 80256,
+    "Category": "Eqiuipment",
+    "PartsType": "Bracers",
+    "PartsPath": "CharacterBuilder/Bracers/NinjaTunic",
+    "ColorCode": ""
+  },
+  {
+    "id": 80257,
+    "Category": "Eqiuipment",
+    "PartsType": "Bracers",
+    "PartsPath": "CharacterBuilder/Bracers/Panda",
+    "ColorCode": ""
+  },
+  {
+    "id": 80258,
+    "Category": "Eqiuipment",
+    "PartsType": "Bracers",
+    "PartsPath": "CharacterBuilder/Bracers/PilotArmor",
+    "ColorCode": ""
+  },
+  {
+    "id": 80259,
+    "Category": "Eqiuipment",
+    "PartsType": "Bracers",
+    "PartsPath": "CharacterBuilder/Bracers/PirateRobe",
+    "ColorCode": ""
+  },
+  {
+    "id": 80260,
+    "Category": "Eqiuipment",
+    "PartsType": "Bracers",
+    "PartsPath": "CharacterBuilder/Bracers/PlagueDoctor",
+    "ColorCode": ""
+  },
+  {
+    "id": 80261,
+    "Category": "Eqiuipment",
+    "PartsType": "Bracers",
+    "PartsPath": "CharacterBuilder/Bracers/Priest",
+    "ColorCode": ""
+  },
+  {
+    "id": 80262,
+    "Category": "Eqiuipment",
+    "PartsType": "Bracers",
+    "PartsPath": "CharacterBuilder/Bracers/SaboteurArmour",
+    "ColorCode": ""
+  },
+  {
+    "id": 80263,
+    "Category": "Eqiuipment",
+    "PartsType": "Bracers",
+    "PartsPath": "CharacterBuilder/Bracers/Samurai",
+    "ColorCode": ""
+  },
+  {
+    "id": 80264,
+    "Category": "Eqiuipment",
+    "PartsType": "Bracers",
+    "PartsPath": "CharacterBuilder/Bracers/SantaTunic",
+    "ColorCode": ""
+  },
+  {
+    "id": 80265,
+    "Category": "Eqiuipment",
+    "PartsType": "Bracers",
+    "PartsPath": "CharacterBuilder/Bracers/Spartan",
+    "ColorCode": ""
+  },
+  {
+    "id": 80266,
+    "Category": "Eqiuipment",
+    "PartsType": "Bracers",
+    "PartsPath": "CharacterBuilder/Bracers/ThiefTunic",
+    "ColorCode": ""
+  },
+  {
+    "id": 80267,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/AmurWand",
+    "ColorCode": ""
+  },
+  {
+    "id": 80268,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/ArchStaff",
+    "ColorCode": ""
+  },
+  {
+    "id": 80269,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/AssaultSword",
+    "ColorCode": ""
+  },
+  {
+    "id": 80270,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/Axe",
+    "ColorCode": ""
+  },
+  {
+    "id": 80271,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/BastardSword",
+    "ColorCode": ""
+  },
+  {
+    "id": 80272,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/BattleAxe",
+    "ColorCode": ""
+  },
+  {
+    "id": 80273,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/BattleBow",
+    "ColorCode": ""
+  },
+  {
+    "id": 80274,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/BattleHammer",
+    "ColorCode": ""
+  },
+  {
+    "id": 80275,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/Bident",
+    "ColorCode": ""
+  },
+  {
+    "id": 80276,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/BishopStaff",
+    "ColorCode": ""
+  },
+  {
+    "id": 80277,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/BlacksmithHammer",
+    "ColorCode": ""
+  },
+  {
+    "id": 80278,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/Blade",
+    "ColorCode": ""
+  },
+  {
+    "id": 80279,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/BlueStick",
+    "ColorCode": ""
+  },
+  {
+    "id": 80280,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/BlueWand",
+    "ColorCode": ""
+  },
+  {
+    "id": 80281,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/Bow",
+    "ColorCode": ""
+  },
+  {
+    "id": 80282,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/Branch",
+    "ColorCode": ""
+  },
+  {
+    "id": 80283,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/Broadsword",
+    "ColorCode": ""
+  },
+  {
+    "id": 80284,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/Butcher",
+    "ColorCode": ""
+  },
+  {
+    "id": 80285,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/Cleaver",
+    "ColorCode": ""
+  },
+  {
+    "id": 80286,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/Crusher",
+    "ColorCode": ""
+  },
+  {
+    "id": 80287,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/CrystalWand",
+    "ColorCode": ""
+  },
+  {
+    "id": 80288,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/CurveBranch",
+    "ColorCode": ""
+  },
+  {
+    "id": 80289,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/CurvedBow",
+    "ColorCode": ""
+  },
+  {
+    "id": 80290,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/Cutlass",
+    "ColorCode": ""
+  },
+  {
+    "id": 80291,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/DeathScythe",
+    "ColorCode": ""
+  },
+  {
+    "id": 80292,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/ElderStaff",
+    "ColorCode": ""
+  },
+  {
+    "id": 80293,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/Epee",
+    "ColorCode": ""
+  },
+  {
+    "id": 80294,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/Executioner",
+    "ColorCode": ""
+  },
+  {
+    "id": 80295,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/FireWand",
+    "ColorCode": ""
+  },
+  {
+    "id": 80296,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/FlameStaff",
+    "ColorCode": ""
+  },
+  {
+    "id": 80297,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/Fork",
+    "ColorCode": ""
+  },
+  {
+    "id": 80298,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/GiantBlade",
+    "ColorCode": ""
+  },
+  {
+    "id": 80299,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/GiantSword",
+    "ColorCode": ""
+  },
+  {
+    "id": 80300,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/GoldenSkepter",
+    "ColorCode": ""
+  },
+  {
+    "id": 80301,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/GoldenSkullWand",
+    "ColorCode": ""
+  },
+  {
+    "id": 80302,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/Greataxe",
+    "ColorCode": ""
+  },
+  {
+    "id": 80303,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/GreatHammer",
+    "ColorCode": ""
+  },
+  {
+    "id": 80304,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/Greatsword",
+    "ColorCode": ""
+  },
+  {
+    "id": 80305,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/GreenWand",
+    "ColorCode": ""
+  },
+  {
+    "id": 80306,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/GuardianHalberd",
+    "ColorCode": ""
+  },
+  {
+    "id": 80307,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/Halberd",
+    "ColorCode": ""
+  },
+  {
+    "id": 80308,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/Hammer",
+    "ColorCode": ""
+  },
+  {
+    "id": 80309,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/HermitStaff",
+    "ColorCode": ""
+  },
+  {
+    "id": 80310,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/HunterKnife",
+    "ColorCode": ""
+  },
+  {
+    "id": 80311,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/IronSword",
+    "ColorCode": ""
+  },
+  {
+    "id": 80312,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/Katana",
+    "ColorCode": ""
+  },
+  {
+    "id": 80313,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/KitchenAxe",
+    "ColorCode": ""
+  },
+  {
+    "id": 80314,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/Knife",
+    "ColorCode": ""
+  },
+  {
+    "id": 80315,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/Lance",
+    "ColorCode": ""
+  },
+  {
+    "id": 80316,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/LargePickaxe",
+    "ColorCode": ""
+  },
+  {
+    "id": 80317,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/LargeScythe",
+    "ColorCode": ""
+  },
+  {
+    "id": 80318,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/LongBow",
+    "ColorCode": ""
+  },
+  {
+    "id": 80319,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/LongKatana",
+    "ColorCode": ""
+  },
+  {
+    "id": 80320,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/Longsword",
+    "ColorCode": ""
+  },
+  {
+    "id": 80321,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/Mace",
+    "ColorCode": ""
+  },
+  {
+    "id": 80322,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/MagicWand",
+    "ColorCode": ""
+  },
+  {
+    "id": 80323,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/MarderDagger",
+    "ColorCode": ""
+  },
+  {
+    "id": 80324,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/MasterGreataxe",
+    "ColorCode": ""
+  },
+  {
+    "id": 80325,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/MasterWand",
+    "ColorCode": ""
+  },
+  {
+    "id": 80326,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/Morgenstern",
+    "ColorCode": ""
+  },
+  {
+    "id": 80327,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/NatureWand",
+    "ColorCode": ""
+  },
+  {
+    "id": 80328,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/NecromancerStaff",
+    "ColorCode": ""
+  },
+  {
+    "id": 80329,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/Pan",
+    "ColorCode": ""
+  },
+  {
+    "id": 80330,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/Pickaxe",
+    "ColorCode": ""
+  },
+  {
+    "id": 80331,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/Pitchfork",
+    "ColorCode": ""
+  },
+  {
+    "id": 80332,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/PriestWand",
+    "ColorCode": ""
+  },
+  {
+    "id": 80333,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/Rake",
+    "ColorCode": ""
+  },
+  {
+    "id": 80334,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/RedKatana",
+    "ColorCode": ""
+  },
+  {
+    "id": 80335,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/RedStick",
+    "ColorCode": ""
+  },
+  {
+    "id": 80336,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/RedWand",
+    "ColorCode": ""
+  },
+  {
+    "id": 80337,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/RoundMace",
+    "ColorCode": ""
+  },
+  {
+    "id": 80338,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/RoyalLongsword",
+    "ColorCode": ""
+  },
+  {
+    "id": 80339,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/RustedHammer",
+    "ColorCode": ""
+  },
+  {
+    "id": 80340,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/RustedPickaxe",
+    "ColorCode": ""
+  },
+  {
+    "id": 80341,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/RustedShortSword",
+    "ColorCode": ""
+  },
+  {
+    "id": 80342,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/RustedShovel",
+    "ColorCode": ""
+  },
+  {
+    "id": 80343,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/Saber",
+    "ColorCode": ""
+  },
+  {
+    "id": 80344,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/Scythe",
+    "ColorCode": ""
+  },
+  {
+    "id": 80345,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/Shestoper",
+    "ColorCode": ""
+  },
+  {
+    "id": 80346,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/ShitOnStick",
+    "ColorCode": ""
+  },
+  {
+    "id": 80347,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/ShortBow",
+    "ColorCode": ""
+  },
+  {
+    "id": 80348,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/ShortDagger",
+    "ColorCode": ""
+  },
+  {
+    "id": 80349,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/Sickle",
+    "ColorCode": ""
+  },
+  {
+    "id": 80350,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/SkullWand",
+    "ColorCode": ""
+  },
+  {
+    "id": 80351,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/SmallAxe",
+    "ColorCode": ""
+  },
+  {
+    "id": 80352,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/SmallPitchfork",
+    "ColorCode": ""
+  },
+  {
+    "id": 80353,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/SpikedClub",
+    "ColorCode": ""
+  },
+  {
+    "id": 80354,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/Stick",
+    "ColorCode": ""
+  },
+  {
+    "id": 80355,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/StormStaff",
+    "ColorCode": ""
+  },
+  {
+    "id": 80356,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/Sword",
+    "ColorCode": ""
+  },
+  {
+    "id": 80357,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/Tanto",
+    "ColorCode": ""
+  },
+  {
+    "id": 80358,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/WaterWand",
+    "ColorCode": ""
+  },
+  {
+    "id": 80359,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/WideDagger",
+    "ColorCode": ""
+  },
+  {
+    "id": 80360,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/WoodcutterAxe",
+    "ColorCode": ""
+  },
+  {
+    "id": 80361,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/WoodenClub",
+    "ColorCode": ""
+  },
+  {
+    "id": 80362,
+    "Category": "Eqiuipment",
+    "PartsType": "Weapon",
+    "PartsPath": "CharacterBuilder/Weapon/WoodenStuff",
+    "ColorCode": ""
+  },
+  {
+    "id": 80363,
+    "Category": "Eqiuipment",
+    "PartsType": "Firearm",
+    "PartsPath": "CharacterBuilder/Firearm/Shotgun",
+    "ColorCode": ""
+  },
+  {
+    "id": 80364,
+    "Category": "Eqiuipment",
+    "PartsType": "Firearm",
+    "PartsPath": "CharacterBuilder/Firearm/Сrossbow",
+    "ColorCode": ""
+  }
+]

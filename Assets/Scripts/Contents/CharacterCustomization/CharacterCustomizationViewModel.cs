@@ -59,13 +59,13 @@ public class CharacterCustomizationViewModel : IBaseViewModel
         return string.Empty;
     }
 
-    public string GetPart(CharacterPartsName partName)
+    public string GetPart(CharacterPartsType partName)
     {
         int index = (int)partName;
         return GetPart(index);
     }
 
-    public void SetPart(CharacterPartsName partName, string value)
+    public void SetPart(CharacterPartsType partName, string value)
     {
         int index = (int)partName;
         ChangePart(index, value);

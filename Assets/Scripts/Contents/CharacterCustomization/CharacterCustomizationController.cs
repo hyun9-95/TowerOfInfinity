@@ -23,7 +23,7 @@ public class CharacterCustomizationController : BaseController<CharacterCustomiz
     private void InitializeModel()
     {
         // 기본 파츠 설정 또는 저장된 사용자 데이터 로드
-        var partsCount = Enum.GetNames(typeof(CharacterPartsName)).Length;
+        var partsCount = Enum.GetNames(typeof(CharacterPartsType)).Length;
         Model.InitializeParts(partsCount);
 
         // 사용자 저장 데이터가 있다면 로드

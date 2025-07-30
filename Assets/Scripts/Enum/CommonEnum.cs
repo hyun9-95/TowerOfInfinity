@@ -214,7 +214,14 @@ public enum StatReferenceCondition
     CurrentStat,
 }
 
-public enum CharacterPartsName
+public enum CharacterPartsCategory
+{
+    Race,
+    Hair,
+    Eqiuipment,
+}
+
+public enum CharacterPartsType
 {
     Head,
     Ears,
