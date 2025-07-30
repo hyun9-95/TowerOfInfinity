@@ -12,20 +12,9 @@ public class TownViewController : BaseController<TownViewModel>
 
     public override void Enter()
     {
-        Model.SetOnClickCustomization(OnClickCustomization);
 	}
 
     private void OnClickCustomization()
     {
-        var leaderCharacter = TownSceneManager.Instance.PlayerCharacter;
-        var library = leaderCharacter.GetComponentInChildren<SpriteLibrary>();
-
-        CharacterCustomizationController controller = new CharacterCustomizationController();
-        CharacterCustomizationViewModel viewModel = new CharacterCustomizationViewModel();
-        viewModel.SetPlayerSpriteLibrary(library);
-        controller.SetModel(viewModel);
-       
-
-        UIManager.Instance.OpenPopup(controller).Forget();
     }
 }

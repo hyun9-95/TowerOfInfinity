@@ -25,7 +25,19 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3128268920574224160, guid: 168b98fe679654b42b41d797e841ef95, type: 3}
+      propertyPath: animStateResolver.keyValues.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128268920574224160, guid: 168b98fe679654b42b41d797e841ef95, type: 3}
       propertyPath: 'animStateResolver.values.Array.data[0]'
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128268920574224160, guid: 168b98fe679654b42b41d797e841ef95, type: 3}
+      propertyPath: animStateResolver.keyValues.Array.data[0].Key
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128268920574224160, guid: 168b98fe679654b42b41d797e841ef95, type: 3}
+      propertyPath: animStateResolver.keyValues.Array.data[0].Value
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4884866706097201598, guid: 168b98fe679654b42b41d797e841ef95, type: 3}
