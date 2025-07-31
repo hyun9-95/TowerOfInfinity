@@ -227,6 +227,7 @@ public enum CharacterPartsType
     Ears,
     Eyes,
     Body,
+    Arms,
     Hair,
     Armor,
     Helmet,

@@ -18,6 +18,11 @@ public class CharacterCustomizationViewModel : IBaseViewModel
         }
     }
 
+    public void SetOnPartChanged(Action<int, string> onPartChanged)
+    {
+        OnPartChanged = onPartChanged;
+    }
+
     public void SetSpriteLibrary(SpriteLibrary spriteLibrary)
     {
         SpriteLibrary = spriteLibrary;

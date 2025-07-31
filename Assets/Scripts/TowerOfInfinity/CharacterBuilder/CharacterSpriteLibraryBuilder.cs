@@ -16,6 +16,32 @@ public class CharacterSpriteLibraryBuilder : MonoBehaviour
     private Dictionary<string, Texture2D> loadedTextures = new Dictionary<string, Texture2D>();
     private Dictionary<string, string> loadedAddress = new Dictionary<string, string>();
 
+    public async UniTask<SpriteLibraryAsset> Rebuild(UserCharacterPartsInfo userCharacterPartsInfo)
+    {
+        var partsEnumArray = Enum.GetValues(typeof(CharacterPartsType));
+        var parts = new string[partsEnumArray.Length];
+
+        if (userCharacterPartsInfo?.PartsInfoDic != null)
+        {
+            foreach (CharacterPartsType partType in partsEnumArray)
+            {
+                int index = (int)partType;
+                if (userCharacterPartsInfo.PartsInfoDic.TryGetValue(partType, out var partsData))
+                {
+                    var partsPath = partsData.PartsPath;
+                    var colorCode = partsData.ColorCode;
+                    
+                    if (!string.IsNullOrEmpty(partsPath))
+                    {
+                        parts[index] = string.IsNullOrEmpty(colorCode) ? partsPath : $"{partsPath}{colorCode}";
+                    }
+                }
+            }
+        }
+
+        return await Rebuild(parts);
+    }
+
     public async UniTask<SpriteLibraryAsset> Rebuild(string[] parts)
     {
         var partsEnumArray = Enum.GetValues(typeof(CharacterPartsType));

@@ -17,6 +17,7 @@ public class User
             return UserTeams[0];
         }
     }
+    public UserCharacterPartsInfo UserCharacterPartsInfo { get; private set; }
     #endregion
 
     #region Value
@@ -29,6 +30,7 @@ public class User
         UserSaveInfo = userSaveInfo;
 
         CreateUserCharacters(userSaveInfo);
+        CreateUserPartsInfo(userSaveInfo);
     }
 
     private void CreateUserCharacters(UserSaveInfo userSaveInfo)
@@ -80,6 +82,12 @@ public class User
             firstCharacter.SetSlotIndex(0);
             UserTeams[0] = firstCharacter;
         }
+    }
+
+    private void CreateUserPartsInfo(UserSaveInfo userSaveInfo)
+    {
+        UserCharacterPartsInfo = new UserCharacterPartsInfo();
+        UserCharacterPartsInfo.Initialize(userSaveInfo);
     }
     #endregion
 }

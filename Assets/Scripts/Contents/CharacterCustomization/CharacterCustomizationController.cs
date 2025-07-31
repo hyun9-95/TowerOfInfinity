@@ -16,7 +16,6 @@ public class CharacterCustomizationController : BaseController<CharacterCustomiz
 
     public override async UniTask Exit()
     {
-        CleanupModelEvents();
         await base.Exit();
     }
 
@@ -32,37 +31,20 @@ public class CharacterCustomizationController : BaseController<CharacterCustomiz
     
     private void SetupModelEvents()
     {
-        Model.OnPartChanged += OnPartChanged;
+        Model.SetOnPartChanged(OnPartChanged);
     }
     
-    private void CleanupModelEvents()
-    {
-        Model.OnPartChanged -= OnPartChanged;
-    }
-
     private void LoadUserCharacterData()
     {
-        // 저장된 사용자 캐릭터 데이터 로드 로직
-        // 예: PlayerManager.Instance.GetUserCharacterAppearance()
-        // 현재는 기본값 사용
     }
 
-    private async void OnPartChanged(int index, string value)
+    private void OnPartChanged(int index, string value)
     {
-        // Model에서 파츠가 변경되었을 때 View에 알림
-        try
-        {
-            await View.OnChangePart(index, value);
-        }
-        catch (Exception ex)
-        {
-            Logger.Error($"Failed to handle part change: {ex.Message}");
-        }
+        View.OnChangePart(index, value).Forget();
     }
 
     public void OnChangePart(int index, string value)
     {
-        // 이 메서드는 View에서 직접 Model을 업데이트하므로 필요시에만 사용
         Model.ChangePart(index, value);
     }
 
@@ -72,9 +54,6 @@ public class CharacterCustomizationController : BaseController<CharacterCustomiz
         {
             var userCharacterAppearanceInfo = new UserCharacterAppearanceInfo();
             userCharacterAppearanceInfo.parts = Model.Parts.ToArray();
-            
-            // 데이터 저장 로직
-            // 예: PlayerManager.Instance.SaveUserCharacterAppearance(userCharacterAppearanceInfo)
             
             Logger.Log("Character customization saved successfully.");
         }

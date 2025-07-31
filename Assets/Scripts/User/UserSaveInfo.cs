@@ -9,6 +9,10 @@ public class UserSaveInfo
     [JsonProperty]
     public string Id { get; private set; }
 
+    // 추후 도입부로 분리
+    [JsonProperty]
+    public bool IsCompletePrologue { get; private set; }
+
     [JsonProperty]
     public int[] CharacterDataIds { get; private set; }
 
@@ -23,6 +27,12 @@ public class UserSaveInfo
 
     [JsonProperty]
     public Dictionary<int, int> CharacterSlotIndexDic { get; private set; }
+
+    [JsonProperty]
+    public CharacterRace CharacterRace { get; private set; }
+
+    [JsonProperty]
+    public Dictionary<CharacterPartsType, int> CharacterPartsDataDic { get; private set; }
     #endregion
 
     #region Value
@@ -58,6 +68,9 @@ public class UserSaveInfo
 
         if (CharacterSlotIndexDic == null)
             CharacterSlotIndexDic = new Dictionary<int, int>();
+
+        if (CharacterPartsDataDic == null)
+            CharacterPartsDataDic = new Dictionary<CharacterPartsType, int>();
     }
     #endregion
 }
