@@ -218,7 +218,7 @@ public enum CharacterPartsCategory
 {
     Race,
     Hair,
-    Eqiuipment,
+    Equipment,
 }
 
 public enum CharacterPartsType
@@ -254,4 +254,14 @@ public enum CharacterRace
     Vampire,
     Undead,
     Monster,
+}
+
+public enum EquipmentType
+{
+    Armor,
+    Helmet,
+    Shield,
+    Weapon,
+    Mask,
+    Accessory
 }

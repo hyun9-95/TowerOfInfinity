@@ -94,5 +94,23 @@
     "Korean": "언데드",
     "English": "Undead",
     "SimplifiedChinese": "不死族"
+  },
+  {
+    "id": 70016,
+    "Korean": "도둑의 튜닉",
+    "English": "Thief's Tunic",
+    "SimplifiedChinese": "盗贼束腰外衣"
+  },
+  {
+    "id": 70017,
+    "Korean": "도둑의 후드",
+    "English": "Thief's Hood",
+    "SimplifiedChinese": "盗贼兜帽"
+  },
+  {
+    "id": 70018,
+    "Korean": "단검",
+    "English": "Short Dagger",
+    "SimplifiedChinese": "短剑"
   }
 ]

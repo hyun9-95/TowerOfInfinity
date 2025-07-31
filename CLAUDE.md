@@ -117,18 +117,23 @@ The game uses a hierarchical flow system managed by `FlowManager`:
 
 ## Automation Workflows
 
-### `/translate-localization`
-Directly translates missing localization data in CSV format:
+### `/translate`
+Efficiently translates missing localization data using temporary Python script:
 
-1. **Read** `Assets/Data/Excels/Localization.csv`
-2. **Identify** empty English and SimplifiedChinese fields (empty cells in columns 4 and 5)
-3. **Translate** Korean text to missing languages:
-   - Korean → English (natural translation)
-   - Korean → Simplified Chinese (natural translation)
-4. **Update** CSV file directly with translations
-5. **Maintain** CSV format compatible with DataGenerator
+1. **Generate** temporary Python translation script
+2. **Execute** script to process `Assets/Data/Excels/Localization.csv`:
+   - Identify empty English and SimplifiedChinese fields (columns 4 and 5)
+   - Translate Korean text to missing languages using translation dictionary
+   - Update CSV file directly with natural translations
+3. **Clean up** temporary script after execution
+4. **Report** translation results
 
-**Usage**: Simply type `/translate-localization` to execute the complete workflow.
+**Usage**: Simply type `/translate` to execute the complete workflow.
+
+**Advantages**:
+- Minimal token usage for large datasets
+- Efficient batch processing
+- Maintains CSV format compatibility with DataGenerator
 
 **Files Modified**:
 - `Assets/Data/Excels/Localization.csv` (updated with translations)

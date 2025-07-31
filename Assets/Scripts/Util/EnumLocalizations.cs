@@ -9,40 +9,40 @@ public static class EnumLocalizations
         switch (race)
         {
             case CharacterRace.Human:
-                define = LocalizationDefine.ENUM_RACE_HUMAN;
+                define = LocalizationDefine.LOCAL_ENUM_RACE_HUMAN;
                 break;
             case CharacterRace.Elf:
-                define = LocalizationDefine.ENUM_RACE_ELF;
+                define = LocalizationDefine.LOCAL_ENUM_RACE_ELF;
                 break;
             case CharacterRace.DarkElf:
-                define = LocalizationDefine.ENUM_RACE_DARK_ELF;
+                define = LocalizationDefine.LOCAL_ENUM_RACE_DARK_ELF;
                 break;
             case CharacterRace.Demon:
-                define = LocalizationDefine.ENUM_RACE_DEMON;
+                define = LocalizationDefine.LOCAL_ENUM_RACE_DEMON;
                 break;
             case CharacterRace.LizardMan:
-                define = LocalizationDefine.ENUM_RACE_LIZARDMAN;
+                define = LocalizationDefine.LOCAL_ENUM_RACE_LIZARDMAN;
                 break;
             case CharacterRace.Merman:
-                define = LocalizationDefine.ENUM_RACE_MERMAN;
+                define = LocalizationDefine.LOCAL_ENUM_RACE_MERMAN;
                 break;
             case CharacterRace.BeastMan:
-                define = LocalizationDefine.ENUM_RACE_BEASTMAN;
+                define = LocalizationDefine.LOCAL_ENUM_RACE_BEASTMAN;
                 break;
             case CharacterRace.Orc:
-                define = LocalizationDefine.ENUM_RACE_ORC;
+                define = LocalizationDefine.LOCAL_ENUM_RACE_ORC;
                 break;
             case CharacterRace.Goblin:
-                define = LocalizationDefine.ENUM_RACE_GOBLIN;
+                define = LocalizationDefine.LOCAL_ENUM_RACE_GOBLIN;
                 break;
             case CharacterRace.Vampire:
-                define = LocalizationDefine.ENUM_RACE_VAMPIRE;
+                define = LocalizationDefine.LOCAL_ENUM_RACE_VAMPIRE;
                 break;
             case CharacterRace.Undead:
-                define = LocalizationDefine.ENUM_RACE_UNDEAD;
+                define = LocalizationDefine.LOCAL_ENUM_RACE_UNDEAD;
                 break;
             case CharacterRace.Monster:
-                define = LocalizationDefine.ENUM_RACE_MONSTER;
+                define = LocalizationDefine.LOCAL_ENUM_RACE_MONSTER;
                 break;
         }
 

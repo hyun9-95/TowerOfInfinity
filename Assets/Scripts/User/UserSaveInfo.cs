@@ -32,7 +32,10 @@ public class UserSaveInfo
     public CharacterRace CharacterRace { get; private set; }
 
     [JsonProperty]
-    public Dictionary<CharacterPartsType, int> CharacterPartsDataDic { get; private set; }
+    public int HairPartsId { get; private set; }
+
+    [JsonProperty]
+    public Dictionary<EquipmentType, EquipmentDefine> EquipmentDic { get; private set; }
     #endregion
 
     #region Value
@@ -69,8 +72,18 @@ public class UserSaveInfo
         if (CharacterSlotIndexDic == null)
             CharacterSlotIndexDic = new Dictionary<int, int>();
 
-        if (CharacterPartsDataDic == null)
-            CharacterPartsDataDic = new Dictionary<CharacterPartsType, int>();
+        if (HairPartsId == 0)
+            HairPartsId = (int)CharacterPartsDefine.PARTS_HAIR_HAIR_HAIR1;
+
+        if (EquipmentDic == null)
+        {
+            EquipmentDic = new Dictionary<EquipmentType, EquipmentDefine>()
+            {
+                { EquipmentType.Armor, EquipmentDefine.EQUIPMENT_ARMOR_THIEF_TUNIC },
+                { EquipmentType.Helmet, EquipmentDefine.EQUIPMENT_ARMOR_THIEF_HOOD },
+                { EquipmentType.Weapon, EquipmentDefine.EQUIPMENT_WEAPON_SHORT_DAGGER },
+            };
+        }
     }
     #endregion
 }

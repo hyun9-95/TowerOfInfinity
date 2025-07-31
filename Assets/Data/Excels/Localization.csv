@@ -1,19 +1,22 @@
 ﻿아이디,이름,,,
 int,string,string,string,string
 Id,NameId,Korean,English,SimplifiedChinese
-70000,GAME_TITLE,무한의 탑,Tower of Infinity,无限之塔
-70001,GAME_LOADING_DATA,데이터 로딩 중..,Loading Data...,数据加载中...
-70002,GAME_LOADING_RESOURCES,리소스 로딩 중..,Loading Resources...,资源加载中...
-70003,GAME_LOADING_USER,유저 정보 로딩 중..,Loading User Info...,用户信息加载中...
-70004,ENUM_RACE_DARK_ELF,다크엘프,Dark Elf,黑暗精灵
-70005,ENUM_RACE_DEMON,악마,Demon,恶魔
-70006,ENUM_RACE_ELF,엘프,Elf,精灵
-70007,ENUM_RACE_LIZARDMAN,리자드맨,Lizardman,蜥蜴人
-70008,ENUM_RACE_BEASTMAN,수인,Beastman,兽人
-70009,ENUM_RACE_GOBLIN,고블린,Goblin,哥布林
-70010,ENUM_RACE_HUMAN,인간,Human,人类
-70011,ENUM_RACE_MERMAN,어인,Merman,鱼人
-70012,ENUM_RACE_ORC,오크,Orc,兽人
-70013,ENUM_RACE_MONSTER,괴물,Monster,怪物
-70014,ENUM_RACE_VAMPIRE,뱀파이어,Vampire,吸血鬼
-70015,ENUM_RACE_UNDEAD,언데드,Undead,不死族
+70000,LOCAL_GAME_TITLE,무한의 탑,Tower of Infinity,无限之塔
+70001,LOCAL_GAME_LOADING_DATA,데이터 로딩 중..,Loading Data...,数据加载中...
+70002,LOCAL_GAME_LOADING_RESOURCES,리소스 로딩 중..,Loading Resources...,资源加载中...
+70003,LOCAL_GAME_LOADING_USER,유저 정보 로딩 중..,Loading User Info...,用户信息加载中...
+70004,LOCAL_ENUM_RACE_DARK_ELF,다크엘프,Dark Elf,黑暗精灵
+70005,LOCAL_ENUM_RACE_DEMON,악마,Demon,恶魔
+70006,LOCAL_ENUM_RACE_ELF,엘프,Elf,精灵
+70007,LOCAL_ENUM_RACE_LIZARDMAN,리자드맨,Lizardman,蜥蜴人
+70008,LOCAL_ENUM_RACE_BEASTMAN,수인,Beastman,兽人
+70009,LOCAL_ENUM_RACE_GOBLIN,고블린,Goblin,哥布林
+70010,LOCAL_ENUM_RACE_HUMAN,인간,Human,人类
+70011,LOCAL_ENUM_RACE_MERMAN,어인,Merman,鱼人
+70012,LOCAL_ENUM_RACE_ORC,오크,Orc,兽人
+70013,LOCAL_ENUM_RACE_MONSTER,괴물,Monster,怪物
+70014,LOCAL_ENUM_RACE_VAMPIRE,뱀파이어,Vampire,吸血鬼
+70015,LOCAL_ENUM_RACE_UNDEAD,언데드,Undead,不死族
+70016,LOCAL_ARMOR_THIEF_TUNIC_NAME,도둑의 튜닉,Thief's Tunic,盗贼束腰外衣
+70017,LOCAL_ARMOR_THIEF_HOOD_NAME,도둑의 후드,Thief's Hood,盗贼兜帽
+70018,LOCAL_WEAPON_SHORT_DAGGER,단검,Short Dagger,短剑
