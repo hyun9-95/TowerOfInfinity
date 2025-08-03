@@ -87,7 +87,7 @@ public class User
     private void CreateUserPartsInfo(UserSaveInfo userSaveInfo)
     {
         UserCharacterPartsInfo = new UserCharacterPartsInfo();
-        UserCharacterPartsInfo.Initialize(userSaveInfo);
+        UserCharacterPartsInfo.SetByUserSaveInfo(userSaveInfo);
     }
     #endregion
 }

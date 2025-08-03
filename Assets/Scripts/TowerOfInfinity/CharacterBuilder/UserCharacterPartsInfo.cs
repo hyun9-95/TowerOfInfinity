@@ -3,11 +3,18 @@ using System.Collections.Generic;
 public class UserCharacterPartsInfo
 {
     public CharacterRace Race { get; private set; }
+    public DataCharacterParts Hair { get; private set; }
     public Dictionary<CharacterPartsType, DataCharacterParts> PartsInfoDic { get; private set; } = new();
 
-    public void Initialize(UserSaveInfo userSaveInfo)
+    #region Value
+    private DataContainer<DataCharacterParts> partsContainer = new();
+    private DataContainer<DataEquipment> equipmentContainer = new();
+    #endregion
+
+    public void SetByUserSaveInfo(UserSaveInfo userSaveInfo)
     {
-        var partsContainer = DataManager.Instance.GetDataContainer<DataCharacterParts>();
+        if (partsContainer == null)
+            partsContainer = DataManager.Instance.GetDataContainer<DataCharacterParts>();
 
         PartsInfoDic.Clear();
 
@@ -15,62 +22,182 @@ public class UserCharacterPartsInfo
         SetRaceParts(userSaveInfo.CharacterRace);
 
         // 헤어 파츠
-        
-        // 
+        SetHairParts(userSaveInfo.HairPartsId);
+
+        // 장비 파츠
+        SetEquipmentParts(userSaveInfo.EquipmentDic);
     }
 
     private void SetRaceParts(CharacterRace race)
     {
         Race = race;
         
-        string racePathName = GetRacePathName(race);
-        
-        if (string.IsNullOrEmpty(racePathName))
-            return;
-
         var partsContainer = DataManager.Instance.GetDataContainer<DataCharacterParts>();
-        var racePartsTypes = new[] 
-        { 
-            CharacterPartsType.Head,
-            CharacterPartsType.Ears,
-            CharacterPartsType.Eyes,
-            CharacterPartsType.Body,
-            CharacterPartsType.Horns 
-        };
+        
+        var ids = GetRacePartsIds(race);
 
-        foreach (var partsType in racePartsTypes)
+        foreach (var id in ids)
         {
-            string expectedPath = $"CharacterBuilder/{partsType}/{racePathName}";
-            
-            var raceData = partsContainer.Find(data => 
-                data.Category == CharacterPartsCategory.Race && 
-                data.PartsType == partsType && 
-                data.PartsPath == expectedPath);
+            var data = partsContainer.GetById(id);
 
-            if (!raceData.IsNull)
-            {
-                PartsInfoDic[partsType] = raceData;
-            }
+            if (data.IsNull)
+                continue;
+
+            PartsInfoDic[data.PartsType] = data;
         }
     }
 
-    private string GetRacePathName(CharacterRace race)
+    private void SetHairParts(int hairPartsId)
     {
-        return race switch
+        var hairData = partsContainer.GetById(hairPartsId);
+
+        if (hairData.IsNull)
         {
-            CharacterRace.Human => "Human",
-            CharacterRace.Elf => "Elf",
-            CharacterRace.DarkElf => "DarkElf",
-            CharacterRace.Demon => "Demon",
-            CharacterRace.LizardMan => "Lizard",
-            CharacterRace.Merman => "Merman",
-            CharacterRace.BeastMan => "Furry",
-            CharacterRace.Orc => "Orc",
-            CharacterRace.Goblin => "Goblin",
-            CharacterRace.Vampire => "Vampire",
-            CharacterRace.Undead => "Skeleton",
-            CharacterRace.Monster => "ZombieA",
-            _ => null
-        };
+            Hair = partsContainer.GetById((int)CharacterPartsDefine.PARTS_HAIR_HAIR_HAIR1);
+            return;
+        }
+
+        Hair = hairData;
     }
+
+    private void SetEquipmentParts(Dictionary<EquipmentType, EquipmentDefine> equipmentInfo)
+    {
+        if (equipmentContainer == null)
+            equipmentContainer = DataManager.Instance.GetDataContainer<DataEquipment>();
+
+        foreach (var equipInfo in equipmentInfo)
+        {
+            var equipmentData = equipmentContainer.GetById((int)equipInfo.Value);
+
+            if (equipmentData.IsNull)
+                continue;
+
+            var equipmentPartsData = partsContainer.GetById((int)equipmentData.PartsData);
+
+            if (equipmentPartsData.IsNull)
+                continue;
+
+            PartsInfoDic[equipmentPartsData.PartsType] = equipmentPartsData;
+        }
+    }
+
+    #region RACE PARTS
+    private int[] GetRacePartsIds(CharacterRace race)
+    {
+        switch (race)
+        {
+            case CharacterRace.Human:
+                return new int[]
+                {
+                    (int)CharacterPartsDefine.PARTS_RACE_HEAD_HUMAN,
+                    (int)CharacterPartsDefine.PARTS_RACE_EARS_HUMAN,
+                    (int)CharacterPartsDefine.PARTS_RACE_EYES_HUMAN,
+                    (int)CharacterPartsDefine.PARTS_RACE_ARMS_HUMAN,
+                    (int)CharacterPartsDefine.PARTS_RACE_BODY_HUMAN,
+                };
+            case CharacterRace.Elf:
+                return new int[]
+                {
+                    (int)CharacterPartsDefine.PARTS_RACE_HEAD_ELF,
+                    (int)CharacterPartsDefine.PARTS_RACE_EARS_ELF,
+                    (int)CharacterPartsDefine.PARTS_RACE_EYES_ELF,
+                    (int)CharacterPartsDefine.PARTS_RACE_ARMS_ELF,
+                    (int)CharacterPartsDefine.PARTS_RACE_BODY_ELF,
+                };
+            case CharacterRace.DarkElf:
+                return new int[]
+                {
+                    (int)CharacterPartsDefine.PARTS_RACE_HEAD_DARKELF,
+                    (int)CharacterPartsDefine.PARTS_RACE_EARS_DARKELF,
+                    (int)CharacterPartsDefine.PARTS_RACE_EYES_DARKELF,
+                    (int)CharacterPartsDefine.PARTS_RACE_ARMS_DARKELF,
+                    (int)CharacterPartsDefine.PARTS_RACE_BODY_DARKELF,
+                };
+            case CharacterRace.Demon:
+                return new int[]
+                {
+                    (int)CharacterPartsDefine.PARTS_RACE_HEAD_DEMON,
+                    (int)CharacterPartsDefine.PARTS_RACE_EARS_DEMON,
+                    (int)CharacterPartsDefine.PARTS_RACE_EYES_DEMON,
+                    (int)CharacterPartsDefine.PARTS_RACE_ARMS_DEMON,
+                    (int)CharacterPartsDefine.PARTS_RACE_BODY_DEMON,
+                    (int)CharacterPartsDefine.PARTS_RACE_HORNS_DEMON,
+                };
+            case CharacterRace.LizardMan:
+                return new int[]
+                {
+                    (int)CharacterPartsDefine.PARTS_RACE_HEAD_LIZARD,
+                    (int)CharacterPartsDefine.PARTS_RACE_EARS_LIZARD,
+                    (int)CharacterPartsDefine.PARTS_RACE_EYES_LIZARD,
+                    (int)CharacterPartsDefine.PARTS_RACE_ARMS_LIZARD,
+                    (int)CharacterPartsDefine.PARTS_RACE_BODY_LIZARD,
+                };
+            case CharacterRace.Merman:
+                return new int[]
+                {
+                    (int)CharacterPartsDefine.PARTS_RACE_HEAD_MERMAN,
+                    (int)CharacterPartsDefine.PARTS_RACE_EARS_MERMAN,
+                    (int)CharacterPartsDefine.PARTS_RACE_EYES_MERMAN,
+                    (int)CharacterPartsDefine.PARTS_RACE_ARMS_MERMAN,
+                    (int)CharacterPartsDefine.PARTS_RACE_BODY_MERMAN,
+                };
+            case CharacterRace.BeastMan:
+                return new int[]
+                {
+                    (int)CharacterPartsDefine.PARTS_RACE_HEAD_FURRY,
+                    (int)CharacterPartsDefine.PARTS_RACE_EARS_FURRY,
+                    (int)CharacterPartsDefine.PARTS_RACE_EYES_FURRY,
+                    (int)CharacterPartsDefine.PARTS_RACE_ARMS_FURRY,
+                    (int)CharacterPartsDefine.PARTS_RACE_BODY_FURRY,
+                };
+            case CharacterRace.Orc:
+                return new int[]
+                {
+                    (int)CharacterPartsDefine.PARTS_RACE_HEAD_ORC,
+                    (int)CharacterPartsDefine.PARTS_RACE_EARS_ORC,
+                    (int)CharacterPartsDefine.PARTS_RACE_EYES_ORC,
+                    (int)CharacterPartsDefine.PARTS_RACE_ARMS_ORC,
+                    (int)CharacterPartsDefine.PARTS_RACE_BODY_ORC,
+                };
+            case CharacterRace.Goblin:
+                return new int[]
+                {
+                    (int)CharacterPartsDefine.PARTS_RACE_HEAD_GOBLIN,
+                    (int)CharacterPartsDefine.PARTS_RACE_EARS_GOBLIN,
+                    (int)CharacterPartsDefine.PARTS_RACE_EYES_GOBLIN,
+                    (int)CharacterPartsDefine.PARTS_RACE_ARMS_GOBLIN,
+                    (int)CharacterPartsDefine.PARTS_RACE_BODY_GOBLIN,
+                };
+            case CharacterRace.Vampire:
+                return new int[]
+                {
+                    (int)CharacterPartsDefine.PARTS_RACE_HEAD_VAMPIRE,
+                    (int)CharacterPartsDefine.PARTS_RACE_EARS_VAMPIRE,
+                    (int)CharacterPartsDefine.PARTS_RACE_EYES_VAMPIRE,
+                    (int)CharacterPartsDefine.PARTS_RACE_ARMS_VAMPIRE,
+                    (int)CharacterPartsDefine.PARTS_RACE_BODY_VAMPIRE,
+                };
+            case CharacterRace.Undead:
+                return new int[]
+                {
+                    (int)CharacterPartsDefine.PARTS_RACE_HEAD_SKELETON,
+                    (int)CharacterPartsDefine.PARTS_RACE_EARS_SKELETON,
+                    (int)CharacterPartsDefine.PARTS_RACE_EYES_SKELETON,
+                    (int)CharacterPartsDefine.PARTS_RACE_ARMS_SKELETON,
+                    (int)CharacterPartsDefine.PARTS_RACE_BODY_SKELETON,
+                };
+            case CharacterRace.Monster:
+                return new int[]
+                {
+                    (int)CharacterPartsDefine.PARTS_RACE_HEAD_ZOMBIEA,
+                    (int)CharacterPartsDefine.PARTS_RACE_EARS_ZOMBIEA,
+                    (int)CharacterPartsDefine.PARTS_RACE_EYES_ZOMBIEA,
+                    (int)CharacterPartsDefine.PARTS_RACE_ARMS_ZOMBIEA,
+                    (int)CharacterPartsDefine.PARTS_RACE_BODY_ZOMBIEA,
+                };
+            default:
+                return new int[0];
+        }
+    }
+    #endregion
 }
