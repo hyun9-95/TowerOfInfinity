@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-public class UserCharacterPartsInfo
+public class MainCharacterPartsInfo
 {
     public CharacterRace Race { get; private set; }
     public DataCharacterParts Hair { get; private set; }

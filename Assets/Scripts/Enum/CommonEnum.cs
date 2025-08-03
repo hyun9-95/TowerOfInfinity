@@ -154,8 +154,8 @@ public enum ModuleType
 
 public enum CharacterType
 {
-    Leader,
-    Servent,
+    Main,
+    Sub,
     NPC,
     Enemy,
     EnemyBoss,

@@ -5,19 +5,9 @@ public class User
     #region Property
     public int ID { get; set; }
     public UserSaveInfo UserSaveInfo { get; private set; }
-    public UserCharacterInfo[] UserCharacterInfos { get; private set; }
-    public UserCharacterInfo[] UserTeams { get; private set; } = new UserCharacterInfo[3];
-    public UserCharacterInfo LeaderCharacter
-    {
-        get
-        {
-            if (UserTeams == null || UserTeams.Length == 0)
-                return null;
-
-            return UserTeams[0];
-        }
-    }
-    public UserCharacterPartsInfo UserCharacterPartsInfo { get; private set; }
+    public SubCharacterInfo[] SubCharacterInfos { get; private set; }
+    public SubCharacterInfo[] CurrentDeck { get; private set; } = new SubCharacterInfo[3];
+    public MainCharacterPartsInfo UserCharacterPartsInfo { get; private set; }
     #endregion
 
     #region Value
@@ -29,13 +19,13 @@ public class User
     {
         UserSaveInfo = userSaveInfo;
 
-        CreateUserCharacters(userSaveInfo);
         CreateUserPartsInfo(userSaveInfo);
+        CreateSubCharacters(userSaveInfo);
     }
 
-    private void CreateUserCharacters(UserSaveInfo userSaveInfo)
+    private void CreateSubCharacters(UserSaveInfo userSaveInfo)
     {
-        UserCharacterInfos = new UserCharacterInfo[userSaveInfo.CharacterDataIds.Length];
+        SubCharacterInfos = new SubCharacterInfo[userSaveInfo.CharacterDataIds.Length];
 
         Array.Sort(userSaveInfo.CharacterDataIds, (a, b) => a.CompareTo(b));
         
@@ -55,38 +45,31 @@ public class User
             int slotIndex = userSaveInfo.CharacterSlotIndexDic.ContainsKey(dataCharacterId) ?
                 userSaveInfo.CharacterSlotIndexDic[dataCharacterId] : -1;
 
-            UserCharacterInfo userCharacter = new UserCharacterInfo();
+            SubCharacterInfo userCharacter = new SubCharacterInfo();
             userCharacter.SetCharacterDataId(dataCharacterId);
             userCharacter.SetWeaponDataId(weaponDataId);
             userCharacter.SetActiveSkillDataId(activeSkillDataId);
             userCharacter.SetPassiveSkillDataId(passiveSkillDataId);
             userCharacter.SetSlotIndex(slotIndex);
 
-            UserCharacterInfos[i] = userCharacter;
+            SubCharacterInfos[i] = userCharacter;
 
-            if (slotIndex >= 0 && slotIndex < UserTeams.Length)
+            if (slotIndex >= 0 && slotIndex < CurrentDeck.Length)
             {
-                if (UserTeams[i] != null)
+                if (CurrentDeck[i] != null)
                 {
                     Logger.Error($"중복 인덱스 ! => {userCharacter.CharacterDataId}");
                     continue;
                 }
 
-                UserTeams[i] = userCharacter;
+                CurrentDeck[i] = userCharacter;
             }
-        }
-
-        if (LeaderCharacter == null)
-        {
-            var firstCharacter = UserCharacterInfos[0];
-            firstCharacter.SetSlotIndex(0);
-            UserTeams[0] = firstCharacter;
         }
     }
 
     private void CreateUserPartsInfo(UserSaveInfo userSaveInfo)
     {
-        UserCharacterPartsInfo = new UserCharacterPartsInfo();
+        UserCharacterPartsInfo = new MainCharacterPartsInfo();
         UserCharacterPartsInfo.SetByUserSaveInfo(userSaveInfo);
     }
     #endregion

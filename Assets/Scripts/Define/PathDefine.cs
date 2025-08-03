@@ -27,8 +27,8 @@ public class PathDefine
 
     #region Resources
     public const string Resources_UI_View = "UI/{0}/{1}";
-    public const string CHARACTER_INFO_LEADER = "CharacterCore/Info/LeaderCharacterInfo";
-    public const string CHARACTER_INFO_SERVENT = "CharacterCore/Info/ServentCharacterInfo";
+    public const string CHARACTER_INFO_MAIN = "CharacterCore/Info/LeaderCharacterInfo";
+    public const string CHARACTER_INFO_SUB = "CharacterCore/Info/ServentCharacterInfo";
     public const string CHARACTER_INFO_ENEMY = "CharacterCore/Info/EnemyCharacterInfo";
     public const string CHARACTER_INFO_ENEMY_BOSS = "CharacterCore/Info/EnemyBossCharacteInfo";
     public const string CHARACTER_INFO_NPC = "CharacterCore/Info/NpcCharacterInfo";

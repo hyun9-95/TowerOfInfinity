@@ -32,7 +32,7 @@ public class CharacterSpriteLibraryBuilder : MonoBehaviour
         CurrentMode = mode;
     }
 
-    public async UniTask<SpriteLibraryAsset> Rebuild(UserCharacterPartsInfo userCharacterPartsInfo)
+    public async UniTask<SpriteLibraryAsset> Rebuild(MainCharacterPartsInfo userCharacterPartsInfo)
     {
         var partsEnumArray = Enum.GetValues(typeof(CharacterPartsType));
         var parts = new string[partsEnumArray.Length];

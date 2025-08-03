@@ -37,9 +37,9 @@ public class CharacterFactory : BaseManager<CharacterFactory>
         return character;
     }
 
-    public async UniTask<CharacterUnit> SpawnLeaderPlayerCharacter(int characterDataId, int weaponDataId = 0, int activeId = 0, int passiveId = 0, Transform transform = null, Vector3 pos = default, Quaternion rot = default)
+    public async UniTask<CharacterUnit> SpawnMainCharacter(int characterDataId, int weaponDataId = 0, int activeId = 0, int passiveId = 0, Transform transform = null, Vector3 pos = default, Quaternion rot = default)
     {
-        var playerCharacter = await SpawnCharacter(TeamTag.Ally, CharacterType.Leader, characterDataId, weaponDataId, activeId, passiveId, transform, pos, rot);
+        var playerCharacter = await SpawnCharacter(TeamTag.Ally, CharacterType.Main, characterDataId, weaponDataId, activeId, passiveId, transform, pos, rot);
 
         if (playerCharacter != null)
         {
@@ -58,9 +58,9 @@ public class CharacterFactory : BaseManager<CharacterFactory>
         return playerCharacter;
     }
 
-    public async UniTask<CharacterUnit> SpawnServent(int characterDataId, Transform transform = null, Vector3 pos = default, Quaternion rot = default)
+    public async UniTask<CharacterUnit> SpawnSubCharacter(int characterDataId, Transform transform = null, Vector3 pos = default, Quaternion rot = default)
     {
-        var servent = await SpawnCharacter(TeamTag.Ally, CharacterType.Servent, characterDataId, 0, 0, 0, transform, pos, rot);
+        var servent = await SpawnCharacter(TeamTag.Ally, CharacterType.Sub, characterDataId, 0, 0, 0, transform, pos, rot);
 
         return servent;
     }
@@ -136,28 +136,12 @@ public class CharacterFactory : BaseManager<CharacterFactory>
         return characterInfoDic[characterType];
     }
 
-    public async UniTask<CharacterUnit> CreateCharacter(Transform transform, UserCharacterInfo userCharacter)
-    {
-        if (userCharacter == null)
-        {
-            Logger.Error("User Character is null");
-            return null;
-        }
-
-        return await SpawnLeaderPlayerCharacter(
-            userCharacter.CharacterDataId,
-            userCharacter.WeaponDataId,
-            userCharacter.ActiveSkillDataId,
-            userCharacter.PassiveSkillDataId,
-            transform: transform);
-    }
-
     private string GetCharacterInfoPath(CharacterType characterType)
     {
         return characterType switch
         {
-            CharacterType.Leader => PathDefine.CHARACTER_INFO_LEADER,
-            CharacterType.Servent => PathDefine.CHARACTER_INFO_SERVENT,
+            CharacterType.Main => PathDefine.CHARACTER_INFO_MAIN,
+            CharacterType.Sub => PathDefine.CHARACTER_INFO_SUB,
             CharacterType.Enemy => PathDefine.CHARACTER_INFO_ENEMY,
             CharacterType.EnemyBoss => PathDefine.CHARACTER_INFO_ENEMY_BOSS,
             CharacterType.NPC => PathDefine.CHARACTER_INFO_NPC,

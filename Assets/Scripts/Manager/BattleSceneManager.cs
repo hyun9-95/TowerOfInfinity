@@ -24,9 +24,9 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>
 
     #region Function
     #region Prepare Battle
-    public async UniTask<BattleTeam> CreateBattleTeam(UserCharacterInfo[] userTeams)
+    public async UniTask<BattleTeam> CreateBattleTeam(SubCharacterInfo[] currentDeck)
     {
-        playerBattleTeam = await CreatePlayerBattleTeam(userTeams);
+        playerBattleTeam = await CreatePlayerBattleTeam(currentDeck);
         SetCurrentCharacter(playerBattleTeam.CurrentCharacter);
 
         return playerBattleTeam;
@@ -45,18 +45,18 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>
         AStarManager.Instance.Initialize(walkableMaps, obstacleMaps, layoutGrid);
     }
 
-    private async UniTask<BattleTeam> CreatePlayerBattleTeam(UserCharacterInfo[] userTeams)
+    private async UniTask<BattleTeam> CreatePlayerBattleTeam(SubCharacterInfo[] currentDeck)
     {
         var playerTransform = PlayerStartTransform;
         var playerCharacters = new List<CharacterUnit>();
         int leaderIndex = 0;
 
-        foreach (var userCharacter in userTeams)
+        foreach (var subCharacter in currentDeck)
         {
-            if (userCharacter == null)
+            if (subCharacter == null)
                 continue;
 
-            var character = await CharacterFactory.Instance.CreateCharacter(playerTransform, userCharacter);
+            var character = await CharacterFactory.Instance.SpawnSubCharacter(subCharacter.CharacterDataId, playerTransform);
             character.gameObject.tag = StringDefine.BATTLE_TAG_ALLY;
             character.Initialize();
             

@@ -46,55 +46,8 @@ public class PlayerManager : BaseMonoManager<PlayerManager>
         File.WriteAllText(userSaveInfoPath, newSaveInfoJson);
     }
 
-    public async UniTask<CharacterUnit> CreateLeaderCharacter(Transform transform)
+    public async UniTask<CharacterUnit> CreateMainCharacter(Transform transform)
     {
-        if (MyUser == null)
-        {
-            Logger.Null($"{MyUser}");
-            return null;
-        }
-
-        return await CreateCharacter(transform, MyUser.LeaderCharacter);
-    }
-
-    public async UniTask<List<CharacterUnit>> CreateSubCharacters(Transform transform)
-    {
-        if (MyUser == null)
-        {
-            Logger.Null($"{MyUser}");
-            return null;
-        }
-
-        var characterUnits = new List<CharacterUnit>();
-
-        foreach (var userCharacter in MyUser.UserCharacterInfos)
-        {
-            if (userCharacter == null)
-            {
-                Logger.Null($"{userCharacter}");
-                continue;
-            }
-
-            if (userCharacter == MyUser.LeaderCharacter)
-                continue;
-
-            var character = await CreateCharacter(transform, userCharacter);
-
-            if (character != null)
-                characterUnits.Add(character);
-        }
-
-        return characterUnits;
-    }
-
-    private async UniTask<CharacterUnit> CreateCharacter(Transform transform, UserCharacterInfo userCharacter)
-    {
-        if (MyUser == null)
-        {
-            Logger.Null($"{MyUser}");
-            return null;
-        }
-
-        return await CharacterFactory.Instance.CreateCharacter(transform, userCharacter);
+        return null;
     }
 }

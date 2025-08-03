@@ -1,4 +1,4 @@
-public class UserCharacterInfo
+public class SubCharacterInfo
 {
     #region Property
     public int CharacterDataId { get; private set; }
