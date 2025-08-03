@@ -67,7 +67,7 @@ public class PlayerManager : BaseMonoManager<PlayerManager>
 
         var characterUnits = new List<CharacterUnit>();
 
-        foreach (var userCharacter in MyUser.UserCharacters)
+        foreach (var userCharacter in MyUser.UserCharacterInfos)
         {
             if (userCharacter == null)
             {
@@ -87,7 +87,7 @@ public class PlayerManager : BaseMonoManager<PlayerManager>
         return characterUnits;
     }
 
-    private async UniTask<CharacterUnit> CreateCharacter(Transform transform, UserCharacter userCharacter)
+    private async UniTask<CharacterUnit> CreateCharacter(Transform transform, UserCharacterInfo userCharacter)
     {
         if (MyUser == null)
         {

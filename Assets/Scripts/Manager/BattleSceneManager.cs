@@ -24,7 +24,7 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>
 
     #region Function
     #region Prepare Battle
-    public async UniTask<BattleTeam> CreateBattleTeam(UserCharacter[] userTeams)
+    public async UniTask<BattleTeam> CreateBattleTeam(UserCharacterInfo[] userTeams)
     {
         playerBattleTeam = await CreatePlayerBattleTeam(userTeams);
         SetCurrentCharacter(playerBattleTeam.CurrentCharacter);
@@ -45,7 +45,7 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>
         AStarManager.Instance.Initialize(walkableMaps, obstacleMaps, layoutGrid);
     }
 
-    private async UniTask<BattleTeam> CreatePlayerBattleTeam(UserCharacter[] userTeams)
+    private async UniTask<BattleTeam> CreatePlayerBattleTeam(UserCharacterInfo[] userTeams)
     {
         var playerTransform = PlayerStartTransform;
         var playerCharacters = new List<CharacterUnit>();

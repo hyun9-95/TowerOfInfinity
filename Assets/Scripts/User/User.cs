@@ -5,9 +5,9 @@ public class User
     #region Property
     public int ID { get; set; }
     public UserSaveInfo UserSaveInfo { get; private set; }
-    public UserCharacter[] UserCharacters { get; private set; }
-    public UserCharacter[] UserTeams { get; private set; } = new UserCharacter[3];
-    public UserCharacter LeaderCharacter
+    public UserCharacterInfo[] UserCharacterInfos { get; private set; }
+    public UserCharacterInfo[] UserTeams { get; private set; } = new UserCharacterInfo[3];
+    public UserCharacterInfo LeaderCharacter
     {
         get
         {
@@ -35,7 +35,7 @@ public class User
 
     private void CreateUserCharacters(UserSaveInfo userSaveInfo)
     {
-        UserCharacters = new UserCharacter[userSaveInfo.CharacterDataIds.Length];
+        UserCharacterInfos = new UserCharacterInfo[userSaveInfo.CharacterDataIds.Length];
 
         Array.Sort(userSaveInfo.CharacterDataIds, (a, b) => a.CompareTo(b));
         
@@ -55,14 +55,14 @@ public class User
             int slotIndex = userSaveInfo.CharacterSlotIndexDic.ContainsKey(dataCharacterId) ?
                 userSaveInfo.CharacterSlotIndexDic[dataCharacterId] : -1;
 
-            UserCharacter userCharacter = new UserCharacter();
+            UserCharacterInfo userCharacter = new UserCharacterInfo();
             userCharacter.SetCharacterDataId(dataCharacterId);
             userCharacter.SetWeaponDataId(weaponDataId);
             userCharacter.SetActiveSkillDataId(activeSkillDataId);
             userCharacter.SetPassiveSkillDataId(passiveSkillDataId);
             userCharacter.SetSlotIndex(slotIndex);
 
-            UserCharacters[i] = userCharacter;
+            UserCharacterInfos[i] = userCharacter;
 
             if (slotIndex >= 0 && slotIndex < UserTeams.Length)
             {
@@ -78,7 +78,7 @@ public class User
 
         if (LeaderCharacter == null)
         {
-            var firstCharacter = UserCharacters[0];
+            var firstCharacter = UserCharacterInfos[0];
             firstCharacter.SetSlotIndex(0);
             UserTeams[0] = firstCharacter;
         }

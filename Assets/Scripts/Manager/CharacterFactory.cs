@@ -136,7 +136,7 @@ public class CharacterFactory : BaseManager<CharacterFactory>
         return characterInfoDic[characterType];
     }
 
-    public async UniTask<CharacterUnit> CreateCharacter(Transform transform, UserCharacter userCharacter)
+    public async UniTask<CharacterUnit> CreateCharacter(Transform transform, UserCharacterInfo userCharacter)
     {
         if (userCharacter == null)
         {

@@ -10,11 +10,27 @@ using UnityEngine.U2D.Animation;
 
 public class CharacterSpriteLibraryBuilder : MonoBehaviour
 {
-    private CharacterSpritePartsData partsData;
+    public enum Mode
+    {
+        OnDemand, // 필요한것만
+        Preload,  // 전부 로드 (커마용)
+    }
+
+    public Mode CurrentMode { get; private set; } = Mode.OnDemand;
+    
+    private DataContainer<DataCharacterParts> partsContainer;
     private Texture2D mergedTexture;
     private Dictionary<string, Sprite> sprites;
     private Dictionary<string, Texture2D> loadedTextures = new Dictionary<string, Texture2D>();
     private Dictionary<string, string> loadedAddress = new Dictionary<string, string>();
+    private Dictionary<string, Texture2D> preloadedTextures = new Dictionary<string, Texture2D>();
+    private Dictionary<string, string> preloadedAddress = new Dictionary<string, string>();
+    private bool isPreloaded = false;
+
+    public void SetMode(Mode mode)
+    {
+        CurrentMode = mode;
+    }
 
     public async UniTask<SpriteLibraryAsset> Rebuild(UserCharacterPartsInfo userCharacterPartsInfo)
     {
@@ -49,10 +65,8 @@ public class CharacterSpriteLibraryBuilder : MonoBehaviour
         if (partsEnumArray.Length != parts.Length)
             return null;
 
-        if (partsData == null)
-        {
-            partsData = Resources.Load<CharacterSpritePartsData>(PathDefine.CHARACTER_PARTS_DATA);
-        }
+        if (partsContainer == null)
+            partsContainer = DataManager.Instance.GetDataContainer<DataCharacterParts>();
 
         var width = 576;
         var height = 928;
@@ -231,15 +245,33 @@ public class CharacterSpriteLibraryBuilder : MonoBehaviour
 
     private async UniTask LoadAndStoreTexture(string layerName, string address)
     {
+        // Preload 모드에서는 미리 로드된 텍스처를 우선 사용
+        if (CurrentMode == Mode.Preload && isPreloaded)
+        {
+            string preloadKey = GetPreloadKey(layerName, address);
+            if (preloadedTextures.ContainsKey(preloadKey) && preloadedAddress.ContainsKey(preloadKey) && preloadedAddress[preloadKey].Equals(address))
+            {
+                loadedTextures[layerName] = preloadedTextures[preloadKey];
+                loadedAddress[layerName] = address;
+                return;
+            }
+        }
+        
         if (loadedAddress.TryGetValue(layerName, out var existingAdress))
         {
             if (existingAdress.Equals(address))
                 return;
 
-            AddressableManager.Instance.ReleaseFromTracker(loadedTextures[layerName], gameObject);
+            // OnDemand 에서는 기존 텍스처 해제
+            if (CurrentMode == Mode.OnDemand)
+            {
+                AddressableManager.Instance.ReleaseFromTracker
+                    (loadedTextures[layerName], gameObject);
+            }
         }
 
-        Texture2D texture = await AddressableManager.Instance.LoadAssetAsyncWithTracker<Texture2D>(address, gameObject);
+        Texture2D texture = await AddressableManager.Instance.
+            LoadAssetAsyncWithTracker<Texture2D>(address, gameObject);
 
         if (texture != null)
         {
@@ -254,33 +286,45 @@ public class CharacterSpriteLibraryBuilder : MonoBehaviour
 
     private string GetAddressFromAddressableData(string layerName, string partName)
     {
-        if (partsData == null || partsData.LayerEntries == null) 
+        if (partsContainer == null)
+            partsContainer = DataManager.Instance.GetDataContainer<DataCharacterParts>();
+            
+        if (partsContainer == null) 
             return null;
 
-        var layerEntry = partsData.LayerEntries.FirstOrDefault(entry => entry.LayerName == layerName);
-
-        if (layerEntry != null && layerEntry.Parts != null)
-        {
-            var part = layerEntry.Parts.FirstOrDefault(p => p.PartName == partName);
-            if (part != null)
-            {
-                return part.Address;
-            }
-        }
+        var targetPart = partsContainer.Find(p => 
+            p.PartsType.ToString() == layerName && 
+            GetPartNameFromPath(p.PartsPath) == partName);
+            
+        if (!targetPart.IsNull)
+            return targetPart.PartsPath;
+            
         return null;
+    }
+    
+    private string GetPartNameFromPath(string partsPath)
+    {
+        if (string.IsNullOrEmpty(partsPath))
+            return string.Empty;
+            
+        var lastSlashIndex = partsPath.LastIndexOf('/');
+        if (lastSlashIndex >= 0 && lastSlashIndex < partsPath.Length - 1)
+            return partsPath.Substring(lastSlashIndex + 1);
+            
+        return partsPath;
     }
 
     private Color32[] ProcessLayerPixels(string layerName, Texture2D sourceTexture, string data, Color32[] mask)
     {
         if (sourceTexture == null) return null;
 
-        var match = Regex.Match(data, @"(?<Name>[\w\- \[\]]+)(?<Paint>#\w+)?(?:/(?<H>[-\d]+):(?<S>[-\d]+):(?<V>[-\d]+))?");
+        var match = Regex.Match(data,
+            @"(?<Name>[\w\- \[\]]+)(?<Paint>#\w+)?(?:/(?<H>[-\d]+):(?<S>[-\d]+):(?<V>[-\d]+))?");
 
         Color paint = Color.white;
+
         if (match.Groups["Paint"].Success)
-        {
             ColorUtility.TryParseHtmlString(match.Groups["Paint"].Value, out paint);
-        }
 
         float h = 0f, s = 0f, v = 0f;
         if (match.Groups["H"].Success && match.Groups["S"].Success && match.Groups["V"].Success)
@@ -384,8 +428,94 @@ public class CharacterSpriteLibraryBuilder : MonoBehaviour
         return muzzlePosition;
     }
 
+    public async UniTask Preload()
+    {
+        if (CurrentMode != Mode.Preload)
+            return;
+
+        if (partsContainer == null)
+            partsContainer = DataManager.Instance.GetDataContainer<DataCharacterParts>();
+        
+        var preloadTasks = new List<UniTask>();
+        var preloadParts = partsContainer.FindAll(x => !x.IsNull && 
+            (x.Category == CharacterPartsCategory.Race || x.Category == CharacterPartsCategory.Hair));
+        
+        foreach (var part in preloadParts)
+        {
+            if (string.IsNullOrEmpty(part.PartsPath))
+                continue;
+
+            preloadTasks.Add(PreloadTexture(part.PartsType.ToString(), part.PartsPath, part.PartsPath));
+        }
+        
+        await UniTask.WhenAll(preloadTasks);
+        isPreloaded = true;
+    }
+    
+    private async UniTask PreloadTexture(string layerName, string partName, string address)
+    {
+        string key = GetPreloadKey(layerName, address);
+        
+        if (preloadedTextures.ContainsKey(key))
+            return;
+            
+        try
+        {
+            Texture2D texture = await AddressableManager.Instance.LoadAssetAsyncWithTracker<Texture2D>(address, gameObject);
+            
+            if (texture != null)
+            {
+                preloadedTextures[key] = texture;
+                preloadedAddress[key] = address;
+            }
+            else
+            {
+                Logger.Error($"Failed to preload texture: {address}");
+            }
+        }
+        catch (System.Exception e)
+        {
+            Logger.Error($"Exception during preload: {e.Message}");
+        }
+    }
+    
+    private string GetPreloadKey(string layerName, string address)
+    {
+        return $"{layerName}_{address}";
+    }
+    
+    public void ResetPreload()
+    {
+        if (CurrentMode != Mode.Preload)
+        {
+            Logger.Warning("ResetPreload called but current mode is not Preload");
+            return;
+        }
+        
+        var currentlyUsedTextures = new HashSet<Texture2D>(loadedTextures.Values);
+        var texturesToRelease = new List<string>();
+        
+        foreach (var kvp in preloadedTextures)
+        {
+            if (!currentlyUsedTextures.Contains(kvp.Value))
+            {
+                texturesToRelease.Add(kvp.Key);
+                AddressableManager.Instance.ReleaseFromTracker(kvp.Value, gameObject);
+            }
+        }
+        
+        foreach (var key in texturesToRelease)
+        {
+            preloadedTextures.Remove(key);
+            preloadedAddress.Remove(key);
+        }
+    }
+    
     private void OnDestroy()
     {
+        foreach (var texture in preloadedTextures.Values)
+            AddressableManager.Instance.ReleaseFromTracker(texture, gameObject);
+
         AddressableManager.Instance.ReleaseGameObject(gameObject);
     }
 }
