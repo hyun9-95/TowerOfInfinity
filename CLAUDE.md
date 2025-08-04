@@ -127,5 +127,29 @@ Efficiently translates missing localization data using temporary Python script:
 **Files Modified**:
 - `Assets/Data/Excels/Localization.csv` (updated with translations)
 
+## Code Restrictions
+
+### Prohibited Features
+- **Nullable operators (`??`, `?.`)**: Use explicit null checks instead
+- **Reflection**: Direct property/method access prohibited for performance and maintainability
+- **Comments**: Do not add comments unless explicitly requested by user
+
+```csharp
+// ❌ Bad - Nullable operators
+var result = obj?.Property ?? defaultValue;
+
+// ✅ Good - Explicit null checks
+var result = defaultValue;
+if (obj != null && obj.Property != null)
+    result = obj.Property;
+
+// ❌ Bad - Reflection
+var property = typeof(MyClass).GetProperty("PropertyName");
+property.SetValue(instance, value);
+
+// ✅ Good - Direct access with public methods
+instance.SetPropertyName(value);
+```
+
 # important-instruction-reminders
 ALWAYS follow the code style guidelines above when writing or modifying code.
