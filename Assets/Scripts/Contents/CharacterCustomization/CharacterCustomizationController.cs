@@ -10,15 +10,22 @@ public class CharacterCustomizationController : BaseController<CharacterCustomiz
     private CharacterCustomizationView View => GetView<CharacterCustomizationView>();
 
     private MainPlayerCharacter mainPlayerCharacter;
-
+    private DataContainer<DataCharacterParts> partsContainer = DataManager.Instance.GetDataContainer<DataCharacterParts>();
     public override void Enter()
     {
+        partsContainer = DataManager.Instance.GetDataContainer<DataCharacterParts>();
+
         Model.SetOnCompleteCustomize(OnCompleteCustomize);
         Model.SetOnSelectRace(OnSelectRace);
         Model.SetOnSelectHair(OnSelectHair);
+        Model.SetOnShowHelemet(OnShowHelmet);
+        Model.SetOnShowEquipments(OnShowEquipment);
         Model.SetSelectableRaces((CharacterRace[])Enum.GetValues(typeof(CharacterRace)));
 
-        var partsContainer = DataManager.Instance.GetDataContainer<DataCharacterParts>();
+        // 장비와 헬멧은 기본적으로 숨김
+        Model.SetIsShowEquipments(false);
+        Model.SetIsShowHelmet(false);
+
         var datas = partsContainer.FindAll(data => data.PartsType == CharacterPartsType.Hair);
         Model.SetSelectableHairDatas(datas);
 
@@ -39,6 +46,7 @@ public class CharacterCustomizationController : BaseController<CharacterCustomiz
             CharacterPartsType.Ears,
             CharacterPartsType.Eyes,
             CharacterPartsType.Hair,
+            CharacterPartsType.Arms,
         };
 
         foreach (var partsType in customizablePartsType)
@@ -58,6 +66,8 @@ public class CharacterCustomizationController : BaseController<CharacterCustomiz
         // 커스터마이즈 가능한 파츠들을 미리 로드
         libraryBuilder.SetMode(CharacterSpriteLibraryBuilder.Mode.Preload);
         await libraryBuilder.Preload();
+
+        await OnChangePartsAsync();
     }
 
     public override async UniTask Exit()
@@ -86,25 +96,89 @@ public class CharacterCustomizationController : BaseController<CharacterCustomiz
 
     private void OnChangeParts()
     {
+        OnChangePartsAsync().Forget();
+    }
+
+    private async UniTask OnChangePartsAsync()
+    {
         if (mainPlayerCharacter == null)
             return;
 
         var changePartsList = Model.SelectRaceParts.Values.ToList();
         changePartsList.Add(Model.SelectHairData);
 
-        mainPlayerCharacter.UpdateSpriteLibraryAsset(changePartsList).Forget();
+        if (Model.IsShowEquipments)
+        {
+            var checkEquipmentTypes = new EquipmentType[]
+            {
+                EquipmentType.Weapon,
+                EquipmentType.Bracers,
+                EquipmentType.Shield,
+                EquipmentType.Mask,
+                EquipmentType.Armor,
+            };
+
+            foreach (var equipmentType in checkEquipmentTypes)
+            {
+                var equippedEquipment = PlayerManager.Instance.MyUser.UserEquipmentInfo.
+                    GetMainCharacterEquippedEquipment(equipmentType);
+
+                if (equippedEquipment != null)
+                {
+                    var partsData = partsContainer.GetById((int)equippedEquipment.PartsData);
+                    changePartsList.Add(partsData);
+                }
+            }
+        }
+
+        if (Model.IsShowHelmet)
+        {
+            var equippedHelmet = PlayerManager.Instance.MyUser.UserEquipmentInfo.
+                GetMainCharacterEquippedEquipment(EquipmentType.Helmet);
+
+            if (equippedHelmet != null)
+            {
+                var partsData = partsContainer.GetById((int)equippedHelmet.PartsData);
+                changePartsList.Add(partsData);
+            }
+        }
+
+        await mainPlayerCharacter.UpdateSpriteLibraryAsset(changePartsList);
     }
 
     private void OnCompleteCustomize()
     {
+        // 유저 정보에 반영
         var mainCharacterInfo = PlayerManager.Instance.GetMainCharacterInfo();
-        var partsInfo = mainCharacterInfo.PartsInfo;
+        mainCharacterInfo.SetCharacterRace(Model.SelectRace);
+        mainCharacterInfo.SetHairPartsId(Model.SelectHairData.Id);
 
+        // 파츠정보에 반영
+        var partsInfo = mainCharacterInfo.PartsInfo;
         partsInfo.SetRaceParts(Model.SelectRace);
         partsInfo.SetHairParts(Model.SelectHairData.Id);
 
+        // 도입부 플래그
+        PlayerManager.Instance.MyUser.SetCompletePrologue(true);
+
+        // 저장
         PlayerManager.Instance.MyUser.Save();
 
-        FlowManager.Instance.ChangeFlow(FlowType.TownFlow).Forget();
+        TownFlowModel townFlowModel = new TownFlowModel();
+        townFlowModel.SetLobbySceneDefine(SceneDefine.Town_Sanctuary);
+
+        FlowManager.Instance.ChangeFlow(FlowType.TownFlow, townFlowModel).Forget();
+    }
+
+    private void OnShowHelmet(bool value)
+    {
+        Model.SetIsShowHelmet(value);
+        OnChangeParts();
+    }
+
+    private void OnShowEquipment(bool value)
+    {
+        Model.SetIsShowEquipments(value);
+        OnChangeParts();
     }
 }

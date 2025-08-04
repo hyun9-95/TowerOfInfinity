@@ -65,13 +65,17 @@ public class User
     private void CreateMainCharacterInfo(UserSaveInfo userSaveInfo)
     {
         var mainCharacterInfo = new MainCharacterInfo();
+        mainCharacterInfo.SetCharacterRace(userSaveInfo.CharacterRace);
+        mainCharacterInfo.SetHairPartsId(userSaveInfo.HairPartsId);
 
         var mainCharacterPartsInfo = new MainCharacterPartsInfo();
-        mainCharacterPartsInfo.SetByUserSaveInfo(userSaveInfo);
+        mainCharacterPartsInfo.SetRaceParts(mainCharacterInfo.CharacterRace);
+        mainCharacterPartsInfo.SetHairParts(mainCharacterInfo.HairPartsId);
+        mainCharacterPartsInfo.SetEquipmentParts(UserEquipmentInfo.GetMainCharacterEquipments());
 
         mainCharacterInfo.SetPartsInfo(mainCharacterPartsInfo);
 
-        var equippedWeapon = UserEquipmentInfo.GetEquippedEquipment(EquipmentType.Weapon);
+        var equippedWeapon = UserEquipmentInfo.GetMainCharacterEquippedEquipment(EquipmentType.Weapon);
 
         if (equippedWeapon != null)
             mainCharacterInfo.SetDefaultWeaponDataId(equippedWeapon.DataId);
@@ -83,6 +87,11 @@ public class User
     {
         UserEquipmentInfo = new UserEquipmentInfo();
         UserEquipmentInfo.CreateFromUserSaveInfo(userSaveInfo);
+    }
+
+    public void SetCompletePrologue(bool value)
+    {
+        IsCompletePrologue = value;
     }
 
     public void Save()
@@ -121,7 +130,7 @@ public class User
                     continue;
 
                 subCharacterDataIds.Add(subCharacter.CharacterDataId);
-                
+
                 if (subCharacter.SlotIndex >= 0)
                     subCharacterSlotIndexDic[subCharacter.CharacterDataId] = subCharacter.SlotIndex;
             }
@@ -131,14 +140,8 @@ public class User
         userSaveInfo.SetSubCharacterSlotIndexDic(subCharacterSlotIndexDic);
 
         // 메인 캐릭터
-        var characterRace = CharacterRace.Human;
-        var hairPartsId = (int)CharacterPartsDefine.PARTS_HAIR_HAIR_HAIR1;
-        
-        if (UserCharacterInfo.MainCharacterInfo != null && UserCharacterInfo.MainCharacterInfo.PartsInfo != null)
-        {
-            characterRace = UserCharacterInfo.MainCharacterInfo.PartsInfo.Race;
-            hairPartsId = UserCharacterInfo.MainCharacterInfo.PartsInfo.HairPartsId;
-        }
+        var characterRace = UserCharacterInfo.MainCharacterInfo.CharacterRace;
+        var hairPartsId = UserCharacterInfo.MainCharacterInfo.HairPartsId;
         
         userSaveInfo.SetCharacterRace(characterRace);
         userSaveInfo.SetHairPartsId(hairPartsId);
@@ -147,7 +150,7 @@ public class User
         var ownedEquipmentIds = new List<int>();
         var equipmentLevels = new Dictionary<int, int>();
 
-        foreach (var equipment in UserEquipmentInfo.OwnedEquipments)
+        foreach (var equipment in UserEquipmentInfo.UserEquipments.Values)
         {
             ownedEquipmentIds.Add(equipment.DataId);
             equipmentLevels[equipment.DataId] = equipment.Level;

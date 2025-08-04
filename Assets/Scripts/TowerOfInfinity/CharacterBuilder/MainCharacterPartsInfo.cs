@@ -4,7 +4,6 @@ public class MainCharacterPartsInfo
 {
     public CharacterRace Race { get; private set; }
     public int HairPartsId { get; private set; }
-    public DataCharacterParts Hair { get; private set; }
     public Dictionary<CharacterPartsType, DataCharacterParts> PartsInfoDic { get; private set; } = new();
 
     #region Value
@@ -12,28 +11,21 @@ public class MainCharacterPartsInfo
     private DataContainer<DataEquipment> equipmentContainer;
     #endregion
 
-    public void SetByUserSaveInfo(UserSaveInfo userSaveInfo)
+    public MainCharacterPartsInfo()
     {
         if (partsContainer == null)
             partsContainer = DataManager.Instance.GetDataContainer<DataCharacterParts>();
 
-        PartsInfoDic.Clear();
+        if (equipmentContainer == null)
+            equipmentContainer = equipmentContainer = DataManager.Instance.GetDataContainer<DataEquipment>();
 
-        // 종족별 고정파츠
-        SetRaceParts(userSaveInfo.CharacterRace);
-
-        // 헤어 파츠
-        SetHairParts(userSaveInfo.HairPartsId);
-
-        // 장비 파츠
-        SetEquipmentParts(userSaveInfo.EquippedMainCharacterEquipmentIds);
+        HairPartsId = 0;
+        Race = CharacterRace.Human;
     }
 
     public void SetRaceParts(CharacterRace race)
     {
         Race = race;
-        
-        var partsContainer = DataManager.Instance.GetDataContainer<DataCharacterParts>();
         
         var ids = CommonUtils.GetRacePartsIds(race);
 
@@ -57,24 +49,17 @@ public class MainCharacterPartsInfo
         if (hairData.IsNull)
         {
             HairPartsId = (int)CharacterPartsDefine.PARTS_HAIR_HAIR_HAIR1;
-            Hair = partsContainer.GetById(HairPartsId);
-        }
-        else
-        {
-            Hair = hairData;
+            hairData = partsContainer.GetById(HairPartsId);
         }
         
-        PartsInfoDic[CharacterPartsType.Hair] = Hair;
+        PartsInfoDic[CharacterPartsType.Hair] = hairData;
     }
 
-    public void SetEquipmentParts(Dictionary<EquipmentType, int> equipmentInfo)
+    public void SetEquipmentParts(Dictionary<EquipmentType, EquipmentDefine> equipmentInfo)
     {
-        if (equipmentContainer == null)
-            equipmentContainer = DataManager.Instance.GetDataContainer<DataEquipment>();
-
         foreach (var equipInfo in equipmentInfo)
         {
-            var equipmentData = equipmentContainer.GetById(equipInfo.Value);
+            var equipmentData = equipmentContainer.GetById((int)equipInfo.Value);
 
             if (equipmentData.IsNull)
                 continue;

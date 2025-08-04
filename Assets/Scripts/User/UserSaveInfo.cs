@@ -58,8 +58,16 @@ public class UserSaveInfo
         if (HairPartsId == 0)
             HairPartsId = (int)CharacterPartsDefine.PARTS_HAIR_HAIR_HAIR1;
 
-        if (OwnedEquipmentIds == null)
-            OwnedEquipmentIds = new List<int>();
+        if (OwnedEquipmentIds == null || OwnedEquipmentIds.Count == 0)
+        {
+            OwnedEquipmentIds = new List<int>()
+            {
+                (int)EquipmentDefine.EQUIPMENT_ARMOR_THIEF_TUNIC,
+                (int)EquipmentDefine.EQUIPMENT_ARMOR_THIEF_HOOD,
+                (int)EquipmentDefine.EQUIPMENT_BRACERS_THIEF_TUNIC,
+                (int)EquipmentDefine.EQUIPMENT_WEAPON_SHORT_DAGGER,
+            };
+        }
 
         if (EquipmentLevels == null)
             EquipmentLevels = new Dictionary<int, int>();

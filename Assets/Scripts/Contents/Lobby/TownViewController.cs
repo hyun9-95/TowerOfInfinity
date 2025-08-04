@@ -1,7 +1,3 @@
-using Cysharp.Threading.Tasks;
-using UnityEngine;
-using UnityEngine.U2D.Animation;
-
 public class TownViewController : BaseController<TownViewModel>
 {
     public override UIType UIType => UIType.TownView;

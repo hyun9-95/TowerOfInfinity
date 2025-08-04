@@ -16,6 +16,12 @@ public class CharacterCustomizationView : BaseView
     private TMP_Dropdown hairDropDown;
 
     [SerializeField]
+    private Toggle showHelmentToggle;
+
+    [SerializeField]
+    private Toggle showEquipmentToggle;
+
+    [SerializeField]
     private Button completeButton;
 
     private void Start()
@@ -26,6 +32,7 @@ public class CharacterCustomizationView : BaseView
     public override async UniTask ShowAsync()
     {
         SetupDropdownOptions();
+        SetupToggleValues();
     }
 
     private void SetupEventListeners()
@@ -35,6 +42,12 @@ public class CharacterCustomizationView : BaseView
 
         if (hairDropDown != null)
             hairDropDown.onValueChanged.AddListener(OnHairDropdownChanged);
+
+        if (showHelmentToggle != null)
+            showHelmentToggle.onValueChanged.AddListener(OnShowHelmetToggleChanged);
+
+        if (showEquipmentToggle != null)
+            showEquipmentToggle.onValueChanged.AddListener(OnShowEquipmentToggleChanged);
 
         if (completeButton != null)
             completeButton.onClick.AddListener(OnCompleteCustomize);
@@ -70,6 +83,15 @@ public class CharacterCustomizationView : BaseView
         hairDropDown.AddOptions(hairOptions);
     }
 
+    private void SetupToggleValues()
+    {
+        if (showHelmentToggle != null)
+            showHelmentToggle.isOn = Model.IsShowHelmet;
+
+        if (showEquipmentToggle != null)
+            showEquipmentToggle.isOn = Model.IsShowEquipments;
+    }
+
     private void OnRaceDropdownChanged(int index)
     {
         if (Model.SelectableRaces == null || index < 0 || index >= Model.SelectableRaces.Length)
@@ -86,6 +108,16 @@ public class CharacterCustomizationView : BaseView
 
         var selectedHairData = Model.SelectableHairDatas[index];
         Model.OnSelectHair?.Invoke(selectedHairData);
+    }
+
+    private void OnShowHelmetToggleChanged(bool value)
+    {
+        Model.OnShowHelmet?.Invoke(value);
+    }
+
+    private void OnShowEquipmentToggleChanged(bool value)
+    {
+        Model.OnShowEquipments?.Invoke(value);
     }
 
     private void OnCompleteCustomize()

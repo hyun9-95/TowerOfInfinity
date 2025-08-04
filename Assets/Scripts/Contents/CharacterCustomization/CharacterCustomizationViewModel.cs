@@ -4,6 +4,9 @@ using System.Collections.Generic;
 public class CharacterCustomizationViewModel : IBaseViewModel
 {
     #region Property
+    public bool IsShowHelmet { get; private set; }
+
+    public bool IsShowEquipments { get; private set; }
 
     public CharacterRace SelectRace { get; private set; }
 
@@ -18,6 +21,10 @@ public class CharacterCustomizationViewModel : IBaseViewModel
     public Action<CharacterRace> OnSelectRace { get; private set; }
 
     public Action<DataCharacterParts> OnSelectHair { get; private set; }
+
+    public Action<bool> OnShowHelmet { get; private set; }
+
+    public Action<bool> OnShowEquipments { get; private set; }
 
     public Action OnChangeParts { get; set; }
 
@@ -62,6 +69,26 @@ public class CharacterCustomizationViewModel : IBaseViewModel
     public void SetSelectableRaces(CharacterRace[] selectableRaces)
     {
         SelectableRaces = selectableRaces;
+    }
+
+    public void SetOnShowHelemet(Action<bool> onShowHelemet)
+    {
+        OnShowHelmet = onShowHelemet;
+    }
+
+    public void SetOnShowEquipments(Action<bool> onShowEquipments)
+    {
+        OnShowEquipments = onShowEquipments;
+    }
+
+    public void SetIsShowHelmet(bool value)
+    {
+        IsShowHelmet = value;
+    }
+
+    public void SetIsShowEquipments(bool value)
+    {
+        IsShowEquipments = value;
     }
     #endregion
 }

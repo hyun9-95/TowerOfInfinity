@@ -4,14 +4,19 @@ using System.Linq;
 public class UserEquipmentInfo
 {
     #region Property
-    public List<Equipment> OwnedEquipments { get; private set; }
-    public Dictionary<EquipmentType, Equipment> EquippedMainCharacterEquipments { get; private set; }
+    public IReadOnlyDictionary<int, Equipment> UserEquipments => userEquipments;
+    public IReadOnlyDictionary<EquipmentType, Equipment> EquippedMainCharacterEquipments => equippedMainCharacterEquipments;
+    #endregion
+
+    #region Value
+    private Dictionary<int, Equipment> userEquipments;
+    private Dictionary<EquipmentType, Equipment> equippedMainCharacterEquipments;
     #endregion
 
     #region Function
     public void CreateFromUserSaveInfo(UserSaveInfo userSaveInfo)
     {
-        OwnedEquipments = new List<Equipment>();
+        userEquipments = new Dictionary<int, Equipment>();
         var equipmentContainer = DataManager.Instance.GetDataContainer<DataEquipment>();
         
         foreach (int equipmentId in userSaveInfo.OwnedEquipmentIds)
@@ -22,49 +27,44 @@ public class UserEquipmentInfo
             var dataEquipment = equipmentContainer.GetById(equipmentId);
 
             if (!dataEquipment.IsNull)
-                OwnedEquipments.Add(new Equipment(dataEquipment, level));
+                userEquipments[equipmentId] = new Equipment(dataEquipment, level);
         }
 
-        EquippedMainCharacterEquipments = new Dictionary<EquipmentType, Equipment>();
+        equippedMainCharacterEquipments = new Dictionary<EquipmentType, Equipment>();
         
         foreach (var kvp in userSaveInfo.EquippedMainCharacterEquipmentIds)
         {
             var equipment = GetEquipment(kvp.Value);
             if (equipment != null)
-                EquippedMainCharacterEquipments[kvp.Key] = equipment;
+                equippedMainCharacterEquipments[kvp.Key] = equipment;
         }
     }
 
 
     public void AddEquipment(int equipmentId, int level)
     {
-        var existingEquipment = GetEquipment(equipmentId);
-
-        if (existingEquipment == null)
+        if (!userEquipments.ContainsKey(equipmentId))
         {
             var equipmentContainer = DataManager.Instance.GetDataContainer<DataEquipment>();
             var dataEquipment = equipmentContainer.GetById(equipmentId);
             if (!dataEquipment.IsNull)
-                OwnedEquipments.Add(new Equipment(dataEquipment, level));
+                userEquipments[equipmentId] = new Equipment(dataEquipment, level);
         }
     }
 
     public void RemoveEquipment(int equipmentId)
     {
-        var equipment = GetEquipment(equipmentId);
-
-        if (equipment != null)
-            OwnedEquipments.Remove(equipment);
+        userEquipments.Remove(equipmentId);
     }
 
     public Equipment GetEquipment(int equipmentId)
     {
-        return OwnedEquipments.FirstOrDefault(e => e.DataId == equipmentId);
+        return userEquipments.TryGetValue(equipmentId, out Equipment equipment) ? equipment : null;
     }
 
     public bool HasEquipment(int equipmentId)
     {
-        return GetEquipment(equipmentId) != null;
+        return userEquipments.ContainsKey(equipmentId);
     }
 
     public void EquipToMainCharacter(EquipmentType equipmentType, int equipmentId)
@@ -73,27 +73,27 @@ public class UserEquipmentInfo
         if (equipment == null)
             return;
 
-        EquippedMainCharacterEquipments[equipmentType] = equipment;
+        equippedMainCharacterEquipments[equipmentType] = equipment;
     }
 
     public void UnequipFromMainCharacter(EquipmentType equipmentType)
     {
-        EquippedMainCharacterEquipments.Remove(equipmentType);
+        equippedMainCharacterEquipments.Remove(equipmentType);
     }
 
-    public Equipment GetEquippedEquipment(EquipmentType equipmentType)
+    public Equipment GetMainCharacterEquippedEquipment(EquipmentType equipmentType)
     {
-        if (EquippedMainCharacterEquipments.ContainsKey(equipmentType))
-            return EquippedMainCharacterEquipments[equipmentType];
+        if (equippedMainCharacterEquipments.ContainsKey(equipmentType))
+            return equippedMainCharacterEquipments[equipmentType];
         
         return null;
     }
 
-    public Dictionary<EquipmentType, EquipmentDefine> GetMainCharacterEquipmentDic()
+    public Dictionary<EquipmentType, EquipmentDefine> GetMainCharacterEquipments()
     {
         var result = new Dictionary<EquipmentType, EquipmentDefine>();
         
-        foreach (var kvp in EquippedMainCharacterEquipments)
+        foreach (var kvp in equippedMainCharacterEquipments)
         {
             result[kvp.Key] = (EquipmentDefine)kvp.Value.DataId;
         }

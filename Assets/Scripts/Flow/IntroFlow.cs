@@ -50,10 +50,10 @@ public class IntroFlow : BaseFlow<IntroFlowModel>
         }
         else
         {
-            TownFlowModel lobbyFlowModel = new TownFlowModel();
-            lobbyFlowModel.SetLobbySceneDefine(SceneDefine.Town_Sanctuary);
+            TownFlowModel townFlowModel = new TownFlowModel();
+            townFlowModel.SetLobbySceneDefine(SceneDefine.Town_Sanctuary);
 
-            FlowManager.Instance.ChangeFlow(FlowType.TownFlow, lobbyFlowModel).Forget();
+            FlowManager.Instance.ChangeFlow(FlowType.TownFlow, townFlowModel).Forget();
         }
     }
 

@@ -13,7 +13,12 @@ public class LocalizationTextSupport : MonoBehaviour
     private void OnValidate()
     {
         if (textMeshPro == null)
+        {
             textMeshPro = GetComponent<TextMeshProUGUI>();
+
+            if (textMeshPro == null)
+                textMeshPro = gameObject.AddComponent<TextMeshProUGUI>();
+        }
     }
 #endif
 

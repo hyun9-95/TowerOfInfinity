@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4352671717524675007}
   m_Layer: 5
-  m_Name: DiamondToggleWithLabel
+  m_Name: LabelToggle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34,8 +34,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 165, y: 40}
+  m_AnchoredPosition: {x: -38.34, y: 0}
+  m_SizeDelta: {x: 241.68, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &5285995496147737460
 GameObject:
@@ -220,11 +220,11 @@ RectTransform:
   - {fileID: 5285995496461963206}
   m_Father: {fileID: 4352671717524675007}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.75757575, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_SizeDelta: {x: 40, y: 40}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &5285995496570744271
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,6 +283,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1531106646922545435}
   - component: {fileID: 5071436707941697165}
+  - component: {fileID: 6746104685616034920}
   - component: {fileID: 2071877781526650191}
   m_Layer: 5
   m_Name: Label
@@ -305,11 +306,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 4352671717524675007}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.75757575, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 45, y: 0}
+  m_SizeDelta: {x: 200, y: 40}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &5071436707941697165
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -318,6 +319,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5445648058581032300}
   m_CullTransparentMesh: 1
+--- !u!114 &6746104685616034920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5445648058581032300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fafb4ec6eacbad343827fe1fdefcade5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localizationDefine: 0
+  textMeshPro: {fileID: 2071877781526650191}
 --- !u!114 &2071877781526650191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -338,7 +353,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Show Equipment
+  m_text: Show Equipments
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: bd8208d340738d540bb3e58d02f522fd, type: 2}
   m_sharedMaterial: {fileID: 4462655732932052583, guid: bd8208d340738d540bb3e58d02f522fd, type: 2}
@@ -381,7 +396,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
