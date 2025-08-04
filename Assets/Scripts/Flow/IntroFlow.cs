@@ -31,6 +31,8 @@ public class IntroFlow : BaseFlow<IntroFlowModel>
 
     private void OnCompleteLoading()
     {
+        bool isEnterCustomize = !PlayerManager.Instance.MyUser.IsCompletePrologue;
+
         if (GameManager.Config.IsEnterBattleDirectly)
         {
             BattleFlowModel battleFlowModel = new BattleFlowModel();
@@ -40,7 +42,7 @@ public class IntroFlow : BaseFlow<IntroFlowModel>
             FlowManager.Instance.ChangeFlow(FlowType.BattleFlow, battleFlowModel).Forget();
             return;
         }
-        else if (GameManager.Config.IsEnterCustomizationFlow)
+        else if (isEnterCustomize || GameManager.Config.IsEnterCustomizationFlow)
         {
             CustomizationFlowModel customizationFlowModel = new CustomizationFlowModel();
             

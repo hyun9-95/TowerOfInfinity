@@ -8,8 +8,6 @@ public class PlayerManager : BaseMonoManager<PlayerManager>
 {
     #region Property
     public User MyUser { get; private set; }
-
-    public MainPlayerCharacter MainPlayerCharacter => mainPlayerCharacter;
     #endregion
 
     #region Value
@@ -54,16 +52,32 @@ public class PlayerManager : BaseMonoManager<PlayerManager>
         File.WriteAllText(userSaveInfoPath, newSaveInfoJson);
     }
 
-    public async UniTask<CharacterUnit> GetMainCharacter()
+    public async UniTask LoadMainPlayerCharacter()
     {
         if (mainPlayerCharacter == null)
         {
-            mainPlayerCharacter = await AddressableManager.Instance.InstantiateAddressableMonoAsync<MainPlayerCharacter>
+            mainPlayerCharacter = await AddressableManager.Instance.InstantiateUntrackedAsync<MainPlayerCharacter>
                 (MyUser.UserCharacterInfo.MainCharacterInfo.MainCharacterPath, playerCharacterTransform);
         }
 
-        await mainPlayerCharacter.UpdateModel(MyUser.UserCharacterInfo.MainCharacterInfo);
+        await mainPlayerCharacter.UpdateMainCharacter(MyUser.UserCharacterInfo.MainCharacterInfo);
+    }
+
+    public MainPlayerCharacter GetMainPlayerCharacter()
+    {
+        return mainPlayerCharacter;
+    }
+
+    public CharacterUnit GetMainPlayerCharacterUnit()
+    {
+        if (mainPlayerCharacter == null)
+            return null;
 
         return mainPlayerCharacter.CharacterUnit;
+    }
+
+    public MainCharacterInfo GetMainCharacterInfo()
+    {
+        return MyUser.UserCharacterInfo.MainCharacterInfo;
     }
 }

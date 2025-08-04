@@ -49,7 +49,7 @@ public class TownFlow : BaseFlow<TownFlowModel>
     private async UniTask LoadPlayerCharacters()
     {
         var playerTransform = townSceneManager.PlayerStartTransform;
-        var mainCharacter = await PlayerManager.Instance.GetMainCharacter();
+        var mainCharacter = PlayerManager.Instance.GetMainPlayerCharacterUnit();
         mainCharacter.transform.SetPositionAndRotation(playerTransform.position, Quaternion.identity);
 
         await UniTask.NextFrame();

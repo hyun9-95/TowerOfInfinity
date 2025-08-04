@@ -1,189 +1,95 @@
 #pragma warning disable CS1998
 using Cysharp.Threading.Tasks;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharacterCustomizationView : BaseView
 {
     public CharacterCustomizationViewModel Model => GetModel<CharacterCustomizationViewModel>();
 
     [SerializeField]
-    private CharacterSpriteLibraryBuilder characterSpriteLibraryBuilder;
+    private TMP_Dropdown raceDropDown;
 
     [SerializeField]
-    private TMP_Dropdown[] partDropdown;
+    private TMP_Dropdown hairDropDown;
 
+    [SerializeField]
+    private Button completeButton;
 
-    private DataContainer<DataCharacterParts> partsContainer;
-    private bool isInitialized = false;
+    private void Start()
+    {
+        SetupEventListeners();
+    }
 
     public override async UniTask ShowAsync()
     {
-        LoadCharacterSpritePartsData();
-        InitializeDropdowns();
-        UpdateUI();
-        isInitialized = true;
+        SetupDropdownOptions();
     }
 
-    private void LoadCharacterSpritePartsData()
+    private void SetupEventListeners()
     {
-        partsContainer = DataManager.Instance.GetDataContainer<DataCharacterParts>();
+        if (raceDropDown != null)
+            raceDropDown.onValueChanged.AddListener(OnRaceDropdownChanged);
+
+        if (hairDropDown != null)
+            hairDropDown.onValueChanged.AddListener(OnHairDropdownChanged);
+
+        if (completeButton != null)
+            completeButton.onClick.AddListener(OnCompleteCustomize);
     }
 
-    private void InitializeDropdowns()
+    private void SetupDropdownOptions()
     {
-        if (partsContainer == null || partDropdown == null)
+        SetupRaceDropdownOptions();
+        SetupHairDropdownOptions();
+    }
+
+    private void SetupRaceDropdownOptions()
+    {
+        if (raceDropDown == null || Model.SelectableRaces == null)
             return;
 
-        var partsEnumArray = Enum.GetValues(typeof(CharacterPartsType)).Cast<CharacterPartsType>().ToArray();
+        raceDropDown.ClearOptions();
         
-        for (int i = 0; i < partDropdown.Length && i < partsEnumArray.Length; i++)
-        {
-            var dropdown = partDropdown[i];
-            var partType = partsEnumArray[i];
-            
-            SetupDropdownOptions(dropdown, partType, i);
-        }
+        var raceOptions = Model.SelectableRaces.Select(race => race.ToString()).ToList();
+        raceDropDown.AddOptions(raceOptions);
     }
 
-    private void SetupDropdownOptions(TMP_Dropdown dropdown, CharacterPartsType partType, int partIndex)
+    private void SetupHairDropdownOptions()
     {
-        dropdown.ClearOptions();
-        
-        var options = new List<string> { "None" };
-
-        var partsOfType = partsContainer.FindAll(p => !p.IsNull && p.PartsType == partType);
-            
-        foreach (var part in partsOfType)
-        {
-            var partName = GetPartNameFromPath(part.PartsPath);
-            if (!string.IsNullOrEmpty(partName))
-                options.Add(partName);
-        }
-        
-        dropdown.AddOptions(options);
-        
-        dropdown.onValueChanged.RemoveAllListeners();
-        dropdown.onValueChanged.AddListener((value) => OnDropdownValueChanged(partIndex, value));
-        
-        var currentPart = Model.Parts[partIndex];
-        if (!string.IsNullOrEmpty(currentPart))
-        {
-            var optionIndex = options.IndexOf(currentPart);
-            if (optionIndex >= 0)
-                dropdown.value = optionIndex;
-        }
-        else
-        {
-            if (partType == CharacterPartsType.Body || partType == CharacterPartsType.Head)
-            {
-                if (options.Count > 1)
-                {
-                    dropdown.value = 1;
-                    Model.ChangePart(partIndex, options[1]);
-                }
-            }
-        }
-    }
-    
-    private string GetPartNameFromPath(string partsPath)
-    {
-        if (string.IsNullOrEmpty(partsPath))
-            return string.Empty;
-            
-        var lastSlashIndex = partsPath.LastIndexOf('/');
-        if (lastSlashIndex >= 0 && lastSlashIndex < partsPath.Length - 1)
-            return partsPath.Substring(lastSlashIndex + 1);
-            
-        return partsPath;
-    }
-
-    private async void OnDropdownValueChanged(int partIndex, int optionIndex)
-    {
-        if (!isInitialized)
+        if (hairDropDown == null || Model.SelectableHairDatas == null)
             return;
-            
-        var dropdown = partDropdown[partIndex];
-        var selectedOption = dropdown.options[optionIndex].text;
+
+        hairDropDown.ClearOptions();
         
-        // "None" 선택시 빈 문자열로 처리
-        var partValue = selectedOption == "None" ? "" : selectedOption;
-        
-        await OnChangePart(partIndex, partValue);
+        var hairOptions = Model.SelectableHairDatas.Select(hairData => 
+            string.IsNullOrEmpty(hairData.PartsPath) ? "None" : 
+            hairData.PartsPath.Substring(hairData.PartsPath.LastIndexOf('/') + 1)).ToList();
+        hairDropDown.AddOptions(hairOptions);
     }
 
-    public void UpdateUI()
+    private void OnRaceDropdownChanged(int index)
     {
-        if (partsContainer == null)
+        if (Model.SelectableRaces == null || index < 0 || index >= Model.SelectableRaces.Length)
             return;
-            
-        for (int i = 0; i < partDropdown.Length && i < Model.Parts.Count; i++)
-        {
-            var currentPart = Model.Parts[i];
-            var dropdown = partDropdown[i];
-            
-            if (string.IsNullOrEmpty(currentPart))
-            {
-                dropdown.value = 0;
-            }
-            else
-            {
-                var optionIndex = dropdown.options.FindIndex(option => option.text == currentPart);
-                if (optionIndex >= 0)
-                    dropdown.value = optionIndex;
-            }
-        }
+
+        var selectedRace = Model.SelectableRaces[index];
+        Model.OnSelectRace?.Invoke(selectedRace);
     }
 
-    public async UniTask OnChangePart(int index, string value)
+    private void OnHairDropdownChanged(int index)
     {
-        Model.ChangePart(index, value);
-        
-        try
-        {
-            // 최소한 하나의 파츠라도 유효한지 확인
-            if (HasValidParts())
-            {
-                var spriteLibraryAsset = await characterSpriteLibraryBuilder.Rebuild(Model.Parts.ToArray());
-                if (spriteLibraryAsset != null)
-                {
-                    Model.SpriteLibrary.spriteLibraryAsset = spriteLibraryAsset;
-                }
-            }
-        }
-        catch (Exception ex)
-        {
-            Logger.Error($"Failed to rebuild sprite library: {ex.Message}");
-        }
+        if (Model.SelectableHairDatas == null || index < 0 || index >= Model.SelectableHairDatas.Length)
+            return;
+
+        var selectedHairData = Model.SelectableHairDatas[index];
+        Model.OnSelectHair?.Invoke(selectedHairData);
     }
 
-    private bool HasValidParts()
+    private void OnCompleteCustomize()
     {
-        if (Model.Parts == null || partsContainer == null)
-            return false;
-
-        for (int i = 0; i < Model.Parts.Count; i++)
-        {
-            var partValue = Model.Parts[i];
-            if (string.IsNullOrEmpty(partValue))
-                continue;
-                
-            var partType = (CharacterPartsType)i;
-            var part = partsContainer.Find(p => !p.IsNull &&
-                    p.PartsType == partType &&
-                    GetPartNameFromPath(p.PartsPath) == partValue);
-                    
-            if (!part.IsNull && !string.IsNullOrEmpty(part.PartsPath))
-                return true;
-        }
-        
-        return false;
-    }
-
-    private void OnSaveButtonClicked()
-    {
+        Model.OnCompleteCustomize?.Invoke();
     }
 }

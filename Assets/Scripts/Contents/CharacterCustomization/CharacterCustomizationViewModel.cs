@@ -1,78 +1,67 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine.U2D.Animation;
 
 public class CharacterCustomizationViewModel : IBaseViewModel
 {
-    public List<string> Parts { get; private set; }
-    public Action<int, string> OnPartChanged { get; set; }
-    public SpriteLibrary SpriteLibrary { get; private set; }
-    public bool AllowRaceChange { get; private set; }
+    #region Property
 
-    public void InitializeParts(int count)
+    public CharacterRace SelectRace { get; private set; }
+
+    public Dictionary<CharacterPartsType, DataCharacterParts> SelectRaceParts { get; private set; } = new Dictionary<CharacterPartsType, DataCharacterParts>();
+
+    public CharacterRace[] SelectableRaces { get; private set; }
+
+    public DataCharacterParts[] SelectableHairDatas { get; private set; }
+
+    public DataCharacterParts SelectHairData { get; private set; }
+
+    public Action<CharacterRace> OnSelectRace { get; private set; }
+
+    public Action<DataCharacterParts> OnSelectHair { get; private set; }
+
+    public Action OnChangeParts { get; set; }
+
+    public Action OnCompleteCustomize { get; set; }
+    #endregion
+
+    #region Value
+
+    #endregion
+
+    #region Function
+    public void SetOnSelectRace(Action<CharacterRace> onSelectRace)
     {
-        Parts = new List<string>(new string[count]);
-        for (int i = 0; i < count; i++)
-        {
-            Parts[i] = string.Empty;
-        }
+        OnSelectRace = onSelectRace;
     }
 
-    public void SetOnPartChanged(Action<int, string> onPartChanged)
+    public void SetOnSelectHair(Action<DataCharacterParts> onSelectHair)
     {
-        OnPartChanged = onPartChanged;
+        OnSelectHair = onSelectHair;
     }
 
-    public void SetSpriteLibrary(SpriteLibrary spriteLibrary)
+    public void SetOnCompleteCustomize(Action onComplete)
     {
-        SpriteLibrary = spriteLibrary;
+        OnCompleteCustomize = onComplete;
     }
 
-    public void SetUserCharacterInfo(UserCharacterAppearanceInfo characterInfo)
+    public void SetSelectRaceParts(CharacterPartsType partsType, DataCharacterParts partsData)
     {
-        if (characterInfo != null && characterInfo.parts != null)
-        {
-            InitializeParts(characterInfo.parts.Length);
-            for (int i = 0; i < characterInfo.parts.Length; i++)
-            {
-                Parts[i] = characterInfo.parts[i] ?? string.Empty;
-            }
-        }
+        SelectRaceParts[partsType] = partsData;
     }
 
-    public void ChangePart(int index, string value)
+    public void SetSelectHair(DataCharacterParts hairData)
     {
-        if (index >= 0 && index < Parts.Count)
-        {
-            var oldValue = Parts[index];
-            Parts[index] = value ?? string.Empty;
-            
-            // 값이 실제로 변경된 경우에만 이벤트 발생
-            if (oldValue != Parts[index])
-            {
-                OnPartChanged?.Invoke(index, Parts[index]);
-            }
-        }
+        SelectHairData = hairData;
     }
 
-    public string GetPart(int index)
+    public void SetSelectableHairDatas(DataCharacterParts[] hairDatas)
     {
-        if (index >= 0 && index < Parts.Count)
-        {
-            return Parts[index];
-        }
-        return string.Empty;
+        SelectableHairDatas = hairDatas;
     }
 
-    public string GetPart(CharacterPartsType partName)
+    public void SetSelectableRaces(CharacterRace[] selectableRaces)
     {
-        int index = (int)partName;
-        return GetPart(index);
+        SelectableRaces = selectableRaces;
     }
-
-    public void SetPart(CharacterPartsType partName, string value)
-    {
-        int index = (int)partName;
-        ChangePart(index, value);
-    }
+    #endregion
 }

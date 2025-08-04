@@ -72,7 +72,13 @@ public class IntroController : BaseController<IntroViewModel>
         Model.SetLoadingState(IntroViewModel.LoadingState.UserLoading);
         View.UpdateLoadingUI();
 
+        // 유저 로드
         PlayerManager.Instance.LoadUser();
+
+        // 유저 키 기반 세팅 로드
         GameManager.Instance.LoadGameSettings();
+
+        // 메인 캐릭터 로드
+        await PlayerManager.Instance.LoadMainPlayerCharacter();
     }
 }

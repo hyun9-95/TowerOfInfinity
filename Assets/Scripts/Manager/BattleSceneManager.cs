@@ -51,7 +51,7 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>
         var playerCharacters = new List<CharacterUnit>();
         int leaderIndex = 0;
 
-        var mainCharacter = await PlayerManager.Instance.GetMainCharacter();
+        var mainCharacter = PlayerManager.Instance.GetMainPlayerCharacterUnit();
         mainCharacter.transform.SetPositionAndRotation(playerTransform.position, Quaternion.identity);
         mainCharacter.gameObject.tag = StringDefine.BATTLE_TAG_ALLY;
         playerCharacters.Add(mainCharacter);

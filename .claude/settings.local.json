@@ -4,7 +4,10 @@
       "Bash(powershell:*)",
       "Bash(python:*)",
       "Bash(del:*)",
-      "Bash(rm:*)"
+      "Bash(rm:*)",
+      "mcp__ide__getDiagnostics",
+      "Bash(find:*)",
+      "Bash(rg:*)"
     ],
     "deny": []
   }

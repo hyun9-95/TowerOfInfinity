@@ -20,14 +20,14 @@ public class CharacterSpriteLibraryBuilder : MonoBehaviour
     {
         public CharacterPartsType PartsType { get; }
         public string Address { get; }
-        public string PartData { get; }
+        public string PartName { get; }
         public Texture2D Texture { get; set; }
 
-        public LibraryBuildInfo(CharacterPartsType partsType, string address, string partData, Texture2D texture = null)
+        public LibraryBuildInfo(CharacterPartsType partsType, string address, string partsName, Texture2D texture = null)
         {
             PartsType = partsType;
             Address = address;
-            PartData = partData;
+            PartName = partsName;
             Texture = texture;
         }
 
@@ -48,7 +48,7 @@ public class CharacterSpriteLibraryBuilder : MonoBehaviour
         CurrentMode = mode;
     }
 
-    public async UniTask<SpriteLibraryAsset> Rebuild(MainCharacterPartsInfo userCharacterPartsInfo)
+    public async UniTask<SpriteLibraryAsset> CreateNewSpriteLibrary(MainCharacterPartsInfo userCharacterPartsInfo)
     {
         var partsEnumArray = Enum.GetValues(typeof(CharacterPartsType));
         var parts = new string[partsEnumArray.Length];
@@ -71,10 +71,10 @@ public class CharacterSpriteLibraryBuilder : MonoBehaviour
             }
         }
 
-        return await Rebuild(parts);
+        return await CreateNewSpriteLibrary(parts);
     }
 
-    public async UniTask<SpriteLibraryAsset> Rebuild(string[] partsNames)
+    public async UniTask<SpriteLibraryAsset> CreateNewSpriteLibrary(string[] partsNames)
     {
         var partsEnumArray = Enum.GetValues(typeof(CharacterPartsType));
 
@@ -84,18 +84,68 @@ public class CharacterSpriteLibraryBuilder : MonoBehaviour
         if (partsContainer == null)
             partsContainer = DataManager.Instance.GetDataContainer<DataCharacterParts>();
 
+        return await CreateNewSpriteLibrary(partsNames, partsEnumArray);
+    }
+
+    public async UniTask<SpriteLibraryAsset> UpdateParts(IEnumerable<DataCharacterParts> partsDataArray)
+    {
+        if (partsDataArray == null || partsDataArray.Count() == 0)
+            return null;
+
+        if (partsContainer == null)
+            partsContainer = DataManager.Instance.GetDataContainer<DataCharacterParts>();
+
+        var partsEnumArray = Enum.GetValues(typeof(CharacterPartsType));
+        var currentPartsNames = GetCurrentPartsNames();
+        
+        foreach (var partsData in partsDataArray)
+        {
+            if (partsData.IsNull)
+                continue;
+
+            var partsName = GetPartNameFromPath(partsData.PartsPath);
+            var colorCode = partsData.ColorCode;
+            
+            if (string.IsNullOrEmpty(partsName))
+                continue;
+
+            var finalPartsName = string.IsNullOrEmpty(colorCode) ? partsName : $"{partsName}{colorCode}";
+            currentPartsNames[(int)partsData.PartsType] = finalPartsName;
+        }
+
+        return await CreateNewSpriteLibrary(currentPartsNames, partsEnumArray);
+    }
+
+    public async UniTask<SpriteLibraryAsset> CreateNewSpriteLibrary(string[] partsNames, Array partsEnumArray)
+    {
         var libraryBuildInfos = BuildLibraryBuildInfos(partsNames, partsEnumArray);
         await LoadTextures(libraryBuildInfos);
-        
+
         var processedPartsPixels = ProcessAllParts(libraryBuildInfos, partsNames);
         ApplyFirearmTransformation(processedPartsPixels, partsNames);
-        
+
         var finalTexture = CreateMergedTexture(processedPartsPixels);
         var spriteLibraryAsset = CreateSpriteLibrary(finalTexture);
-        
+
         ApplyCapeOverlay(partsNames, processedPartsPixels);
-        
+
         return spriteLibraryAsset;
+    }
+
+    private string[] GetCurrentPartsNames()
+    {
+        var partsEnumArray = Enum.GetValues(typeof(CharacterPartsType));
+        var currentParts = new string[partsEnumArray.Length];
+
+        foreach (CharacterPartsType partType in partsEnumArray)
+        {
+            int index = (int)partType;
+
+            if (loadedParts.TryGetValue(partType, out var partsInfo))
+                currentParts[index] = partsInfo.PartName;
+        }
+
+        return currentParts;
     }
 
     private List<LibraryBuildInfo> BuildLibraryBuildInfos(string[] partsNames, Array partsEnumArray)
@@ -156,7 +206,7 @@ public class CharacterSpriteLibraryBuilder : MonoBehaviour
         foreach (var partType in simpleParts)
         {
             if (libraryBuildInfoDic.ContainsKey(partType))
-                processedPixels.Add(partType, ProcessPixels(partType, libraryBuildInfoDic[partType].PartData));
+                processedPixels.Add(partType, ProcessPixels(partType, libraryBuildInfoDic[partType].PartName));
         }
     }
 
@@ -166,22 +216,22 @@ public class CharacterSpriteLibraryBuilder : MonoBehaviour
             return;
 
         var bodyInfo = libraryBuildInfoDic[CharacterPartsType.Body];
-        processedPixels.Add(CharacterPartsType.Body, ProcessPixels(CharacterPartsType.Body, bodyInfo.PartData));
+        processedPixels.Add(CharacterPartsType.Body, ProcessPixels(CharacterPartsType.Body, bodyInfo.PartName));
 
         if (string.IsNullOrEmpty(parts[(int)CharacterPartsType.Firearm]) && libraryBuildInfoDic.ContainsKey(CharacterPartsType.Arms))
-            processedPixels.Add(CharacterPartsType.Arms, ProcessPixels(CharacterPartsType.Arms, bodyInfo.PartData));
+            processedPixels.Add(CharacterPartsType.Arms, ProcessPixels(CharacterPartsType.Arms, bodyInfo.PartName));
     }
 
     private void ProcessHeadParts(Dictionary<CharacterPartsType, Color32[]> processedPixels, Dictionary<CharacterPartsType, LibraryBuildInfo> libraryBuildInfoDic, string[] parts)
     {
         if (libraryBuildInfoDic.ContainsKey(CharacterPartsType.Head))
-            processedPixels.Add(CharacterPartsType.Head, ProcessPixels(CharacterPartsType.Head, libraryBuildInfoDic[CharacterPartsType.Head].PartData));
+            processedPixels.Add(CharacterPartsType.Head, ProcessPixels(CharacterPartsType.Head, libraryBuildInfoDic[CharacterPartsType.Head].PartName));
 
         if (libraryBuildInfoDic.ContainsKey(CharacterPartsType.Ears))
         {
             var helmetPart = parts[(int)CharacterPartsType.Helmet];
             if (string.IsNullOrEmpty(helmetPart) || helmetPart.Contains("ShowEars"))
-                processedPixels.Add(CharacterPartsType.Ears, ProcessPixels(CharacterPartsType.Ears, libraryBuildInfoDic[CharacterPartsType.Ears].PartData));
+                processedPixels.Add(CharacterPartsType.Ears, ProcessPixels(CharacterPartsType.Ears, libraryBuildInfoDic[CharacterPartsType.Ears].PartName));
         }
     }
 
@@ -191,26 +241,26 @@ public class CharacterSpriteLibraryBuilder : MonoBehaviour
             return;
 
         var armorInfo = libraryBuildInfoDic[CharacterPartsType.Armor];
-        processedPixels.Add(CharacterPartsType.Armor, ProcessPixels(CharacterPartsType.Armor, armorInfo.PartData));
+        processedPixels.Add(CharacterPartsType.Armor, ProcessPixels(CharacterPartsType.Armor, armorInfo.PartName));
 
         if (string.IsNullOrEmpty(parts[(int)CharacterPartsType.Firearm]) && libraryBuildInfoDic.ContainsKey(CharacterPartsType.Bracers))
-            processedPixels.Add(CharacterPartsType.Bracers, ProcessPixels(CharacterPartsType.Bracers, armorInfo.PartData));
+            processedPixels.Add(CharacterPartsType.Bracers, ProcessPixels(CharacterPartsType.Bracers, armorInfo.PartName));
     }
 
     private void ProcessFacialParts(Dictionary<CharacterPartsType, Color32[]> processedPixels, Dictionary<CharacterPartsType, LibraryBuildInfo> libraryBuildInfoDic, string[] parts)
     {
         if (libraryBuildInfoDic.ContainsKey(CharacterPartsType.Eyes))
-            processedPixels.Add(CharacterPartsType.Eyes, ProcessPixels(CharacterPartsType.Eyes, libraryBuildInfoDic[CharacterPartsType.Eyes].PartData));
+            processedPixels.Add(CharacterPartsType.Eyes, ProcessPixels(CharacterPartsType.Eyes, libraryBuildInfoDic[CharacterPartsType.Eyes].PartName));
 
         if (libraryBuildInfoDic.ContainsKey(CharacterPartsType.Hair))
         {
             var helmetPart = parts[(int)CharacterPartsType.Helmet];
             Color32[] hairMask = (string.IsNullOrEmpty(helmetPart) || !processedPixels.ContainsKey(CharacterPartsType.Head)) ? null : processedPixels[CharacterPartsType.Head];
-            processedPixels.Add(CharacterPartsType.Hair, ProcessPixels(CharacterPartsType.Hair, libraryBuildInfoDic[CharacterPartsType.Hair].PartData, hairMask));
+            processedPixels.Add(CharacterPartsType.Hair, ProcessPixels(CharacterPartsType.Hair, libraryBuildInfoDic[CharacterPartsType.Hair].PartName, hairMask));
         }
 
         if (libraryBuildInfoDic.ContainsKey(CharacterPartsType.Mask))
-            processedPixels.Add(CharacterPartsType.Mask, ProcessPixels(CharacterPartsType.Mask, libraryBuildInfoDic[CharacterPartsType.Mask].PartData));
+            processedPixels.Add(CharacterPartsType.Mask, ProcessPixels(CharacterPartsType.Mask, libraryBuildInfoDic[CharacterPartsType.Mask].PartName));
     }
 
     private void ProcessAccessoryParts(Dictionary<CharacterPartsType, Color32[]> processedPixels, Dictionary<CharacterPartsType, LibraryBuildInfo> libraryBuildInfoDic, string[] parts)
@@ -220,11 +270,11 @@ public class CharacterSpriteLibraryBuilder : MonoBehaviour
         foreach (var partType in accessoryParts)
         {
             if (libraryBuildInfoDic.ContainsKey(partType))
-                processedPixels.Add(partType, ProcessPixels(partType, libraryBuildInfoDic[partType].PartData));
+                processedPixels.Add(partType, ProcessPixels(partType, libraryBuildInfoDic[partType].PartName));
         }
 
         if (libraryBuildInfoDic.ContainsKey(CharacterPartsType.Horns) && string.IsNullOrEmpty(parts[(int)CharacterPartsType.Horns]))
-            processedPixels.Add(CharacterPartsType.Horns, ProcessPixels(CharacterPartsType.Horns, libraryBuildInfoDic[CharacterPartsType.Horns].PartData));
+            processedPixels.Add(CharacterPartsType.Horns, ProcessPixels(CharacterPartsType.Horns, libraryBuildInfoDic[CharacterPartsType.Horns].PartName));
     }
 
     private Color32[] ProcessPixels(CharacterPartsType partsType, string partData, Color32[] mask = null)

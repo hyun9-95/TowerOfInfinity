@@ -1,7 +1,8 @@
 using Cysharp.Threading.Tasks;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class MainPlayerCharacter : AddressableMono
+public class MainPlayerCharacter : MonoBehaviour
 {
     #region Property
     public CharacterSpriteLibraryBuilder LibraryBuilder => libraryBuilder;
@@ -20,7 +21,7 @@ public class MainPlayerCharacter : AddressableMono
     private MainCharacterInput mainCharacterInput;
     #endregion
 
-    public async UniTask<bool> UpdateModel(MainCharacterInfo mainCharacterInfo)
+    public async UniTask<bool> UpdateMainCharacter(MainCharacterInfo mainCharacterInfo)
     {
         int defaultWeaponDataId = mainCharacterInfo.DefaultWeaponDataId;
         int activeSkillDataId = mainCharacterInfo.ActiveSkillDataId;
@@ -31,12 +32,39 @@ public class MainPlayerCharacter : AddressableMono
 
         if (result)
         {
-            var spriteLibrary = await LibraryBuilder.Rebuild(mainCharacterInfo.PartsInfo);
-            characterUnit.SetSpriteLibraryAsset(spriteLibrary);
-
             mainCharacterInput.Initialize(characterUnit.Model);
+
+            await UpdateSpriteLibraryAsset(mainCharacterInfo.PartsInfo);
         }
         
         return result;
+    }
+
+    public async UniTask UpdateSpriteLibraryAsset(MainCharacterPartsInfo mainCharacterPartsInfo)
+    {
+        var spriteLibrary = characterUnit.SpriteLibrary;
+
+        if (spriteLibrary != null && spriteLibrary.spriteLibraryAsset != null)
+        {
+            // 기존 스프라이트 라이브러리 에셋은 제거
+            DestroyImmediate(spriteLibrary.spriteLibraryAsset);
+        }
+
+        var spriteLibraryAsset = await LibraryBuilder.CreateNewSpriteLibrary(mainCharacterPartsInfo);
+        characterUnit.SetSpriteLibraryAsset(spriteLibraryAsset);
+    }
+
+    public async UniTask UpdateSpriteLibraryAsset(IEnumerable<DataCharacterParts> changeParts)
+    {
+        var spriteLibrary = characterUnit.SpriteLibrary;
+
+        if (spriteLibrary != null && spriteLibrary.spriteLibraryAsset != null)
+        {
+            // 기존 스프라이트 라이브러리 에셋은 제거
+            DestroyImmediate(spriteLibrary.spriteLibraryAsset);
+        }
+
+        var spriteLibraryAsset = await LibraryBuilder.UpdateParts(changeParts);
+        characterUnit.SetSpriteLibraryAsset(spriteLibraryAsset);
     }
 }

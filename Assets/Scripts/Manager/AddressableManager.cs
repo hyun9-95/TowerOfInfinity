@@ -30,6 +30,7 @@ public class AddressableManager : BaseManager<AddressableManager>
     private Dictionary<string, AsyncOperationHandle<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>> sceneHandles = new Dictionary<string, AsyncOperationHandle<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>>();
     private Dictionary<GameObject, List<AsyncOperationHandle>> trackingAssetHandles = new Dictionary<GameObject, List<AsyncOperationHandle>>();
     private HashSet<string> loadedScenes = new HashSet<string>();
+    private HashSet<GameObject> excludedFromRelease = new HashSet<GameObject>();
 
     #region Initialize Addressable
     /// <summary>
@@ -224,9 +225,6 @@ public class AddressableManager : BaseManager<AddressableManager>
         return await LoadAssetAsync<T>(address, isHandle);
     }
 
-    /// <summary>
-    /// ObjectPoolManager 외에서 호출하면 안된다.
-    /// </summary>
     public async UniTask<GameObject> InstantiateAsync(string address, Transform transform = null)
     {
         if (!IsContain(address))
@@ -251,6 +249,20 @@ public class AddressableManager : BaseManager<AddressableManager>
 
         if (go == null)
             return null;
+
+        return go.GetComponent<T>();
+    }
+
+    /// <summary>
+    /// 참조가 계속 유지되어야 하는 것들만 이것으로 로드하자.
+    /// </summary>
+    public async UniTask<T> InstantiateUntrackedAsync<T>(string address, Transform transform = null) where T : MonoBehaviour
+    {
+        if (!IsContain(address))
+            return null;
+
+        var handle = Addressables.InstantiateAsync(address, transform);
+        var go = await handle;
 
         return go.GetComponent<T>();
     }
