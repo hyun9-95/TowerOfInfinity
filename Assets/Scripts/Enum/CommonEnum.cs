@@ -249,7 +249,7 @@ public enum CharacterRace
     Demon,
     LizardMan,
     Merman,
-    BeastMan,
+    Furry,
     Orc,
     Goblin,
     Vampire,

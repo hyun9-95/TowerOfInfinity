@@ -49,9 +49,9 @@
   },
   {
     "id": 70008,
-    "Korean": "수인",
-    "English": "Beastman",
-    "SimplifiedChinese": "兽人"
+    "Korean": "퍼리",
+    "English": "Furry",
+    "SimplifiedChinese": "拟人兽"
   },
   {
     "id": 70009,
@@ -118,5 +118,23 @@
     "Korean": "도둑의 팔 보호대",
     "English": "Thief's Bracers",
     "SimplifiedChinese": "盗贼护腕"
+  },
+  {
+    "id": 70020,
+    "Korean": "투구 보이기",
+    "English": "Show Helmet",
+    "SimplifiedChinese": "显示头盔"
+  },
+  {
+    "id": 70021,
+    "Korean": "장비 보이기",
+    "English": "Show Equipment",
+    "SimplifiedChinese": "显示装备"
+  },
+  {
+    "id": 70022,
+    "Korean": "저장",
+    "English": "Save",
+    "SimplifiedChinese": "保存"
   }
 ]

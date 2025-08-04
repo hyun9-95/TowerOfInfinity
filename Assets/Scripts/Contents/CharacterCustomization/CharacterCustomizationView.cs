@@ -53,7 +53,7 @@ public class CharacterCustomizationView : BaseView
 
         raceDropDown.ClearOptions();
         
-        var raceOptions = Model.SelectableRaces.Select(race => race.ToString()).ToList();
+        var raceOptions = Model.SelectableRaces.Select(race => race.GetLocalization()).ToList();
         raceDropDown.AddOptions(raceOptions);
     }
 

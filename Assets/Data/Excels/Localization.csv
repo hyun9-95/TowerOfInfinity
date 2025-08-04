@@ -9,7 +9,7 @@ Id,NameId,Korean,English,SimplifiedChinese
 70005,LOCAL_ENUM_RACE_DEMON,악마,Demon,恶魔
 70006,LOCAL_ENUM_RACE_ELF,엘프,Elf,精灵
 70007,LOCAL_ENUM_RACE_LIZARDMAN,리자드맨,Lizardman,蜥蜴人
-70008,LOCAL_ENUM_RACE_BEASTMAN,수인,Beastman,兽人
+70008,LOCAL_ENUM_RACE_FURRY,퍼리,Furry,拟人兽
 70009,LOCAL_ENUM_RACE_GOBLIN,고블린,Goblin,哥布林
 70010,LOCAL_ENUM_RACE_HUMAN,인간,Human,人类
 70011,LOCAL_ENUM_RACE_MERMAN,어인,Merman,鱼人
@@ -21,3 +21,6 @@ Id,NameId,Korean,English,SimplifiedChinese
 70017,LOCAL_ARMOR_THIEF_HOOD_NAME,도둑의 후드,Thief's Hood,盗贼兜帽
 70018,LOCAL_WEAPON_SHORT_DAGGER,단검,Short Dagger,短剑
 70019,LOCAL_BRACERS_THIEF_TUNIC_NAME,도둑의 팔 보호대,Thief's Bracers,盗贼护腕
+70020,LOCAL_UI_OPTION_SHOW_HELMET,투구 보이기,Show Helmet,显示头盔
+70021,LOCAL_UI_OPTION_SHOW_EQUIPMENTS,장비 보이기,Show Equipment,显示装备
+70022,LOCAL_UI_BUTTON_SAVE,저장,Save,保存

@@ -62,7 +62,7 @@ public static class CommonUtils
                     (int)CharacterPartsDefine.PARTS_RACE_ARMS_MERMAN,
                     (int)CharacterPartsDefine.PARTS_RACE_BODY_MERMAN,
                 };
-            case CharacterRace.BeastMan:
+            case CharacterRace.Furry:
                 return new int[]
                 {
                     (int)CharacterPartsDefine.PARTS_RACE_HEAD_FURRY,

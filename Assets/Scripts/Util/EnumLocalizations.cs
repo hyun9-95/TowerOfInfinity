@@ -26,8 +26,8 @@ public static class EnumLocalizations
             case CharacterRace.Merman:
                 define = LocalizationDefine.LOCAL_ENUM_RACE_MERMAN;
                 break;
-            case CharacterRace.BeastMan:
-                define = LocalizationDefine.LOCAL_ENUM_RACE_BEASTMAN;
+            case CharacterRace.Furry:
+                define = LocalizationDefine.LOCAL_ENUM_RACE_FURRY;
                 break;
             case CharacterRace.Orc:
                 define = LocalizationDefine.LOCAL_ENUM_RACE_ORC;

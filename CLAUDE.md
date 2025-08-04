@@ -131,6 +131,11 @@ Directly translates missing localization data in CSV format:
 - **Reflection**: Direct property/method access prohibited for performance and maintainability
 - **Comments**: Do not add comments unless explicitly requested by user
 
+### Logging Guidelines
+- **Always use Logger class** for all logging operations instead of Unity's Debug.Log
+- **Available methods**: Logger.Log(), Logger.Warning(), Logger.Error()
+- **Apply to all contexts**: Runtime code, Editor scripts, and custom tools
+
 ```csharp
 // ❌ Bad - Nullable operators
 var result = obj?.Property ?? defaultValue;
