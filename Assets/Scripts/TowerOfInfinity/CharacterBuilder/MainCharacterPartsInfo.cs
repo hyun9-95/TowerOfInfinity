@@ -3,6 +3,7 @@ using System.Collections.Generic;
 public class MainCharacterPartsInfo
 {
     public CharacterRace Race { get; private set; }
+    public int HairPartsId { get; private set; }
     public DataCharacterParts Hair { get; private set; }
     public Dictionary<CharacterPartsType, DataCharacterParts> PartsInfoDic { get; private set; } = new();
 
@@ -24,8 +25,13 @@ public class MainCharacterPartsInfo
         // 헤어 파츠
         SetHairParts(userSaveInfo.HairPartsId);
 
-        // 장비 파츠
-        SetEquipmentParts(userSaveInfo.EquipmentDic);
+        // 장비 파츠 - UserSaveInfo에서 직접 가져오기
+        var equipmentDic = new Dictionary<EquipmentType, EquipmentDefine>();
+        foreach (var kvp in userSaveInfo.EquippedMainCharacterEquipmentIds)
+        {
+            equipmentDic[kvp.Key] = (EquipmentDefine)kvp.Value;
+        }
+        SetEquipmentParts(equipmentDic);
     }
 
     private void SetRaceParts(CharacterRace race)
@@ -49,11 +55,14 @@ public class MainCharacterPartsInfo
 
     private void SetHairParts(int hairPartsId)
     {
+        HairPartsId = hairPartsId;
+        
         var hairData = partsContainer.GetById(hairPartsId);
 
         if (hairData.IsNull)
         {
-            Hair = partsContainer.GetById((int)CharacterPartsDefine.PARTS_HAIR_HAIR_HAIR1);
+            HairPartsId = (int)CharacterPartsDefine.PARTS_HAIR_HAIR_HAIR1;
+            Hair = partsContainer.GetById(HairPartsId);
             return;
         }
 

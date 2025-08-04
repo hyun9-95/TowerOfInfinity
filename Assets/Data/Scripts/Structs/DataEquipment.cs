@@ -13,6 +13,8 @@ public struct DataEquipment : IBaseData
     public readonly LocalizationDefine Name;
     [JsonProperty(PropertyName = "PartsData")]
     public readonly CharacterPartsDefine PartsData;
+    [JsonProperty(PropertyName = "Ability")]
+    public readonly AbilityDefine Ability;
 	
 	public int Id => id;
     public bool IsNull => id == 0;

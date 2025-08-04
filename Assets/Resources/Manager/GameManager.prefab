@@ -525,6 +525,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadDataType: 0
+  config:
+    IsEnterBattleDirectly: 0
+    IsEnterCustomizationFlow: 0
+    IsDebugAStar: 0
 --- !u!1 &1841224203252291642
 GameObject:
   m_ObjectHideFlags: 0
@@ -999,6 +1003,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 917588568607734830}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3835590514665970996
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5557688298594673645}
+  m_Layer: 0
+  m_Name: MainCharacter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5557688298594673645
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3835590514665970996}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6333451798757371247}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4060448638997336445
 GameObject:
   m_ObjectHideFlags: 0
@@ -1156,7 +1191,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 5557688298594673645}
   m_Father: {fileID: 8370250158373965001}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4477229872357771118
@@ -1171,6 +1207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3b4b3ce2f9ff5345aac49eae9eb838e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerCharacterTransform: {fileID: 5557688298594673645}
 --- !u!1 &4733147691778853817
 GameObject:
   m_ObjectHideFlags: 0

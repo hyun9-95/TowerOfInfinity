@@ -14,19 +14,10 @@ public class UserSaveInfo
     public bool IsCompletePrologue { get; private set; }
 
     [JsonProperty]
-    public int[] CharacterDataIds { get; private set; }
+    public List<int> SubCharacterDataIds { get; private set; }
 
     [JsonProperty]
-    public Dictionary<int, int> CharacterWeaponDic { get; private set; }
-
-    [JsonProperty]
-    public Dictionary<int, int> CharacterActiveSkillDic { get; private set; }
-
-    [JsonProperty]
-    public Dictionary<int, int> CharacterPassiveSkillDic { get; private set; }
-
-    [JsonProperty]
-    public Dictionary<int, int> CharacterSlotIndexDic { get; private set; }
+    public Dictionary<int, int> SubCharacterSlotIndexDic { get; private set; }
 
     [JsonProperty]
     public CharacterRace CharacterRace { get; private set; }
@@ -35,7 +26,13 @@ public class UserSaveInfo
     public int HairPartsId { get; private set; }
 
     [JsonProperty]
-    public Dictionary<EquipmentType, EquipmentDefine> EquipmentDic { get; private set; }
+    public List<int> OwnedEquipmentIds { get; private set; }
+
+    [JsonProperty]
+    public Dictionary<int, int> EquipmentLevels { get; private set; }
+
+    [JsonProperty]
+    public Dictionary<EquipmentType, int> EquippedMainCharacterEquipmentIds { get; private set; }
     #endregion
 
     #region Value
@@ -52,38 +49,40 @@ public class UserSaveInfo
             Id = SystemInfo.deviceUniqueIdentifier;
         }
 
-        if (CharacterDataIds == null || CharacterDataIds.Length == 0)
-        {
-            CharacterDataIds = new int[]
-            {
-                IntDefine.DEFAULT_CHARACTER_PLAYER_ID,
-            };
-        }
+        if (SubCharacterDataIds == null)
+            SubCharacterDataIds = new List<int>();
 
-        if (CharacterWeaponDic == null)
-            CharacterWeaponDic = new Dictionary<int, int>();
-
-        if (CharacterActiveSkillDic == null)
-            CharacterActiveSkillDic = new Dictionary<int, int>();
-
-        if (CharacterPassiveSkillDic == null)
-            CharacterPassiveSkillDic = new Dictionary<int, int>();
-
-        if (CharacterSlotIndexDic == null)
-            CharacterSlotIndexDic = new Dictionary<int, int>();
+        if (SubCharacterSlotIndexDic == null)
+            SubCharacterSlotIndexDic = new Dictionary<int, int>();
 
         if (HairPartsId == 0)
             HairPartsId = (int)CharacterPartsDefine.PARTS_HAIR_HAIR_HAIR1;
 
-        if (EquipmentDic == null)
+        if (OwnedEquipmentIds == null)
+            OwnedEquipmentIds = new List<int>();
+
+        if (EquipmentLevels == null)
+            EquipmentLevels = new Dictionary<int, int>();
+
+        if (EquippedMainCharacterEquipmentIds == null || EquippedMainCharacterEquipmentIds.Count == 0)
         {
-            EquipmentDic = new Dictionary<EquipmentType, EquipmentDefine>()
+            EquippedMainCharacterEquipmentIds = new Dictionary<EquipmentType, int>()
             {
-                { EquipmentType.Armor, EquipmentDefine.EQUIPMENT_ARMOR_THIEF_TUNIC },
-                { EquipmentType.Helmet, EquipmentDefine.EQUIPMENT_ARMOR_THIEF_HOOD },
-                { EquipmentType.Weapon, EquipmentDefine.EQUIPMENT_WEAPON_SHORT_DAGGER },
+                { EquipmentType.Armor, (int)EquipmentDefine.EQUIPMENT_ARMOR_THIEF_TUNIC },
+                { EquipmentType.Helmet, (int)EquipmentDefine.EQUIPMENT_ARMOR_THIEF_HOOD },
+                { EquipmentType.Weapon, (int)EquipmentDefine.EQUIPMENT_WEAPON_SHORT_DAGGER },
             };
         }
     }
+
+    public void SetId(string id) => Id = id;
+    public void SetIsCompletePrologue(bool isCompletePrologue) => IsCompletePrologue = isCompletePrologue;
+    public void SetSubCharacterDataIds(List<int> subCharacterDataIds) => SubCharacterDataIds = subCharacterDataIds;
+    public void SetSubCharacterSlotIndexDic(Dictionary<int, int> subCharacterSlotIndexDic) => SubCharacterSlotIndexDic = subCharacterSlotIndexDic;
+    public void SetCharacterRace(CharacterRace characterRace) => CharacterRace = characterRace;
+    public void SetHairPartsId(int hairPartsId) => HairPartsId = hairPartsId;
+    public void SetOwnedEquipmentIds(List<int> ownedEquipmentIds) => OwnedEquipmentIds = ownedEquipmentIds;
+    public void SetEquipmentLevels(Dictionary<int, int> equipmentLevels) => EquipmentLevels = equipmentLevels;
+    public void SetEquippedMainCharacterEquipmentIds(Dictionary<EquipmentType, int> equippedMainCharacterEquipmentIds) => EquippedMainCharacterEquipmentIds = equippedMainCharacterEquipmentIds;
     #endregion
 }

@@ -73,5 +73,6 @@ public class IntroController : BaseController<IntroViewModel>
         View.UpdateLoadingUI();
 
         PlayerManager.Instance.LoadUser();
+        GameManager.Instance.LoadGameSettings();
     }
 }

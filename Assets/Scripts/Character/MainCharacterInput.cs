@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerCharacterInput : MonoBehaviour
+public class MainCharacterInput : MonoBehaviour
 {
     #region Property
     public CharacterUnitModel OwnerModel { get; private set; }

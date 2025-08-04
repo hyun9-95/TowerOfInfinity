@@ -47,11 +47,11 @@ public class CustomizationFlow : BaseFlow<CustomizationFlowModel>
     private async UniTask LoadPlayerCharacters()
     {
         var playerTransform = townSceneManager.PlayerStartTransform;
-        var mainCharacter = await PlayerManager.Instance.CreateMainCharacter(playerTransform);
+        var mainCharacter = await PlayerManager.Instance.GetMainCharacter();
+        mainCharacter.transform.SetPositionAndRotation(playerTransform.position, Quaternion.identity);
 
         await UniTask.NextFrame();
 
-        mainCharacter.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
         townSceneManager.SetFollowCamera(mainCharacter.transform);
 
         if (mainCharacter != null)

@@ -26,6 +26,12 @@ public class CharacterUnit : PoolableMono
         this.moduleGroup = moduleGroup;
     }
 
+    public void SetSpriteLibraryAsset(SpriteLibraryAsset spriteLibraryAsset)
+    {
+        if (spriteLibrary != null)
+            spriteLibrary.spriteLibraryAsset = spriteLibraryAsset;
+    }
+
     protected ScriptableCharacterState CurrentState { get; private set; }
 
     [SerializeField]

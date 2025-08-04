@@ -16,6 +16,9 @@ public class PlayerRollState : ScriptableCharacterState
 
     public override bool CheckEnterCondition(CharacterUnitModel model)
     {
+        if (model.InputWrapper == null)
+            return false;
+
         return model.InputWrapper.PlayerInput == PlayerInput.Roll;
     }
 

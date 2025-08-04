@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31a0591725d79134eb4126ffce8d9786, type: 3}
-  m_Name: ServentCharacterInfo
+  m_Script: {fileID: 11500000, guid: 5834b5087d578d24c926ce20cd31e6d6, type: 3}
+  m_Name: UI_TownView_ContentUpdateGroupSchema
   m_EditorClassIdentifier: 
-  characterStateGroup: {fileID: 11400000, guid: 1cd847ba144e20b4fb5d7daa80b06d16, type: 2}
-  characterModuleGroup: {fileID: 11400000, guid: ec9f3b78544a02549bbc69840cc6baff, type: 2}
+  m_Group: {fileID: 11400000, guid: c899482a6a14c2849b42d4e6adbc0e77, type: 2}
+  m_StaticContent: 0

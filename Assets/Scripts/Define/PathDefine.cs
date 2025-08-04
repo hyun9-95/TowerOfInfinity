@@ -27,17 +27,18 @@ public class PathDefine
 
     #region Resources
     public const string Resources_UI_View = "UI/{0}/{1}";
-    public const string CHARACTER_INFO_MAIN = "CharacterCore/Info/LeaderCharacterInfo";
-    public const string CHARACTER_INFO_SUB = "CharacterCore/Info/ServentCharacterInfo";
-    public const string CHARACTER_INFO_ENEMY = "CharacterCore/Info/EnemyCharacterInfo";
-    public const string CHARACTER_INFO_ENEMY_BOSS = "CharacterCore/Info/EnemyBossCharacteInfo";
-    public const string CHARACTER_INFO_NPC = "CharacterCore/Info/NpcCharacterInfo";
+    public const string CHARACTER_INFO_MAIN = "CharacterCore/ScriptableCharacterInfo/MainCharacterInfo";
+    public const string CHARACTER_INFO_SUB = "CharacterCore/ScriptableCharacterInfo/SubCharacterInfo";
+    public const string CHARACTER_INFO_ENEMY = "CharacterCore/ScriptableCharacterInfo/EnemyCharacterInfo";
+    public const string CHARACTER_INFO_ENEMY_BOSS = "CharacterCore/ScriptableCharacterInfo/EnemyBossCharacteInfo";
+    public const string CHARACTER_INFO_NPC = "CharacterCore/ScriptableCharacterInfo/NpcCharacterInfo";
     public const string CHARACTER_EXP_GAINER = "BattleCore/BattleExpGainer";
     public const string BATTLE_EXP_GEM = "BattleCore/BattleExpGem";
     public const string DAMAGE_GROUP = "UI/Damages/DamageNumbersGroup";
     public const string NORMAL_DAMAGE = "UI/NormalDamage";
     public const string UI_VIEW_FORMAT = "UI/{0}/{0}";
     public const string CHARACTER_BUILDER_PARTS_FORMAT = "CharacterBuilder/{0}/{1}";
+    public const string CHARACTER_MAIN_CHARACTER_PATH = "Character/Player/MainPlayerCharacter/MainPlayerCharacter";
     #endregion
 
     #region property

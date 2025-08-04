@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: UI_LobbyView
+  m_Name: UI_TownView
   m_EditorClassIdentifier: 
-  m_GroupName: UI_LobbyView
-  m_GUID: 15749d6148c04684d8b71657402a3ddb
+  m_GroupName: UI_TownView
+  m_GUID: 97844d60e80850f4f8bb1dbd1525e20c
   m_SerializeEntries:
   - m_GUID: 0db7be8c38168b7408d3ad3a119741ac
-    m_Address: UI/LobbyView/TownView
+    m_Address: UI/TownView/TownView
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
@@ -25,5 +25,5 @@ MonoBehaviour:
   m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 0ff2e4ca4eb7ceb45adaab8fa222855e, type: 2}
-    - {fileID: 11400000, guid: a0fcde6ee9f7398488c5dd0a210661db, type: 2}
+    - {fileID: 11400000, guid: ec4ef8aa45a76b14d95ec0da73d9f7c1, type: 2}
+    - {fileID: 11400000, guid: 95e422a251e9a39418c5278da4213c4e, type: 2}

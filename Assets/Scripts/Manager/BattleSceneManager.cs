@@ -51,12 +51,17 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>
         var playerCharacters = new List<CharacterUnit>();
         int leaderIndex = 0;
 
-        foreach (var subCharacter in currentDeck)
+        var mainCharacter = await PlayerManager.Instance.GetMainCharacter();
+        mainCharacter.transform.SetPositionAndRotation(playerTransform.position, Quaternion.identity);
+        mainCharacter.gameObject.tag = StringDefine.BATTLE_TAG_ALLY;
+        playerCharacters.Add(mainCharacter);
+
+        foreach (var subCharacterInfo in currentDeck)
         {
-            if (subCharacter == null)
+            if (subCharacterInfo == null)
                 continue;
 
-            var character = await CharacterFactory.Instance.SpawnSubCharacter(subCharacter.CharacterDataId, playerTransform);
+            var character = await CharacterFactory.Instance.SpawnSubCharacter(subCharacterInfo, playerTransform);
             character.gameObject.tag = StringDefine.BATTLE_TAG_ALLY;
             character.Initialize();
             

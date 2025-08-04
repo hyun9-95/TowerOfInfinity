@@ -34,7 +34,7 @@ MonoBehaviour:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 03e3dbb226f56964f81eccdf341ef1c4
-    m_Address: CharacterCore/Info/LeaderCharacterInfo
+    m_Address: CharacterCore/ScriptableCharacterInfo/MainCharacterInfo
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
@@ -196,7 +196,7 @@ MonoBehaviour:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 92edc707b5d92e446bf12ed654a7cae7
-    m_Address: CharacterCore/Info/ServentCharacterInfo
+    m_Address: CharacterCore/ScriptableCharacterInfo/SubCharacterInfo
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
@@ -262,7 +262,7 @@ MonoBehaviour:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e30580ce83dd9d84997fdf985e903f9c
-    m_Address: CharacterCore/Info/EnemyCharacterInfo
+    m_Address: CharacterCore/ScriptableCharacterInfo/EnemyCharacterInfo
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main

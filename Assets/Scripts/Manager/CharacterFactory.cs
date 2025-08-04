@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CharacterFactory : BaseManager<CharacterFactory>
 {
-    private Dictionary<CharacterType, ScriptableCharacterInfo> characterInfoDic = new Dictionary<CharacterType, ScriptableCharacterInfo>();
+    private Dictionary<CharacterType, ScriptableCharacterInfo> scriptableCharacterInfoDic = new Dictionary<CharacterType, ScriptableCharacterInfo>();
     /// <summary>
     /// tr 없으면 pooling
     /// </summary>
@@ -37,69 +37,108 @@ public class CharacterFactory : BaseManager<CharacterFactory>
         return character;
     }
 
-    public async UniTask<CharacterUnit> SpawnMainCharacter(int characterDataId, int weaponDataId = 0, int activeId = 0, int passiveId = 0, Transform transform = null, Vector3 pos = default, Quaternion rot = default)
+    public async UniTask AddExpGainer(CharacterUnit playerCharacter)
     {
-        var playerCharacter = await SpawnCharacter(TeamTag.Ally, CharacterType.Main, characterDataId, weaponDataId, activeId, passiveId, transform, pos, rot);
-
-        if (playerCharacter != null)
-        {
-            var input = playerCharacter.gameObject.AddComponent<PlayerCharacterInput>();
-            input.Initialize(playerCharacter.Model);
-
-            if (FlowManager.Instance.CurrentFlowType == FlowType.BattleFlow)
-            {
-                var expGainer = await AddressableManager.Instance.InstantiateAddressableMonoAsync<BattleExpGainer>(PathDefine.CHARACTER_EXP_GAINER, playerCharacter.transform);
-                var expGainerModel = new BattleExpGainerModel();
-                expGainer.SetModel(expGainerModel);
-                expGainer.Activate(false);
-            }
-        }
-
-        return playerCharacter;
+        var expGainer = await AddressableManager.Instance.InstantiateAddressableMonoAsync<BattleExpGainer>(PathDefine.CHARACTER_EXP_GAINER, playerCharacter.transform);
+        var expGainerModel = new BattleExpGainerModel();
+        expGainer.SetModel(expGainerModel);
+        expGainer.Activate(false);
     }
 
-    public async UniTask<CharacterUnit> SpawnSubCharacter(int characterDataId, Transform transform = null, Vector3 pos = default, Quaternion rot = default)
+    public async UniTask<CharacterUnit> SpawnMainCharacter(MainCharacterInfo mainCharacterInfo, Transform transform = null, Vector3 pos = default, Quaternion rot = default)
     {
-        var servent = await SpawnCharacter(TeamTag.Ally, CharacterType.Sub, characterDataId, 0, 0, 0, transform, pos, rot);
+        string prefabPath = mainCharacterInfo.MainCharacterPath;
+        int weaponDataId = mainCharacterInfo.DefaultWeaponDataId;
+        int activeSkillDataId = mainCharacterInfo.ActiveSkillDataId;
+        int passiveSkillDataId = mainCharacterInfo.PassiveSkillDataId;
 
-        return servent;
+        return await SpawnCharacter(TeamTag.Ally, CharacterType.Main, prefabPath, weaponDataId, activeSkillDataId, passiveSkillDataId, transform, pos, rot);
+    }
+
+    public async UniTask<CharacterUnit> SpawnSubCharacter(SubCharacterInfo subCharacterInfo, Transform transform = null, Vector3 pos = default, Quaternion rot = default)
+    {
+        DataCharacter dataCharacter = DataManager.Instance.GetDataById<DataCharacter>(subCharacterInfo.CharacterDataId);
+
+        var prefabPath = dataCharacter.PrefabName;
+
+        int weaponDataId = subCharacterInfo.DefaultWeaponDataId;
+        int activeSkillDataId = subCharacterInfo.ActiveSkillDataId;
+        int passiveSkillDataId = subCharacterInfo.PassiveSkillDataId;
+
+        if (weaponDataId == 0)
+            weaponDataId = (int)dataCharacter.Default_Weapon;
+
+        if (activeSkillDataId == 0)
+            activeSkillDataId = (int)dataCharacter.ActiveSkill;
+
+        if (passiveSkillDataId == 0)
+            passiveSkillDataId = (int)dataCharacter.PassiveSkill;
+
+        var subCharacter = await SpawnCharacter
+            (TeamTag.Ally, CharacterType.Sub, prefabPath, weaponDataId, activeSkillDataId, passiveSkillDataId, transform, pos, rot);
+
+        if (subCharacter != null)
+            subCharacter.Model.SetCharacterDataId(subCharacterInfo.CharacterDataId);
+
+        return subCharacter;
     }
 
     public async UniTask<CharacterUnit> SpawnEnemy(int characterDataId, Vector3 pos = default, Quaternion rot = default)
     {
-        var enemy = await SpawnCharacter(TeamTag.Enemy, CharacterType.Enemy, characterDataId, 0, 0, 0, null, pos, rot);
+        var data = DataManager.Instance.GetDataById<DataCharacter>(characterDataId);
+        var enemy = await SpawnCharacter(TeamTag.Enemy, CharacterType.Enemy, data.PrefabName, 0, 0, 0, null, pos, rot);
+
+        if (enemy != null)
+            enemy.Model.SetCharacterDataId(characterDataId);
 
         return enemy;
     }
 
-    public async UniTask<CharacterUnit> SpawnCharacter(TeamTag teamTag, CharacterType characterType, int characterDataId, int defaultWeaponId = 0, int activeId = 0, int passiveId = 0, Transform transform = null, Vector3 pos = default, Quaternion rot = default)
+    public async UniTask<CharacterUnit> SpawnCharacter(TeamTag teamTag, CharacterType characterType, string prefabPath, int weaponId = 0, int activeId = 0, int passiveId = 0, Transform transform = null, Vector3 pos = default, Quaternion rot = default)
     {
-        DataCharacter dataCharacter = DataManager.Instance.GetDataById<DataCharacter>(characterDataId);
-
-        var prefabName = dataCharacter.PrefabName;
-        var character = await InstantiateCharacter(prefabName, transform, pos, rot);
+        var character = await InstantiateCharacter(prefabPath, transform, pos, rot);
 
         if (character == null)
             return null;
 
+        bool result = await SetCharacterUnitModel(character, teamTag, characterType, weaponId, activeId, passiveId);
+
+        return result ? character : null;
+    }
+
+    private async UniTask<ScriptableCharacterInfo> GetScriptableCharacterInfo(CharacterType characterType)
+    {
+        if (!scriptableCharacterInfoDic.ContainsKey(characterType))
+        {
+            var scriptableCharacterInfo = await AddressableManager.Instance.LoadScriptableObject<ScriptableCharacterInfo>(GetCharacterInfoPath(characterType));
+            scriptableCharacterInfoDic[characterType] = scriptableCharacterInfo;
+        }
+
+        return scriptableCharacterInfoDic[characterType];
+    }
+
+    private string GetCharacterInfoPath(CharacterType characterType)
+    {
+        return characterType switch
+        {
+            CharacterType.Main => PathDefine.CHARACTER_INFO_MAIN,
+            CharacterType.Sub => PathDefine.CHARACTER_INFO_SUB,
+            CharacterType.Enemy => PathDefine.CHARACTER_INFO_ENEMY,
+            CharacterType.EnemyBoss => PathDefine.CHARACTER_INFO_ENEMY_BOSS,
+            CharacterType.NPC => PathDefine.CHARACTER_INFO_NPC,
+            _ => string.Empty,
+        };
+    }
+
+    public async UniTask<bool> SetCharacterUnitModel(CharacterUnit character, TeamTag teamTag, CharacterType characterType, int weaponId = 0, int activeId = 0, int passiveId = 0)
+    {
         #region Model Set
         CharacterUnitModel characterModel = new CharacterUnitModel();
-        characterModel.SetCharacterDataId(characterDataId);
         characterModel.SetTeamTag(teamTag);
-
-        if (defaultWeaponId == 0)
-            defaultWeaponId = (int)dataCharacter.Default_Weapon;
-
-        if (activeId == 0)
-            activeId = (int)dataCharacter.ActiveSkill;
-
-        if (passiveId == 0)
-            passiveId = (int)dataCharacter.PassiveSkill;
 
         if (FlowManager.Instance.CurrentFlowType == FlowType.BattleFlow)
         {
-            // 캐릭터가 가지고 있는 기본 무기, 기본 스킬들 설정
-            Weapon weapon = AbilityFactory.Create<Weapon>(defaultWeaponId, characterModel);
+            Weapon weapon = AbilityFactory.Create<Weapon>(weaponId, characterModel);
 
             if (weapon != null)
                 characterModel.SetDefaultWeapon(weapon);
@@ -120,37 +159,16 @@ public class CharacterFactory : BaseManager<CharacterFactory>
         {
             character.SetModel(characterModel);
 
-            var characterInfo = await GetCharacterInfo(characterType);
+            var characterInfo = await GetScriptableCharacterInfo(characterType);
             character.SetStateGroup(characterInfo.StateGroup);
             character.SetModuleGroup(characterInfo.ModuleGroup);
         }
 
-        return character;
-    }
-
-    private async UniTask<ScriptableCharacterInfo> GetCharacterInfo(CharacterType characterType)
-    {
-        if (!characterInfoDic.ContainsKey(characterType))
-            characterInfoDic[characterType] = await AddressableManager.Instance.LoadScriptableObject<ScriptableCharacterInfo>(GetCharacterInfoPath(characterType));
-
-        return characterInfoDic[characterType];
-    }
-
-    private string GetCharacterInfoPath(CharacterType characterType)
-    {
-        return characterType switch
-        {
-            CharacterType.Main => PathDefine.CHARACTER_INFO_MAIN,
-            CharacterType.Sub => PathDefine.CHARACTER_INFO_SUB,
-            CharacterType.Enemy => PathDefine.CHARACTER_INFO_ENEMY,
-            CharacterType.EnemyBoss => PathDefine.CHARACTER_INFO_ENEMY_BOSS,
-            CharacterType.NPC => PathDefine.CHARACTER_INFO_NPC,
-            _ => string.Empty,
-        };
+        return true;
     }
 
     public void Clear()
     {
-        characterInfoDic.Clear();
+        scriptableCharacterInfoDic.Clear();
     }
 }

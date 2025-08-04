@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 31a0591725d79134eb4126ffce8d9786, type: 3}
-  m_Name: LeaderCharacterInfo
+  m_Name: MainCharacterInfo
   m_EditorClassIdentifier: 
   characterPrefabName: Thief_Player
   characterStateGroup: {fileID: 11400000, guid: 3b8644d45f6e0ae44a3c90d71c7ef9ba, type: 2}

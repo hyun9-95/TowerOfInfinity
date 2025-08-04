@@ -1,7 +1,6 @@
 #pragma warning disable CS1998
 using Cysharp.Threading.Tasks;
 using Newtonsoft.Json;
-using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
@@ -9,6 +8,15 @@ public class PlayerManager : BaseMonoManager<PlayerManager>
 {
     #region Property
     public User MyUser { get; private set; }
+
+    public MainPlayerCharacter MainPlayerCharacter => mainPlayerCharacter;
+    #endregion
+
+    #region Value
+    [SerializeField]
+    private Transform playerCharacterTransform;
+
+    private MainPlayerCharacter mainPlayerCharacter;
     #endregion
 
     public void LoadUser()
@@ -46,8 +54,16 @@ public class PlayerManager : BaseMonoManager<PlayerManager>
         File.WriteAllText(userSaveInfoPath, newSaveInfoJson);
     }
 
-    public async UniTask<CharacterUnit> CreateMainCharacter(Transform transform)
+    public async UniTask<CharacterUnit> GetMainCharacter()
     {
-        return null;
+        if (mainPlayerCharacter == null)
+        {
+            mainPlayerCharacter = await AddressableManager.Instance.InstantiateAddressableMonoAsync<MainPlayerCharacter>
+                (MyUser.UserCharacterInfo.MainCharacterInfo.MainCharacterPath, playerCharacterTransform);
+        }
+
+        await mainPlayerCharacter.UpdateModel(MyUser.UserCharacterInfo.MainCharacterInfo);
+
+        return mainPlayerCharacter.CharacterUnit;
     }
 }

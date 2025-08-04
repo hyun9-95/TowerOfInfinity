@@ -1,13 +1,19 @@
 using System;
+using System.IO;
+using System.Collections.Generic;
+using Newtonsoft.Json;
+using UnityEngine;
 
 public class User
 {
     #region Property
     public int ID { get; set; }
-    public UserSaveInfo UserSaveInfo { get; private set; }
-    public SubCharacterInfo[] SubCharacterInfos { get; private set; }
-    public SubCharacterInfo[] CurrentDeck { get; private set; } = new SubCharacterInfo[3];
-    public MainCharacterPartsInfo UserCharacterPartsInfo { get; private set; }
+    public UserCharacterInfo UserCharacterInfo { get; private set; }
+    public UserEquipmentInfo UserEquipmentInfo { get; private set; }
+    
+    // 기본 정보
+    public string UserId { get; private set; }
+    public bool IsCompletePrologue { get; set; }
     #endregion
 
     #region Value
@@ -17,60 +23,149 @@ public class User
     #region Function
     public void CreateUserByUserSaveInfo(UserSaveInfo userSaveInfo)
     {
-        UserSaveInfo = userSaveInfo;
+        UserId = userSaveInfo.Id;
+        IsCompletePrologue = userSaveInfo.IsCompletePrologue;
+        
+        UserCharacterInfo = new UserCharacterInfo();
 
-        CreateUserPartsInfo(userSaveInfo);
+        CreateEquipmentInfo(userSaveInfo);
+        CreateMainCharacterInfo(userSaveInfo);
         CreateSubCharacters(userSaveInfo);
     }
 
     private void CreateSubCharacters(UserSaveInfo userSaveInfo)
     {
-        SubCharacterInfos = new SubCharacterInfo[userSaveInfo.CharacterDataIds.Length];
+        var subCharacterInfos = new SubCharacterInfo[userSaveInfo.SubCharacterDataIds.Count];
 
-        Array.Sort(userSaveInfo.CharacterDataIds, (a, b) => a.CompareTo(b));
-        
-        for (int i = 0; i < userSaveInfo.CharacterDataIds.Length; i++)
+        userSaveInfo.SubCharacterDataIds.Sort();
+
+        for (int i = 0; i < userSaveInfo.SubCharacterDataIds.Count; i++)
         {
-            int dataCharacterId = userSaveInfo.CharacterDataIds[i];
+            int dataCharacterId = userSaveInfo.SubCharacterDataIds[i];
 
-            int weaponDataId = userSaveInfo.CharacterWeaponDic.ContainsKey(dataCharacterId) ?
-                userSaveInfo.CharacterWeaponDic[dataCharacterId] : 0;
+            int slotIndex = userSaveInfo.SubCharacterSlotIndexDic.ContainsKey(dataCharacterId) ?
+                userSaveInfo.SubCharacterSlotIndexDic[dataCharacterId] : -1;
 
-            int activeSkillDataId = userSaveInfo.CharacterActiveSkillDic.ContainsKey(dataCharacterId) ?
-                userSaveInfo.CharacterActiveSkillDic[dataCharacterId] : 0;
-
-            int passiveSkillDataId = userSaveInfo.CharacterPassiveSkillDic.ContainsKey(dataCharacterId) ?
-                userSaveInfo.CharacterPassiveSkillDic[dataCharacterId] : 0;
-
-            int slotIndex = userSaveInfo.CharacterSlotIndexDic.ContainsKey(dataCharacterId) ?
-                userSaveInfo.CharacterSlotIndexDic[dataCharacterId] : -1;
+            var subCharacterData = DataManager.Instance.GetDataContainer<DataCharacter>().GetById(dataCharacterId);
 
             SubCharacterInfo userCharacter = new SubCharacterInfo();
             userCharacter.SetCharacterDataId(dataCharacterId);
-            userCharacter.SetWeaponDataId(weaponDataId);
-            userCharacter.SetActiveSkillDataId(activeSkillDataId);
-            userCharacter.SetPassiveSkillDataId(passiveSkillDataId);
+            userCharacter.SetDefaultWeaponDataId((int)subCharacterData.Default_Weapon);
+            userCharacter.SetActiveSkillDataId((int)subCharacterData.ActiveSkill);
+            userCharacter.SetPassiveSkillDataId((int)subCharacterData.PassiveSkill);
             userCharacter.SetSlotIndex(slotIndex);
 
-            SubCharacterInfos[i] = userCharacter;
-
-            if (slotIndex >= 0 && slotIndex < CurrentDeck.Length)
-            {
-                if (CurrentDeck[i] != null)
-                {
-                    Logger.Error($"중복 인덱스 ! => {userCharacter.CharacterDataId}");
-                    continue;
-                }
-
-                CurrentDeck[i] = userCharacter;
-            }
+            subCharacterInfos[i] = userCharacter;
         }
+
+        UserCharacterInfo.SetSubCharacterInfos(subCharacterInfos);
+        UserCharacterInfo.UpdateCurrentDeck();
     }
 
-    private void CreateUserPartsInfo(UserSaveInfo userSaveInfo)
+    private void CreateMainCharacterInfo(UserSaveInfo userSaveInfo)
     {
-        UserCharacterPartsInfo = new MainCharacterPartsInfo();
-        UserCharacterPartsInfo.SetByUserSaveInfo(userSaveInfo);
+        var mainCharacterInfo = new MainCharacterInfo();
+
+        var mainCharacterPartsInfo = new MainCharacterPartsInfo();
+        mainCharacterPartsInfo.SetByUserSaveInfo(userSaveInfo);
+
+        mainCharacterInfo.SetPartsInfo(mainCharacterPartsInfo);
+
+        var equippedWeapon = UserEquipmentInfo.GetEquippedEquipment(EquipmentType.Weapon);
+
+        if (equippedWeapon != null)
+            mainCharacterInfo.SetDefaultWeaponDataId(equippedWeapon.DataId);
+
+        UserCharacterInfo.SetMainCharacterInfo(mainCharacterInfo);
+    }
+
+    private void CreateEquipmentInfo(UserSaveInfo userSaveInfo)
+    {
+        UserEquipmentInfo = new UserEquipmentInfo();
+        UserEquipmentInfo.CreateFromUserSaveInfo(userSaveInfo);
+    }
+
+    public void Save()
+    {
+        var userSaveInfo = CreateUserSaveInfo();
+
+        string userSaveInfoPath = Path.Combine(Application.persistentDataPath,
+                                        string.Format(PathDefine.PATH_USER_SAVE_INFO, NameDefine.UserSaveInfo));
+
+        string directory = Path.GetDirectoryName(userSaveInfoPath);
+
+        if (!Directory.Exists(directory))
+            Directory.CreateDirectory(directory);
+
+        var saveInfoJson = JsonConvert.SerializeObject(userSaveInfo);
+        File.WriteAllText(userSaveInfoPath, saveInfoJson);
+    }
+
+    private UserSaveInfo CreateUserSaveInfo()
+    {
+        var userSaveInfo = new UserSaveInfo();
+
+        // 기본 정보
+        userSaveInfo.SetId(UserId);
+        userSaveInfo.SetIsCompletePrologue(IsCompletePrologue);
+
+        // 서브 캐릭터
+        var subCharacterDataIds = new List<int>();
+        var subCharacterSlotIndexDic = new Dictionary<int, int>();
+
+        if (UserCharacterInfo.SubCharacterInfos != null)
+        {
+            foreach (var subCharacter in UserCharacterInfo.SubCharacterInfos)
+            {
+                if (subCharacter == null)
+                    continue;
+
+                subCharacterDataIds.Add(subCharacter.CharacterDataId);
+                
+                if (subCharacter.SlotIndex >= 0)
+                    subCharacterSlotIndexDic[subCharacter.CharacterDataId] = subCharacter.SlotIndex;
+            }
+        }
+        
+        userSaveInfo.SetSubCharacterDataIds(subCharacterDataIds);
+        userSaveInfo.SetSubCharacterSlotIndexDic(subCharacterSlotIndexDic);
+
+        // 메인 캐릭터
+        var characterRace = CharacterRace.Human;
+        var hairPartsId = (int)CharacterPartsDefine.PARTS_HAIR_HAIR_HAIR1;
+        
+        if (UserCharacterInfo.MainCharacterInfo != null && UserCharacterInfo.MainCharacterInfo.PartsInfo != null)
+        {
+            characterRace = UserCharacterInfo.MainCharacterInfo.PartsInfo.Race;
+            hairPartsId = UserCharacterInfo.MainCharacterInfo.PartsInfo.HairPartsId;
+        }
+        
+        userSaveInfo.SetCharacterRace(characterRace);
+        userSaveInfo.SetHairPartsId(hairPartsId);
+
+        // 장비
+        var ownedEquipmentIds = new List<int>();
+        var equipmentLevels = new Dictionary<int, int>();
+
+        foreach (var equipment in UserEquipmentInfo.OwnedEquipments)
+        {
+            ownedEquipmentIds.Add(equipment.DataId);
+            equipmentLevels[equipment.DataId] = equipment.Level;
+        }
+
+        userSaveInfo.SetOwnedEquipmentIds(ownedEquipmentIds);
+        userSaveInfo.SetEquipmentLevels(equipmentLevels);
+        
+        var equippedMainCharacterEquipmentIds = new Dictionary<EquipmentType, int>();
+
+        foreach (var kvp in UserEquipmentInfo.EquippedMainCharacterEquipments)
+            equippedMainCharacterEquipmentIds[kvp.Key] = kvp.Value.DataId;
+
+        userSaveInfo.SetEquippedMainCharacterEquipmentIds(equippedMainCharacterEquipmentIds);
+
+        userSaveInfo.CheckDefaultValue();
+        
+        return userSaveInfo;
     }
     #endregion
 }

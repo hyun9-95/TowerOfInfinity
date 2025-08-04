@@ -21,7 +21,13 @@ public class GameManager : BaseMonoManager<GameManager>
     private void Awake()
     {
         DontDestroyOnLoad(this);
+    }
 
+    /// <summary>
+    /// User 생성 후, 저장된 세팅 정보를 로드
+    /// </summary>
+    public void LoadGameSettings()
+    {
         LoadGameSetting();
         InitializeLocalization();
     }

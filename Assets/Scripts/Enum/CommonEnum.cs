@@ -238,6 +238,7 @@ public enum CharacterPartsType
     Back,
     Mask,
     Horns,
+    Bracers,
 }
 
 public enum CharacterRace

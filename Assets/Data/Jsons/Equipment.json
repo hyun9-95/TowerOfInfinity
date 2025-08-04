@@ -3,18 +3,21 @@
     "id": 80000,
     "EquipmentType": "ARMOR",
     "Name": "LOCAL_ARMOR_THIEF_TUNIC_NAME",
-    "PartsData": "PARTS_EQUIPMENT_ARMOR_THIEF_TUNIC"
+    "PartsData": "PARTS_EQUIPMENT_ARMOR_THIEF_TUNIC",
+    "Ability": "None"
   },
   {
     "id": 80001,
     "EquipmentType": "HELMET",
     "Name": "LOCAL_ARMOR_THIEF_HOOD_NAME",
-    "PartsData": "PARTS_EQUIPMENT_ARMOR_THIEF_HOOD"
+    "PartsData": "PARTS_EQUIPMENT_HELMET_THIEF_HOOD",
+    "Ability": "None"
   },
   {
     "id": 80002,
     "EquipmentType": "WEAPON",
     "Name": "LOCAL_WEAPON_SHORT_DAGGER",
-    "PartsData": "PARTS_EQUIPMENT_WEAPON_SHORT_DAGGER"
+    "PartsData": "PARTS_EQUIPMENT_WEAPON_SHORT_DAGGER",
+    "Ability": "WEAPON_STING"
   }
 ]

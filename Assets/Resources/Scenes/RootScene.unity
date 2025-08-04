@@ -133,7 +133,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 370888382610883416, guid: 3940ba4195ef515439c4944acbc4ba79, type: 3}
       propertyPath: orthographic size
-      value: 5.625
+      value: 2.90625
       objectReference: {fileID: 0}
     - target: {fileID: 370888382610883416, guid: 3940ba4195ef515439c4944acbc4ba79, type: 3}
       propertyPath: m_BackGroundColor.b
@@ -165,7 +165,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6563164855511301765, guid: 3940ba4195ef515439c4944acbc4ba79, type: 3}
       propertyPath: config.IsEnterCustomizationFlow
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8370250158373965001, guid: 3940ba4195ef515439c4944acbc4ba79, type: 3}
       propertyPath: m_LocalPosition.x
