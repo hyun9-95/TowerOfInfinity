@@ -2,7 +2,7 @@ using Cysharp.Threading.Tasks;
 using System;
 using UnityEngine;
 
-public class CharacterStateActionHandler
+public class CharacterActionHandler
 {
     public IPathFinder PathFinder => pathFinder;
 
@@ -19,7 +19,7 @@ public class CharacterStateActionHandler
     private Color originColor;
     #endregion
 
-    public CharacterStateActionHandler(Animator animator, Rigidbody2D rigidBody2D, SpriteRenderer bodySprite, GameObject gameObject, IPathFinder pathFinder)
+    public CharacterActionHandler(Animator animator, Rigidbody2D rigidBody2D, SpriteRenderer bodySprite, GameObject gameObject, IPathFinder pathFinder)
     {
         this.animator = animator;
         this.rigidBody2D = rigidBody2D;

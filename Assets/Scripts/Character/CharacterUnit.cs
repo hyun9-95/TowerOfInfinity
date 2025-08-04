@@ -317,10 +317,10 @@ public class CharacterUnit : PoolableMono
         Model.SetEventProcessorWrapper(new BattleEventProcessorWrapper(battleEventProcessor));
     }
 
-    private CharacterStateActionHandler CreateActionHandler()
+    private CharacterActionHandler CreateActionHandler()
     {
         var pathFinder = CreatePathFinder();
-        var actionHandler = new CharacterStateActionHandler(animator, rigidBody2D, bodySprite, gameObject, pathFinder);
+        var actionHandler = new CharacterActionHandler(animator, rigidBody2D, bodySprite, gameObject, pathFinder);
         actionHandler.SetOnFlipX(OnFlipX);
 
         return actionHandler;

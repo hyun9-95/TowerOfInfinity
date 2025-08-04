@@ -11,7 +11,7 @@ public class CharacterUnitModel : IBaseUnitModel
     public CharacterDefine CharacterDefine { get; private set; }
     public CharacterAnimState CurrentAnimState { get; private set; }
     public TeamTag TeamTag { get; private set; }
-    public CharacterStateActionHandler ActionHandler { get; private set; }
+    public CharacterActionHandler ActionHandler { get; private set; }
     public Transform Transform { get; private set; }
     public CharacterUnitModel Target { get; private set; }
     public InputWrapper InputWrapper { get; private set; } 
@@ -44,7 +44,7 @@ public class CharacterUnitModel : IBaseUnitModel
         CharacterDefine = (CharacterDefine)id;
     }
 
-    public void SetActionHandler(CharacterStateActionHandler handler)
+    public void SetActionHandler(CharacterActionHandler handler)
     {
         ActionHandler = handler;
     }
