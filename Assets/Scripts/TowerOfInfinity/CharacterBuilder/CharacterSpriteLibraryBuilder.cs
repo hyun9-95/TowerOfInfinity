@@ -16,15 +16,31 @@ public class CharacterSpriteLibraryBuilder : MonoBehaviour
         Preload,  // 전부 로드 (커마용)
     }
 
+    public struct LibraryBuildInfo
+    {
+        public CharacterPartsType PartsType { get; }
+        public string Address { get; }
+        public string PartData { get; }
+        public Texture2D Texture { get; set; }
+
+        public LibraryBuildInfo(CharacterPartsType partsType, string address, string partData, Texture2D texture = null)
+        {
+            PartsType = partsType;
+            Address = address;
+            PartData = partData;
+            Texture = texture;
+        }
+
+        public bool IsValid => !string.IsNullOrEmpty(Address);
+        public bool IsLoaded => Texture != null;
+    }
+
     public Mode CurrentMode { get; private set; } = Mode.OnDemand;
     
     private DataContainer<DataCharacterParts> partsContainer;
     private Texture2D mergedTexture;
     private Dictionary<string, Sprite> sprites;
-    private Dictionary<string, Texture2D> loadedTextures = new Dictionary<string, Texture2D>();
-    private Dictionary<string, string> loadedAddress = new Dictionary<string, string>();
-    private Dictionary<string, Texture2D> preloadedTextures = new Dictionary<string, Texture2D>();
-    private Dictionary<string, string> preloadedAddress = new Dictionary<string, string>();
+    private Dictionary<CharacterPartsType, LibraryBuildInfo> loadedParts = new Dictionary<CharacterPartsType, LibraryBuildInfo>();
     private bool isPreloaded = false;
 
     public void SetMode(Mode mode)
@@ -37,20 +53,20 @@ public class CharacterSpriteLibraryBuilder : MonoBehaviour
         var partsEnumArray = Enum.GetValues(typeof(CharacterPartsType));
         var parts = new string[partsEnumArray.Length];
 
-        if (userCharacterPartsInfo?.PartsInfoDic != null)
+        if (userCharacterPartsInfo.PartsInfoDic != null)
         {
             foreach (CharacterPartsType partType in partsEnumArray)
             {
                 int index = (int)partType;
                 if (userCharacterPartsInfo.PartsInfoDic.TryGetValue(partType, out var partsData))
                 {
-                    var partsPath = partsData.PartsPath;
+                    var partsName = GetPartNameFromPath(partsData.PartsPath);
                     var colorCode = partsData.ColorCode;
-                    
-                    if (!string.IsNullOrEmpty(partsPath))
-                    {
-                        parts[index] = string.IsNullOrEmpty(colorCode) ? partsPath : $"{partsPath}{colorCode}";
-                    }
+
+                    if (string.IsNullOrEmpty(partsName))
+                        continue;
+
+                    parts[index] = string.IsNullOrEmpty(colorCode) ? partsName : $"{partsName}{colorCode}";
                 }
             }
         }
@@ -58,150 +74,215 @@ public class CharacterSpriteLibraryBuilder : MonoBehaviour
         return await Rebuild(parts);
     }
 
-    public async UniTask<SpriteLibraryAsset> Rebuild(string[] parts)
+    public async UniTask<SpriteLibraryAsset> Rebuild(string[] partsNames)
     {
         var partsEnumArray = Enum.GetValues(typeof(CharacterPartsType));
 
-        if (partsEnumArray.Length != parts.Length)
+        if (partsEnumArray.Length != partsNames.Length)
             return null;
 
         if (partsContainer == null)
             partsContainer = DataManager.Instance.GetDataContainer<DataCharacterParts>();
 
-        var width = 576;
-        var height = 928;
+        var libraryBuildInfos = BuildLibraryBuildInfos(partsNames, partsEnumArray);
+        await LoadTextures(libraryBuildInfos);
+        
+        var processedPartsPixels = ProcessAllParts(libraryBuildInfos, partsNames);
+        ApplyFirearmTransformation(processedPartsPixels, partsNames);
+        
+        var finalTexture = CreateMergedTexture(processedPartsPixels);
+        var spriteLibraryAsset = CreateSpriteLibrary(finalTexture);
+        
+        ApplyCapeOverlay(partsNames, processedPartsPixels);
+        
+        return spriteLibraryAsset;
+    }
 
-        var layersToLoad = new Dictionary<string, string>();
-        var layerPartData = new Dictionary<string, string>();
+    private List<LibraryBuildInfo> BuildLibraryBuildInfos(string[] partsNames, Array partsEnumArray)
+    {
+        var libraryBuildInfos = new List<LibraryBuildInfo>();
 
         foreach (CharacterPartsType partEnum in partsEnumArray)
         {
             int index = (int)partEnum;
-            if (index < parts.Length && !string.IsNullOrEmpty(parts[index]))
-            {
-                string partName = partEnum.ToString();
-                string partValue = parts[index];
-                string address = GetAddressFromAddressableData(partName, partValue);
-                
-                if (!string.IsNullOrEmpty(address))
-                {
-                    layersToLoad[partName] = address;
-                    layerPartData[partName] = partValue;
-                }
-            }
+            
+            if (index >= partsNames.Length || string.IsNullOrEmpty(partsNames[index]))
+                continue;
+
+            string partsName = partsNames[index];
+            string address = GetPartsPathFromData(partEnum, partsName);
+            
+            var partsInfo = new LibraryBuildInfo(partEnum, address, partsName);
+            
+            if (partsInfo.IsValid)
+                libraryBuildInfos.Add(partsInfo);
         }
 
-        List<UniTask> loadTasks = new List<UniTask>();
-        foreach (var entry in layersToLoad)
+        return libraryBuildInfos;
+    }
+
+    private async UniTask LoadTextures(List<LibraryBuildInfo> libraryBuildInfos)
+    {
+        var loadTasks = new List<UniTask>();
+        
+        foreach (var info in libraryBuildInfos)
         {
-            string layerName = entry.Key;
-            string address = entry.Value;
-
-            if (!string.IsNullOrEmpty(address))
-            {
-                loadTasks.Add(LoadAndStoreTexture(layerName, address));
-            }
+            if (info.IsValid)
+                loadTasks.Add(LoadAndStoreTexture(info.PartsType, info.Address));
         }
+        
         await UniTask.WhenAll(loadTasks);
+    }
 
-        var processedLayersPixels = new Dictionary<string, Color32[]>();
+    private Dictionary<CharacterPartsType, Color32[]> ProcessAllParts(List<LibraryBuildInfo> partsInfos, string[] parts)
+    {
+        var processedPartsPixels = new Dictionary<CharacterPartsType, Color32[]>();
+        var libraryBuildInfoDic = partsInfos.ToDictionary(info => info.PartsType, info => info);
 
-        Func<string, string, Color32[], Color32[]> getProcessedPixels = (layer, partData, mask) =>
+        ProcessSimpleParts(processedPartsPixels, libraryBuildInfoDic);
+        ProcessBodyParts(processedPartsPixels, libraryBuildInfoDic, parts);
+        ProcessHeadParts(processedPartsPixels, libraryBuildInfoDic, parts);
+        ProcessArmorParts(processedPartsPixels, libraryBuildInfoDic, parts);
+        ProcessFacialParts(processedPartsPixels, libraryBuildInfoDic, parts);
+        ProcessAccessoryParts(processedPartsPixels, libraryBuildInfoDic, parts);
+
+        return processedPartsPixels;
+    }
+
+    private void ProcessSimpleParts(Dictionary<CharacterPartsType, Color32[]> processedPixels, Dictionary<CharacterPartsType, LibraryBuildInfo> libraryBuildInfoDic)
+    {
+        var simpleParts = new[] { CharacterPartsType.Back, CharacterPartsType.Shield };
+        
+        foreach (var partType in simpleParts)
         {
-            if (loadedTextures.TryGetValue(layer, out Texture2D texture))
-            {
-                return ProcessLayerPixels(layer, texture, partData, mask);
-            }
+            if (libraryBuildInfoDic.ContainsKey(partType))
+                processedPixels.Add(partType, ProcessPixels(partType, libraryBuildInfoDic[partType].PartData));
+        }
+    }
+
+    private void ProcessBodyParts(Dictionary<CharacterPartsType, Color32[]> processedPixels, Dictionary<CharacterPartsType, LibraryBuildInfo> libraryBuildInfoDic, string[] parts)
+    {
+        if (!libraryBuildInfoDic.ContainsKey(CharacterPartsType.Body))
+            return;
+
+        var bodyInfo = libraryBuildInfoDic[CharacterPartsType.Body];
+        processedPixels.Add(CharacterPartsType.Body, ProcessPixels(CharacterPartsType.Body, bodyInfo.PartData));
+
+        if (string.IsNullOrEmpty(parts[(int)CharacterPartsType.Firearm]) && libraryBuildInfoDic.ContainsKey(CharacterPartsType.Arms))
+            processedPixels.Add(CharacterPartsType.Arms, ProcessPixels(CharacterPartsType.Arms, bodyInfo.PartData));
+    }
+
+    private void ProcessHeadParts(Dictionary<CharacterPartsType, Color32[]> processedPixels, Dictionary<CharacterPartsType, LibraryBuildInfo> libraryBuildInfoDic, string[] parts)
+    {
+        if (libraryBuildInfoDic.ContainsKey(CharacterPartsType.Head))
+            processedPixels.Add(CharacterPartsType.Head, ProcessPixels(CharacterPartsType.Head, libraryBuildInfoDic[CharacterPartsType.Head].PartData));
+
+        if (libraryBuildInfoDic.ContainsKey(CharacterPartsType.Ears))
+        {
+            var helmetPart = parts[(int)CharacterPartsType.Helmet];
+            if (string.IsNullOrEmpty(helmetPart) || helmetPart.Contains("ShowEars"))
+                processedPixels.Add(CharacterPartsType.Ears, ProcessPixels(CharacterPartsType.Ears, libraryBuildInfoDic[CharacterPartsType.Ears].PartData));
+        }
+    }
+
+    private void ProcessArmorParts(Dictionary<CharacterPartsType, Color32[]> processedPixels, Dictionary<CharacterPartsType, LibraryBuildInfo> libraryBuildInfoDic, string[] parts)
+    {
+        if (!libraryBuildInfoDic.ContainsKey(CharacterPartsType.Armor))
+            return;
+
+        var armorInfo = libraryBuildInfoDic[CharacterPartsType.Armor];
+        processedPixels.Add(CharacterPartsType.Armor, ProcessPixels(CharacterPartsType.Armor, armorInfo.PartData));
+
+        if (string.IsNullOrEmpty(parts[(int)CharacterPartsType.Firearm]) && libraryBuildInfoDic.ContainsKey(CharacterPartsType.Bracers))
+            processedPixels.Add(CharacterPartsType.Bracers, ProcessPixels(CharacterPartsType.Bracers, armorInfo.PartData));
+    }
+
+    private void ProcessFacialParts(Dictionary<CharacterPartsType, Color32[]> processedPixels, Dictionary<CharacterPartsType, LibraryBuildInfo> libraryBuildInfoDic, string[] parts)
+    {
+        if (libraryBuildInfoDic.ContainsKey(CharacterPartsType.Eyes))
+            processedPixels.Add(CharacterPartsType.Eyes, ProcessPixels(CharacterPartsType.Eyes, libraryBuildInfoDic[CharacterPartsType.Eyes].PartData));
+
+        if (libraryBuildInfoDic.ContainsKey(CharacterPartsType.Hair))
+        {
+            var helmetPart = parts[(int)CharacterPartsType.Helmet];
+            Color32[] hairMask = (string.IsNullOrEmpty(helmetPart) || !processedPixels.ContainsKey(CharacterPartsType.Head)) ? null : processedPixels[CharacterPartsType.Head];
+            processedPixels.Add(CharacterPartsType.Hair, ProcessPixels(CharacterPartsType.Hair, libraryBuildInfoDic[CharacterPartsType.Hair].PartData, hairMask));
+        }
+
+        if (libraryBuildInfoDic.ContainsKey(CharacterPartsType.Mask))
+            processedPixels.Add(CharacterPartsType.Mask, ProcessPixels(CharacterPartsType.Mask, libraryBuildInfoDic[CharacterPartsType.Mask].PartData));
+    }
+
+    private void ProcessAccessoryParts(Dictionary<CharacterPartsType, Color32[]> processedPixels, Dictionary<CharacterPartsType, LibraryBuildInfo> libraryBuildInfoDic, string[] parts)
+    {
+        var accessoryParts = new[] { CharacterPartsType.Cape, CharacterPartsType.Helmet, CharacterPartsType.Weapon };
+        
+        foreach (var partType in accessoryParts)
+        {
+            if (libraryBuildInfoDic.ContainsKey(partType))
+                processedPixels.Add(partType, ProcessPixels(partType, libraryBuildInfoDic[partType].PartData));
+        }
+
+        if (libraryBuildInfoDic.ContainsKey(CharacterPartsType.Horns) && string.IsNullOrEmpty(parts[(int)CharacterPartsType.Horns]))
+            processedPixels.Add(CharacterPartsType.Horns, ProcessPixels(CharacterPartsType.Horns, libraryBuildInfoDic[CharacterPartsType.Horns].PartData));
+    }
+
+    private Color32[] ProcessPixels(CharacterPartsType partsType, string partData, Color32[] mask = null)
+    {
+        if (!loadedParts.TryGetValue(partsType, out LibraryBuildInfo partsInfo) || !partsInfo.IsLoaded)
             return null;
-        };
 
-        if (layerPartData.ContainsKey("Back")) processedLayersPixels.Add("Back", getProcessedPixels("Back", layerPartData["Back"], null));
-        if (layerPartData.ContainsKey("Shield")) processedLayersPixels.Add("Shield", getProcessedPixels("Shield", layerPartData["Shield"], null));
+        return ProcessPartsPixels(partsInfo.PartsType.ToString(), partsInfo.Texture, partData, mask);
+    }
 
-        if (layerPartData.ContainsKey("Body"))
+    private void ApplyFirearmTransformation(Dictionary<CharacterPartsType, Color32[]> processedPixels, string[] parts)
+    {
+        if (string.IsNullOrEmpty(parts[(int)CharacterPartsType.Firearm]))
+            return;
+
+        const int width = 576;
+        var partsToTransform = new[] { CharacterPartsType.Head, CharacterPartsType.Ears, CharacterPartsType.Eyes, CharacterPartsType.Mask, CharacterPartsType.Hair, CharacterPartsType.Helmet };
+
+        foreach (var partType in partsToTransform)
         {
-            processedLayersPixels.Add("Body", getProcessedPixels("Body", layerPartData["Body"], null));
+            if (!processedPixels.ContainsKey(partType) || processedPixels[partType] == null)
+                continue;
 
-            if (string.IsNullOrEmpty(parts[(int)CharacterPartsType.Firearm]) && layerPartData.ContainsKey("Arms"))
+            var copy = processedPixels[partType].ToArray();
+
+            for (var y = 11 * 64 - 1; y >= 10 * 64 - 1; y--)
             {
-                processedLayersPixels.Add("Arms", getProcessedPixels("Arms", layerPartData["Body"], null));
+                for (var x = 0; x < width; x++)
+                    copy[x + y * width] = copy[x + (y - 1) * width];
             }
+            
+            processedPixels[partType] = copy;
         }
+    }
 
-        if (layerPartData.ContainsKey("Head")) processedLayersPixels.Add("Head", getProcessedPixels("Head", layerPartData["Head"], null));
-        if (layerPartData.ContainsKey("Ears") && (string.IsNullOrEmpty(parts[(int)CharacterPartsType.Helmet]) || parts[(int)CharacterPartsType.Helmet].Contains("ShowEars")))
-        {
-            processedLayersPixels.Add("Ears", getProcessedPixels("Ears", layerPartData["Ears"], null));
-        }
+    private Texture2D CreateMergedTexture(Dictionary<CharacterPartsType, Color32[]> processedPixels)
+    {
+        const int width = 576;
+        const int height = 928;
 
-        if (layerPartData.ContainsKey("Armor"))
-        {
-            processedLayersPixels.Add("Armor", getProcessedPixels("Armor", layerPartData["Armor"], null));
-
-            if (string.IsNullOrEmpty(parts[(int)CharacterPartsType.Firearm]) && layerPartData.ContainsKey("Bracers"))
-            {
-                processedLayersPixels.Add("Bracers", getProcessedPixels("Bracers", layerPartData["Armor"], null));
-            }
-        }
-
-        if (layerPartData.ContainsKey("Eyes")) processedLayersPixels.Add("Eyes", getProcessedPixels("Eyes", layerPartData["Eyes"], null));
-        if (layerPartData.ContainsKey("Hair"))
-        {
-            Color32[] hairMask = (string.IsNullOrEmpty(parts[(int)CharacterPartsType.Helmet]) || !processedLayersPixels.ContainsKey("Head")) ? null : processedLayersPixels["Head"];
-            processedLayersPixels.Add("Hair", getProcessedPixels("Hair", layerPartData["Hair"], hairMask));
-        }
-        if (layerPartData.ContainsKey("Cape")) processedLayersPixels.Add("Cape", getProcessedPixels("Cape", layerPartData["Cape"], null));
-        if (layerPartData.ContainsKey("Helmet")) processedLayersPixels.Add("Helmet", getProcessedPixels("Helmet", layerPartData["Helmet"], null));
-        if (layerPartData.ContainsKey("Weapon")) processedLayersPixels.Add("Weapon", getProcessedPixels("Weapon", layerPartData["Weapon"], null));
-
-        if (layerPartData.ContainsKey("Mask")) processedLayersPixels.Add("Mask", getProcessedPixels("Mask", layerPartData["Mask"], null));
-        if (layerPartData.ContainsKey("Horns") && string.IsNullOrEmpty(parts[(int)CharacterPartsType.Horns])) processedLayersPixels.Add("Horns", getProcessedPixels("Horns", layerPartData["Horns"], null));
-
-        if (!string.IsNullOrEmpty(parts[(int)CharacterPartsType.Firearm]))
-        {
-            foreach (var layerName in new[] { "Head", "Ears", "Eyes", "Mask", "Hair", "Helmet" })
-            {
-                if (processedLayersPixels.ContainsKey(layerName) && processedLayersPixels[layerName] != null)
-                {
-                    var copy = processedLayersPixels[layerName].ToArray();
-
-                    for (var y = 11 * 64 - 1; y >= 10 * 64 - 1; y--)
-                    {
-                        for (var x = 0; x < width; x++)
-                        {
-                            copy[x + y * width] = copy[x + (y - 1) * width];
-                        }
-                    }
-                    processedLayersPixels[layerName] = copy;
-                }
-            }
-        }
-
-        var fixedLayerOrder = new List<string>
-            {
-                "Back", "Shield", "Body", "Arms", "Head", "Ears", "Armor", "Bracers", "Eyes", "Hair", "Cape", "Helmet", "Weapon", "Firearm", "Mask", "Horns"
-            };
-
+        var fixedPartOrder = new[] { CharacterPartsType.Back, CharacterPartsType.Shield, CharacterPartsType.Body, CharacterPartsType.Arms, CharacterPartsType.Head, CharacterPartsType.Ears, CharacterPartsType.Armor, CharacterPartsType.Bracers, CharacterPartsType.Eyes, CharacterPartsType.Hair, CharacterPartsType.Cape, CharacterPartsType.Helmet, CharacterPartsType.Weapon, CharacterPartsType.Firearm, CharacterPartsType.Mask, CharacterPartsType.Horns };
         var finalOrderedPixels = new List<Color32[]>();
-        foreach (var layerName in fixedLayerOrder)
+
+        foreach (var partType in fixedPartOrder)
         {
-            if (processedLayersPixels.ContainsKey(layerName) && processedLayersPixels[layerName] != null)
-            {
-                finalOrderedPixels.Add(processedLayersPixels[layerName]);
-            }
+            if (processedPixels.ContainsKey(partType) && processedPixels[partType] != null)
+                finalOrderedPixels.Add(processedPixels[partType]);
         }
 
         if (mergedTexture == null)
             mergedTexture = new Texture2D(width, height) { filterMode = FilterMode.Point };
 
-        // 병합할 레이어가 없는 경우 빈 텍스처 생성
         if (finalOrderedPixels.Count == 0)
         {
             var emptyPixels = new Color32[width * height];
             for (int i = 0; i < emptyPixels.Length; i++)
-            {
-                emptyPixels[i] = new Color32(0, 0, 0, 0); // 투명
-            }
+                emptyPixels[i] = new Color32(0, 0, 0, 0);
+            
             mergedTexture.SetPixels32(emptyPixels);
         }
         else
@@ -210,7 +291,11 @@ public class CharacterSpriteLibraryBuilder : MonoBehaviour
         }
         
         mergedTexture.Apply();
+        return mergedTexture;
+    }
 
+    private SpriteLibraryAsset CreateSpriteLibrary(Texture2D texture)
+    {
         if (sprites == null)
         {
             var clipNames = new List<string> { "Idle", "Ready", "Run", "Crawl", "Climb", "Jump", "Push", "Jab", "Slash", "Shot", "Fire", "Block", "Death", "Roll" };
@@ -222,7 +307,7 @@ public class CharacterSpriteLibraryBuilder : MonoBehaviour
                 for (var j = 0; j < 9; j++)
                 {
                     var key = clipNames[i] + "_" + j;
-                    sprites.Add(key, Sprite.Create(mergedTexture, new Rect(j * 64, i * 64, 64, 64), new Vector2(0.5f, 0.125f), 16, 0, SpriteMeshType.FullRect));
+                    sprites.Add(key, Sprite.Create(texture, new Rect(j * 64, i * 64, 64, 64), new Vector2(0.5f, 0.125f), 16, 0, SpriteMeshType.FullRect));
                 }
             }
         }
@@ -235,56 +320,68 @@ public class CharacterSpriteLibraryBuilder : MonoBehaviour
             spriteLibraryAsset.AddCategoryLabel(sprite.Value, split[0], split[1]);
         }
 
-        if (!string.IsNullOrEmpty(parts[(int)CharacterPartsType.Cape]) && processedLayersPixels.ContainsKey("Cape"))
-        {
-            CapeOverlay(processedLayersPixels["Cape"]);
-        }
-
         return spriteLibraryAsset;
     }
 
-    private async UniTask LoadAndStoreTexture(string layerName, string address)
+    private void ApplyCapeOverlay(string[] parts, Dictionary<CharacterPartsType, Color32[]> processedPixels)
     {
-        // Preload 모드에서는 미리 로드된 텍스처를 우선 사용
-        if (CurrentMode == Mode.Preload && isPreloaded)
-        {
-            string preloadKey = GetPreloadKey(layerName, address);
-            if (preloadedTextures.ContainsKey(preloadKey) && preloadedAddress.ContainsKey(preloadKey) && preloadedAddress[preloadKey].Equals(address))
-            {
-                loadedTextures[layerName] = preloadedTextures[preloadKey];
-                loadedAddress[layerName] = address;
-                return;
-            }
-        }
-        
-        if (loadedAddress.TryGetValue(layerName, out var existingAdress))
-        {
-            if (existingAdress.Equals(address))
-                return;
-
-            // OnDemand 에서는 기존 텍스처 해제
-            if (CurrentMode == Mode.OnDemand)
-            {
-                AddressableManager.Instance.ReleaseFromTracker
-                    (loadedTextures[layerName], gameObject);
-            }
-        }
-
-        Texture2D texture = await AddressableManager.Instance.
-            LoadAssetAsyncWithTracker<Texture2D>(address, gameObject);
-
-        if (texture != null)
-        {
-            loadedTextures[layerName] = texture;
-            loadedAddress[layerName] = address;
-        }
-        else
-        {
-            Logger.Error($"Character Parts Load Failed : {address}");
-        }
+        if (!string.IsNullOrEmpty(parts[(int)CharacterPartsType.Cape]) && processedPixels.ContainsKey(CharacterPartsType.Cape))
+            CapeOverlay(processedPixels[CharacterPartsType.Cape]);
     }
 
-    private string GetAddressFromAddressableData(string layerName, string partName)
+    private async UniTask LoadAndStoreTexture(CharacterPartsType partsType, string texturePath)
+    {
+        if (CurrentMode == Mode.Preload && isPreloaded)
+        {
+            if (TryUsePreloadedTexture(partsType, texturePath))
+                return;
+        }
+        
+        if (IsTextureAlreadyLoaded(partsType, texturePath))
+            return;
+
+        ReleaseExistingTexture(partsType);
+
+        var texture = await AddressableManager.Instance.LoadAssetAsyncWithTracker<Texture2D>(texturePath, gameObject);
+
+        if (texture == null)
+        {
+            Logger.Error($"Character Parts Load Failed : {texturePath}");
+            return;
+        }
+
+        var libraryBuildInfo = new LibraryBuildInfo(partsType, texturePath, string.Empty, texture);
+        loadedParts[partsType] = libraryBuildInfo;
+    }
+
+    private bool TryUsePreloadedTexture(CharacterPartsType partsType, string texturePath)
+    {
+        if (!loadedParts.TryGetValue(partsType, out var libaryBuildInfo))
+            return false;
+            
+        return libaryBuildInfo.Address.Equals(texturePath) && libaryBuildInfo.IsLoaded;
+    }
+
+    private bool IsTextureAlreadyLoaded(CharacterPartsType partsType, string texturePath)
+    {
+        if (!loadedParts.TryGetValue(partsType, out var libraryBuildInfo))
+            return false;
+
+        return libraryBuildInfo.Address.Equals(texturePath);
+    }
+
+    private void ReleaseExistingTexture(CharacterPartsType partsType)
+    {
+        if (CurrentMode != Mode.OnDemand)
+            return;
+            
+        if (!loadedParts.TryGetValue(partsType, out var libraryBuildInfo) || !libraryBuildInfo.IsLoaded)
+            return;
+
+        AddressableManager.Instance.ReleaseFromTracker(libraryBuildInfo.Texture, gameObject);
+    }
+
+    private string GetPartsPathFromData(CharacterPartsType partsType, string partName)
     {
         if (partsContainer == null)
             partsContainer = DataManager.Instance.GetDataContainer<DataCharacterParts>();
@@ -293,13 +390,10 @@ public class CharacterSpriteLibraryBuilder : MonoBehaviour
             return null;
 
         var targetPart = partsContainer.Find(p => 
-            p.PartsType.ToString() == layerName && 
+            p.PartsType == partsType && 
             GetPartNameFromPath(p.PartsPath) == partName);
             
-        if (!targetPart.IsNull)
-            return targetPart.PartsPath;
-            
-        return null;
+        return targetPart.IsNull ? null : targetPart.PartsPath;
     }
     
     private string GetPartNameFromPath(string partsPath)
@@ -308,21 +402,33 @@ public class CharacterSpriteLibraryBuilder : MonoBehaviour
             return string.Empty;
             
         var lastSlashIndex = partsPath.LastIndexOf('/');
-        if (lastSlashIndex >= 0 && lastSlashIndex < partsPath.Length - 1)
-            return partsPath.Substring(lastSlashIndex + 1);
+        
+        if (lastSlashIndex < 0 || lastSlashIndex >= partsPath.Length - 1)
+            return partsPath;
             
-        return partsPath;
+        return partsPath.Substring(lastSlashIndex + 1);
     }
 
-    private Color32[] ProcessLayerPixels(string layerName, Texture2D sourceTexture, string data, Color32[] mask)
+    private Color32[] ProcessPartsPixels(string partsName, Texture2D sourceTexture, string data, Color32[] mask)
     {
-        if (sourceTexture == null) return null;
+        if (sourceTexture == null) 
+            return null;
 
-        var match = Regex.Match(data,
-            @"(?<Name>[\w\- \[\]]+)(?<Paint>#\w+)?(?:/(?<H>[-\d]+):(?<S>[-\d]+):(?<V>[-\d]+))?");
+        var (paint, h, s, v) = ParsePixelProcessingData(data);
+        Color32[] pixels = sourceTexture.GetPixels32();
+
+        ApplyMask(pixels, mask);
+        pixels = ApplyPaint(pixels, paint, partsName);
+        ApplyColorAdjustment(pixels, h, s, v);
+        
+        return TextureProcessor.ApplyPalette(pixels, TextureProcessor.Palette);
+    }
+
+    private (Color paint, float h, float s, float v) ParsePixelProcessingData(string data)
+    {
+        var match = Regex.Match(data, @"(?<Name>[\w\- \[\]]+)(?<Paint>#\w+)?(?:/(?<H>[-\d]+):(?<S>[-\d]+):(?<V>[-\d]+))?");
 
         Color paint = Color.white;
-
         if (match.Groups["Paint"].Success)
             ColorUtility.TryParseHtmlString(match.Groups["Paint"].Value, out paint);
 
@@ -334,52 +440,55 @@ public class CharacterSpriteLibraryBuilder : MonoBehaviour
             v = float.Parse(match.Groups["V"].Value, CultureInfo.InvariantCulture);
         }
 
-        Color32[] pixels = sourceTexture.GetPixels32();
+        return (paint, h, s, v);
+    }
 
-        if (mask != null)
+    private void ApplyMask(Color32[] pixels, Color32[] mask)
+    {
+        if (mask == null)
+            return;
+
+        for (var i = 0; i < pixels.Length; i++)
         {
-            for (var i = 0; i < pixels.Length; i++)
-            {
-                if (mask[i].a <= 0)
-                {
-                    pixels[i] = new Color32();
-                }
-                else if (mask[i] == Color.black)
-                {
-                    pixels[i] = mask[i];
-                }
-            }
+            if (mask[i].a <= 0)
+                pixels[i] = new Color32();
+            else if (mask[i] == Color.black)
+                pixels[i] = mask[i];
         }
+    }
 
-        if (paint != Color.white)
+    private Color32[] ApplyPaint(Color32[] pixels, Color paint, string partsName)
+    {
+        if (paint == Color.white)
+            return pixels;
+
+        if (IsBodyParts(partsName))
+            return TextureProcessor.Repaint3C(pixels, paint, TextureProcessor.Palette);
+
+        for (var i = 0; i < pixels.Length; i++)
         {
-            if (layerName == "Head" || layerName == "Body" || layerName == "Arms" || layerName == "Hair")
-            {
-                pixels = TextureProcessor.Repaint3C(pixels, paint, TextureProcessor.Palette);
-            }
-            else
-            {
-                for (var i = 0; i < pixels.Length; i++)
-                {
-                    if (pixels[i].a > 0) pixels[i] = (Color32)((Color)pixels[i] * paint);
-                }
-            }
+            if (pixels[i].a > 0) 
+                pixels[i] = (Color32)((Color)pixels[i] * paint);
         }
-
-        if (!Mathf.Approximately(h, 0) || !Mathf.Approximately(s, 0) || !Mathf.Approximately(v, 0))
-        {
-            for (var i = 0; i < pixels.Length; i++)
-            {
-                if (pixels[i].a > 0 && pixels[i] != Color.black)
-                {
-                    pixels[i] = TextureProcessor.AdjustColor(pixels[i], h, s, v);
-                }
-            }
-        }
-
-        pixels = TextureProcessor.ApplyPalette(pixels, TextureProcessor.Palette);
-
+        
         return pixels;
+    }
+
+    private bool IsBodyParts(string partsName)
+    {
+        return partsName == "Head" || partsName == "Body" || partsName == "Arms" || partsName == "Hair";
+    }
+
+    private void ApplyColorAdjustment(Color32[] pixels, float h, float s, float v)
+    {
+        if (Mathf.Approximately(h, 0) && Mathf.Approximately(s, 0) && Mathf.Approximately(v, 0))
+            return;
+
+        for (var i = 0; i < pixels.Length; i++)
+        {
+            if (pixels[i].a > 0 && pixels[i] != Color.black)
+                pixels[i] = TextureProcessor.AdjustColor(pixels[i], h, s, v);
+        }
     }
 
     private void CapeOverlay(Color32[] cape)
@@ -436,42 +545,47 @@ public class CharacterSpriteLibraryBuilder : MonoBehaviour
         if (partsContainer == null)
             partsContainer = DataManager.Instance.GetDataContainer<DataCharacterParts>();
         
-        var preloadTasks = new List<UniTask>();
         var preloadParts = partsContainer.FindAll(x => !x.IsNull && 
             (x.Category == CharacterPartsCategory.Race || x.Category == CharacterPartsCategory.Hair));
+        
+        var preloadTasks = CreatePreloadTasks(preloadParts);
+        
+        await UniTask.WhenAll(preloadTasks);
+        isPreloaded = true;
+    }
+
+    private List<UniTask> CreatePreloadTasks(IEnumerable<DataCharacterParts> preloadParts)
+    {
+        var preloadTasks = new List<UniTask>();
         
         foreach (var part in preloadParts)
         {
             if (string.IsNullOrEmpty(part.PartsPath))
                 continue;
 
-            preloadTasks.Add(PreloadTexture(part.PartsType.ToString(), part.PartsPath, part.PartsPath));
+            preloadTasks.Add(PreloadTexture(part.PartsType, part.PartsPath, part.PartsPath));
         }
         
-        await UniTask.WhenAll(preloadTasks);
-        isPreloaded = true;
+        return preloadTasks;
     }
     
-    private async UniTask PreloadTexture(string layerName, string partName, string address)
+    private async UniTask PreloadTexture(CharacterPartsType partsType, string partName, string address)
     {
-        string key = GetPreloadKey(layerName, address);
-        
-        if (preloadedTextures.ContainsKey(key))
+        if (loadedParts.ContainsKey(partsType))
             return;
             
         try
         {
-            Texture2D texture = await AddressableManager.Instance.LoadAssetAsyncWithTracker<Texture2D>(address, gameObject);
+            var texture = await AddressableManager.Instance.LoadAssetAsyncWithTracker<Texture2D>(address, gameObject);
             
-            if (texture != null)
-            {
-                preloadedTextures[key] = texture;
-                preloadedAddress[key] = address;
-            }
-            else
+            if (texture == null)
             {
                 Logger.Error($"Failed to preload texture: {address}");
+                return;
             }
+
+            var partsInfo = new LibraryBuildInfo(partsType, address, string.Empty, texture);
+            loadedParts[partsType] = partsInfo;
         }
         catch (System.Exception e)
         {
@@ -479,10 +593,6 @@ public class CharacterSpriteLibraryBuilder : MonoBehaviour
         }
     }
     
-    private string GetPreloadKey(string layerName, string address)
-    {
-        return $"{layerName}_{address}";
-    }
     
     public void ResetPreload()
     {
@@ -492,29 +602,37 @@ public class CharacterSpriteLibraryBuilder : MonoBehaviour
             return;
         }
         
-        var currentlyUsedTextures = new HashSet<Texture2D>(loadedTextures.Values);
-        var texturesToRelease = new List<string>();
+        var partsToKeep = new HashSet<CharacterPartsType>(loadedParts.Keys);
+        var partsToRelease = new List<CharacterPartsType>();
         
-        foreach (var kvp in preloadedTextures)
+        foreach (var partType in loadedParts.Keys)
         {
-            if (!currentlyUsedTextures.Contains(kvp.Value))
+            if (!IsPartCurrentlyInUse(partType))
+                partsToRelease.Add(partType);
+        }
+        
+        foreach (var partType in partsToRelease)
+        {
+            if (loadedParts.TryGetValue(partType, out var partsInfo) && partsInfo.IsLoaded)
             {
-                texturesToRelease.Add(kvp.Key);
-                AddressableManager.Instance.ReleaseFromTracker(kvp.Value, gameObject);
+                AddressableManager.Instance.ReleaseFromTracker(partsInfo.Texture, gameObject);
+                loadedParts.Remove(partType);
             }
         }
-        
-        foreach (var key in texturesToRelease)
-        {
-            preloadedTextures.Remove(key);
-            preloadedAddress.Remove(key);
-        }
+    }
+
+    private bool IsPartCurrentlyInUse(CharacterPartsType partType)
+    {
+        return false;
     }
     
     private void OnDestroy()
     {
-        foreach (var texture in preloadedTextures.Values)
-            AddressableManager.Instance.ReleaseFromTracker(texture, gameObject);
+        foreach (var partsInfo in loadedParts.Values)
+        {
+            if (partsInfo.IsLoaded)
+                AddressableManager.Instance.ReleaseFromTracker(partsInfo.Texture, gameObject);
+        }
 
         AddressableManager.Instance.ReleaseGameObject(gameObject);
     }

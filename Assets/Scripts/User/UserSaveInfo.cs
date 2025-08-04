@@ -70,6 +70,7 @@ public class UserSaveInfo
             {
                 { EquipmentType.Armor, (int)EquipmentDefine.EQUIPMENT_ARMOR_THIEF_TUNIC },
                 { EquipmentType.Helmet, (int)EquipmentDefine.EQUIPMENT_ARMOR_THIEF_HOOD },
+                { EquipmentType.Bracers,  (int)EquipmentDefine.EQUIPMENT_BRACERS_THIEF_TUNIC },
                 { EquipmentType.Weapon, (int)EquipmentDefine.EQUIPMENT_WEAPON_SHORT_DAGGER },
             };
         }

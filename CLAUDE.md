@@ -107,22 +107,19 @@ public ReturnType MethodName(parameters)
 ## Automation Workflows
 
 ### `/translate`
-Efficiently translates missing localization data using temporary Python script:
+Directly translates missing localization data in CSV format:
 
-1. **Generate** temporary Python translation script
-2. **Execute** script to process `Assets/Data/Excels/Localization.csv`:
-   - Identify empty English and SimplifiedChinese fields (columns 4 and 5)
-   - Translate Korean text to missing languages using translation dictionary
-   - Update CSV file directly with natural translations
-3. **Clean up** temporary script after execution
-4. **Report** translation results
+1. **Read** `Assets/Data/Excels/Localization.csv`
+2. **Find** empty English/SimplifiedChinese fields (columns 4 and 5)
+3. **Translate** Korean text using built-in translation dictionary
+4. **Update** CSV file with translated text
+5. **Report** changes made
 
-**Usage**: Simply type `/translate` to execute the complete workflow.
+**Usage**: Simply type `/translate` to execute the workflow.
 
-**Advantages**:
-- Minimal token usage for large datasets
-- Efficient batch processing
-- Maintains CSV format compatibility with DataGenerator
+**Translation Dictionary**:
+- Korean → English: 탑→Tower, 무한→Infinity, 로딩→Loading, etc.
+- Korean → Chinese: 탑→塔, 무한→无限, 로딩→加载, etc.
 
 **Files Modified**:
 - `Assets/Data/Excels/Localization.csv` (updated with translations)

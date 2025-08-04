@@ -15,6 +15,13 @@
   },
   {
     "id": 80002,
+    "EquipmentType": "BRACERS",
+    "Name": "LOCAL_BRACERS_THIEF_TUNIC_NAME",
+    "PartsData": "PARTS_EQUIPMENT_BRACERS_THIEF_TUNIC",
+    "Ability": "None"
+  },
+  {
+    "id": 80003,
     "EquipmentType": "WEAPON",
     "Name": "LOCAL_WEAPON_SHORT_DAGGER",
     "PartsData": "PARTS_EQUIPMENT_WEAPON_SHORT_DAGGER",

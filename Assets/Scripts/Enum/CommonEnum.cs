@@ -261,8 +261,8 @@ public enum EquipmentType
 {
     Armor,
     Helmet,
+    Bracers,
     Shield,
     Weapon,
     Mask,
-    Accessory
 }

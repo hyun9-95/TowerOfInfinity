@@ -8,8 +8,8 @@ public class MainCharacterPartsInfo
     public Dictionary<CharacterPartsType, DataCharacterParts> PartsInfoDic { get; private set; } = new();
 
     #region Value
-    private DataContainer<DataCharacterParts> partsContainer = new();
-    private DataContainer<DataEquipment> equipmentContainer = new();
+    private DataContainer<DataCharacterParts> partsContainer;
+    private DataContainer<DataEquipment> equipmentContainer;
     #endregion
 
     public void SetByUserSaveInfo(UserSaveInfo userSaveInfo)
@@ -25,13 +25,8 @@ public class MainCharacterPartsInfo
         // 헤어 파츠
         SetHairParts(userSaveInfo.HairPartsId);
 
-        // 장비 파츠 - UserSaveInfo에서 직접 가져오기
-        var equipmentDic = new Dictionary<EquipmentType, EquipmentDefine>();
-        foreach (var kvp in userSaveInfo.EquippedMainCharacterEquipmentIds)
-        {
-            equipmentDic[kvp.Key] = (EquipmentDefine)kvp.Value;
-        }
-        SetEquipmentParts(equipmentDic);
+        // 장비 파츠
+        SetEquipmentParts(userSaveInfo.EquippedMainCharacterEquipmentIds);
     }
 
     private void SetRaceParts(CharacterRace race)
@@ -63,20 +58,23 @@ public class MainCharacterPartsInfo
         {
             HairPartsId = (int)CharacterPartsDefine.PARTS_HAIR_HAIR_HAIR1;
             Hair = partsContainer.GetById(HairPartsId);
-            return;
         }
-
-        Hair = hairData;
+        else
+        {
+            Hair = hairData;
+        }
+        
+        PartsInfoDic[CharacterPartsType.Hair] = Hair;
     }
 
-    private void SetEquipmentParts(Dictionary<EquipmentType, EquipmentDefine> equipmentInfo)
+    private void SetEquipmentParts(Dictionary<EquipmentType, int> equipmentInfo)
     {
         if (equipmentContainer == null)
             equipmentContainer = DataManager.Instance.GetDataContainer<DataEquipment>();
 
         foreach (var equipInfo in equipmentInfo)
         {
-            var equipmentData = equipmentContainer.GetById((int)equipInfo.Value);
+            var equipmentData = equipmentContainer.GetById(equipInfo.Value);
 
             if (equipmentData.IsNull)
                 continue;
