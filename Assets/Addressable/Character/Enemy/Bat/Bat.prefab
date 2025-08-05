@@ -76,6 +76,22 @@ PrefabInstance:
       propertyPath: debugLog
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7719940465631995664, guid: 3f669f6d112971a4ca167399c23c3769, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7719940465631995664, guid: 3f669f6d112971a4ca167399c23c3769, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7719940465631995664, guid: 3f669f6d112971a4ca167399c23c3769, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.033
+      objectReference: {fileID: 0}
+    - target: {fileID: 7719940465631995664, guid: 3f669f6d112971a4ca167399c23c3769, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 7747473371373772593, guid: 3f669f6d112971a4ca167399c23c3769, type: 3}
       propertyPath: m_Offset.y
       value: 0
