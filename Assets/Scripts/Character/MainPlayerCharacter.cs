@@ -42,6 +42,11 @@ public class MainPlayerCharacter : MonoBehaviour
 
     public async UniTask UpdateSpriteLibraryAsset(MainCharacterPartsInfo mainCharacterPartsInfo)
     {
+        bool isChangedParts = LibraryBuilder.CheckPartsChange(mainCharacterPartsInfo);
+
+        if (!isChangedParts)
+            return;
+
         var spriteLibrary = characterUnit.SpriteLibrary;
 
         if (spriteLibrary != null && spriteLibrary.spriteLibraryAsset != null)

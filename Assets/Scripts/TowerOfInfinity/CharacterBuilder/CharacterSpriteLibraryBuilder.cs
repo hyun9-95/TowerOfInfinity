@@ -50,6 +50,45 @@ public class CharacterSpriteLibraryBuilder : MonoBehaviour
         CurrentMode = mode;
     }
 
+    public bool CheckPartsChange(MainCharacterPartsInfo newPartsInfo)
+    {
+        if (newPartsInfo?.PartsInfoDic == null)
+            return true;
+
+        // 현재 로드된 파츠가 없으면 변경된 것으로 간주
+        if (loadedParts.Count == 0)
+            return true;
+
+        var partsEnumArray = Enum.GetValues(typeof(CharacterPartsType));
+
+        foreach (CharacterPartsType partType in partsEnumArray)
+        {
+            // 새로운 파츠 정보에서 해당 타입의 파츠 확인
+            bool hasNewPart = newPartsInfo.PartsInfoDic.TryGetValue(partType, out var newPartsData);
+            bool hasLoadedPart = loadedParts.TryGetValue(partType, out var loadedPartsInfo);
+
+            // 한쪽에만 파츠가 있는 경우 변경됨
+            if (hasNewPart != hasLoadedPart)
+                return true;
+
+            // 둘 다 파츠가 있는 경우 주소 비교
+            if (hasNewPart && hasLoadedPart)
+            {
+                var newPartsName = GetPartNameFromPath(newPartsData.PartsPath);
+                var newColorCode = newPartsData.ColorCode;
+                var newFinalPartsName = string.IsNullOrEmpty(newColorCode) ? newPartsName : $"{newPartsName}{newColorCode}";
+
+                // 주소가 다르면 변경됨
+                if (loadedPartsInfo.Address != newPartsData.PartsPath || 
+                    loadedPartsInfo.PartName != newFinalPartsName)
+                    return true;
+            }
+        }
+
+        // 모든 파츠가 동일하면 변경 없음
+        return false;
+    }
+
     public async UniTask<SpriteLibraryAsset> CreateNewSpriteLibrary(MainCharacterPartsInfo userCharacterPartsInfo)
     {
         var partsEnumArray = Enum.GetValues(typeof(CharacterPartsType));

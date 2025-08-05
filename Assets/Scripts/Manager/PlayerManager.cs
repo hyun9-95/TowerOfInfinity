@@ -63,9 +63,16 @@ public class PlayerManager : BaseMonoManager<PlayerManager>
         await mainPlayerCharacter.UpdateMainCharacter(MyUser.UserCharacterInfo.MainCharacterInfo);
     }
 
-    public async UniTask UpdateMainPlayerCharacter()
+    /// <summary>
+    /// Update를 임시로 멈추고 모델을 업데이트한다.
+    /// 사용하려면 다시 활성화해줘야함
+    /// </summary>
+    /// <returns></returns>
+    public async UniTask UpdateMainPlayerCharacter(bool isStopUnitUpdate = true)
     {
-        mainPlayerCharacter.CharacterUnit.StopUpdate();
+        if (isStopUnitUpdate)
+            mainPlayerCharacter.CharacterUnit.StopUpdate();
+
         await mainPlayerCharacter.UpdateMainCharacter(MyUser.UserCharacterInfo.MainCharacterInfo);
     }
 
