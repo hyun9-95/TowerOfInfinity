@@ -1,6 +1,6 @@
 using Cysharp.Threading.Tasks;
-using System.Linq;
 using System;
+using System.Linq;
 
 public class CharacterCustomizationController : BaseController<CharacterCustomizationViewModel>
 {
@@ -13,6 +13,7 @@ public class CharacterCustomizationController : BaseController<CharacterCustomiz
     private DataContainer<DataCharacterParts> partsContainer = DataManager.Instance.GetDataContainer<DataCharacterParts>();
     public override void Enter()
     {
+        mainPlayerCharacter = PlayerManager.Instance.GetMainPlayerCharacter();
         partsContainer = DataManager.Instance.GetDataContainer<DataCharacterParts>();
 
         Model.SetOnCompleteCustomize(OnCompleteCustomize);
@@ -34,26 +35,20 @@ public class CharacterCustomizationController : BaseController<CharacterCustomiz
 
     private void SetCurrentParts()
     {
-        mainPlayerCharacter = PlayerManager.Instance.GetMainPlayerCharacter();
-
         // 현재 메인캐릭터 기준 파츠데이터 삽입
         var mainCharacterInfo = PlayerManager.Instance.GetMainCharacterInfo();
+        Model.SetSelectRace(mainCharacterInfo.CharacterRace);
 
-        var customizablePartsType = new CharacterPartsType[]
-        {
-            CharacterPartsType.Head,
-            CharacterPartsType.Body,
-            CharacterPartsType.Ears,
-            CharacterPartsType.Eyes,
-            CharacterPartsType.Hair,
-            CharacterPartsType.Arms,
-        };
+        var getRaceParts = CommonUtils.GetRacePartsIds(Model.SelectRace);
 
-        foreach (var partsType in customizablePartsType)
+        foreach (var partsId in getRaceParts)
         {
-            var partsData = mainCharacterInfo.PartsInfo.GetPartsData(partsType);
-            Model.SetSelectRaceParts(partsType, partsData);
+            var partsData = DataManager.Instance.GetDataContainer<DataCharacterParts>().GetById(partsId);
+            Model.SetSelectRaceParts(partsData.PartsType, partsData);
         }
+
+        var hairData = mainCharacterInfo.PartsInfo.GetPartsData(CharacterPartsType.Hair);
+        Model.SetSelectHair(hairData);
     }
 
     public override async UniTask LoadingProcess()
@@ -67,7 +62,7 @@ public class CharacterCustomizationController : BaseController<CharacterCustomiz
         libraryBuilder.SetMode(CharacterSpriteLibraryBuilder.Mode.Preload);
         await libraryBuilder.Preload();
 
-        await OnChangePartsAsync();
+        await OnChangePartsAsync(Model.IsShowEquipments, Model.IsShowHelmet);
     }
 
     public override async UniTask Exit()
@@ -85,6 +80,7 @@ public class CharacterCustomizationController : BaseController<CharacterCustomiz
             Model.SetSelectRaceParts(partsData.PartsType, partsData);
         }
 
+        Model.SetSelectRace(characterRace);
         OnChangeParts();
     }
 
@@ -96,10 +92,10 @@ public class CharacterCustomizationController : BaseController<CharacterCustomiz
 
     private void OnChangeParts()
     {
-        OnChangePartsAsync().Forget();
+        OnChangePartsAsync(Model.IsShowEquipments, Model.IsShowHelmet).Forget();
     }
 
-    private async UniTask OnChangePartsAsync()
+    private async UniTask OnChangePartsAsync(bool showEquipments, bool showHelmet)
     {
         if (mainPlayerCharacter == null)
             return;
@@ -107,7 +103,7 @@ public class CharacterCustomizationController : BaseController<CharacterCustomiz
         var changePartsList = Model.SelectRaceParts.Values.ToList();
         changePartsList.Add(Model.SelectHairData);
 
-        if (Model.IsShowEquipments)
+        if (showEquipments)
         {
             var checkEquipmentTypes = new EquipmentType[]
             {
@@ -131,7 +127,7 @@ public class CharacterCustomizationController : BaseController<CharacterCustomiz
             }
         }
 
-        if (Model.IsShowHelmet)
+        if (showHelmet)
         {
             var equippedHelmet = PlayerManager.Instance.MyUser.UserEquipmentInfo.
                 GetMainCharacterEquippedEquipment(EquipmentType.Helmet);
@@ -165,7 +161,11 @@ public class CharacterCustomizationController : BaseController<CharacterCustomiz
         PlayerManager.Instance.MyUser.Save();
 
         TownFlowModel townFlowModel = new TownFlowModel();
-        townFlowModel.SetLobbySceneDefine(SceneDefine.Town_Sanctuary);
+        townFlowModel.SetSceneDefine(SceneDefine.Town_Sanctuary);
+        townFlowModel.AddStateEvent(FlowState.TranstionIn, async() =>
+        {
+            await OnChangePartsAsync(true, true);
+        });
 
         FlowManager.Instance.ChangeFlow(FlowType.TownFlow, townFlowModel).Forget();
     }

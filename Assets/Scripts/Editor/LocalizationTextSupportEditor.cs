@@ -103,6 +103,7 @@ public class LocalizationTextSupportEditor : Editor
                 return;
             }
 
+            LocalizationManager.Instance.SetLocalizationType(LocalizationType.English);
             string translatedText = LocalizationManager.GetLocalization(currentDefine);
             textMeshPro.text = translatedText;
             

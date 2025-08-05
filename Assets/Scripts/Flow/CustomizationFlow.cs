@@ -13,13 +13,6 @@ public class CustomizationFlow : BaseFlow<CustomizationFlowModel>
 
     public override async UniTask LoadingProcess()
     {
-        var loadedScene = await AddressableManager.Instance.LoadSceneAsync(SceneDefine.Town_Customization, UnityEngine.SceneManagement.LoadSceneMode.Single);
-
-        if (!loadedScene.IsValid())
-            return;
-
-        await UniTask.NextFrame();
-
         townSceneManager = loadedScene.GetRootComponent<TownSceneManager>();
 
         if (townSceneManager == null)
@@ -39,7 +32,6 @@ public class CustomizationFlow : BaseFlow<CustomizationFlowModel>
 
     public override async UniTask Exit()
     {
-        await AddressableManager.Instance.UnloadSceneAsync(SceneDefine.Town_Customization);
     }
 
     private async UniTask LoadPlayerCharacters()

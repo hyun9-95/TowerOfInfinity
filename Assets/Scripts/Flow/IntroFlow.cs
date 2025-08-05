@@ -36,7 +36,7 @@ public class IntroFlow : BaseFlow<IntroFlowModel>
         if (GameManager.Config.IsEnterBattleDirectly)
         {
             BattleFlowModel battleFlowModel = new BattleFlowModel();
-            battleFlowModel.SetBattleSceneDefine(SceneDefine.Battle_Atlantis);
+            battleFlowModel.SetSceneDefine(SceneDefine.Battle_Atlantis);
             battleFlowModel.SetDataDungeon(DataManager.Instance.GetDataById<DataDungeon>((int)DungeonDefine.DUNGEON_ATLANTIS));
 
             FlowManager.Instance.ChangeFlow(FlowType.BattleFlow, battleFlowModel).Forget();
@@ -51,7 +51,7 @@ public class IntroFlow : BaseFlow<IntroFlowModel>
         else
         {
             TownFlowModel townFlowModel = new TownFlowModel();
-            townFlowModel.SetLobbySceneDefine(SceneDefine.Town_Sanctuary);
+            townFlowModel.SetSceneDefine(SceneDefine.Town_Sanctuary);
 
             FlowManager.Instance.ChangeFlow(FlowType.TownFlow, townFlowModel).Forget();
         }
@@ -59,6 +59,5 @@ public class IntroFlow : BaseFlow<IntroFlowModel>
 
     public override async UniTask Exit()
     {
-        await AddressableManager.Instance.UnloadSceneAsync(SceneDefine.IntroScene);
     }
 }

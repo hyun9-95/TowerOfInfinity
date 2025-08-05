@@ -1,7 +1,7 @@
 public enum SceneDefine
 {
-    RootScene,
-    IntroScene,
+    None,
+    RootScene = 1,
 
     // 100 ~ 199 : Town
     Town_Sanctuary = 100,

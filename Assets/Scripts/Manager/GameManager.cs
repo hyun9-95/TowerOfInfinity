@@ -40,7 +40,14 @@ public class GameManager : BaseMonoManager<GameManager>
 
     private void InitializeLocalization()
     {
-        LocalizationManager.Instance.SetLocalizationType(settings.Localization.Type);
+        var applyLocal = settings.Localization.Type;
+
+#if UNITY_EDITOR
+        if (Config.testLocalType != LocalizationType.None)
+            applyLocal = Config.testLocalType;
+#endif
+
+        LocalizationManager.Instance.SetLocalizationType(applyLocal);
     }
 
     private void Start()

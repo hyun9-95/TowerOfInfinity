@@ -36,6 +36,11 @@ public class CharacterCustomizationViewModel : IBaseViewModel
     #endregion
 
     #region Function
+    public void SetSelectRace(CharacterRace race)
+    {
+        SelectRace = race;
+    }
+
     public void SetOnSelectRace(Action<CharacterRace> onSelectRace)
     {
         OnSelectRace = onSelectRace;

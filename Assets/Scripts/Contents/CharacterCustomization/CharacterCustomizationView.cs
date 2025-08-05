@@ -57,6 +57,7 @@ public class CharacterCustomizationView : BaseView
     {
         SetupRaceDropdownOptions();
         SetupHairDropdownOptions();
+        SetCurrentDropdownValues();
     }
 
     private void SetupRaceDropdownOptions()
@@ -90,6 +91,42 @@ public class CharacterCustomizationView : BaseView
 
         if (showEquipmentToggle != null)
             showEquipmentToggle.isOn = Model.IsShowEquipments;
+    }
+
+    private void SetCurrentDropdownValues()
+    {
+        SetCurrentRaceDropdownValue();
+        SetCurrentHairDropdownValue();
+    }
+
+    private void SetCurrentRaceDropdownValue()
+    {
+        if (raceDropDown == null || Model.SelectableRaces == null)
+            return;
+
+        for (int i = 0; i < Model.SelectableRaces.Length; i++)
+        {
+            if (Model.SelectableRaces[i] == Model.SelectRace)
+            {
+                raceDropDown.value = i;
+                return;
+            }
+        }
+    }
+
+    private void SetCurrentHairDropdownValue()
+    {
+        if (hairDropDown == null || Model.SelectableHairDatas == null)
+            return;
+
+        for (int i = 0; i < Model.SelectableHairDatas.Length; i++)
+        {
+            if (Model.SelectableHairDatas[i].Id == Model.SelectHairData.Id)
+            {
+                hairDropDown.value = i;
+                return;
+            }
+        }
     }
 
     private void OnRaceDropdownChanged(int index)

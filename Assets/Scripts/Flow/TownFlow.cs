@@ -15,8 +15,6 @@ public class TownFlow : BaseFlow<TownFlowModel>
 
     public override async UniTask LoadingProcess()
     {
-        var loadedScene = await AddressableManager.Instance.LoadSceneAsync(Model.LobbySceneDefine, UnityEngine.SceneManagement.LoadSceneMode.Single);
-
         if (!loadedScene.IsValid())
             return;
 
@@ -42,7 +40,6 @@ public class TownFlow : BaseFlow<TownFlowModel>
 
     public override async UniTask Exit()
     {
-        await AddressableManager.Instance.UnloadSceneAsync(Model.LobbySceneDefine);
     }
 
 
@@ -91,7 +88,7 @@ public class TownFlow : BaseFlow<TownFlowModel>
     private void WarpToBattle(Collider2D collider2D)
     {
         BattleFlowModel battleFlowModel = new BattleFlowModel();
-        battleFlowModel.SetBattleSceneDefine(SceneDefine.Battle_Atlantis);
+        battleFlowModel.SetSceneDefine(SceneDefine.Battle_Atlantis);
         battleFlowModel.SetDataDungeon(DataManager.Instance.GetDataById<DataDungeon>((int)DungeonDefine.DUNGEON_ATLANTIS));
 
         FlowManager.Instance.ChangeFlow(FlowType.BattleFlow, battleFlowModel).Forget();

@@ -11,7 +11,7 @@ public class FlowManager : BaseManager<FlowManager>
 
     private BaseFlow prevFlow;
 
-    public async UniTask ChangeFlow(FlowType flowType, IBaseFlowModel baseFlowModel = null)
+    public async UniTask ChangeFlow(FlowType flowType, BaseFlowModel baseFlowModel = null)
     {
         Logger.Log($"Change Flow {flowType}");
 
@@ -23,6 +23,7 @@ public class FlowManager : BaseManager<FlowManager>
 
         // Transition In
         await TransitionManager.Instance.In(newFlow.TransitionType);
+        await ProcessStateEvent(FlowState.TranstionIn, baseFlowModel);
 
         if (currentFlow != null)
         {
@@ -30,17 +31,41 @@ public class FlowManager : BaseManager<FlowManager>
             prevFlow = currentFlow;
             await prevFlow.Exit();
             currentFlow = null;
-
             await CleanUpAsync();
+
             Logger.Log($"Exit Prev Flow {prevType} => For Change Flow {flowType}");
+            await ProcessStateEvent(FlowState.ExitPrevFlow, baseFlowModel);
         }
 
         currentFlow = newFlow;
+        await currentFlow.LoadScene();
+
+        if (prevFlow != null)
+            await prevFlow.UnloadScene();
+
         await currentFlow.LoadingProcess();
+        await ProcessStateEvent(FlowState.LoadingProcess, baseFlowModel);
+
         await currentFlow.Process();
+        await ProcessStateEvent(FlowState.Process, baseFlowModel);
 
         // Transition Out
-        TransitionManager.Instance.Out(newFlow.TransitionType).Forget();
+        if (baseFlowModel.IsExistStateEvent(FlowState.TransitionOut))
+        {
+            await TransitionManager.Instance.Out(newFlow.TransitionType);
+            await ProcessStateEvent(FlowState.TransitionOut, baseFlowModel);
+        }
+        else
+        {
+            TransitionManager.Instance.Out(newFlow.TransitionType).Forget();
+        }
+
+        baseFlowModel.ClearStateEvent();
+    }
+
+    private async UniTask ProcessStateEvent(FlowState state, BaseFlowModel flowModel)
+    {
+        await flowModel.ProcessStateEvent(state);
     }
 
     

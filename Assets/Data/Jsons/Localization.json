@@ -136,5 +136,17 @@
     "Korean": "저장",
     "English": "Save",
     "SimplifiedChinese": "保存"
+  },
+  {
+    "id": 70023,
+    "Korean": "종족",
+    "English": "Race",
+    "SimplifiedChinese": "种族"
+  },
+  {
+    "id": 70024,
+    "Korean": "헤어",
+    "English": "Hair",
+    "SimplifiedChinese": "头发"
   }
 ]

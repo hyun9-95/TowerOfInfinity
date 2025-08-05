@@ -1,15 +1,8 @@
 using UnityEngine;
 
-public class BattleFlowModel : IBaseFlowModel
+public class BattleFlowModel : BaseFlowModel
 {
-    public SceneDefine BattleSceneDefine { get; private set; }
-
     public DataDungeon DataDungeon { get; private set; }
-
-    public void SetBattleSceneDefine(SceneDefine define)
-    {
-        BattleSceneDefine = define;
-    }
 
     public void SetDataDungeon(DataDungeon dataEnemyGroup)
     {

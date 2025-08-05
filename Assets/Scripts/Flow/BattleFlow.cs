@@ -14,11 +14,6 @@ public class BattleFlow : BaseFlow<BattleFlowModel>
 
     public override async UniTask LoadingProcess()
     {
-        var loadedScene = await AddressableManager.Instance.LoadSceneAsync(Model.BattleSceneDefine, UnityEngine.SceneManagement.LoadSceneMode.Single);
-
-        if (!loadedScene.IsValid())
-            return;
-
         battleSceneManager = loadedScene.GetRootComponent<BattleSceneManager>();
         
         if (battleSceneManager == null)
@@ -62,6 +57,5 @@ public class BattleFlow : BaseFlow<BattleFlowModel>
 
     public override async UniTask Exit()
     {
-        await AddressableManager.Instance.UnloadSceneAsync(Model.BattleSceneDefine);
     }
 }

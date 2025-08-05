@@ -1,6 +1,7 @@
-using UnityEngine;
-using UnityEngine.U2D.Animation;
-
-public class CustomizationFlowModel : IBaseFlowModel
+public class CustomizationFlowModel : BaseFlowModel
 {
+    public CustomizationFlowModel()
+    {
+        SetSceneDefine(SceneDefine.Town_Customization);
+    }
 }
