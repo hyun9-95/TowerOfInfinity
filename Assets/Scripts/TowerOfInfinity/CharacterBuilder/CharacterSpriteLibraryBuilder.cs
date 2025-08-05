@@ -666,8 +666,6 @@ public class CharacterSpriteLibraryBuilder : MonoBehaviour
         if (CurrentMode != Mode.Preload)
             return;
         
-        var memoryBefore = System.GC.GetTotalMemory(false);
-        
         var addressesToRelease = new List<string>();
         
         foreach (var kvp in preloadedParts)
@@ -688,10 +686,7 @@ public class CharacterSpriteLibraryBuilder : MonoBehaviour
             }
         }
         
-        var memoryAfter = System.GC.GetTotalMemory(true);
-        var memoryReleased = memoryBefore - memoryAfter;
-        
-        Logger.Log($"Preload reset: {addressesToRelease.Count} parts released, Memory: {memoryReleased / 1024 / 1024:F2}MB freed");
+        Logger.Log($"Preload reset: {addressesToRelease.Count} parts released.");
     }
 
     private bool IsAddressCurrentlyInUse(string address)

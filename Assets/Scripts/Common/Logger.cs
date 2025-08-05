@@ -44,6 +44,15 @@ public static class Logger
         DebugLog(separator);
     }
 
+    public static void Memory(string context = "")
+    {
+        var totalMemory = System.GC.GetTotalMemory(false);
+        var memoryMB = totalMemory / 1024f / 1024f;
+        
+        var contextPrefix = string.IsNullOrEmpty(context) ? "" : $"[{context}] ";
+        DebugLog($"<color=magenta>[Memory] {contextPrefix} : {memoryMB:F2}MB ({totalMemory:N0} bytes)</color>");
+    }
+
     private static void DebugLog(string message)
     {
 #if DEBUG_LOG || UNITY_EDITOR
