@@ -41,6 +41,8 @@ public class CharacterSpriteLibraryBuilder : MonoBehaviour
     private Texture2D mergedTexture;
     private Dictionary<string, Sprite> sprites;
     private Dictionary<CharacterPartsType, LibraryBuildInfo> loadedParts = new Dictionary<CharacterPartsType, LibraryBuildInfo>();
+    private Dictionary<string, LibraryBuildInfo> preloadedParts = new Dictionary<string, LibraryBuildInfo>();
+    private HashSet<string> currentlyUsedAddresses = new HashSet<string>();
     private bool isPreloaded = false;
 
     public void SetMode(Mode mode)
@@ -121,6 +123,8 @@ public class CharacterSpriteLibraryBuilder : MonoBehaviour
         var libraryBuildInfos = BuildLibraryBuildInfos(partsNames, partsEnumArray);
         await LoadTextures(libraryBuildInfos);
 
+        UpdateCurrentlyUsedParts(libraryBuildInfos);
+
         var processedPartsPixels = ProcessAllParts(libraryBuildInfos, partsNames);
         ApplyFirearmTransformation(processedPartsPixels, partsNames);
 
@@ -146,6 +150,17 @@ public class CharacterSpriteLibraryBuilder : MonoBehaviour
         }
 
         return currentParts;
+    }
+
+    private void UpdateCurrentlyUsedParts(List<LibraryBuildInfo> libraryBuildInfos)
+    {
+        currentlyUsedAddresses.Clear();
+        
+        foreach (var info in libraryBuildInfos)
+        {
+            if (info.IsValid)
+                currentlyUsedAddresses.Add(info.Address);
+        }
     }
 
     private List<LibraryBuildInfo> BuildLibraryBuildInfos(string[] partsNames, Array partsEnumArray)
@@ -406,10 +421,17 @@ public class CharacterSpriteLibraryBuilder : MonoBehaviour
 
     private bool TryUsePreloadedTexture(CharacterPartsType partsType, string texturePath)
     {
-        if (!loadedParts.TryGetValue(partsType, out var libaryBuildInfo))
+        if (!preloadedParts.TryGetValue(texturePath, out var preloadedInfo))
             return false;
             
-        return libaryBuildInfo.Address.Equals(texturePath) && libaryBuildInfo.IsLoaded;
+        if (preloadedInfo.IsLoaded && preloadedInfo.PartsType == partsType)
+        {
+            var libraryBuildInfo = new LibraryBuildInfo(partsType, texturePath, preloadedInfo.PartName, preloadedInfo.Texture);
+            loadedParts[partsType] = libraryBuildInfo;
+            return true;
+        }
+            
+        return false;
     }
 
     private bool IsTextureAlreadyLoaded(CharacterPartsType partsType, string texturePath)
@@ -602,6 +624,8 @@ public class CharacterSpriteLibraryBuilder : MonoBehaviour
         
         await UniTask.WhenAll(preloadTasks);
         isPreloaded = true;
+        
+        Logger.Log($"Preload completed: {preloadedParts.Count} parts loaded");
     }
 
     private List<UniTask> CreatePreloadTasks(IEnumerable<DataCharacterParts> preloadParts)
@@ -621,64 +645,69 @@ public class CharacterSpriteLibraryBuilder : MonoBehaviour
     
     private async UniTask PreloadTexture(CharacterPartsType partsType, string partName, string address)
     {
-        if (loadedParts.ContainsKey(partsType))
+        if (preloadedParts.ContainsKey(address))
             return;
-            
-        try
-        {
-            var texture = await AddressableManager.Instance.LoadAssetAsyncWithTracker<Texture2D>(address, gameObject);
-            
-            if (texture == null)
-            {
-                Logger.Error($"Failed to preload texture: {address}");
-                return;
-            }
 
-            var partsInfo = new LibraryBuildInfo(partsType, address, string.Empty, texture);
-            loadedParts[partsType] = partsInfo;
-        }
-        catch (System.Exception e)
+        var texture = await AddressableManager.Instance.LoadAssetAsyncWithTracker<Texture2D>(address, gameObject);
+
+        if (texture == null)
         {
-            Logger.Error($"Exception during preload: {e.Message}");
+            Logger.Error($"Failed to preload texture: {address}");
+            return;
         }
+
+        var partsInfo = new LibraryBuildInfo(partsType, address, partName, texture);
+        preloadedParts[address] = partsInfo;
     }
     
     
     public void ResetPreload()
     {
         if (CurrentMode != Mode.Preload)
-        {
-            Logger.Warning("ResetPreload called but current mode is not Preload");
             return;
+        
+        var memoryBefore = System.GC.GetTotalMemory(false);
+        
+        var addressesToRelease = new List<string>();
+        
+        foreach (var kvp in preloadedParts)
+        {
+            var address = kvp.Key;
+            bool isCurrentlyInUse = IsAddressCurrentlyInUse(address);
+            
+            if (!isCurrentlyInUse)
+                addressesToRelease.Add(address);
         }
         
-        var partsToKeep = new HashSet<CharacterPartsType>(loadedParts.Keys);
-        var partsToRelease = new List<CharacterPartsType>();
-        
-        foreach (var partType in loadedParts.Keys)
+        foreach (var address in addressesToRelease)
         {
-            if (!IsPartCurrentlyInUse(partType))
-                partsToRelease.Add(partType);
-        }
-        
-        foreach (var partType in partsToRelease)
-        {
-            if (loadedParts.TryGetValue(partType, out var partsInfo) && partsInfo.IsLoaded)
+            if (preloadedParts.TryGetValue(address, out var partsInfo) && partsInfo.IsLoaded)
             {
                 AddressableManager.Instance.ReleaseFromTracker(partsInfo.Texture, gameObject);
-                loadedParts.Remove(partType);
+                preloadedParts.Remove(address);
             }
         }
+        
+        var memoryAfter = System.GC.GetTotalMemory(true);
+        var memoryReleased = memoryBefore - memoryAfter;
+        
+        Logger.Log($"Preload reset: {addressesToRelease.Count} parts released, Memory: {memoryReleased / 1024 / 1024:F2}MB freed");
     }
 
-    private bool IsPartCurrentlyInUse(CharacterPartsType partType)
+    private bool IsAddressCurrentlyInUse(string address)
     {
-        return false;
+        return currentlyUsedAddresses.Contains(address);
     }
     
     private void OnDestroy()
     {
         foreach (var partsInfo in loadedParts.Values)
+        {
+            if (partsInfo.IsLoaded)
+                AddressableManager.Instance.ReleaseFromTracker(partsInfo.Texture, gameObject);
+        }
+
+        foreach (var partsInfo in preloadedParts.Values)
         {
             if (partsInfo.IsLoaded)
                 AddressableManager.Instance.ReleaseFromTracker(partsInfo.Texture, gameObject);

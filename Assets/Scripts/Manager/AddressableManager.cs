@@ -28,7 +28,7 @@ public class AddressableManager : BaseManager<AddressableManager>
     private Dictionary<GameObject, AsyncOperationHandle<GameObject>> instantiatedHandles = new Dictionary<GameObject, AsyncOperationHandle<GameObject>>();
     private Dictionary<UnityEngine.Object, AsyncOperationHandle> assetHandles = new Dictionary<UnityEngine.Object, AsyncOperationHandle>();
     private Dictionary<string, AsyncOperationHandle<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>> sceneHandles = new Dictionary<string, AsyncOperationHandle<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>>();
-    private Dictionary<GameObject, List<AsyncOperationHandle>> trackingAssetHandles = new Dictionary<GameObject, List<AsyncOperationHandle>>();
+    private Dictionary<GameObject, Dictionary<UnityEngine.Object, AsyncOperationHandle>> trackingAssetHandles = new Dictionary<GameObject, Dictionary<UnityEngine.Object, AsyncOperationHandle>>();
     private HashSet<string> loadedScenes = new HashSet<string>();
     private HashSet<GameObject> excludedFromRelease = new HashSet<GameObject>();
 
@@ -203,14 +203,13 @@ public class AddressableManager : BaseManager<AddressableManager>
 
         if (tracker != null)
         {
-            if (trackingAssetHandles.
-                TryGetValue(tracker, out List<AsyncOperationHandle> trackingHandles))
+            if (trackingAssetHandles.TryGetValue(tracker, out var assetToHandleMap))
             {
-                trackingHandles.Add(handle);
+                assetToHandleMap[asset] = handle;
             }
             else
             {
-                trackingAssetHandles.Add(tracker, new List<AsyncOperationHandle>() { handle });
+                trackingAssetHandles.Add(tracker, new Dictionary<UnityEngine.Object, AsyncOperationHandle>() { { asset, handle } });
             }
         }
 
@@ -278,13 +277,17 @@ public class AddressableManager : BaseManager<AddressableManager>
             instantiatedHandles.Remove(go);
         }
 
-        if (trackingAssetHandles.TryGetValue(go, out var handles))
+        if (trackingAssetHandles.TryGetValue(go, out var assetToHandleMap))
         {
-            foreach (var trackingHandle in handles)
+            foreach (var kvp in assetToHandleMap)
             {
+                var trackingHandle = kvp.Value;
+
                 if (trackingHandle.IsValid())
-                    trackingHandle.Release();
+                    Addressables.Release(trackingHandle);
             }
+            
+            trackingAssetHandles.Remove(go);
         }
     }
 
@@ -302,15 +305,17 @@ public class AddressableManager : BaseManager<AddressableManager>
 
     public void ReleaseFromTracker(Object asset, GameObject tracker)
     {
-        if (trackingAssetHandles.TryGetValue(tracker, out var handles))
+        if (trackingAssetHandles.TryGetValue(tracker, out var assetToHandleMap))
         {
-            foreach (var trackingHandle in handles)
+            if (assetToHandleMap.TryGetValue(asset, out var handle))
             {
-                if (trackingHandle.IsValid() && (Object)trackingHandle.Result == asset)
-                {
-                    trackingHandle.Release();
-                    break;
-                }
+                if (handle.IsValid())
+                    Addressables.Release(handle);
+                
+                assetToHandleMap.Remove(asset);
+                
+                if (assetToHandleMap.Count == 0)
+                    trackingAssetHandles.Remove(tracker);
             }
         }
     }

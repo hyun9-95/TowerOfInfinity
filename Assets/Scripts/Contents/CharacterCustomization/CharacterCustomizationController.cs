@@ -165,6 +165,7 @@ public class CharacterCustomizationController : BaseController<CharacterCustomiz
         townFlowModel.AddStateEvent(FlowState.TranstionIn, async() =>
         {
             await OnChangePartsAsync(true, true);
+            mainPlayerCharacter.LibraryBuilder.ResetPreload();
         });
 
         FlowManager.Instance.ChangeFlow(FlowType.TownFlow, townFlowModel).Forget();
