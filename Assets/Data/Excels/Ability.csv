@@ -1,6 +1,6 @@
 ﻿아이디,이름,,,,,,
-int,string,AbilityType,BattleEventDefine[],enum:BattleEventTriggerType,enum:BattleEventTargetType,string,string
-Id,NameId,Type,BattleEvents,TriggerType,TargetType,PrefabName,HitEffectPrefabName
-50000,WEAPON_SLASH_PROJECTILE,Weapon,BE_DAMAGE_ONE_SHOT_ATTACK,Projectile,Enemy,Ability/Slash_Projectile/Slash_Projectile,NULL
-50001,WEAPON_ARROW,Weapon,BE_DAMAGE_ONE_SHOT_ATTACK,Projectile,Enemy,Ability/Arrow_Projectile/Arrow_Projectile,NULL
-50002,WEAPON_STING,Weapon,BE_DAMAGE_ONE_SHOT_ATTACK,Collider,Enemy,Ability/Sting_Collider/Sting_Collider,NULL
+int,string,CastingType,BattleEventDefine[],enum:BattleEventTriggerType,enum:BattleEventTargetType,string,string
+Id,NameId,CastingType,BattleEvents,TriggerType,TargetType,PrefabName,HitEffectPrefabName
+50000,AB_ATTACK_SLASH_PROJECTILE,OnAttack,BE_DAMAGE_ONE_SHOT_ATTACK,Projectile,Enemy,Ability/Slash_Projectile/Slash_Projectile,NULL
+50001,AB_ATTACK_ARROW,OnAttack,BE_DAMAGE_ONE_SHOT_ATTACK,Projectile,Enemy,Ability/Arrow_Projectile/Arrow_Projectile,NULL
+50002,AB_ATTACK_STING,OnAttack,BE_DAMAGE_ONE_SHOT_ATTACK,Collider,Enemy,Ability/Sting_Collider/Sting_Collider,NULL

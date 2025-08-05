@@ -13,6 +13,9 @@ public class RepositionTile : MonoBehaviour
         if (!collision.gameObject.CheckLayer(checkLayer) || !BattleSceneManager.Instance)
             return;
 
+        if (!BattleSceneManager.Instance.CurrentCharacter)
+            return;
+
         Vector3 playerPos = BattleSceneManager.Instance.CurrentCharacter.transform.position;
         Vector3 tilePos = transform.position;
 

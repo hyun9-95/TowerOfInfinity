@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dceb0da3ed51b6e47a7efb36ff83fcff, type: 3}
-  m_Name: WEAPON_ARROW
+  m_Name: AB_ATTACK_SLASH_PROJECTILE
   m_EditorClassIdentifier: 
-  type: 50001
+  type: 50000
   Speed: []
   Range:
-  - 5
-  - 5.2
-  - 5.4
-  - 5.6
-  - 5.8
-  - 6
-  - 6.2
-  - 6.4
+  - 3
+  - 3.2
+  - 3.4
+  - 3.6
+  - 3.8
+  - 4
+  - 4.2
+  - 4.4
   Duration: []
   SendCount: 0100000001000000020000000200000003000000030000000400000004000000
   Scale:

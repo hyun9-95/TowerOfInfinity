@@ -18,12 +18,7 @@ public class BattleEventTriggerModel
     public float Scale { get; private set; }
     public float Duration { get; private set; }
 
-    public BattleEventTriggerModel Clone()
-    {
-        return MemberwiseClone() as BattleEventTriggerModel;
-    }
-
-    public void Initialize(CharacterUnitModel sender, DataAbility abilityData, ScriptableAbilityBalance balance)
+    public void Initialize(CharacterUnitModel sender, int level, DataAbility abilityData, ScriptableAbilityBalance balance)
     {
         if (abilityData.IsNull)
             return;
@@ -31,7 +26,7 @@ public class BattleEventTriggerModel
         AbilityDataId = abilityData.Id;
         Sender = sender;
 
-        Level = sender.Level;
+        Level = level;
         TriggerType = abilityData.TriggerType;
         TargetType = abilityData.TargetType;
         PrefabName = abilityData.PrefabName;

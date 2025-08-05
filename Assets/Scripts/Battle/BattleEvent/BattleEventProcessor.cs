@@ -36,10 +36,10 @@ public class BattleEventProcessor
         owner = ownerValue;
 
         // 오너 변경시 클리어
-        Clear();
+        Cancel();
     }
 
-    public void SendBattleEvent(BattleEventModel model)
+    public void ReceiveBattleEvent(BattleEventModel model)
     {
         if (model == null)
             return;
@@ -268,7 +268,7 @@ public class BattleEventProcessor
         }
     }
 
-    public void Clear()
+    public void Cancel()
     {
         // 먼저 모든 상태 효과를 종료 처리
         StopAllBattleEvent();

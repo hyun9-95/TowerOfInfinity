@@ -7,8 +7,8 @@ public struct DataAbility : IBaseData
 {
     [JsonProperty(PropertyName = "id")]
     private readonly int id;
-    [JsonProperty(PropertyName = "Type")]
-    public readonly AbilityType Type;
+    [JsonProperty(PropertyName = "CastingType")]
+    public readonly CastingType CastingType;
     [JsonProperty(PropertyName = "BattleEvents")]
     public readonly BattleEventDefine[] BattleEvents;
     [JsonProperty(PropertyName = "TriggerType")]

@@ -10,12 +10,12 @@ public class PlayerAttackState : ScriptableCharacterState
 
     public override bool CheckEnterCondition(CharacterUnitModel model)
     {
-        return model.DefaultWeapon != null && !model.DefaultWeapon.IsProcessing;
+        return model.AbilityProcessor.IsPrimaryWeaponReady() && model.CurrentAnimState != AnimState;
     }
 
     public override bool CheckExitCondition(CharacterUnitModel model)
     {
-        return model.DefaultWeapon.IsProcessing && model.CurrentAnimState != AnimState;
+        return !model.AbilityProcessor.IsPrimaryWeaponReady() && model.CurrentAnimState != AnimState;
     }
 
     public override void OnStateAction(CharacterUnitModel model)
@@ -25,8 +25,8 @@ public class PlayerAttackState : ScriptableCharacterState
             model.ActionHandler.OnMovement(model.InputWrapper.Movement,
             model.GetStatValue(StatType.MoveSpeed), true);
         }
-        
-        if (!model.DefaultWeapon.IsProcessing && model.CurrentAnimState == CharacterAnimState.Attack)
-            model.DefaultWeapon.ActivateOneTime(GetAnimationDelay(AnimState)).Forget();
+
+        if (model.AbilityProcessor.IsPrimaryWeaponReady() && model.CurrentAnimState == CharacterAnimState.Attack)
+            model.AbilityProcessor.CastPrimaryWeapon(GetAnimationDelay(AnimState)).Forget();
     }
 }

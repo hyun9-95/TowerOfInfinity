@@ -3,7 +3,7 @@ using UnityEngine;
 public class CharacterInfo
 {
     #region Property
-    public int DefaultWeaponDataId { get; private set; }
+    public int PrimaryWeaponDataId { get; private set; }
     public int ActiveSkillDataId { get; private set; }
     public int PassiveSkillDataId { get; private set; }
     #endregion
@@ -12,9 +12,9 @@ public class CharacterInfo
     #endregion
 
     #region Function
-    public void SetDefaultWeaponDataId(int dataWeaponId)
+    public void SetPrimaryWeaponAbilityDataId(int abilityWeaponId)
     {
-        DefaultWeaponDataId = dataWeaponId;
+        PrimaryWeaponDataId = abilityWeaponId;
     }
 
     public void SetActiveSkillDataId(int dataActiveSkillId)

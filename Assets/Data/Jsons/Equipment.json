@@ -25,6 +25,6 @@
     "EquipmentType": "WEAPON",
     "Name": "LOCAL_WEAPON_SHORT_DAGGER",
     "PartsData": "PARTS_EQUIPMENT_WEAPON_SHORT_DAGGER",
-    "Ability": "WEAPON_STING"
+    "Ability": "AB_ATTACK_STING"
   }
 ]

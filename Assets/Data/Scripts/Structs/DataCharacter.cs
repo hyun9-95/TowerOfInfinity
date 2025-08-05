@@ -9,8 +9,8 @@ public struct DataCharacter : IBaseData
     private readonly int id;
     [JsonProperty(PropertyName = "PrefabName")]
     public readonly string PrefabName;
-    [JsonProperty(PropertyName = "Default_Weapon")]
-    public readonly AbilityDefine Default_Weapon;
+    [JsonProperty(PropertyName = "PrimaryWeaponAbility")]
+    public readonly AbilityDefine PrimaryWeaponAbility;
     [JsonProperty(PropertyName = "ActiveSkill")]
     public readonly AbilityDefine ActiveSkill;
     [JsonProperty(PropertyName = "PassiveSkill")]

@@ -63,6 +63,12 @@ public class PlayerManager : BaseMonoManager<PlayerManager>
         await mainPlayerCharacter.UpdateMainCharacter(MyUser.UserCharacterInfo.MainCharacterInfo);
     }
 
+    public async UniTask UpdateMainPlayerCharacter()
+    {
+        mainPlayerCharacter.CharacterUnit.StopUpdate();
+        await mainPlayerCharacter.UpdateMainCharacter(MyUser.UserCharacterInfo.MainCharacterInfo);
+    }
+
     public MainPlayerCharacter GetMainPlayerCharacter()
     {
         return mainPlayerCharacter;

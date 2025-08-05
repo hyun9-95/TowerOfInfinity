@@ -99,12 +99,7 @@ public class BattleSystemManager : BaseManager<BattleSystemManager>
 
         var originModel = origin.Model;
 
-        // 무기의 Owner 변경
-        foreach (var weapon in originModel.Weapons)
-        {
-            weapon.Model.SetOwner(changeTargetModel);
-            changeTargetModel.AddWeapon(weapon);
-        }
+        // Processor들 Owner 변경
 
         // expGainer의 Owner 변경
         expGainer.Model.SetOwner(changeTargetModel);

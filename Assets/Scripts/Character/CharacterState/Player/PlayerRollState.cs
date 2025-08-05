@@ -34,13 +34,15 @@ public class PlayerRollState : ScriptableCharacterState
 
     public override void OnStateAction(CharacterUnitModel model)
     {
-
     }
 
     private async UniTask DelayAddForce(CharacterUnitModel model)
     {
         await UniTaskUtils.DelaySeconds(rollDelay, cancellationToken: TokenPool.Get(GetHashCode()));
+        
         model.ActionHandler.OnAddForce(model.InputWrapper.Movement.normalized,
             model.GetStatValue(StatType.MoveSpeed) * speedMultiplier);
+
+        model.AbilityProcessor.Cast(CastingType.OnRoll);
     }
 }

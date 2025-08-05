@@ -36,6 +36,8 @@ public class CustomizationFlow : BaseFlow<CustomizationFlowModel>
 
     private async UniTask LoadPlayerCharacters()
     {
+        await PlayerManager.Instance.UpdateMainPlayerCharacter();
+
         var playerTransform = townSceneManager.PlayerStartTransform;
         var mainCharacter = PlayerManager.Instance.GetMainPlayerCharacterUnit();
         mainCharacter.transform.SetPositionAndRotation(playerTransform.position, Quaternion.identity);

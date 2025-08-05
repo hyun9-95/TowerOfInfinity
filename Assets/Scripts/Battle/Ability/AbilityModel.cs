@@ -1,7 +1,10 @@
+using System;
+
 public class AbilityModel : IBaseUnitModel
 {
     public DataAbility AbilityData { get; private set; }
     public CharacterUnitModel Owner { get; private set; }
+    public int Level { get; private set; }
     public float CoolTime => abilityBalance.GetCoolTime(Owner.Level);
 
     private ScriptableAbilityBalance abilityBalance;
@@ -22,10 +25,20 @@ public class AbilityModel : IBaseUnitModel
         Owner = owner;
     }
 
+    public void SetLevel(int level)
+    {
+        Level = level;
+    }
+
+    public void LevelUp()
+    {
+        Level = Math.Max(++Level, IntDefine.MAX_ABILITY_LEVEL);
+    }
+
     public BattleEventTriggerModel CreateTriggerModel()
     {
         BattleEventTriggerModel triggerModel = BattleEventTriggerFactory.CreateTriggerModel();
-        triggerModel.Initialize(Owner, AbilityData, abilityBalance);
+        triggerModel.Initialize(Owner, Level, AbilityData, abilityBalance);
 
         return triggerModel;
     }

@@ -59,7 +59,7 @@ public class CollisionDamageModule : ScriptableCharacterModule
 
         var eventModel = new BattleEventModel();
         eventModel.Initialize(owner, info.targetModel, defaultDamageEventData, owner.Level);
-        info.targetModel.EventProcessorWrapper.SendBattleEvent(eventModel);
+        info.targetModel.EventProcessor.ReceiveBattleEvent(eventModel);
     }
 
     private bool IsTriggerTarget(Collider2D collision)

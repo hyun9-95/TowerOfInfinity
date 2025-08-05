@@ -133,11 +133,13 @@ public enum PathFindType
     AStar,
 }
 
-public enum AbilityType
+public enum CastingType
 {
-    Weapon,
-    ActiveSkill,
-    PassiveSkill,
+    Instant,      //즉시 발동
+    Auto,         //쿨타임마다 발동
+    OnAttack,     //캐릭터가 공격할 때 발동
+    OnRoll,       //캐릭터가 구를 때 발동
+    OnGuard,      //캐릭터가 가드할 때 발동
 }
 
 public enum TeamTag

@@ -2,20 +2,26 @@ public static class AbilityFactory
 {
     public static T Create<T>(int dataId, CharacterUnitModel owner) where T : Ability, new()
     {
-        var model = GetAbilityModel(dataId, owner);
+        DataAbility abilityData = DataManager.Instance.GetDataById<DataAbility>(dataId);
+
+        return Create<T>(abilityData, owner);
+    }
+
+    public static T Create<T>(DataAbility data, CharacterUnitModel owner) where T : Ability, new()
+    {
+        var model = GetAbilityModel(data, owner);
 
         if (model == null)
             return null;
 
         T abliity = new T();
-        abliity.SetModel(model);
+        abliity.Initialize(model);
 
         return abliity;
     }
 
-    private static AbilityModel GetAbilityModel(int dataId, CharacterUnitModel owner)
+    private static AbilityModel GetAbilityModel(DataAbility abilityData, CharacterUnitModel owner)
     {
-        DataAbility abilityData = DataManager.Instance.GetDataById<DataAbility>(dataId);
         AbilityDefine abilityDefine = (AbilityDefine)abilityData.Id;
 
         if (abilityData.IsNull)

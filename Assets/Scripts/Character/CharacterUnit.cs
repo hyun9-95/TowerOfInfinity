@@ -69,13 +69,13 @@ public class CharacterUnit : PoolableMono
     private ScriptableCharacterState defaultState;
     private bool activated = false;
 
-    private BattleEventProcessor battleEventProcessor = new BattleEventProcessor();
-    private static readonly WeaponProcessor weaponProcessor = new WeaponProcessor();
+    private AbilityProcessor abilityProcessor = new();
+    private BattleEventProcessor battleEventProcessor = new();
 
     private Dictionary<ModuleType, IModuleModel> moduleModelDic;
 
     private Dictionary<CharacterAnimState, CharacterAnimState> reversedAnimStateResolver = null;
-    private Dictionary<int, CharacterAnimState> shortNameHashDic = new Dictionary<int, CharacterAnimState>();
+    private Dictionary<int, CharacterAnimState> shortNameHashDic = new();
 
     protected virtual void Update()
     {
@@ -125,10 +125,11 @@ public class CharacterUnit : PoolableMono
 
         activated = true;
         gameObject.SafeSetActive(true);
+    }
 
-        // 패시브 스킬 활성화
-        if (Model.PassiveSkill != null)
-            Model.PassiveSkill.Activate();
+    public void StopUpdate()
+    {
+        activated = false;
     }
 
     private void OnDeactivate()
@@ -141,7 +142,10 @@ public class CharacterUnit : PoolableMono
         moduleGroup.OnEventUpdate(Model, moduleModelDic);
 
         if (Model.IsDead)
-            weaponProcessor.Cancel(Model);
+        {
+            abilityProcessor.Cancel();
+            battleEventProcessor.Cancel();
+        }
 
         Model.ActionHandler.Cancel();
 
@@ -194,8 +198,8 @@ public class CharacterUnit : PoolableMono
         RefreshAnimState();
 
         moduleGroup.OnEventUpdate(Model, moduleModelDic);
+        abilityProcessor.Update();
         battleEventProcessor.Update();
-        weaponProcessor.Process(Model);
     }
 
     protected void UpdateState()
@@ -319,8 +323,19 @@ public class CharacterUnit : PoolableMono
         Model.SetTransform(transform);
         Model.SetAgent(agent);
  
+        // 배틀 이벤트 처리
         battleEventProcessor.SetOwner(Model);
-        Model.SetEventProcessorWrapper(new BattleEventProcessorWrapper(battleEventProcessor));
+        Model.SetEventProcessor(battleEventProcessor);
+
+        // 어빌리티 처리
+        abilityProcessor.SetOwner(Model);
+
+        // 주무기 어빌리티 Set
+        var primaryWeapon = AbilityFactory.Create<Ability>(Model.PrimaryWeaponAbilityId, Model);
+        if (primaryWeapon != null)
+            abilityProcessor.SetPrimaryWeaponAbility(primaryWeapon);
+
+        Model.SetAbilityProcessor(abilityProcessor);
     }
 
     private CharacterActionHandler CreateActionHandler()

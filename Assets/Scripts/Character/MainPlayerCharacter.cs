@@ -23,7 +23,7 @@ public class MainPlayerCharacter : MonoBehaviour
 
     public async UniTask<bool> UpdateMainCharacter(MainCharacterInfo mainCharacterInfo)
     {
-        int defaultWeaponDataId = mainCharacterInfo.DefaultWeaponDataId;
+        int defaultWeaponDataId = mainCharacterInfo.PrimaryWeaponDataId;
         int activeSkillDataId = mainCharacterInfo.ActiveSkillDataId;
         int passiveSkillDataId = mainCharacterInfo.PassiveSkillDataId;
 

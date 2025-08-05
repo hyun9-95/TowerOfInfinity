@@ -2,28 +2,28 @@
   {
     "id": 10000,
     "PrefabName": "Character/Player/Thief/Thief",
-    "Default_Weapon": "WEAPON_STING",
+    "PrimaryWeaponAbility": "AB_ATTACK_STING",
     "ActiveSkill": "None",
     "PassiveSkill": "None"
   },
   {
     "id": 10001,
     "PrefabName": "Character/Player/Archer/Archer",
-    "Default_Weapon": "WEAPON_ARROW",
+    "PrimaryWeaponAbility": "AB_ATTACK_ARROW",
     "ActiveSkill": "None",
     "PassiveSkill": "None"
   },
   {
     "id": 10002,
     "PrefabName": "Character/Player/Guard/Guard",
-    "Default_Weapon": "WEAPON_STING",
+    "PrimaryWeaponAbility": "AB_ATTACK_SLASH_PROJECTILE",
     "ActiveSkill": "None",
     "PassiveSkill": "None"
   },
   {
     "id": 11000,
     "PrefabName": "Character/Enemy/Bat/Bat",
-    "Default_Weapon": "None",
+    "PrimaryWeaponAbility": "None",
     "ActiveSkill": "None",
     "PassiveSkill": "None"
   }

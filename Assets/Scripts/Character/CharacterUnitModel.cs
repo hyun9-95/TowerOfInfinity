@@ -16,26 +16,21 @@ public class CharacterUnitModel : IBaseUnitModel
     public CharacterUnitModel Target { get; private set; }
     public InputWrapper InputWrapper { get; private set; } 
     public NavMeshAgent Agent { get; private set; }
-    public BattleEventProcessorWrapper EventProcessorWrapper { get; private set; }
-    public int PendingWeaponCount => pendingWeapons != null ? pendingWeapons.Count : 0;
+    public BattleEventProcessor EventProcessor { get; private set; }
+    public AbilityProcessor AbilityProcessor { get; private set; }
     public bool IsDead => Hp <= 0;
-    public Weapon DefaultWeapon { get; private set; }
-    public ActiveSkill ActiveSkill { get; private set; }
-    public PassiveSkill PassiveSkill { get; private set; }
+    public int PrimaryWeaponAbilityId { get; private set; }
     public float Hp { get; private set; }
     public float Attack { get; private set; }
     public float Defense { get; private set; }
     public float MoveSpeed { get; private set; }
     public PathFindType PathFindType { get; private set; }
     public bool IsFlipX { get; private set; }
-    public HashSet<Weapon> Weapons => weapons;
     public float RepathTimer { get; private set; }
     #endregion
 
     #region Value
     private ScriptableCharacterStat baseStat;
-    private HashSet<Weapon> weapons;
-    private Queue<Weapon> pendingWeapons;
     private Dictionary<StatType, float> statModifiers = new Dictionary<StatType, float>();
     #endregion
     public void SetCharacterDataId(int id)
@@ -49,9 +44,14 @@ public class CharacterUnitModel : IBaseUnitModel
         ActionHandler = handler;
     }
 
-    public void SetEventProcessorWrapper(BattleEventProcessorWrapper wrapper)
+    public void SetEventProcessor(BattleEventProcessor processor)
     {
-        EventProcessorWrapper = wrapper;
+        EventProcessor = processor;
+    }
+
+    public void SetAbilityProcessor(AbilityProcessor processor)
+    {
+        AbilityProcessor = processor;
     }
 
     public void EnableInput(bool value)
@@ -107,46 +107,9 @@ public class CharacterUnitModel : IBaseUnitModel
         }
     }
 
-    public void SetDefaultWeapon(Weapon weapon)
+    public void SetPrimaryWeaponAbility(int weaponAbilityId)
     {
-        DefaultWeapon = weapon;
-    }
-
-    public void AddWeapon(Weapon weapon)
-    {
-        if (weapons == null)
-            weapons = new HashSet<Weapon>();
-
-        if (weapons.Contains(weapon))
-            return;
-
-        weapons.Add(weapon);
-
-        if (!weapon.IsProcessing)
-        {
-            if (pendingWeapons == null)
-                pendingWeapons = new Queue<Weapon>();
-
-            pendingWeapons.Enqueue(weapon);
-        }
-    }
-
-    public void RemoveWeapon(Weapon weapon)
-    {
-        if (weapons == null)
-            return;
-
-        weapons.Remove(weapon);
-    }
-
-    public void SetActiveSkill(ActiveSkill activeSkill)
-    {
-        ActiveSkill = activeSkill;
-    }
-
-    public void SetPassiveSkill(PassiveSkill passiveSkill)
-    {
-        PassiveSkill = passiveSkill;
+        PrimaryWeaponAbilityId = weaponAbilityId;
     }
 
     public Stat GetBaseStat(StatType statType)
@@ -208,26 +171,5 @@ public class CharacterUnitModel : IBaseUnitModel
     public void SetRepathTimer(float timer)
     {
         RepathTimer = timer;
-    }
-
-    public Weapon DequeuePendingWeapon()
-    {
-        if (pendingWeapons.Count == 0)
-            return null;
-
-        var weapon = pendingWeapons.Dequeue();
-
-        if (weapon != null && weapons.Contains(weapon))
-            return weapon;
-
-        return null;
-    }
-
-    public IEnumerable<Weapon> GetAllWeapons()
-    {
-        if (weapons == null)
-            return null;
-
-        return weapons;
     }
 }
