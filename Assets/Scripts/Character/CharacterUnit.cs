@@ -59,9 +59,6 @@ public class CharacterUnit : PoolableMono
     protected ScriptableCharacterStat baseStat;
 
     [SerializeField]
-    protected SerializableDictionary<CharacterAnimState, CharacterAnimState> animStateResolver;
-
-    [SerializeField]
     private bool debugLog;
 
     private ScriptableCharacterStateGroup stateGroup;
@@ -74,7 +71,6 @@ public class CharacterUnit : PoolableMono
 
     private Dictionary<ModuleType, IModuleModel> moduleModelDic;
 
-    private Dictionary<CharacterAnimState, CharacterAnimState> reversedAnimStateResolver = null;
     private Dictionary<int, CharacterAnimState> shortNameHashDic = new();
 
     protected virtual void Update()
@@ -198,8 +194,12 @@ public class CharacterUnit : PoolableMono
         RefreshAnimState();
 
         moduleGroup.OnEventUpdate(Model, moduleModelDic);
-        abilityProcessor.Update();
-        battleEventProcessor.Update();
+
+        if (Model.CharacterSetUpType == CharacterSetUpType.Battle)
+        {
+            abilityProcessor.Update();
+            battleEventProcessor.Update();
+        }
     }
 
     protected void UpdateState()
@@ -227,7 +227,7 @@ public class CharacterUnit : PoolableMono
 
     protected void UpdatePhysics()
     {
-        if (IsEnablePhysics())
+        if (Model.IsEnablePhysics)
         {
             
         }
@@ -236,14 +236,6 @@ public class CharacterUnit : PoolableMono
             rigidBody2D.linearVelocity = Vector2.zero;
             rigidBody2D.angularVelocity = 0;
         }
-    }
-
-    private bool IsEnablePhysics()
-    {
-        if (battleEventProcessor.IsProcessingBattleEvent(BattleEventType.KnockBack))
-            return true;
-
-        return false;
     }
 
     private void SelectState()
@@ -266,17 +258,7 @@ public class CharacterUnit : PoolableMono
         var currentStateInfo = animator.GetCurrentAnimatorStateInfo(0);
 
         if (shortNameHashDic.TryGetValue(currentStateInfo.shortNameHash, out CharacterAnimState animState))
-        {
-            if (reversedAnimStateResolver != null)
-            {
-                var reversedAnimState = ReverseAnimState(animState);
-                Model.SetCurrentAnimState(reversedAnimState);
-            }
-            else
-            {
-                Model.SetCurrentAnimState(animState);
-            }
-        }
+            Model.SetCurrentAnimState(animState);
     }
 
     private ScriptableCharacterState FindCandidateState()
@@ -307,7 +289,7 @@ public class CharacterUnit : PoolableMono
 
         CurrentState = state;
 
-        var resolvedAnimState = ResolveAnimState(state.AnimState);
+        var resolvedAnimState = ResolveAnimStateParameter(state.AnimState);
         animator.SetInteger(StringDefine.CHARACTER_ANIM_STATE_KEY, resolvedAnimState);
 
         CurrentState.OnEnterState(Model);
@@ -322,7 +304,13 @@ public class CharacterUnit : PoolableMono
         Model.InitializeStat(baseStat);
         Model.SetTransform(transform);
         Model.SetAgent(agent);
- 
+
+        if (Model.CharacterSetUpType == CharacterSetUpType.Battle)
+            InitializeBattleModel();
+    }
+
+    private void InitializeBattleModel()
+    {
         // 배틀 이벤트 처리
         battleEventProcessor.SetOwner(Model);
         Model.SetEventProcessor(battleEventProcessor);
@@ -331,9 +319,25 @@ public class CharacterUnit : PoolableMono
         abilityProcessor.SetOwner(Model);
 
         // 주무기 어빌리티 Set
-        var primaryWeapon = AbilityFactory.Create<Ability>(Model.PrimaryWeaponAbilityId, Model);
-        if (primaryWeapon != null)
-            abilityProcessor.SetPrimaryWeaponAbility(primaryWeapon);
+        if (Model.CharacterType == CharacterType.Main)
+        {
+            var equipmentWeapon = Model.GetEquipment(EquipmentType.Weapon);
+
+            if (equipmentWeapon != null)
+            {
+                var primaryWeapon = AbilityFactory.Create<Ability>((int)equipmentWeapon.Ability, Model);
+
+                if (primaryWeapon != null)
+                    abilityProcessor.SetPrimaryWeaponAbility(primaryWeapon);
+            }
+        }
+        else if (Model.PrimaryWeaponAbilityDataId != 0)
+        {
+            var primaryWeapon = AbilityFactory.Create<Ability>(Model.PrimaryWeaponAbilityDataId, Model);
+
+            if (primaryWeapon != null)
+                abilityProcessor.SetPrimaryWeaponAbility(primaryWeapon);
+        }
 
         Model.SetAbilityProcessor(abilityProcessor);
     }
@@ -349,32 +353,31 @@ public class CharacterUnit : PoolableMono
 
     private void InitializeAnimState()
     {
-        if (animStateResolver.Count > 0)
-            reversedAnimStateResolver = animStateResolver.ToDictionary(pair => pair.Value, pair => pair.Key);
-
         var values = (CharacterAnimState[])System.Enum.GetValues(typeof(CharacterAnimState));
 
         for (int i = 0; i < values.Length; i++)
         {
             CharacterAnimState state = values[i];
+
+            if (state == CharacterAnimState.None)
+                continue;
+
             shortNameHashDic[Animator.StringToHash(state.ToString())] = state;
         }
     }
 
-    private int ResolveAnimState(CharacterAnimState animState)
+    // 실제 애니메이터에 보낼 파라미터
+    private int ResolveAnimStateParameter(CharacterAnimState animState)
     {
-        if (animStateResolver == null || !animStateResolver.ContainsKey(animState))
-            return (int)animState;
+        if (animState == CharacterAnimState.Attack)
+        {
+            var weapon = Model.GetEquipment(EquipmentType.Weapon);
 
-        return (int)animStateResolver[animState];
-    }
+            if (weapon != null)
+                return (int)weapon.AttackAnimState;
+        }
 
-    private CharacterAnimState ReverseAnimState(CharacterAnimState animState)
-    {
-        if (reversedAnimStateResolver.TryGetValue(animState, out CharacterAnimState reversedAnimState))
-            return reversedAnimState;
-
-        return animState;
+        return (int)animState;
     }
 
     private IPathFinder CreatePathFinder()

@@ -19,30 +19,34 @@ public class PlayerRollState : ScriptableCharacterState
         if (model.InputWrapper == null)
             return false;
 
-        return model.InputWrapper.PlayerInput == PlayerInput.Roll;
+        return !model.ActionHandler.IsRolling && model.InputWrapper.PlayerInput == PlayerInput.Roll;
     }
 
     public override bool CheckExitCondition(CharacterUnitModel model)
     {
-        return model.CurrentAnimState != CharacterAnimState.Roll;
+        return !model.ActionHandler.IsRolling && model.CurrentAnimState != CharacterAnimState.Roll;
     }
 
     public override void OnEnterState(CharacterUnitModel model)
     {
-        DelayAddForce(model).Forget();
+        StartRolling(model).Forget();
     }
 
     public override void OnStateAction(CharacterUnitModel model)
     {
+        model.SetIsEnablePhysics(true);
     }
 
-    private async UniTask DelayAddForce(CharacterUnitModel model)
+    public override void OnExitState(CharacterUnitModel model)
     {
-        await UniTaskUtils.DelaySeconds(rollDelay, cancellationToken: TokenPool.Get(GetHashCode()));
-        
-        model.ActionHandler.OnAddForce(model.InputWrapper.Movement.normalized,
+        model.SetIsEnablePhysics(false);
+    }
+
+    private async UniTask StartRolling(CharacterUnitModel model)
+    {
+        await model.ActionHandler.OnRollingAsync(rollDelay, model.InputWrapper.Movement.normalized,
             model.GetStatValue(StatType.MoveSpeed) * speedMultiplier);
 
-        model.AbilityProcessor.Cast(CastingType.OnRoll);
+        model.AbilityProcessor?.Cast(CastingType.OnRoll);
     }
 }

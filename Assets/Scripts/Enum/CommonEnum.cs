@@ -1,5 +1,3 @@
-using System;
-
 public enum CharacterAnimState
 {
     Idle = 0,
@@ -14,6 +12,7 @@ public enum CharacterAnimState
     Attack = 10,
 
     Die = 99,
+    None = 100,
 }
 
 public enum BattleEventTriggerType
@@ -161,6 +160,12 @@ public enum CharacterType
     NPC,
     Enemy,
     EnemyBoss,
+}
+
+public enum CharacterSetUpType
+{
+    Town,
+    Battle,
 }
 
 public enum DirectionType

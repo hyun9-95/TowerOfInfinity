@@ -1,16 +1,13 @@
 using System.Collections.Generic;
-using System.Linq;
 
 public class UserEquipmentInfo
 {
     #region Property
     public IReadOnlyDictionary<int, Equipment> UserEquipments => userEquipments;
-    public IReadOnlyDictionary<EquipmentType, Equipment> EquippedMainCharacterEquipments => equippedMainCharacterEquipments;
     #endregion
 
     #region Value
     private Dictionary<int, Equipment> userEquipments;
-    private Dictionary<EquipmentType, Equipment> equippedMainCharacterEquipments;
     #endregion
 
     #region Function
@@ -29,15 +26,20 @@ public class UserEquipmentInfo
             if (!dataEquipment.IsNull)
                 userEquipments[equipmentId] = new Equipment(dataEquipment, level);
         }
+    }
 
-        equippedMainCharacterEquipments = new Dictionary<EquipmentType, Equipment>();
+    public Dictionary<EquipmentType, Equipment> CreateEquippedMainCharacterEquipments(UserSaveInfo userSaveInfo)
+    {
+        var equippedEquipments = new Dictionary<EquipmentType, Equipment>();
         
         foreach (var kvp in userSaveInfo.EquippedMainCharacterEquipmentIds)
         {
             var equipment = GetEquipment(kvp.Value);
             if (equipment != null)
-                equippedMainCharacterEquipments[kvp.Key] = equipment;
+                equippedEquipments[kvp.Key] = equipment;
         }
+        
+        return equippedEquipments;
     }
 
 
@@ -65,40 +67,6 @@ public class UserEquipmentInfo
     public bool HasEquipment(int equipmentId)
     {
         return userEquipments.ContainsKey(equipmentId);
-    }
-
-    public void EquipToMainCharacter(EquipmentType equipmentType, int equipmentId)
-    {
-        var equipment = GetEquipment(equipmentId);
-        if (equipment == null)
-            return;
-
-        equippedMainCharacterEquipments[equipmentType] = equipment;
-    }
-
-    public void UnequipFromMainCharacter(EquipmentType equipmentType)
-    {
-        equippedMainCharacterEquipments.Remove(equipmentType);
-    }
-
-    public Equipment GetMainCharacterEquippedEquipment(EquipmentType equipmentType)
-    {
-        if (equippedMainCharacterEquipments.ContainsKey(equipmentType))
-            return equippedMainCharacterEquipments[equipmentType];
-        
-        return null;
-    }
-
-    public Dictionary<EquipmentType, EquipmentDefine> GetMainCharacterEquipments()
-    {
-        var result = new Dictionary<EquipmentType, EquipmentDefine>();
-        
-        foreach (var kvp in equippedMainCharacterEquipments)
-        {
-            result[kvp.Key] = (EquipmentDefine)kvp.Value.DataId;
-        }
-        
-        return result;
     }
     #endregion
 }

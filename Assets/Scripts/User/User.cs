@@ -71,11 +71,14 @@ public class User
         var mainCharacterPartsInfo = new MainCharacterPartsInfo();
         mainCharacterPartsInfo.SetRaceParts(mainCharacterInfo.CharacterRace);
         mainCharacterPartsInfo.SetHairParts(mainCharacterInfo.HairPartsId);
-        mainCharacterPartsInfo.SetEquipmentParts(UserEquipmentInfo.GetMainCharacterEquipments());
+        var equippedEquipments = UserEquipmentInfo.CreateEquippedMainCharacterEquipments(userSaveInfo);
+        mainCharacterInfo.SetEquippedEquipments(equippedEquipments);
+        
+        mainCharacterPartsInfo.SetEquipmentParts(mainCharacterInfo.GetEquipmentDefines());
 
         mainCharacterInfo.SetPartsInfo(mainCharacterPartsInfo);
 
-        var equippedWeapon = UserEquipmentInfo.GetMainCharacterEquippedEquipment(EquipmentType.Weapon);
+        var equippedWeapon = mainCharacterInfo.GetEquippedEquipment(EquipmentType.Weapon);
 
         if (equippedWeapon != null)
             mainCharacterInfo.SetPrimaryWeaponAbilityDataId((int)equippedWeapon.Ability);
@@ -161,7 +164,7 @@ public class User
         
         var equippedMainCharacterEquipmentIds = new Dictionary<EquipmentType, int>();
 
-        foreach (var kvp in UserEquipmentInfo.EquippedMainCharacterEquipments)
+        foreach (var kvp in UserCharacterInfo.MainCharacterInfo.EquippedEquipments)
             equippedMainCharacterEquipmentIds[kvp.Key] = kvp.Value.DataId;
 
         userSaveInfo.SetEquippedMainCharacterEquipmentIds(equippedMainCharacterEquipmentIds);

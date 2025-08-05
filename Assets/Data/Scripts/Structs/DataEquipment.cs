@@ -15,6 +15,8 @@ public struct DataEquipment : IBaseData
     public readonly CharacterPartsDefine PartsData;
     [JsonProperty(PropertyName = "Ability")]
     public readonly AbilityDefine Ability;
+    [JsonProperty(PropertyName = "AttackAnimState")]
+    public readonly CharacterAnimState AttackAnimState;
 	
 	public int Id => id;
     public bool IsNull => id == 0;

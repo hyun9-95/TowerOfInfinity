@@ -39,20 +39,9 @@ public class CharacterFactory : BaseManager<CharacterFactory>
 
     public async UniTask AddExpGainer(CharacterUnit playerCharacter)
     {
-        var expGainer = await AddressableManager.Instance.InstantiateAddressableMonoAsync<BattleExpGainer>(PathDefine.CHARACTER_EXP_GAINER, playerCharacter.transform);
-        var expGainerModel = new BattleExpGainerModel();
-        expGainer.SetModel(expGainerModel);
-        expGainer.Activate(false);
-    }
-
-    public async UniTask<CharacterUnit> SpawnMainCharacter(MainCharacterInfo mainCharacterInfo, Transform transform = null, Vector3 pos = default, Quaternion rot = default)
-    {
-        string prefabPath = mainCharacterInfo.MainCharacterPath;
-        int weaponDataId = mainCharacterInfo.PrimaryWeaponDataId;
-        int activeSkillDataId = mainCharacterInfo.ActiveSkillDataId;
-        int passiveSkillDataId = mainCharacterInfo.PassiveSkillDataId;
-
-        return await SpawnCharacter(TeamTag.Ally, CharacterType.Main, prefabPath, weaponDataId, activeSkillDataId, passiveSkillDataId, transform, pos, rot);
+        if (!playerCharacter.gameObject.TryGetComponent<BattleExpGainer>(out var expGainer))
+            expGainer = await AddressableManager.Instance.InstantiateAddressableMonoAsync<BattleExpGainer>(PathDefine.CHARACTER_EXP_GAINER, playerCharacter.transform);
+        
     }
 
     public async UniTask<CharacterUnit> SpawnSubCharacter(SubCharacterInfo subCharacterInfo, Transform transform = null, Vector3 pos = default, Quaternion rot = default)
@@ -65,17 +54,8 @@ public class CharacterFactory : BaseManager<CharacterFactory>
         int activeSkillDataId = subCharacterInfo.ActiveSkillDataId;
         int passiveSkillDataId = subCharacterInfo.PassiveSkillDataId;
 
-        if (weaponDataId == 0)
-            weaponDataId = (int)dataCharacter.PrimaryWeaponAbility;
-
-        if (activeSkillDataId == 0)
-            activeSkillDataId = (int)dataCharacter.ActiveSkill;
-
-        if (passiveSkillDataId == 0)
-            passiveSkillDataId = (int)dataCharacter.PassiveSkill;
-
         var subCharacter = await SpawnCharacter
-            (TeamTag.Ally, CharacterType.Sub, prefabPath, weaponDataId, activeSkillDataId, passiveSkillDataId, transform, pos, rot);
+            (TeamTag.Ally, CharacterType.Sub, prefabPath, transform, pos, rot);
 
         if (subCharacter != null)
             subCharacter.Model.SetCharacterDataId(subCharacterInfo.CharacterDataId);
@@ -86,7 +66,7 @@ public class CharacterFactory : BaseManager<CharacterFactory>
     public async UniTask<CharacterUnit> SpawnEnemy(int characterDataId, Vector3 pos = default, Quaternion rot = default)
     {
         var data = DataManager.Instance.GetDataById<DataCharacter>(characterDataId);
-        var enemy = await SpawnCharacter(TeamTag.Enemy, CharacterType.Enemy, data.PrefabName, 0, 0, 0, null, pos, rot);
+        var enemy = await SpawnCharacter(TeamTag.Enemy, CharacterType.Enemy, data.PrefabName, null, pos, rot);
 
         if (enemy != null)
             enemy.Model.SetCharacterDataId(characterDataId);
@@ -94,14 +74,14 @@ public class CharacterFactory : BaseManager<CharacterFactory>
         return enemy;
     }
 
-    public async UniTask<CharacterUnit> SpawnCharacter(TeamTag teamTag, CharacterType characterType, string prefabPath, int weaponId = 0, int activeId = 0, int passiveId = 0, Transform transform = null, Vector3 pos = default, Quaternion rot = default)
+    public async UniTask<CharacterUnit> SpawnCharacter(TeamTag teamTag, CharacterType characterType, string prefabPath, Transform transform = null, Vector3 pos = default, Quaternion rot = default)
     {
         var character = await InstantiateCharacter(prefabPath, transform, pos, rot);
 
         if (character == null)
             return null;
 
-        bool result = await SetCharacterUnitModel(character, teamTag, characterType, weaponId, activeId, passiveId);
+        bool result = await SetCharacterUnitModel(character, teamTag, characterType);
 
         return result ? character : null;
     }
@@ -130,18 +110,17 @@ public class CharacterFactory : BaseManager<CharacterFactory>
         };
     }
 
-    public async UniTask<bool> SetCharacterUnitModel(CharacterUnit character, TeamTag teamTag, CharacterType characterType, int weaponId = 0, int activeId = 0, int passiveId = 0)
+    public async UniTask<bool> SetCharacterUnitModel(CharacterUnit character, TeamTag teamTag, CharacterType characterType)
     {
         #region Model Set
-        CharacterUnitModel characterModel = character.Model != null ?
-            character.Model : new CharacterUnitModel();
+        CharacterSetUpType characterSetUpType = FlowManager.Instance.CurrentFlowType == FlowType.BattleFlow ?
+            CharacterSetUpType.Battle : CharacterSetUpType.Town;
 
+        CharacterUnitModel characterModel = new CharacterUnitModel();
         characterModel.SetTeamTag(teamTag);
+        characterModel.SetCharacterType(characterType);
+        characterModel.SetCharacterSetUpType(characterSetUpType);  
 
-        if (FlowManager.Instance.CurrentFlowType == FlowType.BattleFlow)
-        {
-            characterModel.SetPrimaryWeaponAbility(weaponId);
-        }
         #endregion
 
         if (character != null)

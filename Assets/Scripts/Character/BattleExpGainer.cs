@@ -19,6 +19,9 @@ public class BattleExpGainer : PoolableBaseUnit<BattleExpGainerModel>
         if (!activate)
             return;
 
+        if (Model.Owner == null || Model.Owner.Transform == null)
+            return;
+
         transform.position = Model.Owner.Transform.position;
     }
 

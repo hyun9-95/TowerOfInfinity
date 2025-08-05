@@ -30,7 +30,7 @@ public abstract class ScriptableCharacterState : ScriptableObject
     {
         return state switch
         {
-            CharacterAnimState.Attack => 0.2f,
+            CharacterAnimState.Attack => 0.12f,
             _ => 0f,
         };
     }

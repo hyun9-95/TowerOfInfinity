@@ -116,8 +116,8 @@ public class CharacterCustomizationController : BaseController<CharacterCustomiz
 
             foreach (var equipmentType in checkEquipmentTypes)
             {
-                var equippedEquipment = PlayerManager.Instance.MyUser.UserEquipmentInfo.
-                    GetMainCharacterEquippedEquipment(equipmentType);
+                var equippedEquipment = PlayerManager.Instance.GetMainCharacterInfo().
+                    GetEquippedEquipment(equipmentType);
 
                 if (equippedEquipment != null)
                 {
@@ -129,8 +129,8 @@ public class CharacterCustomizationController : BaseController<CharacterCustomiz
 
         if (showHelmet)
         {
-            var equippedHelmet = PlayerManager.Instance.MyUser.UserEquipmentInfo.
-                GetMainCharacterEquippedEquipment(EquipmentType.Helmet);
+            var equippedHelmet = PlayerManager.Instance.GetMainCharacterInfo().
+                GetEquippedEquipment(EquipmentType.Helmet);
 
             if (equippedHelmet != null)
             {

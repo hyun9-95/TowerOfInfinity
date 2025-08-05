@@ -10,23 +10,32 @@ public class PlayerAttackState : ScriptableCharacterState
 
     public override bool CheckEnterCondition(CharacterUnitModel model)
     {
-        return model.AbilityProcessor.IsPrimaryWeaponReady() && model.CurrentAnimState != AnimState;
+        if (model.AbilityProcessor == null)
+            return false;
+
+        return model.AbilityProcessor.IsPrimaryWeaponReady() && !model.IsAttackState();
     }
 
     public override bool CheckExitCondition(CharacterUnitModel model)
     {
-        return !model.AbilityProcessor.IsPrimaryWeaponReady() && model.CurrentAnimState != AnimState;
+        if (model.AbilityProcessor == null)
+            return true;
+
+        return !model.AbilityProcessor.IsPrimaryWeaponReady() && !model.IsAttackState();
     }
 
     public override void OnStateAction(CharacterUnitModel model)
     {
+        if (model.AbilityProcessor == null)
+            return;
+
         if (model.InputWrapper.IsMove)
         {
             model.ActionHandler.OnMovement(model.InputWrapper.Movement,
             model.GetStatValue(StatType.MoveSpeed), true);
         }
 
-        if (model.AbilityProcessor.IsPrimaryWeaponReady() && model.CurrentAnimState == CharacterAnimState.Attack)
+        if (model.AbilityProcessor.IsPrimaryWeaponReady() && model.IsAttackState())
             model.AbilityProcessor.CastPrimaryWeapon(GetAnimationDelay(AnimState)).Forget();
     }
 }

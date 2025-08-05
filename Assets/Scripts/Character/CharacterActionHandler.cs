@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CharacterActionHandler
 {
-    public IPathFinder PathFinder => pathFinder;
+    public bool IsRolling => rolling;
 
     private Action<bool> onFlipX;
 
@@ -16,6 +16,7 @@ public class CharacterActionHandler
 
     #region Hit
     private bool blinking = false;
+    private bool rolling = false;
     private Color originColor;
     #endregion
 
@@ -105,6 +106,18 @@ public class CharacterActionHandler
 
         bodySprite.color = originColor;
         blinking = false;
+    }
+
+    public async UniTask OnRollingAsync(float rollDelay, Vector2 direction, float force)
+    {
+        if (rolling)
+            return;
+
+        rolling = true;
+        await UniTaskUtils.DelaySeconds(rollDelay, cancellationToken: TokenPool.Get(GetHashCode()));
+
+        OnAddForce(direction, force);
+        rolling = false;
     }
 
     private void Flip(Vector2 movement)

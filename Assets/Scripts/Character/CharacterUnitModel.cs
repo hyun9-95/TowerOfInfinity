@@ -11,6 +11,8 @@ public class CharacterUnitModel : IBaseUnitModel
     public CharacterDefine CharacterDefine { get; private set; }
     public CharacterAnimState CurrentAnimState { get; private set; }
     public TeamTag TeamTag { get; private set; }
+    public CharacterType CharacterType { get; private set; }
+    public CharacterSetUpType CharacterSetUpType { get; private set; }
     public CharacterActionHandler ActionHandler { get; private set; }
     public Transform Transform { get; private set; }
     public CharacterUnitModel Target { get; private set; }
@@ -18,8 +20,8 @@ public class CharacterUnitModel : IBaseUnitModel
     public NavMeshAgent Agent { get; private set; }
     public BattleEventProcessor EventProcessor { get; private set; }
     public AbilityProcessor AbilityProcessor { get; private set; }
+    public int PrimaryWeaponAbilityDataId { get; private set; }
     public bool IsDead => Hp <= 0;
-    public int PrimaryWeaponAbilityId { get; private set; }
     public float Hp { get; private set; }
     public float Attack { get; private set; }
     public float Defense { get; private set; }
@@ -27,11 +29,13 @@ public class CharacterUnitModel : IBaseUnitModel
     public PathFindType PathFindType { get; private set; }
     public bool IsFlipX { get; private set; }
     public float RepathTimer { get; private set; }
+    public bool IsEnablePhysics { get; private set; }
     #endregion
 
     #region Value
     private ScriptableCharacterStat baseStat;
     private Dictionary<StatType, float> statModifiers = new Dictionary<StatType, float>();
+    private Dictionary<EquipmentType, Equipment> equippedEquipments;
     #endregion
     public void SetCharacterDataId(int id)
     {
@@ -62,6 +66,24 @@ public class CharacterUnitModel : IBaseUnitModel
     public void SetTeamTag(TeamTag teamTag)
     {
         TeamTag = teamTag;
+    }
+
+    public void SetCharacterType(CharacterType characterType)
+    {
+        CharacterType = characterType;
+    }
+
+    public void SetCharacterSetUpType(CharacterSetUpType characterSetUpType)
+    {
+        CharacterSetUpType = characterSetUpType;
+    }
+
+    public void EquipEquipment(Equipment equipment)
+    {
+        if (equippedEquipments == null)
+            equippedEquipments = new Dictionary<EquipmentType, Equipment>();
+
+        equippedEquipments[equipment.EquipmentType] = equipment;
     }
 
     public void InitializeStat(ScriptableCharacterStat scriptableBaseStat)
@@ -107,11 +129,6 @@ public class CharacterUnitModel : IBaseUnitModel
         }
     }
 
-    public void SetPrimaryWeaponAbility(int weaponAbilityId)
-    {
-        PrimaryWeaponAbilityId = weaponAbilityId;
-    }
-
     public Stat GetBaseStat(StatType statType)
     {
         return baseStat.GetStat(statType);
@@ -153,6 +170,34 @@ public class CharacterUnitModel : IBaseUnitModel
         PathFindType = pathFindType;
     }
 
+    public void SetPrimaryWeaponAbilityDataId(int id)
+    {
+        PrimaryWeaponAbilityDataId = id;
+    }
+
+    public bool IsAttackState()
+    {
+        return CurrentAnimState switch
+        {
+            CharacterAnimState.Attack => true,
+            CharacterAnimState.Jab => true,
+            CharacterAnimState.BowShot => true,
+            CharacterAnimState.Slash => true,
+            _ => false
+        };
+    }
+
+    public Equipment GetEquipment(EquipmentType equipmentType)
+    {
+        if (equippedEquipments == null)
+            return null;
+
+        if (!equippedEquipments.TryGetValue(equipmentType, out var equipment))
+            return null;
+
+        return equipment;
+    }
+
     public void SetTransform(Transform transform)
     {
         Transform = transform;
@@ -171,5 +216,10 @@ public class CharacterUnitModel : IBaseUnitModel
     public void SetRepathTimer(float timer)
     {
         RepathTimer = timer;
+    }
+
+    public void SetIsEnablePhysics(bool value)
+    {
+        IsEnablePhysics = value;
     }
 }

@@ -20,7 +20,7 @@ public class BattleSystemManager : BaseManager<BattleSystemManager>
     public async UniTask Prepare(BattleTeam battleTeam, Transform objectContainerValue)
     {
         InitializBattleInfo(battleTeam);
-        InitilalizeExpGainer(battleTeam.CurrentCharacter);
+        await InitilalizeExpGainer(battleTeam.CurrentCharacter);
 
         objectContainer = objectContainerValue;
         await InitializeDamageGroup();
@@ -35,12 +35,17 @@ public class BattleSystemManager : BaseManager<BattleSystemManager>
         BattleInfo.SetBattleExp(0);
     }
 
-    private void InitilalizeExpGainer(CharacterUnit characterUnit)
+    private async UniTask InitilalizeExpGainer(CharacterUnit characterUnit)
     {
-        expGainer = characterUnit.GetComponentInChildren<BattleExpGainer>();
+        expGainer = characterUnit.GetComponent<BattleExpGainer>();
 
         if (expGainer == null)
-            return;
+        {
+            expGainer = await AddressableManager.Instance.InstantiateAddressableMonoAsync<BattleExpGainer>(
+                PathDefine.CHARACTER_EXP_GAINER, characterUnit.transform);
+
+            expGainer.SetModel(new BattleExpGainerModel());
+        }
 
         expGainer.Model.SetOnExpGain(OnExpGain);
         expGainer.Model.SetOwner(characterUnit.Model);
@@ -72,12 +77,7 @@ public class BattleSystemManager : BaseManager<BattleSystemManager>
         var expGainerModel = expGainer.Model;
 
         BattleInfo.OnExpGain(exp);
-
-        if (expGainerModel.Level != BattleInfo.Level)
-        {
-            expGainerModel.SetLevel(BattleInfo.Level);
-            expGainer.UpdateRadius();
-        }
+        expGainer.UpdateRadius();
 
         BattleObserverParam param = new BattleObserverParam();
         param.SetBattleInfo(BattleInfo);
@@ -94,15 +94,6 @@ public class BattleSystemManager : BaseManager<BattleSystemManager>
             return;
 
         var changeTargetModel = changeTarget.Model;
-
-        CharacterUnit origin = BattleInfo.BattleTeam.CurrentCharacter;
-
-        var originModel = origin.Model;
-
-        // Processor들 Owner 변경
-
-        // expGainer의 Owner 변경
-        expGainer.Model.SetOwner(changeTargetModel);
     }
 
     public void OnDamage(CharacterUnitModel sender, CharacterUnitModel receiver, float value, DamageType damageType)

@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd041ca958c2f414f8eca3c70196f413, type: 3}
   m_Name: PlayerRollState
   m_EditorClassIdentifier: 
+  rollDelay: 0.1
+  speedMultiplier: 4

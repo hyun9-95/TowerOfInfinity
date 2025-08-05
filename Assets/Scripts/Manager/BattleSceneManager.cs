@@ -32,7 +32,7 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>
         return playerBattleTeam;
     }
 
-    public async UniTask PrepareBattle(DataDungeon dataDungeon)
+    public async UniTask Prepare(DataDungeon dataDungeon)
     {
         CreateEnemyGenerator(dataDungeon);
 

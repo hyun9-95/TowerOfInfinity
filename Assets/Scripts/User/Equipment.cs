@@ -7,6 +7,7 @@ public class Equipment
     public LocalizationDefine Name { get; private set; }
     public CharacterPartsDefine PartsData { get; private set; }
     public AbilityDefine Ability { get; private set; }
+    public CharacterAnimState AttackAnimState { get; private set; }
     #endregion
 
     #region Function
@@ -18,6 +19,7 @@ public class Equipment
         Name = dataEquipment.Name;
         PartsData = dataEquipment.PartsData;
         Ability = dataEquipment.Ability;
+        AttackAnimState = dataEquipment.AttackAnimState;
     }
 
     public void SetLevel(int level)

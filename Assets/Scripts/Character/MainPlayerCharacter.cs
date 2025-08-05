@@ -23,20 +23,29 @@ public class MainPlayerCharacter : MonoBehaviour
 
     public async UniTask<bool> UpdateMainCharacter(MainCharacterInfo mainCharacterInfo)
     {
-        int defaultWeaponDataId = mainCharacterInfo.PrimaryWeaponDataId;
-        int activeSkillDataId = mainCharacterInfo.ActiveSkillDataId;
-        int passiveSkillDataId = mainCharacterInfo.PassiveSkillDataId;
-
-        bool result = await CharacterFactory.Instance.SetCharacterUnitModel(characterUnit, TeamTag.Ally, CharacterType.Main,
-            defaultWeaponDataId, activeSkillDataId, passiveSkillDataId);
+        bool result = await CharacterFactory.Instance.SetCharacterUnitModel(characterUnit, TeamTag.Ally, CharacterType.Main);
 
         if (result)
         {
-            mainCharacterInput.Initialize(characterUnit.Model);
+            var model = characterUnit.Model;
 
+            // 장비 장착
+            foreach (var equipment in mainCharacterInfo.EquippedEquipments.Values)
+                model.EquipEquipment(equipment);
+
+            // 조작 활성화
+            mainCharacterInput.Initialize(model);
+
+            // 외형 업데이트
             await UpdateSpriteLibraryAsset(mainCharacterInfo.PartsInfo);
+
+            if (model.CharacterSetUpType != CharacterSetUpType.Battle)
+            {
+                if (characterUnit.TryGetComponent<BattleExpGainer>(out var battleExpGainer))
+                    DestroyImmediate(battleExpGainer);
+            }
         }
-        
+
         return result;
     }
 
