@@ -47,6 +47,9 @@ public class GameManager : BaseMonoManager<GameManager>
             applyLocal = Config.testLocalType;
 #endif
 
+        if (applyLocal == LocalizationType.None)
+            applyLocal = LocalizationType.English;
+
         LocalizationManager.Instance.SetLocalizationType(applyLocal);
     }
 
