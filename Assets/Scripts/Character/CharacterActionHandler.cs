@@ -13,6 +13,7 @@ public class CharacterActionHandler
     private SpriteRenderer bodySprite;
     private GameObject gameObject;
     private IPathFinder pathFinder;
+    private CharacterAnimationEffect animEffect;
 
     #region Hit
     private bool blinking = false;
@@ -29,6 +30,11 @@ public class CharacterActionHandler
         this.pathFinder = pathFinder;
 
         originColor = bodySprite.color;
+    }
+
+    public void SetCharacterAnimEffect(CharacterAnimationEffect animEffect)
+    {
+        this.animEffect = animEffect;
     }
 
     public void SetOnFlipX(Action<bool> action)
@@ -115,6 +121,9 @@ public class CharacterActionHandler
 
         rolling = true;
         await UniTaskUtils.DelaySeconds(rollDelay, cancellationToken: TokenPool.Get(GetHashCode()));
+
+        if (animEffect != null)
+            animEffect.Play(CharacterAnimationEffect.EffectType.Dash, rigidBody2D.position, direction.x < 0);
 
         OnAddForce(direction, force);
         rolling = false;

@@ -39,6 +39,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 03eca4309e2d8b34ba98fc6e47bfd33c
+    m_Address: CharacterCore/AnimationEffect/FireMuzzleM
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 03f4e27132fc84b4ba9e5784561d9cf2
     m_Address: CharacterCore/Player/Animation/PlayerAnim_Land
     m_ReadOnly: 0
@@ -81,6 +87,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 18eefeaada1e3d84899304bf756ef116
+    m_Address: CharacterCore/AnimationEffect/Dash
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1a0b7a6e6ecb845468fa3e9f38572fd5
     m_Address: CharacterCore/Player/Animation/PlayerAnim_SitDown
     m_ReadOnly: 0
@@ -89,6 +101,18 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1cd847ba144e20b4fb5d7daa80b06d16
     m_Address: CharacterCore/StateGroup/ServentStateGroup
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 240bdbe1c3b6d934080be8b4892d0f49
+    m_Address: CharacterCore/AnimationEffect/Jump
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 265b9066bdbe1c840a75a9abafc78227
+    m_Address: CharacterCore/AnimationEffect/Controller
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
@@ -123,6 +147,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4659e370b1c48f948b086bee9f7e1c5c
+    m_Address: CharacterCore/Shadow/Shadow_texture
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 48908527277e83b46a3f35423cfb8332
     m_Address: CharacterCore/Player/Animation/PlayerAnim_Crawl
     m_ReadOnly: 0
@@ -153,8 +183,20 @@ MonoBehaviour:
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5a142d6bed4741b48837651effd98ccb
+    m_Address: CharacterCore/AnimationEffect/FireMuzzleS
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5a598c3fc9b0ad54c84a604825cab475
     m_Address: CharacterCore/Enemy/Animation/EnemyAnim_Die
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5b21958e4fb97254fbafb7686ee108dc
+    m_Address: CharacterCore/AnimationEffect/Run
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
@@ -225,6 +267,18 @@ MonoBehaviour:
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ad1828b8b7bfd864ebfa238546ec2b31
+    m_Address: CharacterCore/AnimationEffect/Fall
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bb1df06a4121a14498b20c9c2e26c762
+    m_Address: CharacterCore/AnimationEffect/Brake
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c416b029ce5a7ef40844964be7b376b6
     m_Address: CharacterCore/Player/Animation/PlayerAnim_Jump
     m_ReadOnly: 0
@@ -245,6 +299,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d3242428398f72d4893874d034caa39a
     m_Address: CharacterCore/Player/Animation/PlayerAnim_Die
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d34f144f9f0830c4e864d1b19e0610a8
+    m_Address: CharacterCore/AnimationEffect/SpriteEffects
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
@@ -279,6 +339,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f10f75acb905fc24bb0bcdda05c387b4
+    m_Address: CharacterCore/AnimationEffect/CharacterAnimationEffect
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f284874aaf492bd4296a6fa09defca36
     m_Address: CharacterCore/Enemy/Animation/EnemyAnim_Fire
     m_ReadOnly: 0
@@ -287,6 +353,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f799c4289bae6c148ba46d8e9e97b990
     m_Address: CharacterCore/State/Common/CharacterFollowState
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fa508e1c164795247b5cc0723b69cf5d
+    m_Address: CharacterCore/Shadow/Shadow
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main

@@ -57,30 +57,30 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  accelerationDuration: 1
-  bouncePower: 8
-  backwardPushPower: 0.5
-  bounceDuration: 0.3
-  startMoveSpeed: 3
-  maxMoveSpeed: 15
+  accelerationDuration: 0.8
+  bounceDuration: 0.5
+  startMoveSpeed: 5
+  maxMoveSpeed: 20
+  offset: {x: 0, y: 0.5, z: 0}
+  gemCollider: {fileID: 6453020716062018500}
 --- !u!61 &6453020716062018500
 BoxCollider2D:
   m_ObjectHideFlags: 0

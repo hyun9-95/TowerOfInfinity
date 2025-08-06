@@ -56,6 +56,9 @@ public class CharacterUnit : PoolableMono
     protected Collider2D triggerCollider2D;
 
     [SerializeField]
+    private CharacterAnimationEffect characterAnimationEffect;
+
+    [SerializeField]
     protected ScriptableCharacterStat baseStat;
 
     [SerializeField]
@@ -347,6 +350,9 @@ public class CharacterUnit : PoolableMono
         var pathFinder = CreatePathFinder();
         var actionHandler = new CharacterActionHandler(animator, rigidBody2D, bodySprite, gameObject, pathFinder);
         actionHandler.SetOnFlipX(OnFlipX);
+
+        if (characterAnimationEffect != null)
+            actionHandler.SetCharacterAnimEffect(characterAnimationEffect);
 
         return actionHandler;
     }
