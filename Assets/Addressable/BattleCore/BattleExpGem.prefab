@@ -49,24 +49,26 @@ MonoBehaviour:
   lifeTime: 0
   localPosOffset: {x: 0, y: 0, z: 0}
   effectSprite: {fileID: 8675330642061009867}
+  effectParticle: {fileID: 0}
+  particleSystemRenderer: {fileID: 0}
   accelerationCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0
@@ -74,6 +76,11 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   accelerationDuration: 1
+  bouncePower: 8
+  backwardPushPower: 0.5
+  bounceDuration: 0.3
+  startMoveSpeed: 3
+  maxMoveSpeed: 15
 --- !u!61 &6453020716062018500
 BoxCollider2D:
   m_ObjectHideFlags: 0

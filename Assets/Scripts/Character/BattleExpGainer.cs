@@ -44,7 +44,7 @@ public class BattleExpGainer : PoolableBaseUnit<BattleExpGainerModel>
         if (!collision.gameObject.TryGetComponent<BattleExpGem>(out var gem))
             return;
 
-        gem.MoveToTarget(transform.position, () =>
+        gem.MoveToTarget(transform, () =>
         {
             var exp = gem.Model.BattleExp;
 
