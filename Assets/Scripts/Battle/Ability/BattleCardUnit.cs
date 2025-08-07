@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class BattleCardUnit : BaseUnit<AbilityCardUnitModel>
+public class BattleCardUnit : BaseUnit<BattleCardUnitModel>
 {
 	#region Property
 	#endregion

@@ -281,9 +281,9 @@ public enum AbilitySlotType
     Passive,    // 패시브 슬롯
 }
 
-public enum AbilityCardType
+public enum BattleCardType
 {
     None,
-    Ability,            // 능력 추가 or 기존 능력 레벨업
-    ExpGainer,          // 경험치 획득 범위 증가
+    GetAbility,            // 능력 추가 or 기존 능력 레벨업
+    LevelUpExpGainer,      // 경험치 획득 범위 증가
 }

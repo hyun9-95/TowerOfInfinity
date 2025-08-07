@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class AbilityCardUnitModel : IBaseUnitModel
+public class BattleCardUnitModel : IBaseUnitModel
 {
 	#region Property
 	#endregion

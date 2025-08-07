@@ -1,4 +1,0 @@
-﻿아이디,이름,,,,,
-int,string,enum:EquipmentType,enum:LocalizationDefine,enum:CharacterPartsDefine,enum:AbilityDefine,enum:CharacterAnimState
-Id,NameId,EquipmentType,Name,PartsData,Ability,AttackAnimState
-100000,AB_CARD_,ARMOR,LOCAL_ARMOR_THIEF_TUNIC_NAME,PARTS_EQUIPMENT_ARMOR_THIEF_TUNIC,None,None
