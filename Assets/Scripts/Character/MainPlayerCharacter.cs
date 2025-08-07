@@ -21,32 +21,31 @@ public class MainPlayerCharacter : MonoBehaviour
     private MainCharacterInput mainCharacterInput;
     #endregion
 
-    public async UniTask<bool> UpdateMainCharacter(MainCharacterInfo mainCharacterInfo)
+    public async UniTask UpdateMainCharacter(MainCharacterInfo mainCharacterInfo, CharacterSetUpType setUpType)
     {
-        bool result = await CharacterFactory.Instance.SetCharacterUnitModel(characterUnit, TeamTag.Ally, CharacterType.Main);
+        if (characterUnit.Model == null)
+            characterUnit.SetModel(new CharacterUnitModel());
 
-        if (result)
+        CharacterFactory.Instance.SetCharacterUnitModel(
+            characterUnit.Model, TeamTag.Ally, CharacterType.Main, setUpType, mainCharacterInfo);
+
+        var model = characterUnit.Model;
+
+        // 장비 장착
+        foreach (var equipment in mainCharacterInfo.EquippedEquipments.Values)
+            model.EquipEquipment(equipment);
+
+        // 조작 활성화
+        mainCharacterInput.Initialize(model);
+
+        // 외형 업데이트
+        await UpdateSpriteLibraryAsset(mainCharacterInfo.PartsInfo);
+
+        if (model.CharacterSetUpType != CharacterSetUpType.Battle)
         {
-            var model = characterUnit.Model;
-
-            // 장비 장착
-            foreach (var equipment in mainCharacterInfo.EquippedEquipments.Values)
-                model.EquipEquipment(equipment);
-
-            // 조작 활성화
-            mainCharacterInput.Initialize(model);
-
-            // 외형 업데이트
-            await UpdateSpriteLibraryAsset(mainCharacterInfo.PartsInfo);
-
-            if (model.CharacterSetUpType != CharacterSetUpType.Battle)
-            {
-                if (characterUnit.TryGetComponent<BattleExpGainer>(out var battleExpGainer))
-                    DestroyImmediate(battleExpGainer);
-            }
+            if (characterUnit.TryGetComponent<BattleExpGainer>(out var battleExpGainer))
+                DestroyImmediate(battleExpGainer);
         }
-
-        return result;
     }
 
     public async UniTask UpdateSpriteLibraryAsset(MainCharacterPartsInfo mainCharacterPartsInfo)

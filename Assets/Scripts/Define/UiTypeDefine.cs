@@ -5,4 +5,5 @@ public enum UIType
 	TownView,
 	BattleView,
 	CharacterCustomizationView,
+	BattleCardSelectPopup,
 }

@@ -1,7 +1,7 @@
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-public class BattleExpGainer : PoolableBaseUnit<BattleExpGainerModel>
+public class BattleExpGainer : BaseUnit<BattleExpGainerModel>
 {
     [SerializeField]
     private CircleCollider2D expCollider;

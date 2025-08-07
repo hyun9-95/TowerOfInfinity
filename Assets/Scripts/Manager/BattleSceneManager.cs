@@ -47,7 +47,7 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>
 
     private async UniTask<BattleTeam> CreatePlayerBattleTeam(SubCharacterInfo[] currentDeck)
     {
-        await PlayerManager.Instance.UpdateMainPlayerCharacter();
+        await PlayerManager.Instance.UpdateMainPlayerCharacter(CharacterSetUpType.Battle);
 
         var playerTransform = PlayerStartTransform;
         var playerCharacters = new List<CharacterUnit>();

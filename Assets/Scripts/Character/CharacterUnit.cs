@@ -321,25 +321,30 @@ public class CharacterUnit : PoolableMono
         // 어빌리티 처리
         abilityProcessor.SetOwner(Model);
 
-        // 주무기 어빌리티 Set
+        // 무기 슬롯 어빌리티 추가
         if (Model.CharacterType == CharacterType.Main)
         {
             var equipmentWeapon = Model.GetEquipment(EquipmentType.Weapon);
 
             if (equipmentWeapon != null)
-            {
-                var primaryWeapon = AbilityFactory.Create<Ability>((int)equipmentWeapon.Ability, Model);
-
-                if (primaryWeapon != null)
-                    abilityProcessor.SetPrimaryWeaponAbility(primaryWeapon);
-            }
+                abilityProcessor.AddAbility((int)equipmentWeapon.Ability);
         }
-        else if (Model.PrimaryWeaponAbilityDataId != 0)
+        else
         {
-            var primaryWeapon = AbilityFactory.Create<Ability>(Model.PrimaryWeaponAbilityDataId, Model);
+            // 주무기 슬롯 어빌리티 추가
+            var weaponAbilityId = Model.GetAbilityDataIdBySlot(AbilitySlotType.Weapon);
+            if (weaponAbilityId != 0)
+                abilityProcessor.AddAbility(weaponAbilityId);
 
-            if (primaryWeapon != null)
-                abilityProcessor.SetPrimaryWeaponAbility(primaryWeapon);
+            // 액티브 슬롯 어빌리티 추가
+            var activeAbilityId = Model.GetAbilityDataIdBySlot(AbilitySlotType.Active);
+            if (activeAbilityId != 0)
+                abilityProcessor.AddAbility(activeAbilityId);
+
+            // 패시브 슬롯 어빌리티 추가
+            var passiveAbilityId = Model.GetAbilityDataIdBySlot(AbilitySlotType.Passive);
+            if (passiveAbilityId != 0)
+                abilityProcessor.AddAbility(passiveAbilityId);
         }
 
         Model.SetAbilityProcessor(abilityProcessor);

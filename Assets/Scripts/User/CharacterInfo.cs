@@ -3,28 +3,28 @@ using UnityEngine;
 public class CharacterInfo
 {
     #region Property
-    public int PrimaryWeaponDataId { get; private set; }
-    public int ActiveSkillDataId { get; private set; }
-    public int PassiveSkillDataId { get; private set; }
+    public AbilityDefine PrimaryWeapon { get; private set; }
+    public AbilityDefine ActiveAbility { get; private set; }
+    public AbilityDefine PassiveAbility { get; private set; }
     #endregion
 
     #region Value
     #endregion
 
     #region Function
-    public void SetPrimaryWeaponAbilityDataId(int abilityWeaponId)
+    public void SetPrimaryWeaponAbility(AbilityDefine abilityWeapon)
     {
-        PrimaryWeaponDataId = abilityWeaponId;
+        PrimaryWeapon = abilityWeapon;
     }
 
-    public void SetActiveSkillDataId(int dataActiveSkillId)
+    public void SetActiveAbility(AbilityDefine activeAbility)
     {
-        ActiveSkillDataId = dataActiveSkillId;
+        ActiveAbility = activeAbility;
     }
 
-    public void SetPassiveSkillDataId(int dataPassiveSkillId)
+    public void SetPassiveAbility(AbilityDefine passiveAbility)
     {
-        PassiveSkillDataId = dataPassiveSkillId;
+        PassiveAbility = passiveAbility;
     }
     #endregion
 }

@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
+using UnityEditor.U2D.Animation;
 using UnityEngine;
 
 public class CharacterFactory : BaseManager<CharacterFactory>
@@ -50,15 +51,14 @@ public class CharacterFactory : BaseManager<CharacterFactory>
 
         var prefabPath = dataCharacter.PrefabName;
 
-        int weaponDataId = subCharacterInfo.PrimaryWeaponDataId;
-        int activeSkillDataId = subCharacterInfo.ActiveSkillDataId;
-        int passiveSkillDataId = subCharacterInfo.PassiveSkillDataId;
-
         var subCharacter = await SpawnCharacter
-            (TeamTag.Ally, CharacterType.Sub, prefabPath, transform, pos, rot);
+            (CharacterType.Sub, prefabPath, transform, pos, rot);
 
-        if (subCharacter != null)
-            subCharacter.Model.SetCharacterDataId(subCharacterInfo.CharacterDataId);
+        if (subCharacter == null)
+            return null;
+
+        var model = CreateCharacterUnitModel(TeamTag.Ally, CharacterType.Sub, CharacterSetUpType.Battle, subCharacterInfo);
+        model.SetCharacterDataId(subCharacterInfo.CharacterDataId);
 
         return subCharacter;
     }
@@ -66,24 +66,28 @@ public class CharacterFactory : BaseManager<CharacterFactory>
     public async UniTask<CharacterUnit> SpawnEnemy(int characterDataId, Vector3 pos = default, Quaternion rot = default)
     {
         var data = DataManager.Instance.GetDataById<DataCharacter>(characterDataId);
-        var enemy = await SpawnCharacter(TeamTag.Enemy, CharacterType.Enemy, data.PrefabName, null, pos, rot);
+        var enemy = await SpawnCharacter(CharacterType.Enemy, data.PrefabName, null, pos, rot);
 
-        if (enemy != null)
-            enemy.Model.SetCharacterDataId(characterDataId);
+        if (enemy == null)
+            return null;
+
+        var model = CreateCharacterUnitModel(TeamTag.Enemy, CharacterType.Enemy, CharacterSetUpType.Battle);
+        model.SetCharacterDataId(characterDataId);
+        enemy.SetModel(model);
 
         return enemy;
     }
 
-    public async UniTask<CharacterUnit> SpawnCharacter(TeamTag teamTag, CharacterType characterType, string prefabPath, Transform transform = null, Vector3 pos = default, Quaternion rot = default)
+    public async UniTask<CharacterUnit> SpawnCharacter(CharacterType characterType, string prefabPath, Transform transform = null, Vector3 pos = default, Quaternion rot = default)
     {
         var character = await InstantiateCharacter(prefabPath, transform, pos, rot);
 
         if (character == null)
             return null;
 
-        bool result = await SetCharacterUnitModel(character, teamTag, characterType);
+        await SetCharacterScriptableInfo(character, characterType);
 
-        return result ? character : null;
+        return character;
     }
 
     private async UniTask<ScriptableCharacterInfo> GetScriptableCharacterInfo(CharacterType characterType)
@@ -110,29 +114,39 @@ public class CharacterFactory : BaseManager<CharacterFactory>
         };
     }
 
-    public async UniTask<bool> SetCharacterUnitModel(CharacterUnit character, TeamTag teamTag, CharacterType characterType)
+    public CharacterUnitModel CreateCharacterUnitModel(TeamTag teamTag, CharacterType characterType, CharacterSetUpType setUpType = CharacterSetUpType.Town, CharacterInfo characterInfo = null)
     {
-        #region Model Set
         CharacterSetUpType characterSetUpType = FlowManager.Instance.CurrentFlowType == FlowType.BattleFlow ?
             CharacterSetUpType.Battle : CharacterSetUpType.Town;
 
         CharacterUnitModel characterModel = new CharacterUnitModel();
+        SetCharacterUnitModel(characterModel, teamTag, characterType, setUpType, characterInfo);
+
+        return characterModel;
+    }
+
+    public void SetCharacterUnitModel(CharacterUnitModel characterModel,TeamTag teamTag, CharacterType characterType, CharacterSetUpType setUpType = CharacterSetUpType.Town, CharacterInfo characterInfo = null)
+    {
+        CharacterSetUpType characterSetUpType = FlowManager.Instance.CurrentFlowType == FlowType.BattleFlow ?
+            CharacterSetUpType.Battle : CharacterSetUpType.Town;
+
         characterModel.SetTeamTag(teamTag);
         characterModel.SetCharacterType(characterType);
-        characterModel.SetCharacterSetUpType(characterSetUpType);  
+        characterModel.SetCharacterSetUpType(setUpType);
 
-        #endregion
+        // CharacterInfo 설정
+        if (characterInfo != null)
+            characterModel.SetCharacterInfo(characterInfo);
+    }
 
-        if (character != null)
-        {
-            character.SetModel(characterModel);
+    public async UniTask SetCharacterScriptableInfo(CharacterUnit character, CharacterType characterType)
+    {
+        if (character == null)
+            return;
 
-            var characterInfo = await GetScriptableCharacterInfo(characterType);
-            character.SetStateGroup(characterInfo.StateGroup);
-            character.SetModuleGroup(characterInfo.ModuleGroup);
-        }
-
-        return true;
+        var scriptableCharacterInfo = await GetScriptableCharacterInfo(characterType);
+        character.SetStateGroup(scriptableCharacterInfo.StateGroup);
+        character.SetModuleGroup(scriptableCharacterInfo.ModuleGroup);
     }
 
     public void Clear()

@@ -273,3 +273,17 @@ public enum EquipmentType
     Weapon,
     Mask,
 }
+
+public enum AbilitySlotType
+{
+    Weapon,     // 주무기 슬롯
+    Active,     // 액티브 슬롯
+    Passive,    // 패시브 슬롯
+}
+
+public enum AbilityCardType
+{
+    None,
+    Ability,            // 능력 추가 or 기존 능력 레벨업
+    ExpGainer,          // 경험치 획득 범위 증가
+}

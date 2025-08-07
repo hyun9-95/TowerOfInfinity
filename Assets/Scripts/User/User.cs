@@ -50,9 +50,9 @@ public class User
 
             SubCharacterInfo userCharacter = new SubCharacterInfo();
             userCharacter.SetCharacterDataId(dataCharacterId);
-            userCharacter.SetPrimaryWeaponAbilityDataId((int)subCharacterData.PrimaryWeaponAbility);
-            userCharacter.SetActiveSkillDataId((int)subCharacterData.ActiveSkill);
-            userCharacter.SetPassiveSkillDataId((int)subCharacterData.PassiveSkill);
+            userCharacter.SetPrimaryWeaponAbility(subCharacterData.PrimaryWeaponAbility);
+            userCharacter.SetActiveAbility(subCharacterData.ActiveSkill);
+            userCharacter.SetPassiveAbility(subCharacterData.PassiveSkill);
             userCharacter.SetSlotIndex(slotIndex);
 
             subCharacterInfos[i] = userCharacter;
@@ -81,7 +81,7 @@ public class User
         var equippedWeapon = mainCharacterInfo.GetEquippedEquipment(EquipmentType.Weapon);
 
         if (equippedWeapon != null)
-            mainCharacterInfo.SetPrimaryWeaponAbilityDataId((int)equippedWeapon.Ability);
+            mainCharacterInfo.SetPrimaryWeaponAbility(equippedWeapon.Ability);
 
         UserCharacterInfo.SetMainCharacterInfo(mainCharacterInfo);
     }

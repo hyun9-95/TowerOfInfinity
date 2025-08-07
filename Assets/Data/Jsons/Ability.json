@@ -1,6 +1,7 @@
 [
   {
     "id": 50000,
+    "SlotType": "Weapon",
     "CastingType": "OnAttack",
     "BattleEvents": [
       "BE_DAMAGE_ONE_SHOT_ATTACK"
@@ -12,6 +13,7 @@
   },
   {
     "id": 50001,
+    "SlotType": "Weapon",
     "CastingType": "OnAttack",
     "BattleEvents": [
       "BE_DAMAGE_ONE_SHOT_ATTACK"
@@ -23,6 +25,7 @@
   },
   {
     "id": 50002,
+    "SlotType": "Weapon",
     "CastingType": "OnAttack",
     "BattleEvents": [
       "BE_DAMAGE_ONE_SHOT_ATTACK"

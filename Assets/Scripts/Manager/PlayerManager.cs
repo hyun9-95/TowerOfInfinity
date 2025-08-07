@@ -56,11 +56,14 @@ public class PlayerManager : BaseMonoManager<PlayerManager>
     {
         if (mainPlayerCharacter == null)
         {
+            var mainPlayerCharacterPath = MyUser.UserCharacterInfo.MainCharacterInfo.MainCharacterPath;
+            
             mainPlayerCharacter = await AddressableManager.Instance.InstantiateUntrackedAsync<MainPlayerCharacter>
-                (MyUser.UserCharacterInfo.MainCharacterInfo.MainCharacterPath, playerCharacterTransform);
-        }
+                (mainPlayerCharacterPath, playerCharacterTransform);
 
-        await mainPlayerCharacter.UpdateMainCharacter(MyUser.UserCharacterInfo.MainCharacterInfo);
+            await CharacterFactory.Instance.SetCharacterScriptableInfo
+                (mainPlayerCharacter.CharacterUnit, CharacterType.Main);
+        }
     }
 
     /// <summary>
@@ -68,12 +71,12 @@ public class PlayerManager : BaseMonoManager<PlayerManager>
     /// 사용하려면 다시 활성화해줘야함
     /// </summary>
     /// <returns></returns>
-    public async UniTask UpdateMainPlayerCharacter(bool isStopUnitUpdate = true)
+    public async UniTask UpdateMainPlayerCharacter(CharacterSetUpType setUpType, bool isStopUnitUpdate = true)
     {
         if (isStopUnitUpdate)
             mainPlayerCharacter.CharacterUnit.StopUpdate();
 
-        await mainPlayerCharacter.UpdateMainCharacter(MyUser.UserCharacterInfo.MainCharacterInfo);
+        await mainPlayerCharacter.UpdateMainCharacter(MyUser.UserCharacterInfo.MainCharacterInfo, setUpType);
     }
 
     public MainPlayerCharacter GetMainPlayerCharacter()

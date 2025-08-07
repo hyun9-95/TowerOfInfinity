@@ -11,7 +11,7 @@ public class AbilityProcessor
     private CharacterUnitModel owner;
     private Dictionary<CastingType, HashSet<Ability>> abilitySetByCasting = new();
     private Dictionary<int, Ability> abilityDicById = new();
-    private Ability primaryWeaponAbility;
+    private Dictionary<AbilitySlotType, List<Ability>> abilitySlotDic = new();
 
     // 한프레임 돌고 Clear되는 것들
     private List<Ability> tempUpdateList = new List<Ability>();
@@ -24,10 +24,6 @@ public class AbilityProcessor
         this.owner = owner;
     }
 
-    public void SetPrimaryWeaponAbility(Ability primaryWeaponAbility)
-    {
-        this.primaryWeaponAbility = primaryWeaponAbility;
-    }
 
     public void AddAbility(int newAbilityDataId)
     {
@@ -43,11 +39,16 @@ public class AbilityProcessor
         abilityDicById[newAbilityDataId] = newAbility;
 
         var castingType = newAbility.CastingType;
+        var slotType = newAbility.Model.AbilityData.SlotType;
 
         if (!abilitySetByCasting.TryGetValue(castingType, out var abilities))
             abilitySetByCasting[castingType] = new HashSet<Ability>();
 
+        if (!abilitySlotDic.TryGetValue(slotType, out var slotAbilities))
+            abilitySlotDic[slotType] = new List<Ability>();
+
         abilitySetByCasting[newAbility.CastingType].Add(newAbility);
+        abilitySlotDic[slotType].Add(newAbility);
     }
 
     public void RemoveAbility(int removeAbilityDataId)
@@ -59,6 +60,9 @@ public class AbilityProcessor
 
         if (abilitySetByCasting.TryGetValue(abilityToRemove.CastingType, out var abilities))
             abilities.Remove(abilityToRemove);
+
+        if (abilitySlotDic.TryGetValue(abilityToRemove.Model.AbilityData.SlotType, out var slotAbilities))
+            slotAbilities.Remove(abilityToRemove);
 
         abilityDicById.Remove(removeAbilityDataId);
     }
@@ -80,10 +84,6 @@ public class AbilityProcessor
         foreach (var ability in tempUpdateList)
             ability.ReduceCoolTime();
 
-        // 주무기 쿨타임 갱신
-        if (primaryWeaponAbility != null)
-            primaryWeaponAbility.ReduceCoolTime();
-
         Cast(CastingType.Auto);
     }
 
@@ -104,25 +104,44 @@ public class AbilityProcessor
 
     public async UniTask CastPrimaryWeapon(float delay)
     {
-        if (primaryWeaponAbility == null)
-            return;
+        var primaryWeapon = GetPrimaryWeapon();
 
-        await primaryWeaponAbility.DelayCast(delay);
-        Cast(CastingType.OnAttack);
+        if (primaryWeapon != null && primaryWeapon.IsCastable)
+            await primaryWeapon.DelayCast(delay);
     }
 
-    public bool IsPrimaryWeaponReady()
+    public bool IsPrimaryWeaponSlotReady()
     {
-        if (primaryWeaponAbility == null)
-            return false;
+        if (GetPrimaryWeapon() == null)
+            return false;   
 
-        return primaryWeaponAbility.IsCastable;
+        return GetPrimaryWeapon().IsCastable;
+    }
+
+    private Ability GetPrimaryWeapon()
+    {
+        if (!abilitySlotDic.TryGetValue(AbilitySlotType.Weapon, out var weaponAbilities))
+            return null;
+
+        if (weaponAbilities.Count == 0)
+            return null;
+
+        return weaponAbilities[0];
+    }
+
+    public IReadOnlyList<Ability> GetAbilitiesBySlotType(AbilitySlotType slotType)
+    {
+        if (!abilitySlotDic.TryGetValue(slotType, out var abilities))
+            return null;
+
+        return abilities;
     }
 
     public void Cancel()
     {
         abilityDicById.Clear();
         abilitySetByCasting.Clear();
+        abilitySlotDic.Clear();
     }
     #endregion
 
