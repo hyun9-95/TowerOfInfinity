@@ -1,0 +1,113 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterPartsIcon_Ears
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterPartsIcon_Ears
+  m_GUID: f1b36cb0fbcb4f244977e367f3074f54
+  m_SerializeEntries:
+  - m_GUID: 00b8c9d107ef1c547b7e7bb61a6cb468
+    m_Address: CharacterPartsIcon/Ears/ZombieA
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0b8c5ff2f63c94b4698c527f0a7e14fd
+    m_Address: CharacterPartsIcon/Ears/Merman
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 174d7979b0bdb804db4f4ca8c7889972
+    m_Address: CharacterPartsIcon/Ears/DarkElf
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 35c430ca4f56a7c4bacfbd8141f4e90f
+    m_Address: CharacterPartsIcon/Ears/Werewolf
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3a2ac9ec9fca4c846a9c13feacb3636c
+    m_Address: CharacterPartsIcon/Ears/FireLizard
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 589ff017a5cba0a46b80f24c2179f68e
+    m_Address: CharacterPartsIcon/Ears/Lizard
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5cf01944abf536d4e9d3af6fea51c952
+    m_Address: CharacterPartsIcon/Ears/Elf
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6e410a9d7ea3e854592a49d1bad7c373
+    m_Address: CharacterPartsIcon/Ears/Skeleton
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 95ff0f05985a4184ca1378283a5bf84d
+    m_Address: CharacterPartsIcon/Ears/Human
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c71cbca101268ed448172903b79d0f6a
+    m_Address: CharacterPartsIcon/Ears/Furry
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d61babb93f4ed3347a990354b7dbfcb6
+    m_Address: CharacterPartsIcon/Ears/Goblin
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: da57cb66320a00d439a438f939e5b76f
+    m_Address: CharacterPartsIcon/Ears/Demon
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e73c0599d0ca74441b72c444766ba6b4
+    m_Address: CharacterPartsIcon/Ears/Demigod
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: eb9014b1400851a449d0134f733ff178
+    m_Address: CharacterPartsIcon/Ears/ZombieB
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f183f006ffe5a4b489f3b0e56f3d7289
+    m_Address: CharacterPartsIcon/Ears/Orc
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 4d6f831661d1d054394baf0578081bad, type: 2}
+    - {fileID: 11400000, guid: 1cfdd02a182c9f841bdee8e37333119b, type: 2}

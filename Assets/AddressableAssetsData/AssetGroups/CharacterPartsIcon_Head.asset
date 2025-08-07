@@ -1,0 +1,119 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterPartsIcon_Head
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterPartsIcon_Head
+  m_GUID: 4d12a7520bee0a64db10933d73d588fe
+  m_SerializeEntries:
+  - m_GUID: 0d27adf16242ae14f84b788bb2dd43b0
+    m_Address: CharacterPartsIcon/Head/Lizard
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 115cad5d950fe254298a3b83ec9c65ca
+    m_Address: CharacterPartsIcon/Head/Orc
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4a58dd9e2fffd29449898d4d0e309d0d
+    m_Address: CharacterPartsIcon/Head/Demigod
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4d61518213f72b244b5273264bf44295
+    m_Address: CharacterPartsIcon/Head/Werewolf
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 52e4249693a870341a10921ec189f452
+    m_Address: CharacterPartsIcon/Head/Human
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 538335030cc12e74a8cd0798d8c5bab6
+    m_Address: CharacterPartsIcon/Head/Elf
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 54d20ca5fa8d8ec4fb7e09cb8578dc93
+    m_Address: CharacterPartsIcon/Head/Goblin
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 57d906dd83d868549a714f38a0cba473
+    m_Address: CharacterPartsIcon/Head/Vampire
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 64d4de6ab341db441bfb23a48b0e0d8c
+    m_Address: CharacterPartsIcon/Head/FireLizard
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6a2ae52013135a542b2ca5844518e720
+    m_Address: CharacterPartsIcon/Head/DarkElf
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6cc4c7ac91d89234c80ccd528701fd2b
+    m_Address: CharacterPartsIcon/Head/ZombieB
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 75da211f72a4b0541a242b9dd14c3b32
+    m_Address: CharacterPartsIcon/Head/Skeleton
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8dbecec2c9cfa3248a7fedc1efecd0a0
+    m_Address: CharacterPartsIcon/Head/Merman
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b22756da316083f42b77e6b747d84bdc
+    m_Address: CharacterPartsIcon/Head/Furry
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b860974d19f60104dad593a32edde325
+    m_Address: CharacterPartsIcon/Head/Demon
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: db22204f294d9c14b850b9611be53531
+    m_Address: CharacterPartsIcon/Head/ZombieA
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: f9c20b7f8c1d155428e82b95b2846ead, type: 2}
+    - {fileID: 11400000, guid: 17f14d96b801a8549b0bb6fe5158a934, type: 2}

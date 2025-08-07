@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterPartsIcon_Back
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterPartsIcon_Back
+  m_GUID: 672308bacb233a44aa719b57e54d4eac
+  m_SerializeEntries:
+  - m_GUID: 3c0bf0e3bd6503d478dff2ce2c4da617
+    m_Address: CharacterPartsIcon/Back/BackSword
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5751a72c486a3ca44ac553291b7fa10f
+    m_Address: CharacterPartsIcon/Back/LeatherQuiver
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 795d888a0c611214082c0a1a6bdf3199
+    m_Address: CharacterPartsIcon/Back/LargeBackpack
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f1a81997232d0854dbe552905bb080fa
+    m_Address: CharacterPartsIcon/Back/SmallBackpack
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: de07cfc1a3ce5f04e86630d342bc174b, type: 2}
+    - {fileID: 11400000, guid: 4d13b723a980d5b44bd9724a44f148c3, type: 2}

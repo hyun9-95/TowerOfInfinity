@@ -1,0 +1,125 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterPartsIcon_Hair
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterPartsIcon_Hair
+  m_GUID: cbfae8094c8370f478428bc44b499fde
+  m_SerializeEntries:
+  - m_GUID: 1253c487123d47b47b94e198c37065c7
+    m_Address: CharacterPartsIcon/Hair/Hair14
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2a0af065745933f4e9d12bd2f3a8b398
+    m_Address: CharacterPartsIcon/Hair/Rambo
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3b2decbc53c54c5428ce854ed0325e87
+    m_Address: CharacterPartsIcon/Hair/Hair1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3fa6c652e723f924eb5fbeb0ebfd64d8
+    m_Address: CharacterPartsIcon/Hair/Hair3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 448d99d7090a43947907745231a0eb10
+    m_Address: CharacterPartsIcon/Hair/Hair13
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 527f0349b4afdec479ce1a7f84385fb1
+    m_Address: CharacterPartsIcon/Hair/Hair9
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 62ac4ebe813ef3141b4bcf4058b56d72
+    m_Address: CharacterPartsIcon/Hair/Hair4
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6a28b6c4ee79a2642aa046c353d429d4
+    m_Address: CharacterPartsIcon/Hair/Hair6
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7800edc5041745842891e27fe71c7e81
+    m_Address: CharacterPartsIcon/Hair/Hair11
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a853214b2b5a04b4f92e69c970f876af
+    m_Address: CharacterPartsIcon/Hair/Hair8
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c002d0eabf1b8ea4286d8f7ed2d597b3
+    m_Address: CharacterPartsIcon/Hair/Dracula
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d1e42ff4e20f2c041b56ccaf5a081b77
+    m_Address: CharacterPartsIcon/Hair/Hair2
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dd0294273aad42342a595502b519b855
+    m_Address: CharacterPartsIcon/Hair/Hair7
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ec84ba7b2442d144d876a89d6b8806ec
+    m_Address: CharacterPartsIcon/Hair/Hair5
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f76396c5adce6294da6d18ffd0e16b3a
+    m_Address: CharacterPartsIcon/Hair/Hair12
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fb4326a3234654e4d8f4f3b81a6113b1
+    m_Address: CharacterPartsIcon/Hair/Hair10
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: feaff08e014e2b64db639deea653ad37
+    m_Address: CharacterPartsIcon/Hair/Hair15
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: ae7a70238794fcc498211a51f5e6c032, type: 2}
+    - {fileID: 11400000, guid: 94cdae0b9ebc3ab4aa0585e345cdd9a5, type: 2}

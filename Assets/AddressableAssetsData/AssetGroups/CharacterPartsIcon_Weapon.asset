@@ -1,0 +1,599 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterPartsIcon_Weapon
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterPartsIcon_Weapon
+  m_GUID: e2f89175811a2184dbd7b5e443e3d27c
+  m_SerializeEntries:
+  - m_GUID: 0137ad43b44ebd3478bbe0c657349f24
+    m_Address: CharacterPartsIcon/Weapon/Bident
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 03b1802a95f84fe45ac8dbf175abd081
+    m_Address: CharacterPartsIcon/Weapon/RoyalLongsword
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 04a3424c9ce314e48b14fe88c24364af
+    m_Address: CharacterPartsIcon/Weapon/GiantSword
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0935e3c11a14ca046b1a5205b7bae573
+    m_Address: CharacterPartsIcon/Weapon/StormStaff
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0cd5aea651d54824aada7ed5525dad8e
+    m_Address: CharacterPartsIcon/Weapon/ArchStaff
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0e5600226d740ac4aa88c1973d297080
+    m_Address: CharacterPartsIcon/Weapon/Knife
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 14d9ddc066d3ba9449f915e7aa40473c
+    m_Address: CharacterPartsIcon/Weapon/WideDagger
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1633e0147ea28ea45a4f1179d780ed3c
+    m_Address: CharacterPartsIcon/Weapon/Pan
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 192cbfc3d8708564ab81c979268b57ac
+    m_Address: CharacterPartsIcon/Weapon/BattleHammer
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 19c71ed3fab2677458dedb769ce1727f
+    m_Address: CharacterPartsIcon/Weapon/Morgenstern
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1ddf43f44ffe8af40bac32c4b12842c4
+    m_Address: CharacterPartsIcon/Weapon/Pitchfork
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1f9c6f15cba779249bdbe8b768003124
+    m_Address: CharacterPartsIcon/Weapon/Bow
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 238cda34a35d7da41ad15e311f8c5719
+    m_Address: CharacterPartsIcon/Weapon/RedKatana
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2891a3e9e48431e499880d7e7349c33c
+    m_Address: CharacterPartsIcon/Weapon/Mace
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 28a4756251c4c4249ac0d95994e71cbb
+    m_Address: CharacterPartsIcon/Weapon/LongBow
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 29ab9fbd721151d4a8471bb3d58968de
+    m_Address: CharacterPartsIcon/Weapon/CurveBranch
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2d8c4ce7dbb4e0948865fcbc4b0d01af
+    m_Address: CharacterPartsIcon/Weapon/Executioner
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2e1229b51eee65547b839b268d7cb6cb
+    m_Address: CharacterPartsIcon/Weapon/ShitOnStick
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2f0cb0c21aece80488ad087b28d82a92
+    m_Address: CharacterPartsIcon/Weapon/Fork
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3507fb7aca9198649b11f85807cc8fe9
+    m_Address: CharacterPartsIcon/Weapon/MasterWand
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 376e901df7ef2404095c7fa37095e2e7
+    m_Address: CharacterPartsIcon/Weapon/Hammer
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 386bb3fd61a8443429a9286d3351993b
+    m_Address: CharacterPartsIcon/Weapon/GreenWand
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3963d0b5323acad45902d3899b413513
+    m_Address: CharacterPartsIcon/Weapon/PriestWand
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3ca5927762c9e184a87d501a7b502426
+    m_Address: CharacterPartsIcon/Weapon/RustedShovel
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3d2390fa7bf91e0439709d5735f0d711
+    m_Address: CharacterPartsIcon/Weapon/BlueWand
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3d905320e64b9e843a53059c7e40a00c
+    m_Address: CharacterPartsIcon/Weapon/GoldenSkepter
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4bb90e5a5f10d3947958fa5d5babbc8b
+    m_Address: CharacterPartsIcon/Weapon/NecromancerStaff
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4d7d1c3cce1fac0488f24175d94efb40
+    m_Address: CharacterPartsIcon/Weapon/Katana
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4e5ea477c06d4634da97e7b170452bb4
+    m_Address: CharacterPartsIcon/Weapon/Epee
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4edf6866853cf9449881a0ecdf75f04c
+    m_Address: CharacterPartsIcon/Weapon/Longsword
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 503488045c7ee7644a342bb8a45652ef
+    m_Address: CharacterPartsIcon/Weapon/Tanto
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5136f9ec720fd4f4baa1d44ac5d3c5af
+    m_Address: CharacterPartsIcon/Weapon/Greataxe
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5551d4a8cee229840aaabbdddac12bcb
+    m_Address: CharacterPartsIcon/Weapon/Crusher
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 55bc27539c032fd42a7cdc3a1a90deed
+    m_Address: CharacterPartsIcon/Weapon/GuardianHalberd
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 570c92634a3e75e488f2ffc0b873b825
+    m_Address: CharacterPartsIcon/Weapon/RustedShortSword
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 57d31970a444f344b9414692436697a1
+    m_Address: CharacterPartsIcon/Weapon/DeathScythe
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 598bdc9b3e293c149a7d893f7ba2c031
+    m_Address: CharacterPartsIcon/Weapon/Greatsword
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5d7d525f3f6585e41b1df3d4f1bf0738
+    m_Address: CharacterPartsIcon/Weapon/Broadsword
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5f222840039296e438b7b3ee28368ac9
+    m_Address: CharacterPartsIcon/Weapon/BattleAxe
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 626f2faa260ab2f488ac73c4fe65a91e
+    m_Address: CharacterPartsIcon/Weapon/IronSword
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 62a03f4f8c086894a951b9677639d7b8
+    m_Address: CharacterPartsIcon/Weapon/Halberd
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 669679ea4e36b1e4a97261573a4afe82
+    m_Address: CharacterPartsIcon/Weapon/GreatHammer
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6fb22e137a96b27408299dfe33138981
+    m_Address: CharacterPartsIcon/Weapon/MarderDagger
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 72f558393c5a2374298b1ca505359711
+    m_Address: CharacterPartsIcon/Weapon/WoodenClub
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 743621b7e3298ac4e81603e30e521b33
+    m_Address: CharacterPartsIcon/Weapon/CurvedBow
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 76df41a709f7d7645a9133de126e7b63
+    m_Address: CharacterPartsIcon/Weapon/RedStick
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 79839ca3f7a0c5d4f82f7bccdc1e0356
+    m_Address: CharacterPartsIcon/Weapon/RustedPickaxe
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 79a50e4bebefd92429018108eaa1f5dc
+    m_Address: CharacterPartsIcon/Weapon/Lance
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7b11b8a4f56aa844c8dc1f04349a4561
+    m_Address: CharacterPartsIcon/Weapon/ShortDagger
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7b8e7f51393b9214e92959b398923ab6
+    m_Address: CharacterPartsIcon/Weapon/HermitStaff
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7fe9b0e453f16d544b9ea01784963083
+    m_Address: CharacterPartsIcon/Weapon/Rake
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 805270f922656a34b88d68c8ba5c0b17
+    m_Address: CharacterPartsIcon/Weapon/Shestoper
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 81f64abc1f3b62a48a4514f28ec92f6a
+    m_Address: CharacterPartsIcon/Weapon/Branch
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8206915a9b598d64281d63fac9a63b16
+    m_Address: CharacterPartsIcon/Weapon/WoodenStuff
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 851abdad81b98aa4e96b4882987a81eb
+    m_Address: CharacterPartsIcon/Weapon/Pickaxe
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 852b4de36ef1a934da9e7e00085ce722
+    m_Address: CharacterPartsIcon/Weapon/Sickle
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8d885bb79db0b104da8a7b054b6b730f
+    m_Address: CharacterPartsIcon/Weapon/BlueStick
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8f41a967a8b61764db86c22fcae3dcb5
+    m_Address: CharacterPartsIcon/Weapon/BastardSword
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9010ffeacd8b4a14ba04e9f3daa7d4e4
+    m_Address: CharacterPartsIcon/Weapon/Blade
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 92f77f7be68f4e54e8abacb58c8de5fb
+    m_Address: CharacterPartsIcon/Weapon/Saber
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 93246255628655b47ad865dac584ba46
+    m_Address: CharacterPartsIcon/Weapon/HunterKnife
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9639e3888c3a73d46913ea39b0a93f82
+    m_Address: CharacterPartsIcon/Weapon/AmurWand
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 96831ab66405adc4480ae1ff91d8aa30
+    m_Address: CharacterPartsIcon/Weapon/Cleaver
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9cb84607089f7884ca1cce2e19459246
+    m_Address: CharacterPartsIcon/Weapon/GoldenSkullWand
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9e05c7a6555d785488b80a2f479f04f5
+    m_Address: CharacterPartsIcon/Weapon/WoodcutterAxe
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a0a677c7f8e378c4284bf008c68af992
+    m_Address: CharacterPartsIcon/Weapon/WaterWand
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a38f47f34bd9bf040aadf65d654826f6
+    m_Address: CharacterPartsIcon/Weapon/Axe
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a93fb5b28bd54fb4397e2a18ae95cf38
+    m_Address: CharacterPartsIcon/Weapon/SmallAxe
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a95300be0681070408331cc5be78ac08
+    m_Address: CharacterPartsIcon/Weapon/GiantBlade
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: aa12e19e941459744ac1733da21dc265
+    m_Address: CharacterPartsIcon/Weapon/LargeScythe
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: aabf25c873b6b504ab64737c11c3968c
+    m_Address: CharacterPartsIcon/Weapon/Sword
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b6486ae4b9183424e997b1139f4db695
+    m_Address: CharacterPartsIcon/Weapon/BishopStaff
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b66966360b373e64d960894276de4271
+    m_Address: CharacterPartsIcon/Weapon/KitchenAxe
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b8686459ad7efdd49943ecc30d2b7120
+    m_Address: CharacterPartsIcon/Weapon/Cutlass
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b8a1c4e2c6b633c42bb618c2ee08b34b
+    m_Address: CharacterPartsIcon/Weapon/AssaultSword
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bde8776835d35814da89a245658685e0
+    m_Address: CharacterPartsIcon/Weapon/FlameStaff
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c03c671087f47144585fcc5a842bc1c3
+    m_Address: CharacterPartsIcon/Weapon/LongKatana
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c06d49e74f947a440ba8ec4a297897f4
+    m_Address: CharacterPartsIcon/Weapon/MasterGreataxe
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c30427af156167b419a1b24631f046b3
+    m_Address: CharacterPartsIcon/Weapon/BattleBow
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c7bf16f13f69cd14b9cb1f92dfac5186
+    m_Address: CharacterPartsIcon/Weapon/ShortBow
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d009708ad3e01264a8cdb8b35fe7eb77
+    m_Address: CharacterPartsIcon/Weapon/Scythe
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d01ce58785d396b41946f5967c406330
+    m_Address: CharacterPartsIcon/Weapon/RustedHammer
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d18104a668323a84ea43782b2aab2868
+    m_Address: CharacterPartsIcon/Weapon/RoundMace
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d52a3f041a2716a4181a9355081a5bba
+    m_Address: CharacterPartsIcon/Weapon/SpikedClub
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d5b28da15c07edf4bb1588bc66f45657
+    m_Address: CharacterPartsIcon/Weapon/CrystalWand
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e003ab8447d5f5a49a163f6027af76ee
+    m_Address: CharacterPartsIcon/Weapon/Stick
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e2eac6ae0d1432f4285102f966bef9a8
+    m_Address: CharacterPartsIcon/Weapon/RedWand
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e3f530c4208b6f74f99e6310cacac6c6
+    m_Address: CharacterPartsIcon/Weapon/Butcher
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e9ffdd7efba2cfe428c51e41a1159a5a
+    m_Address: CharacterPartsIcon/Weapon/ElderStaff
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: eeb23a9938f49764ab61fba5acb81d2e
+    m_Address: CharacterPartsIcon/Weapon/NatureWand
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f0bd799ddeba6b745b51a6265d061cfc
+    m_Address: CharacterPartsIcon/Weapon/SmallPitchfork
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fa6d0cce722f6614cb37733248b5698d
+    m_Address: CharacterPartsIcon/Weapon/BlacksmithHammer
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fb2b9bba511027a4e8daef577430fcb5
+    m_Address: CharacterPartsIcon/Weapon/FireWand
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fb9b79faee843f84abedb939f5069d09
+    m_Address: CharacterPartsIcon/Weapon/LargePickaxe
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fbd9f7e0fba9dd940b25a088d648289b
+    m_Address: CharacterPartsIcon/Weapon/SkullWand
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fd3217f7288094c42a301dc7d731b3bb
+    m_Address: CharacterPartsIcon/Weapon/MagicWand
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 7cf5123ec5ee5df4eb3423bdcb3ce98d, type: 2}
+    - {fileID: 11400000, guid: 957e33b14f1ffca4b97fae00f1b02874, type: 2}

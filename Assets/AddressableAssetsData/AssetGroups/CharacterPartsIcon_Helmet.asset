@@ -1,0 +1,311 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterPartsIcon_Helmet
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterPartsIcon_Helmet
+  m_GUID: 5e9e3220a419c714a9f15459eb91b082
+  m_SerializeEntries:
+  - m_GUID: 004867561e5d26c499e84b18d57ce358
+    m_Address: CharacterPartsIcon/Helmet/ThiefHood
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 011b63f73a6f67943b9e97f623838fea
+    m_Address: CharacterPartsIcon/Helmet/LegionaryHelmet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 11c223abd9287bf499625bb9a2ea9afe
+    m_Address: CharacterPartsIcon/Helmet/SantaHood
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 132e749ead5e6c34b9dadf899360b245
+    m_Address: CharacterPartsIcon/Helmet/HeavyKnightHelmet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1e3dff91dfccd6040b441efa33aa5b0f
+    m_Address: CharacterPartsIcon/Helmet/Hellsing
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1ff9c42f60aa45b4fa74ef3e48fb2a79
+    m_Address: CharacterPartsIcon/Helmet/ArcherHood
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 27b8e26aead7bff4788256e89ea0d646
+    m_Address: CharacterPartsIcon/Helmet/Spartan
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3d0fafcc13cb02a4085a1ee68528a5e0
+    m_Address: CharacterPartsIcon/Helmet/Box
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3d69ce3ac9f073147992cf7aad28f44b
+    m_Address: CharacterPartsIcon/Helmet/PirateBandana_ShowEars
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 413c59802f9c4e24e80bba5a443130b7
+    m_Address: CharacterPartsIcon/Helmet/Gladiator
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 477c76e01a00cde4d99ffa767aa46fae
+    m_Address: CharacterPartsIcon/Helmet/PlagueDoctor
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 52d8858303fcd6e459274ae750e53b74
+    m_Address: CharacterPartsIcon/Helmet/BlueKnightHelmet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 571f2b8317e11174eb7bcdfe2d96efdd
+    m_Address: CharacterPartsIcon/Helmet/BanditBandana
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 597785138baaa724a866205e0c8e4213
+    m_Address: CharacterPartsIcon/Helmet/SantaHelperCap_ShowEars
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5f46534fc770fe94499ab7802ca70a9f
+    m_Address: CharacterPartsIcon/Helmet/Squaw
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 64cbec77fe4cc0442958dcb7ec23edc2
+    m_Address: CharacterPartsIcon/Helmet/SamuraiHelmet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6635209fd4434d44f89d6ea87e2fdde2
+    m_Address: CharacterPartsIcon/Helmet/CaptainHelmet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 69bcad3f48e6c6347992e56d93ae1e6f
+    m_Address: CharacterPartsIcon/Helmet/HolowKnightHelmet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6c1bc8c1be42b9e489229941cd138c46
+    m_Address: CharacterPartsIcon/Helmet/Priest
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 864b7adfac86d0649bfd5449f190b3e6
+    m_Address: CharacterPartsIcon/Helmet/PilotHelment
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8701b23a705d14346a0fe0dc2b4c1a9a
+    m_Address: CharacterPartsIcon/Helmet/HornsKnightHelmet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8c9b4598a1bf7d943aaa18af9d17cc00
+    m_Address: CharacterPartsIcon/Helmet/DeerHorns_ShowEars
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8d8f9f282acbb2a458d5a65b12fc49a5
+    m_Address: CharacterPartsIcon/Helmet/ChiefHat_ShowEars
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8e0205839cde76a4d818d8f33b7b5040
+    m_Address: CharacterPartsIcon/Helmet/ClericHood
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9362cdc778b4e3049b6070afe12e6ce6
+    m_Address: CharacterPartsIcon/Helmet/NinjaMask
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9411c1f96483d104ca0ec06439337a7c
+    m_Address: CharacterPartsIcon/Helmet/ExecutionerHood
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9c9aa3bde63dd9e44a33dc0980fb0361
+    m_Address: CharacterPartsIcon/Helmet/Apache
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a8f32ccc0a370ac46b3b5e8c29242a6a
+    m_Address: CharacterPartsIcon/Helmet/VikingHelmet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b1dc87048c36f8844918cd2b67dbc35e
+    m_Address: CharacterPartsIcon/Helmet/BanditPatch_ShowEars
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b455e2160e36d6b4a9fb5e856e14c0b4
+    m_Address: CharacterPartsIcon/Helmet/SantaHoodBeard
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b8e9c3237e92b794db8f9cc19ab5ef19
+    m_Address: CharacterPartsIcon/Helmet/Pharaon
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c4cd48987458a1d43b5f72fed7cf52db
+    m_Address: CharacterPartsIcon/Helmet/MilitiamanHelmet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c67830be49235f14199670948ea273f2
+    m_Address: CharacterPartsIcon/Helmet/Angel
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c991cabca151f74418bc81af075f7756
+    m_Address: CharacterPartsIcon/Helmet/GuardianHelmet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c9a71fdd69e7dba49b0b21a75d647e23
+    m_Address: CharacterPartsIcon/Helmet/Link
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cf733448b453bd249ac7dd802f9d0fd5
+    m_Address: CharacterPartsIcon/Helmet/Maid
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d23262c554c2c8548ae70cb249588500
+    m_Address: CharacterPartsIcon/Helmet/HornsHelmet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d587c2e73cc357c48a18f4abbd1bcc42
+    m_Address: CharacterPartsIcon/Helmet/BlueWizzardHat
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ddd8240c67ef7cb46853527b5b2a3a37
+    m_Address: CharacterPartsIcon/Helmet/DruidHelmet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e5c428c1751099b44a3cf391e6623dcc
+    m_Address: CharacterPartsIcon/Helmet/PirateHelmet_ShowEars
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e964d73bb9752e34497eb31d32c9286d
+    m_Address: CharacterPartsIcon/Helmet/IronKnightHelmet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e9bffe808666e0c45ac71fbe715a52ee
+    m_Address: CharacterPartsIcon/Helmet/DeathHood
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ec4958fb1ba705d4a916533fbd4782b7
+    m_Address: CharacterPartsIcon/Helmet/PumpkinHead
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: edff13eb27411f0439cb07b2a9ce4815
+    m_Address: CharacterPartsIcon/Helmet/FireWizardHood
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f57e01f2248184047ab774b030a1e227
+    m_Address: CharacterPartsIcon/Helmet/MusketeerHat_ShowEars
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f8344b34665bf1040b6a91105ad1a175
+    m_Address: CharacterPartsIcon/Helmet/Panda
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: faf0cb2f55bfb614aaad26cefa8b8ec4
+    m_Address: CharacterPartsIcon/Helmet/NecromancerHood
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ff6f769144f67194487c14b0112a5fb2
+    m_Address: CharacterPartsIcon/Helmet/MinerHelment
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: b3f3e35dd2938e54586f78c09c71f169, type: 2}
+    - {fileID: 11400000, guid: 7b2a57539654e9444aa71c5eb79ec983, type: 2}

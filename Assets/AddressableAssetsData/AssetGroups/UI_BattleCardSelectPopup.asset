@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: UI_BattleCardSelectPopup
+  m_EditorClassIdentifier: 
+  m_GroupName: UI_BattleCardSelectPopup
+  m_GUID: d072bf439277a414d9b00212e94b12e9
+  m_SerializeEntries:
+  - m_GUID: 4a8f01b6b90d9c04ca8a621739e3f6ef
+    m_Address: UI/BattleCardSelectPopup/BattleCardSelectPopup
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 43434d5e167a56241bae11c5eff42c18, type: 2}
+    - {fileID: 11400000, guid: 6eb984f0e324a704e8c834ff7c372e00, type: 2}

@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterPartsIcon_Mask
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterPartsIcon_Mask
+  m_GUID: 2301007690571554584064a537eb71cc
+  m_SerializeEntries:
+  - m_GUID: 3ee4f575530a4634591c938e5258b172
+    m_Address: CharacterPartsIcon/Mask/DarkMask
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4a1cc1e8f56a4fa45a5b24fafdf4465b
+    m_Address: CharacterPartsIcon/Mask/BlackMask
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4c5840938b59bb84ca8f87026bf89d12
+    m_Address: CharacterPartsIcon/Mask/Glass
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4cf839791677ad8489929efb0d632a68
+    m_Address: CharacterPartsIcon/Mask/Dracula
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 733d9146f3f38e641997fe9636947c8b
+    m_Address: CharacterPartsIcon/Mask/SuperMask
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bf9254ef09f59a644982fc61acfa4c55
+    m_Address: CharacterPartsIcon/Mask/AnimeMask
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ca29a83e9cfe4d64fbc72559e69c6421
+    m_Address: CharacterPartsIcon/Mask/IronMask
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cefb0aeaab2df074eb5767e5e30a3719
+    m_Address: CharacterPartsIcon/Mask/BanditMask
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: eca13e48716f9844d9c51ca7dd95ecdc
+    m_Address: CharacterPartsIcon/Mask/PlagueDoctorMask
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ff95a63ca98eec84fb3807903ab4c5cd
+    m_Address: CharacterPartsIcon/Mask/Shadow
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 5103381f894536847ab2524f70f4f3a9, type: 2}
+    - {fileID: 11400000, guid: 3bdee87cab7721349b69c1cdf46ea607, type: 2}

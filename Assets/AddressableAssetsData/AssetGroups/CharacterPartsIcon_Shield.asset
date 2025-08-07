@@ -1,0 +1,107 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterPartsIcon_Shield
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterPartsIcon_Shield
+  m_GUID: 939be45e08faf5a429f52bcfb832a8e9
+  m_SerializeEntries:
+  - m_GUID: 05b87d2675e145b49806b6a8b3c06baf
+    m_Address: CharacterPartsIcon/Shield/KnightShield
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 070d8a30d9d3ac045ae2b39e24a8b2ca
+    m_Address: CharacterPartsIcon/Shield/GuardianShield
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 09e5747c580854247a14e3e419733789
+    m_Address: CharacterPartsIcon/Shield/Dreadnought
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1ef3be0b12ca89d49bab412d18efcf2c
+    m_Address: CharacterPartsIcon/Shield/IronBuckler
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2cd23ec0407bb534e8ba286d97f86144
+    m_Address: CharacterPartsIcon/Shield/GoldenEagle
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 33de1ac11340feb4791bcff7d94bc75e
+    m_Address: CharacterPartsIcon/Shield/CrusaderShield
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3cf3b61fcbf18d24e8035eab8d3c9642
+    m_Address: CharacterPartsIcon/Shield/RoyalGreatShield
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 54491691ba8e84a42a51df5c0fd37a8f
+    m_Address: CharacterPartsIcon/Shield/SteelShield
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 624122ae442609240beaed271ee4feb9
+    m_Address: CharacterPartsIcon/Shield/AncientGreatShield
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7de1ee58f0ce94e4cb32386659fbe3e2
+    m_Address: CharacterPartsIcon/Shield/BlueShield
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 92b2637be51488440bdfe9efbfee431f
+    m_Address: CharacterPartsIcon/Shield/BrassRoundShield
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9b3fd1e3d6a260b4cacbcfcac65e1075
+    m_Address: CharacterPartsIcon/Shield/TowerShield
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a0189d227764eba428c11a31055cb058
+    m_Address: CharacterPartsIcon/Shield/WoodenBuckler
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e905b223a0f379f44b0961b94e4e96e8
+    m_Address: CharacterPartsIcon/Shield/LegionShield
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 43d664e852ad79443bb56a72edaf1773, type: 2}
+    - {fileID: 11400000, guid: 787036d420134704e8664a169b165407, type: 2}

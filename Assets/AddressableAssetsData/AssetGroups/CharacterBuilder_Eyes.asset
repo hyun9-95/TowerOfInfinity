@@ -1,0 +1,119 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterBuilder_Eyes
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterBuilder_Eyes
+  m_GUID: cdbfc9161ec3ff74abb1630f4fdf190e
+  m_SerializeEntries:
+  - m_GUID: 0805a261e716a85429999207970270bc
+    m_Address: CharacterBuilder/Eyes/Orc
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0a7477df1ad60f440ad16bcdfb4d1249
+    m_Address: CharacterBuilder/Eyes/DarkElf
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2d8eedb6e0602e842b3a467165c04e0d
+    m_Address: CharacterBuilder/Eyes/Lizard
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3cec034494e28ca49becfdcefdabe7aa
+    m_Address: CharacterBuilder/Eyes/Demon
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 61cae254e1b5f4f4fb644b502b661a93
+    m_Address: CharacterBuilder/Eyes/Human
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6818a0987007c5a4eb829d9c41e1266d
+    m_Address: CharacterBuilder/Eyes/Vampire
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 69d54ee3226e66f48823e1d0d4960c6a
+    m_Address: CharacterBuilder/Eyes/Merman
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 89635535959eed144a0962147185e12f
+    m_Address: CharacterBuilder/Eyes/Werewolf
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9372936880c05f943907124a536944a1
+    m_Address: CharacterBuilder/Eyes/FireLizard
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 99bd2bc66bdbebc41b7c222e84f7d51f
+    m_Address: CharacterBuilder/Eyes/ZombieB
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9e07457233b69234d92b03c9da7a3158
+    m_Address: CharacterBuilder/Eyes/Demigod
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b6ef603e3afe68e4293e8214ff61e92f
+    m_Address: CharacterBuilder/Eyes/Goblin
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bb2adfaaa687bbf4dabc86d4008a1827
+    m_Address: CharacterBuilder/Eyes/Elf
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bf04d125640766a4986a72cb734aaa9d
+    m_Address: CharacterBuilder/Eyes/Skeleton
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c22e1089abb98b34ca7859b1459865f0
+    m_Address: CharacterBuilder/Eyes/Furry
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: feab9fc63f235494abbbde28b7c52226
+    m_Address: CharacterBuilder/Eyes/ZombieA
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 6ad3c6c16a323b54a8117692f1b41f57, type: 2}
+    - {fileID: 11400000, guid: 2353a30662b51464cb0c0bd16bbf40fd, type: 2}

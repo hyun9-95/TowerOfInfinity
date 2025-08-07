@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterBuilder_Back
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterBuilder_Back
+  m_GUID: 47624bf0297b3f04da41826a44a92dce
+  m_SerializeEntries:
+  - m_GUID: 30d079ff7f762ac4baef13a4e1177655
+    m_Address: CharacterBuilder/Back/BackSword
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4638abf9561d9044abf62f50979269d3
+    m_Address: CharacterBuilder/Back/LeatherQuiver
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5dc9f511d2f705b428d5396d99bf4cda
+    m_Address: CharacterBuilder/Back/LargeBackpack
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 99d814737363e8d49998539f98118921
+    m_Address: CharacterBuilder/Back/SmallBackpack
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 5a9bb0508c1a73d4b8b5170121ba2c30, type: 2}
+    - {fileID: 11400000, guid: 312b61794c604bc4094a66bdfe224323, type: 2}

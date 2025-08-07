@@ -1,0 +1,119 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterPartsIcon_Eyes
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterPartsIcon_Eyes
+  m_GUID: 6f29224794138a243a884d4842c20d6f
+  m_SerializeEntries:
+  - m_GUID: 149927a35400a5749b5bb53e481abe9c
+    m_Address: CharacterPartsIcon/Eyes/FireLizard
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3e30ff26045485f4497b8aa0dddc12b1
+    m_Address: CharacterPartsIcon/Eyes/DarkElf
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3fb401a0103d43f4b845bc3026a47ad5
+    m_Address: CharacterPartsIcon/Eyes/Vampire
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 51163ef3f5e76c64f8009fb4a8a9f4e9
+    m_Address: CharacterPartsIcon/Eyes/ZombieB
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 89d171bd23f53734daf38590c4bbd79b
+    m_Address: CharacterPartsIcon/Eyes/Elf
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8d5758f89871e7948b36497077603253
+    m_Address: CharacterPartsIcon/Eyes/Furry
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9924e48b7ec47ea42a64e81ea8bcdac6
+    m_Address: CharacterPartsIcon/Eyes/Human
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9ee0224da8305354aa81e23b5d032ea7
+    m_Address: CharacterPartsIcon/Eyes/Orc
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a80d093b771adcf458a0fa48f147cd2b
+    m_Address: CharacterPartsIcon/Eyes/Werewolf
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: aa929dcf6694a934e9f9382f3e14bf28
+    m_Address: CharacterPartsIcon/Eyes/ZombieA
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: aae318c7f586381439e326de78d265ea
+    m_Address: CharacterPartsIcon/Eyes/Lizard
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b1ddc6844c2d18f46aab7ebe1e5d4996
+    m_Address: CharacterPartsIcon/Eyes/Merman
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b2a22b3ffd9d03e4097e32a07ff3deb2
+    m_Address: CharacterPartsIcon/Eyes/Demigod
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b62e10c3c9c395b4cace0ae1ac7705cf
+    m_Address: CharacterPartsIcon/Eyes/Demon
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bd2528db1ba9e234fa1bf247bc6fadc2
+    m_Address: CharacterPartsIcon/Eyes/Skeleton
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dd883fc7f24fa304fb6cd00b941f732e
+    m_Address: CharacterPartsIcon/Eyes/Goblin
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: f53d5aa4b3f996d449038d08bf1a8828, type: 2}
+    - {fileID: 11400000, guid: 891767dedea04ca4f938ce817b67cc12, type: 2}

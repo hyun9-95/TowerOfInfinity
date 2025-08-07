@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: UI_Card
+  m_EditorClassIdentifier: 
+  m_GroupName: UI_Card
+  m_GUID: efadb1a530cd51143a4bc1beca6add43
+  m_SerializeEntries:
+  - m_GUID: 51ae29b3e54798f4eab726dfbecfdba4
+    m_Address: UI/Battle/Card/BattleCard
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 571cd8dba33a328498c3731447c37869
+    m_Address: UI/Battle/Card/BattleCardFrame0_Common
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b06d135190e961b46938e8178303ed93
+    m_Address: UI/Battle/Card/Atlas_BattleCardFrame
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e198b20aa338a2e48b1ec9355f82d017
+    m_Address: UI/Battle/Card/BattleCardFrame1_Uncommon
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e60e135f0c4279941ab4d8586bed86c5
+    m_Address: UI/Battle/Card/BattleCardFrame2_Rare
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ef08a5751585059499055832720c9d31
+    m_Address: UI/Battle/Card/BattleCardFrame3_Epic
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 919bb6bb4d277f440b3f714478cf6a2f, type: 2}
+    - {fileID: 11400000, guid: cdd3844f946d0f047a296beaaf97f3cb, type: 2}

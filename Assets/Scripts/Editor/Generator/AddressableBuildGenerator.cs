@@ -19,6 +19,14 @@ public class AddressableBuildGenerator : BaseGenerator
     };
     #endregion
 
+    #region PackSeparately Path
+    private HashSet<string> packSeparatelyPaths = new HashSet<string>()
+    {
+        "CharacterPartsIcon",
+        "CharacterBuilder",
+    };
+    #endregion
+
     public void Generate(string addresableAssetPath)
     {
         UpdateEntry(addresableAssetPath);
@@ -56,21 +64,13 @@ public class AddressableBuildGenerator : BaseGenerator
         addressableSettings.OverridePlayerVersion = NameDefine.CurrentPlatformName;
         ClearNotUseEntries(addressableSettings, guids);
         RemoveEmptyGroups(addressableSettings);
+        SetPackSeparatelyForGroups(addressableSettings);
 
         AssetDatabase.Refresh();
     }
 
     private string GetEntryName(string assetPath)
     {
-        // 파츠별로 골라서 사용하기 때문에, 모든 파츠를 그룹 세분화해야 메모리가 덜 로드된다.
-        if (assetPath.Contains("Assets/Addressable/CharacterBuilder/"))
-        {
-            string uniqueGroupName = assetPath.Replace("Assets/Addressable/", "");
-            string[] split = uniqueGroupName.Split(".");
-            uniqueGroupName = split[0].Replace("/", "_");
-            return uniqueGroupName;
-        }
-
         string[] pathParts = assetPath.Split('/');
         string parentFolder = pathParts[2];
 
@@ -121,6 +121,7 @@ public class AddressableBuildGenerator : BaseGenerator
         if (entry == null)
             return;
 
+
         // 기존 라벨 제거함
         entry.labels.Clear();
 
@@ -152,6 +153,35 @@ public class AddressableBuildGenerator : BaseGenerator
         AddToAddressableDic(newAddress, assetPath);
     }
 
+    private void SetPackSeparatelyForGroups(AddressableAssetSettings addressableSettings)
+    {
+        foreach (var group in addressableSettings.groups)
+        {
+            if (group == null || group.ReadOnly)
+                continue;
+
+            bool shouldPackSeparately = false;
+            foreach (string path in packSeparatelyPaths)
+            {
+                if (group.Name.Contains(path))
+                {
+                    shouldPackSeparately = true;
+                    break;
+                }
+            }
+
+            if (shouldPackSeparately)
+            {
+                var bundledSchema = group.GetSchema<UnityEditor.AddressableAssets.Settings.GroupSchemas.BundledAssetGroupSchema>();
+                if (bundledSchema != null)
+                {
+                    bundledSchema.BundleMode = UnityEditor.AddressableAssets.Settings.GroupSchemas.BundledAssetGroupSchema.BundlePackingMode.PackSeparately;
+                    Logger.Log($"Set PackSeparately for group: {group.Name}");
+                }
+            }
+        }
+    }
+
     private AddressableAssetGroup FindDefaultGroup(AddressableAssetSettings addressableSettings)
     {
         AddressableAssetGroup defaultGroup = addressableSettings.FindGroup(NameDefine.AddressableDefaultGroupName);
@@ -170,7 +200,6 @@ public class AddressableBuildGenerator : BaseGenerator
         if (!addressableDic.ContainsKey(address))
         {
             addressableDic.Add(address, path);
-            Logger.Log($"Add to AddressableDic {address} : {path}");
         }
         else
         {

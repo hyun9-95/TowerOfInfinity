@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterPartsIcon_Arms
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterPartsIcon_Arms
+  m_GUID: d5b44549ee447b042931052f06d89cb2
+  m_SerializeEntries:
+  - m_GUID: 1d6a6faa8eab73a4c95d6a59a37c2b5d
+    m_Address: CharacterPartsIcon/Arms/Elf
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2afc868ae4f49294e9adcd94479d2d1e
+    m_Address: CharacterPartsIcon/Arms/Werewolf
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 52d62b66108d1cc498976c1dbd595fb1
+    m_Address: CharacterPartsIcon/Arms/Merman
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 62f3a6e84e1692f4d94f41442df776d0
+    m_Address: CharacterPartsIcon/Arms/Furry
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6f8dc0d5f4b96974aa1324fa0c9ce3bd
+    m_Address: CharacterPartsIcon/Arms/FireLizard
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b4e1135fa9e4abe4b99b0159dee9e4b1
+    m_Address: CharacterPartsIcon/Arms/Demigod
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: de3037ed621de4147bc38b086913ae9c
+    m_Address: CharacterPartsIcon/Arms/Human
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: c8275a9a64cb96745b4582d9c5a20619, type: 2}
+    - {fileID: 11400000, guid: 5339ef94bcf9d4e43bf063cb348b3123, type: 2}

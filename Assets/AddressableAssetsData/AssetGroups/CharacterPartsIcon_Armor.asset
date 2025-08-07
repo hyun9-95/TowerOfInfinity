@@ -1,0 +1,341 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterPartsIcon_Armor
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterPartsIcon_Armor
+  m_GUID: b0657dad1415360428e5e5bd7273bc01
+  m_SerializeEntries:
+  - m_GUID: 04a243110604b154cb08db7429025a29
+    m_Address: CharacterPartsIcon/Armor/Panda
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 084baa42b0773b94c9b5bedcdad1e7a9
+    m_Address: CharacterPartsIcon/Armor/LegionaryArmor
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 10113c4a5f183c54cb39b4491a900856
+    m_Address: CharacterPartsIcon/Armor/PilotArmor
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 126324a7d9f844448b23ceb46ed1f0fd
+    m_Address: CharacterPartsIcon/Armor/Spartan
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1b2725bfa4d66684fb4f4c19c8aa4f50
+    m_Address: CharacterPartsIcon/Armor/HornsKnight
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1ea99bdd7ad3db94bbe69acb1f443205
+    m_Address: CharacterPartsIcon/Armor/Hellsing
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2a62425ffe3ff0748846227c100552fc
+    m_Address: CharacterPartsIcon/Armor/CaptainArmor
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 31cab47ede6f54e42bcc09ba4d52f68c
+    m_Address: CharacterPartsIcon/Armor/MusketeerTunic
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 32884e55a165ee44785a291769c1ff85
+    m_Address: CharacterPartsIcon/Armor/FemaleSwimmingSuit
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3ea5aeb1530fd84499230c97c0db2bac
+    m_Address: CharacterPartsIcon/Armor/Pharaon
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 40a308414bf400148b5fea7ab5a5b8de
+    m_Address: CharacterPartsIcon/Armor/PlagueDoctor
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4447397c37afaca45aebc2c4c387b799
+    m_Address: CharacterPartsIcon/Armor/Dracula
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 45264e6a675c528419f111897208c9be
+    m_Address: CharacterPartsIcon/Armor/MilitiamanArmor
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4567c773d98bda048aba15c3d4f44d2a
+    m_Address: CharacterPartsIcon/Armor/BlueKnight
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 46c0a0a1edc25a54bb2a81befece55d5
+    m_Address: CharacterPartsIcon/Armor/IronKnight
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 46c77a11c7e4f6a44a61def1ad536f76
+    m_Address: CharacterPartsIcon/Armor/ThiefTunic
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4eb649d17bceed9468c2f8c7af8b71d4
+    m_Address: CharacterPartsIcon/Armor/Samurai
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 526916ecfeb0fe84886d28751914ab75
+    m_Address: CharacterPartsIcon/Armor/MonkRobe
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5a1462819d5cdc14e93d0457eccb9a3e
+    m_Address: CharacterPartsIcon/Armor/HeavyKnightArmor
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 617b476b44e3f9940b6ba49e8f34ad56
+    m_Address: CharacterPartsIcon/Armor/Overalls
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 669aa579cf5e8d2479ee2f62fe30c388
+    m_Address: CharacterPartsIcon/Armor/FireWizardRobe
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 693fe336b38b0954d9e40c50c8fecffa
+    m_Address: CharacterPartsIcon/Armor/SantaTunic
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7009e2d9b78fdcc4486120aa75e181a4
+    m_Address: CharacterPartsIcon/Armor/HolowKnight
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 745fd203c6583bc439876beb43ef4b4f
+    m_Address: CharacterPartsIcon/Armor/Apache
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7638fa6e531835c45af501b0527d85c9
+    m_Address: CharacterPartsIcon/Armor/Box
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 789a2500f2257fc45a6f027805d9704a
+    m_Address: CharacterPartsIcon/Armor/Priest
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7f82d94833a5f2341adb329ab119db9e
+    m_Address: CharacterPartsIcon/Armor/Link
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 851a724fb967c1c45bfe437dfe233dc9
+    m_Address: CharacterPartsIcon/Armor/Chief
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8b367b0294f361a42b28c7513330d824
+    m_Address: CharacterPartsIcon/Armor/DeerCostume
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8b733ab99ce7edc4f9c4ee6592125ece
+    m_Address: CharacterPartsIcon/Armor/PirateRobe
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8c5f09c054596a647a370a9b50c4fd89
+    m_Address: CharacterPartsIcon/Armor/DemigodArmour
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8f3bb0feb40e390468d1637d4c9c5b4d
+    m_Address: CharacterPartsIcon/Armor/PirateCostume
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9cb06d857b5a2b44c8a84f8213af8f5d
+    m_Address: CharacterPartsIcon/Armor/NinjaTunic
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9e578c48ad3bc9a469510b1b625524b4
+    m_Address: CharacterPartsIcon/Armor/Executioner
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a01520dbd0a9b3f4ea2e26a07588e9fe
+    m_Address: CharacterPartsIcon/Armor/Gladiator
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a3a903999e030854e8eb276444513eed
+    m_Address: CharacterPartsIcon/Armor/DeathRobe
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b6404c21010ee4b409ee52d7ab61e53f
+    m_Address: CharacterPartsIcon/Armor/BlueWizardTunic
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b90e0f2238efca5479561cc99aae7ae1
+    m_Address: CharacterPartsIcon/Armor/Angel
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bd67acdd7c563684b94641fbc6428f3b
+    m_Address: CharacterPartsIcon/Armor/PumpkinOveralls
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c027c725757aafa4fbfca344442abb07
+    m_Address: CharacterPartsIcon/Armor/MinerArmour
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c38908b33a5a93e4098cdab52f293203
+    m_Address: CharacterPartsIcon/Armor/SantaHelperTunic
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c60179f08022f2c459b08fc2e28dc825
+    m_Address: CharacterPartsIcon/Armor/Squaw
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d4664f13afb98eb4aa76eafb48046b77
+    m_Address: CharacterPartsIcon/Armor/TravelerTunic
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d63f910cf4344864989b5b17665d12d9
+    m_Address: CharacterPartsIcon/Armor/BanditTunic
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d6fe955ebf2e129429c243a56f5ee56a
+    m_Address: CharacterPartsIcon/Armor/GuardianTunic
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dcb6ebbeb6476e340acc9c522f6d77d6
+    m_Address: CharacterPartsIcon/Armor/Maid
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e743706ee42620144a8d7724692ed271
+    m_Address: CharacterPartsIcon/Armor/DruidRobe
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e947c41559d1ea945b4f779754781e9c
+    m_Address: CharacterPartsIcon/Armor/FemaleOutfit
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: eac77db116c7d1741a3573241a4df6cd
+    m_Address: CharacterPartsIcon/Armor/ArcherTunic
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f3ecd422f234d8343b1fb3c545d5b374
+    m_Address: CharacterPartsIcon/Armor/ClericRobe
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f70567a24dbe1ac4397236128203c33a
+    m_Address: CharacterPartsIcon/Armor/ElfTunic
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f9e70ceb11052ad48b599bbb8a66555c
+    m_Address: CharacterPartsIcon/Armor/FarmerClothes
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: feb151bce1cb0924aaec493eb7f37fa0
+    m_Address: CharacterPartsIcon/Armor/NecromancerRobe
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 1d5e2286d9ca2e742b9529661d03c4d8, type: 2}
+    - {fileID: 11400000, guid: b79293afd5fac144296b0e97153a6118, type: 2}

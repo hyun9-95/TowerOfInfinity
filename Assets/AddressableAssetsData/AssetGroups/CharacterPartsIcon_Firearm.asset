@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterPartsIcon_Firearm
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterPartsIcon_Firearm
+  m_GUID: 496d52be9c73d854eaed29df7779b3da
+  m_SerializeEntries:
+  - m_GUID: 5f14630b442acaf4dbf1bc65d02cf565
+    m_Address: "CharacterPartsIcon/Firearm/\u0421rossbow"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a1468af26737ce244afcf33ca531ec89
+    m_Address: CharacterPartsIcon/Firearm/Shotgun
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: b5cdf2b88fac06c47849b64485110386, type: 2}
+    - {fileID: 11400000, guid: a8df80e040114be43a8d44ff5a8e6f78, type: 2}
