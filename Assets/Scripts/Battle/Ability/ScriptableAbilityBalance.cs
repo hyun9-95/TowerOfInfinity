@@ -30,6 +30,9 @@ public class ScriptableAbilityBalance : ScriptableObject
     [SerializeField]
     private float[] CoolTime;
 
+    [SerializeField]
+    private int[] SpawnCount;
+
     public float GetSpeed(int level)
     {
         if (Speed == null || Speed.Length == 0)
@@ -81,6 +84,15 @@ public class ScriptableAbilityBalance : ScriptableObject
         return CoolTime[level];
     }
 
+    public int GetSpawnCount(int level)
+    {
+        if (SpawnCount == null || SpawnCount.Length == 0)
+            return 1;
+        if (level >= SpawnCount.Length)
+            return SpawnCount[SpawnCount.Length - 1];
+        return SpawnCount[level];
+    }
+
     public void ResetBalanceValues()
     {
         Speed = new float[IntDefine.MAX_ABILITY_LEVEL];
@@ -89,6 +101,7 @@ public class ScriptableAbilityBalance : ScriptableObject
         SendCount = new int[IntDefine.MAX_ABILITY_LEVEL];
         Scale = new float[IntDefine.MAX_ABILITY_LEVEL];
         CoolTime = new float[IntDefine.MAX_ABILITY_LEVEL];
+        SpawnCount = new int[IntDefine.MAX_ABILITY_LEVEL];
 
         for (int i = 0; i < IntDefine.MAX_ABILITY_LEVEL; i++)
         {
@@ -98,6 +111,7 @@ public class ScriptableAbilityBalance : ScriptableObject
             SendCount[i] = 0;
             Scale[i] = 0f;
             CoolTime[i] = 0f;
+            SpawnCount[i] = 1;
         }
     }
 
@@ -109,5 +123,6 @@ public class ScriptableAbilityBalance : ScriptableObject
         SendCount = source.SendCount != null ? (int[])source.SendCount.Clone() : null;
         Scale = source.Scale != null ? (float[])source.Scale.Clone() : null;
         CoolTime = source.CoolTime != null ? (float[])source.CoolTime.Clone() : null;
+        SpawnCount = source.SpawnCount != null ? (int[])source.SpawnCount.Clone() : null;
     }
 }

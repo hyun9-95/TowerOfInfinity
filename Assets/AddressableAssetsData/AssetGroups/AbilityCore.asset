@@ -15,8 +15,14 @@ MonoBehaviour:
   m_GroupName: AbilityCore
   m_GUID: f79eb956c802c184796d5ff624cfa1bf
   m_SerializeEntries:
+  - m_GUID: 09d6cb03c16e59a49b35a1368efdef5e
+    m_Address: AbilityCore/BattleEventBalance/BE_DAMAGE_SLASH_PROJECTILE
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1431d70326999ff469f7cc7cdb2ce349
-    m_Address: AbilityCore/AbilityBalance/AB_WEAPON_SLASH_PROJECTILE
+    m_Address: AbilityCore/AbilityBalance/AB_ACTIVE_SLASH_PROJECTILE
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
@@ -39,8 +45,20 @@ MonoBehaviour:
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 98347707bdac57149a5fefb7c947ec2a
+    m_Address: AbilityCore/BattleEventBalance/BE_DAMAGE_BOULDER_SMASH
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a31e05fc695c4314dab2371c378fc3fa
     m_Address: AbilityCore/AbilityBalance/AB_WEAPON_ARROW
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bf8154837826add42b49ccf4c2596af6
+    m_Address: AbilityCore/AbilityBalance/AB_ACTIVE_BOULDER_SMASH
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main

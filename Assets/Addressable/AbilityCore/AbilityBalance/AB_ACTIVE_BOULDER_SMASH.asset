@@ -14,9 +14,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 51001
   Speed: []
-  Range: []
+  Range:
+  - 6
   Duration: []
   SendCount: 
-  Scale: []
+  Scale:
+  - 0
+  - 0.2
+  - 0.4
+  - 0.6
+  - 0.8
+  - 1
+  - 1.2
+  - 1.4
   CoolTime:
-  - 3
+  - 2
+  - 1.9
+  - 1.8
+  - 1.7
+  - 1.6
+  - 1.5
+  - 1.4
+  - 1.3
+  SpawnCount: 

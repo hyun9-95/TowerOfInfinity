@@ -27,6 +27,18 @@ MonoBehaviour:
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 30c6c83f1d6cf10439d214daf6fcbad8
+    m_Address: HitEffect/PoisonHit
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 33e7b9f9545698f4789a17af40bf8932
+    m_Address: HitEffect/explosionpurplesmoke_0
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 53c8027b55ce817468b58522e9c7bac1
     m_Address: HitEffect/explosionmedium_0
     m_ReadOnly: 0
@@ -51,8 +63,20 @@ MonoBehaviour:
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c34940933e7123b4488630da877661a2
+    m_Address: HitEffect/fx_explosionpurplesmoke
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c6702c71dc411964a89c167e5a483ab4
     m_Address: HitEffect/bloodmedium_0
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d99f7ea0990a67041bcd9aceb3c99845
+    m_Address: HitEffect/explosionpurplesmoke
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main

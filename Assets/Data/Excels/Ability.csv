@@ -2,7 +2,7 @@
 int,string,enum:AbilitySlotType,enum:CastingType,BattleEventDefine[],enum:BattleEventTriggerType,enum:BattleEventTargetType,string,string
 Id,NameId,SlotType,CastingType,BattleEvents,TriggerType,TargetType,PrefabName,HitEffectPrefabName
 50000,AB_WEAPON_ARROW,Weapon,OnAttack,BE_DAMAGE_ONE_SHOT_ATTACK,Projectile,Enemy,Ability/Arrow_Projectile/Arrow_Projectile,NULL
-50001,AB_WEAPON_STING,Weapon,OnAttack,BE_DAMAGE_ONE_SHOT_ATTACK,Collider,Enemy,Ability/Sting_Collider/Sting_Collider,NULL
+50001,AB_WEAPON_STING,Weapon,OnAttack,BE_DAMAGE_ONE_SHOT_ATTACK,FollowCollider,Enemy,Ability/Sting_Collider/Sting_Collider,NULL
 ,,,,,,,,
 ,,,,,,,,
 ,,,,,,,,
@@ -12,5 +12,5 @@ Id,NameId,SlotType,CastingType,BattleEvents,TriggerType,TargetType,PrefabName,Hi
 ,,,,,,,,
 ,,,,,,,,
 51000,AB_ACTIVE_VENOM_BALL,Active,Auto,BE_POSION_VENOM_BALL,Projectile,Enemy,Ability/VenomBall/VenomBall_Bouncing,NULL
-51001,AB_ACTIVE_BOULDER_SMASH,Active,Auto,BE_DAMAGE_BOULDER_SMASH,Range,Enemy,Ability/BoulderSmash/BoulderSmash_Range,NULL
+51001,AB_ACTIVE_BOULDER_SMASH,Active,Auto,BE_DAMAGE_BOULDER_SMASH,InRangeFollow,Enemy,Ability/BoulderSmash/BoulderSmash_Range,NULL
 51002,AB_ACTIVE_SLASH_PROJECTILE,Active,Auto,BE_DAMAGE_SLASH_PROJECTILE,Projectile,Enemy,Ability/Slash_Projectile/Slash_Projectile,NULL

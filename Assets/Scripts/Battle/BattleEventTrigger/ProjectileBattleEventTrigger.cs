@@ -30,25 +30,30 @@ public class ProjectileBattleEventTrigger : BattleEventTrigger
 
     private async UniTask ProcessProjectile()
     {
-        var projectileUnit = await SpawnUnitAsync<ProjectileTriggerUnit>(Model.PrefabName, Model.Sender.Transform.position, Quaternion.identity);
+        int spawnCount = Model.SpawnCount;
+        
+        for (int i = 0; i < spawnCount; i++)
+        {
+            var projectileUnit = await SpawnUnitAsync<ProjectileTriggerUnit>(Model.PrefabName, Model.Sender.Transform.position, Quaternion.identity);
 
-        if (projectileUnit == null)
-            return;
+            if (projectileUnit == null)
+                continue;
 
-        spawnedProjectiles.Add(projectileUnit);
+            spawnedProjectiles.Add(projectileUnit);
 
-        if (projectileUnit.Model == null)
-            projectileUnit.SetModel(new ProjectileTriggerUnitModel());
+            if (projectileUnit.Model == null)
+                projectileUnit.SetModel(new ProjectileTriggerUnitModel());
 
-        var projectileUnitModel = projectileUnit.Model;
-        var fixedDirection = OnGetFixedDirection(projectileUnit.StartDirectionType);
+            var projectileUnitModel = projectileUnit.Model;
+            var fixedDirection = OnGetFixedDirection(projectileUnit.StartDirectionType);
 
-        projectileUnitModel.SetDirection(fixedDirection);
-        projectileUnitModel.SetDistance(Model.Range);
-        projectileUnitModel.SetSpeed(Model.Speed);
-        projectileUnitModel.SetStartPosition(Model.Sender.Transform.position);
-        projectileUnitModel.SetOnEventHit(OnEventHit);
-        projectileUnitModel.SetDetectTeamTag(Model.Sender.TeamTag.Opposite());
-        projectileUnit.ShowAsync().Forget();
+            projectileUnitModel.SetDirection(fixedDirection);
+            projectileUnitModel.SetDistance(Model.Range);
+            projectileUnitModel.SetSpeed(Model.Speed);
+            projectileUnitModel.SetStartPosition(Model.Sender.Transform.position);
+            projectileUnitModel.SetOnEventHit(OnEventHit);
+            projectileUnitModel.SetDetectTeamTag(Model.Sender.TeamTag.Opposite());
+            projectileUnit.ShowAsync().Forget();
+        }
     }
 }

@@ -18,9 +18,10 @@ public enum CharacterAnimState
 public enum BattleEventTriggerType
 {
     None,
-    Projectile,     // 투사체로 검출
-    Range,          // 범위로 검출
-    Collider,       // 콜라이더로 검출
+    Projectile,             // 투사체로 검출
+    FollowCollider,         // 타겟을 따라다니는 콜라이더로 검출
+    InRange,                // 범위 안의 타겟 위치에 콜라이더 생성 및 검출 
+    InRangeFollow,          // 범위 안의 타겟 위치에 콜라이더 생성 후 Follow
 }
 
 public enum BattleEventTargetType

@@ -16,8 +16,9 @@ public static class BattleEventTriggerFactory
         BattleEventTrigger newTrigger = type switch
         {
             BattleEventTriggerType.Projectile => new ProjectileBattleEventTrigger(),
-            BattleEventTriggerType.Range => new RangeBattleEventTrigger(),
-            BattleEventTriggerType.Collider => new ColliderEnterBattleEventTrigger(),
+            BattleEventTriggerType.FollowCollider => new FollowColliderBattleEventTrigger(),
+            BattleEventTriggerType.InRange => new InRangeTargetBattleEventTrigger(),
+            BattleEventTriggerType.InRangeFollow => new InRangeFollowBattleEventTrigger(),
             // BattleEventTriggerType.Movement => new MovementBattleEventTrigger(),
             _ => null
         };

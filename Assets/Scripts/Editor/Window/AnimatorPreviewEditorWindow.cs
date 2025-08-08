@@ -96,7 +96,7 @@ namespace TowerOfInfinity.Editor
                     float normalizedTime = animationTime / actualDuration;
                     float newNormalizedTime = EditorGUILayout.Slider("Animation Time", normalizedTime, 0f, 1f);
                     
-                    EditorGUILayout.LabelField($"Clip Length: {clipLength:F3}s");
+                    EditorGUILayout.LabelField($"Current Time: {animationTime:F3}s / {clipLength:F3}s");
                     
                     if (Mathf.Abs(newNormalizedTime - normalizedTime) > 0.001f)
                     {

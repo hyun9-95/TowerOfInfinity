@@ -2,14 +2,8 @@ using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 
-public class ColliderEnterTriggerUnit : PoolableBaseUnit<BattleEventTriggerUnitModel>, IBattleEventTriggerUnit
+public class ColliderTriggerUnit : PoolableBaseUnit<BattleEventTriggerUnitModel>, IBattleEventTriggerUnit
 {
-    protected enum ColliderSizeType
-    {
-        Fixed,
-        Dynamic,
-    }
-
     protected enum ColliderDetectType
     {
         Enter,
@@ -27,14 +21,13 @@ public class ColliderEnterTriggerUnit : PoolableBaseUnit<BattleEventTriggerUnitM
     protected bool useFlip;
 
     [SerializeField]
-    protected bool useTargetFollow;
-
-    [SerializeField]
     protected float detectStartTime;
 
     [SerializeField]
-    protected float detectEndTime;
+    protected float detectDuration;
 
+    [SerializeField]
+    protected float followTime = 0;
 
     private void Awake()
     {
@@ -49,13 +42,14 @@ public class ColliderEnterTriggerUnit : PoolableBaseUnit<BattleEventTriggerUnitM
 
         hitCollider.enabled = true;
 
-        if (detectEndTime > 0)
+        if (detectDuration == 0)
         {
-            await UniTaskUtils.DelaySeconds(detectEndTime, TokenPool.Get(GetHashCode()));
+            await UniTask.NextFrame();
+            await UniTask.NextFrame();
         }
         else
         {
-            await UniTask.NextFrame();
+            await UniTaskUtils.DelaySeconds(detectDuration, TokenPool.Get(GetHashCode()));
         }
 
         hitCollider.enabled = false;
@@ -68,7 +62,7 @@ public class ColliderEnterTriggerUnit : PoolableBaseUnit<BattleEventTriggerUnitM
 
         var offset = useFlip ? GetFlipLocalPos(Model.IsFlip) : LocalPosOffset;
 
-        if (Model.FollowTarget != null && useTargetFollow)
+        if (Model.FollowTarget != null)
         {
             FollowAsync(offset).Forget();
         }
@@ -85,8 +79,13 @@ public class ColliderEnterTriggerUnit : PoolableBaseUnit<BattleEventTriggerUnitM
 
     protected async UniTask FollowAsync(Vector3 localPosOffset)
     {
+        float startTime = Time.time;
+        
         while (!gameObject.CheckSafeNull() && gameObject.activeSelf)
         {
+            if (followTime > 0 && Time.time - startTime >= followTime)
+                break;
+                
             transform.position = Model.FollowTarget.transform.position;
             transform.localPosition += localPosOffset;
             await UniTask.NextFrame(TokenPool.Get(GetHashCode()));
@@ -131,6 +130,7 @@ public class ColliderEnterTriggerUnit : PoolableBaseUnit<BattleEventTriggerUnitM
     protected override void OnDisable()
     {
         hitCollider.enabled = false;
+        TokenPool.Cancel(GetHashCode());
 
         base.OnDisable();
     }

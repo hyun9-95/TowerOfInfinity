@@ -22,7 +22,8 @@ public class AbilityBalanceEditorWindow : BalanceEditorWindowBase<AbilityBalance
     {
         DrawArrayPropertyField(serializedObject, "CoolTime", "쿨타임");
         DrawArrayPropertyField(serializedObject, "Duration", "지속 시간");
-        DrawArrayPropertyField(serializedObject, "SendCount", "처리 횟수");
+        DrawArrayPropertyField(serializedObject, "SendCount", "Event 횟수");
+        DrawArrayPropertyField(serializedObject, "SpawnCount", "Unit 생성 개수");
         DrawArrayPropertyField(serializedObject, "Range", "범위");
         DrawArrayPropertyField(serializedObject, "Speed", "속도");
         DrawArrayPropertyField(serializedObject, "Scale", "유닛 스케일");

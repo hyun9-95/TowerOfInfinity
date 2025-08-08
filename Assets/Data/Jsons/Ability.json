@@ -18,7 +18,7 @@
     "BattleEvents": [
       "BE_DAMAGE_ONE_SHOT_ATTACK"
     ],
-    "TriggerType": "Collider",
+    "TriggerType": "FollowCollider",
     "TargetType": "Enemy",
     "PrefabName": "Ability/Sting_Collider/Sting_Collider",
     "HitEffectPrefabName": ""
@@ -42,7 +42,7 @@
     "BattleEvents": [
       "BE_DAMAGE_BOULDER_SMASH"
     ],
-    "TriggerType": "Range",
+    "TriggerType": "InRangeFollow",
     "TargetType": "Enemy",
     "PrefabName": "Ability/BoulderSmash/BoulderSmash_Range",
     "HitEffectPrefabName": ""

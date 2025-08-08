@@ -14,7 +14,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_GroupName: Ability_BoulderSmash
   m_GUID: d428315e7ea33d343a96a8f40e5f2eda
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 28792ab1ca99e0c4ca6792b6c5274b7c
+    m_Address: Ability/BoulderSmash/fx_bouldersphere
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5dba01297e1d5f8418c3873d6d363211
+    m_Address: Ability/BoulderSmash/bouldersphere
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 891b97904a7665b4e9b8410a2812b917
+    m_Address: Ability/BoulderSmash/bouldersphere_0
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f192417a2fa0df4498c1eec7d50c2b5a
+    m_Address: Ability/BoulderSmash/BoulderSmash_Range
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
   m_SchemaSet:
