@@ -21,6 +21,24 @@ MonoBehaviour:
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1a717eed591522e41894004a53b6e4bd
+    m_Address: UI/Damages/CriticalDamage
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a97ba659eee8fdc4bb1c1e63396239b9
+    m_Address: UI/Damages/HealDamage
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: df3ef829cfec5e644b1d6da6f9a37a10
+    m_Address: UI/Damages/PoisonDamage
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: fc8a479cc619abb45a47061c930aeada
     m_Address: UI/Damages/DamageNumbersGroup
     m_ReadOnly: 0

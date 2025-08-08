@@ -1,18 +1,6 @@
 [
   {
     "id": 50000,
-    "SlotType": "Active",
-    "CastingType": "OnAttack",
-    "BattleEvents": [
-      "BE_DAMAGE_ONE_SHOT_ATTACK"
-    ],
-    "TriggerType": "Projectile",
-    "TargetType": "Enemy",
-    "PrefabName": "Ability/Slash_Projectile/Slash_Projectile",
-    "HitEffectPrefabName": ""
-  },
-  {
-    "id": 50001,
     "SlotType": "Weapon",
     "CastingType": "OnAttack",
     "BattleEvents": [
@@ -24,7 +12,7 @@
     "HitEffectPrefabName": ""
   },
   {
-    "id": 50002,
+    "id": 50001,
     "SlotType": "Weapon",
     "CastingType": "OnAttack",
     "BattleEvents": [
@@ -44,7 +32,31 @@
     ],
     "TriggerType": "Projectile",
     "TargetType": "Enemy",
-    "PrefabName": "Ability/VenomBall/VenomBall_Projectile",
+    "PrefabName": "Ability/VenomBall/VenomBall_Bouncing",
+    "HitEffectPrefabName": ""
+  },
+  {
+    "id": 51001,
+    "SlotType": "Active",
+    "CastingType": "Auto",
+    "BattleEvents": [
+      "BE_DAMAGE_BOULDER_SMASH"
+    ],
+    "TriggerType": "Range",
+    "TargetType": "Enemy",
+    "PrefabName": "Ability/BoulderSmash/BoulderSmash_Range",
+    "HitEffectPrefabName": ""
+  },
+  {
+    "id": 51002,
+    "SlotType": "Active",
+    "CastingType": "Auto",
+    "BattleEvents": [
+      "BE_DAMAGE_SLASH_PROJECTILE"
+    ],
+    "TriggerType": "Projectile",
+    "TargetType": "Enemy",
+    "PrefabName": "Ability/Slash_Projectile/Slash_Projectile",
     "HitEffectPrefabName": ""
   }
 ]

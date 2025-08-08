@@ -40,7 +40,7 @@ MonoBehaviour:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2fc9b76a18e7d3c498e03c6f6f816d5a
-    m_Address: Ability/VenomBall/VenomBall_Projectile
+    m_Address: Ability/VenomBall/VenomBall_Bouncing
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main

@@ -4,3 +4,5 @@ Id,NameId,Type,AffectStat,BattleEventCategory,BattleEventGroup,StatReference,Sta
 20000,BE_DAMAGE_ONE_SHOT_ATTACK,Damage,Attack,Active,None,Sender,CurrentStat,Increase,FALSE
 20001,BE_DAMAGE_COLLISION,Damage,Attack,Active,None,Sender,CurrentStat,Increase,FALSE
 20002,BE_POSION_VENOM_BALL,Poison,Attack,Active,Debuff,Sender,CurrentStat,Increase,FALSE
+20003,BE_DAMAGE_BOULDER_SMASH,Damage,Attack,Active,None,Sender,CurrentStat,Increase,FALSE
+20004,BE_DAMAGE_SLASH_PROJECTILE,Damage,Attack,Active,None,Sender,CurrentStat,Increase,FALSE

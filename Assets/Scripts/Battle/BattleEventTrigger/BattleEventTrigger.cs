@@ -106,6 +106,10 @@ public abstract class BattleEventTrigger
 
     private bool IsOverSendCount(int count)
     {
+        // 0이면 타격 제한이 없는 경우.
+        if (Model.SendCount == 0)
+            return false;
+
         return count >= Model.SendCount;
     }
 

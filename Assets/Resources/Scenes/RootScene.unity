@@ -167,6 +167,22 @@ PrefabInstance:
       propertyPath: config.IsEnterCustomizationFlow
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6563164855511301765, guid: 3940ba4195ef515439c4944acbc4ba79, type: 3}
+      propertyPath: cheatConfig.IsEnterBattleDirectly
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6563164855511301765, guid: 3940ba4195ef515439c4944acbc4ba79, type: 3}
+      propertyPath: cheatConfig.cheatAbility.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6563164855511301765, guid: 3940ba4195ef515439c4944acbc4ba79, type: 3}
+      propertyPath: 'cheatConfig.cheatAbility.Array.data[0]'
+      value: 51001
+      objectReference: {fileID: 0}
+    - target: {fileID: 6563164855511301765, guid: 3940ba4195ef515439c4944acbc4ba79, type: 3}
+      propertyPath: 'cheatConfig.cheatAbility.Array.data[1]'
+      value: 51000
+      objectReference: {fileID: 0}
     - target: {fileID: 8370250158373965001, guid: 3940ba4195ef515439c4944acbc4ba79, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

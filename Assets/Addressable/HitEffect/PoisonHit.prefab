@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 754611634745395611}
   - component: {fileID: 1050539953298106198}
   m_Layer: 0
-  m_Name: explosionpurplesmoke
+  m_Name: PoisonHit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

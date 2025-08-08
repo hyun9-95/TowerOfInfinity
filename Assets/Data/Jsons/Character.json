@@ -16,7 +16,7 @@
   {
     "id": 10002,
     "PrefabName": "Character/Player/Guard/Guard",
-    "PrimaryWeaponAbility": "AB_WEAPON_SLASH_PROJECTILE",
+    "PrimaryWeaponAbility": "AB_WEAPON_STING",
     "ActiveSkill": "None",
     "PassiveSkill": "None"
   },
