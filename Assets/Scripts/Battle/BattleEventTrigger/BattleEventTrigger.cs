@@ -7,7 +7,6 @@ using UnityEngine;
 public abstract class BattleEventTrigger
 {
     protected BattleEventTriggerModel Model { get; private set; }
-    private int currentSendCount = 0;
 
     public void SetModel(BattleEventTriggerModel skillInfoValue)
     {
@@ -58,8 +57,6 @@ public abstract class BattleEventTrigger
 
         if (hitTarget != null && !string.IsNullOrEmpty(Model.HitEffectPrefabName))
             OnSpawnHitEffect(hitTarget.transform.position).Forget();
-
-        currentSendCount++;
     }
 
     private async UniTask OnSpawnHitEffect(Vector3 pos)
@@ -89,24 +86,16 @@ public abstract class BattleEventTrigger
     private bool IsOverSendCount(int count)
     {
         // 0이면 횟수 제한이 없는 경우.
-        if (Model.SendCount == 0)
+        if (Model.HitCount == 0)
             return false;
 
-        return count >= Model.SendCount;
-    }
-
-    protected bool IsOverSendCount()
-    {
-        return IsOverSendCount(currentSendCount);
+        return count >= Model.HitCount;
     }
 
     #region OnEvent
     protected void OnEventHit(Collider2D hitTarget)
     {
         if (Model == null)
-            return;
-
-        if (IsOverSendCount())
             return;
 
         if (hitTarget == null)
@@ -129,9 +118,6 @@ public abstract class BattleEventTrigger
             return;
 
         if (targetModel.TeamTag != Model.TargetTeamTag)
-            return;
-
-        if (IsOverSendCount())
             return;
 
         SendBattleEventToTarget(targetModel);

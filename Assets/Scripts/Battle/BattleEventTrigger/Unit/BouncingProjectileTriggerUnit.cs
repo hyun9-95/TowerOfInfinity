@@ -5,7 +5,7 @@ public class BouncingProjectileTriggerUnit : ProjectileTriggerUnit
     private float lastBounceTime = 0f;
     private float bounceCooldown = 0.1f;
 
-    protected override void OnTriggerEnter2D(Collider2D other)
+    protected override void OnDetectHit(Collider2D other)
     {
         if (!acitvate)
             return;

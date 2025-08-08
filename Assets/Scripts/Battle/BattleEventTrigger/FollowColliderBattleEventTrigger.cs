@@ -24,6 +24,7 @@ public class FollowColliderBattleEventTrigger : BattleEventTrigger
         colliderTriggerUnitModel.SetFollowTarget(Model.Sender.Transform);
         colliderTriggerUnitModel.SetDetectTeamTag(Model.Sender.TeamTag.Opposite());
         colliderTriggerUnitModel.SetOnEventHit(OnEventHit);
+        colliderTriggerUnitModel.SetHitCount(Model.HitCount);
 
         colliderTriggerUnit.ShowAsync().Forget();
     }

@@ -7,11 +7,9 @@ public class ProjectileTriggerUnitModel : BattleEventTriggerUnitModel
 
     public Vector2 StartDirection { get; private set; }
 
-    public float Distance { get; private set; }
+    public float MoveDistance { get; private set; }
 
     public Vector3 StartPosition { get; private set; }
-
-    public int HitCount { get; private set; }
 
     public void SetStartPosition(Vector3 pos)
     {
@@ -30,11 +28,6 @@ public class ProjectileTriggerUnitModel : BattleEventTriggerUnitModel
 
     public void SetDistance(float value)
     {
-        Distance = value;
-    }
-
-    public void SetHitCount(int count)
-    {
-        HitCount = count;
+        MoveDistance = value;
     }
 }

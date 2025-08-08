@@ -31,6 +31,7 @@ public class InRangeTargetBattleEventTrigger : BattleEventTrigger
             colliderTriggerUnitModel.SetFlip(Model.Sender.IsFlipX);
             colliderTriggerUnitModel.SetDetectTeamTag(Model.Sender.TeamTag.Opposite());
             colliderTriggerUnitModel.SetOnEventHit(OnEventHit);
+            colliderTriggerUnitModel.SetHitCount(Model.HitCount);
 
             colliderTriggerUnit.ShowAsync().Forget();
         }

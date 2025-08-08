@@ -22,7 +22,7 @@ public class ScriptableAbilityBalance : ScriptableObject
     private float[] Duration;
 
     [SerializeField]
-    private int[] SendCount;
+    private int[] HitCount;
 
     [SerializeField]
     private float[] Scale;
@@ -66,21 +66,25 @@ public class ScriptableAbilityBalance : ScriptableObject
         return Scale[level];
     }
 
-    public int GetSendCount(int level)
+    public int GetHitCount(int level)
     {
-        if (SendCount == null || SendCount.Length == 0)
+        if (HitCount == null || HitCount.Length == 0)
             return 0;
-        if (level >= SendCount.Length)
-            return SendCount[SendCount.Length - 1];
-        return SendCount[level];
+
+        if (level >= HitCount.Length)
+            return HitCount[HitCount.Length - 1];
+
+        return HitCount[level];
     }
 
     public float GetCoolTime(int level)
     {
         if (CoolTime == null || CoolTime.Length == 0)
             return 0f;
+
         if (level >= CoolTime.Length)
             return CoolTime[CoolTime.Length - 1];
+
         return CoolTime[level];
     }
 
@@ -88,8 +92,10 @@ public class ScriptableAbilityBalance : ScriptableObject
     {
         if (SpawnCount == null || SpawnCount.Length == 0)
             return 1;
+
         if (level >= SpawnCount.Length)
             return SpawnCount[SpawnCount.Length - 1];
+
         return SpawnCount[level];
     }
 
@@ -98,7 +104,7 @@ public class ScriptableAbilityBalance : ScriptableObject
         Speed = new float[IntDefine.MAX_ABILITY_LEVEL];
         Range = new float[IntDefine.MAX_ABILITY_LEVEL];
         Duration = new float[IntDefine.MAX_ABILITY_LEVEL];
-        SendCount = new int[IntDefine.MAX_ABILITY_LEVEL];
+        HitCount = new int[IntDefine.MAX_ABILITY_LEVEL];
         Scale = new float[IntDefine.MAX_ABILITY_LEVEL];
         CoolTime = new float[IntDefine.MAX_ABILITY_LEVEL];
         SpawnCount = new int[IntDefine.MAX_ABILITY_LEVEL];
@@ -108,7 +114,7 @@ public class ScriptableAbilityBalance : ScriptableObject
             Speed[i] = 0f;
             Range[i] = 0f;
             Duration[i] = 0f;
-            SendCount[i] = 0;
+            HitCount[i] = 0;
             Scale[i] = 0f;
             CoolTime[i] = 0f;
             SpawnCount[i] = 1;
@@ -120,7 +126,7 @@ public class ScriptableAbilityBalance : ScriptableObject
         Speed = source.Speed != null ? (float[])source.Speed.Clone() : null;
         Range = source.Range != null ? (float[])source.Range.Clone() : null;
         Duration = source.Duration != null ? (float[])source.Duration.Clone() : null;
-        SendCount = source.SendCount != null ? (int[])source.SendCount.Clone() : null;
+        HitCount = source.HitCount != null ? (int[])source.HitCount.Clone() : null;
         Scale = source.Scale != null ? (float[])source.Scale.Clone() : null;
         CoolTime = source.CoolTime != null ? (float[])source.CoolTime.Clone() : null;
         SpawnCount = source.SpawnCount != null ? (int[])source.SpawnCount.Clone() : null;

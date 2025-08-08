@@ -6,6 +6,9 @@ public class ProjectileTriggerUnit : PoolableBaseUnit<ProjectileTriggerUnitModel
     public DirectionType StartDirectionType => startDirectionType;
 
     [SerializeField]
+    protected IBattleEventTriggerUnit.ColliderDetectType detectType;
+
+    [SerializeField]
     private DirectionType startDirectionType = DirectionType.Owner;
 
     [SerializeField]
@@ -21,7 +24,6 @@ public class ProjectileTriggerUnit : PoolableBaseUnit<ProjectileTriggerUnitModel
     protected Vector2 direction;
 
     protected bool acitvate;
-    protected int hitCount;
 
     private void Awake()
     {
@@ -63,8 +65,7 @@ public class ProjectileTriggerUnit : PoolableBaseUnit<ProjectileTriggerUnitModel
 
     protected virtual void Launch()
     {
-        direction = Model.StartDirection;
-        hitCount = 0;
+        SetStartDirection();
         bool isFlip = direction.x < 0;
         
         Vector3 worldPosition = Model.StartPosition;
@@ -78,6 +79,11 @@ public class ProjectileTriggerUnit : PoolableBaseUnit<ProjectileTriggerUnitModel
         gameObject.SafeSetActive(true);
 
         acitvate = true;
+    }
+
+    protected virtual void SetStartDirection()
+    {
+        direction = Model.StartDirection;
     }
 
     private void FixedUpdate()
@@ -102,19 +108,19 @@ public class ProjectileTriggerUnit : PoolableBaseUnit<ProjectileTriggerUnitModel
 
     private bool CheckDisableCondition()
     {
-        if (Model.Distance <= Vector3.Distance(transform.position, startPosition))
+        if (Model.MoveDistance <= Vector3.Distance(transform.position, startPosition))
             return true;
 
         if (!acitvate)
             return true;
 
-        if (Model.HitCount > 0 && hitCount >= Model.HitCount)
+        if (Model.IsOverHitCount())
             return true;
 
         return false;
     }
 
-    private void RotateSpriteToDirection()
+    protected void RotateSpriteToDirection()
     {
         if (direction == Vector2.zero)
             return;
@@ -124,12 +130,39 @@ public class ProjectileTriggerUnit : PoolableBaseUnit<ProjectileTriggerUnitModel
         effectSprite.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
     }
 
-    protected virtual void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (detectType != IBattleEventTriggerUnit.ColliderDetectType.Enter)
+            return;
+
+        OnDetectHit(other);
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (detectType != IBattleEventTriggerUnit.ColliderDetectType.Stay)
+            return;
+
+        OnDetectHit(other);
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (detectType != IBattleEventTriggerUnit.ColliderDetectType.Exit)
+            return;
+
+        OnDetectHit(other);
+    }
+
+    protected virtual void OnDetectHit(Collider2D other)
     {
         if (!acitvate)
             return;
 
-        if (!other.gameObject.CheckLayer(LayerInt.Character))
+        if (!other.gameObject.CheckLayer(LayerFlag.Character))
+            return;
+
+        if (Model == null)
             return;
 
         Model.OnEventHit(other);

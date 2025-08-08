@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class ColliderTriggerUnit : PoolableBaseUnit<BattleEventTriggerUnitModel>, IBattleEventTriggerUnit
 {
-    protected enum ColliderDetectType
-    {
-        Enter,
-        Stay,
-        Exit,
-    }
-
     [SerializeField]
-    protected ColliderDetectType detectType;
+    protected IBattleEventTriggerUnit.ColliderDetectType detectType;
 
     [SerializeField]
     protected Collider2D hitCollider;
@@ -94,7 +87,7 @@ public class ColliderTriggerUnit : PoolableBaseUnit<BattleEventTriggerUnitModel>
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (detectType != ColliderDetectType.Enter)
+        if (detectType != IBattleEventTriggerUnit.ColliderDetectType.Enter)
             return;
 
         OnDetectHit(other);
@@ -102,7 +95,7 @@ public class ColliderTriggerUnit : PoolableBaseUnit<BattleEventTriggerUnitModel>
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (detectType != ColliderDetectType.Stay)
+        if (detectType != IBattleEventTriggerUnit.ColliderDetectType.Stay)
             return;
 
         OnDetectHit(other);
@@ -110,7 +103,7 @@ public class ColliderTriggerUnit : PoolableBaseUnit<BattleEventTriggerUnitModel>
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (detectType != ColliderDetectType.Exit)
+        if (detectType != IBattleEventTriggerUnit.ColliderDetectType.Exit)
             return;
 
         OnDetectHit(other);

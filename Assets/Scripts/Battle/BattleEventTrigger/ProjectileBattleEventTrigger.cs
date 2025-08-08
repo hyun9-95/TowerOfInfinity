@@ -33,6 +33,7 @@ public class ProjectileBattleEventTrigger : BattleEventTrigger
             projectileUnitModel.SetStartPosition(Model.Sender.Transform.position);
             projectileUnitModel.SetOnEventHit(OnEventHit);
             projectileUnitModel.SetDetectTeamTag(Model.Sender.TeamTag.Opposite());
+            projectileUnitModel.SetHitCount(Model.HitCount);
             projectileUnit.ShowAsync().Forget();
         }
     }

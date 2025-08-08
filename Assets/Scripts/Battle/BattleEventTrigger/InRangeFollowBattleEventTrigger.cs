@@ -36,6 +36,7 @@ public class InRangeFollowBattleEventTrigger : BattleEventTrigger
             colliderTriggerUnitModel.SetFollowTarget(targetEnemy);
             colliderTriggerUnitModel.SetDetectTeamTag(Model.Sender.TeamTag.Opposite());
             colliderTriggerUnitModel.SetOnEventHit(OnEventHit);
+            colliderTriggerUnitModel.SetHitCount(Model.HitCount);
 
             colliderTriggerUnit.ShowAsync().Forget();
         }

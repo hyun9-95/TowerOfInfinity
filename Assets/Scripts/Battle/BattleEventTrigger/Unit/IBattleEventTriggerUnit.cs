@@ -3,5 +3,12 @@ using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 public interface IBattleEventTriggerUnit
-{   
+{
+    protected enum ColliderDetectType
+    {
+        Enter,
+        Stay,
+        Exit,
+    }
+
 }
