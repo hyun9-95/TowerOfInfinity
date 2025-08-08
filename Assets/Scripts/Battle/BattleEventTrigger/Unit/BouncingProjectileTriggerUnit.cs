@@ -14,7 +14,7 @@ public class BouncingProjectileTriggerUnit : ProjectileTriggerUnit
             return;
 
         // 적과 충돌 시 바운스
-        var targetModel = BattleSceneManager.Instance.GetCharacterModel(other.gameObject.GetInstanceID());
+        var targetModel = BattleSceneManager.Instance.GetCharacterModel(other);
 
         if (targetModel == null || targetModel.TeamTag != Model.DetectTeamTag)
             return;

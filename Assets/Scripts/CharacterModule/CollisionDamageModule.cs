@@ -15,25 +15,25 @@ public class CollisionDamageModule : ScriptableCharacterModule
         return new CollisionDamageModuleModel();
     }
 
-    public override void OnEventTriggerEnter2D(Collider2D collision, CharacterUnitModel model, IModuleModel IModuleModel)
+    public override void OnEventTriggerEnter2D(Collider2D collider, CharacterUnitModel model, IModuleModel IModuleModel)
     {
         if (IModuleModel is CollisionDamageModuleModel moduleModel)
         {
-            if (IsTriggerTarget(collision))
+            if (IsTriggerTarget(collider))
             {
-                var targetModel = BattleSceneManager.Instance.GetCharacterModel(collision.gameObject.GetInstanceID());
+                var targetModel = BattleSceneManager.Instance.GetCharacterModel(collider);
 
                 if (targetModel != null)
-                    moduleModel.CollisionEnterTargetTimer[collision.gameObject] = new CollisionDamageInfo(FloatDefine.DEFAULT_COLLISION_DAMAGE_INTERVAL, targetModel);
+                    moduleModel.CollisionEnterTargetTimer[collider.gameObject] = new CollisionDamageInfo(FloatDefine.DEFAULT_COLLISION_DAMAGE_INTERVAL, targetModel);
             }
         }
     }
 
-    public override void OnEventTriggerStay2D(Collider2D collision, CharacterUnitModel model, IModuleModel IModuleModel)
+    public override void OnEventTriggerStay2D(Collider2D collider, CharacterUnitModel model, IModuleModel IModuleModel)
     {
         if (IModuleModel is CollisionDamageModuleModel moduleModel)
         {
-            if (!moduleModel.CollisionEnterTargetTimer.TryGetValue(collision.gameObject, out var info))
+            if (!moduleModel.CollisionEnterTargetTimer.TryGetValue(collider.gameObject, out var info))
                 return;
 
             info.timer += Time.fixedDeltaTime;
@@ -46,10 +46,10 @@ public class CollisionDamageModule : ScriptableCharacterModule
         }
     }
 
-    public override void OnEventTriggerExit2D(Collider2D collision, CharacterUnitModel model, IModuleModel IModuleModel)
+    public override void OnEventTriggerExit2D(Collider2D collider, CharacterUnitModel model, IModuleModel IModuleModel)
     {
         if (IModuleModel is CollisionDamageModuleModel moduleModel)
-            moduleModel.CollisionEnterTargetTimer.Remove(collision.gameObject);
+            moduleModel.CollisionEnterTargetTimer.Remove(collider.gameObject);
     }
 
     private void SendCollisionDamage(CollisionDamageInfo info, CharacterUnitModel owner)
@@ -62,9 +62,9 @@ public class CollisionDamageModule : ScriptableCharacterModule
         info.targetModel.EventProcessor.ReceiveBattleEvent(eventModel);
     }
 
-    private bool IsTriggerTarget(Collider2D collision)
+    private bool IsTriggerTarget(Collider2D collider)
     {
-        return collision.gameObject.CheckLayer(LayerFlag.Character)
-            && collision.gameObject.CompareTag(StringDefine.BATTLE_TAG_ALLY);
+        return collider.gameObject.CheckLayer(LayerFlag.Character)
+            && collider.gameObject.CompareTag(StringDefine.BATTLE_TAG_ALLY);
     }
 }

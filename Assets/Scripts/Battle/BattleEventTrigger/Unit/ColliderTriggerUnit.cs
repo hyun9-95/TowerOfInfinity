@@ -129,8 +129,8 @@ public class ColliderTriggerUnit : PoolableBaseUnit<BattleEventTriggerUnitModel>
 
     protected override void OnDisable()
     {
-        hitCollider.enabled = false;
         TokenPool.Cancel(GetHashCode());
+        hitCollider.enabled = false;
 
         base.OnDisable();
     }

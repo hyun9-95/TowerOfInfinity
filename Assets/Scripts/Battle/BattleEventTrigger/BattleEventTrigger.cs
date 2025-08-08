@@ -7,20 +7,21 @@ using UnityEngine;
 public abstract class BattleEventTrigger
 {
     protected BattleEventTriggerModel Model { get; private set; }
-    protected int currentSendCount = 0;
- 
+    private int currentSendCount = 0;
+
     public void SetModel(BattleEventTriggerModel skillInfoValue)
     {
         Model = skillInfoValue;
     }
 
-    public void Reset()
+    public async UniTask Process()
     {
-        currentSendCount = 0;
-        Model = null;
+        await OnProcess();
     }
 
-    protected async UniTask<T> SpawnUnitAsync<T>(string prefabName, Vector3 position, Quaternion rotation) where T : PoolableMono, IBattleEventTriggerUnit
+    protected virtual async UniTask OnProcess() { }
+
+    protected async UniTask<T> SpawnUnitAsync<T>(string prefabName, Vector3 position, Quaternion rotation) where T : PoolableBaseUnit, IBattleEventTriggerUnit
     {
         var unit = await ObjectPoolManager.Instance.SpawnPoolableMono<T>(prefabName, position, rotation);
 
@@ -33,7 +34,7 @@ public abstract class BattleEventTrigger
 
     private CharacterUnitModel GetTargetModel(Collider2D collider)
     {
-        var targetModel = BattleSceneManager.Instance.GetCharacterModel(collider.gameObject.GetInstanceID());
+        var targetModel = BattleSceneManager.Instance.GetCharacterModel(collider);
 
         // 죽으면 타겟으로 감지안함.
         if (targetModel != null && targetModel.Hp <= 0)
@@ -42,7 +43,7 @@ public abstract class BattleEventTrigger
         return targetModel;
     }
 
-    public virtual async UniTask Process() { }
+    
 
     private void SendBattleEventToTarget(CharacterUnitModel targetModel, Collider2D hitTarget = null)
     {
@@ -59,9 +60,6 @@ public abstract class BattleEventTrigger
             OnSpawnHitEffect(hitTarget.transform.position).Forget();
 
         currentSendCount++;
-
-        if (IsOverSendCount(currentSendCount))
-            Complete();
     }
 
     private async UniTask OnSpawnHitEffect(Vector3 pos)
@@ -88,29 +86,18 @@ public abstract class BattleEventTrigger
         }
     }
 
-    private void Complete()
-    {
-        OnComplete();
-        ReturnToPool();
-    }
-
-    protected virtual void OnComplete()
-    {
-    }
-
-    private void ReturnToPool()
-    {
-        BattleEventTriggerFactory.ReturnToPool(Model);
-        BattleEventTriggerFactory.ReturnToPool(this);
-    }
-
     private bool IsOverSendCount(int count)
     {
-        // 0이면 타격 제한이 없는 경우.
+        // 0이면 횟수 제한이 없는 경우.
         if (Model.SendCount == 0)
             return false;
 
         return count >= Model.SendCount;
+    }
+
+    protected bool IsOverSendCount()
+    {
+        return IsOverSendCount(currentSendCount);
     }
 
     #region OnEvent
@@ -119,7 +106,7 @@ public abstract class BattleEventTrigger
         if (Model == null)
             return;
 
-        if (IsOverSendCount(currentSendCount))
+        if (IsOverSendCount())
             return;
 
         if (hitTarget == null)
@@ -142,6 +129,9 @@ public abstract class BattleEventTrigger
             return;
 
         if (targetModel.TeamTag != Model.TargetTeamTag)
+            return;
+
+        if (IsOverSendCount())
             return;
 
         SendBattleEventToTarget(targetModel);

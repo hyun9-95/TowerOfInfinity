@@ -54,6 +54,7 @@ MonoBehaviour:
   inCanvasGroup: {fileID: 7932468889600703219}
   outAnimator: {fileID: 5504474638101420701}
   outCanvasGroup: {fileID: 475743280947511101}
+  speed: 1.5
 --- !u!1 &244854453891567173
 GameObject:
   m_ObjectHideFlags: 0
@@ -525,10 +526,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadDataType: 0
-  config:
+  cheatConfig:
     IsEnterBattleDirectly: 0
+    cheatAbility: 
     IsEnterCustomizationFlow: 0
     IsDebugAStar: 0
+    testLocalType: 0
 --- !u!1 &1841224203252291642
 GameObject:
   m_ObjectHideFlags: 0

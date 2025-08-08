@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class FollowColliderBattleEventTrigger : BattleEventTrigger
 {
-    public async override UniTask Process()
+    protected override async UniTask OnProcess()
     {
         await ProcessColliderEvent();
     }

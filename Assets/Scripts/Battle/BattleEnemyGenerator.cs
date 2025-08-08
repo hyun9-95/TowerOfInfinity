@@ -7,6 +7,7 @@ public class BattleEnemyGenerator
     public BattleEnemyGeneratorModel Model;
 
     private float minDistance;
+    private int safeCount = 3;
 
     public BattleEnemyGenerator(BattleEnemyGeneratorModel battleEnemyGeneratorModel)
     {
@@ -20,26 +21,37 @@ public class BattleEnemyGenerator
 
         while (!TokenPool.Get(GetHashCode()).IsCancellationRequested)
         {
-            var spawnPos = GetValidSpawnPosition();
-
-            if (spawnPos == Vector3.zero)
-                continue;
-
             var currentWave = Model.GetCurrentWave();
 
             if (currentWave != null)
-                await SpawnWave(spawnPos, Model.GetCurrentWave());
+                await SpawnWave(Model.GetCurrentWave());
 
             await UniTaskUtils.DelaySeconds(Model.SpawnIntervalSeconds, cancellationToken: TokenPool.Get(GetHashCode()));
         }
     }
 
-    private async UniTask SpawnWave(Vector3 spawnPos, CharacterDefine[] enemys)
+    private async UniTask SpawnWave(CharacterDefine[] enemys)
     {
         var characterContainer = DataManager.Instance.GetDataContainer<DataCharacter>();
 
         foreach (var characterDefine in enemys)
         {
+            var spawnPos = GetValidSpawnPosition();
+
+            if (spawnPos == Vector3.zero)
+            {
+                int tryCount = 0;
+
+                while (spawnPos != Vector3.zero && tryCount < safeCount)
+                {
+                    spawnPos = GetValidSpawnPosition();
+                    tryCount++;
+                }
+
+                if (spawnPos == Vector3.zero)
+                    continue;
+            }
+
             var enemy = await CharacterFactory.Instance.SpawnEnemy((int)characterDefine, spawnPos);
 
             if (enemy)
@@ -51,6 +63,8 @@ public class BattleEnemyGenerator
     {
         TokenPool.Cancel(GetHashCode());
     }
+
+
 
     /// <summary>
     /// 카메라 영역에서 보이지 않는 랜덤 생성 포지션
@@ -78,6 +92,9 @@ public class BattleEnemyGenerator
         }
         else
         {
+            
+
+
             // 사용 중 아니면 그냥 반환
             return validPos;
         }

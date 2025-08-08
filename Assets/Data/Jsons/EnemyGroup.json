@@ -2,7 +2,46 @@
   {
     "id": 30000,
     "Enemys": [
-      "CHAR_BAT"
+      [
+        "CHAR_BAT",
+        "CHAR_BAT"
+      ],
+      [
+        "CHAR_BAT",
+        "CHAR_BAT"
+      ],
+      [
+        "CHAR_BAT",
+        "CHAR_BAT"
+      ],
+      [
+        "CHAR_BAT",
+        "CHAR_BAT"
+      ],
+      [
+        "CHAR_BAT",
+        "CHAR_BAT"
+      ],
+      [
+        "CHAR_BAT",
+        "CHAR_BAT"
+      ],
+      [
+        "CHAR_BAT",
+        "CHAR_BAT"
+      ],
+      [
+        "CHAR_BAT",
+        "CHAR_BAT"
+      ],
+      [
+        "CHAR_BAT",
+        "CHAR_BAT"
+      ],
+      [
+        "CHAR_BAT",
+        "CHAR_BAT"
+      ]
     ]
   }
 ]

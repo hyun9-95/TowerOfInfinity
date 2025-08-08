@@ -8,7 +8,16 @@ public struct DataEnemyGroup : IBaseData
     [JsonProperty(PropertyName = "id")]
     private readonly int id;
     [JsonProperty(PropertyName = "Enemys")]
-    public readonly CharacterDefine[] Enemys;
+    private readonly CharacterDefine[][] enemys;
+
+    public int EnemysCount => enemys?.Length ?? 0;
+
+    public CharacterDefine[] GetEnemys(int index)
+    {
+        return (enemys != null && index >= 0 && index < enemys.Length)
+               ? enemys[index] : null;
+    }
+
 	
 	public int Id => id;
     public bool IsNull => id == 0;

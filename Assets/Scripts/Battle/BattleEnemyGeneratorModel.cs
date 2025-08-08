@@ -53,13 +53,13 @@ public class BattleEnemyGeneratorModel
 
     public CharacterDefine[] GetCurrentWave()
     {
-        var currentEnemyGroup = DataDungeon.EnemyGroups[CurrentWave];
+        var currentEnemyGroup = DataDungeon.EnemyGroup;
         var enemyGroup = enemyGroupContainer.GetById((int)currentEnemyGroup);
 
         if (enemyGroup.IsNull)
             return null;
 
-        return enemyGroup.Enemys;
+        return enemyGroup.GetEnemys(CurrentWave);
     }
     #endregion
 }

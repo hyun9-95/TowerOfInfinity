@@ -50,5 +50,10 @@ public abstract class PoolableBaseUnit : TimedPoolableMono
     {
         gameObject.SafeSetActive(true);
     }
+
+    public virtual void Deactivate()
+    {
+        gameObject.SafeSetActive(false);
+    }
 }
 

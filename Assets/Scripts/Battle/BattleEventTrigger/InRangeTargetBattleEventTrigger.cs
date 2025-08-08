@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InRangeTargetBattleEventTrigger : BattleEventTrigger
 {
-    public async override UniTask Process()
+    protected override async UniTask OnProcess()
     {
         await ProcessRandomRangeEvent();
     }

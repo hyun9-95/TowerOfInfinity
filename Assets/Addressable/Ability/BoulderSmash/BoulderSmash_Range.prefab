@@ -54,9 +54,9 @@ MonoBehaviour:
   detectType: 0
   hitCollider: {fileID: 2432198015132277480}
   useFlip: 0
-  detectStartTime: 1.8
+  detectStartTime: 1.75
   detectDuration: 0
-  followTime: 1.8
+  followTime: 1.75
 --- !u!61 &2432198015132277480
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -180,7 +180,7 @@ SpriteRenderer:
   m_SortingLayerID: -1737824065
   m_SortingLayer: 6
   m_SortingOrder: 0
-  m_Sprite: {fileID: -906219649, guid: 28792ab1ca99e0c4ca6792b6c5274b7c, type: 3}
+  m_Sprite: {fileID: -272494252, guid: 28792ab1ca99e0c4ca6792b6c5274b7c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

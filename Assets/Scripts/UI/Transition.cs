@@ -18,6 +18,9 @@ public class Transition : MonoBehaviour
     [SerializeField]
     private CanvasGroup outCanvasGroup = null;
 
+    [SerializeField]
+    private float speed = 1;
+
     private bool isPlaying = false;
 
     private void Awake()
@@ -36,7 +39,7 @@ public class Transition : MonoBehaviour
         isPlaying = true;
         inCanvasGroup.alpha = 1;
         inAnimator.Play(inAnimator.GetCurrentAnimatorStateInfo(0).shortNameHash, 0, 0f);
-        inAnimator.speed = 1;
+        inAnimator.speed = speed;
 
         await UniTask.NextFrame();
 
@@ -53,7 +56,7 @@ public class Transition : MonoBehaviour
         isPlaying = true;
         outCanvasGroup.alpha = 1;
         outAnimator.Play(outAnimator.GetCurrentAnimatorStateInfo(0).shortNameHash, 0, 0f);
-        outAnimator.speed = 1;
+        outAnimator.speed = speed;
 
         await UniTask.NextFrame();
 

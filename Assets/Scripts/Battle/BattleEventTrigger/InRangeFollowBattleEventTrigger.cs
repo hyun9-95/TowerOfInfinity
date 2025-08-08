@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InRangeFollowBattleEventTrigger : BattleEventTrigger
 {
-    public async override UniTask Process()
+    protected override async UniTask OnProcess()
     {
         await ProcessInRangeFollowEvent();
     }
@@ -47,13 +47,19 @@ public class InRangeFollowBattleEventTrigger : BattleEventTrigger
         var colliders = Physics2D.OverlapCircleAll(senderPosition, Model.Range, (int)LayerFlag.Character);
         var enemies = new List<Transform>();
         
+        colliders.SortByNearest(senderPosition);
+        
         foreach (var collider in colliders)
         {
-            var characterUnit = collider.GetComponent<CharacterUnit>();
-            if (characterUnit != null && characterUnit.Model.TeamTag == Model.Sender.TeamTag.Opposite())
-            {
-                enemies.Add(collider.transform);
-            }
+            var targetModel = BattleSceneManager.Instance.GetCharacterModel(collider);
+
+            if (targetModel == null || targetModel.TeamTag == Model.Sender.TeamTag)
+                continue;
+
+            if (targetModel == Model.Sender)
+                continue;
+
+            enemies.Add(collider.transform);
         }
         
         return enemies;

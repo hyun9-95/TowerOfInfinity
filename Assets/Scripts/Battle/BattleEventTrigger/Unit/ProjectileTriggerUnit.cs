@@ -21,6 +21,7 @@ public class ProjectileTriggerUnit : PoolableBaseUnit<ProjectileTriggerUnitModel
     protected Vector2 direction;
 
     protected bool acitvate;
+    protected int hitCount;
 
     private void Awake()
     {
@@ -43,7 +44,7 @@ public class ProjectileTriggerUnit : PoolableBaseUnit<ProjectileTriggerUnitModel
         effectSprite.enabled = false;
 
         if (launchDelay > 0)
-            await UniTaskUtils.DelaySeconds(launchDelay);
+            await UniTaskUtils.DelaySeconds(launchDelay, TokenPool.Get(GetHashCode()));
 
         Launch();
 
@@ -53,15 +54,17 @@ public class ProjectileTriggerUnit : PoolableBaseUnit<ProjectileTriggerUnitModel
 
     protected override void OnDisable()
     {
-        base.OnDisable();
-
+        TokenPool.Cancel(GetHashCode());
         hitCollider.enabled = false;
         acitvate = false;
+
+        base.OnDisable();
     }
 
     protected virtual void Launch()
     {
         direction = Model.StartDirection;
+        hitCount = 0;
         bool isFlip = direction.x < 0;
         
         Vector3 worldPosition = Model.StartPosition;
@@ -105,6 +108,9 @@ public class ProjectileTriggerUnit : PoolableBaseUnit<ProjectileTriggerUnitModel
         if (!acitvate)
             return true;
 
+        if (Model.HitCount > 0 && hitCount >= Model.HitCount)
+            return true;
+
         return false;
     }
 
@@ -129,7 +135,7 @@ public class ProjectileTriggerUnit : PoolableBaseUnit<ProjectileTriggerUnitModel
         Model.OnEventHit(other);
     }
 
-    public void Deactivate()
+    public override void Deactivate()
     {
         acitvate = false;
         effectSprite.DeactiveWithFade(fadeTime, gameObject);

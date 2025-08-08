@@ -5,27 +5,9 @@ using UnityEngine;
 
 public class ProjectileBattleEventTrigger : BattleEventTrigger
 {
-    private List<ProjectileTriggerUnit> spawnedProjectiles = new List<ProjectileTriggerUnit>();
-    
-    public override async UniTask Process()
+    protected override async UniTask OnProcess()
     {
         await ProcessProjectile();
-    }
-
-    protected override void OnComplete()
-    {
-        DeactivateAllProjectiles();
-        base.OnComplete();
-    }
-
-    private void DeactivateAllProjectiles()
-    {
-        foreach (var projectile in spawnedProjectiles)
-        {
-            if (projectile != null && projectile.gameObject.activeSelf)
-                projectile.Deactivate();
-        }
-        spawnedProjectiles.Clear();
     }
 
     private async UniTask ProcessProjectile()
@@ -38,8 +20,6 @@ public class ProjectileBattleEventTrigger : BattleEventTrigger
 
             if (projectileUnit == null)
                 continue;
-
-            spawnedProjectiles.Add(projectileUnit);
 
             if (projectileUnit.Model == null)
                 projectileUnit.SetModel(new ProjectileTriggerUnitModel());

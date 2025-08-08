@@ -1,8 +1,6 @@
 [
   {
     "id": 40000,
-    "EnemyGroups": [
-      "ENEMY_GROUP_ATLANTIS"
-    ]
+    "EnemyGroup": "ENEMY_GROUP_ATLANTIS"
   }
 ]

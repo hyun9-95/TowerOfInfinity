@@ -74,7 +74,6 @@ public class FlowManager : BaseManager<FlowManager>
         // 풀링해놨던 팩토리, 매니저 들을 Clear 해준다.
         ObjectPoolManager.Instance.Clear();
         CharacterFactory.Instance.Clear();
-        BattleEventTriggerFactory.Clear();
 
         AddressableManager.Instance.ReleaseAllHandles();
         await Resources.UnloadUnusedAssets();

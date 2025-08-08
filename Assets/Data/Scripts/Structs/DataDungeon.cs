@@ -7,8 +7,8 @@ public struct DataDungeon : IBaseData
 {
     [JsonProperty(PropertyName = "id")]
     private readonly int id;
-    [JsonProperty(PropertyName = "EnemyGroups")]
-    public readonly EnemyGroupDefine[] EnemyGroups;
+    [JsonProperty(PropertyName = "EnemyGroup")]
+    public readonly EnemyGroupDefine EnemyGroup;
 	
 	public int Id => id;
     public bool IsNull => id == 0;

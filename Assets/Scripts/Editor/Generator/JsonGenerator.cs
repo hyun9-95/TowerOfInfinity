@@ -24,6 +24,9 @@ namespace Tools
             DataRow dataTypeRow = sheet.Rows[DataTypeIndex];
             DataRow nameRow = sheet.Rows[NameIndex];
 
+            // 중복 컬럼 분석
+            var duplicateColumnInfo = AnalyzeDuplicateColumns(nameRow, dataTypeRow);
+
             for (int i = ValueIndex; i < sheet.Rows.Count; i++)
             {
                 Dictionary<string, object> dataDic = new();
@@ -32,6 +35,9 @@ namespace Tools
 
                 if (string.IsNullOrWhiteSpace(firstCell))
                     continue;
+
+                // 중복 컬럼별로 배열 생성
+                var duplicateArrays = new Dictionary<string, List<object>>();
 
                 for (int j = 0; j < sheet.Columns.Count; j++)
                 {
@@ -44,49 +50,67 @@ namespace Tools
                         continue;
 
                     if (value == "NULL")
-                    {
-                        dataDic.Add(name, "");
-                        continue;
-                    }
+                        value = "";
 
-                    if (dataType.Contains("[]"))
+                    // 중복 컬럼 처리
+                    if (duplicateColumnInfo.ContainsKey(name))
                     {
-                        string[] values = value.Split(';', StringSplitOptions.RemoveEmptyEntries);
-                        // ex "enum[]:CharacterDefine" → "enum:CharacterDefine"
-                        System.Type arrayType = GetDataType(dataType.Replace("[]", ""));
+                        if (!duplicateArrays.ContainsKey(name))
+                            duplicateArrays[name] = new List<object>();
 
-                        Array array = Array.CreateInstance(arrayType, values.Length);
-                        for (int k = 0; k < values.Length; k++)
+                        if (dataType.Contains("[]"))
                         {
-                            object arrayValue = GetConvertValue(dataType.Replace("[]", ""), values[k]);
-                            array.SetValue(arrayValue, k);
-                        }
-                        
-                        // 중복 키 처리
-                        if (dataDic.ContainsKey(name))
-                        {
-                            Logger.Error($"Duplicate key '{name}' found in row {i}. Skipping this column.");
+                            string[] values = value.Split(';', StringSplitOptions.RemoveEmptyEntries);
+                            System.Type arrayType = GetDataType(dataType.Replace("[]", ""));
+
+                            Array array = Array.CreateInstance(arrayType, values.Length);
+                            for (int k = 0; k < values.Length; k++)
+                            {
+                                string trimmedValue = values[k].Trim();
+                                object arrayValue = GetConvertValue(dataType.Replace("[]", ""), trimmedValue);
+                                array.SetValue(arrayValue, k);
+                            }
+                            duplicateArrays[name].Add(array);
                         }
                         else
                         {
-                            dataDic.Add(name, array);
+                            string trimmedValue = value.Trim();
+                            object convertValue = GetConvertValue(dataType, trimmedValue);
+                            duplicateArrays[name].Add(convertValue);
                         }
                     }
                     else
                     {
-                        object convertValue = GetConvertValue(dataType, value);
-                        
-                        // 중복 키 처리
-                        if (dataDic.ContainsKey(name))
+                        // 일반 컬럼 처리
+                        if (dataType.Contains("[]"))
                         {
-                            Logger.Error($"Duplicate key '{name}' found in row {i}. Skipping this column.");
+                            string[] values = value.Split(';', StringSplitOptions.RemoveEmptyEntries);
+                            System.Type arrayType = GetDataType(dataType.Replace("[]", ""));
+
+                            Array array = Array.CreateInstance(arrayType, values.Length);
+                            for (int k = 0; k < values.Length; k++)
+                            {
+                                string trimmedValue = values[k].Trim();
+                                object arrayValue = GetConvertValue(dataType.Replace("[]", ""), trimmedValue);
+                                array.SetValue(arrayValue, k);
+                            }
+                            dataDic.Add(name, array);
                         }
                         else
                         {
+                            string trimmedValue = value.Trim();
+                            object convertValue = GetConvertValue(dataType, trimmedValue);
                             dataDic.Add(name, convertValue);
                         }
                     }
                 }
+
+                // 중복 컬럼 배열을 JSON에 추가
+                foreach (var kvp in duplicateArrays)
+                {
+                    dataDic.Add(kvp.Key, kvp.Value.ToArray());
+                }
+
                 dataDicList.Add(dataDic);
             }
 
@@ -126,6 +150,36 @@ namespace Tools
                 default:
                     return value;
             }
+        }
+
+        private Dictionary<string, int> AnalyzeDuplicateColumns(DataRow nameRow, DataRow dataTypeRow)
+        {
+            var duplicateInfo = new Dictionary<string, int>();
+            var columnCounts = new Dictionary<string, int>();
+            
+            // 컬럼명 개수 세기
+            for (int j = 0; j < nameRow.ItemArray.Length; j++)
+            {
+                string name = GetNaming(nameRow[j].ToString(), dataTypeRow[j].ToString());
+                if (name.Contains("nameId"))
+                    continue;
+                    
+                if (columnCounts.ContainsKey(name))
+                    columnCounts[name]++;
+                else
+                    columnCounts[name] = 1;
+            }
+            
+            // 중복된 컬럼만 저장
+            foreach (var kvp in columnCounts)
+            {
+                if (kvp.Value > 1)
+                {
+                    duplicateInfo[kvp.Key] = kvp.Value;
+                }
+            }
+            
+            return duplicateInfo;
         }
 
         private bool ConvertToBool(string value)
