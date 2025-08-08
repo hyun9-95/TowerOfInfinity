@@ -34,10 +34,10 @@ public class IntroFlow : BaseFlow<IntroFlowModel>
         bool isEnterCustomize = !PlayerManager.Instance.MyUser.IsCompletePrologue;
 
 #if UNITY_EDITOR
-        if (!isEnterCustomize && GameManager.CheatConfig.IsEnterCustomizationFlow)
+        if (!isEnterCustomize && CheatManager.CheatConfig.IsEnterCustomizationFlow)
             isEnterCustomize = true;
 
-        if (GameManager.CheatConfig.IsEnterBattleDirectly)
+        if (CheatManager.CheatConfig.IsEnterBattleDirectly)
         {
             BattleFlowModel battleFlowModel = new BattleFlowModel();
             battleFlowModel.SetSceneDefine(SceneDefine.Battle_Atlantis);

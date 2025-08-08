@@ -15,13 +15,17 @@ public class FollowProjectileBattleEventTrigger : BattleEventTrigger
         var enemiesInRange = GetEnemiesInRange();
         
         if (enemiesInRange.Count == 0)
+        {
+            await ProcessRandomDirectionProjectiles();
             return;
-
+        }
+        
         int spawnCount = Mathf.Min(Model.SpawnCount, enemiesInRange.Count);
         
         for (int i = 0; i < spawnCount; i++)
         {
-            Transform targetEnemy = enemiesInRange[i].Transform;
+            Transform targetEnemy = i < enemiesInRange.Count ?
+                enemiesInRange[i].Transform : null;
             
             var projectileUnit = await SpawnUnitAsync<FollowProjectileTriggerUnit>(Model.PrefabName, Model.Sender.Transform.position, Quaternion.identity);
 
@@ -33,7 +37,35 @@ public class FollowProjectileBattleEventTrigger : BattleEventTrigger
 
             var projectileUnitModel = projectileUnit.Model;
             projectileUnitModel.SetFollowTarget(targetEnemy);
-            projectileUnitModel.SetDistance(Model.Range);
+            projectileUnitModel.SetMoveDistance(Model.Range);
+            projectileUnitModel.SetSpeed(Model.Speed);
+            projectileUnitModel.SetStartPosition(Model.Sender.Transform.position);
+            projectileUnitModel.SetDirection(OnGetFixedDirection(DirectionType.Owner));
+            projectileUnitModel.SetOnEventHit(OnEventHit);
+            projectileUnitModel.SetDetectTeamTag(Model.Sender.TeamTag.Opposite());
+            projectileUnitModel.SetHitCount(Model.HitCount);
+            
+            projectileUnit.ShowAsync().Forget();
+        }
+    }
+
+    private async UniTask ProcessRandomDirectionProjectiles()
+    {
+        for (int i = 0; i < Model.SpawnCount; i++)
+        {
+            var projectileUnit = await SpawnUnitAsync<ProjectileTriggerUnit>(Model.PrefabName, Model.Sender.Transform.position, Quaternion.identity);
+
+            if (projectileUnit == null)
+                continue;
+
+            if (projectileUnit.Model == null)
+                projectileUnit.SetModel(new ProjectileTriggerUnitModel());
+
+            var projectileUnitModel = projectileUnit.Model;
+            Vector2 randomDirection = GetRandomDirection();
+            
+            projectileUnitModel.SetDirection(randomDirection);
+            projectileUnitModel.SetMoveDistance(Model.Range);
             projectileUnitModel.SetSpeed(Model.Speed);
             projectileUnitModel.SetStartPosition(Model.Sender.Transform.position);
             projectileUnitModel.SetOnEventHit(OnEventHit);
@@ -42,6 +74,12 @@ public class FollowProjectileBattleEventTrigger : BattleEventTrigger
             
             projectileUnit.ShowAsync().Forget();
         }
+    }
+
+    private Vector2 GetRandomDirection()
+    {
+        float randomAngle = Random.Range(0f, 360f) * Mathf.Deg2Rad;
+        return new Vector2(Mathf.Cos(randomAngle), Mathf.Sin(randomAngle));
     }
 
     private List<CharacterUnitModel> GetEnemiesInRange()

@@ -8,6 +8,7 @@ public static class BattleEventTriggerFactory
             BattleEventTriggerType.FollowCollider => new FollowColliderBattleEventTrigger(),
             BattleEventTriggerType.InRange => new InRangeTargetBattleEventTrigger(),
             BattleEventTriggerType.InRangeFollow => new InRangeFollowBattleEventTrigger(),
+            BattleEventTriggerType.FollowProjectile => new FollowProjectileBattleEventTrigger(),
             // BattleEventTriggerType.Movement => new MovementBattleEventTrigger(),
             _ => null
         };

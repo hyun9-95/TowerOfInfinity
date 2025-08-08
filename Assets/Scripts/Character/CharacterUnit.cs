@@ -331,9 +331,9 @@ public class CharacterUnit : PoolableMono
                 abilityProcessor.AddAbility((int)equipmentWeapon.Ability);
 
 #if UNITY_EDITOR
-            if (GameManager.CheatConfig.cheatAbility != null)
+            if (CheatManager.CheatConfig.cheatAbility != null)
             {
-                foreach (var ability in GameManager.CheatConfig.cheatAbility)
+                foreach (var ability in CheatManager.CheatConfig.cheatAbility)
                 {
                     abilityProcessor.AddAbility((int)ability);
                     Logger.Log($"Cheat Ability Added : {ability}");

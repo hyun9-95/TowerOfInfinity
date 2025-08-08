@@ -28,7 +28,7 @@ public class ProjectileBattleEventTrigger : BattleEventTrigger
             var fixedDirection = OnGetFixedDirection(projectileUnit.StartDirectionType);
 
             projectileUnitModel.SetDirection(fixedDirection);
-            projectileUnitModel.SetDistance(Model.Range);
+            projectileUnitModel.SetMoveDistance(Model.Range);
             projectileUnitModel.SetSpeed(Model.Speed);
             projectileUnitModel.SetStartPosition(Model.Sender.Transform.position);
             projectileUnitModel.SetOnEventHit(OnEventHit);

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public abstract class BaseMonoManager<T> : MonoBehaviour where T : BaseMonoManager<T>, new()
 {
-    private static T instance;
+    protected static T instance;
 
     public static T Instance
     {

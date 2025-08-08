@@ -27,6 +27,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2e8ccb4c2d3a12449ac23693b68353e8
+    m_Address: AbilityCore/AbilityBalance/AB_ACTIVE_MAGIC_MISSILE
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3f6f38b4a4a263046a3f4b4bd4c17290
     m_Address: AbilityCore/AbilityBalance/AB_WEAPON_STING
     m_ReadOnly: 0
@@ -71,6 +77,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d9784ee1614a0884d94dc0333f262b67
     m_Address: AbilityCore/AbilityBalance/AB_ACTIVE_VENOM_BALL
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dab6aa88682bd2a409a31bb2e9c65cb7
+    m_Address: AbilityCore/BattleEventBalance/BE_DAMAGE_MAGIC_MISSILE
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main

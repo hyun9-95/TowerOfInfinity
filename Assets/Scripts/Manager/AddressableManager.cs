@@ -233,7 +233,13 @@ public class AddressableManager : BaseManager<AddressableManager>
         var go = await handle;
 
         if (go != null)
+        {
             instantiatedHandles[go] = handle;
+        }
+        else
+        {
+            Logger.Error($"Instantiate Failed : {address}");
+        }
 
         return go;
     }

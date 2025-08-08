@@ -26,7 +26,7 @@ public class ProjectileTriggerUnitModel : BattleEventTriggerUnitModel
         StartDirection = direction;
     }
 
-    public void SetDistance(float value)
+    public void SetMoveDistance(float value)
     {
         MoveDistance = value;
     }

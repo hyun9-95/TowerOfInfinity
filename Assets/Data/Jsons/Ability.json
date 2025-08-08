@@ -58,5 +58,17 @@
     "TargetType": "Enemy",
     "PrefabName": "Ability/Slash_Projectile/Slash_Projectile",
     "HitEffectPrefabName": ""
+  },
+  {
+    "id": 51003,
+    "SlotType": "Active",
+    "CastingType": "Auto",
+    "BattleEvents": [
+      "BE_DAMAGE_MAGIC_MISSILE"
+    ],
+    "TriggerType": "FollowProjectile",
+    "TargetType": "Enemy",
+    "PrefabName": "Ability/MagicMissile/MagicMissile_Follow",
+    "HitEffectPrefabName": ""
   }
 ]

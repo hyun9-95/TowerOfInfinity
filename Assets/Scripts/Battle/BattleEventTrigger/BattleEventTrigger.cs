@@ -16,6 +16,9 @@ public abstract class BattleEventTrigger
     public async UniTask Process()
     {
         await OnProcess();
+
+        if (Model.Range > 0)
+            CheatManager.DrawWireSphereFromMainCharacter(Model.Range);
     }
 
     protected virtual async UniTask OnProcess() { }
@@ -93,23 +96,25 @@ public abstract class BattleEventTrigger
     }
 
     #region OnEvent
-    protected void OnEventHit(Collider2D hitTarget)
+    protected bool OnEventHit(Collider2D hitTarget)
     {
         if (Model == null)
-            return;
+            return false;
 
         if (hitTarget == null)
-            return;
+            return false;
 
         var targetModel = GetTargetModel(hitTarget);
 
         if (targetModel == null)
-            return;
+            return false;
 
         if (targetModel.TeamTag != Model.TargetTeamTag)
-            return;
+            return false;
 
         SendBattleEventToTarget(targetModel, hitTarget);
+
+        return true;
     }
 
     protected void OnEventSend(CharacterUnitModel targetModel)

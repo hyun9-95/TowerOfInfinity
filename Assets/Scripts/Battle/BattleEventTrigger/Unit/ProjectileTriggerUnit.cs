@@ -172,5 +172,6 @@ public class ProjectileTriggerUnit : PoolableBaseUnit<ProjectileTriggerUnitModel
     {
         acitvate = false;
         effectSprite.DeactiveWithFade(fadeTime, gameObject);
+        Logger.Log("Deactivated");
     }
 }

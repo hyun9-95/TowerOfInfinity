@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Ability_MagicMissile
+  m_EditorClassIdentifier: 
+  m_GroupName: Ability_MagicMissile
+  m_GUID: ec5285818337f7c489f4c17468bd89da
+  m_SerializeEntries:
+  - m_GUID: 27894cba08363204e9aebf1ff5dbc363
+    m_Address: Ability/MagicMissile/MagicMissile_Follow
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3e683158c89cc834084f9663db0f3b43
+    m_Address: Ability/MagicMissile/frame0001
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 583aed7816c031cb55aa19efeed37a5d
+    m_Address: Ability/MagicMissile/pj1_energy_small_blue
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 718ccdc033d7254667ce6ad02d75a6ce
+    m_Address: Ability/MagicMissile/pj1_energy_small_blue_0
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7830017fd45d1df49acc850b56392cab
+    m_Address: Ability/MagicMissile/frame0003
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7de66598b91f7d940b7366f9168181dd
+    m_Address: Ability/MagicMissile/frame0002
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ccf9a24106305944196a3ca5459fc951
+    m_Address: Ability/MagicMissile/frame0000
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 05e7a0cf6f4beb842a2395c4308b1194, type: 2}
+    - {fileID: 11400000, guid: 6b9586802ca48b54ab970c4d7a49d3cb, type: 2}

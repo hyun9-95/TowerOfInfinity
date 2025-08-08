@@ -19,7 +19,7 @@ public class BattleEventTriggerUnitModel : IBaseUnitModel
     /// <summary>
     /// 유닛에서 타겟을 검출할 때.
     /// </summary>
-    private Action<Collider2D> onEventHit;
+    private Func<Collider2D, bool> onEventHit;
 
     /// <summary>
     /// 타겟을 트리거에서 이미 알고 있을 때
@@ -32,7 +32,7 @@ public class BattleEventTriggerUnitModel : IBaseUnitModel
         DetectTeamTag = detectTeamTag;
     }
 
-    public void SetOnEventHit(Action<Collider2D> onEventHit)
+    public void SetOnEventHit(Func<Collider2D, bool> onEventHit)
     {
         this.onEventHit = onEventHit;
     }
@@ -71,7 +71,9 @@ public class BattleEventTriggerUnitModel : IBaseUnitModel
         if (IsOverHitCount())
             return;
 
-        onEventHit(collider);
-        currentHitCount++;
+        bool hitResult = onEventHit(collider);
+
+        if (hitResult)
+            currentHitCount++;
     }
 }
