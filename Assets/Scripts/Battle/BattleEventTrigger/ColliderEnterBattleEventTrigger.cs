@@ -22,6 +22,7 @@ public class ColliderEnterBattleEventTrigger : BattleEventTrigger
         var colliderTriggerEnterUnitModel = colliderTriggerEnterUnit.Model;
         colliderTriggerEnterUnitModel.SetFlip(Model.Sender.IsFlipX);
         colliderTriggerEnterUnitModel.SetFollowTarget(Model.Sender.Transform);
+        colliderTriggerEnterUnitModel.SetDetectTeamTag(Model.Sender.TeamTag.Opposite());
         colliderTriggerEnterUnitModel.SetOnEventHit(OnEventHit);
 
         colliderTriggerEnterUnit.ShowAsync().Forget();

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5313725604400074624}
   - component: {fileID: 2430903058210771585}
   m_Layer: 8
-  m_Name: VenomBall_Projectile
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -119,8 +119,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4278524595504450780}
-  - component: {fileID: 7964311228636038484}
+  - component: {fileID: 6134060477004596683}
   - component: {fileID: 4144115088514167110}
+  - component: {fileID: 7611271762364742349}
   m_Layer: 8
   m_Name: VenomBall_Projectile
   m_TagString: Untagged
@@ -144,7 +145,7 @@ Transform:
   - {fileID: 6483666390332873447}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7964311228636038484
+--- !u!114 &6134060477004596683
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -153,7 +154,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2578366417049445644}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba54670c37bda7d4d8e3242a9faababc, type: 3}
+  m_Script: {fileID: 11500000, guid: 04679019e30ea6c4a91adcd31b21c587, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   lifeTime: 0
@@ -161,10 +162,11 @@ MonoBehaviour:
   effectSprite: {fileID: 2430903058210771585}
   effectParticle: {fileID: 0}
   particleSystemRenderer: {fileID: 0}
-  directionType: 5
+  startDirectionType: 5
   hitCollider: {fileID: 4144115088514167110}
   launchDelay: 0
   fadeTime: 0.25
+  obstacleCollider: {fileID: 7611271762364742349}
 --- !u!61 &4144115088514167110
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -211,3 +213,39 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!58 &7611271762364742349
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2578366417049445644}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 128
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 0.7

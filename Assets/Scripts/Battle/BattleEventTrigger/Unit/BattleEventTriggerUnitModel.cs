@@ -9,6 +9,13 @@ public class BattleEventTriggerUnitModel : IBaseUnitModel
 
     public bool IsFlip { get; private set; }
 
+    public TeamTag DetectTeamTag { get; private set; }
+
+    public void SetDetectTeamTag(TeamTag detectTeamTag)
+    {
+        DetectTeamTag = detectTeamTag;
+    }
+
     public void SetOnEventHit(Action<Collider2D> onEventHit)
     {
         OnEventHit = onEventHit;

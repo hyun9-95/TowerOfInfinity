@@ -66,9 +66,6 @@ public static class ExtensionUtils
         if (gameObject.CheckSafeNull())
             return;
 
-        if (gameObject == null)
-            return;
-
         if (gameObject.activeSelf == active)
             return;
 
@@ -183,6 +180,14 @@ public static class ExtensionUtils
             vector.x * cos - vector.y * sin,
             vector.x * sin + vector.y * cos
         );
+    }
+
+    public static TeamTag Opposite(this TeamTag tag)
+    {
+        if (tag == TeamTag.Ally)
+            return TeamTag.Enemy;
+
+        return TeamTag.Ally;
     }
 
 #if UNITY_EDITOR

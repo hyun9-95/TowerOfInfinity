@@ -25,6 +25,7 @@ public class RangeBattleEventTrigger : BattleEventTrigger
             var hitTargetEffectUnitModel = hitTargetEffect.Model;
             hitTargetEffectUnitModel.SetRange(Model.Range);
             hitTargetEffectUnitModel.SetFlip(Model.Sender.IsFlipX);
+            hitTargetEffectUnitModel.SetDetectTeamTag(Model.Sender.TeamTag.Opposite());
             hitTargetEffectUnitModel.SetOnEventHit(OnEventHit);
 
             hitTargetEffect.ShowAsync().Forget();

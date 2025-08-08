@@ -3,24 +3,24 @@ using UnityEngine;
 
 public class ProjectileTriggerUnit : PoolableBaseUnit<ProjectileTriggerUnitModel>, IBattleEventTriggerUnit
 {
-    public DirectionType DirectionType => directionType;
+    public DirectionType StartDirectionType => startDirectionType;
 
     [SerializeField]
-    private DirectionType directionType = DirectionType.Owner;
+    private DirectionType startDirectionType = DirectionType.Owner;
 
     [SerializeField]
     protected Collider2D hitCollider;
 
     [SerializeField]
-    private float launchDelay = 0.2f;
+    private float launchDelay = 0f;
 
     [SerializeField]
-    private float fadeTime = 0.5f;
+    private float fadeTime = 0.25f;
 
-    private Vector3 startPosition;
-    private Vector2 direction;
+    protected Vector3 startPosition;
+    protected Vector2 direction;
 
-    private bool acitvate;
+    protected bool acitvate;
 
     private void Awake()
     {
@@ -59,7 +59,7 @@ public class ProjectileTriggerUnit : PoolableBaseUnit<ProjectileTriggerUnitModel
         acitvate = false;
     }
 
-    private void Launch()
+    protected virtual void Launch()
     {
         direction = Model.StartDirection;
         bool isFlip = direction.x < 0;
@@ -86,7 +86,7 @@ public class ProjectileTriggerUnit : PoolableBaseUnit<ProjectileTriggerUnitModel
         CheckDisable();
     }
 
-    private void UpdateMove()
+    protected virtual void UpdateMove()
     {
         transform.position += Model.Speed * Time.fixedDeltaTime * (Vector3)direction;
     }
@@ -118,9 +118,12 @@ public class ProjectileTriggerUnit : PoolableBaseUnit<ProjectileTriggerUnitModel
         effectSprite.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    protected virtual void OnTriggerEnter2D(Collider2D other)
     {
         if (!acitvate)
+            return;
+
+        if (!other.gameObject.CheckLayer(LayerInt.Character))
             return;
 
         Model.OnEventHit(other);

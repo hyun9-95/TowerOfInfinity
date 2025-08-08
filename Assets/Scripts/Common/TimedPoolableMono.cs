@@ -35,7 +35,8 @@ public class TimedPoolableMono : PoolableMono
 
         await UniTaskUtils.DelaySeconds(lifeTime, cancellationToken: TokenPool.Get(GetHashCode()));
         
-        gameObject.SafeSetActive(false);
+        if (gameObject)
+            gameObject.SafeSetActive(false);
 
         isCheckingLifeTime = false;
     }
