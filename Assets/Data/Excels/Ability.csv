@@ -11,4 +11,4 @@ Id,NameId,SlotType,CastingType,BattleEvents,TriggerType,TargetType,PrefabName,Hi
 ,,,,,,,,
 ,,,,,,,,
 ,,,,,,,,
-51000,AB_ACTIVE_VENOM_BALL,Active,Auto,BE_POSION_VENOM_BALL,Projectile,Enemy,Ability/VenomBall/VenomBall_Projectile,NULL
+51000,AB_ACTIVE_VENOM_BALL,Active,Auto,BE_POSION_VENOM_BALL,Projectile,Enemy,Ability/VenomBall/VenomBall_Bouncing,NULL

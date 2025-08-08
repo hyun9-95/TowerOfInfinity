@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 4144115088514167110}
   - component: {fileID: 7611271762364742349}
   m_Layer: 8
-  m_Name: VenomBall_Projectile
+  m_Name: VenomBall_Bouncing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
