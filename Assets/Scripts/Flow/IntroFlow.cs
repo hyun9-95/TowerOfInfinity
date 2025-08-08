@@ -33,7 +33,11 @@ public class IntroFlow : BaseFlow<IntroFlowModel>
     {
         bool isEnterCustomize = !PlayerManager.Instance.MyUser.IsCompletePrologue;
 
-        if (GameManager.Config.IsEnterBattleDirectly)
+#if UNITY_EDITOR
+        if (!isEnterCustomize && GameManager.CheatConfig.IsEnterCustomizationFlow)
+            isEnterCustomize = true;
+
+        if (GameManager.CheatConfig.IsEnterBattleDirectly)
         {
             BattleFlowModel battleFlowModel = new BattleFlowModel();
             battleFlowModel.SetSceneDefine(SceneDefine.Battle_Atlantis);
@@ -42,10 +46,27 @@ public class IntroFlow : BaseFlow<IntroFlowModel>
             FlowManager.Instance.ChangeFlow(FlowType.BattleFlow, battleFlowModel).Forget();
             return;
         }
-        else if (isEnterCustomize || GameManager.Config.IsEnterCustomizationFlow)
+        else if (isEnterCustomize)
         {
             CustomizationFlowModel customizationFlowModel = new CustomizationFlowModel();
             
+            FlowManager.Instance.ChangeFlow(FlowType.CustomizationFlow, customizationFlowModel).Forget();
+        }
+        else
+        {
+            TownFlowModel townFlowModel = new TownFlowModel();
+            townFlowModel.SetSceneDefine(SceneDefine.Town_Sanctuary);
+
+            FlowManager.Instance.ChangeFlow(FlowType.TownFlow, townFlowModel).Forget();
+        }
+
+        return;
+#endif
+
+        if (isEnterCustomize)
+        {
+            CustomizationFlowModel customizationFlowModel = new CustomizationFlowModel();
+
             FlowManager.Instance.ChangeFlow(FlowType.CustomizationFlow, customizationFlowModel).Forget();
         }
         else

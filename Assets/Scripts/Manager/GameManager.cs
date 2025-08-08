@@ -6,14 +6,14 @@ public class GameManager : BaseMonoManager<GameManager>
     #region Property
     public static GameSettings Settings => Instance.settings;
 
-    public static Config Config => Instance.config;
+    public static CheatConfig CheatConfig => Instance.cheatConfig;
 
     #endregion
     [SerializeField]
     private LoadDataType loadDataType;
 
     [SerializeField]
-    private Config config;
+    private CheatConfig cheatConfig;
 
     private GameSettings settings;
 
@@ -43,8 +43,8 @@ public class GameManager : BaseMonoManager<GameManager>
         var applyLocal = settings.Localization.Type;
 
 #if UNITY_EDITOR
-        if (Config.testLocalType != LocalizationType.None)
-            applyLocal = Config.testLocalType;
+        if (CheatConfig.testLocalType != LocalizationType.None)
+            applyLocal = CheatConfig.testLocalType;
 #endif
 
         if (applyLocal == LocalizationType.None)

@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dceb0da3ed51b6e47a7efb36ff83fcff, type: 3}
+  m_Name: AB_WEAPON_ARROW
+  m_EditorClassIdentifier: 
+  type: 50001
+  Speed: []
+  Range:
+  - 5
+  - 5.2
+  - 5.4
+  - 5.6
+  - 5.8
+  - 6
+  - 6.2
+  - 6.4
+  Duration: []
+  SendCount: 0100000001000000020000000200000003000000030000000400000004000000
+  Scale:
+  - 0
+  - 0.1
+  - 0.2
+  - 0.3
+  - 0.4
+  - 0.5
+  - 0.6
+  - 0.7
+  CoolTime:
+  - 2
+  - 1.9
+  - 1.8
+  - 1.7
+  - 1.6
+  - 1.5
+  - 1.4
+  - 1.3

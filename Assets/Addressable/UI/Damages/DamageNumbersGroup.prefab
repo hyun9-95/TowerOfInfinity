@@ -48,8 +48,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageNumbers:
   - {fileID: 5475393949416513037, guid: 07fe7f331b896bd43ab6bb859d6f5186, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 5475393949416513037, guid: 1a717eed591522e41894004a53b6e4bd, type: 3}
+  - {fileID: 5475393949416513037, guid: a97ba659eee8fdc4bb1c1e63396239b9, type: 3}
+  - {fileID: 5475393949416513037, guid: df3ef829cfec5e644b1d6da6f9a37a10, type: 3}
 --- !u!1 &3335283457071505331
 GameObject:
   m_ObjectHideFlags: 0

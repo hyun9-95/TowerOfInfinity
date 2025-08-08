@@ -15,20 +15,14 @@ MonoBehaviour:
   m_GroupName: AbilityCore
   m_GUID: f79eb956c802c184796d5ff624cfa1bf
   m_SerializeEntries:
-  - m_GUID: 0cbc034ec5e409c479c596c35e31a6f3
-    m_Address: AbilityCore/BattleEventBalance/BE_KNOCKBACK
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Main
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1431d70326999ff469f7cc7cdb2ce349
-    m_Address: AbilityCore/AbilityBalance/AB_ATTACK_SLASH_PROJECTILE
+    m_Address: AbilityCore/AbilityBalance/AB_WEAPON_SLASH_PROJECTILE
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3f6f38b4a4a263046a3f4b4bd4c17290
-    m_Address: AbilityCore/AbilityBalance/AB_ATTACK_STING
+    m_Address: AbilityCore/AbilityBalance/AB_WEAPON_STING
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
@@ -39,14 +33,26 @@ MonoBehaviour:
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 94706e59cb0d10c49834dceae11dc2ef
+    m_Address: AbilityCore/BattleEventBalance/BE_POSION_VENOM_BALL
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a31e05fc695c4314dab2371c378fc3fa
-    m_Address: AbilityCore/AbilityBalance/AB_ATTACK_ARROW
+    m_Address: AbilityCore/AbilityBalance/AB_WEAPON_ARROW
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d1dde42fa15732d41ab8b76bfa994158
     m_Address: AbilityCore/BattleEventBalance/BE_DAMAGE_ONE_SHOT_ATTACK
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d9784ee1614a0884d94dc0333f262b67
+    m_Address: AbilityCore/AbilityBalance/AB_ACTIVE_VENOM_BALL
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main

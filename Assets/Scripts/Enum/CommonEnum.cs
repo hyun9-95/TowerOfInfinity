@@ -33,7 +33,7 @@ public enum BattleEventTargetType
 public enum BattleEventType
 {
     Damage,
-    KnockBack,
+    Poison,
 }
 
 public enum PlayerInput
@@ -151,6 +151,7 @@ public enum ModuleType
 {
     CollisionDamage,
     CharacterUI,
+    SpawnExpGem,
 }
 
 public enum CharacterType
@@ -183,6 +184,7 @@ public enum DamageType
     Normal,
     Critical,
     Heal,
+    Poison,
     Max,
 }
 
@@ -286,4 +288,12 @@ public enum BattleCardType
     None,
     GetAbility,            // 능력 추가 or 기존 능력 레벨업
     LevelUpExpGainer,      // 경험치 획득 범위 증가
+}
+
+public enum BattleCardTier
+{
+    Common,
+    Uncommon,
+    Rare,
+    Epic,
 }

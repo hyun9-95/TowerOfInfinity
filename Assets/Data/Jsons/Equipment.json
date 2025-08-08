@@ -28,7 +28,7 @@
     "EquipmentType": "WEAPON",
     "Name": "LOCAL_WEAPON_SHORT_DAGGER",
     "PartsData": "PARTS_EQUIPMENT_WEAPON_SHORT_DAGGER",
-    "Ability": "AB_ATTACK_STING",
+    "Ability": "AB_WEAPON_STING",
     "AttackAnimState": "Jab"
   }
 ]

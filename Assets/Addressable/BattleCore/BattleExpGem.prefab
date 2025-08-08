@@ -76,6 +76,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   accelerationDuration: 0.8
+  spawnBouncePower: 1
   bounceDuration: 0.5
   startMoveSpeed: 5
   maxMoveSpeed: 20

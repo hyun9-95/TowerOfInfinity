@@ -1,5 +1,6 @@
 #pragma warning disable CS1998
 using Cysharp.Threading.Tasks;
+using Unity.Android.Gradle.Manifest;
 using UnityEngine;
 
 /// <summary>
@@ -98,6 +99,9 @@ public class BattleSystemManager : BaseManager<BattleSystemManager>
 
     public void OnDamage(CharacterUnitModel sender, CharacterUnitModel receiver, float value, DamageType damageType)
     {
+        if (receiver == null || receiver.IsDead)
+            return;
+
         var damageAmount = Formula.GetDamageAmount(sender, receiver, value, damageType);
 
         var finalDamage = damageAmount;
@@ -109,17 +113,22 @@ public class BattleSystemManager : BaseManager<BattleSystemManager>
         if (receiver.TeamTag == TeamTag.Enemy)
             damageNumbersGroup.ShowDamage(damageType, receiver.Transform, finalDamage.ToString());
 
+        OnHitEffect(receiver, damageType);
+    }
+
+    public void OnHitEffect(CharacterUnitModel receiver, DamageType damageType)
+    {
         if (!receiver.IsDead)
             receiver.ActionHandler.OnHitEffectAsync(GetHitColorByDamageType(damageType)).Forget();
     }
 
     private Color GetHitColorByDamageType(DamageType damageType)
     {
-        Color hitColor = new Color32(255, 100, 100, 255);
-
-        if (damageType == DamageType.Heal)
-            hitColor = new Color32(100, 255, 100, 255);
-
-        return hitColor;
+        return damageType switch
+        {
+            DamageType.Heal => new Color32(100, 255, 100, 255),
+            DamageType.Poison => new Color32(255, 100, 255, 255),
+            _ => new Color32(255, 100, 100, 255),
+        };
     }
 }

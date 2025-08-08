@@ -139,5 +139,7 @@ public class CharacterActionHandler
     public void Cancel()
     {
         TokenPool.Cancel(GetHashCode());
+        blinking = false;
+        rolling = false;
     }
 }

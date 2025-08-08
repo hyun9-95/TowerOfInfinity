@@ -71,6 +71,7 @@ public class CharacterUnit : PoolableMono
 
     private AbilityProcessor abilityProcessor = new();
     private BattleEventProcessor battleEventProcessor = new();
+    private CharacterActionHandler actionHandler;
 
     private Dictionary<ModuleType, IModuleModel> moduleModelDic;
 
@@ -138,7 +139,7 @@ public class CharacterUnit : PoolableMono
         characterCollider2D.enabled = false;
         triggerCollider2D.enabled = false;
 
-        moduleGroup.OnEventUpdate(Model, moduleModelDic);
+        moduleGroup.OnEventCharacterDeactivate(Model, moduleModelDic);
 
         if (Model.IsDead)
         {
@@ -328,6 +329,17 @@ public class CharacterUnit : PoolableMono
 
             if (equipmentWeapon != null)
                 abilityProcessor.AddAbility((int)equipmentWeapon.Ability);
+
+#if UNITY_EDITOR
+            if (GameManager.CheatConfig.cheatAbility != null)
+            {
+                foreach (var ability in GameManager.CheatConfig.cheatAbility)
+                {
+                    abilityProcessor.AddAbility((int)ability);
+                    Logger.Log($"Cheat Ability Added : {ability}");
+                }
+            }
+#endif
         }
         else
         {
@@ -353,7 +365,10 @@ public class CharacterUnit : PoolableMono
     private CharacterActionHandler CreateActionHandler()
     {
         var pathFinder = CreatePathFinder();
-        var actionHandler = new CharacterActionHandler(animator, rigidBody2D, bodySprite, gameObject, pathFinder);
+
+        if (actionHandler == null)
+            actionHandler = new CharacterActionHandler(animator, rigidBody2D, bodySprite, gameObject, pathFinder);
+        
         actionHandler.SetOnFlipX(OnFlipX);
 
         if (characterAnimationEffect != null)
@@ -413,22 +428,12 @@ public class CharacterUnit : PoolableMono
 
     private async UniTask DeadAsync()
     {
-        var targetModel = BattleSceneManager.Instance.GetCharacterModel(gameObject.GetInstanceID());
-        var expGemModel = targetModel != null && targetModel.TeamTag == TeamTag.Enemy ? new BattleExpGemModel() : null;
-
         if (BattleSceneManager.Instance != null)
             BattleSceneManager.Instance.RemoveLiveCharacter(gameObject.GetInstanceID());
 
         await UniTask.WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f);
 
-        bodySprite.FadeOff(1, gameObject);
-
-        if (expGemModel != null)
-        {
-            var exp = await ObjectPoolManager.Instance.SpawnPoolableMono<BattleExpGem>(PathDefine.BATTLE_EXP_GEM, gameObject.transform.position, Quaternion.identity);
-            exp.SetModel(expGemModel);
-            exp.ShowAsync().Forget();
-        }
+        bodySprite.DeactiveWithFade(1, gameObject);
     }
 
     #region Collision

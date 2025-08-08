@@ -90,7 +90,12 @@ public abstract class BattleEventTrigger
 
     private void Complete()
     {
+        OnComplete();
         ReturnToPool();
+    }
+
+    protected virtual void OnComplete()
+    {
     }
 
     private void ReturnToPool()

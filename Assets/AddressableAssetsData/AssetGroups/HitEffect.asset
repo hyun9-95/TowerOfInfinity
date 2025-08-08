@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: HitEffect
+  m_EditorClassIdentifier: 
+  m_GroupName: HitEffect
+  m_GUID: f04886306f6ab7e418e171fbeec84f86
+  m_SerializeEntries:
+  - m_GUID: 0de5113b69b4ab34ab629a13debf141c
+    m_Address: HitEffect/ExplosionHit
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 28f04391b10d0f54bbd0baaf3c5a6cf1
+    m_Address: HitEffect/explosionmedium
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 53c8027b55ce817468b58522e9c7bac1
+    m_Address: HitEffect/explosionmedium_0
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 803138a8be10930479f0541160b09cf7
+    m_Address: HitEffect/BloodHit
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ade4ed0fa5daeec489217a86ddb251ee
+    m_Address: HitEffect/fx_blood_explosion
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b0b48e9121028e1488fd31b8791c4844
+    m_Address: HitEffect/bloodmedium
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c6702c71dc411964a89c167e5a483ab4
+    m_Address: HitEffect/bloodmedium_0
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: bee067e36f7c56f42a648e81676e5581, type: 2}
+    - {fileID: 11400000, guid: 8e456b8acb94f224e818a92c8dc9b664, type: 2}

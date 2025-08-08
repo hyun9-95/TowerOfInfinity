@@ -25,7 +25,7 @@ public class DataContainer<T> where T : IBaseData
         }
         catch (Exception e)
         {
-            Logger.Exception("Json parsing failed", e);
+            Logger.Exception($"Json parsing failed => {typeof(T)}", e);
             return false;
         }
     }

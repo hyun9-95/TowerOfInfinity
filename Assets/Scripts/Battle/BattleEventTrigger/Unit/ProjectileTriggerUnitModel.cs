@@ -9,8 +9,6 @@ public class ProjectileTriggerUnitModel : BattleEventTriggerUnitModel
 
     public float Distance { get; private set; }
 
-    public float Scale { get; private set; }
-
     public Vector3 StartPosition { get; private set; }
 
     public void SetStartPosition(Vector3 pos)
@@ -21,11 +19,6 @@ public class ProjectileTriggerUnitModel : BattleEventTriggerUnitModel
     public void SetSpeed(float value)
     {
         Speed = value;
-    }
-
-    public void SetScale(float value)
-    {
-        Scale = value;
     }
 
     public void SetDirection(Vector3 direction)

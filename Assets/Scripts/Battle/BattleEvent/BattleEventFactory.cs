@@ -7,6 +7,9 @@ public struct BattleEventFactory
             case BattleEventType.Damage:
                 return new DamageBattleEvent();
 
+            case BattleEventType.Poison:
+                return new PoisonBattleEvent();
+
             default:
                 Logger.Error($"정의되지 않은 BattleStatusEffect : {eventType}");
                 break;

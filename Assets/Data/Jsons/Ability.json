@@ -1,7 +1,7 @@
 [
   {
     "id": 50000,
-    "SlotType": "Weapon",
+    "SlotType": "Active",
     "CastingType": "OnAttack",
     "BattleEvents": [
       "BE_DAMAGE_ONE_SHOT_ATTACK"
@@ -33,6 +33,18 @@
     "TriggerType": "Collider",
     "TargetType": "Enemy",
     "PrefabName": "Ability/Sting_Collider/Sting_Collider",
+    "HitEffectPrefabName": ""
+  },
+  {
+    "id": 51000,
+    "SlotType": "Active",
+    "CastingType": "Auto",
+    "BattleEvents": [
+      "BE_POSION_VENOM_BALL"
+    ],
+    "TriggerType": "Projectile",
+    "TargetType": "Enemy",
+    "PrefabName": "Ability/VenomBall/VenomBall_Projectile",
     "HitEffectPrefabName": ""
   }
 ]

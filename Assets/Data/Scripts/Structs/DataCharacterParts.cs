@@ -11,8 +11,8 @@ public struct DataCharacterParts : IBaseData
     public readonly CharacterPartsCategory Category;
     [JsonProperty(PropertyName = "PartsType")]
     public readonly CharacterPartsType PartsType;
-    [JsonProperty(PropertyName = "PartsPath")]
-    public readonly string PartsPath;
+    [JsonProperty(PropertyName = "PartsName")]
+    public readonly string PartsName;
     [JsonProperty(PropertyName = "ColorCode")]
     public readonly string ColorCode;
 	

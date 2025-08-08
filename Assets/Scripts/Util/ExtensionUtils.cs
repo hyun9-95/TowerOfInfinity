@@ -54,7 +54,7 @@ public static class ExtensionUtils
 
     public static void SafeSetText(this TMPro.TextMeshProUGUI text, string value)
     {
-        if (CheckSafeNull(text))
+        if (text.CheckSafeNull())
             return;
 
         if (text != null)
@@ -63,7 +63,10 @@ public static class ExtensionUtils
 
     public static void SafeSetActive(this UnityEngine.GameObject gameObject, bool active)
     {
-        if (CheckSafeNull(gameObject))
+        if (gameObject.CheckSafeNull())
+            return;
+
+        if (gameObject == null)
             return;
 
         if (gameObject.activeSelf == active)
@@ -88,7 +91,7 @@ public static class ExtensionUtils
 
     public static bool CheckSafeNull(this UnityEngine.Object obj)
     {
-        return !obj;
+        return !obj || obj.Equals(null);
     }
 
     public static GameObject GetRootObject(this UnityEngine.SceneManagement.Scene scene)
@@ -129,7 +132,7 @@ public static class ExtensionUtils
         };
     }
 
-    public static void FadeOff(this SpriteRenderer renderer, float duration, GameObject gameObject, Action callback = null)
+    public static void DeactiveWithFade(this SpriteRenderer renderer, float duration, GameObject gameObject, Action callback = null)
     {
         if (duration == 0)
         {
@@ -168,6 +171,18 @@ public static class ExtensionUtils
         );
 
         rectTransform.anchoredPosition = localPoint + offset;
+    }
+
+    public static Vector2 RotateVector2(this Vector2 vector, float angleDegrees)
+    {
+        float angleRad = angleDegrees * Mathf.Deg2Rad;
+        float cos = Mathf.Cos(angleRad);
+        float sin = Mathf.Sin(angleRad);
+
+        return new Vector2(
+            vector.x * cos - vector.y * sin,
+            vector.x * sin + vector.y * cos
+        );
     }
 
 #if UNITY_EDITOR

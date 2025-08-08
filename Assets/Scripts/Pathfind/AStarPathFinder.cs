@@ -81,7 +81,7 @@ public class AStarPathFinder : IPathFinder
     public Vector2 OnMoveAlongPath()
     {
 #if UNITY_EDITOR
-        if (GameManager.Config.IsDebugAStar && currentPath != null)
+        if (GameManager.CheatConfig.IsDebugAStar && currentPath != null)
         {
             for (int i = 0; i < currentPath.Count - 1; i++)
                 Debug.DrawLine(currentPath[i].WorldPos, currentPath[i + 1].WorldPos, Color.yellow, FloatDefine.ASTAR_REPATH_COOLTIME);

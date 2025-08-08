@@ -23,13 +23,13 @@
   },
   {
     "id": 20002,
-    "Type": "KnockBack",
-    "AffectStat": "None",
+    "Type": "Poison",
+    "AffectStat": "Attack",
     "BattleEventCategory": "Active",
-    "BattleEventGroup": "None",
+    "BattleEventGroup": "Debuff",
     "StatReference": "Sender",
-    "StatReferenceCondition": "None",
-    "StatusDirection": "None",
+    "StatReferenceCondition": "CurrentStat",
+    "StatusDirection": "Increase",
     "Stackable": false
   }
 ]

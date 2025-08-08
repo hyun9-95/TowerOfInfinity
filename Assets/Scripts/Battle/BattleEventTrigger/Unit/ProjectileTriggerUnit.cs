@@ -18,7 +18,6 @@ public class ProjectileTriggerUnit : PoolableBaseUnit<ProjectileTriggerUnitModel
     private float fadeTime = 0.5f;
 
     private Vector3 startPosition;
-    private Vector3 originScale;
     private Vector2 direction;
 
     private bool acitvate;
@@ -26,7 +25,6 @@ public class ProjectileTriggerUnit : PoolableBaseUnit<ProjectileTriggerUnitModel
     private void Awake()
     {
         hitCollider.enabled = false;
-        originScale = transform.localScale;
     }
 
     private void OnValidate()
@@ -44,7 +42,8 @@ public class ProjectileTriggerUnit : PoolableBaseUnit<ProjectileTriggerUnitModel
 
         effectSprite.enabled = false;
 
-        await UniTaskUtils.DelaySeconds(launchDelay);
+        if (launchDelay > 0)
+            await UniTaskUtils.DelaySeconds(launchDelay);
 
         Launch();
 
@@ -62,15 +61,17 @@ public class ProjectileTriggerUnit : PoolableBaseUnit<ProjectileTriggerUnitModel
 
     private void Launch()
     {
-        bool isFlip = direction.x < 0;
-        transform.position = Model.StartPosition;
-        transform.localPosition += isFlip ? GetFlipLocalPos(isFlip) : LocalPosOffset;
-        startPosition = transform.position;
         direction = Model.StartDirection;
+        bool isFlip = direction.x < 0;
+        
+        Vector3 worldPosition = Model.StartPosition;
+        Vector3 offset = isFlip ? GetFlipLocalPos(isFlip) : LocalPosOffset;
+        transform.position = worldPosition + offset;
+        
+        startPosition = transform.position;
         effectSprite.flipX = isFlip;
         hitCollider.enabled = true;
         effectSprite.RestoreAlpha();
-        transform.localScale = originScale * Model.Scale;
         gameObject.SafeSetActive(true);
 
         acitvate = true;
@@ -87,16 +88,13 @@ public class ProjectileTriggerUnit : PoolableBaseUnit<ProjectileTriggerUnitModel
 
     private void UpdateMove()
     {
-        transform.Translate(Model.Speed * Time.fixedDeltaTime * direction.normalized);
+        transform.position += Model.Speed * Time.fixedDeltaTime * (Vector3)direction;
     }
 
     private void CheckDisable()
     {
         if (CheckDisableCondition())
-        {
-            acitvate = false;
-            effectSprite.FadeOff(fadeTime, gameObject);
-        }
+            Deactivate();
     }
 
     private bool CheckDisableCondition()
@@ -126,5 +124,11 @@ public class ProjectileTriggerUnit : PoolableBaseUnit<ProjectileTriggerUnitModel
             return;
 
         Model.OnEventHit(other);
+    }
+
+    public void Deactivate()
+    {
+        acitvate = false;
+        effectSprite.DeactiveWithFade(fadeTime, gameObject);
     }
 }

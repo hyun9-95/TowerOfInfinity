@@ -107,7 +107,10 @@ public class AbilityProcessor
         var primaryWeapon = GetPrimaryWeapon();
 
         if (primaryWeapon != null && primaryWeapon.IsCastable)
+        {
             await primaryWeapon.DelayCast(delay);
+            Cast(CastingType.OnAttack);
+        }
     }
 
     public bool IsPrimaryWeaponSlotReady()

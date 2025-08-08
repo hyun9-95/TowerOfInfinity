@@ -1,0 +1,4 @@
+﻿아이디,이름,,
+int,string,enum:BattleCardType,enum:BattleCardTier
+Id,NameId,CardType,Tier
+100000,BATTLE_CARD_VENOM_BALL,GetAbility,Common

@@ -1,0 +1,125 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Ability_VenomBall
+  m_EditorClassIdentifier: 
+  m_GroupName: Ability_VenomBall
+  m_GUID: 808160ab0aa012e45adb84fbdd928cc2
+  m_SerializeEntries:
+  - m_GUID: 10837d210cb15aa4ea126b8775b1c65a
+    m_Address: Ability/VenomBall/frame0005
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 144a3ab6f7c6b01479f936ede0163737
+    m_Address: Ability/VenomBall/frame0001
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1582acd32125dda4889ae4d96c41896b
+    m_Address: Ability/VenomBall/frame0013
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2017bec1a4eafcc0d2eba453e4b07203
+    m_Address: Ability/VenomBall/pj1_blob_small_violet_animator
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2fc9b76a18e7d3c498e03c6f6f816d5a
+    m_Address: Ability/VenomBall/VenomBall_Projectile
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 38df61d3be8109a19f9c20c7a30fa419
+    m_Address: Ability/VenomBall/pj1_blob_small_violet_animation
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3a55d26b5c508474082f4deb4911e552
+    m_Address: Ability/VenomBall/frame0003
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4e51c7660dfff0b449e68e3cb4618a77
+    m_Address: Ability/VenomBall/frame0011
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5b10ae6caf222b34eb27a4b910be0d66
+    m_Address: Ability/VenomBall/frame0007
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5f6e7bad55b055e4889931ad45102a4d
+    m_Address: Ability/VenomBall/frame0000
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6c8068bbfdb0e7b489868af870d19022
+    m_Address: Ability/VenomBall/frame0012
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8df6c7c9af7c8b844a45e561b9161e28
+    m_Address: Ability/VenomBall/frame0006
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 93d6010d1b8cb064699fb355f793206d
+    m_Address: Ability/VenomBall/frame0010
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bf2cca2e48063e2469bd127edb0f1f1d
+    m_Address: Ability/VenomBall/frame0008
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dd920d8f67d02cb4a9993151b2d5e9ae
+    m_Address: Ability/VenomBall/frame0004
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e3a36560f971cde4fbd604f7243ba8f7
+    m_Address: Ability/VenomBall/frame0002
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e4600ab389ed40f4997173c106689695
+    m_Address: Ability/VenomBall/frame0009
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: c4a21c9b015714e49a401aa353078d76, type: 2}
+    - {fileID: 11400000, guid: a62d05be6db221f46b0906df45a645ec, type: 2}

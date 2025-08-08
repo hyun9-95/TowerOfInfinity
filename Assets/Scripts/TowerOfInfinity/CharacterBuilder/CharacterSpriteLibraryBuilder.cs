@@ -74,12 +74,13 @@ public class CharacterSpriteLibraryBuilder : MonoBehaviour
             // 둘 다 파츠가 있는 경우 주소 비교
             if (hasNewPart && hasLoadedPart)
             {
-                var newPartsName = GetPartNameFromPath(newPartsData.PartsPath);
+                var newPartsName = newPartsData.PartsName;
                 var newColorCode = newPartsData.ColorCode;
                 var newFinalPartsName = string.IsNullOrEmpty(newColorCode) ? newPartsName : $"{newPartsName}{newColorCode}";
+                var newAddress = BuildPartsAddress(partType, newPartsName);
 
                 // 주소가 다르면 변경됨
-                if (loadedPartsInfo.Address != newPartsData.PartsPath || 
+                if (loadedPartsInfo.Address != newAddress || 
                     loadedPartsInfo.PartName != newFinalPartsName)
                     return true;
             }
@@ -101,7 +102,7 @@ public class CharacterSpriteLibraryBuilder : MonoBehaviour
                 int index = (int)partType;
                 if (userCharacterPartsInfo.PartsInfoDic.TryGetValue(partType, out var partsData))
                 {
-                    var partsName = GetPartNameFromPath(partsData.PartsPath);
+                    var partsName = partsData.PartsName;
                     var colorCode = partsData.ColorCode;
 
                     if (string.IsNullOrEmpty(partsName))
@@ -144,7 +145,7 @@ public class CharacterSpriteLibraryBuilder : MonoBehaviour
             if (partsData.IsNull)
                 continue;
 
-            var partsName = GetPartNameFromPath(partsData.PartsPath);
+            var partsName = partsData.PartsName;
             var colorCode = partsData.ColorCode;
             
             if (string.IsNullOrEmpty(partsName))
@@ -492,6 +493,14 @@ public class CharacterSpriteLibraryBuilder : MonoBehaviour
         AddressableManager.Instance.ReleaseFromTracker(libraryBuildInfo.Texture, gameObject);
     }
 
+    private string BuildPartsAddress(CharacterPartsType partsType, string partsName)
+    {
+        if (string.IsNullOrEmpty(partsName))
+            return null;
+            
+        return $"CharacterBuilder/{partsType}/{partsName}";
+    }
+    
     private string GetPartsPathFromData(CharacterPartsType partsType, string partName)
     {
         if (partsContainer == null)
@@ -502,9 +511,9 @@ public class CharacterSpriteLibraryBuilder : MonoBehaviour
 
         var targetPart = partsContainer.Find(p => 
             p.PartsType == partsType && 
-            GetPartNameFromPath(p.PartsPath) == partName);
+            p.PartsName == partName);
             
-        return targetPart.IsNull ? null : targetPart.PartsPath;
+        return targetPart.IsNull ? null : BuildPartsAddress(partsType, targetPart.PartsName);
     }
     
     private string GetPartNameFromPath(string partsPath)
@@ -673,10 +682,10 @@ public class CharacterSpriteLibraryBuilder : MonoBehaviour
         
         foreach (var part in preloadParts)
         {
-            if (string.IsNullOrEmpty(part.PartsPath))
+            if (string.IsNullOrEmpty(part.PartsName))
                 continue;
 
-            preloadTasks.Add(PreloadTexture(part.PartsType, part.PartsPath, part.PartsPath));
+            preloadTasks.Add(PreloadTexture(part.PartsType, part.PartsName, BuildPartsAddress(part.PartsType, part.PartsName)));
         }
         
         return preloadTasks;

@@ -1,9 +1,9 @@
 ﻿아이디,이름,캐릭터 타입,,,
 int,string,string,AbilityDefine,AbilityDefine,AbilityDefine
 Id,NameId,PrefabName,PrimaryWeaponAbility,ActiveSkill,PassiveSkill
-10000,CHAR_THIEF,Character/Player/Thief/Thief,AB_ATTACK_STING,None,None
-10001,CHAR_ARCHER,Character/Player/Archer/Archer,AB_ATTACK_ARROW,None,None
-10002,CHAR_GUARD,Character/Player/Guard/Guard,AB_ATTACK_SLASH_PROJECTILE,None,None
+10000,CHAR_THIEF,Character/Player/Thief/Thief,AB_WEAPON_STING,None,None
+10001,CHAR_ARCHER,Character/Player/Archer/Archer,AB_WEAPON_ARROW,None,None
+10002,CHAR_GUARD,Character/Player/Guard/Guard,AB_WEAPON_SLASH_PROJECTILE,None,None
 ,,,,,
 ,,,,,
 ,,,,,

@@ -160,6 +160,10 @@ public class BattleEventProcessor
     private void EnqueueBattleEvent(BattleEvent battleEvent)
     {
         battleEvent.OnStart();
+
+        if (battleEvent.Model.ApplyIntervalSeconds > 0)
+            battleEvent.StartTriggerTime();
+
         battleEvent.AddObserverIds();
         pendingEvents.Enqueue(battleEvent);
     }

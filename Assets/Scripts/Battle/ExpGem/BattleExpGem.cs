@@ -1,6 +1,7 @@
 #pragma warning disable CS1998
 using Cysharp.Threading.Tasks;
 using System;
+using System.Threading;
 using UnityEngine;
 
 public class BattleExpGem : PoolableBaseUnit<BattleExpGemModel>
@@ -10,6 +11,9 @@ public class BattleExpGem : PoolableBaseUnit<BattleExpGemModel>
 
     [SerializeField]
     private float accelerationDuration = 1f;
+
+    [SerializeField]
+    private float spawnBouncePower = 8f;
 
     [SerializeField]
     private float bounceDuration = 0.2f;
@@ -31,8 +35,44 @@ public class BattleExpGem : PoolableBaseUnit<BattleExpGemModel>
         gemCollider.enabled = true;
     }
 
+    public async UniTask BounceAsync(Vector2 killerDirection)
+    {
+        gameObject.SafeSetActive(true);
+
+        try
+        {
+            float elapsedTime = 0f;
+            Vector3 startPosition = transform.position;
+            var token = TokenPool.Get(GetHashCode());
+            
+            // 수평으로만 이동, Y는 시작점과 동일
+            Vector3 targetPosition = startPosition + new Vector3(killerDirection.x * spawnBouncePower, 0f, 0f);
+            
+            while (!token.IsCancellationRequested && elapsedTime < bounceDuration)
+            {
+                float progress = elapsedTime / bounceDuration;
+                
+                // 수평 값 보간
+                float currentX = Mathf.Lerp(startPosition.x, targetPosition.x, progress);
+                
+                // PI를 곱해야 위로만 튕김
+                float height = spawnBouncePower * Mathf.Sin(progress * Mathf.PI);
+                
+                transform.position = new Vector3(currentX, startPosition.y + height, startPosition.z);
+
+                elapsedTime += Time.deltaTime;
+                await UniTask.Yield(PlayerLoopTiming.PostLateUpdate);
+            }
+        }
+        catch (OperationCanceledException)
+        {
+        }
+    }
+
     public async UniTask MoveToTarget(Transform target, Action onArrive)
     {
+        TokenPool.Cancel(GetHashCode());
+
         gemCollider.enabled = false;
 
         float elapsedTime = 0f;

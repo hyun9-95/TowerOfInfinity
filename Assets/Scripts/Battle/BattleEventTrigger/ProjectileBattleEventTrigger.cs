@@ -1,12 +1,31 @@
 #pragma warning disable CS1998
 using Cysharp.Threading.Tasks;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ProjectileBattleEventTrigger : BattleEventTrigger
 {
+    private List<ProjectileTriggerUnit> spawnedProjectiles = new List<ProjectileTriggerUnit>();
+    
     public override async UniTask Process()
     {
         await ProcessProjectile();
+    }
+
+    protected override void OnComplete()
+    {
+        DeactivateAllProjectiles();
+        base.OnComplete();
+    }
+
+    private void DeactivateAllProjectiles()
+    {
+        foreach (var projectile in spawnedProjectiles)
+        {
+            if (projectile != null && projectile.gameObject.activeSelf)
+                projectile.Deactivate();
+        }
+        spawnedProjectiles.Clear();
     }
 
     private async UniTask ProcessProjectile()
@@ -15,6 +34,8 @@ public class ProjectileBattleEventTrigger : BattleEventTrigger
 
         if (projectileUnit == null)
             return;
+
+        spawnedProjectiles.Add(projectileUnit);
 
         if (projectileUnit.Model == null)
             projectileUnit.SetModel(new ProjectileTriggerUnitModel());
@@ -25,7 +46,6 @@ public class ProjectileBattleEventTrigger : BattleEventTrigger
         projectileUnitModel.SetDirection(fixedDirection);
         projectileUnitModel.SetDistance(Model.Range);
         projectileUnitModel.SetSpeed(Model.Speed);
-        projectileUnitModel.SetScale(Model.Scale);
         projectileUnitModel.SetStartPosition(Model.Sender.Transform.position);
         projectileUnitModel.SetOnEventHit(OnEventHit);
         projectileUnit.ShowAsync().Forget();

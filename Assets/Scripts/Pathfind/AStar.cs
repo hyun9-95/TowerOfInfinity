@@ -75,7 +75,7 @@ public class AStar
         }
 
 #if UNITY_EDITOR
-        if (GameManager.Config.IsDebugAStar)
+        if (GameManager.CheatConfig.IsDebugAStar)
         {
             var viewer = GameManager.Instance.gameObject.GetComponent<AStarGridViewer>();
             if (viewer == null)

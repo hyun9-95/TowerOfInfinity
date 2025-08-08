@@ -79,8 +79,8 @@ public class CharacterCustomizationView : BaseView
         hairDropDown.ClearOptions();
         
         var hairOptions = Model.SelectableHairDatas.Select(hairData => 
-            string.IsNullOrEmpty(hairData.PartsPath) ? "None" : 
-            hairData.PartsPath.Substring(hairData.PartsPath.LastIndexOf('/') + 1)).ToList();
+            string.IsNullOrEmpty(hairData.PartsName) ? "None" : 
+            hairData.PartsName.Substring(hairData.PartsName.LastIndexOf('/') + 1)).ToList();
         hairDropDown.AddOptions(hairOptions);
     }
 

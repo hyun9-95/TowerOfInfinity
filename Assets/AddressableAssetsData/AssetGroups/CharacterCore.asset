@@ -249,6 +249,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9613d3795aa6fdd40b9f4914b875c000
+    m_Address: CharacterCore/Module/SpawnExpGem
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9a17bd711b3b9014ab4168ea1ab7d632
     m_Address: CharacterCore/Player/PlayerController
     m_ReadOnly: 0

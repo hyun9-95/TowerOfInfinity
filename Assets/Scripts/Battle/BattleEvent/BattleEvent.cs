@@ -58,6 +58,10 @@ public abstract class BattleEvent : IObserver
 
     public virtual void OnStart()
     {
+    }
+
+    public virtual void StartTriggerTime()
+    {
         LastTriggerTime = Time.time;
     }
 
@@ -73,12 +77,12 @@ public abstract class BattleEvent : IObserver
         if (Time.time - LastTriggerTime >= Model.ApplyIntervalSeconds)
         {
             LastTriggerTime += Model.ApplyIntervalSeconds;
-            ExecutePeriodicAction();
+            OnInterval();
         }
     }
 
     // 일정 주기마다 호출되는 함수
-    protected virtual void ExecutePeriodicAction()
+    public virtual void OnInterval()
     {
     }
 
@@ -92,8 +96,14 @@ public abstract class BattleEvent : IObserver
         if (statReferenceTarget == null)
             return 0;
 
-        var baseStat = statReferenceTarget.GetStatValue(Model.AffectStat, Model.StatReferenceCondition);
-        var finalValue = baseStat * Model.Value;
+        float finalValue = Model.Value;
+
+        if (Model.AffectStat != StatType.None)
+        {
+            var baseStat = statReferenceTarget.GetStatValue(Model.AffectStat, Model.StatReferenceCondition);
+            finalValue = baseStat * Model.Value;
+        }
+        
         var sign = Model.StatusDirection is StatusDirection.Increase ? 1 : -1;
 
         return finalValue * sign;
