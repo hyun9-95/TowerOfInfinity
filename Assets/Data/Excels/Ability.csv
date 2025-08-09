@@ -13,5 +13,5 @@ Id,NameId,SlotType,CastingType,BattleEvents,TriggerType,TargetType,PrefabName,Hi
 ,,,,,,,,
 51000,AB_ACTIVE_VENOM_BALL,Active,Auto,BE_POSION_VENOM_BALL,Projectile,Enemy,Ability/VenomBall/VenomBall_Bouncing,NULL
 51001,AB_ACTIVE_BOULDER_SMASH,Active,Auto,BE_DAMAGE_BOULDER_SMASH,InRangeFollow,Enemy,Ability/BoulderSmash/BoulderSmash_Range,NULL
-51002,AB_ACTIVE_SLASH_PROJECTILE,Active,Auto,BE_DAMAGE_SLASH_PROJECTILE,Projectile,Enemy,Ability/Slash_Projectile/Slash_Projectile,NULL
+51002,AB_ACTIVE_SWORD_WAVE,Active,Auto,BE_DAMAGE_SWORD_WAVE,Projectile,Enemy,Ability/SwordWave/SwordWave_Projectile,NULL
 51003,AB_ACTIVE_MAGIC_MISSILE,Active,Auto,BE_DAMAGE_MAGIC_MISSILE,RandomProjectile,Enemy,Ability/MagicMissile/MagicMissile_Follow,NULL

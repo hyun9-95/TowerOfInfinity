@@ -135,22 +135,29 @@ Directly translates missing localization data in CSV format:
 - **Always use Logger class** for all logging operations instead of Unity's Debug.Log
 - **Available methods**: Logger.Log(), Logger.Warning(), Logger.Error()
 - **Apply to all contexts**: Runtime code, Editor scripts, and custom tools
+- **No emojis**: Do not use emojis in log messages, comments, or code
 
 ```csharp
-// ❌ Bad - Nullable operators
+// Bad - Nullable operators
 var result = obj?.Property ?? defaultValue;
 
-// ✅ Good - Explicit null checks
+// Good - Explicit null checks
 var result = defaultValue;
 if (obj != null && obj.Property != null)
     result = obj.Property;
 
-// ❌ Bad - Reflection
+// Bad - Reflection
 var property = typeof(MyClass).GetProperty("PropertyName");
 property.SetValue(instance, value);
 
-// ✅ Good - Direct access with public methods
+// Good - Direct access with public methods
 instance.SetPropertyName(value);
+
+// Bad - Using emojis in logs
+Logger.Log("✅ Data generation completed successfully!");
+
+// Good - No emojis in logs
+Logger.Log("Data generation completed successfully.");
 ```
 
 # important-instruction-reminders

@@ -3,30 +3,40 @@
     "id": 100000,
     "CardType": "GetAbility",
     "Tier": "Common",
-    "Ability": "AB_ACTIVE_VENOM_BALL"
+    "Ability": "AB_ACTIVE_VENOM_BALL",
+    "Name": "LOCAL_AB_VENOM_BALL_NAME",
+    "Desc": "LOCAL_AB_VENOM_BALL_DESC"
   },
   {
     "id": 100001,
     "CardType": "GetAbility",
     "Tier": "Common",
-    "Ability": "AB_ACTIVE_BOULDER_SMASH"
+    "Ability": "AB_ACTIVE_BOULDER_SMASH",
+    "Name": "LOCAL_AB_BOULDER_SMASH_NAME",
+    "Desc": "LOCAL_AB_BOULDER_SMASH_DESC"
   },
   {
     "id": 100002,
     "CardType": "GetAbility",
     "Tier": "Common",
-    "Ability": "AB_ACTIVE_SLASH_PROJECTILE"
+    "Ability": "AB_ACTIVE_SWORD_WAVE",
+    "Name": "LOCAL_AB_SWORD_WAVE_NAME",
+    "Desc": "LOCAL_AB_SWORD_WAVE_DESC"
   },
   {
     "id": 100003,
     "CardType": "GetAbility",
     "Tier": "Common",
-    "Ability": "AB_ACTIVE_MAGIC_MISSILE"
+    "Ability": "AB_ACTIVE_MAGIC_MISSILE",
+    "Name": "LOCAL_AB_MAGIC_MISSILE_NAME",
+    "Desc": "LOCAL_AB_MAGIC_MISSILE_DESC"
   },
   {
     "id": 100004,
     "CardType": "ExpGainRangeUp",
     "Tier": "Common",
-    "Ability": "None"
+    "Ability": "None",
+    "Name": "LOCAL_EXP_GAIN_RANGE_UP_NAME",
+    "Desc": "LOCAL_EXP_GAIN_RANGE_UP_DESC"
   }
 ]

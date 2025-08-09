@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7964311228636038484}
   - component: {fileID: 4144115088514167110}
   m_Layer: 8
-  m_Name: Slash_Projectile
+  m_Name: SwordWave_Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

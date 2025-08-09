@@ -13,6 +13,10 @@ public struct DataBattleCard : IBaseData
     public readonly BattleCardTier Tier;
     [JsonProperty(PropertyName = "Ability")]
     public readonly AbilityDefine Ability;
+    [JsonProperty(PropertyName = "Name")]
+    public readonly LocalizationDefine Name;
+    [JsonProperty(PropertyName = "Desc")]
+    public readonly LocalizationDefine Desc;
 	
 	public int Id => id;
     public bool IsNull => id == 0;

@@ -6,6 +6,7 @@ using UnityEditor;
 using UnityEditor.AddressableAssets;
 using UnityEditor.AddressableAssets.Build;
 using UnityEditor.AddressableAssets.Settings;
+using UnityEditor.AddressableAssets.Settings.GroupSchemas;
 using UnityEngine;
 
 public class AddressableBuildGenerator : BaseGenerator
@@ -172,24 +173,14 @@ public class AddressableBuildGenerator : BaseGenerator
 
             if (shouldPackSeparately)
             {
-                var bundledSchema = group.GetSchema<UnityEditor.AddressableAssets.Settings.GroupSchemas.BundledAssetGroupSchema>();
+                var bundledSchema = group.GetSchema<BundledAssetGroupSchema>();
                 if (bundledSchema != null)
                 {
-                    bundledSchema.BundleMode = UnityEditor.AddressableAssets.Settings.GroupSchemas.BundledAssetGroupSchema.BundlePackingMode.PackSeparately;
-                    Logger.Log($"Set PackSeparately for group: {group.Name}");
+                    bundledSchema.BundleMode = 
+                        BundledAssetGroupSchema.BundlePackingMode.PackSeparately;
                 }
             }
         }
-    }
-
-    private AddressableAssetGroup FindDefaultGroup(AddressableAssetSettings addressableSettings)
-    {
-        AddressableAssetGroup defaultGroup = addressableSettings.FindGroup(NameDefine.AddressableDefaultGroupName);
-
-        if (defaultGroup == null)
-            defaultGroup = addressableSettings.FindGroup(NameDefine.AddressableDefaultGroupName_Newer);
-
-        return defaultGroup;
     }
 
     private void AddToAddressableDic(string address, string path)
