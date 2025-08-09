@@ -103,7 +103,7 @@ public class LocalizationTextSupportEditor : Editor
                 return;
             }
 
-            LocalizationManager.Instance.SetLocalizationType(LocalizationType.English);
+            LocalizationManager.Instance.Initialize(LocalizationType.English);
             string translatedText = LocalizationManager.GetLocalization(currentDefine);
             textMeshPro.text = translatedText;
             
@@ -161,7 +161,7 @@ public class LocalizationTextSupportEditor : Editor
                 return false;
             }
 
-            LocalizationManager.Instance.SetLocalizationType(LocalizationType.English);
+            LocalizationManager.Instance.Initialize(LocalizationType.English);
             
             Logger.Log("Data loaded successfully for editor");
             return true;

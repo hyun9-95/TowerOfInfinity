@@ -17,8 +17,10 @@ public abstract class BattleEventTrigger
     {
         await OnProcess();
 
+#if CHEAT
         if (Model.Range > 0)
             CheatManager.DrawWireSphereFromMainCharacter(Model.Range);
+#endif
     }
 
     protected virtual async UniTask OnProcess() { }
@@ -45,9 +47,7 @@ public abstract class BattleEventTrigger
         return targetModel;
     }
 
-    
-
-    private void SendBattleEventToTarget(CharacterUnitModel targetModel, Collider2D hitTarget = null)
+    protected void SendBattleEventToTarget(CharacterUnitModel targetModel, Collider2D hitTarget = null)
     {
         if (Model.BattleEventDatas.Count == 1)
         {
@@ -142,5 +142,47 @@ public abstract class BattleEventTrigger
 
         return direction;
     }
+
+    protected Vector2 GetRandomDirection()
+    {
+        float randomAngle = UnityEngine.Random.Range(0f, 360f) * Mathf.Deg2Rad;
+        return new Vector2(Mathf.Cos(randomAngle), Mathf.Sin(randomAngle));
+    }
+
+    protected List<CharacterUnitModel> GetEnemiesInRange()
+    {
+        Vector2 senderPosition = Model.Sender.Transform.position;
+        var colliders = Physics2D.OverlapCircleAll(senderPosition, Model.Range, (int)LayerFlag.Character);
+        var enemies = new List<CharacterUnitModel>();
+        
+        colliders.SortByNearest(senderPosition);
+        
+        foreach (var collider in colliders)
+        {
+            var targetModel = BattleSceneManager.Instance.GetCharacterModel(collider);
+
+            if (targetModel == null || targetModel.TeamTag == Model.Sender.TeamTag)
+                continue;
+
+            if (targetModel == Model.Sender)
+                continue;
+
+            enemies.Add(targetModel);
+        }
+        
+        return enemies;
+    }
+
+    protected List<Transform> GetEnemyTransformsInRange()
+    {
+        var enemies = GetEnemiesInRange();
+        var transforms = new List<Transform>();
+        
+        foreach (var enemy in enemies)
+            transforms.Add(enemy.Transform);
+            
+        return transforms;
+    }
+
     #endregion
 }

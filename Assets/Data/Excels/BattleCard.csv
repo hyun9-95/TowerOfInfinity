@@ -1,4 +1,8 @@
-﻿아이디,이름,,
-int,string,enum:BattleCardType,enum:BattleCardTier
-Id,NameId,CardType,Tier
-100000,BATTLE_CARD_VENOM_BALL,GetAbility,Common
+﻿아이디,이름,,,
+int,string,enum:BattleCardType,enum:BattleCardTier,enum:AbilityDefine
+Id,NameId,CardType,Tier,Ability
+100000,BATTLE_CARD_AB_VENOM_BALL,GetAbility,Common,AB_ACTIVE_VENOM_BALL
+100001,BATTLE_CARD_AB_BOULDER_SMASH,GetAbility,Common,AB_ACTIVE_BOULDER_SMASH
+100002,BATTLE_CARD_AB_SLASH_PROJECTILE,GetAbility,Common,AB_ACTIVE_SLASH_PROJECTILE
+100003,BATTLE_CARD_AB_MAGIC_MISSILE,GetAbility,Common,AB_ACTIVE_MAGIC_MISSILE
+100004,BATTLE_CARD_EXP_GAIN_RANGE_UP,ExpGainRangeUp,Common,None

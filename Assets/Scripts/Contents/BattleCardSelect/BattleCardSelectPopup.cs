@@ -1,5 +1,4 @@
 using Cysharp.Threading.Tasks;
-using System.Threading.Tasks;
 using UnityEngine;
 
 public class BattleCardSelectPopup : BaseView
@@ -24,9 +23,12 @@ public class BattleCardSelectPopup : BaseView
         var tasks = new UniTask[battleCards.Length];
         for (int i = 0; i < battleCards.Length; i++)
         {
-            var card = battleCards[i];
-            card.SetModel(Model.CardUnitModels[i]);
-            tasks[i] = card.ShowAsync();
+            if (i < Model.CardUnitModels.Count)
+            {
+                var card = battleCards[i];
+                card.SetModel(Model.CardUnitModels[i]);
+                tasks[i] = card.ShowAsync();
+            }
         }
 
         await UniTask.WhenAll(tasks);

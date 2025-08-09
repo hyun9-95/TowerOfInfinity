@@ -29,7 +29,7 @@ public class BattleFlow : BaseFlow<BattleFlowModel>
         battleTeam = await battleSceneManager.CreateBattleTeam(PlayerManager.Instance.MyUser.UserCharacterInfo.CurrentDeck);
 
         await battleSceneManager.Prepare(Model.DataDungeon);
-        await battleSystemManager.Prepare(battleTeam, battleSceneManager.ObjectContainter);
+        await battleSystemManager.Prepare(battleTeam);
         await battleFXManager.Prepare();
 
         await ShowBattleView(battleSystemManager.BattleInfo);

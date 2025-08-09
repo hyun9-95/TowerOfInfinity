@@ -26,3 +26,13 @@ Id,NameId,Korean,English,SimplifiedChinese
 70022,LOCAL_UI_BUTTON_SAVE,저장,Save,保存
 70023,LOCAL_WORD_RACE,종족,Race,种族
 70024,LOCAL_WORD_HAIR,헤어,Hair,头发
+70025,LOCAL_AB_VENOM_BALL_NAME,베놈볼,Venom Ball,毒液球
+70026,LOCAL_AB_VENOM_BALL_DESC,적에게 닿으면 튕기는 투사체를 던집니다.\n닿은 적은 중독됩니다.,Throws a bouncing projectile at enemies.\nHit enemies become poisoned.,向敌人投掷弹跳弹射物。\n击中的敌人会中毒。
+70027,LOCAL_AB_BOULDER_SMASH_NAME,볼더스매시,Boulder Smash,巨石重击
+70028,LOCAL_AB_BOULDER_SMASH_DESC,근처의 적에게 거대한 돌을 떨어뜨립니다.,Drops massive stones on nearby enemies.,向附近的敌人投掷巨石。
+70029,LOCAL_AB_SWORD_WAVE_NAME,소드웨이브,Sword Wave,剑气波
+70030,LOCAL_AB_SWORD_WAVE_DESC,적을 관통하는 검기를 발사합니다.,Fires a sword wave that penetrates enemies.,发射穿透敌人的剑气。
+70031,LOCAL_AB_MAGIC_MISSILE_NAME,매직미사일,Magic Missile,魔法飞弹
+70032,LOCAL_AB_MAGIC_MISSILE_DESC,무작위 방향으로 빠른 투사체를 발사합니다.,Fires fast projectiles in random directions.,向随机方向发射快速弹射物。
+70033,LOCAL_EXP_GAIN_RANGE_UP_NAME,긴 팔,Long Arms,长臂
+70034,LOCAL_EXP_GAIN_RANGE_UP_DESC,획득 범위가 증가합니다.,Increases acquisition range.,增加获取范围。

@@ -2,14 +2,14 @@
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-public class ProjectileBattleEventTrigger : BattleEventTrigger
+public class RandomProjectileBattleEventTrigger : BattleEventTrigger
 {
     protected override async UniTask OnProcess()
     {
-        await ProcessProjectile();
+        await ProcessRandomProjectiles();
     }
 
-    private async UniTask ProcessProjectile()
+    private async UniTask ProcessRandomProjectiles()
     {
         for (int i = 0; i < Model.SpawnCount; i++)
         {
@@ -17,9 +17,8 @@ public class ProjectileBattleEventTrigger : BattleEventTrigger
 
             if (projectileUnit == null)
                 continue;
-
-            var fixedDirection = OnGetFixedDirection(projectileUnit.StartDirectionType);
-            var model = BattleEventTriggerFactory.CreateProjectileUnitModel(Model, fixedDirection, null, OnEventHit);
+            
+            var model = BattleEventTriggerFactory.CreateProjectileUnitModel(Model, GetRandomDirection(), null, OnEventHit);
             projectileUnit.SetModel(model);
             projectileUnit.ShowAsync().Forget();
         }

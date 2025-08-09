@@ -33,7 +33,7 @@ public class IntroFlow : BaseFlow<IntroFlowModel>
     {
         bool isEnterCustomize = !PlayerManager.Instance.MyUser.IsCompletePrologue;
 
-#if UNITY_EDITOR
+#if CHEAT
         if (!isEnterCustomize && CheatManager.CheatConfig.IsEnterCustomizationFlow)
             isEnterCustomize = true;
 

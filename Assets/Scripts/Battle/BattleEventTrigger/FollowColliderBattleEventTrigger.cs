@@ -10,22 +10,13 @@ public class FollowColliderBattleEventTrigger : BattleEventTrigger
 
     private async UniTask ProcessColliderEvent()
     {
-        var colliderTriggerUnit = await SpawnUnitAsync<ColliderTriggerUnit>
-                (Model.PrefabName, Model.Sender.Transform.position, Quaternion.identity);
-
-        if (colliderTriggerUnit == null)
-            return;
-
-        if (colliderTriggerUnit.Model == null)
-            colliderTriggerUnit.SetModel(new RangeTriggerUnitModel());
-
-        var colliderTriggerUnitModel = colliderTriggerUnit.Model;
-        colliderTriggerUnitModel.SetFlip(Model.Sender.IsFlipX);
-        colliderTriggerUnitModel.SetFollowTarget(Model.Sender.Transform);
-        colliderTriggerUnitModel.SetDetectTeamTag(Model.Sender.TeamTag.Opposite());
-        colliderTriggerUnitModel.SetOnEventHit(OnEventHit);
-        colliderTriggerUnitModel.SetHitCount(Model.HitCount);
-
-        colliderTriggerUnit.ShowAsync().Forget();
+        var colliderTriggerUnit = await SpawnUnitAsync<ColliderTriggerUnit>(Model.PrefabName, Model.Sender.Transform.position, Quaternion.identity);
+        
+        if (colliderTriggerUnit != null)
+        {
+            var model = BattleEventTriggerFactory.CreateColliderUnitModel(Model, Model.Sender.Transform, OnEventHit);
+            colliderTriggerUnit.SetModel(model);
+            colliderTriggerUnit.ShowAsync().Forget();
+        }
     }
 }

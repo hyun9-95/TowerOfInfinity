@@ -6,8 +6,8 @@ public class FollowProjectileTriggerUnit : ProjectileTriggerUnit
 
     protected override void SetStartDirection()
     {
-        direction = GetDirectionToTarget();
         followTarget = Model.FollowTarget;
+        direction = GetDirectionToTarget();
     }
 
     protected override void UpdateMove()
@@ -15,12 +15,10 @@ public class FollowProjectileTriggerUnit : ProjectileTriggerUnit
         if (followTarget == null)
         {
             base.UpdateMove();
-            RotateSpriteToDirection();
             return;
         }
 
         UpdateFollow();
-        RotateSpriteToDirection();
     }
 
     private void UpdateFollow()
@@ -29,6 +27,7 @@ public class FollowProjectileTriggerUnit : ProjectileTriggerUnit
         direction = (targetPosition - transform.position).normalized;
         
         transform.position += Model.Speed * Time.fixedDeltaTime * (Vector3)direction;
+        RotateSpriteToDirection();
     }
 
     private Vector2 GetDirectionToTarget()

@@ -11,7 +11,7 @@ public class InRangeFollowBattleEventTrigger : BattleEventTrigger
 
     private async UniTask ProcessInRangeFollowEvent()
     {
-        var enemiesInRange = GetEnemiesInRange();
+        var enemiesInRange = GetEnemyTransformsInRange();
         
         if (enemiesInRange.Count == 0)
             return;
@@ -22,47 +22,14 @@ public class InRangeFollowBattleEventTrigger : BattleEventTrigger
         {
             Transform targetEnemy = enemiesInRange[i];
             
-            var colliderTriggerUnit = await SpawnUnitAsync<ColliderTriggerUnit>
-                (Model.PrefabName, Model.Sender.Transform.position, Quaternion.identity);
+            var colliderTriggerUnit = await SpawnUnitAsync<ColliderTriggerUnit>(Model.PrefabName, Model.Sender.Transform.position, Quaternion.identity);
 
-            if (colliderTriggerUnit == null)
-                continue;
-
-            if (colliderTriggerUnit.Model == null)
-                colliderTriggerUnit.SetModel(new RangeTriggerUnitModel());
-
-            var colliderTriggerUnitModel = colliderTriggerUnit.Model;
-            colliderTriggerUnitModel.SetFlip(Model.Sender.IsFlipX);
-            colliderTriggerUnitModel.SetFollowTarget(targetEnemy);
-            colliderTriggerUnitModel.SetDetectTeamTag(Model.Sender.TeamTag.Opposite());
-            colliderTriggerUnitModel.SetOnEventHit(OnEventHit);
-            colliderTriggerUnitModel.SetHitCount(Model.HitCount);
-
-            colliderTriggerUnit.ShowAsync().Forget();
+            if (colliderTriggerUnit != null)
+            {
+                var model = BattleEventTriggerFactory.CreateColliderUnitModel(Model, targetEnemy, OnEventHit);
+                colliderTriggerUnit.SetModel(model);
+                colliderTriggerUnit.ShowAsync().Forget();
+            }
         }
-    }
-
-    private List<Transform> GetEnemiesInRange()
-    {
-        Vector2 senderPosition = Model.Sender.Transform.position;
-        var colliders = Physics2D.OverlapCircleAll(senderPosition, Model.Range, (int)LayerFlag.Character);
-        var enemies = new List<Transform>();
-        
-        colliders.SortByNearest(senderPosition);
-        
-        foreach (var collider in colliders)
-        {
-            var targetModel = BattleSceneManager.Instance.GetCharacterModel(collider);
-
-            if (targetModel == null || targetModel.TeamTag == Model.Sender.TeamTag)
-                continue;
-
-            if (targetModel == Model.Sender)
-                continue;
-
-            enemies.Add(collider.transform);
-        }
-        
-        return enemies;
     }
 }

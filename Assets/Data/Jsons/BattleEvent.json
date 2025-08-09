@@ -30,7 +30,7 @@
     "StatReference": "Sender",
     "StatReferenceCondition": "CurrentStat",
     "StatusDirection": "Increase",
-    "Stackable": false
+    "Stackable": true
   },
   {
     "id": 20003,

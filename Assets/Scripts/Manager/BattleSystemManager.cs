@@ -1,29 +1,28 @@
 #pragma warning disable CS1998
 using Cysharp.Threading.Tasks;
-using Unity.Android.Gradle.Manifest;
 using UnityEngine;
 
 /// <summary>
 /// 전반적인 전투 로직을 관리한다.
 /// </summary>
-public class BattleSystemManager : BaseManager<BattleSystemManager>
+public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
 {
     #region Property
     public BattleInfo BattleInfo { get; private set; } = new BattleInfo();
     #endregion
 
     #region Value
+    [SerializeField]
+    private Transform objectContainer;
+
     private BattleExpGainer expGainer;
     private DamageNumbersGroup damageNumbersGroup;
-    private Transform objectContainer;
     #endregion
 
-    public async UniTask Prepare(BattleTeam battleTeam, Transform objectContainerValue)
+    public async UniTask Prepare(BattleTeam battleTeam)
     {
         InitializBattleInfo(battleTeam);
         await InitilalizeExpGainer(battleTeam.CurrentCharacter);
-
-        objectContainer = objectContainerValue;
         await InitializeDamageGroup();
     }
 
@@ -34,6 +33,8 @@ public class BattleSystemManager : BaseManager<BattleSystemManager>
         BattleInfo.SetExpTable();
         BattleInfo.SetLevel(0);
         BattleInfo.SetBattleExp(0);
+
+        expGainer = null;
     }
 
     private async UniTask InitilalizeExpGainer(CharacterUnit characterUnit)
@@ -73,18 +74,54 @@ public class BattleSystemManager : BaseManager<BattleSystemManager>
         viewModel.SetOnChangeCharacter(OnChangeCharacter);
     }
 
+    private Color GetHitColorByDamageType(DamageType damageType)
+    {
+        return damageType switch
+        {
+            DamageType.Heal => new Color32(100, 255, 100, 255),
+            DamageType.Poison => new Color32(255, 100, 255, 255),
+            _ => new Color32(255, 100, 100, 255),
+        };
+    }
+
+    private void Pause()
+    {
+        Time.timeScale = 0;
+        Logger.BattleLog("Game PAUSED");
+    }
+
+    private void Resume()
+    {
+        Time.timeScale = 1;
+        Logger.BattleLog("Game RESUME");
+    }
+
     private void OnExpGain(float exp)
     {
-        var expGainerModel = expGainer.Model;
+        int prevLevel = BattleInfo.Level;
 
         BattleInfo.OnExpGain(exp);
-        expGainer.UpdateRadius();
 
         BattleObserverParam param = new BattleObserverParam();
         param.SetBattleInfo(BattleInfo);
 
         // 경험치 획득 시 UI 갱신해준다.
         ObserverManager.NotifyObserver(BattleObserverID.ExpGain, param);
+
+        if (BattleInfo.Level > prevLevel)
+            OnLevelUp();
+    }
+
+    private void OnLevelUp()
+    {
+        BattleCardSelectController battleCardSelectController = new BattleCardSelectController();
+        var battleCardSelectModel = new BattleCardSelectViewModel();
+        battleCardSelectModel.SetOnCompleteSelect(Resume);
+
+        battleCardSelectController.SetModel(battleCardSelectModel);
+
+        Pause();
+        UIManager.Instance.OpenPopup(battleCardSelectController).Forget();
     }
 
     private void OnChangeCharacter(int changeIndex)
@@ -97,6 +134,7 @@ public class BattleSystemManager : BaseManager<BattleSystemManager>
         var changeTargetModel = changeTarget.Model;
     }
 
+    #region Public OnEvent
     public void OnDamage(CharacterUnitModel sender, CharacterUnitModel receiver, float value, DamageType damageType)
     {
         if (receiver == null || receiver.IsDead)
@@ -122,13 +160,25 @@ public class BattleSystemManager : BaseManager<BattleSystemManager>
             receiver.ActionHandler.OnHitEffectAsync(GetHitColorByDamageType(damageType)).Forget();
     }
 
-    private Color GetHitColorByDamageType(DamageType damageType)
+    public void OnExpGainRangeUp()
     {
-        return damageType switch
-        {
-            DamageType.Heal => new Color32(100, 255, 100, 255),
-            DamageType.Poison => new Color32(255, 100, 255, 255),
-            _ => new Color32(255, 100, 100, 255),
-        };
+        if (expGainer == null)
+            return;
+
+        int prevLevel = 0;
+        var model = expGainer.Model;
+        model.SetLevel(model.Level + 1);
+
+        expGainer.UpdateRadius();
+
+        Logger.BattleLog($"Exp gainer level up : {prevLevel} => {model.Level}");
     }
+
+    public void CheatLevelUp(float exp)
+    {
+#if UNITY_EDITOR
+        OnExpGain(exp);
+#endif
+    }
+    #endregion
 }

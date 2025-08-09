@@ -73,7 +73,7 @@ public class ProjectileTriggerUnit : PoolableBaseUnit<ProjectileTriggerUnitModel
         transform.position = worldPosition + offset;
         
         startPosition = transform.position;
-        effectSprite.flipX = isFlip;
+        RotateSpriteToDirection();
         hitCollider.enabled = true;
         effectSprite.RestoreAlpha();
         gameObject.SafeSetActive(true);
@@ -98,6 +98,7 @@ public class ProjectileTriggerUnit : PoolableBaseUnit<ProjectileTriggerUnitModel
     protected virtual void UpdateMove()
     {
         transform.position += Model.Speed * Time.fixedDeltaTime * (Vector3)direction;
+        RotateSpriteToDirection();
     }
 
     private void CheckDisable()
@@ -172,6 +173,5 @@ public class ProjectileTriggerUnit : PoolableBaseUnit<ProjectileTriggerUnitModel
     {
         acitvate = false;
         effectSprite.DeactiveWithFade(fadeTime, gameObject);
-        Logger.Log("Deactivated");
     }
 }

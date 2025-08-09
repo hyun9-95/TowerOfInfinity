@@ -148,5 +148,65 @@
     "Korean": "헤어",
     "English": "Hair",
     "SimplifiedChinese": "头发"
+  },
+  {
+    "id": 70025,
+    "Korean": "베놈볼",
+    "English": "Venom Ball",
+    "SimplifiedChinese": "毒液球"
+  },
+  {
+    "id": 70026,
+    "Korean": "적에게 닿으면 튕기는 투사체를 던집니다.\\n닿은 적은 중독됩니다.",
+    "English": "Throws a bouncing projectile at enemies.\\nHit enemies become poisoned.",
+    "SimplifiedChinese": "向敌人投掷弹跳弹射物。\\n击中的敌人会中毒。"
+  },
+  {
+    "id": 70027,
+    "Korean": "볼더스매시",
+    "English": "Boulder Smash",
+    "SimplifiedChinese": "巨石重击"
+  },
+  {
+    "id": 70028,
+    "Korean": "근처의 적에게 거대한 돌을 떨어뜨립니다.",
+    "English": "Drops massive stones on nearby enemies.",
+    "SimplifiedChinese": "向附近的敌人投掷巨石。"
+  },
+  {
+    "id": 70029,
+    "Korean": "소드웨이브",
+    "English": "Sword Wave",
+    "SimplifiedChinese": "剑气波"
+  },
+  {
+    "id": 70030,
+    "Korean": "적을 관통하는 검기를 발사합니다.",
+    "English": "Fires a sword wave that penetrates enemies.",
+    "SimplifiedChinese": "发射穿透敌人的剑气。"
+  },
+  {
+    "id": 70031,
+    "Korean": "매직미사일",
+    "English": "Magic Missile",
+    "SimplifiedChinese": "魔法飞弹"
+  },
+  {
+    "id": 70032,
+    "Korean": "무작위 방향으로 빠른 투사체를 발사합니다.",
+    "English": "Fires fast projectiles in random directions.",
+    "SimplifiedChinese": "向随机方向发射快速弹射物。"
+  },
+  {
+    "id": 70033,
+    "Korean": "긴 팔",
+    "English": "Long Arms",
+    "SimplifiedChinese": "长臂"
+  },
+  {
+    "id": 70034,
+    "Korean": "획득 범위가 증가합니다.",
+    "English": "Increases acquisition range.",
+    "SimplifiedChinese": "增加获取范围。"
   }
 ]

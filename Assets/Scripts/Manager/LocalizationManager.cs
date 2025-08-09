@@ -1,16 +1,12 @@
 public class LocalizationManager : BaseManager<LocalizationManager>
 {
-    public LocalizationManager()
-    {
-        localContainer = DataManager.Instance.GetDataContainer<DataLocalization>();
-    }
-
     private LocalizationType localizationType;
     private DataContainer<DataLocalization> localContainer;
 
-    public void SetLocalizationType(LocalizationType type)
+    public void Initialize(LocalizationType type)
     {
         localizationType = type;
+        localContainer = DataManager.Instance.GetDataContainer<DataLocalization>();
     }
 
     public static string GetLocalization(LocalizationDefine define)

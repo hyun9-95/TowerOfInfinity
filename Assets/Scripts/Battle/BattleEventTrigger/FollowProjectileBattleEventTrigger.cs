@@ -24,27 +24,16 @@ public class FollowProjectileBattleEventTrigger : BattleEventTrigger
         
         for (int i = 0; i < spawnCount; i++)
         {
-            Transform targetEnemy = i < enemiesInRange.Count ?
-                enemiesInRange[i].Transform : null;
+            Transform targetEnemy = i < enemiesInRange.Count ? enemiesInRange[i].Transform : null;
             
             var projectileUnit = await SpawnUnitAsync<FollowProjectileTriggerUnit>(Model.PrefabName, Model.Sender.Transform.position, Quaternion.identity);
 
             if (projectileUnit == null)
                 continue;
 
-            if (projectileUnit.Model == null)
-                projectileUnit.SetModel(new ProjectileTriggerUnitModel());
-
-            var projectileUnitModel = projectileUnit.Model;
-            projectileUnitModel.SetFollowTarget(targetEnemy);
-            projectileUnitModel.SetMoveDistance(Model.Range);
-            projectileUnitModel.SetSpeed(Model.Speed);
-            projectileUnitModel.SetStartPosition(Model.Sender.Transform.position);
-            projectileUnitModel.SetDirection(OnGetFixedDirection(DirectionType.Owner));
-            projectileUnitModel.SetOnEventHit(OnEventHit);
-            projectileUnitModel.SetDetectTeamTag(Model.Sender.TeamTag.Opposite());
-            projectileUnitModel.SetHitCount(Model.HitCount);
-            
+            var direction = OnGetFixedDirection(DirectionType.Owner);
+            var model = BattleEventTriggerFactory.CreateProjectileUnitModel(Model, direction, targetEnemy, OnEventHit);
+            projectileUnit.SetModel(model);
             projectileUnit.ShowAsync().Forget();
         }
     }
@@ -58,51 +47,10 @@ public class FollowProjectileBattleEventTrigger : BattleEventTrigger
             if (projectileUnit == null)
                 continue;
 
-            if (projectileUnit.Model == null)
-                projectileUnit.SetModel(new ProjectileTriggerUnitModel());
-
-            var projectileUnitModel = projectileUnit.Model;
-            Vector2 randomDirection = GetRandomDirection();
-            
-            projectileUnitModel.SetDirection(randomDirection);
-            projectileUnitModel.SetMoveDistance(Model.Range);
-            projectileUnitModel.SetSpeed(Model.Speed);
-            projectileUnitModel.SetStartPosition(Model.Sender.Transform.position);
-            projectileUnitModel.SetOnEventHit(OnEventHit);
-            projectileUnitModel.SetDetectTeamTag(Model.Sender.TeamTag.Opposite());
-            projectileUnitModel.SetHitCount(Model.HitCount);
-            
+            var model = BattleEventTriggerFactory.CreateProjectileUnitModel(Model, GetRandomDirection(), null, OnEventHit);
+            projectileUnit.SetModel(model);
             projectileUnit.ShowAsync().Forget();
         }
     }
 
-    private Vector2 GetRandomDirection()
-    {
-        float randomAngle = Random.Range(0f, 360f) * Mathf.Deg2Rad;
-        return new Vector2(Mathf.Cos(randomAngle), Mathf.Sin(randomAngle));
-    }
-
-    private List<CharacterUnitModel> GetEnemiesInRange()
-    {
-        Vector2 senderPosition = Model.Sender.Transform.position;
-        var colliders = Physics2D.OverlapCircleAll(senderPosition, Model.Range, (int)LayerFlag.Character);
-        var enemies = new List<CharacterUnitModel>();
-        
-        colliders.SortByNearest(senderPosition);
-        
-        foreach (var collider in colliders)
-        {
-            var targetModel = BattleSceneManager.Instance.GetCharacterModel(collider);
-
-            if (targetModel == null || targetModel.TeamTag == Model.Sender.TeamTag)
-                continue;
-
-            if (targetModel == Model.Sender)
-                continue;
-
-            enemies.Add(targetModel);
-        }
-        
-        return enemies;
-    }
 }

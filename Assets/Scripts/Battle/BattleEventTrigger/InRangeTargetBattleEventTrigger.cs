@@ -18,22 +18,14 @@ public class InRangeTargetBattleEventTrigger : BattleEventTrigger
         {
             Vector2 targetPosition = targetPositions[i];
             
-            var colliderTriggerUnit = await SpawnUnitAsync<ColliderTriggerUnit>
-                (Model.PrefabName, targetPosition, Quaternion.identity);
+            var colliderTriggerUnit = await SpawnUnitAsync<ColliderTriggerUnit>(Model.PrefabName, targetPosition, Quaternion.identity);
 
-            if (colliderTriggerUnit == null)
-                continue;
-
-            if (colliderTriggerUnit.Model == null)
-                colliderTriggerUnit.SetModel(new RangeTriggerUnitModel());
-
-            var colliderTriggerUnitModel = colliderTriggerUnit.Model;
-            colliderTriggerUnitModel.SetFlip(Model.Sender.IsFlipX);
-            colliderTriggerUnitModel.SetDetectTeamTag(Model.Sender.TeamTag.Opposite());
-            colliderTriggerUnitModel.SetOnEventHit(OnEventHit);
-            colliderTriggerUnitModel.SetHitCount(Model.HitCount);
-
-            colliderTriggerUnit.ShowAsync().Forget();
+            if (colliderTriggerUnit != null)
+            {
+                var model = BattleEventTriggerFactory.CreateColliderUnitModel(Model, null, OnEventHit);
+                colliderTriggerUnit.SetModel(model);
+                colliderTriggerUnit.ShowAsync().Forget();
+            }
         }
     }
 
@@ -42,7 +34,7 @@ public class InRangeTargetBattleEventTrigger : BattleEventTrigger
         Vector2 senderPosition = Model.Sender.Transform.position;
         var positions = new Vector2[count];
         
-        var enemiesInRange = GetEnemiesInRange();
+        var enemiesInRange = GetEnemyTransformsInRange();
         
         for (int i = 0; i < count; i++)
         {
@@ -57,24 +49,6 @@ public class InRangeTargetBattleEventTrigger : BattleEventTrigger
         }
         
         return positions;
-    }
-
-    private List<Transform> GetEnemiesInRange()
-    {
-        Vector2 senderPosition = Model.Sender.Transform.position;
-        var colliders = Physics2D.OverlapCircleAll(senderPosition, Model.Range, (int)LayerFlag.Character);
-        var enemies = new List<Transform>();
-        
-        foreach (var collider in colliders)
-        {
-            var characterUnit = collider.GetComponent<CharacterUnit>();
-            if (characterUnit != null && characterUnit.Model.TeamTag == Model.Sender.TeamTag.Opposite())
-            {
-                enemies.Add(collider.transform);
-            }
-        }
-        
-        return enemies;
     }
 
     private Vector2 GetRandomPositionInRange(Vector2 centerPosition)

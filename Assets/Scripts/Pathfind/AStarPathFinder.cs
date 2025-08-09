@@ -80,7 +80,7 @@ public class AStarPathFinder : IPathFinder
     /// <returns></returns>
     public Vector2 OnMoveAlongPath()
     {
-#if UNITY_EDITOR
+#if CHEAT
         if (CheatManager.CheatConfig.IsDebugAStar && currentPath != null)
         {
             for (int i = 0; i < currentPath.Count - 1; i++)

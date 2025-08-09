@@ -23,6 +23,8 @@ public enum BattleEventTriggerType
     InRange,                // 범위 안의 타겟 위치에 콜라이더 생성 및 검출 
     InRangeFollow,          // 범위 안의 타겟 위치에 콜라이더 생성 후 Follow
     FollowProjectile,       // 타겟을 추적하는 투사체 생성
+    RandomProjectile,       // 랜덤 방향 투사체 생성
+    Self,                   // 자기 자신 대상 이벤트 Send
 }
 
 public enum BattleEventTargetType
@@ -289,7 +291,7 @@ public enum BattleCardType
 {
     None,
     GetAbility,            // 능력 추가 or 기존 능력 레벨업
-    LevelUpExpGainer,      // 경험치 획득 범위 증가
+    ExpGainRangeUp,         // 경험치 획득 범위 증가
 }
 
 public enum BattleCardTier

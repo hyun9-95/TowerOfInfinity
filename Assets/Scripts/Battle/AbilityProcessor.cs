@@ -49,6 +49,9 @@ public class AbilityProcessor
 
         abilitySetByCasting[newAbility.CastingType].Add(newAbility);
         abilitySlotDic[slotType].Add(newAbility);
+
+        if (newAbility.CastingType == CastingType.Instant)
+            newAbility.Cast();
     }
 
     public void RemoveAbility(int removeAbilityDataId)

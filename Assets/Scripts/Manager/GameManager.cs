@@ -11,6 +11,8 @@ public class GameManager : BaseMonoManager<GameManager>
     [SerializeField]
     private LoadDataType loadDataType;
 
+    [SerializeField]
+    private CheatConfig cheatConfig;
 
     private GameSettings settings;
 
@@ -18,6 +20,10 @@ public class GameManager : BaseMonoManager<GameManager>
     private void Awake()
     {
         DontDestroyOnLoad(this);
+
+#if CHEAT
+        CheatManager.instance.SetCheatConfig(cheatConfig);
+#endif
     }
 
     /// <summary>
@@ -39,7 +45,7 @@ public class GameManager : BaseMonoManager<GameManager>
     {
         var applyLocal = settings.Localization.Type;
 
-#if UNITY_EDITOR
+#if CHEAT
         if (CheatManager.CheatConfig.testLocalType != LocalizationType.None)
             applyLocal = CheatManager.CheatConfig.testLocalType;
 #endif
@@ -47,7 +53,7 @@ public class GameManager : BaseMonoManager<GameManager>
         if (applyLocal == LocalizationType.None)
             applyLocal = LocalizationType.English;
 
-        LocalizationManager.Instance.SetLocalizationType(applyLocal);
+        LocalizationManager.Instance.Initialize(applyLocal);
     }
 
     private void Start()

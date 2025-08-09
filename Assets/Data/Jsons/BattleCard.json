@@ -2,6 +2,31 @@
   {
     "id": 100000,
     "CardType": "GetAbility",
-    "Tier": "Common"
+    "Tier": "Common",
+    "Ability": "AB_ACTIVE_VENOM_BALL"
+  },
+  {
+    "id": 100001,
+    "CardType": "GetAbility",
+    "Tier": "Common",
+    "Ability": "AB_ACTIVE_BOULDER_SMASH"
+  },
+  {
+    "id": 100002,
+    "CardType": "GetAbility",
+    "Tier": "Common",
+    "Ability": "AB_ACTIVE_SLASH_PROJECTILE"
+  },
+  {
+    "id": 100003,
+    "CardType": "GetAbility",
+    "Tier": "Common",
+    "Ability": "AB_ACTIVE_MAGIC_MISSILE"
+  },
+  {
+    "id": 100004,
+    "CardType": "ExpGainRangeUp",
+    "Tier": "Common",
+    "Ability": "None"
   }
 ]

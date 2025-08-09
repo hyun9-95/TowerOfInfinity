@@ -11,6 +11,8 @@ public struct DataBattleCard : IBaseData
     public readonly BattleCardType CardType;
     [JsonProperty(PropertyName = "Tier")]
     public readonly BattleCardTier Tier;
+    [JsonProperty(PropertyName = "Ability")]
+    public readonly AbilityDefine Ability;
 	
 	public int Id => id;
     public bool IsNull => id == 0;

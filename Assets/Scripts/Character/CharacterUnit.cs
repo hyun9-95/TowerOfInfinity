@@ -330,7 +330,7 @@ public class CharacterUnit : PoolableMono
             if (equipmentWeapon != null)
                 abilityProcessor.AddAbility((int)equipmentWeapon.Ability);
 
-#if UNITY_EDITOR
+#if CHEAT
             if (CheatManager.CheatConfig.cheatAbility != null)
             {
                 foreach (var ability in CheatManager.CheatConfig.cheatAbility)

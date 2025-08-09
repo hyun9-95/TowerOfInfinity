@@ -1,5 +1,10 @@
+using System;
+using UnityEngine;
+
 public static class BattleEventTriggerFactory
 {
+    private static SelfBattleEventTrigger selfBattleEventTrigger = new();
+
     public static BattleEventTrigger Create(BattleEventTriggerType type)
     {
         BattleEventTrigger newTrigger = type switch
@@ -9,10 +14,49 @@ public static class BattleEventTriggerFactory
             BattleEventTriggerType.InRange => new InRangeTargetBattleEventTrigger(),
             BattleEventTriggerType.InRangeFollow => new InRangeFollowBattleEventTrigger(),
             BattleEventTriggerType.FollowProjectile => new FollowProjectileBattleEventTrigger(),
-            // BattleEventTriggerType.Movement => new MovementBattleEventTrigger(),
+            BattleEventTriggerType.RandomProjectile => new RandomProjectileBattleEventTrigger(),
+            BattleEventTriggerType.Self => selfBattleEventTrigger,
             _ => null
         };
 
         return newTrigger;
+    }
+
+    public static ProjectileTriggerUnitModel CreateProjectileUnitModel(
+        BattleEventTriggerModel triggerModel, 
+        Vector2 direction, 
+        Transform followTarget = null,
+        Func<Collider2D, bool> onEventHit = null)
+    {
+        var projectileUnitModel = new ProjectileTriggerUnitModel();
+        projectileUnitModel.SetDirection(direction);
+        projectileUnitModel.SetMoveDistance(triggerModel.Range);
+        projectileUnitModel.SetSpeed(triggerModel.Speed);
+        projectileUnitModel.SetStartPosition(triggerModel.Sender.Transform.position);
+        projectileUnitModel.SetOnEventHit(onEventHit);
+        projectileUnitModel.SetDetectTeamTag(triggerModel.TargetTeamTag);
+        projectileUnitModel.SetHitCount(triggerModel.HitCount);
+
+        if (followTarget != null)
+            projectileUnitModel.SetFollowTarget(followTarget);
+
+        return projectileUnitModel;
+    }
+
+    public static RangeTriggerUnitModel CreateColliderUnitModel(
+        BattleEventTriggerModel triggerModel,
+        Transform followTarget = null,
+        Func<Collider2D, bool> onEventHit = null)
+    {
+        var colliderUnitModel = new RangeTriggerUnitModel();
+        colliderUnitModel.SetFlip(triggerModel.Sender.IsFlipX);
+        colliderUnitModel.SetDetectTeamTag(triggerModel.TargetTeamTag);
+        colliderUnitModel.SetOnEventHit(onEventHit);
+        colliderUnitModel.SetHitCount(triggerModel.HitCount);
+
+        if (followTarget != null)
+            colliderUnitModel.SetFollowTarget(followTarget);
+
+        return colliderUnitModel;
     }
 }
