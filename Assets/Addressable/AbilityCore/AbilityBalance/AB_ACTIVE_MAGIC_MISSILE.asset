@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 51003
   Speed:
-  - 15
+  - 12
   Range:
-  - 5
+  - 10
   Duration: []
   HitCount: 01000000
   Scale:
