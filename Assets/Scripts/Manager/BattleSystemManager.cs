@@ -118,12 +118,18 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
 
     private void OnLevelUp()
     {
-        var drawCards = cardDrawer.DrawBattleCards(BattleInfo.Level);
+        var battleCardUnitModelList = cardDrawer.DrawBattleCardUnitModelList(BattleInfo.Level);
+
+        if (battleCardUnitModelList == null || battleCardUnitModelList.Count == 0)
+        {
+            Logger.Error("Draw Failed!");
+            return;
+        }
 
         BattleCardSelectController battleCardSelectController = new BattleCardSelectController();
         var battleCardSelectModel = new BattleCardSelectViewModel();
         battleCardSelectModel.SetOnCompleteSelect(Resume);
-        battleCardSelectModel.SetBattleCards(drawCards);
+        battleCardSelectModel.SetBattleCardUnitModels(battleCardUnitModelList);
 
         battleCardSelectController.SetModel(battleCardSelectModel);
 

@@ -48,7 +48,7 @@
     "TriggerType": "InRangeFollow",
     "TargetType": "Enemy",
     "PrefabName": "Ability/BoulderSmash/BoulderSmash_Range",
-    "IconPath": "Ability/BoulderSmash/BoulderSmash_Sprites[bouldersphere_16]",
+    "IconPath": "Ability/BoulderSmash/BoulderSmash_Range_Icon",
     "HitEffectPrefabName": ""
   },
   {

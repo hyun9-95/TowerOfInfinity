@@ -10,37 +10,13 @@ public class BattleCardSelectViewModel : IBaseViewModel
     #endregion
 
     #region Value
-    private List<BattleCardUnitModel> cardUnitModels = new List<BattleCardUnitModel>();
+    private List<BattleCardUnitModel> cardUnitModels;
     #endregion
 
     #region Function
-    public void SetBattleCards(DataBattleCard[] cards)
+    public void SetBattleCardUnitModels(List<BattleCardUnitModel> battleCardUnits)
     {
-        cardUnitModels.Clear();
-
-        var abilityContainer = DataManager.Instance.GetDataContainer<DataAbility>();
-       
-        for (int i = 0; i < cards.Length; i++)
-        {
-            var card = cards[i];
-            var model = new BattleCardUnitModel();
-            model.SetTier(card.Tier);
-
-            if (card.CardType == BattleCardType.GetAbility)
-            {
-                var abilityData = abilityContainer.GetById((int)card.Ability);
-                model.SetIconPath(abilityData.IconPath);
-            }
-            else
-            {
-                model.SetIconPath(card.IconPath);
-            }
-
-            model.SetNameText(LocalizationManager.GetLocalization(card.Name));
-            model.SetDescriptionText(LocalizationManager.GetLocalization(card.Desc));
-
-            cardUnitModels.Add(model);
-        }
+        cardUnitModels = battleCardUnits;
     }
 
     public void SetOnCompleteSelect(Action onCompleteSelect)

@@ -40,7 +40,7 @@
     "CardType": "ExpGainRangeUp",
     "Tier": "Common",
     "Ability": "None",
-    "IconPath": "",
+    "IconPath": "BattleCore/BattleExpGem_Sprite",
     "Name": "LOCAL_EXP_GAIN_RANGE_UP_NAME",
     "Desc": "LOCAL_EXP_GAIN_RANGE_UP_DESC"
   }

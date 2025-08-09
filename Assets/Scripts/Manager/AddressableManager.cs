@@ -169,6 +169,7 @@ public class AddressableManager : BaseManager<AddressableManager>
         if (asset == null)
         {
             Addressables.Release(handle);
+            Logger.Error($"Addressable Load Failed : {address}");
             return null;
         }
 
@@ -198,6 +199,7 @@ public class AddressableManager : BaseManager<AddressableManager>
         if (asset == null)
         {
             Addressables.Release(handle);
+            Logger.Error($"Addressable Load Failed : {address}");
             return null;
         }
 
@@ -238,7 +240,7 @@ public class AddressableManager : BaseManager<AddressableManager>
         }
         else
         {
-            Logger.Error($"Instantiate Failed : {address}");
+            Logger.Error($"Addressable Instantiate Failed : {address}");
         }
 
         return go;

@@ -17,7 +17,10 @@ public class BattleCardUnit : BaseUnit<BattleCardUnitModel>
 	private Image icon;
 
 	[SerializeField]
-	private TextMeshProUGUI description;
+	private TextMeshProUGUI nameText;
+
+	[SerializeField]
+	private TextMeshProUGUI descriptionText;
     #endregion
 
     #region Function
@@ -29,7 +32,7 @@ public class BattleCardUnit : BaseUnit<BattleCardUnitModel>
 			ShowIcon(),
 		};
 
-		ShowDescription();
+		ShowTexts();
 
 		await UniTask.WhenAll(tasks);
     }
@@ -56,9 +59,10 @@ public class BattleCardUnit : BaseUnit<BattleCardUnitModel>
 		icon.gameObject.SafeSetActive(true);
 	}
 
-	private void ShowDescription()
+	private void ShowTexts()
 	{
-		description.SafeSetText(Model.DescriptionText);
+		nameText.SafeSetText(Model.NameText);
+		descriptionText.SafeSetText(Model.DescriptionText);
 	}
 	#endregion
 }
