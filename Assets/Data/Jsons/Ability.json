@@ -9,6 +9,7 @@
     "TriggerType": "Projectile",
     "TargetType": "Enemy",
     "PrefabName": "Ability/Arrow_Projectile/Arrow_Projectile",
+    "IconPath": "",
     "HitEffectPrefabName": ""
   },
   {
@@ -21,6 +22,7 @@
     "TriggerType": "FollowCollider",
     "TargetType": "Enemy",
     "PrefabName": "Ability/Sting_Collider/Sting_Collider",
+    "IconPath": "",
     "HitEffectPrefabName": ""
   },
   {
@@ -33,6 +35,7 @@
     "TriggerType": "Projectile",
     "TargetType": "Enemy",
     "PrefabName": "Ability/VenomBall/VenomBall_Bouncing",
+    "IconPath": "Ability/VenomBall/VenomBall_Bouncing_Icon",
     "HitEffectPrefabName": ""
   },
   {
@@ -45,6 +48,7 @@
     "TriggerType": "InRangeFollow",
     "TargetType": "Enemy",
     "PrefabName": "Ability/BoulderSmash/BoulderSmash_Range",
+    "IconPath": "Ability/BoulderSmash/BoulderSmash_Sprites[bouldersphere_16]",
     "HitEffectPrefabName": ""
   },
   {
@@ -57,6 +61,7 @@
     "TriggerType": "Projectile",
     "TargetType": "Enemy",
     "PrefabName": "Ability/SwordWave/SwordWave_Projectile",
+    "IconPath": "Ability/SwordWave/SwordWave_Projectile_Icon",
     "HitEffectPrefabName": ""
   },
   {
@@ -69,6 +74,7 @@
     "TriggerType": "RandomProjectile",
     "TargetType": "Enemy",
     "PrefabName": "Ability/MagicMissile/MagicMissile_Follow",
+    "IconPath": "Ability/MagicMissile/MagicMissile_Follow_Icon",
     "HitEffectPrefabName": ""
   }
 ]

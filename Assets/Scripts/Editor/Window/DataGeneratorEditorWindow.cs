@@ -7,7 +7,7 @@ namespace Tools
     public class DataGeneratorEditorWindow : BaseEdtiorWindow
     {
         private const float width = 400f;
-        private const float height = 400f;
+        private const float height = 600f;
         private const float spacing = 5f;
 
         private string ExcelPath => GetParameter<string>("ExcelPath");
@@ -106,13 +106,8 @@ namespace Tools
                 else
                     DataGenerator.GenerateDataFromCsvFolder(ExcelPath, JsonPath, Version);
                 
-                Logger.Log("Data generation completed.");
-                
                 if (CheckIntegrity)
-                {
-                    Logger.Log("Starting integrity verification...");
                     IntegrityCheck();
-                }
             }
             catch (System.Exception e)
             {
@@ -150,7 +145,7 @@ namespace Tools
                 
                 if (errorCount == 0)
                 {
-                    Logger.Log($"Data integrity check completed successfully. {successCount} files validated.");
+                    Logger.Success($"Data integrity check completed successfully. {successCount} files validated.");
                 }
                 else
                 {

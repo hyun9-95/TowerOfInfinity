@@ -21,7 +21,8 @@ public class DataIntegrityChecker : EditorWindow
 
     private void OnEnable()
     {
-        InitializeDataTypeMap();
+        if (dataTypeMap == null)
+            InitializeDataTypeMap();
     }
 
     private void InitializeDataTypeMap()
@@ -56,8 +57,6 @@ public class DataIntegrityChecker : EditorWindow
                 continue;
             }
         }
-        
-        Logger.Log($"DataIntegrityChecker: Found {dataTypeMap.Count} data types automatically");
     }
 
     private void OnGUI()

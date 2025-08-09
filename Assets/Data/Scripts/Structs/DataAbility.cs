@@ -19,6 +19,8 @@ public struct DataAbility : IBaseData
     public readonly BattleEventTargetType TargetType;
     [JsonProperty(PropertyName = "PrefabName")]
     public readonly string PrefabName;
+    [JsonProperty(PropertyName = "IconPath")]
+    public readonly string IconPath;
     [JsonProperty(PropertyName = "HitEffectPrefabName")]
     public readonly string HitEffectPrefabName;
 	

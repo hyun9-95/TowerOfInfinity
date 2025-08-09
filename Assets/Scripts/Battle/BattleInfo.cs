@@ -12,15 +12,15 @@ public class BattleInfo
     {
         get
         {
-            if (expTable.IsNull)
+            if (expPerLevel == null)
                 return 0;
 
             int nextLevel = Level + 1;
 
-            if (nextLevel >= expTable.ValueCount)
-                return expTable.Values[expTable.ValueCount - 1];
+            if (nextLevel >= expPerLevel.Length)
+                return expPerLevel[expPerLevel.Length - 1];
 
-            return expTable.Values[nextLevel];
+            return expPerLevel[nextLevel];
         }
     }
 
@@ -28,7 +28,7 @@ public class BattleInfo
     #endregion
 
     #region Value
-    private DataBalance expTable;
+    private float[] expPerLevel;
     #endregion
     public void SetBattleTeam(BattleTeam battleTeam)
     {
@@ -52,7 +52,21 @@ public class BattleInfo
 
     public void SetExpTable()
     {
-        expTable = DataManager.Instance.GetDataById<DataBalance>((int)BalanceDefine.BALANCE_BATTLE_EXP);
+        var startExpData = DataManager.Instance.GetDataById<DataBalance>((int)BalanceDefine.BALANCE_BATTLE_START_EXP);
+        var expGrowthData = DataManager.Instance.GetDataById<DataBalance>((int)BalanceDefine.BALANCE_BATTLE_EXP_GROWTH_RATE);
+        
+        var startExp = startExpData.Values[0];
+        var expGrowthRate = expGrowthData.Values[0];
+
+        SetExpPerLevel(startExp, expGrowthRate, IntDefine.MAX_BATTLE_LEVEL);
+    }
+
+    public void SetExpPerLevel(float startExp, float growthRate, int maxLevel)
+    {
+        expPerLevel = new float[maxLevel];
+
+        for (int level = 0; level < maxLevel; level++)
+            expPerLevel[level] = startExp + (growthRate * level);
     }
 
     public void OnExpGain(float exp)
@@ -64,10 +78,5 @@ public class BattleInfo
             Level++;
             BattleExp = 0;
         }
-    }
-
-    public void CreateBattleTeam()
-    {
-
     }
 }
