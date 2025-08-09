@@ -39,6 +39,7 @@ public class PathDefine
     public const string UI_VIEW_FORMAT = "UI/{0}/{0}";
     public const string CHARACTER_BUILDER_PARTS_FORMAT = "CharacterBuilder/{0}/{1}";
     public const string CHARACTER_MAIN_CHARACTER_PATH = "Character/Player/MainPlayerCharacter/MainPlayerCharacter";
+    public const string CARD_TIER_FRAME_FORMAT = "UI/Battle/Card/BattleCardFrame{0}_{1}";
     #endregion
 
     #region property

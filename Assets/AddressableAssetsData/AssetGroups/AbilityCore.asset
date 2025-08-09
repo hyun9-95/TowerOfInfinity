@@ -16,13 +16,13 @@ MonoBehaviour:
   m_GUID: f79eb956c802c184796d5ff624cfa1bf
   m_SerializeEntries:
   - m_GUID: 09d6cb03c16e59a49b35a1368efdef5e
-    m_Address: AbilityCore/BattleEventBalance/BE_DAMAGE_SLASH_PROJECTILE
+    m_Address: AbilityCore/BattleEventBalance/BE_DAMAGE_SWORD_WAVE
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1431d70326999ff469f7cc7cdb2ce349
-    m_Address: AbilityCore/AbilityBalance/AB_ACTIVE_SLASH_PROJECTILE
+    m_Address: AbilityCore/AbilityBalance/AB_ACTIVE_SWORD_WAVE
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main

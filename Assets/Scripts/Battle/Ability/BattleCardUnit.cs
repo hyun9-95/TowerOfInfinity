@@ -1,6 +1,8 @@
+#pragma warning disable CS1998
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Cysharp.Threading.Tasks;
 
 public class BattleCardUnit : BaseUnit<BattleCardUnitModel>
 {
@@ -16,8 +18,46 @@ public class BattleCardUnit : BaseUnit<BattleCardUnitModel>
 
 	[SerializeField]
 	private TextMeshProUGUI description;
-	#endregion
-	
-	#region Function
+    #endregion
+
+    #region Function
+    public override async UniTask ShowAsync()
+    {
+		var tasks = new UniTask[]
+		{
+			ShowTierFrame(),
+			ShowIcon(),
+		};
+
+		ShowDescription();
+
+		await UniTask.WhenAll(tasks);
+    }
+
+	private async UniTask ShowTierFrame()
+	{
+		var path = Model.GetTierFramePath();
+
+		if (string.IsNullOrEmpty(path))
+			return;
+
+		await tierFrame.SafeLoadAsync(path);
+	}
+
+	private async UniTask ShowIcon()
+	{
+		if (string.IsNullOrEmpty(Model.IconPath))
+		{
+			icon.gameObject.SafeSetActive(false);
+			return;
+		}
+
+		await icon.SafeLoadAsync(Model.IconPath);
+	}
+
+	private void ShowDescription()
+	{
+		description.SafeSetText(Model.DescriptionText);
+	}
 	#endregion
 }

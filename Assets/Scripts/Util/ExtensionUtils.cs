@@ -1,10 +1,11 @@
-using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using System;
-using System.Collections;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Video;
+using Cysharp.Threading.Tasks;
 
 public static class ExtensionUtils
 {
@@ -189,6 +190,38 @@ public static class ExtensionUtils
 
         return TeamTag.Ally;
     }
+
+    #region Addressable SafeLoad Extensions
+    public static async UniTask SafeLoadAsync(this Image image, string path)
+    {
+        await AddressableManager.Instance.SafeLoadAsync(image, path);
+    }
+
+    public static async UniTask SafeLoadAsync(this AudioSource audioSource, string path)
+    {
+        await AddressableManager.Instance.SafeLoadAsync(audioSource, path);
+    }
+
+    public static async UniTask SafeLoadAsync(this SpriteRenderer spriteRenderer, string path)
+    {
+        await AddressableManager.Instance.SafeLoadAsync(spriteRenderer, path);
+    }
+
+    public static async UniTask SafeLoadAsync(this RawImage rawImage, string path)
+    {
+        await AddressableManager.Instance.SafeLoadAsync(rawImage, path);
+    }
+
+    public static async UniTask SafeLoadAsync(this VideoPlayer videoPlayer, string path)
+    {
+        await AddressableManager.Instance.SafeLoadAsync(videoPlayer, path);
+    }
+
+    public static async UniTask SafeLoadAsync(this Animator animator, string path)
+    {
+        await AddressableManager.Instance.SafeLoadAsync(animator, path);
+    }
+    #endregion
 
 #if UNITY_EDITOR
     public static void InitializeWindow(this UnityEditor.EditorWindow window, float width, float height)

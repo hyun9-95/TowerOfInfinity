@@ -367,7 +367,7 @@ public class AddressableManager : BaseManager<AddressableManager>
         var cachedSprite = image.sprite;
         image.sprite = await LoadAssetAsync<Sprite>(path);
 
-        if (cachedSprite != null)
+        if (cachedSprite != null && cachedSprite != image.sprite)
             ReleaseAsset(cachedSprite);
     }
 
@@ -376,7 +376,7 @@ public class AddressableManager : BaseManager<AddressableManager>
         var cachedClip = audioSource.clip;
         audioSource.clip = await LoadAssetAsync<AudioClip>(path);
 
-        if (cachedClip != null)
+        if (cachedClip != null && cachedClip != audioSource.clip)
             ReleaseAsset(cachedClip);
     }
 
@@ -385,7 +385,7 @@ public class AddressableManager : BaseManager<AddressableManager>
         var cachedSprite = spriteRenderer.sprite;
         spriteRenderer.sprite = await LoadAssetAsync<Sprite>(path);
 
-        if (cachedSprite != null)
+        if (cachedSprite != null && cachedSprite != spriteRenderer.sprite)
             ReleaseAsset(cachedSprite);
     }
 
@@ -394,7 +394,7 @@ public class AddressableManager : BaseManager<AddressableManager>
         var cachedTexture = rawImage.texture;
         rawImage.texture = await LoadAssetAsync<Texture>(path);
 
-        if (cachedTexture != null)
+        if (cachedTexture != null && cachedTexture != rawImage.texture)
             ReleaseAsset(cachedTexture);
     }
 
@@ -403,7 +403,7 @@ public class AddressableManager : BaseManager<AddressableManager>
         var cachedClip = videoPlayer.clip;
         videoPlayer.clip = await LoadAssetAsync<VideoClip>(path);
 
-        if (cachedClip != null)
+        if (cachedClip != null && cachedClip != videoPlayer.clip)
             ReleaseAsset(cachedClip);
     }
 
@@ -412,7 +412,7 @@ public class AddressableManager : BaseManager<AddressableManager>
         var cachedController = animator.runtimeAnimatorController;
         animator.runtimeAnimatorController = await LoadAssetAsync<RuntimeAnimatorController>(path);
 
-        if (cachedController != null)
+        if (cachedController != null && cachedController != animator.runtimeAnimatorController)
             ReleaseAsset(cachedController);
     }
     #endregion
