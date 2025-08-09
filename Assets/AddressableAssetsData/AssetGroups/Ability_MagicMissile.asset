@@ -52,7 +52,7 @@ MonoBehaviour:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ccf9a24106305944196a3ca5459fc951
-    m_Address: Ability/MagicMissile/frame0000
+    m_Address: Ability/MagicMissile/MagicMissile_Follow_Icon
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main

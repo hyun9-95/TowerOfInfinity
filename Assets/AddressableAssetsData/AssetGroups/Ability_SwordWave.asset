@@ -22,7 +22,7 @@ MonoBehaviour:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2e2605808bab2c947bc9728f1ba8c897
-    m_Address: Ability/SwordWave/frame0000
+    m_Address: Ability/SwordWave/SwordWave_Projectile_Icon
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main

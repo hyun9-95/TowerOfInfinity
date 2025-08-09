@@ -13,6 +13,8 @@ public struct DataBattleCard : IBaseData
     public readonly BattleCardTier Tier;
     [JsonProperty(PropertyName = "Ability")]
     public readonly AbilityDefine Ability;
+    [JsonProperty(PropertyName = "IconPath")]
+    public readonly string IconPath;
     [JsonProperty(PropertyName = "Name")]
     public readonly LocalizationDefine Name;
     [JsonProperty(PropertyName = "Desc")]

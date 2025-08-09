@@ -53,6 +53,7 @@ public class BattleCardUnit : BaseUnit<BattleCardUnitModel>
 		}
 
 		await icon.SafeLoadAsync(Model.IconPath);
+		icon.gameObject.SafeSetActive(true);
 	}
 
 	private void ShowDescription()

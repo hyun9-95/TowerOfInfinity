@@ -70,7 +70,7 @@ MonoBehaviour:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5f6e7bad55b055e4889931ad45102a4d
-    m_Address: Ability/VenomBall/frame0000
+    m_Address: Ability/VenomBall/VenomBall_Bouncing_Icon
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main

@@ -16,7 +16,7 @@ MonoBehaviour:
   m_GUID: d428315e7ea33d343a96a8f40e5f2eda
   m_SerializeEntries:
   - m_GUID: 28792ab1ca99e0c4ca6792b6c5274b7c
-    m_Address: Ability/BoulderSmash/fx_bouldersphere
+    m_Address: Ability/BoulderSmash/BoulderSmash_Sprites
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main

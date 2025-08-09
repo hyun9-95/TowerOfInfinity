@@ -17,10 +17,14 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
 
     private BattleExpGainer expGainer;
     private DamageNumbersGroup damageNumbersGroup;
+    private BattleCardDrawer cardDrawer;
     #endregion
 
     public async UniTask Prepare(BattleTeam battleTeam)
     {
+        cardDrawer = new BattleCardDrawer();
+        cardDrawer.Initialize();
+
         InitializBattleInfo(battleTeam);
         await InitilalizeExpGainer(battleTeam.CurrentCharacter);
         await InitializeDamageGroup();
@@ -114,9 +118,12 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
 
     private void OnLevelUp()
     {
+        var drawCards = cardDrawer.DrawBattleCards(BattleInfo.Level);
+
         BattleCardSelectController battleCardSelectController = new BattleCardSelectController();
         var battleCardSelectModel = new BattleCardSelectViewModel();
         battleCardSelectModel.SetOnCompleteSelect(Resume);
+        battleCardSelectModel.SetBattleCards(drawCards);
 
         battleCardSelectController.SetModel(battleCardSelectModel);
 
