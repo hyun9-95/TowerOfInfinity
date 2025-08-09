@@ -23,15 +23,22 @@ public class BattleCardSelectPopup : BaseView
         var tasks = new UniTask[battleCards.Length];
         for (int i = 0; i < battleCards.Length; i++)
         {
-            if (i < Model.CardUnitModels.Count)
+            if (i < Model.CardUnitModelList.Count)
             {
                 var card = battleCards[i];
-                card.SetModel(Model.CardUnitModels[i]);
+                card.SetModel(Model.CardUnitModelList[i]);
                 tasks[i] = card.ShowAsync();
             }
         }
 
         await UniTask.WhenAll(tasks);
     }
+
+    #region OnEvent
+    public void OnSelectCard(int index)
+    {
+        Model.OnClickBattleCard(index);
+    }
+    #endregion
     #endregion
 }

@@ -121,7 +121,6 @@ GameObject:
   - component: {fileID: 4278524595504450780}
   - component: {fileID: 6134060477004596683}
   - component: {fileID: 4144115088514167110}
-  - component: {fileID: 7611271762364742349}
   m_Layer: 8
   m_Name: VenomBall_Bouncing
   m_TagString: Untagged
@@ -162,11 +161,11 @@ MonoBehaviour:
   effectSprite: {fileID: 2430903058210771585}
   effectParticle: {fileID: 0}
   particleSystemRenderer: {fileID: 0}
+  detectType: 0
   startDirectionType: 5
   hitCollider: {fileID: 4144115088514167110}
   launchDelay: 0
   fadeTime: 0.25
-  obstacleCollider: {fileID: 7611271762364742349}
 --- !u!61 &4144115088514167110
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -213,39 +212,3 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!58 &7611271762364742349
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2578366417049445644}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 128
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Radius: 0.7

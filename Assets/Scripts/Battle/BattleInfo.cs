@@ -25,6 +25,8 @@ public class BattleInfo
     }
 
     public BattleTeam BattleTeam { get; private set; }
+
+    public CharacterUnit CurrentCharacter => BattleTeam.CurrentCharacter;
     #endregion
 
     #region Value

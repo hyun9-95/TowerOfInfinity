@@ -36,7 +36,16 @@ public enum UICanvasType
 public enum SoundType
 {
     Bgm,
-    Ambience,
+    Sfx,
+    None = 99,
+}
+
+public enum ButtonSoundType
+{
+    Click,
+    Confirm,
+    Cancel,
+    None = 99,
 }
 
 public enum FlowType

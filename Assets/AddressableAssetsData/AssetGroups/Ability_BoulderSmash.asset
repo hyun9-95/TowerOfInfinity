@@ -33,6 +33,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ddb8d9c324054604aa384b65433adad4
+    m_Address: Ability/BoulderSmash/BoulderSmash_Range_Icon
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f192417a2fa0df4498c1eec7d50c2b5a
     m_Address: Ability/BoulderSmash/BoulderSmash_Range
     m_ReadOnly: 0

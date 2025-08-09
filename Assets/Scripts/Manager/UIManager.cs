@@ -1,6 +1,6 @@
 using Cysharp.Threading.Tasks;
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class UIManager : BaseMonoManager<UIManager>
 {
@@ -18,7 +18,7 @@ public class UIManager : BaseMonoManager<UIManager>
     public UIType CurrentView => currentViewController == null ? UIType.None : currentViewController.UIType;
 
     // 히스토리로 관리되는 팝업
-    public UIType CurrentOpenUI = UIType.None;
+    public UIType CurrentOpenUI => uiHistory.Count > 0 ? uiHistory.Peek().UIType : UIType.None;
 
     private Stack<BaseController> uiHistory = new Stack<BaseController>();
     private Dictionary<UIType, BaseView> viewHistoryDic = new Dictionary<UIType, BaseView>();
@@ -29,14 +29,13 @@ public class UIManager : BaseMonoManager<UIManager>
         if (!controller.IsView)
             return;
 
-        await ExitPreviousView();
+        await ClearView();
 
         var isSuccess = await EnterUI(controller, addressable, true);
 
         if (isSuccess)
         {
             currentViewController = controller;
-            CurrentOpenUI = controller.UIType;
 
             Logger.Success($"[Change View] Success! {controller.UIType} => {CurrentView}");
         }
@@ -55,8 +54,6 @@ public class UIManager : BaseMonoManager<UIManager>
 
         if (isSuccess)
         {
-            CurrentOpenUI = controller.UIType;
-
             Logger.Success($"[Enter Popup] Success! {controller.UIType} => {CurrentView}");
         }
         else
@@ -94,8 +91,6 @@ public class UIManager : BaseMonoManager<UIManager>
 
                 view = instantiatedView.GetComponent<BaseView>();
             }
-
-            controller.SetView(view);
         }
 
         if (view == null)
@@ -104,54 +99,59 @@ public class UIManager : BaseMonoManager<UIManager>
             return false;
         }
 
+        controller.SetView(view);
+
         controller.Enter();
         await controller.LoadingProcess();
         view.gameObject.SafeSetActive(true);
         await controller.Process();
 
+        uiHistory.Push(controller);
         viewHistoryDic[controller.UIType] = view;
-
         return true;
     }
 
-    private async UniTask ExitPreviousView()
+    private async UniTask ClearView()
     {
         if (currentViewController == null)
             return;
 
-        // Exit할 때 View의 어드레서블 Release
         await currentViewController.Exit();
+        currentViewController.DestroyView();
+
         currentViewController = null;
+
+        while (uiHistory.Count > 0)
+        {
+            var controller = uiHistory.Pop();
+            controller.DestroyView();
+        }
+
+        uiHistory.Clear();
+        viewHistoryDic.Clear();
     }
 
     public async UniTask Back()
     {
-        if (uiHistory == null || uiHistory.Count == 0)
+        // View는 Back 불가.
+        if (CurrentView == uiHistory.Peek().UIType)
+            return;
+
+        if (uiHistory == null || uiHistory.Count <= 1)
         {
             Logger.Error($"[Back] UIHistory is empty! CurrentView: {CurrentView}");
             return;
         }
             
-        // View는 Back 불가.
-        if (CurrentView == uiHistory.Peek().UIType)
-            return;
-
         var currentController = uiHistory.Pop();
-
-        // Exit할 때 View의 어드레서블 Release
         await currentController.Exit();
 
-        if (uiHistory.Count == 0)
-        {
-            Logger.Error("Empty UIHistory!!");
-            return;
-        }
-
         var prevController = uiHistory.Peek();
-        await prevController.LoadingProcess();
-        await prevController.Process();
+        BaseView view = GetViewHistory(prevController.UIType);
+        prevController.SetView(view);
 
-        CurrentOpenUI = prevController.UIType;
+        await prevController.LoadingProcess();
+        await prevController.Refresh();
     }
 
     public BaseController GetCurrentController()

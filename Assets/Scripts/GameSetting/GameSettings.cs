@@ -24,8 +24,8 @@ public class GameSettings
             case SoundType.Bgm:
                 return volume.Bgm;
 
-            case SoundType.Ambience:
-                return volume.Ambience; 
+            case SoundType.Sfx:
+                return volume.Sfx; 
         }
 
         return 1;

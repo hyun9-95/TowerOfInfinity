@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Cysharp.Threading.Tasks;
+using System;
 
 public class BattleCardUnit : BaseUnit<BattleCardUnitModel>
 {
@@ -21,6 +22,9 @@ public class BattleCardUnit : BaseUnit<BattleCardUnitModel>
 
 	[SerializeField]
 	private TextMeshProUGUI descriptionText;
+
+	[SerializeField]
+	private CustomButton customButton;
     #endregion
 
     #region Function
@@ -64,5 +68,5 @@ public class BattleCardUnit : BaseUnit<BattleCardUnitModel>
 		nameText.SafeSetText(Model.NameText);
 		descriptionText.SafeSetText(Model.DescriptionText);
 	}
-	#endregion
+    #endregion
 }

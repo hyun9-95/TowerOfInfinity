@@ -65,11 +65,6 @@ public class CharacterCustomizationController : BaseController<CharacterCustomiz
         await OnChangePartsAsync(Model.IsShowEquipments, Model.IsShowHelmet);
     }
 
-    public override async UniTask Exit()
-    {
-        await base.Exit();
-    }
-
     private void OnSelectRace(CharacterRace characterRace)
     {
         var getRaceParts = CommonUtils.GetRacePartsIds(characterRace);

@@ -31,27 +31,12 @@ public class BattleFlow : BaseFlow<BattleFlowModel>
         await battleSceneManager.Prepare(Model.DataDungeon);
         await battleSystemManager.Prepare(battleTeam);
         await battleFXManager.Prepare();
-
-        await ShowBattleView(battleSystemManager.BattleInfo);
     }
 
-    private async UniTask ShowBattleView(BattleInfo battleInfo)
-    {
-        battleViewController = new BattleViewController();
-        BattleViewModel viewModel = new BattleViewModel();
-
-        // 입력이 필요한 이벤트를 바인딩한다. (전투 로직은 battleSystemManager 전담)
-        battleSystemManager.BindingBattleViewEvent(viewModel);
-
-        viewModel.SetByBattleInfo(battleInfo);
-
-        battleViewController.SetModel(viewModel);
-
-        await UIManager.Instance.ChangeView(battleViewController, true);
-    }
 
     public override async UniTask Process()
     {
+        await battleSystemManager.ShowBattleView();
         await battleSceneManager.StartBattle();
     }
 

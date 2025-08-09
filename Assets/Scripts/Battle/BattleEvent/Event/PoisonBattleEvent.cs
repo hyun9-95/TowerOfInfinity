@@ -17,8 +17,8 @@ public class PoisonBattleEvent : BattleEvent
 
     public override void OnInterval()
     {
-        BattleSystemManager.Instance.
-            OnDamage(Model.Sender, Model.Receiver, GetAppliableStatValue(), DamageType.Poison);
+        BattleSystemManager.Instance.OnDamage
+            (Model.Sender, Model.Receiver, GetAppliableStatValue(), DamageType.Poison);
     }
 	#endregion
 }

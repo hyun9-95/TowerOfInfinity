@@ -1,5 +1,6 @@
 #pragma warning disable CS1998
 using Cysharp.Threading.Tasks;
+using NUnit.Framework.Internal.Execution;
 using UnityEngine;
 
 /// <summary>
@@ -8,7 +9,6 @@ using UnityEngine;
 public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
 {
     #region Property
-    public BattleInfo BattleInfo { get; private set; } = new BattleInfo();
     #endregion
 
     #region Value
@@ -18,6 +18,7 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
     private BattleExpGainer expGainer;
     private DamageNumbersGroup damageNumbersGroup;
     private BattleCardDrawer cardDrawer;
+    private BattleInfo battleInfo;
     #endregion
 
     public async UniTask Prepare(BattleTeam battleTeam)
@@ -30,13 +31,26 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
         await InitializeDamageGroup();
     }
 
+    public async UniTask ShowBattleView()
+    {
+        var battleViewController = new BattleViewController();
+
+        BattleViewModel viewModel = new BattleViewModel();
+        viewModel.SetOnChangeCharacter(OnChangeCharacter);
+        viewModel.SetByBattleInfo(battleInfo);
+
+        battleViewController.SetModel(viewModel);
+
+        await UIManager.Instance.ChangeView(battleViewController, true);
+    }
+
     private void InitializBattleInfo(BattleTeam battleTeam)
     {
-        BattleInfo = new BattleInfo();
-        BattleInfo.SetBattleTeam(battleTeam);
-        BattleInfo.SetExpTable();
-        BattleInfo.SetLevel(0);
-        BattleInfo.SetBattleExp(0);
+        battleInfo = new BattleInfo();
+        battleInfo.SetBattleTeam(battleTeam);
+        battleInfo.SetExpTable();
+        battleInfo.SetLevel(0);
+        battleInfo.SetBattleExp(0);
 
         expGainer = null;
     }
@@ -69,15 +83,6 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
         damageNumbersGroup.PrewarmPool();
     }
 
-    // 입력이 필요한 이벤트를 BattleViewModel에 등록한다.
-    public void BindingBattleViewEvent(BattleViewModel viewModel)
-    {
-        if (viewModel == null)
-            return;
-
-        viewModel.SetOnChangeCharacter(OnChangeCharacter);
-    }
-
     private Color GetHitColorByDamageType(DamageType damageType)
     {
         return damageType switch
@@ -102,25 +107,25 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
 
     private void OnExpGain(float exp)
     {
-        int prevLevel = BattleInfo.Level;
+        int prevLevel = battleInfo.Level;
 
-        BattleInfo.OnExpGain(exp);
+        battleInfo.OnExpGain(exp);
 
         BattleObserverParam param = new BattleObserverParam();
-        param.SetBattleInfo(BattleInfo);
+        param.SetBattleInfo(battleInfo);
 
         // 경험치 획득 시 UI 갱신해준다.
         ObserverManager.NotifyObserver(BattleObserverID.ExpGain, param);
 
-        if (BattleInfo.Level > prevLevel)
+        if (battleInfo.Level > prevLevel)
             OnLevelUp();
     }
 
     private void OnLevelUp()
     {
-        var battleCardUnitModelList = cardDrawer.DrawBattleCardUnitModelList(BattleInfo.Level);
+        var drawnCards = cardDrawer.DrawBattleCards(battleInfo.Level);
 
-        if (battleCardUnitModelList == null || battleCardUnitModelList.Count == 0)
+        if (drawnCards == null || drawnCards.Length == 0)
         {
             Logger.Error("Draw Failed!");
             return;
@@ -129,7 +134,8 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
         BattleCardSelectController battleCardSelectController = new BattleCardSelectController();
         var battleCardSelectModel = new BattleCardSelectViewModel();
         battleCardSelectModel.SetOnCompleteSelect(Resume);
-        battleCardSelectModel.SetBattleCardUnitModels(battleCardUnitModelList);
+        battleCardSelectModel.SetBattleCardUnitModels(drawnCards);
+        battleCardSelectModel.SetOnSelectBattleCard(OnSelectBattleCard);
 
         battleCardSelectController.SetModel(battleCardSelectModel);
 
@@ -139,12 +145,51 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
 
     private void OnChangeCharacter(int changeIndex)
     {
-        var changeTarget = BattleInfo.BattleTeam.GetCharacterUnit(changeIndex);
+        var changeTarget = battleInfo.BattleTeam.GetCharacterUnit(changeIndex);
 
         if (changeTarget == null)
             return;
 
         var changeTargetModel = changeTarget.Model;
+    }
+
+    private void OnSelectBattleCard(DataBattleCard card)
+    {
+        switch (card.CardType)
+        {
+            case BattleCardType.GetAbility:
+                OnGetAbility((int)card.Ability);
+                break;
+
+            case BattleCardType.ExpGainRangeUp:
+                OnExpGainRangeUp();
+                break;
+        }
+    }
+
+    private void OnGetAbility(int abilityDataId)
+    {
+        var currentCharacter = battleInfo.CurrentCharacter;
+
+        if (currentCharacter == null)
+            return;
+
+        var characterModel = currentCharacter.Model;
+        characterModel.AbilityProcessor.AddAbility(abilityDataId);
+    }
+
+    private void OnExpGainRangeUp()
+    {
+        if (expGainer == null)
+            return;
+
+        int prevLevel = 0;
+        var model = expGainer.Model;
+        model.SetLevel(model.Level + 1);
+
+        expGainer.UpdateRadius();
+
+        Logger.BattleLog($"Exp gainer level up : {prevLevel} => {model.Level}");
     }
 
     #region Public OnEvent
@@ -173,24 +218,16 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
             receiver.ActionHandler.OnHitEffectAsync(GetHitColorByDamageType(damageType)).Forget();
     }
 
-    public void OnExpGainRangeUp()
-    {
-        if (expGainer == null)
-            return;
 
-        int prevLevel = 0;
-        var model = expGainer.Model;
-        model.SetLevel(model.Level + 1);
 
-        expGainer.UpdateRadius();
-
-        Logger.BattleLog($"Exp gainer level up : {prevLevel} => {model.Level}");
-    }
-
-    public void CheatLevelUp(float exp)
+    public void CheatLevelUp()
     {
 #if UNITY_EDITOR
-        OnExpGain(exp);
+        var nextExp = battleInfo.NextBattleExp;
+        var currentExp = battleInfo.BattleExp;
+        var diff = nextExp - currentExp;
+
+        OnExpGain(currentExp + diff);
 #endif
     }
     #endregion

@@ -22,7 +22,7 @@ MonoBehaviour:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f3f696c75307484409dceaf7823f4f70
-    m_Address: BattleCore/ore_008
+    m_Address: BattleCore/BattleExpGem_Sprite
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main

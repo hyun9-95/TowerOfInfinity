@@ -1,37 +1,74 @@
 using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
+using UnityEditor.Profiling.Memory.Experimental;
 using UnityEngine;
 
 public class SoundManager : BaseMonoManager<SoundManager>
 {
     [SerializeField]
-    private AudioSource[] audioSources;
+    private AudioSource[] soloSoundAudioSources;
+
+    [SerializeField]
+    private AudioSource[] buttonSoundAudioSources;
 
     [SerializeField]
     private AudioListener audioListener;
 
+    private Dictionary<SoundType, string> currentSoloClipPathDic = new()
+    {
+        { SoundType.Bgm, ""},
+        { SoundType.Sfx, ""},
+    };
+
     /// <summary>
     /// ratio는 유저세팅 볼륨값에 곱해서 처리함
     /// </summary>
-    public async UniTask PlaySound(string name, SoundType soundType, float volumeRatio = 1f)
+    public async UniTask PlaySoloSound(string path, SoundType soundType)
     {
         int index = (int)soundType;
 
-        if (index >= audioSources.Length)
+        if (index >= soloSoundAudioSources.Length)
             return;
 
-        var audioSource = audioSources[index];
+        var audioSource = soloSoundAudioSources[index];
 
         if (audioSource == null)
             return;
 
-        await LoadAudioClip(audioSource, name);
+        // 같은 사운드면 재생 X
+        if (currentSoloClipPathDic[soundType].Equals(path))
+            return;
+
+        if (audioSource.isPlaying)
+            audioSource.Stop();
+
+        await LoadAudioClip(audioSource, path);
 
         if (audioSource.clip != null)
         {
-            audioSource.volume = GetVolume(soundType, volumeRatio);
+            audioSource.volume = GetVolume(soundType, 1);
             audioSource.Play();
+            currentSoloClipPathDic[soundType] = path;
         }
+    }
+
+    public void PlayButtonSound(ButtonSoundType buttonSoundType)
+    {
+        int index = (int)buttonSoundType;
+
+        if (index >= buttonSoundAudioSources.Length)
+            return;
+
+        var audioSource = buttonSoundAudioSources[index];
+
+        if (audioSource == null)
+            return;
+
+        if (audioSource.isPlaying)
+            audioSource.Stop();
+
+        audioSource.volume = GetVolume(SoundType.Sfx, 1);
+        audioSource.Play();
     }
 
     private float GetVolume(SoundType soundType, float volumeRatio)

@@ -20,6 +20,9 @@ public class ProjectileTriggerUnit : PoolableBaseUnit<ProjectileTriggerUnitModel
     [SerializeField]
     private float fadeTime = 0.25f;
 
+    [SerializeField]
+    private bool rotateToDirection = true;
+
     protected Vector3 startPosition;
     protected Vector2 direction;
 
@@ -125,6 +128,12 @@ public class ProjectileTriggerUnit : PoolableBaseUnit<ProjectileTriggerUnitModel
     {
         if (direction == Vector2.zero)
             return;
+
+        if (!rotateToDirection)
+        {
+            effectSprite.flipX = direction.x < 0;
+            return;
+        }
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 

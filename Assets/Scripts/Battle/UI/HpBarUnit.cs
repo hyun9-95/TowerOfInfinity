@@ -33,7 +33,10 @@ public class HpBarUnit : BaseUnit<HpBarUnitModel>
             return;
 
         if (Model == null || Model.Owner == null)
+        {
+            Hide();
             return;
+        }
 
         hpBar.fillAmount = Model.GetHpBarValue();
 

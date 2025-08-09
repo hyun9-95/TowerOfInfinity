@@ -1,3 +1,4 @@
+#pragma warning disable CS1998
 using Cysharp.Threading.Tasks;
 
 public abstract class BaseView : AddressableMono
@@ -17,5 +18,9 @@ public abstract class BaseView : AddressableMono
     public virtual async UniTask ShowAsync()
     {
         await UniTask.CompletedTask;
+    }
+
+    public virtual async UniTask HideAsync()
+    {
     }
 }

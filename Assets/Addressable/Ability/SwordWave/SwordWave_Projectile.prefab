@@ -51,10 +51,12 @@ MonoBehaviour:
   effectSprite: {fileID: 1814723571889302180}
   effectParticle: {fileID: 0}
   particleSystemRenderer: {fileID: 0}
-  directionType: 5
+  detectType: 0
+  startDirectionType: 5
   hitCollider: {fileID: 4144115088514167110}
   launchDelay: 0.2
   fadeTime: 0.25
+  rotateToDirection: 0
 --- !u!61 &4144115088514167110
 BoxCollider2D:
   m_ObjectHideFlags: 0

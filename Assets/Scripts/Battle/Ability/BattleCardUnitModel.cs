@@ -1,12 +1,14 @@
+using System;
 using UnityEngine;
 
 public class BattleCardUnitModel : IBaseUnitModel
 {
     #region Property
-    public BattleCardTier Tier { get; set; }
-    public string IconPath { get; set; }
-    public string NameText { get; set; }
-    public string DescriptionText { get; set; }
+    public DataBattleCard CardData { get; private set; }
+    public BattleCardTier Tier { get; private set; }
+    public string IconPath { get; private set; }
+    public string NameText { get; private set; }
+    public string DescriptionText { get; private set; }
     #endregion
 
     #region Value
@@ -14,6 +16,11 @@ public class BattleCardUnitModel : IBaseUnitModel
     #endregion
 
     #region Function
+    public void SetCardData(DataBattleCard card)
+    {
+        CardData = card;
+    }
+
     public void SetTier(BattleCardTier tier)
     {
         Tier = tier;
