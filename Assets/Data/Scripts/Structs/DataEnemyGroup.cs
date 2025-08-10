@@ -18,6 +18,8 @@ public struct DataEnemyGroup : IBaseData
                ? enemys[index] : null;
     }
 
+    [JsonProperty(PropertyName = "Boss")]
+    public readonly CharacterDefine Boss;
 	
 	public int Id => id;
     public bool IsNull => id == 0;

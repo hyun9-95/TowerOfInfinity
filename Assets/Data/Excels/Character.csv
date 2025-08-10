@@ -14,3 +14,4 @@ Id,NameId,PrefabName,PrimaryWeaponAbility,ActiveSkill,PassiveSkill
 ,,,,,
 ,,,,,
 11000,CHAR_BAT,Character/Enemy/Bat/Bat,None,None,None
+11001,CHAR_GREEN_OGRE,Character/Enemy/GreenOgre/GreenOgre,None,None,None

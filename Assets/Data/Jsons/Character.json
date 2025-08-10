@@ -26,5 +26,12 @@
     "PrimaryWeaponAbility": "None",
     "ActiveSkill": "None",
     "PassiveSkill": "None"
+  },
+  {
+    "id": 11001,
+    "PrefabName": "Character/Enemy/GreenOgre/GreenOgre",
+    "PrimaryWeaponAbility": "None",
+    "ActiveSkill": "None",
+    "PassiveSkill": "None"
   }
 ]

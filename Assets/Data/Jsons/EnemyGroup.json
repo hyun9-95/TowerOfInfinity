@@ -1,6 +1,7 @@
 [
   {
     "id": 30000,
+    "Boss": "CHAR_GREEN_OGRE",
     "Enemys": [
       [
         "CHAR_BAT",

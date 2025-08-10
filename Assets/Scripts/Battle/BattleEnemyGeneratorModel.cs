@@ -7,6 +7,8 @@ public class BattleEnemyGeneratorModel
     {
         enemyGroupContainer = DataManager.Instance.GetDataContainer<DataEnemyGroup>();
         SpawnIntervalSeconds = FloatDefine.DEFAULT_SPAWN_INTERVAL;
+        battleStartTime = Time.time;
+        CurrentWave = 0;
     }
 
     #region Property
@@ -19,6 +21,10 @@ public class BattleEnemyGeneratorModel
     public Action<CharacterUnit> OnSpawnEnemy { get; private set; }
 
     public bool CheckWalkablePosOnSpawn { get; private set; }
+
+    public float ElapsedTime => Time.time - battleStartTime;
+
+    public bool IsAllWavesComplete => CurrentWave >= 15;
     #endregion
 
     #region Value
@@ -59,7 +65,11 @@ public class BattleEnemyGeneratorModel
         if (enemyGroup.IsNull)
             return null;
 
-        return enemyGroup.GetEnemys(CurrentWave);
+        if (enemyGroup.EnemysCount < CurrentWave)
+            return enemyGroup.GetEnemys(CurrentWave);
+
+        // 모든 웨이브가 끝난 경우에 보스 스폰
+        return new CharacterDefine[] { enemyGroup.Boss };
     }
     #endregion
 }
