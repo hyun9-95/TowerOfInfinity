@@ -21,10 +21,11 @@ public class BattleEnemySpawner
 
         while (!TokenPool.Get(GetHashCode()).IsCancellationRequested)
         {
-            var currentWave = Model.GetCurrentWave();
+            int currentWave = BattleSystemManager.Instance.CurrentWave;
+            var currentWaveEnemies = Model.GetCurrentWaveEnemies(currentWave);
 
-            if (currentWave != null)
-                await SpawnWave(Model.GetCurrentWave());
+            if (currentWaveEnemies != null)
+                await SpawnWave(currentWaveEnemies);
 
             await UniTaskUtils.DelaySeconds(Model.SpawnIntervalSeconds, cancellationToken: TokenPool.Get(GetHashCode()));
         }
@@ -63,8 +64,6 @@ public class BattleEnemySpawner
     {
         TokenPool.Cancel(GetHashCode());
     }
-
-
 
     /// <summary>
     /// 카메라 영역에서 보이지 않는 랜덤 생성 포지션

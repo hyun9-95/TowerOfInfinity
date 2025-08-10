@@ -111,7 +111,7 @@ public class CheatManager : BaseMonoManager<CheatManager>
         if (UIManager.instance.CurrentOpenUI == UIType.BattleCardSelectPopup)
             return;
 
-        BattleSystemManager.instance.CheatLevelUp();
+        BattleSystemManager.instance.OnCheatLevelUp();
     }
     #endregion
     #endregion

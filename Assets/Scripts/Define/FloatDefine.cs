@@ -19,4 +19,6 @@ public class FloatDefine
     public const float DEFAULT_HIT_FORCE = 3f;
     public const float ADD_FORCE_DURATION = 0.35f;
     public const float ADD_FORCE_DAMPING = 0.9f;
+
+    public const float MINUTE_TO_SECONDS = 60f;
 }

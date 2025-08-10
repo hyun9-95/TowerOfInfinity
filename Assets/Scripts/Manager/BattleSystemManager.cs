@@ -1,6 +1,5 @@
 #pragma warning disable CS1998
 using Cysharp.Threading.Tasks;
-using NUnit.Framework.Internal.Execution;
 using UnityEngine;
 
 /// <summary>
@@ -9,6 +8,9 @@ using UnityEngine;
 public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
 {
     #region Property
+    public bool InBattle => battleInfo.BattleState == BattleState.Playing;
+    public int CurrentWave => battleInfo.CurrentWave;
+    public Vector3 CurrentCharacterPos => battleInfo.CurrentCharacter.transform.position;
     #endregion
 
     #region Value
@@ -21,22 +23,30 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
     private BattleInfo battleInfo;
     #endregion
 
-    public async UniTask Prepare(BattleTeam battleTeam)
+    public async UniTask Prepare(BattleInfo battleInfo)
     {
+        this.battleInfo = battleInfo;
+
         cardDrawer = new BattleCardDrawer();
         cardDrawer.Initialize();
 
-        InitializBattleInfo(battleTeam);
-        await InitilalizeExpGainer(battleTeam.CurrentCharacter);
+        await InitilalizeExpGainer(battleInfo.CurrentCharacter);
         await InitializeDamageGroup();
     }
 
-    public async UniTask ShowBattleView()
+    public async UniTask StartBattle()
+    {
+        await ShowBattleView();
+        await ActiveAllyCharacters();
+
+        battleInfo.SetBattleState(BattleState.Playing);
+    }
+
+    private async UniTask ShowBattleView()
     {
         var battleViewController = new BattleViewController();
 
         BattleViewModel viewModel = new BattleViewModel();
-        viewModel.SetOnChangeCharacter(OnChangeCharacter);
         viewModel.SetByBattleInfo(battleInfo);
 
         battleViewController.SetModel(viewModel);
@@ -44,15 +54,13 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
         await UIManager.Instance.ChangeView(battleViewController, true);
     }
 
-    private void InitializBattleInfo(BattleTeam battleTeam)
+    private async UniTask ActiveAllyCharacters()
     {
-        battleInfo = new BattleInfo();
-        battleInfo.SetBattleTeam(battleTeam);
-        battleInfo.SetExpTable();
-        battleInfo.SetLevel(0);
-        battleInfo.SetBattleExp(0);
-
-        expGainer = null;
+        foreach (var character in battleInfo.BattleTeam.CharacterUnits)
+        {
+            character.Initialize();
+            character.Activate();
+        }
     }
 
     private async UniTask InitilalizeExpGainer(CharacterUnit characterUnit)
@@ -93,15 +101,18 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
         };
     }
 
-    private void Pause()
+    #region OnEvent
+    private void OnPause()
     {
         Time.timeScale = 0;
+        battleInfo.SetBattleState(BattleState.Paused);
         Logger.BattleLog("Game PAUSED");
     }
 
-    private void Resume()
+    private void OnResume()
     {
         Time.timeScale = 1;
+        battleInfo.SetBattleState(BattleState.Playing);
         Logger.BattleLog("Game RESUME");
     }
 
@@ -133,24 +144,14 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
 
         BattleCardSelectController battleCardSelectController = new BattleCardSelectController();
         var battleCardSelectModel = new BattleCardSelectViewModel();
-        battleCardSelectModel.SetOnCompleteSelect(Resume);
+        battleCardSelectModel.SetOnCompleteSelect(OnResume);
         battleCardSelectModel.SetBattleCardUnitModels(drawnCards);
         battleCardSelectModel.SetOnSelectBattleCard(OnSelectBattleCard);
 
         battleCardSelectController.SetModel(battleCardSelectModel);
 
-        Pause();
+        OnPause();
         UIManager.Instance.OpenPopup(battleCardSelectController).Forget();
-    }
-
-    private void OnChangeCharacter(int changeIndex)
-    {
-        var changeTarget = battleInfo.BattleTeam.GetCharacterUnit(changeIndex);
-
-        if (changeTarget == null)
-            return;
-
-        var changeTargetModel = changeTarget.Model;
     }
 
     private void OnSelectBattleCard(DataBattleCard card)
@@ -192,6 +193,15 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
         Logger.BattleLog($"Exp gainer level up : {prevLevel} => {model.Level}");
     }
 
+    private void OnDefeat()
+    {
+    }
+
+    private void OnVictory()
+    {
+    }
+    #endregion
+
     #region Public OnEvent
     public void OnDamage(CharacterUnitModel sender, CharacterUnitModel receiver, float value, DamageType damageType)
     {
@@ -218,9 +228,29 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
             receiver.ActionHandler.OnHitEffectAsync(GetHitColorByDamageType(damageType)).Forget();
     }
 
+    public void OnDeadCharacter(CharacterUnitModel deadCharacterModel)
+    {
+        if (deadCharacterModel.TeamTag == TeamTag.Enemy)
+        {
+            battleInfo.AddKill();
 
+            BattleObserverParam param = new BattleObserverParam();
+            param.SetBattleInfo(battleInfo);
 
-    public void CheatLevelUp()
+            ObserverManager.NotifyObserver(BattleObserverID.EnemyKilled, param);
+
+            // 죽은 캐릭터가 보스라면 승리
+            if (deadCharacterModel.CharacterDefine == battleInfo.BossCharacterDefine)
+                OnVictory();
+        }
+        else if (deadCharacterModel == battleInfo.CurrentCharacter.Model)
+        {
+            // 죽은 캐릭터가 메인캐릭터라면 패배
+            OnDefeat();
+        }
+    }
+
+    public void OnCheatLevelUp()
     {
 #if UNITY_EDITOR
         var nextExp = battleInfo.NextBattleExp;

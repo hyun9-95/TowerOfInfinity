@@ -434,6 +434,8 @@ public class CharacterUnit : PoolableMono
         await UniTask.WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f);
 
         bodySprite.DeactiveWithFade(1, gameObject);
+
+        BattleSystemManager.Instance.OnDeadCharacter(Model);
     }
 
     #region Collision

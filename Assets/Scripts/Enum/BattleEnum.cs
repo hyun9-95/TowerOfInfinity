@@ -67,3 +67,12 @@ public enum BattleCardTier
     Rare,
     Epic,
 }
+
+public enum BattleState
+{
+    None,
+    Playing,
+    Paused,
+    Victory,
+    Defeat,
+}

@@ -15,6 +15,7 @@ public class BattleViewController : BaseController<BattleViewModel>, IObserver
     private BattleObserverID[] observerIDs = new BattleObserverID[]
     {
         BattleObserverID.ExpGain,
+        BattleObserverID.EnemyKilled,
     };
 
     public override void Enter()
@@ -45,6 +46,7 @@ public class BattleViewController : BaseController<BattleViewModel>, IObserver
         switch (observerMessage)
         {
             case BattleObserverID.ExpGain:
+            case BattleObserverID.EnemyKilled:
                 Refresh(param.BattleInfo);
                 break;
         }

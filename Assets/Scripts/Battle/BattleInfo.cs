@@ -27,14 +27,47 @@ public class BattleInfo
     public BattleTeam BattleTeam { get; private set; }
 
     public CharacterUnit CurrentCharacter => BattleTeam.CurrentCharacter;
+
+    public int KillCount { get; private set; }
+
+    public float BattleStartTime { get; private set; }
+
+    public float ElapsedTime => Time.time - BattleStartTime;
+
+    public int CurrentWave { get; private set; }
+
+    public CharacterDefine BossCharacterDefine { get; private set; }
+
+    public DataDungeon DataDungeon { get; private set; }
+
+    public BattleState BattleState { get; private set; }
     #endregion
 
     #region Value
     private float[] expPerLevel;
     #endregion
+
+    public void SetBattleState(BattleState battleState)
+    {
+        BattleState = battleState;
+    }
+
     public void SetBattleTeam(BattleTeam battleTeam)
     {
         BattleTeam = battleTeam;
+        BattleStartTime = Time.time;
+        KillCount = 0;
+        CurrentWave = 0;
+    }
+
+    public void SetDataDungeon(DataDungeon dataDungeon)
+    {
+        DataDungeon = dataDungeon;
+        
+        var enemyGroup = DataManager.Instance.GetDataById<DataEnemyGroup>((int)dataDungeon.EnemyGroup);
+        
+        if (!enemyGroup.IsNull)
+            BossCharacterDefine = enemyGroup.Boss;
     }
 
     public void SetLevel(int level)
@@ -81,4 +114,10 @@ public class BattleInfo
             BattleExp = 0;
         }
     }
+
+    public void AddKill()
+    {
+        KillCount++;
+    }
+
 }

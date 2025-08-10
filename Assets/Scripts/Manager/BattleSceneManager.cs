@@ -9,14 +9,12 @@ using UnityEngine;
 public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>
 {
     #region Property
-    public CharacterUnit CurrentCharacter => playerBattleTeam.CurrentCharacter;
     #endregion
 
     #region Value
-
     private BattleEnemySpawner enemyGenerator;
     private List<CharacterUnit> enemyCharacters = new();
-    private BattleTeam playerBattleTeam = new ();
+    private BattleInfo battleInfo;
 
     // 현재 생존중인 캐릭터들의 모델
     private Dictionary<int, CharacterUnitModel> liveCharacterModelDic = new Dictionary<int, CharacterUnitModel>();
@@ -24,17 +22,12 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>
 
     #region Function
     #region Prepare Battle
-    public async UniTask<BattleTeam> CreateBattleTeam(SubCharacterInfo[] currentDeck)
+    public async UniTask Prepare(BattleInfo battleInfo)
     {
-        playerBattleTeam = await CreatePlayerBattleTeam(currentDeck);
-        SetCurrentCharacter(playerBattleTeam.CurrentCharacter);
+        this.battleInfo = battleInfo;
 
-        return playerBattleTeam;
-    }
-
-    public async UniTask Prepare(DataDungeon dataDungeon)
-    {
-        CreateEnemyGenerator(dataDungeon);
+        SetCurrentCharacter(battleInfo.CurrentCharacter);
+        CreateEnemyGenerator(battleInfo.DataDungeon);
 
         if (UseAStar)
             InitializeAStarManager();
@@ -45,40 +38,6 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>
         AStarManager.Instance.Initialize(walkableMaps, obstacleMaps, layoutGrid);
     }
 
-    private async UniTask<BattleTeam> CreatePlayerBattleTeam(SubCharacterInfo[] currentDeck)
-    {
-        await PlayerManager.Instance.UpdateMainPlayerCharacter(CharacterSetUpType.Battle);
-
-        var playerTransform = PlayerStartTransform;
-        var playerCharacters = new List<CharacterUnit>();
-        int leaderIndex = 0;
-
-        var mainCharacter = PlayerManager.Instance.GetMainPlayerCharacterUnit();
-        mainCharacter.transform.SetPositionAndRotation(playerTransform.position, Quaternion.identity);
-        mainCharacter.gameObject.tag = StringDefine.BATTLE_TAG_ALLY;
-        playerCharacters.Add(mainCharacter);
-
-        foreach (var subCharacterInfo in currentDeck)
-        {
-            if (subCharacterInfo == null)
-                continue;
-
-            var character = await CharacterFactory.Instance.SpawnSubCharacter(subCharacterInfo, playerTransform);
-            character.gameObject.tag = StringDefine.BATTLE_TAG_ALLY;
-            character.Initialize();
-            
-            playerCharacters.Add(character);
-        }
-
-        await UniTask.NextFrame();
-
-        var battleTeam = new BattleTeam();
-        battleTeam.SetCharacterUnits(playerCharacters);
-        battleTeam.SetCurrentIndex(leaderIndex);
-
-        return battleTeam;
-    }
-
     private void SetCurrentCharacter(CharacterUnit leaderCharacter)
     {
         SetFollowCamera(leaderCharacter.transform);
@@ -87,9 +46,10 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>
 
     private void CreateEnemyGenerator(DataDungeon dataDungeon)
     {
+        var dataEnemyGroup = DataManager.Instance.GetDataById<DataEnemyGroup>((int)dataDungeon.EnemyGroup);
+
         BattleEnemyGeneratorModel enemyGeneratorModel = new BattleEnemyGeneratorModel();
-        enemyGeneratorModel.SetDataDungeon(dataDungeon);
-        enemyGeneratorModel.SetCurrentWave(0);
+        enemyGeneratorModel.SetDataEnemyGroup(dataEnemyGroup);
         enemyGeneratorModel.SetSpawnInterval(5f);
         enemyGeneratorModel.SetCheckWalkablePosOnSpawn(UseAStar);
         enemyGeneratorModel.SetOnSpawnEnemy(OnSpawnEnemy);
@@ -102,7 +62,7 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>
         enemy.gameObject.tag = StringDefine.BATTLE_TAG_ENEMY;
         
         var enemyModel = enemy.Model;
-        enemyModel.SetTarget(playerBattleTeam.CurrentCharacter.Model);
+        enemyModel.SetTarget(battleInfo.CurrentCharacter.Model);
         enemyModel.SetPathFindType(UseAStar ? PathFindType.AStar : PathFindType.Navmesh);
 
         enemy.Initialize();
@@ -112,30 +72,11 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>
         AddLiveCharacter(enemy.gameObject.GetInstanceID(), enemyModel);
     }
     #endregion
-    #region Start Battle
-    public async UniTask StartBattle()
-    {
-        await ActiveCharacters();
-        await ShowHpBar();
-        await UniTaskUtils.DelaySeconds(FloatDefine.DEFAULT_BATTLE_START_DELAY);
 
+    public async UniTask StartSpawn()
+    {
         enemyGenerator.StartGenerateAsync().Forget();
     }
-
-    private async UniTask ActiveCharacters()
-    {
-        foreach (var character in playerBattleTeam.CharacterUnits)
-        {
-            character.Initialize();
-            character.Activate();
-        }
-    }
-
-    private async UniTask ShowHpBar()
-    {
-        await BattleUIManager.Instance.ShowHpBar(CurrentCharacter.Model);
-    }
-    #endregion
 
     public CharacterUnitModel GetCharacterModel(int instanceId)
     {
@@ -150,7 +91,7 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>
         return GetCharacterModel(collider.gameObject.GetInstanceID());
     }
 
-    public void AddLiveCharacter(int instanceId, CharacterUnitModel model)
+    private void AddLiveCharacter(int instanceId, CharacterUnitModel model)
     {
         liveCharacterModelDic.Add(instanceId, model);
     }

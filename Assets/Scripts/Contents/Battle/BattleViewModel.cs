@@ -6,21 +6,21 @@ public class BattleViewModel : IBaseViewModel
     public int Level { get; private set; }
     public float BattleExp { get; private set; }
     public float NextBattleExp { get; private set; }
-    public CharacterUnitModel[] CharacterUnitModels { get; private set; }
-    public Action<int> OnChangeCharacter { get; private set; }
+    public int KillCount { get; private set; }
+    public float ElapsedTime { get; private set; }
+    public int CurrentWave { get; private set; }
     #endregion
 
     #region Value
-    public void SetCharacterUnitModels(CharacterUnitModel[] characterUnitModels)
-    {
-        CharacterUnitModels = characterUnitModels;
-    }
 
     public void SetByBattleInfo(BattleInfo battleInfo)
     {
         SetLevel(battleInfo.Level);
         SetBattleExp(battleInfo.BattleExp);
         SetNextBattleExp(battleInfo.NextBattleExp);
+        SetKillCount(battleInfo.KillCount);
+        SetElapsedTime(battleInfo.ElapsedTime);
+        SetCurrentWave(battleInfo.CurrentWave);
     }
 
     public void SetLevel(int level)
@@ -38,9 +38,19 @@ public class BattleViewModel : IBaseViewModel
         NextBattleExp = exp;
     }
 
-    public void SetOnChangeCharacter(Action<int> action)
+    public void SetKillCount(int killCount)
     {
-        OnChangeCharacter = action;
+        KillCount = killCount;
+    }
+
+    public void SetElapsedTime(float elapsedTime)
+    {
+        ElapsedTime = elapsedTime;
+    }
+
+    public void SetCurrentWave(int currentWave)
+    {
+        CurrentWave = currentWave;
     }
     #endregion
 }

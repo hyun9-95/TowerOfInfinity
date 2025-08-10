@@ -10,13 +10,13 @@ public class RepositionTile : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (!collision.gameObject.CheckLayer(checkLayer) || !BattleSceneManager.Instance)
+        if (!collision.gameObject.CheckLayer(checkLayer))
             return;
 
-        if (!BattleSceneManager.Instance.CurrentCharacter)
+        if (!BattleSystemManager.Instance.InBattle)
             return;
 
-        Vector3 playerPos = BattleSceneManager.Instance.CurrentCharacter.transform.position;
+        Vector3 playerPos = BattleSystemManager.Instance.CurrentCharacterPos;
         Vector3 tilePos = transform.position;
 
         float diffX = playerPos.x - tilePos.x;

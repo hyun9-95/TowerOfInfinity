@@ -1,5 +1,7 @@
 #pragma warning disable CS1998
 using Cysharp.Threading.Tasks;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class BattleFlow : BaseFlow<BattleFlowModel>
 {
@@ -8,9 +10,7 @@ public class BattleFlow : BaseFlow<BattleFlowModel>
 
     private BattleSceneManager battleSceneManager;
     private BattleSystemManager battleSystemManager;
-    private BattleUIManager battleFXManager;
-    private BattleViewController battleViewController;
-    private BattleTeam battleTeam;
+    private BattleUIManager battleUIManager;
 
     public override async UniTask LoadingProcess()
     {
@@ -24,23 +24,71 @@ public class BattleFlow : BaseFlow<BattleFlowModel>
 
         // BattleSceneManager 하위의 매니저들
         battleSystemManager = BattleSystemManager.Instance;
-        battleFXManager = BattleUIManager.Instance;
+        battleUIManager = BattleUIManager.Instance;
 
-        battleTeam = await battleSceneManager.CreateBattleTeam(PlayerManager.Instance.MyUser.UserCharacterInfo.CurrentDeck);
+        var battleTeam = await CreatePlayerBattleTeam(PlayerManager.Instance.MyUser.UserCharacterInfo.CurrentDeck,
+            battleSceneManager.PlayerStartTransform);
 
-        await battleSceneManager.Prepare(Model.DataDungeon);
-        await battleSystemManager.Prepare(battleTeam);
-        await battleFXManager.Prepare();
+        var battleInfo = CreateBattleInfo(Model.DataDungeon, battleTeam);
+        
+        await battleSceneManager.Prepare(battleInfo);
+        await battleUIManager.Prepare(battleInfo);
+        await battleSystemManager.Prepare(battleInfo);
     }
-
 
     public override async UniTask Process()
     {
-        await battleSystemManager.ShowBattleView();
-        await battleSceneManager.StartBattle();
+        await battleUIManager.ShowHpBar();
+        await battleSceneManager.StartSpawn();
+        await battleSystemManager.StartBattle();
     }
 
     public override async UniTask Exit()
     {
+    }
+
+    private BattleInfo CreateBattleInfo(DataDungeon dataDungeon, BattleTeam battleTeam)
+    {
+        var battleInfo = new BattleInfo();
+        battleInfo.SetBattleTeam(battleTeam);
+        battleInfo.SetDataDungeon(dataDungeon);
+        battleInfo.SetExpTable();
+        battleInfo.SetLevel(0);
+        battleInfo.SetBattleExp(0);
+
+        return battleInfo;
+    }
+
+    private async UniTask<BattleTeam> CreatePlayerBattleTeam(SubCharacterInfo[] currentDeck, Transform playerTransform)
+    {
+        await PlayerManager.Instance.UpdateMainPlayerCharacter(CharacterSetUpType.Battle);
+
+        var playerCharacters = new List<CharacterUnit>();
+        int leaderIndex = 0;
+
+        var mainCharacter = PlayerManager.Instance.GetMainPlayerCharacterUnit();
+        mainCharacter.transform.SetPositionAndRotation(playerTransform.position, Quaternion.identity);
+        mainCharacter.gameObject.tag = StringDefine.BATTLE_TAG_ALLY;
+        playerCharacters.Add(mainCharacter);
+
+        foreach (var subCharacterInfo in currentDeck)
+        {
+            if (subCharacterInfo == null)
+                continue;
+
+            var character = await CharacterFactory.Instance.SpawnSubCharacter(subCharacterInfo, playerTransform);
+            character.gameObject.tag = StringDefine.BATTLE_TAG_ALLY;
+            character.Initialize();
+
+            playerCharacters.Add(character);
+        }
+
+        await UniTask.NextFrame();
+
+        var battleTeam = new BattleTeam();
+        battleTeam.SetCharacterUnits(playerCharacters);
+        battleTeam.SetCurrentIndex(leaderIndex);
+
+        return battleTeam;
     }
 }
