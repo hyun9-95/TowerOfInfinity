@@ -5,10 +5,9 @@
       "Bash(python:*)",
       "Bash(del:*)",
       "Bash(rm:*)",
-      "mcp__ide__getDiagnostics",
       "Bash(find:*)",
       "Bash(rg:*)",
-      "mcp__sequential-thinking__sequentialthinking"
+      "Bash(dir:*)"
     ],
     "deny": []
   }
