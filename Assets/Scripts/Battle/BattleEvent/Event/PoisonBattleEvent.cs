@@ -11,8 +11,8 @@ public class PoisonBattleEvent : BattleEvent
     #region Function
     public override void OnStart()
     {
-        BattleSystemManager.Instance.OnHitEffect
-            (Model.Receiver, DamageType.Poison);
+        BattleSystemManager.Instance.OnDamage
+            (Model.Sender, Model.Receiver, GetAppliableStatValue(), DamageType.Poison);
     }
 
     public override void OnInterval()

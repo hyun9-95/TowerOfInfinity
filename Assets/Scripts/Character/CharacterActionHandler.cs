@@ -5,6 +5,7 @@ using UnityEngine;
 public class CharacterActionHandler
 {
     public bool IsRolling => rolling;
+    public bool IsAddingForce => addingForce;
 
     private Action<bool> onFlipX;
 
@@ -18,6 +19,7 @@ public class CharacterActionHandler
     #region Hit
     private bool blinking = false;
     private bool rolling = false;
+    private bool addingForce = false;
     private Color originColor;
     #endregion
 
@@ -53,9 +55,27 @@ public class CharacterActionHandler
             Flip(movement);
     }
 
-    public void OnAddForce(Vector2 direction, float force)
+    public async UniTask OnAddForceAsync(Vector2 direction, float force)
     {
-        rigidBody2D.AddForce(direction * force, ForceMode2D.Impulse);
+        if (rigidBody2D == null)
+            return;
+
+        addingForce = true;
+
+        Vector2 velocity = direction.normalized * force;
+
+        float elapsedTime = 0;
+        
+        while (gameObject != null && gameObject.activeSelf && elapsedTime < FloatDefine.ADD_FORCE_DURATION)
+        {
+            await UniTask.Yield(PlayerLoopTiming.FixedUpdate);
+            elapsedTime += Time.fixedDeltaTime;
+
+            rigidBody2D.MovePosition(rigidBody2D.position + (velocity * Time.fixedDeltaTime));
+            velocity *= FloatDefine.ADD_FORCE_DAMPING;
+        }
+
+        addingForce = false;
     }
 
     public void OnNavmeshPathFind(Vector3 targetPos)
@@ -78,6 +98,9 @@ public class CharacterActionHandler
     /// </summary>
     public void OnAStarMoveAlongPath()
     {
+        if (addingForce)
+            return;
+            
         if (pathFinder is AStarPathFinder astarFinder)
         {
             var dir = astarFinder.OnMoveAlongPath();
@@ -102,10 +125,10 @@ public class CharacterActionHandler
         while (blinkCount < IntDefine.HIT_BLINK_COUNT && blinking)
         {
             bodySprite.color = hitColor;
-            await UniTaskUtils.DelaySeconds(FloatDefine.HitBlinkInterval, TokenPool.Get(GetHashCode()));
+            await UniTaskUtils.DelaySeconds(FloatDefine.HIT_BLINK_INTERVAL, TokenPool.Get(GetHashCode()));
 
             bodySprite.color = originColor;
-            await UniTaskUtils.DelaySeconds(FloatDefine.HitBlinkInterval / 2, TokenPool.Get(GetHashCode()));
+            await UniTaskUtils.DelaySeconds(FloatDefine.HIT_BLINK_INTERVAL / 2, TokenPool.Get(GetHashCode()));
 
             blinkCount++;
         }
@@ -125,7 +148,7 @@ public class CharacterActionHandler
         if (animEffect != null)
             animEffect.Play(CharacterAnimationEffect.EffectType.Dash, rigidBody2D.position, direction.x < 0);
 
-        OnAddForce(direction, force);
+        await OnAddForceAsync(direction, force);
         rolling = false;
     }
 
@@ -141,5 +164,6 @@ public class CharacterActionHandler
         TokenPool.Cancel(GetHashCode());
         blinking = false;
         rolling = false;
+        addingForce = false;
     }
 }

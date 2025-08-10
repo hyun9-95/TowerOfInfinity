@@ -14,7 +14,9 @@ public class FloatDefine
     /// </summary>
     public const float ASTAR_NEXT_NODE_THRESHOLD = 0.5f;
 
-    public const float HitBlinkInterval = 0.1f;
+    public const float HIT_BLINK_INTERVAL = 0.1f;
 
-    public const float DEFAULT_HIT_FORCE = 1f;
+    public const float DEFAULT_HIT_FORCE = 3f;
+    public const float ADD_FORCE_DURATION = 0.35f;
+    public const float ADD_FORCE_DAMPING = 0.9f;
 }

@@ -47,7 +47,7 @@ public abstract class BattleEventTrigger
         return targetModel;
     }
 
-    protected void SendBattleEventToTarget(CharacterUnitModel targetModel, Collider2D hitTarget = null)
+    protected void SendBattleEventToTarget(CharacterUnitModel targetModel, Vector3 hitPos, Collider2D hitTarget = null)
     {
         if (Model.BattleEventDatas.Count == 1)
         {
@@ -56,6 +56,12 @@ public abstract class BattleEventTrigger
         else
         {
             SendBattleEvents(targetModel);
+        }
+
+        if (hitPos != Vector3.zero && Model.HitForce > 0)
+        {
+            var hitForceDir = (hitTarget.transform.position - hitPos).normalized;
+            targetModel.ActionHandler.OnAddForceAsync(hitForceDir, Model.HitForce).Forget();
         }
 
         if (hitTarget != null && !string.IsNullOrEmpty(Model.HitEffectPrefabName))
@@ -112,26 +118,9 @@ public abstract class BattleEventTrigger
         if (targetModel.TeamTag != Model.TargetTeamTag)
             return false;
 
-        SendBattleEventToTarget(targetModel, hitTarget);
-
-        if (hitPos != Vector3.zero && Model.HitForce > 0)
-        {
-            var hitForceDir = (hitTarget.transform.position - hitPos).normalized;
-            targetModel.ActionHandler.OnAddForce(hitForceDir, Model.HitForce);
-        }
+        SendBattleEventToTarget(targetModel, hitPos, hitTarget);
 
         return true;
-    }
-
-    protected void OnEventSend(CharacterUnitModel targetModel)
-    {
-        if (targetModel == null)
-            return;
-
-        if (targetModel.TeamTag != Model.TargetTeamTag)
-            return;
-
-        SendBattleEventToTarget(targetModel);
     }
 
     protected Vector2 OnGetFixedDirection(DirectionType directionType)
