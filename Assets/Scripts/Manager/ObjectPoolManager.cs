@@ -48,6 +48,7 @@ public class ObjectPoolManager : BaseMonoManager<ObjectPoolManager>
             if (go == null)
                 return null;
 
+            go.name = name;
             go.transform.SetPositionAndRotation(position, rotation);
             originScaleDic[go.GetInstanceID()] = go.transform.localScale;
         }

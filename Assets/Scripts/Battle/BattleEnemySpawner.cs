@@ -2,14 +2,14 @@
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-public class BattleEnemyGenerator
+public class BattleEnemySpawner
 {
     public BattleEnemyGeneratorModel Model;
 
     private float minDistance;
     private int safeCount = 3;
 
-    public BattleEnemyGenerator(BattleEnemyGeneratorModel battleEnemyGeneratorModel)
+    public BattleEnemySpawner(BattleEnemyGeneratorModel battleEnemyGeneratorModel)
     {
         Model = battleEnemyGeneratorModel;
     }

@@ -14,7 +14,7 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>
 
     #region Value
 
-    private BattleEnemyGenerator enemyGenerator;
+    private BattleEnemySpawner enemyGenerator;
     private List<CharacterUnit> enemyCharacters = new();
     private BattleTeam playerBattleTeam = new ();
 
@@ -94,7 +94,7 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>
         enemyGeneratorModel.SetCheckWalkablePosOnSpawn(UseAStar);
         enemyGeneratorModel.SetOnSpawnEnemy(OnSpawnEnemy);
 
-        enemyGenerator = new BattleEnemyGenerator(enemyGeneratorModel);
+        enemyGenerator = new BattleEnemySpawner(enemyGeneratorModel);
     }
 
     private void OnSpawnEnemy(CharacterUnit enemy)
