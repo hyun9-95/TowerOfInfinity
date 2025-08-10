@@ -175,7 +175,7 @@ public class ProjectileTriggerUnit : PoolableBaseUnit<ProjectileTriggerUnitModel
         if (Model == null)
             return;
 
-        Model.OnEventHit(other);
+        Model.OnEventHit(other, transform.position);
     }
 
     public override void Deactivate()

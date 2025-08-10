@@ -24,7 +24,7 @@ public class BouncingProjectileTriggerUnit : ProjectileTriggerUnit
 
         lastBounceTime = Time.time;
         BounceOffTarget(other);
-        Model.OnEventHit(other);
+        Model.OnEventHit(other, transform.position);
     }
 
     private void BounceOffTarget(Collider2D hitTarget)

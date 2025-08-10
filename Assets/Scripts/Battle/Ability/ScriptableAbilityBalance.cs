@@ -33,6 +33,9 @@ public class ScriptableAbilityBalance : ScriptableObject
     [SerializeField]
     private int[] SpawnCount;
 
+    [SerializeField]
+    private float[] HitForce;
+
     public float GetSpeed(int level)
     {
         if (Speed == null || Speed.Length == 0)
@@ -41,6 +44,7 @@ public class ScriptableAbilityBalance : ScriptableObject
             return Speed[Speed.Length - 1];
         return Speed[level];
     }
+
     public float GetRange(int level)
     {
         if (Range == null || Range.Length == 0)
@@ -49,6 +53,7 @@ public class ScriptableAbilityBalance : ScriptableObject
             return Range[Range.Length - 1];
         return Range[level];
     }
+
     public float GetDuration(int level)
     {
         if (Duration == null || Duration.Length == 0)
@@ -57,6 +62,7 @@ public class ScriptableAbilityBalance : ScriptableObject
             return Duration[Duration.Length - 1];
         return Duration[level];
     }
+
     public float GetScale(int level)
     {
         if (Scale == null || Scale.Length == 0)
@@ -99,6 +105,17 @@ public class ScriptableAbilityBalance : ScriptableObject
         return SpawnCount[level];
     }
 
+    public float GetHitForce(int level)
+    {
+        if (HitForce == null || HitForce.Length == 0)
+            return FloatDefine.DEFAULT_HIT_FORCE;
+
+        if (level >= HitForce.Length)
+            return HitForce[HitForce.Length - 1];
+
+        return HitForce[level];
+    }
+
     public void ResetBalanceValues()
     {
         Speed = new float[IntDefine.MAX_ABILITY_LEVEL];
@@ -108,6 +125,7 @@ public class ScriptableAbilityBalance : ScriptableObject
         Scale = new float[IntDefine.MAX_ABILITY_LEVEL];
         CoolTime = new float[IntDefine.MAX_ABILITY_LEVEL];
         SpawnCount = new int[IntDefine.MAX_ABILITY_LEVEL];
+        HitForce = new float[IntDefine.MAX_ABILITY_LEVEL];
 
         for (int i = 0; i < IntDefine.MAX_ABILITY_LEVEL; i++)
         {
@@ -118,6 +136,7 @@ public class ScriptableAbilityBalance : ScriptableObject
             Scale[i] = 0f;
             CoolTime[i] = 0f;
             SpawnCount[i] = 1;
+            HitForce[i] = 0f;
         }
     }
 
@@ -130,5 +149,6 @@ public class ScriptableAbilityBalance : ScriptableObject
         Scale = source.Scale != null ? (float[])source.Scale.Clone() : null;
         CoolTime = source.CoolTime != null ? (float[])source.CoolTime.Clone() : null;
         SpawnCount = source.SpawnCount != null ? (int[])source.SpawnCount.Clone() : null;
+        HitForce = source.HitForce != null ? (float[])source.HitForce.Clone() : null;
     }
 }

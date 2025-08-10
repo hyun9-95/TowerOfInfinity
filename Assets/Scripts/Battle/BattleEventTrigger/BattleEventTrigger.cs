@@ -96,7 +96,7 @@ public abstract class BattleEventTrigger
     }
 
     #region OnEvent
-    protected bool OnEventHit(Collider2D hitTarget)
+    protected bool OnEventHit(Collider2D hitTarget, Vector3 hitPos)
     {
         if (Model == null)
             return false;
@@ -113,6 +113,12 @@ public abstract class BattleEventTrigger
             return false;
 
         SendBattleEventToTarget(targetModel, hitTarget);
+
+        if (hitPos != Vector3.zero && Model.HitForce > 0)
+        {
+            var hitForceDir = (hitTarget.transform.position - hitPos).normalized;
+            targetModel.ActionHandler.OnAddForce(hitForceDir, Model.HitForce);
+        }
 
         return true;
     }

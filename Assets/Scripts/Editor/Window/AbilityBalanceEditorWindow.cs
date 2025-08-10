@@ -23,6 +23,7 @@ public class AbilityBalanceEditorWindow : BalanceEditorWindowBase<AbilityBalance
         DrawArrayPropertyField(serializedObject, "CoolTime", "쿨타임");
         DrawArrayPropertyField(serializedObject, "Duration", "지속 시간");
         DrawArrayPropertyField(serializedObject, "HitCount", "Hit 횟수");
+        DrawArrayPropertyField(serializedObject, "HitForce", "Hit 시 미는 힘");
         DrawArrayPropertyField(serializedObject, "SpawnCount", "Unit 생성 개수");
         DrawArrayPropertyField(serializedObject, "Range", "범위");
         DrawArrayPropertyField(serializedObject, "Speed", "속도");

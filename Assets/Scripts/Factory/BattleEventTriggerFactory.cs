@@ -26,7 +26,7 @@ public static class BattleEventTriggerFactory
         BattleEventTriggerModel triggerModel, 
         Vector2 direction, 
         Transform followTarget = null,
-        Func<Collider2D, bool> onEventHit = null)
+        Func<Collider2D, Vector3, bool> onEventHit = null)
     {
         var projectileUnitModel = new ProjectileTriggerUnitModel();
         projectileUnitModel.SetDirection(direction);
@@ -46,7 +46,7 @@ public static class BattleEventTriggerFactory
     public static RangeTriggerUnitModel CreateColliderUnitModel(
         BattleEventTriggerModel triggerModel,
         Transform followTarget = null,
-        Func<Collider2D, bool> onEventHit = null)
+        Func<Collider2D, Vector3, bool> onEventHit = null)
     {
         var colliderUnitModel = new RangeTriggerUnitModel();
         colliderUnitModel.SetFlip(triggerModel.Sender.IsFlipX);

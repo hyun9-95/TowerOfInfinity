@@ -117,7 +117,7 @@ public class ColliderTriggerUnit : PoolableBaseUnit<BattleEventTriggerUnitModel>
         if (Model == null)
             return;
 
-        Model.OnEventHit(other);
+        Model.OnEventHit(other, transform.position);
     }
 
     protected override void OnDisable()
