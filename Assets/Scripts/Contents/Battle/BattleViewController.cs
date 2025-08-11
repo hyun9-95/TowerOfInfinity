@@ -29,13 +29,6 @@ public class BattleViewController : BaseController<BattleViewModel>, IObserver
         await base.Exit();
     }
 
-    private void Refresh(BattleInfo battleInfo)
-    {
-        Model.SetByBattleInfo(battleInfo);
-
-        View.ShowAsync().Forget();
-    }
-
     void IObserver.HandleMessage(Enum observerMessage, IObserverParam observerParam)
     {
         if (observerParam is not BattleObserverParam)
@@ -47,7 +40,7 @@ public class BattleViewController : BaseController<BattleViewModel>, IObserver
         {
             case BattleObserverID.ExpGain:
             case BattleObserverID.EnemyKilled:
-                Refresh(param.BattleInfo);
+                Refresh().Forget();
                 break;
         }
     }

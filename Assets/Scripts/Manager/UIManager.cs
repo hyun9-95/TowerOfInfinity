@@ -29,7 +29,8 @@ public class UIManager : BaseMonoManager<UIManager>
         if (!controller.IsView)
             return;
 
-        await ClearView();
+        if (currentViewController != null)
+            await ClearCurrentView();
 
         var isSuccess = await EnterUI(controller, addressable, true);
 
@@ -111,7 +112,7 @@ public class UIManager : BaseMonoManager<UIManager>
         return true;
     }
 
-    private async UniTask ClearView()
+    public async UniTask ClearCurrentView()
     {
         if (currentViewController == null)
             return;
@@ -154,7 +155,7 @@ public class UIManager : BaseMonoManager<UIManager>
         await prevController.Refresh();
     }
 
-    public BaseController GetCurrentController()
+    public BaseController GetCurrentViewController()
     {
         return currentViewController;
     }

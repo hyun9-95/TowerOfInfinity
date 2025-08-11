@@ -12,7 +12,7 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>
     #endregion
 
     #region Value
-    private BattleEnemySpawner enemyGenerator;
+    private BattleEnemySpawner enemySpawn;
     private List<CharacterUnit> enemyCharacters = new();
     private BattleInfo battleInfo;
 
@@ -54,7 +54,7 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>
         enemyGeneratorModel.SetCheckWalkablePosOnSpawn(UseAStar);
         enemyGeneratorModel.SetOnSpawnEnemy(OnSpawnEnemy);
 
-        enemyGenerator = new BattleEnemySpawner(enemyGeneratorModel);
+        enemySpawn = new BattleEnemySpawner(enemyGeneratorModel);
     }
 
     private void OnSpawnEnemy(CharacterUnit enemy)
@@ -75,7 +75,7 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>
 
     public async UniTask StartSpawn()
     {
-        enemyGenerator.StartGenerateAsync().Forget();
+        enemySpawn.StartGenerateAsync().Forget();
     }
 
     public CharacterUnitModel GetCharacterModel(int instanceId)
@@ -106,5 +106,10 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>
     public void RefreshAStarGrid()
     {
         AStarManager.Instance.RefreshAStarGrid();
+    }
+
+    public void StopSpawn()
+    {
+        enemySpawn.Cancel();
     }
 }

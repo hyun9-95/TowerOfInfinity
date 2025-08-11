@@ -709,7 +709,7 @@ GameObject:
   - component: {fileID: 485957790182947635}
   - component: {fileID: 8595766746978066735}
   m_Layer: 5
-  m_Name: Texts
+  m_Name: BattleInfoTexts
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

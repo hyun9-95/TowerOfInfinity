@@ -41,7 +41,13 @@ public class BattleView : BaseView
 
     private void FixedUpdate()
     {
-        if (!isShowing || Model == null)
+        if (!isShowing)
+            return;
+
+        if (Model == null)
+            return;
+
+        if (!BattleSystemManager.Instance.InBattle)
             return;
 
         timeText.SafeSetText(Model.GetElapsedTimeText());

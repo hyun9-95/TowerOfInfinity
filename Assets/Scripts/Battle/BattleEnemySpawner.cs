@@ -2,7 +2,7 @@
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-public class BattleEnemySpawner
+public class BattleEnemySpawner : IObserver
 {
     public BattleEnemyGeneratorModel Model;
 
@@ -19,15 +19,24 @@ public class BattleEnemySpawner
         // 카메라 영역에서 벗어나기 위한 중심점으로부터의 최소 거리
         minDistance = CameraManager.Instance.DiagonalLengthFromCenter;
 
+        ObserverManager.AddObserver(BattleObserverID.BattleEnd, this);
+
         while (!TokenPool.Get(GetHashCode()).IsCancellationRequested)
         {
-            int currentWave = BattleSystemManager.Instance.CurrentWave;
-            var currentWaveEnemies = Model.GetCurrentWaveEnemies(currentWave);
+            if (BattleSystemManager.Instance.InBattle)
+            {
+                int currentWave = BattleSystemManager.Instance.CurrentWave;
+                var currentWaveEnemies = Model.GetCurrentWaveEnemies(currentWave);
 
-            if (currentWaveEnemies != null)
-                await SpawnWave(currentWaveEnemies);
+                if (currentWaveEnemies != null)
+                    await SpawnWave(currentWaveEnemies);
 
-            await UniTaskUtils.DelaySeconds(Model.SpawnIntervalSeconds, cancellationToken: TokenPool.Get(GetHashCode()));
+                await UniTaskUtils.DelaySeconds(Model.SpawnIntervalSeconds, cancellationToken: TokenPool.Get(GetHashCode()));
+            }
+            else
+            {
+                await UniTask.NextFrame(cancellationToken: TokenPool.Get(GetHashCode()));
+            }
         }
     }
 
@@ -100,5 +109,20 @@ public class BattleEnemySpawner
 
         // 걸을 수 없다면, 다음 프레임에 재시도한다.
         return Vector3.zero;
+    }
+
+    void IObserver.HandleMessage(System.Enum observerMessage, IObserverParam observerParam)
+    {
+        if (observerParam is not BattleObserverParam)
+            return;
+
+        BattleObserverParam param = (BattleObserverParam)observerParam;
+
+        switch (observerMessage)
+        {
+            case BattleObserverID.BattleEnd:
+                Cancel();
+                break;
+        }
     }
 }

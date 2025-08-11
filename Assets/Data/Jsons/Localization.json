@@ -181,9 +181,9 @@
   },
   {
     "id": 70030,
-    "Korean": "적을 관통하는 검기를 발사합니다.",
-    "English": "Fires a sword wave that penetrates enemies.",
-    "SimplifiedChinese": "发射穿透敌人的剑气。"
+    "Korean": "공격할 때마다 적을 관통하는 검기를 발사합니다.",
+    "English": "Fires a penetrating sword wave with each attack.",
+    "SimplifiedChinese": "每次攻击时发射穿透敌人的剑气。"
   },
   {
     "id": 70031,
@@ -220,5 +220,23 @@
     "Korean": "시간",
     "English": "Time",
     "SimplifiedChinese": "时间"
+  },
+  {
+    "id": 70037,
+    "Korean": "승리",
+    "English": "Victory",
+    "SimplifiedChinese": "胜利"
+  },
+  {
+    "id": 70038,
+    "Korean": "패배",
+    "English": "Defeat",
+    "SimplifiedChinese": "败北"
+  },
+  {
+    "id": 70039,
+    "Korean": "확인",
+    "English": "Confirm",
+    "SimplifiedChinese": "确认"
   }
 ]

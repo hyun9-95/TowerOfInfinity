@@ -38,3 +38,6 @@ Id,NameId,Korean,English,SimplifiedChinese
 70034,LOCAL_EXP_GAIN_RANGE_UP_DESC,획득 범위가 증가합니다.,Increases acquisition range.,增加获取范围。
 70035,LOCAL_WORD_KILL_COUNT,처치,Kills,击杀
 70036,LOCAL_WORD_TIME,시간,Time,时间
+70037,LOCAL_WORD_VICTORY,승리,Victory,胜利
+70038,LOCAL_WORD_DEFEAT,패배,Defeat,败北
+70039,LOCAL_WORD_CONFIRM,확인,Confirm,确认

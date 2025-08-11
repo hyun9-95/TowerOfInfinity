@@ -28,7 +28,7 @@ MonoBehaviour:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7549dec4a99f37348bc7cea2193fcf24
-    m_Address: Character/Enemy/GreenOgre/GreenOgre_Enemy
+    m_Address: Character/Enemy/GreenOgre/GreenOgre
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main

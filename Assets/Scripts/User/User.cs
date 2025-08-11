@@ -10,6 +10,7 @@ public class User
     public int ID { get; set; }
     public UserCharacterInfo UserCharacterInfo { get; private set; }
     public UserEquipmentInfo UserEquipmentInfo { get; private set; }
+    public SceneDefine CurrentTown { get; private set; }
     
     // 기본 정보
     public string UserId { get; private set; }
@@ -25,7 +26,8 @@ public class User
     {
         UserId = userSaveInfo.Id;
         IsCompletePrologue = userSaveInfo.IsCompletePrologue;
-        
+        CurrentTown = userSaveInfo.CurrentTown;
+
         UserCharacterInfo = new UserCharacterInfo();
 
         CreateEquipmentInfo(userSaveInfo);
@@ -95,6 +97,12 @@ public class User
     public void SetCompletePrologue(bool value)
     {
         IsCompletePrologue = value;
+    }
+
+    public void SetCurrentTown(SceneDefine town)
+    {
+        // 추후 마을은 데이터로 분리하자.
+        CurrentTown = town;
     }
 
     public void Save()
@@ -168,6 +176,8 @@ public class User
             equippedMainCharacterEquipmentIds[kvp.Key] = kvp.Value.DataId;
 
         userSaveInfo.SetEquippedMainCharacterEquipmentIds(equippedMainCharacterEquipmentIds);
+
+        userSaveInfo.SetCurrentTown(CurrentTown);
 
         userSaveInfo.CheckDefaultValue();
         

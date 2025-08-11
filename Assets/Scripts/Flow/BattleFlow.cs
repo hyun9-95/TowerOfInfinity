@@ -45,6 +45,7 @@ public class BattleFlow : BaseFlow<BattleFlowModel>
 
     public override async UniTask Exit()
     {
+        battleSceneManager.StopSpawn();
     }
 
     private BattleInfo CreateBattleInfo(DataDungeon dataDungeon, BattleTeam battleTeam)

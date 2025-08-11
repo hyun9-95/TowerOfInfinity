@@ -33,6 +33,9 @@ public class UserSaveInfo
 
     [JsonProperty]
     public Dictionary<EquipmentType, int> EquippedMainCharacterEquipmentIds { get; private set; }
+
+    [JsonProperty]
+    public SceneDefine CurrentTown { get; private set; }
     #endregion
 
     #region Value
@@ -82,6 +85,9 @@ public class UserSaveInfo
                 { EquipmentType.Weapon, (int)EquipmentDefine.EQUIPMENT_WEAPON_SHORT_DAGGER },
             };
         }
+
+        if (CurrentTown == SceneDefine.None)
+            CurrentTown = SceneDefine.Town_Sanctuary;
     }
 
     public void SetId(string id) => Id = id;
@@ -93,5 +99,6 @@ public class UserSaveInfo
     public void SetOwnedEquipmentIds(List<int> ownedEquipmentIds) => OwnedEquipmentIds = ownedEquipmentIds;
     public void SetEquipmentLevels(Dictionary<int, int> equipmentLevels) => EquipmentLevels = equipmentLevels;
     public void SetEquippedMainCharacterEquipmentIds(Dictionary<EquipmentType, int> equippedMainCharacterEquipmentIds) => EquippedMainCharacterEquipmentIds = equippedMainCharacterEquipmentIds;
+    public void SetCurrentTown(SceneDefine currentTown) => CurrentTown = currentTown;
     #endregion
 }

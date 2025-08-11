@@ -41,6 +41,8 @@ public class BattleInfo
     public DataDungeon DataDungeon { get; private set; }
 
     public BattleState BattleState { get; private set; }
+
+    public BattleResult BattleResult { get; private set; }
     #endregion
 
     #region Value
@@ -68,6 +70,11 @@ public class BattleInfo
         
         if (!enemyGroup.IsNull)
             BossCharacterDefine = enemyGroup.Boss;
+    }
+
+    public void SetBattleResult(BattleResult battleResult)
+    {
+        BattleResult = battleResult;
     }
 
     public void SetLevel(int level)

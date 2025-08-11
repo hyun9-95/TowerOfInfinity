@@ -73,6 +73,12 @@ public enum BattleState
     None,
     Playing,
     Paused,
+    End,
+}
+
+public enum BattleResult
+{
+    None,
     Victory,
     Defeat,
 }

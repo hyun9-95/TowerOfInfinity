@@ -122,7 +122,7 @@ public class CharacterActionHandler
 
         int blinkCount = 0;
 
-        while (blinkCount < IntDefine.HIT_BLINK_COUNT && blinking)
+        while (bodySprite != null && blinkCount < IntDefine.HIT_BLINK_COUNT && blinking)
         {
             bodySprite.color = hitColor;
             await UniTaskUtils.DelaySeconds(FloatDefine.HIT_BLINK_INTERVAL, TokenPool.Get(GetHashCode()));
@@ -133,7 +133,9 @@ public class CharacterActionHandler
             blinkCount++;
         }
 
-        bodySprite.color = originColor;
+        if (bodySprite != null)
+            bodySprite.color = originColor;
+
         blinking = false;
     }
 

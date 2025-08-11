@@ -30,6 +30,8 @@ public class FlowManager : BaseManager<FlowManager>
             var prevType = currentFlow.FlowType;
             prevFlow = currentFlow;
             await prevFlow.Exit();
+            await UIManager.Instance.ClearCurrentView();
+
             currentFlow = null;
             await CleanUpAsync();
 
@@ -61,6 +63,14 @@ public class FlowManager : BaseManager<FlowManager>
         }
 
         baseFlowModel.ClearStateEvent();
+    }
+
+    public async UniTask ChangeCurrentTownFlow(SceneDefine sceneDefine)
+    {
+        var townFlowModel = new TownFlowModel();
+        townFlowModel.SetSceneDefine(sceneDefine);
+
+        await ChangeFlow(FlowType.TownFlow, townFlowModel);
     }
 
     private async UniTask ProcessStateEvent(FlowState state, BaseFlowModel flowModel)

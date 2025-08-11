@@ -10,6 +10,8 @@ public abstract class BaseFlow<T> : BaseFlow where T : BaseFlowModel
 
     public override async UniTask LoadScene()
     {
+        Logger.Log($"Load Scene => {Model.SceneDefine}");
+
         if (Model.SceneDefine == SceneDefine.None)
             return;
 
@@ -22,6 +24,8 @@ public abstract class BaseFlow<T> : BaseFlow where T : BaseFlowModel
 
     public override async UniTask UnloadScene()
     {
+        Logger.Log($"Unload Scene => {Model.SceneDefine}");
+
         if (Model.SceneDefine == SceneDefine.None)
             return;
 

@@ -1,33 +1,29 @@
 using System;
-using System.Text;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class BattleResultViewModel : IBaseViewModel
 {
     #region Property
-    public bool IsVictory { get; private set; }
+    public BattleResult BattleResult { get; private set; }
     public int KillCount { get; private set; }
     public float ElapsedTime { get; private set; }
+    public Action OnReturnToTown { get; private set; }
     #endregion
 
     #region Value
     #endregion
 
     #region Function
-    public void SetVictory(bool isVictory)
+    public void SetByBattleInfo(BattleInfo battleInfo)
     {
-        IsVictory = isVictory;
+        BattleResult = battleInfo.BattleResult;
+        KillCount = battleInfo.KillCount;
+        ElapsedTime = battleInfo.ElapsedTime;
     }
 
-    public void SetKillCount(int killCount)
+    public void SetOnReturnToTown(Action onReturn)
     {
-        KillCount = killCount;
-    }
-
-    public void SetElapsedTime(float elapsedTime)
-    {
-        ElapsedTime = elapsedTime;
+        OnReturnToTown = onReturn;
     }
 
     public string GetKillCountText()

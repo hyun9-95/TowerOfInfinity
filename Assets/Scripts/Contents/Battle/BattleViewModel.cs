@@ -13,16 +13,6 @@ public class BattleViewModel : IBaseViewModel
     #endregion
 
     #region Value
-
-    public void SetByBattleInfo(BattleInfo battleInfo)
-    {
-        SetLevel(battleInfo.Level);
-        SetBattleExp(battleInfo.BattleExp);
-        SetNextBattleExp(battleInfo.NextBattleExp);
-        SetKillCount(battleInfo.KillCount);
-        SetCurrentWave(battleInfo.CurrentWave);
-    }
-
     public void SetLevel(int level)
     {
         Level = level;

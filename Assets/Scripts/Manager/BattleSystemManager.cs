@@ -1,6 +1,8 @@
 #pragma warning disable CS1998
 using Cysharp.Threading.Tasks;
+using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditor.Profiling.HierarchyFrameDataView;
 
 /// <summary>
 /// 전반적인 전투 로직을 관리한다.
@@ -8,7 +10,7 @@ using UnityEngine;
 public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
 {
     #region Property
-    public bool InBattle => battleInfo.BattleState == BattleState.Playing;
+    public bool InBattle => battleInfo == null ? false : battleInfo.BattleState == BattleState.Playing;
     public int CurrentWave => battleInfo.CurrentWave;
     public Vector3 CurrentCharacterPos => battleInfo.CurrentCharacter.transform.position;
     #endregion
@@ -21,6 +23,7 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
     private DamageNumbersGroup damageNumbersGroup;
     private BattleCardDrawer cardDrawer;
     private BattleInfo battleInfo;
+    private BattleObserverParam observerParam;
     #endregion
 
     public async UniTask Prepare(BattleInfo battleInfo)
@@ -47,8 +50,7 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
         var battleViewController = new BattleViewController();
 
         BattleViewModel viewModel = new BattleViewModel();
-        viewModel.SetByBattleInfo(battleInfo);
-        viewModel.SetBattleStartTime(battleInfo.BattleStartTime);
+        RefreshViewModel(viewModel);
 
         battleViewController.SetModel(viewModel);
 
@@ -102,6 +104,19 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
         };
     }
 
+    private void RefreshViewModel(BattleViewModel viewModel = null)
+    {
+        if (viewModel == null)
+            viewModel = UIManager.instance.GetCurrentViewController().GetModel<BattleViewModel>();
+
+        viewModel.SetLevel(battleInfo.Level);
+        viewModel.SetBattleExp(battleInfo.BattleExp);
+        viewModel.SetNextBattleExp(battleInfo.NextBattleExp);
+        viewModel.SetKillCount(battleInfo.KillCount);
+        viewModel.SetCurrentWave(battleInfo.CurrentWave);
+        viewModel.SetBattleStartTime(battleInfo.BattleStartTime);
+    }
+
     #region OnEvent
     private void OnPause()
     {
@@ -123,11 +138,10 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
 
         battleInfo.OnExpGain(exp);
 
-        BattleObserverParam param = new BattleObserverParam();
-        param.SetBattleInfo(battleInfo);
+        RefreshViewModel();
 
         // 경험치 획득 시 UI 갱신해준다.
-        ObserverManager.NotifyObserver(BattleObserverID.ExpGain, param);
+        ObserverManager.NotifyObserver(BattleObserverID.ExpGain, observerParam);
 
         if (battleInfo.Level > prevLevel)
             OnLevelUp();
@@ -194,12 +208,28 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
         Logger.BattleLog($"Exp gainer level up : {prevLevel} => {model.Level}");
     }
 
-    private void OnDefeat()
+    private void OnBattleEnd(BattleResult result)
     {
+        battleInfo.SetBattleResult(result);
+        battleInfo.SetBattleState(BattleState.End);
+
+        BattleObserverParam param = new BattleObserverParam();
+        ObserverManager.NotifyObserver(BattleObserverID.BattleEnd, param);
+
+        var battleResultController = new BattleResultController();
+        var battleResultModel = new BattleResultViewModel();
+        battleResultModel.SetByBattleInfo(battleInfo);
+        battleResultModel.SetOnReturnToTown(OnReturnToTown);
+        battleResultController.SetModel(battleResultModel);
+
+        UIManager.instance.OpenPopup(battleResultController).Forget();
     }
 
-    private void OnVictory()
+    private void OnReturnToTown()
     {
+        var currentTown = PlayerManager.instance.MyUser.CurrentTown;
+
+        FlowManager.Instance.ChangeCurrentTownFlow(currentTown).Forget();
     }
     #endregion
 
@@ -235,19 +265,17 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
         {
             battleInfo.AddKill();
 
-            BattleObserverParam param = new BattleObserverParam();
-            param.SetBattleInfo(battleInfo);
-
-            ObserverManager.NotifyObserver(BattleObserverID.EnemyKilled, param);
+            RefreshViewModel();
+            ObserverManager.NotifyObserver(BattleObserverID.EnemyKilled, observerParam);
 
             // 죽은 캐릭터가 보스라면 승리
             if (deadCharacterModel.CharacterDefine == battleInfo.BossCharacterDefine)
-                OnVictory();
+                OnBattleEnd(BattleResult.Victory);
         }
         else if (deadCharacterModel == battleInfo.CurrentCharacter.Model)
         {
             // 죽은 캐릭터가 메인캐릭터라면 패배
-            OnDefeat();
+            OnBattleEnd(BattleResult.Defeat);
         }
     }
 

@@ -28,7 +28,7 @@ MonoBehaviour:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2665e1e32d173c847b6fa757aa1f728e
-    m_Address: Character/Enemy/RedDragon/RedDragon_Enemy
+    m_Address: Character/Enemy/RedDragon/RedDragon
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main

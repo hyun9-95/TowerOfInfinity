@@ -4,4 +4,5 @@ public enum BattleObserverID
 {
     ExpGain,
     EnemyKilled,
+    BattleEnd,
 }
