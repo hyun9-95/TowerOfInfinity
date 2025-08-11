@@ -1,8 +1,10 @@
 using UnityEngine;
 
+/// <summary>
+/// Battle 관련 매니저들만 참조해야한다!
+/// </summary>
 public class BattleInfo
 {
-
     #region Property
     public int Level { get; private set; }
 
