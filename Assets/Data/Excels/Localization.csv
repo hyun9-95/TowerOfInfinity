@@ -41,3 +41,5 @@ Id,NameId,Korean,English,SimplifiedChinese
 70037,LOCAL_WORD_VICTORY,승리,Victory,胜利
 70038,LOCAL_WORD_DEFEAT,패배,Defeat,败北
 70039,LOCAL_WORD_CONFIRM,확인,Confirm,确认
+70040,LOCAL_AB_ELECTRIC_RING_NAME,일렉트릭 링,Electric Ring,电击圈
+70041,LOCAL_AB_ELECTRIC_RING_DESC,주변의 적에게 주기적으로 피해를 줍니다.,Periodically deals damage around yourself.,定期对自身周围造成伤害。

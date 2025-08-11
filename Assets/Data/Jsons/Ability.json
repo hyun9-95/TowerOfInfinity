@@ -82,12 +82,12 @@
     "SlotType": "Active",
     "CastingType": "Instant",
     "BattleEvents": [
-      "BE_DAMAGE_ELECTRIC_CIRCLE"
+      "BE_DAMAGE_ELECTRIC_RING"
     ],
     "TriggerType": "FollowCollider",
     "TargetType": "Enemy",
-    "PrefabName": "Ability/ElectricCircle/ElectricCircle_Collider",
-    "IconPath": "Ability/ElectricCircle/ElectricCircle_Collider_Icon",
+    "PrefabName": "Ability/ElectricRing/ElectricRing_Collider",
+    "IconPath": "Ability/ElectricRing/ElectricRing_Collider_Icon",
     "HitEffectPrefabName": ""
   }
 ]

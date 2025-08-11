@@ -43,5 +43,14 @@
     "IconPath": "BattleCore/BattleExpGem_Sprite",
     "Name": "LOCAL_EXP_GAIN_RANGE_UP_NAME",
     "Desc": "LOCAL_EXP_GAIN_RANGE_UP_DESC"
+  },
+  {
+    "id": 100005,
+    "CardType": "GetAbility",
+    "Tier": "Common",
+    "Ability": "AB_ACTIVE_ELECTRIC_RING",
+    "IconPath": "",
+    "Name": "LOCAL_AB_ELECTRIC_RING_NAME",
+    "Desc": "LOCAL_AB_ELECTRIC_RING_DESC"
   }
 ]

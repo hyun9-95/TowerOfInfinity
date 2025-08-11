@@ -80,11 +80,16 @@ public class AddressableManager : BaseManager<AddressableManager>
     {
         if (string.IsNullOrEmpty(address))
         {
-            Logger.Null($"Addressable Name {address}");
+            Logger.Null($"Addess");
             return false;
         }
 
-        return addressableBuildInfo.AddressableDic.ContainsKey(address);
+        bool result = addressableBuildInfo.AddressableDic.ContainsKey(address);
+
+        if (!result)
+            Logger.Warning($"{address} is not contains in addressable build Info");
+
+        return result;
     }
 
     private bool IsAddressableScene(SceneDefine define)

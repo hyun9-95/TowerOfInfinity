@@ -24,7 +24,7 @@ public class ColliderTriggerUnit : PoolableBaseUnit<BattleEventTriggerUnitModel>
     [SerializeField]
     protected float followTime = 0;
 
-    private Dictionary<CharacterUnitModel, float> nextAllowedTime;
+    protected Dictionary<CharacterUnitModel, float> nextAllowedTime;
 
     private void Awake()
     {
@@ -153,6 +153,13 @@ public class ColliderTriggerUnit : PoolableBaseUnit<BattleEventTriggerUnitModel>
 
     protected override void OnDisable()
     {
+        CleanUp();
+
+        base.OnDisable();
+    }
+
+    protected void CleanUp()
+    {
         TokenPool.Cancel(GetHashCode());
         hitCollider.enabled = false;
 
@@ -163,8 +170,6 @@ public class ColliderTriggerUnit : PoolableBaseUnit<BattleEventTriggerUnitModel>
             if (nextAllowedTime != null)
                 nextAllowedTime.Clear();
         }
-
-        base.OnDisable();
     }
 
     void IObserver.HandleMessage(Enum observerMessage, IObserverParam observerParam)

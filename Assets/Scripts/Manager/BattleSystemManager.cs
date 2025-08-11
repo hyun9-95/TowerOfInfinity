@@ -213,8 +213,7 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
         battleInfo.SetBattleResult(result);
         battleInfo.SetBattleState(BattleState.End);
 
-        BattleObserverParam param = new BattleObserverParam();
-        ObserverManager.NotifyObserver(BattleObserverID.BattleEnd, param);
+        ObserverManager.NotifyObserver(BattleObserverID.BattleEnd, observerParam);
 
         var battleResultController = new BattleResultController();
         var battleResultModel = new BattleResultViewModel();
@@ -267,8 +266,9 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
 
             RefreshViewModel();
 
-            observerParam.SetModelValue(deadCharacterModel);
-            ObserverManager.NotifyObserver(BattleObserverID.EnemyKilled, observerParam);
+            var newObserverParam = new BattleObserverParam();
+            newObserverParam.SetModelValue(deadCharacterModel);
+            ObserverManager.NotifyObserver(BattleObserverID.EnemyKilled, newObserverParam);
 
             // 죽은 캐릭터가 보스라면 승리
             if (deadCharacterModel.CharacterDefine == battleInfo.BossCharacterDefine)

@@ -4928,7 +4928,7 @@ GameObject:
   - component: {fileID: 5845648485475633546}
   - component: {fileID: 7738068030338780185}
   m_Layer: 8
-  m_Name: ElectricCircle_Collider
+  m_Name: ElectricRing_Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

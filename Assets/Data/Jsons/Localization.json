@@ -238,5 +238,17 @@
     "Korean": "확인",
     "English": "Confirm",
     "SimplifiedChinese": "确认"
+  },
+  {
+    "id": 70040,
+    "Korean": "일렉트릭 링",
+    "English": "Electric Ring",
+    "SimplifiedChinese": "电击圈"
+  },
+  {
+    "id": 70041,
+    "Korean": "주변의 적에게 주기적으로 피해를 줍니다.",
+    "English": "Periodically deals damage around yourself.",
+    "SimplifiedChinese": "定期对自身周围造成伤害。"
   }
 ]

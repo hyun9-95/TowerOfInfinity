@@ -152,8 +152,6 @@ public class ProjectileTriggerUnit : PoolableBaseUnit<ProjectileTriggerUnitModel
     {
         if (detectType != IBattleEventTriggerUnit.ColliderDetectType.Stay)
             return;
-
-        OnDetectHit(other);
     }
 
     private void OnTriggerExit2D(Collider2D other)

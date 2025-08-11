@@ -9,23 +9,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dceb0da3ed51b6e47a7efb36ff83fcff, type: 3}
-  m_Name: AB_ACTIVE_ELECTRIC_CIRCLE
+  m_Script: {fileID: 11500000, guid: ed11842cc8ba12d40aca11dedabb0006, type: 3}
+  m_Name: BE_DAMAGE_ELECTRIC_RING
   m_EditorClassIdentifier: 
-  type: 51004
-  Speed: []
-  Range: []
-  Duration: []
-  HitCount: 
-  Scale:
-  - 0
-  - 0.05
-  - 0.1
-  - 0.15
-  - 0.2
-  - 0.25
+  define: 20006
+  value:
   - 0.3
-  - 0.35
-  CoolTime: []
-  SpawnCount: 
-  HitForce: []
+  - 0.35000002
+  - 0.4
+  - 0.45000002
+  - 0.5
+  - 0.55
+  - 0.6
+  - 0.65000004
+  value2: []
+  duration: []
+  applyIntervalSeconds: []
