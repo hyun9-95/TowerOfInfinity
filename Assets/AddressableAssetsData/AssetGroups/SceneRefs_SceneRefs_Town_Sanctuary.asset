@@ -14,7 +14,223 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_GroupName: SceneRefs_SceneRefs_Town_Sanctuary
   m_GUID: 11fb12ccb3f5255469f48cba4d912730
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 031fa25bf86234241919f77c8db0685c
+    m_Address: SceneRefs/SceneRefs_Town_Sanctuary/RA_Sanctuary_88
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 04b2604184c407a45887dd84ea55017a
+    m_Address: SceneRefs/SceneRefs_Town_Sanctuary/RA_Sanctuary_31
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0568261221c14284bbdcfe99116cdfb6
+    m_Address: SceneRefs/SceneRefs_Town_Sanctuary/RA_Sanctuary_244
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0cf137310ace19e4cb4a7e7d58f2ebda
+    m_Address: SceneRefs/SceneRefs_Town_Sanctuary/RA_Sanctuary_137
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1f243cb6985f6b049a7f97d87458f396
+    m_Address: SceneRefs/SceneRefs_Town_Sanctuary/RA_Sanctuary_211
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 23855321844d72047b171055a6ddc17a
+    m_Address: SceneRefs/SceneRefs_Town_Sanctuary/RA_Sanctuary_150
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5542358487b20bf47a16414373cb71b2
+    m_Address: SceneRefs/SceneRefs_Town_Sanctuary/RA_Sanctuary_28
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 560b40dfe5933614891b3d1b3d414f77
+    m_Address: SceneRefs/SceneRefs_Town_Sanctuary/RA_Sanctuary_92
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 603992692c5045b4fa6d0db1b5f64c3a
+    m_Address: SceneRefs/SceneRefs_Town_Sanctuary/RA_Sanctuary_245
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 60f0726123eed0644854927116febb5a
+    m_Address: SceneRefs/SceneRefs_Town_Sanctuary/San_Ani 18
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 620834d7749c4fc49944ca659c201f49
+    m_Address: SceneRefs/SceneRefs_Town_Sanctuary/RA_Sanctuary_113
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 69ba622d2be23f44abe8e6add1ff188c
+    m_Address: SceneRefs/SceneRefs_Town_Sanctuary/RA_Sanctuary_165
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6e905e2a349652b4889074bcf7efa406
+    m_Address: SceneRefs/SceneRefs_Town_Sanctuary/San_Ani 22
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6ea8924da18d9d14e9863ad9b97b8402
+    m_Address: SceneRefs/SceneRefs_Town_Sanctuary/RA_Sanctuary_90
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 71d6946ff5a991749a0673c38e556932
+    m_Address: SceneRefs/SceneRefs_Town_Sanctuary/RA_Sanctuary_114
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8b07f508a52e81240b592484aa505c5e
+    m_Address: SceneRefs/SceneRefs_Town_Sanctuary/RA_Sanctuary_91
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9114158d3ca1a1c4ea70436702281ee5
+    m_Address: SceneRefs/SceneRefs_Town_Sanctuary/RA_Sanctuary_89
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9a8072fadb8f10f4ba05e65ba1ef1780
+    m_Address: SceneRefs/SceneRefs_Town_Sanctuary/RA_Sanctuary_243
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9b70910e26252f040bdfde35e14875e1
+    m_Address: SceneRefs/SceneRefs_Town_Sanctuary/RA_Sanctuary_59
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a64c5b2e97a84f74599cf56399befb88
+    m_Address: SceneRefs/SceneRefs_Town_Sanctuary/RA_Sanctuary_138
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b2a65c4d9f7977948b12ba3d1103a2cb
+    m_Address: SceneRefs/SceneRefs_Town_Sanctuary/RA_Sanctuary_186
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b2cbc17f9c3917944a5273d44799e2b2
+    m_Address: SceneRefs/SceneRefs_Town_Sanctuary/RA_Sanctuary_188
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b673c14dc417e5c4a945e185f48da7cb
+    m_Address: SceneRefs/SceneRefs_Town_Sanctuary/RA_Sanctuary_34
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bdae82a4a0d2395479cee07d94a53476
+    m_Address: SceneRefs/SceneRefs_Town_Sanctuary/RA_Sanctuary_63
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: be68f6e3a3f9c964facf0fa731934f3b
+    m_Address: SceneRefs/SceneRefs_Town_Sanctuary/RA_Sanctuary_118
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c11c09655a5203b419b051378d27a89f
+    m_Address: SceneRefs/SceneRefs_Town_Sanctuary/RA_Sanctuary_64
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ca301d8125659c64fafcaa754aa340c0
+    m_Address: SceneRefs/SceneRefs_Town_Sanctuary/RA_Sanctuary_284
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cb0bb42bf2fef5f4e9823492941ba0e9
+    m_Address: SceneRefs/SceneRefs_Town_Sanctuary/RA_Sanctuary_85
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ce213b5afeb467a46af833b38c066c71
+    m_Address: SceneRefs/SceneRefs_Town_Sanctuary/RA_Sanctuary_212
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d4963fac893b82d42b2e20d8d499d080
+    m_Address: SceneRefs/SceneRefs_Town_Sanctuary/San_Ani 19
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d7b5e4a01563f474abfdd37b18fc96ba
+    m_Address: SceneRefs/SceneRefs_Town_Sanctuary/RA_Sanctuary_60
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e144635ab3f81cd4888222cd616f0adc
+    m_Address: SceneRefs/SceneRefs_Town_Sanctuary/RA_Sanctuary_87
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: eb4a2aa36fdad19419cdf77d91e33480
+    m_Address: SceneRefs/SceneRefs_Town_Sanctuary/San_Ani 24
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ec2ee9371d3135a43837beff4b95cdbb
+    m_Address: SceneRefs/SceneRefs_Town_Sanctuary/RA_Sanctuary_136
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f16ff11e4e4b998429d0485c89a91ba1
+    m_Address: SceneRefs/SceneRefs_Town_Sanctuary/RA_Sanctuary_139
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ff0b253bc7a6db94387c49ced75d71fe
+    m_Address: SceneRefs/SceneRefs_Town_Sanctuary/RA_Sanctuary_117
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
   m_SchemaSet:

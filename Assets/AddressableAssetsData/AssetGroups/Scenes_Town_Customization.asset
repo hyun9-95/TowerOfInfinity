@@ -15,6 +15,12 @@ MonoBehaviour:
   m_GroupName: Scenes_Town_Customization
   m_GUID: c6b36b4fcaedd1b4889dbc57308309c8
   m_SerializeEntries:
+  - m_GUID: 29f0c388f5c50a04da87222ca84a1b16
+    m_Address: seamless_purple_starry_sky_512
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4d6b4845bc5c72b4b8653e912b4ee192
     m_Address: Town_Customization
     m_ReadOnly: 0
