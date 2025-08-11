@@ -36,3 +36,5 @@ MonoBehaviour:
   - 0.9
   - 0.8
   SpawnCount: 01000000
+  HitForce:
+  - 0.3

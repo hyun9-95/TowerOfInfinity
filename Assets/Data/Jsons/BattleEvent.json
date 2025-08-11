@@ -64,5 +64,16 @@
     "StatReferenceCondition": "CurrentStat",
     "StatusDirection": "Increase",
     "Stackable": false
+  },
+  {
+    "id": 20006,
+    "Type": "Damage",
+    "AffectStat": "Attack",
+    "BattleEventCategory": "Active",
+    "BattleEventGroup": "None",
+    "StatReference": "Sender",
+    "StatReferenceCondition": "CurrentStat",
+    "StatusDirection": "Increase",
+    "Stackable": false
   }
 ]

@@ -10,31 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dceb0da3ed51b6e47a7efb36ff83fcff, type: 3}
-  m_Name: AB_ACTIVE_SWORD_WAVE
+  m_Name: AB_ACTIVE_ELECTRIC_CIRCLE
   m_EditorClassIdentifier: 
-  type: 51002
-  Speed:
-  - 10
-  Range:
-  - 4
-  - 4.2
-  - 4.4
-  - 4.6
-  - 4.8
-  - 5
-  - 5.2
-  - 5.4
+  type: 51004
+  Speed: []
+  Range: []
   Duration: []
-  HitCount: 0200000002000000020000000300000003000000030000000400000004000000
+  HitCount: 
   Scale:
   - 0
+  - 0.05
   - 0.1
+  - 0.15
   - 0.2
+  - 0.25
   - 0.3
-  - 0.4
-  - 0.5
-  - 0.6
-  - 0.7
+  - 0.35
   CoolTime: []
-  SpawnCount: 01000000
+  SpawnCount: 
   HitForce: []

@@ -108,7 +108,7 @@ public class ScriptableAbilityBalance : ScriptableObject
     public float GetHitForce(int level)
     {
         if (HitForce == null || HitForce.Length == 0)
-            return FloatDefine.DEFAULT_HIT_FORCE;
+            return 0;
 
         if (level >= HitForce.Length)
             return HitForce[HitForce.Length - 1];
@@ -125,7 +125,7 @@ public class ScriptableAbilityBalance : ScriptableObject
         Scale = new float[IntDefine.MAX_ABILITY_LEVEL];
         CoolTime = new float[IntDefine.MAX_ABILITY_LEVEL];
         SpawnCount = new int[IntDefine.MAX_ABILITY_LEVEL];
-        HitForce = new float[IntDefine.MAX_ABILITY_LEVEL];
+        HitForce = new float[1];
 
         for (int i = 0; i < IntDefine.MAX_ABILITY_LEVEL; i++)
         {

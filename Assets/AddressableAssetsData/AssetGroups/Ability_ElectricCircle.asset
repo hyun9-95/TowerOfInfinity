@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Ability_ElectricCircle
+  m_EditorClassIdentifier: 
+  m_GroupName: Ability_ElectricCircle
+  m_GUID: 16ffc59d5343a884686b0d4c30d2993f
+  m_SerializeEntries:
+  - m_GUID: 04a25f0f3b240924a92cc362b5e08976
+    m_Address: Ability/ElectricCircle/ElectricCircle_Collider_Icon
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0ca81ef5fe441394cb32e2473417993b
+    m_Address: Ability/ElectricCircle/ElectricCircle_Collider
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1de308f54dc26064f932757b25c0a3f7
+    m_Address: Ability/ElectricCircle/ef_13_M
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e80dbb9f6f5c8f441b50f0b0ab082bf1
+    m_Address: Ability/ElectricCircle/Electricity_Circle_SpriteSheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 10df3927719b726449cb2679313e8b42, type: 2}
+    - {fileID: 11400000, guid: cbd6d3332e321f441bffeab96fbb11ab, type: 2}

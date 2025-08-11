@@ -7,3 +7,4 @@ Id,NameId,Type,AffectStat,BattleEventCategory,BattleEventGroup,StatReference,Sta
 20003,BE_DAMAGE_BOULDER_SMASH,Damage,Attack,Active,None,Sender,CurrentStat,Increase,FALSE
 20004,BE_DAMAGE_SWORD_WAVE,Damage,Attack,Active,None,Sender,CurrentStat,Increase,FALSE
 20005,BE_DAMAGE_MAGIC_MISSILE,Damage,Attack,Active,None,Sender,CurrentStat,Increase,FALSE
+20006,BE_DAMAGE_ELECTRIC_CIRCLE,Damage,Attack,Active,None,Sender,CurrentStat,Increase,FALSE

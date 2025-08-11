@@ -23,7 +23,7 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
     private DamageNumbersGroup damageNumbersGroup;
     private BattleCardDrawer cardDrawer;
     private BattleInfo battleInfo;
-    private BattleObserverParam observerParam;
+    private BattleObserverParam observerParam = new();
     #endregion
 
     public async UniTask Prepare(BattleInfo battleInfo)
@@ -266,6 +266,8 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
             battleInfo.AddKill();
 
             RefreshViewModel();
+
+            observerParam.SetModelValue(deadCharacterModel);
             ObserverManager.NotifyObserver(BattleObserverID.EnemyKilled, observerParam);
 
             // 죽은 캐릭터가 보스라면 승리

@@ -1,8 +1,10 @@
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using System.Collections.Generic;
+using System;
 
 
-public class ColliderTriggerUnit : PoolableBaseUnit<BattleEventTriggerUnitModel>, IBattleEventTriggerUnit
+public class ColliderTriggerUnit : PoolableBaseUnit<BattleEventTriggerUnitModel>, IBattleEventTriggerUnit, IObserver
 {
     [SerializeField]
     protected IBattleEventTriggerUnit.ColliderDetectType detectType;
@@ -22,13 +24,15 @@ public class ColliderTriggerUnit : PoolableBaseUnit<BattleEventTriggerUnitModel>
     [SerializeField]
     protected float followTime = 0;
 
+    private Dictionary<CharacterUnitModel, float> nextAllowedTime;
+
     private void Awake()
     {
         hitCollider.enabled = false;
         HideRenderer();
     }
 
-    protected async UniTask EnableColliderAsync()
+    protected virtual async UniTask EnableColliderAsync()
     {
         if (detectStartTime > 0)
             await UniTaskUtils.DelaySeconds(detectStartTime, TokenPool.Get(GetHashCode()));
@@ -37,7 +41,6 @@ public class ColliderTriggerUnit : PoolableBaseUnit<BattleEventTriggerUnitModel>
 
         if (detectDuration == 0)
         {
-            await UniTask.NextFrame();
             await UniTask.NextFrame();
         }
         else
@@ -52,6 +55,14 @@ public class ColliderTriggerUnit : PoolableBaseUnit<BattleEventTriggerUnitModel>
     {
         if (useFlip)
             Flip(Model.IsFlip);
+
+        if (detectType == IBattleEventTriggerUnit.ColliderDetectType.Stay)
+        {
+            ObserverManager.AddObserver(BattleObserverID.EnemyKilled, this);
+
+            if (nextAllowedTime == null)
+                nextAllowedTime = new Dictionary<CharacterUnitModel, float>();
+        }
 
         var offset = useFlip ? GetFlipLocalPos(Model.IsFlip) : LocalPosOffset;
 
@@ -98,7 +109,7 @@ public class ColliderTriggerUnit : PoolableBaseUnit<BattleEventTriggerUnitModel>
         if (detectType != IBattleEventTriggerUnit.ColliderDetectType.Stay)
             return;
 
-        OnDetectHit(other);
+        OnDetectHitWithCooltime(other);
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -107,6 +118,26 @@ public class ColliderTriggerUnit : PoolableBaseUnit<BattleEventTriggerUnitModel>
             return;
 
         OnDetectHit(other);
+    }
+
+    protected virtual void OnDetectHitWithCooltime(Collider2D other)
+    {
+        if (!other.gameObject.CheckLayer(LayerFlag.Character) || Model == null)
+            return;
+
+        var targetModel = BattleSceneManager.Instance.GetCharacterModel(other);
+
+        if (targetModel == null)
+            return;
+
+        float now = Time.time;
+        float cd = FloatDefine.COLLIDER_STAY_COOLTIME_PER_TARGET;
+
+        if (nextAllowedTime.TryGetValue(targetModel, out var t) && now < t)
+            return;
+
+        Model.OnEventHit(other, transform.position);
+        nextAllowedTime[targetModel] = now + cd;
     }
 
     protected virtual void OnDetectHit(Collider2D other)
@@ -125,6 +156,26 @@ public class ColliderTriggerUnit : PoolableBaseUnit<BattleEventTriggerUnitModel>
         TokenPool.Cancel(GetHashCode());
         hitCollider.enabled = false;
 
+        if (detectType == IBattleEventTriggerUnit.ColliderDetectType.Stay)
+        {
+            ObserverManager.RemoveObserver(BattleObserverID.EnemyKilled, this);
+
+            if (nextAllowedTime != null)
+                nextAllowedTime.Clear();
+        }
+
         base.OnDisable();
+    }
+
+    void IObserver.HandleMessage(Enum observerMessage, IObserverParam observerParam)
+    {
+        if (observerParam is not BattleObserverParam param)
+            return;
+
+        if (detectType == IBattleEventTriggerUnit.ColliderDetectType.Stay)
+        {
+            if (nextAllowedTime.ContainsKey(param.ModelValue))
+                nextAllowedTime.Remove(param.ModelValue);
+        }
     }
 }

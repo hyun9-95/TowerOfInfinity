@@ -21,6 +21,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 140f9a530eb9b784ab5a22991efa062b
+    m_Address: AbilityCore/BattleEventBalance/BE_DAMAGE_ELECTRIC_CIRCLE
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1431d70326999ff469f7cc7cdb2ce349
     m_Address: AbilityCore/AbilityBalance/AB_ACTIVE_SWORD_WAVE
     m_ReadOnly: 0
@@ -29,6 +35,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2e8ccb4c2d3a12449ac23693b68353e8
     m_Address: AbilityCore/AbilityBalance/AB_ACTIVE_MAGIC_MISSILE
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3bdebbc645473eb4e966300f0a8c51f8
+    m_Address: AbilityCore/AbilityBalance/AB_ACTIVE_ELECTRIC_CIRCLE
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main

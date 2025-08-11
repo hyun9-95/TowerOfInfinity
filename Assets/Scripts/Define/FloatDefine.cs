@@ -21,4 +21,6 @@ public class FloatDefine
     public const float ADD_FORCE_DAMPING = 0.9f;
 
     public const float MINUTE_TO_SECONDS = 60f;
+
+    public const float COLLIDER_STAY_COOLTIME_PER_TARGET = 0.5f;
 }

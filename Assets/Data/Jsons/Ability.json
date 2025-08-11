@@ -76,5 +76,18 @@
     "PrefabName": "Ability/MagicMissile/MagicMissile_Follow",
     "IconPath": "Ability/MagicMissile/MagicMissile_Follow_Icon",
     "HitEffectPrefabName": ""
+  },
+  {
+    "id": 51004,
+    "SlotType": "Active",
+    "CastingType": "Instant",
+    "BattleEvents": [
+      "BE_DAMAGE_ELECTRIC_CIRCLE"
+    ],
+    "TriggerType": "FollowCollider",
+    "TargetType": "Enemy",
+    "PrefabName": "Ability/ElectricCircle/ElectricCircle_Collider",
+    "IconPath": "Ability/ElectricCircle/ElectricCircle_Collider_Icon",
+    "HitEffectPrefabName": ""
   }
 ]
