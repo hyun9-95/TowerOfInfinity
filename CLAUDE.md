@@ -198,6 +198,25 @@ Directly translates missing localization data in CSV format:
 **Files Modified**:
 - `Assets/Data/Excels/Localization.csv` (updated with translations)
 
+### `/translateAdd`
+Adds new localization entries with automatic translation:
+
+1. **Parse** comma-separated Korean words from command arguments
+2. **Find** next available ID in `Assets/Data/Excels/Localization.csv`
+3. **Generate** LOCAL_WORD_* keys for each word
+4. **Translate** Korean words to English and Chinese using translation dictionary
+5. **Append** new entries to CSV file
+6. **Report** added entries
+
+**Usage**: `/translateAdd 승리,패배,시작,종료`
+
+**Translation Dictionary**:
+- Korean → English: 승리→Victory, 패배→Defeat, 시작→Start, 종료→End, 공격→Attack, 방어→Defense, 마법→Magic, 아이템→Item, 경험치→Experience, 레벨→Level, 체력→Health, 마나→Mana, 속도→Speed, 힘→Strength, 지능→Intelligence, 민첩→Agility
+- Korean → Chinese: 승리→胜利, 패배→败北, 시작→开始, 종료→结束, 공격→攻击, 방어→防御, 마법→魔法, 아이템→道具, 경험치→经验值, 레벨→等级, 체력→生命值, 마나→法力值, 속도→速度, 힘→力量, 지능→智力, 민첩→敏捷
+
+**Files Modified**:
+- `Assets/Data/Excels/Localization.csv` (new entries added)
+
 ## Code Restrictions
 
 ### Prohibited Features
