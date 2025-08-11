@@ -1,0 +1,42 @@
+# 어빌리티 기본 정보
+AbilityName=ElectricBall
+KoreanName=일렉트릭볼
+KoreanDesc=불규칙하게 움직이는 전기 구체를 생성합니다.
+
+# 게임플레이 설정
+CardType=GetAbility
+Tier=Uncommon
+SlotType=Active
+CastingType=Auto
+TriggerType=RandomMove
+TargetType=Enemy
+
+# 배틀 이벤트 설정
+BattleEventType=Damage
+AffectStat=Attack
+BattleEventCategory=Active
+BattleEventGroup=None
+StatReference=Sender
+StatReferenceCondition=CurrentStat
+StatusDirection=Increase
+Stackable=FALSE
+
+# 선택적 정보 (비워두면 기본값 사용)
+IconPath=
+PrefabPath=
+HitEffectPath=
+
+# 사용법:
+# 1. 위 정보를 원하는 어빌리티 내용으로 수정
+# 2. /newAbility 명령어 실행
+# 3. 자동으로 BattleCard.csv, Ability.csv, BattleEvent.csv, Localization.csv 파일에 추가됨
+
+# 참고 - 가능한 값들:
+# CardType: GetAbility, ExpGainRangeUp 등
+# Tier: Common, Rare, Epic, Legendary
+# SlotType: Active, Passive, Weapon
+# CastingType: Auto, OnAttack, Instant
+# TriggerType: Projectile, FollowCollider, InRangeFollow, RandomProjectile
+# TargetType: Enemy, Self, Ally
+# BattleEventType: Damage, Heal, Poison, Shield 등
+# AffectStat: Attack, Defense, Health, Speed 등

@@ -217,6 +217,54 @@ Adds new localization entries with automatic translation:
 **Files Modified**:
 - `Assets/Data/Excels/Localization.csv` (new entries added)
 
+### `/newAbility`
+Creates a new battle card and ability automatically by reading template configuration:
+
+1. **Read** `NewAbilityTemplate.txt` configuration file
+2. **Parse** ability settings (name, gameplay mechanics, battle events)
+3. **Generate** unique IDs for all related data entries
+4. **Convert** naming conventions (Fire Ball → FIRE_BALL → AB_ACTIVE_FIRE_BALL)
+5. **Add** entries to 4 CSV files with proper relationships
+6. **Translate** Korean descriptions to English and Chinese
+7. **Report** all created entries with their IDs
+
+**Usage**: 
+1. Edit `NewAbilityTemplate.txt` with desired ability information
+2. Type `/newAbility` to execute the workflow
+
+**Template Configuration**:
+```
+# Basic Information
+AbilityName=Fire Ball
+KoreanName=파이어볼  
+KoreanDesc=불덩이를 발사하여 적에게 피해를 입힙니다.
+
+# Gameplay Settings  
+CardType=GetAbility
+Tier=Common
+SlotType=Active
+CastingType=Auto
+TriggerType=Projectile
+TargetType=Enemy
+
+# Battle Event Settings
+BattleEventType=Damage
+AffectStat=Attack
+# ... additional settings
+```
+
+**Auto-Generated Data**:
+- **IDs**: Automatically assigns next available IDs (100000+, 51000+, 20000+, 70000+ series)
+- **Naming**: Fire Ball → AB_ACTIVE_FIRE_BALL, BE_DAMAGE_FIRE_BALL, BATTLE_CARD_AB_FIRE_BALL
+- **Paths**: Ability/FireBall/FireBall_Projectile, Ability/FireBall/FireBall_Projectile_Icon
+- **Localization**: LOCAL_AB_FIRE_BALL_NAME, LOCAL_AB_FIRE_BALL_DESC with translations
+
+**Files Modified**:
+- `Assets/Data/Excels/BattleCard.csv` (new battle card entry)
+- `Assets/Data/Excels/Ability.csv` (new ability entry) 
+- `Assets/Data/Excels/BattleEvent.csv` (new battle event entry)
+- `Assets/Data/Excels/Localization.csv` (new name and description entries)
+
 ## Code Restrictions
 
 ### Prohibited Features

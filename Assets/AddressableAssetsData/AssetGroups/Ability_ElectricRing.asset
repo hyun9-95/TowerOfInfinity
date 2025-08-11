@@ -14,7 +14,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_GroupName: Ability_ElectricRing
   m_GUID: a0a99b3de6fd4f644bee50282e55c5fb
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 04a25f0f3b240924a92cc362b5e08976
+    m_Address: Ability/ElectricRing/ElectricRing_Collider_Icon
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0ca81ef5fe441394cb32e2473417993b
+    m_Address: Ability/ElectricRing/ElectricRing_Collider
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1de308f54dc26064f932757b25c0a3f7
+    m_Address: Ability/ElectricRing/ef_13_M
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e80dbb9f6f5c8f441b50f0b0ab082bf1
+    m_Address: Ability/ElectricRing/Electricity_Circle_SpriteSheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
   m_SchemaSet:
