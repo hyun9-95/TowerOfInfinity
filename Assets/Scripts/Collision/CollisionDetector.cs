@@ -33,6 +33,9 @@ public class CollisionDetector : AddressableMono
 
     protected virtual void OnEnterCollision(Collider2D collision)
     {
+        if (baseModel == null)
+            return;
+
         baseModel.OnTriggerEnter?.Invoke(collision);
 
         if (isOneTime)
@@ -41,6 +44,9 @@ public class CollisionDetector : AddressableMono
 
     protected virtual void OnExitCollision(Collider2D collision)
     {
+        if (baseModel == null)
+            return;
+
         baseModel.OnTriggerExit?.Invoke(collision);
     }
 }

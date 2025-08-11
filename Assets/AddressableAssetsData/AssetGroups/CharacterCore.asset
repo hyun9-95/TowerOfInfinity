@@ -159,6 +159,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4b1c6f7475961704286628d9fc21c1f2
+    m_Address: CharacterCore/NoFrictionPhysicsMaterial2D
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4f4211a8e47e5a541bab5585d8846157
     m_Address: CharacterCore/State/Common/CharacterDeadState
     m_ReadOnly: 0

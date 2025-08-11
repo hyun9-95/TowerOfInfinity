@@ -28,6 +28,10 @@ public class User
         IsCompletePrologue = userSaveInfo.IsCompletePrologue;
         CurrentTown = userSaveInfo.CurrentTown;
 
+#if CHEAT
+        CurrentTown = CheatManager.CheatConfig.SceneDefine;
+#endif
+
         UserCharacterInfo = new UserCharacterInfo();
 
         CreateEquipmentInfo(userSaveInfo);

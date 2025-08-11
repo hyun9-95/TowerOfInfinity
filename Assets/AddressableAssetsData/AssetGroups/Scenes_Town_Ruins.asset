@@ -10,19 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Scenes_Town_Sanctuary
+  m_Name: Scenes_Town_Ruins
   m_EditorClassIdentifier: 
-  m_GroupName: Scenes_Town_Sanctuary
-  m_GUID: 8afd10776b9249844821d2225609841f
+  m_GroupName: Scenes_Town_Ruins
+  m_GUID: d22eed688409ad141ae6f129ed28405d
   m_SerializeEntries:
-  - m_GUID: 2631dda0ef533b44cbaa55eda0e05aa2
-    m_Address: Assets/Addressable/Scenes/Town/Town_Sanctuary/Town_Sanctuary/NavMesh-NavigationSurface.asset
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Main
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 8f4ff9fb980dbac4da5e8531d11832b3
-    m_Address: Town_Sanctuary
+  - m_GUID: 51ba768c7c5c74e498fad17b1eb3ec96
+    m_Address: Town_Ruins
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
@@ -31,5 +25,5 @@ MonoBehaviour:
   m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 648993319363d904eb1d4aee079ad9d6, type: 2}
-    - {fileID: 11400000, guid: 28536d19146979a45b5957e70be3bba1, type: 2}
+    - {fileID: 11400000, guid: 09b396242e664544ea1b3ad77aaf00d8, type: 2}
+    - {fileID: 11400000, guid: 365c1bd96bc66254ba3be0d92f855eb7, type: 2}

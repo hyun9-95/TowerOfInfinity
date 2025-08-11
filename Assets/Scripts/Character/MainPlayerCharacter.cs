@@ -37,6 +37,7 @@ public class MainPlayerCharacter : MonoBehaviour
 
         // 조작 활성화
         mainCharacterInput.Initialize(model);
+        mainCharacterInput.EnableInput(true);
 
         // 외형 업데이트
         await UpdateSpriteLibraryAsset(mainCharacterInfo.PartsInfo);
@@ -46,6 +47,11 @@ public class MainPlayerCharacter : MonoBehaviour
             if (characterUnit.TryGetComponent<BattleExpGainer>(out var battleExpGainer))
                 DestroyImmediate(battleExpGainer);
         }
+    }
+
+    public void SetEnableInput(bool value)
+    {
+        mainCharacterInput.EnableInput(value);
     }
 
     public async UniTask UpdateSpriteLibraryAsset(MainCharacterPartsInfo mainCharacterPartsInfo)

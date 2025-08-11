@@ -27,6 +27,18 @@ MonoBehaviour:
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a50e85261c47743468fb8649eced36e7
+    m_Address: UI/Damages/Pixel-Shadow
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a6a9e8503517d794a964cf99c9d9a3e8
+    m_Address: UI/Damages/DNPPixel
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a97ba659eee8fdc4bb1c1e63396239b9
     m_Address: UI/Damages/HealDamage
     m_ReadOnly: 0

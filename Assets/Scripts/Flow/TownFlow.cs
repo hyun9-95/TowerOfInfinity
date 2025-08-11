@@ -89,6 +89,8 @@ public class TownFlow : BaseFlow<TownFlowModel>
 
     private void WarpToBattle(Collider2D collider2D)
     {
+        PlayerManager.Instance.EnableInput(false);
+
         BattleFlowModel battleFlowModel = new BattleFlowModel();
         battleFlowModel.SetSceneDefine(SceneDefine.Battle_Atlantis);
         battleFlowModel.SetDataDungeon(DataManager.Instance.GetDataById<DataDungeon>((int)DungeonDefine.DUNGEON_ATLANTIS));

@@ -87,7 +87,7 @@ public class UserSaveInfo
         }
 
         if (CurrentTown == SceneDefine.None)
-            CurrentTown = SceneDefine.Town_Sanctuary;
+            CurrentTown = SceneDefine.Town_Ruins;
     }
 
     public void SetId(string id) => Id = id;

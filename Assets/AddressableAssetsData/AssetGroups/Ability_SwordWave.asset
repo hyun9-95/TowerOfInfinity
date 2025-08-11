@@ -15,8 +15,8 @@ MonoBehaviour:
   m_GroupName: Ability_SwordWave
   m_GUID: daa9285f37a242e4eba57fcaa9d7199e
   m_SerializeEntries:
-  - m_GUID: 0f1a45aec1bc56f4f912e93f33caa581
-    m_Address: Ability/SwordWave/frame0002
+  - m_GUID: 095c6e1efca35e6439ec062724f6d48e
+    m_Address: Ability/SwordWave/frame0005
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
@@ -27,20 +27,26 @@ MonoBehaviour:
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 316d6e0d8ef982a43a9cb28bf42f8dd4
-    m_Address: Ability/SwordWave/pj1_slash_small_white_animation
+  - m_GUID: 30725249a99e5b24abd7bac660be3177
+    m_Address: Ability/SwordWave/frame0003
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 66dc9dd263853f54dbb3cf36ff15a39d
+  - m_GUID: 6038d663c6aec6d46a96e1303bc27535
     m_Address: Ability/SwordWave/frame0004
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 6aed3a84b75c652498dfb267c8699a3a
-    m_Address: Ability/SwordWave/frame0001
+  - m_GUID: 6467e350ca184012955b1d4c12f8542a
+    m_Address: Ability/SwordWave/pj1_slash_small_white_animation
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6e1a079b02044a858d6190f0800b224f
+    m_Address: Ability/SwordWave/pj1_slash_small_white
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
@@ -51,20 +57,20 @@ MonoBehaviour:
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: ade0ac7f2f1b6ca45a2df308abab110e
-    m_Address: Ability/SwordWave/frame0003
+  - m_GUID: b74cb08c97997a647b546b24fa623fc1
+    m_Address: Ability/SwordWave/frame0002
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: e35d57ee8cfebc4428ff704aea88bf11
-    m_Address: Ability/SwordWave/pj1_slash_small_white_animator
+  - m_GUID: e0c11afc3d17fb941a1b2e9c8acb5ff9
+    m_Address: Ability/SwordWave/frame0000
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: ffe1dde2a1fbcd14785b36176271d6f0
-    m_Address: Ability/SwordWave/frame0005
+  - m_GUID: f9bdd3bf740fea141bb6d342119da3fb
+    m_Address: Ability/SwordWave/frame0001
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main

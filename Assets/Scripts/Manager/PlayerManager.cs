@@ -7,7 +7,8 @@ using UnityEngine;
 public class PlayerManager : BaseMonoManager<PlayerManager>
 {
     #region Property
-    public User MyUser { get; private set; }
+    public UserSettings UserSettings => settings;
+    public User User => user;
     #endregion
 
     #region Value
@@ -15,6 +16,8 @@ public class PlayerManager : BaseMonoManager<PlayerManager>
     private Transform playerCharacterTransform;
 
     private MainPlayerCharacter mainPlayerCharacter;
+    private User user;
+    private UserSettings settings;
     #endregion
 
     public void LoadUser()
@@ -43,20 +46,24 @@ public class PlayerManager : BaseMonoManager<PlayerManager>
 
         userSaveInfo.CheckDefaultValue();
 
-        User user = new User();
+        user = new User();
         user.CreateUserByUserSaveInfo(userSaveInfo);
-
-        MyUser = user;
 
         var newSaveInfoJson = JsonConvert.SerializeObject(userSaveInfo);
         File.WriteAllText(userSaveInfoPath, newSaveInfoJson);
+    }
+
+    public void LoadUserSettings()
+    {
+        settings = new UserSettings();
+        settings.LoadSettings(user.ID);
     }
 
     public async UniTask LoadMainPlayerCharacter()
     {
         if (mainPlayerCharacter == null)
         {
-            var mainPlayerCharacterPath = MyUser.UserCharacterInfo.MainCharacterInfo.MainCharacterPath;
+            var mainPlayerCharacterPath = User.UserCharacterInfo.MainCharacterInfo.MainCharacterPath;
             
             mainPlayerCharacter = await AddressableManager.Instance.InstantiateUntrackedAsync<MainPlayerCharacter>
                 (mainPlayerCharacterPath, playerCharacterTransform);
@@ -76,12 +83,17 @@ public class PlayerManager : BaseMonoManager<PlayerManager>
         if (isStopUnitUpdate)
             mainPlayerCharacter.CharacterUnit.StopUpdate();
 
-        await mainPlayerCharacter.UpdateMainCharacter(MyUser.UserCharacterInfo.MainCharacterInfo, setUpType);
+        await mainPlayerCharacter.UpdateMainCharacter(User.UserCharacterInfo.MainCharacterInfo, setUpType);
     }
 
     public MainPlayerCharacter GetMainPlayerCharacter()
     {
         return mainPlayerCharacter;
+    }
+
+    public void EnableInput(bool value)
+    {
+        mainPlayerCharacter.SetEnableInput(value);
     }
 
     public CharacterUnit GetMainPlayerCharacterUnit()
@@ -94,6 +106,6 @@ public class PlayerManager : BaseMonoManager<PlayerManager>
 
     public MainCharacterInfo GetMainCharacterInfo()
     {
-        return MyUser.UserCharacterInfo.MainCharacterInfo;
+        return User.UserCharacterInfo.MainCharacterInfo;
     }
 }

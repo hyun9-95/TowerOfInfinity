@@ -227,7 +227,7 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
 
     private void OnReturnToTown()
     {
-        var currentTown = PlayerManager.instance.MyUser.CurrentTown;
+        var currentTown = PlayerManager.instance.User.CurrentTown;
 
         FlowManager.Instance.ChangeCurrentTownFlow(currentTown).Forget();
     }

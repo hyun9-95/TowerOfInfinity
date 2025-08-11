@@ -65,7 +65,7 @@ public class CharacterUnitModel : IBaseUnitModel
         AbilityProcessor = processor;
     }
 
-    public void EnableInput(bool value)
+    public void SetInputWrapper(bool value)
     {
         InputWrapper = value ? new InputWrapper() : null;
     }

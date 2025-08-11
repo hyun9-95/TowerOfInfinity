@@ -14,13 +14,19 @@ public class MainCharacterInput : MonoBehaviour
     private float moveX;
     private float moveY;
     private PlayerInput playerInput;
+    private bool IsInput = false;
     #endregion Value
 
     #region Function
     public void Initialize(CharacterUnitModel ownerModel)
     {
         OwnerModel = ownerModel;
-        OwnerModel.EnableInput(true);
+        OwnerModel.SetInputWrapper(true);
+    }
+
+    public void EnableInput(bool value)
+    {
+        IsInput = value;
     }
 
     private void Update()
@@ -31,6 +37,13 @@ public class MainCharacterInput : MonoBehaviour
     
     private void GetInput()
     {
+        if (!IsInput)
+        {
+            moveX = 0;
+            moveY = 0;
+            playerInput = PlayerInput.None;
+        }
+
         moveX = Input.GetAxisRaw("Horizontal");
         moveY = Input.GetAxisRaw("Vertical");
 

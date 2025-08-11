@@ -31,7 +31,7 @@ public class IntroFlow : BaseFlow<IntroFlowModel>
 
     private void OnCompleteLoading()
     {
-        bool isEnterCustomize = !PlayerManager.Instance.MyUser.IsCompletePrologue;
+        bool isEnterCustomize = !PlayerManager.Instance.User.IsCompletePrologue;
 
 #if CHEAT
         if (!isEnterCustomize && CheatManager.CheatConfig.IsEnterCustomizationFlow)
@@ -54,10 +54,8 @@ public class IntroFlow : BaseFlow<IntroFlowModel>
         }
         else
         {
-            TownFlowModel townFlowModel = new TownFlowModel();
-            townFlowModel.SetSceneDefine(SceneDefine.Town_Sanctuary);
-
-            FlowManager.Instance.ChangeFlow(FlowType.TownFlow, townFlowModel).Forget();
+            FlowManager.Instance.ChangeCurrentTownFlow
+                (PlayerManager.Instance.User.CurrentTown).Forget();
         }
 
         return;
@@ -71,10 +69,8 @@ public class IntroFlow : BaseFlow<IntroFlowModel>
         }
         else
         {
-            TownFlowModel townFlowModel = new TownFlowModel();
-            townFlowModel.SetSceneDefine(SceneDefine.Town_Sanctuary);
-
-            FlowManager.Instance.ChangeFlow(FlowType.TownFlow, townFlowModel).Forget();
+            FlowManager.Instance.ChangeCurrentTownFlow
+                (PlayerManager.Instance.User.CurrentTown).Forget();
         }
     }
 

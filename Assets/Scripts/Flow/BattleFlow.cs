@@ -26,7 +26,7 @@ public class BattleFlow : BaseFlow<BattleFlowModel>
         battleSystemManager = BattleSystemManager.Instance;
         battleUIManager = BattleUIManager.Instance;
 
-        var battleTeam = await CreatePlayerBattleTeam(PlayerManager.Instance.MyUser.UserCharacterInfo.CurrentDeck,
+        var battleTeam = await CreatePlayerBattleTeam(PlayerManager.Instance.User.UserCharacterInfo.CurrentDeck,
             battleSceneManager.PlayerStartTransform);
 
         var battleInfo = CreateBattleInfo(Model.DataDungeon, battleTeam);

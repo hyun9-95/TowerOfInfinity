@@ -74,11 +74,27 @@ public class IntroController : BaseController<IntroViewModel>
 
         // 유저 로드
         PlayerManager.Instance.LoadUser();
+        PlayerManager.Instance.LoadUserSettings();
 
-        // 유저 키 기반 세팅 로드
-        GameManager.Instance.LoadGameSettings();
+        // 유저 로컬 세팅
+        InitializeLocalization();
 
         // 메인 캐릭터 로드
         await PlayerManager.Instance.LoadMainPlayerCharacter();
+    }
+
+    private void InitializeLocalization()
+    {
+        var applyLocal = PlayerManager.Instance.UserSettings.GetLocalizationType();
+
+#if CHEAT
+        if (CheatManager.CheatConfig.testLocalType != LocalizationType.None)
+            applyLocal = CheatManager.CheatConfig.testLocalType;
+#endif
+
+        if (applyLocal == LocalizationType.None)
+            applyLocal = LocalizationType.English;
+
+        LocalizationManager.Instance.Initialize(applyLocal);
     }
 }

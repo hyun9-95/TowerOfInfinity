@@ -150,13 +150,13 @@ public class CharacterCustomizationController : BaseController<CharacterCustomiz
         partsInfo.SetHairParts(Model.SelectHairData.Id);
 
         // 도입부 플래그
-        PlayerManager.Instance.MyUser.SetCompletePrologue(true);
+        PlayerManager.Instance.User.SetCompletePrologue(true);
 
         // 저장
-        PlayerManager.Instance.MyUser.Save();
+        PlayerManager.Instance.User.Save();
 
         TownFlowModel townFlowModel = new TownFlowModel();
-        townFlowModel.SetSceneDefine(SceneDefine.Town_Sanctuary);
+        townFlowModel.SetSceneDefine(PlayerManager.Instance.User.CurrentTown);
         townFlowModel.AddStateEvent(FlowState.TranstionIn, async() =>
         {
             await OnChangePartsAsync(true, true);

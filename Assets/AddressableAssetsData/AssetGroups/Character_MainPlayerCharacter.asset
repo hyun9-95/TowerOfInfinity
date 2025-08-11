@@ -15,6 +15,12 @@ MonoBehaviour:
   m_GroupName: Character_MainPlayerCharacter
   m_GUID: 6365a973a4e1b974b9d5a78a2aa4bed2
   m_SerializeEntries:
+  - m_GUID: 6b2cc87c7c63f8545bdca59ea2c14425
+    m_Address: Character/Player/MainPlayerCharacter/SpriteEffects
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ac183e3f826d6734abd2ab2dcedb4ec0
     m_Address: Character/Player/MainPlayerCharacter/MainPlayerCharacter
     m_ReadOnly: 0

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GameSettings
+public class UserSettings
 {
     public VolumeSetting Volume => volume;
     public LocalizationSetting Localization => localization;
@@ -8,12 +8,14 @@ public class GameSettings
     private VolumeSetting volume;
     private LocalizationSetting localization;
 
-    public void LoadSettings()
+    public void LoadSettings(int id)
     {
         volume = new VolumeSetting();
+        volume.SetPrefsKey(id);
         volume.Load();
 
         localization = new LocalizationSetting();
+        localization.SetPrefsKey(id);
         localization.Load();
     }
 
