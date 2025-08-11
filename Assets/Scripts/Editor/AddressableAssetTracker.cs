@@ -12,48 +12,51 @@ public class AddressableAssetTracker
     [MenuItem("Tools/Move Untracked Assets to Addressable Folder")]
     public static void MoveUntrackedAssetsToAddressable()
     {
-        var prefabAssetMap = new Dictionary<string, HashSet<string>>();
+        var assetSourceMap = new Dictionary<string, HashSet<string>>();
         
         try
         {
-            EditorUtility.DisplayProgressBar("Scanning Assets", "Finding Addressable prefabs...", 0f);
+            EditorUtility.DisplayProgressBar("Scanning Assets", "Finding Addressable prefabs and scenes...", 0f);
             
+            // 프리팹 스캔
             var addressablePrefabs = ScanAddressablePrefabs();
             Logger.Log($"Found {addressablePrefabs.Count} prefabs in Addressable folder");
             
             int currentIndex = 0;
+            int totalSources = addressablePrefabs.Count;
+            
+            // 씬 스캔 추가 (Addressable 폴더 하위만)
+            var scenePaths = ScanAddressableScenes();
+            Logger.Log($"Found {scenePaths.Count} scenes in Addressable folder");
+            totalSources += scenePaths.Count;
+            
+            // 프리팹 처리
             foreach (var prefabPath in addressablePrefabs)
             {
-                float progress = (float)currentIndex / addressablePrefabs.Count;
-                EditorUtility.DisplayProgressBar("Scanning Dependencies", $"Processing {Path.GetFileName(prefabPath)}", progress);
+                float progress = (float)currentIndex / totalSources;
+                EditorUtility.DisplayProgressBar("Scanning Dependencies", $"Processing prefab: {Path.GetFileName(prefabPath)}", progress);
                 
-                var dependencies = GetAssetDependencies(prefabPath);
-                var untrackedDependencies = new HashSet<string>();
-                
-                foreach (var dependency in dependencies)
-                {
-                    if (IsAssetUntracked(dependency))
-                    {
-                        untrackedDependencies.Add(dependency);
-                    }
-                }
-                
-                if (untrackedDependencies.Count > 0)
-                {
-                    string prefabName = Path.GetFileNameWithoutExtension(prefabPath);
-                    prefabAssetMap[prefabName] = untrackedDependencies;
-                }
-                
+                ProcessAssetDependencies(prefabPath, "Prefab", assetSourceMap);
                 currentIndex++;
             }
             
-            int totalAssets = prefabAssetMap.Values.SelectMany(x => x).Distinct().Count();
-            Logger.Log($"Found {totalAssets} untracked assets across {prefabAssetMap.Count} prefabs");
+            // 씬 처리
+            foreach (var scenePath in scenePaths)
+            {
+                float progress = (float)currentIndex / totalSources;
+                EditorUtility.DisplayProgressBar("Scanning Dependencies", $"Processing scene: {Path.GetFileName(scenePath)}", progress);
+                
+                ProcessAssetDependencies(scenePath, "Scene", assetSourceMap);
+                currentIndex++;
+            }
+            
+            int totalAssets = assetSourceMap.Values.SelectMany(x => x).Distinct().Count();
+            Logger.Log($"Found {totalAssets} untracked assets across {assetSourceMap.Count} sources (prefabs + scenes)");
             
             if (totalAssets > 0)
             {
-                MoveAssetsByPrefab(prefabAssetMap);
-                Logger.Success($"Successfully processed {prefabAssetMap.Count} prefabs with untracked assets");
+                MoveAssetsBySource(assetSourceMap);
+                Logger.Success($"Successfully processed {assetSourceMap.Count} sources with untracked assets");
             }
             else
             {
@@ -89,6 +92,47 @@ public class AddressableAssetTracker
         }
         
         return prefabPaths;
+    }
+    
+    private static List<string> ScanAddressableScenes()
+    {
+        var scenePaths = new List<string>();
+        
+        if (!Directory.Exists(ADDRESSABLE_ROOT))
+        {
+            Logger.Warning($"Addressable root folder not found: {ADDRESSABLE_ROOT}");
+            return scenePaths;
+        }
+        
+        string[] guids = AssetDatabase.FindAssets("t:Scene", new[] { ADDRESSABLE_ROOT });
+        
+        foreach (string guid in guids)
+        {
+            string path = AssetDatabase.GUIDToAssetPath(guid);
+            scenePaths.Add(path);
+        }
+        
+        return scenePaths;
+    }
+    
+    private static void ProcessAssetDependencies(string assetPath, string sourceType, Dictionary<string, HashSet<string>> assetSourceMap)
+    {
+        var dependencies = GetAssetDependencies(assetPath);
+        var untrackedDependencies = new HashSet<string>();
+        
+        foreach (var dependency in dependencies)
+        {
+            if (IsAssetUntracked(dependency))
+            {
+                untrackedDependencies.Add(dependency);
+            }
+        }
+        
+        if (untrackedDependencies.Count > 0)
+        {
+            string sourceName = $"{sourceType}_{Path.GetFileNameWithoutExtension(assetPath)}";
+            assetSourceMap[sourceName] = untrackedDependencies;
+        }
     }
     
     private static List<string> GetAssetDependencies(string assetPath)
@@ -185,42 +229,42 @@ public class AddressableAssetTracker
         }
     }
     
-    private static void MoveAssetsByPrefab(Dictionary<string, HashSet<string>> prefabAssetMap)
+    private static void MoveAssetsBySource(Dictionary<string, HashSet<string>> assetSourceMap)
     {
         int totalMoved = 0;
-        int currentPrefab = 0;
+        int currentSource = 0;
         
         // 에셋 이동 시작
-        foreach (var kvp in prefabAssetMap)
+        foreach (var kvp in assetSourceMap)
         {
-            string prefabName = kvp.Key;
+            string sourceName = kvp.Key;
             var assetPaths = kvp.Value;
             
-            float progress = (float)currentPrefab / prefabAssetMap.Count;
-            EditorUtility.DisplayProgressBar("Moving Assets", $"Processing prefab: {prefabName}", progress);
+            float progress = (float)currentSource / assetSourceMap.Count;
+            EditorUtility.DisplayProgressBar("Moving Assets", $"Processing source: {sourceName}", progress);
             
-            int movedForPrefab = 0;
-            string targetFolderPath = GetUntrackedFolderForPrefab(prefabName);
+            int movedForSource = 0;
+            string targetFolderPath = GetUntrackedFolderForSource(sourceName);
             
             foreach (string assetPath in assetPaths)
             {
-                if (MoveAssetToPrefabFolder(assetPath, targetFolderPath))
+                if (MoveAssetToSourceFolder(assetPath, targetFolderPath))
                 {
-                    movedForPrefab++;
+                    movedForSource++;
                     totalMoved++;
                 }
             }
             
-            if (movedForPrefab > 0)
+            if (movedForSource > 0)
             {
-                Logger.Log($"Moved {movedForPrefab} assets for prefab: {prefabName} to {targetFolderPath}");
+                Logger.Log($"Moved {movedForSource} assets for source: {sourceName} to {targetFolderPath}");
             }
             else
             {
-                Logger.Log($"No assets moved for prefab: {prefabName} (all assets may have failed to move)");
+                Logger.Log($"No assets moved for source: {sourceName} (all assets may have failed to move)");
             }
             
-            currentPrefab++;
+            currentSource++;
         }
         
         AssetDatabase.Refresh();
@@ -228,7 +272,7 @@ public class AddressableAssetTracker
         // 빈 폴더 정리
         RemoveEmptyFolders();
         
-        Logger.Log($"Total moved {totalMoved} assets across {prefabAssetMap.Count} prefab folders");
+        Logger.Log($"Total moved {totalMoved} assets across {assetSourceMap.Count} source folders");
     }
     
     private static void RemoveEmptyFolders()
@@ -260,29 +304,29 @@ public class AddressableAssetTracker
         }
     }
     
-    private static string GetUntrackedFolderForPrefab(string prefabName)
+    private static string GetUntrackedFolderForSource(string sourceName)
     {
-        // Untracked 하위에 프리팹명 폴더 생성
-        string untrackedPrefabFolder = $"{UNTRACKED_FOLDER}/{prefabName}";
+        // Untracked 하위에 소스명 폴더 생성 (프리팹 또는 씬)
+        string untrackedSourceFolder = $"{UNTRACKED_FOLDER}/{sourceName}";
         
-        if (!AssetDatabase.IsValidFolder(untrackedPrefabFolder))
+        if (!AssetDatabase.IsValidFolder(untrackedSourceFolder))
         {
             // Untracked 폴더가 없으면 먼저 생성
             CreateUntrackedFolder();
-            AssetDatabase.CreateFolder(UNTRACKED_FOLDER, prefabName);
-            Logger.Log($"Created folder: {untrackedPrefabFolder}");
+            AssetDatabase.CreateFolder(UNTRACKED_FOLDER, sourceName);
+            Logger.Log($"Created folder: {untrackedSourceFolder}");
         }
         
-        return untrackedPrefabFolder;
+        return untrackedSourceFolder;
     }
     
-    private static bool MoveAssetToPrefabFolder(string originalPath, string prefabFolderPath)
+    private static bool MoveAssetToSourceFolder(string originalPath, string sourceFolderPath)
     {
         if (!File.Exists(originalPath))
             return false;
             
         string fileName = Path.GetFileName(originalPath);
-        string targetPath = $"{prefabFolderPath}/{fileName}";
+        string targetPath = $"{sourceFolderPath}/{fileName}";
         
         // Unity 경로 형식으로 정규화
         targetPath = targetPath.Replace("\\", "/");
@@ -296,7 +340,7 @@ public class AddressableAssetTracker
             do
             {
                 string newFileName = $"{nameWithoutExt}_{counter}{extension}";
-                targetPath = $"{prefabFolderPath}/{newFileName}";
+                targetPath = $"{sourceFolderPath}/{newFileName}";
                 targetPath = targetPath.Replace("\\", "/");
                 counter++;
             }

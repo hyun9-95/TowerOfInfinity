@@ -1,0 +1,179 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: SceneRefs_SceneRefs_Town_Customization
+  m_EditorClassIdentifier: 
+  m_GroupName: SceneRefs_SceneRefs_Town_Customization
+  m_GUID: efbb6d22fdeb3fd49b7560d1f8420bfe
+  m_SerializeEntries:
+  - m_GUID: 0c7b5702032b58340afdffae935b426e
+    m_Address: SceneRefs/SceneRefs_Town_Customization/RA_Sanctuary_217
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0ee2835006df3b742a77eb90e00df39d
+    m_Address: SceneRefs/SceneRefs_Town_Customization/RA_Sanctuary_133
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1c1df35dccd03be4f81ae0e59beab4b9
+    m_Address: SceneRefs/SceneRefs_Town_Customization/RA_Sanctuary_135
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3852b2b4770cd0640bc5edd8bb78567c
+    m_Address: SceneRefs/SceneRefs_Town_Customization/RA_Sanctuary_194
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 398d696940b5b5e42b97bbc9f49b6a8c
+    m_Address: SceneRefs/SceneRefs_Town_Customization/RA_Sanctuary_193
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3a82ff8edea4fd042b3797b283f98ebe
+    m_Address: SceneRefs/SceneRefs_Town_Customization/RA_Sanctuary_27
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4218f1c66d42aae4397f20db80460795
+    m_Address: SceneRefs/SceneRefs_Town_Customization/RA_Sanctuary
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 526d7cc49e67f4847b930fc6be2a6e9a
+    m_Address: SceneRefs/SceneRefs_Town_Customization/RA_Sanctuary_168
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 76ce8f598f3dafc4b8dab88b2062de83
+    m_Address: SceneRefs/SceneRefs_Town_Customization/RA_Sanctuary_29
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7703b80e9ba6d54408717d1fb5cbaf1f
+    m_Address: SceneRefs/SceneRefs_Town_Customization/RA_Sanctuary_216
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 995f4c471d94dca45935a2522e5bf4dc
+    m_Address: SceneRefs/SceneRefs_Town_Customization/RA_Sanctuary_7
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 999e59fb326027746a18bdfb35f3627a
+    m_Address: SceneRefs/SceneRefs_Town_Customization/RA_Sanctuary_265
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9a64e2054840aaf4c95b054a0f0b451d
+    m_Address: SceneRefs/SceneRefs_Town_Customization/RA_Sanctuary_134
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9aa0a497ab8b2614bb5fabb6f543c5a8
+    m_Address: SceneRefs/SceneRefs_Town_Customization/RA_Sanctuary_57
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b73c6eedc07abe4448025f505be67ec4
+    m_Address: SceneRefs/SceneRefs_Town_Customization/RA_Sanctuary_84
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bca3bb9e78e49a4498d81212e23c8711
+    m_Address: SceneRefs/SceneRefs_Town_Customization/RA_Sanctuary_166
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d1a64d9a2adc2004e8e2a3d33b6569fa
+    m_Address: SceneRefs/SceneRefs_Town_Customization/RA_Sanctuary_262
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d2f827e4ef1674a49b26ece2f3a12554
+    m_Address: SceneRefs/SceneRefs_Town_Customization/RA_Sanctuary_241
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: df6f1bc30ba14504f9118599e35298d4
+    m_Address: SceneRefs/SceneRefs_Town_Customization/RA_Sanctuary_287
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e025ff74014df7743af9daf75fb3321d
+    m_Address: SceneRefs/SceneRefs_Town_Customization/RA_Sanctuary_56
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e5417027c6f7b7444a8fc0640bc90491
+    m_Address: SceneRefs/SceneRefs_Town_Customization/RA_Sanctuary_218
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e761c1a3c55f2eb4792f00d67e3191df
+    m_Address: SceneRefs/SceneRefs_Town_Customization/RA_Sanctuary_167
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e9241687b005bb945b685135887a2e21
+    m_Address: SceneRefs/SceneRefs_Town_Customization/San_Ani 28
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: edd24621b3ddc374b8a5b2e60d387846
+    m_Address: SceneRefs/SceneRefs_Town_Customization/RA_Sanctuary_192
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f6128e431e8fe3546b49eec853153cfc
+    m_Address: SceneRefs/SceneRefs_Town_Customization/RA_Sanctuary_Animations
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fd48df79a96f7fb47b4e8879c80eea78
+    m_Address: SceneRefs/SceneRefs_Town_Customization/RA_Sanctuary_55
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 2378e1696b13212468d69835098ce53d, type: 2}
+    - {fileID: 11400000, guid: f1cf1fa3aa588f149bf20b8247e67d33, type: 2}

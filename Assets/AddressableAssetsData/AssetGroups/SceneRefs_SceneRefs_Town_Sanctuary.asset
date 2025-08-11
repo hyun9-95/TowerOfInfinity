@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: SceneRefs_SceneRefs_Town_Sanctuary
+  m_EditorClassIdentifier: 
+  m_GroupName: SceneRefs_SceneRefs_Town_Sanctuary
+  m_GUID: 11fb12ccb3f5255469f48cba4d912730
+  m_SerializeEntries: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 9d99809aff9687244bc686f6ecaf7bfb, type: 2}
+    - {fileID: 11400000, guid: e74abdec0ca95ad48b55ad1b2b874e08, type: 2}

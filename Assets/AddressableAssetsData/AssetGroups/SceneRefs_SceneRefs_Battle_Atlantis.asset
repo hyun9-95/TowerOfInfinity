@@ -1,0 +1,329 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: SceneRefs_SceneRefs_Battle_Atlantis
+  m_EditorClassIdentifier: 
+  m_GroupName: SceneRefs_SceneRefs_Battle_Atlantis
+  m_GUID: 5084deab2e79b5b459d3bb696a2c70f8
+  m_SerializeEntries:
+  - m_GUID: 01bab17dab658b447a265ce3d246163b
+    m_Address: SceneRefs/SceneRefs_Battle_Atlantis/RA_Atlantis_835
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 03724ee15297a9241b83fdc78976be90
+    m_Address: SceneRefs/SceneRefs_Battle_Atlantis/RA_Atlantis_391
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 09b34559e35164847a432b5a9e5a417e
+    m_Address: SceneRefs/SceneRefs_Battle_Atlantis/RA_Atlantis_260
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0d6b90b6624f8de4a9c00ddf36a2a857
+    m_Address: SceneRefs/SceneRefs_Battle_Atlantis/RA_Atlantis_582
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0fa2c367846c5d646a0a1a65a73daf76
+    m_Address: SceneRefs/SceneRefs_Battle_Atlantis/RA_Atlantis_347
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 135a497bd4c5da244bdd6b60bde16d24
+    m_Address: SceneRefs/SceneRefs_Battle_Atlantis/RA_Atlantis_879
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 14ffe30cbfb0729499bd6b646f357a3f
+    m_Address: SceneRefs/SceneRefs_Battle_Atlantis/RA_Atlantis_1041
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 17eb6342dee22d443af993e0c69b74af
+    m_Address: SceneRefs/SceneRefs_Battle_Atlantis/RA_Atlantis_538
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 29aab55a8a4062341b3a64c1cab72c1a
+    m_Address: SceneRefs/SceneRefs_Battle_Atlantis/RA_Atlantis_514
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2e5dc0028a1d76c4d98cf91f473ac432
+    m_Address: SceneRefs/SceneRefs_Battle_Atlantis/RA_Atlantis_998
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3456e4fb014b5c94cbe685658f1c87ce
+    m_Address: SceneRefs/SceneRefs_Battle_Atlantis/RA_Atlantis_259
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 346378934263d524394a656e7c0220ed
+    m_Address: SceneRefs/SceneRefs_Battle_Atlantis/RA_Atlantis_308
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 35fca520c594f9046a86a9cffea4045b
+    m_Address: SceneRefs/SceneRefs_Battle_Atlantis/RA_Atlantis_349
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3c2ee32cd08b3bc40a800e87f5cadbc7
+    m_Address: SceneRefs/SceneRefs_Battle_Atlantis/RA_Atlantis_214
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 44b43638450af5640a77c2c0a0a6ebd4
+    m_Address: SceneRefs/SceneRefs_Battle_Atlantis/RA_Atlantis_878
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 51e47b0ae4e99824f99667ea12db0d7a
+    m_Address: SceneRefs/SceneRefs_Battle_Atlantis/RA_Atlantis_390
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 53f0445d56d2243469df04a99d5d2427
+    m_Address: SceneRefs/SceneRefs_Battle_Atlantis/RA_Atlantis_1082
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 569b106c04f8fe14eb8492a670a280fe
+    m_Address: SceneRefs/SceneRefs_Battle_Atlantis/RA_Atlantis_217
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6105c6d26bcaf9f49ad7b44efeb4f052
+    m_Address: SceneRefs/SceneRefs_Battle_Atlantis/RA_Atlantis_108
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 629bed3a0f6ae73418d657508e500479
+    m_Address: SceneRefs/SceneRefs_Battle_Atlantis/RA_Atlantis
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 67394b0d79595324a9cfd02a8d312727
+    m_Address: SceneRefs/SceneRefs_Battle_Atlantis/RA_Atlantis_215
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 685c411410198be4086ac0e427fd9105
+    m_Address: SceneRefs/SceneRefs_Battle_Atlantis/RA_Atlantis_537
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6b8e319548b92104691e5f0c494ea166
+    m_Address: SceneRefs/SceneRefs_Battle_Atlantis/RA_Atlantis_218
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 78cce17d2d3136b45b7c3fc7e27eb471
+    m_Address: SceneRefs/SceneRefs_Battle_Atlantis/RA_Atlantis_348
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 78df3b651dbf0e64b8d3fb730fef35f2
+    m_Address: SceneRefs/SceneRefs_Battle_Atlantis/RA_Atlantis_216
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 79123256663ce604bb8cc10ffa19b326
+    m_Address: SceneRefs/SceneRefs_Battle_Atlantis/RA_Atlantis_135
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8503451f874351c4e8caea1a96d45a45
+    m_Address: SceneRefs/SceneRefs_Battle_Atlantis/RA_Atlantis_561
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 898c90b70ee9bbf4da4b41f46e9a4242
+    m_Address: SceneRefs/SceneRefs_Battle_Atlantis/RA_Atlantis_196
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8e374d5754c6d93408e81e4dfc632d92
+    m_Address: SceneRefs/SceneRefs_Battle_Atlantis/RA_Atlantis_562
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9370e500cfa7093468989ca639c7577c
+    m_Address: SceneRefs/SceneRefs_Battle_Atlantis/RA_Atlantis_350
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a02648ca6df5fa14582fbc352098c0f2
+    m_Address: SceneRefs/SceneRefs_Battle_Atlantis/RA_Atlantis_581
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: aad04ad82a8f9a7428fe4141e6488593
+    m_Address: SceneRefs/SceneRefs_Battle_Atlantis/RA_Atlantis_389
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ad89d036f3bd48a42b4e218f6e19a83d
+    m_Address: SceneRefs/SceneRefs_Battle_Atlantis/RA_Atlantis_137
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: af82113082cd2fc429ccac5f491ea593
+    m_Address: SceneRefs/SceneRefs_Battle_Atlantis/RA_Atlantis_999
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b5d84a30dc2b2f341a506cc7bc989e23
+    m_Address: SceneRefs/SceneRefs_Battle_Atlantis/RA_Atlantis_154
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b65ee489f2442484c82e932226a1a700
+    m_Address: SceneRefs/SceneRefs_Battle_Atlantis/RA_Atlantis_177
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bb0b459054c61e748b466520c8e3aad8
+    m_Address: SceneRefs/SceneRefs_Battle_Atlantis/RA_Atlantis_109
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d0131be7b20616447b55f85175c07fab
+    m_Address: SceneRefs/SceneRefs_Battle_Atlantis/RA_Atlantis_1040
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d239a5d73f5fd924293407c3fe54f739
+    m_Address: SceneRefs/SceneRefs_Battle_Atlantis/RA_Atlantis_261
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d264366c4971c7d43b1144e5c457dd1e
+    m_Address: SceneRefs/SceneRefs_Battle_Atlantis/RA_Atlantis_515
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d2f5027c9fc06f4479f55257bebd6e5c
+    m_Address: SceneRefs/SceneRefs_Battle_Atlantis/RA_Atlantis_1081
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: da2c467039fe3824fbaa27998da3c9ec
+    m_Address: SceneRefs/SceneRefs_Battle_Atlantis/RA_Atlantis_388
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dd9deca121d3c4240b194d7cf394a71d
+    m_Address: SceneRefs/SceneRefs_Battle_Atlantis/RA_Atlantis_257
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e007ad92fdd64e447bc29620d1b83882
+    m_Address: SceneRefs/SceneRefs_Battle_Atlantis/RA_Atlantis_180
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e0a5adde82a604f4884c4c75dc126ec0
+    m_Address: SceneRefs/SceneRefs_Battle_Atlantis/RA_Atlantis_307
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e26f78b9f1dece94a8eaa294b587d284
+    m_Address: SceneRefs/SceneRefs_Battle_Atlantis/RA_Atlantis_39
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e8b950c5a8155d841ad833a58f32e1ff
+    m_Address: SceneRefs/SceneRefs_Battle_Atlantis/RA_Atlantis_836
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ec400f014cb508544a09a4a793a57446
+    m_Address: SceneRefs/SceneRefs_Battle_Atlantis/RA_Atlantis_306
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: edebbf0c91160c0469576468f90a60df
+    m_Address: SceneRefs/SceneRefs_Battle_Atlantis/RA_Atlantis_305
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f120e8fa952982b4c8065a3e977fac78
+    m_Address: SceneRefs/SceneRefs_Battle_Atlantis/RA_Atlantis_155
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f48655a4222ff8347a2d1101ea5fdefa
+    m_Address: SceneRefs/SceneRefs_Battle_Atlantis/RA_Atlantis_258
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 3efd68595876e93488d052069a4a854c, type: 2}
+    - {fileID: 11400000, guid: f7ab8ff6a6b24484480bd8f9f0d9d753, type: 2}

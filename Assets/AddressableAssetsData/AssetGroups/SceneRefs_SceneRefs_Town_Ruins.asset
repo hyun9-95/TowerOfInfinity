@@ -1,0 +1,617 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: SceneRefs_SceneRefs_Town_Ruins
+  m_EditorClassIdentifier: 
+  m_GroupName: SceneRefs_SceneRefs_Town_Ruins
+  m_GUID: bfdb4dadb2c9d4544b981c947d412d37
+  m_SerializeEntries:
+  - m_GUID: 00b98ad205fed8844b1a36f9b6ba2f36
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_854
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 027456629889004428108877f0598f9e
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1687
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 029fec132fc6c09479aaba28d124179c
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1338
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 03bebfc20997d4f409ff42d1cdf6c5a0
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1606
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0828b6f2bf7c48c4b9f0cc4bfc5bf827
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1730
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0d8630e66aae41c46825122e1e5696e6
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1558
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0d8a6e1a0f255184e9608007d45b6ed5
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1734
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0edbbf8bfa079dc4494e866fdadc7ef7
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1176
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 10a9597e794fcbe42986d48e1f2564bb
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1729
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 112c2ee8e200eaa41b518dca2282ee86
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1593
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 12124f94d503dff428b6b93a7052f050
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1596
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 13c7f04dedf8d9841addb8d6f991ff74
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1345
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 14da1362863fe9642b7fcf350cb0f1fc
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1594
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1534af0676343a849ae8d0227dffb278
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1417
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1bec8833e017ff948bba84335012a59d
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1286
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1e4dd3f36c1bb3d4db23ed8877330f32
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1551
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1eb0055d04f6e0b46856e5acf48940e4
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1568
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 251993c2ee2c2074b836c1a21f767b31
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1726
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 262b97642f42e6641838a2f987619a18
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1279
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2a83dc3e9a881a9469e5f717e9148543
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1447
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2d093b2247a7cb942815d99bb4cd5fe0
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1445
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2d5deb58295184f48bfe3e7f5b3c8c0c
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1647
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 313c179825a9c624c814e573840c4175
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1415
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 31dd6db3a9410fb4fba489d2cb89b439
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1692
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 39cd2a094847d8c4a8a43d8e6482fd50
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1732
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3c323658c87084f42bfe8a6944b8f78b
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1642
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 407edb01d32cd554dad24d47fdd8de83
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1683
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 436b7ef91dd2b63409c2d09de0ea2d6f
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1301
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 46e56b35c498fe14d99091a2807ef632
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_805
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4729bb300b307884da9da65603827a6f
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1685
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4836a3cab3515fd45bd92693573a3081
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1688
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 49a8a158ff38d354a8cb234e0504ca88
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4bb3784d0015be34396ae32d43027d72
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1477
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4ca2a55376076c24c876e66986b56251
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1644
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4ddefdc6c899574479e2c8a2cee9037e
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1597
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5634acc0178aa084ea22e392d5b1cd04
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1733
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 569a3d57281e9ea43b1ed853675eea5d
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1727
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 58e295939f67f6d47b7b1fd72204c0ef
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1691
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5da066afdfc972a478617977f5e8c1b7
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1304
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5f0da4782432dce43bfe4ed02ab86c71
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1303
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6068ba7a43d306a4f8446da1e30aed1d
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1177
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 61aa8e96746980448b7e41d752b86f7e
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1646
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 61fa80ff5a356d04186b335bda21f255
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1287
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6501b5f5cf30bad4aa98e49842fde98a
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1550
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 659eaac20670f5a4589c75c05c7ff045
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1651
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 65d2075b425c2f847962247653eb88e4
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1689
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 67f7072df4118fc44b38778de8d04254
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1300
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 694cdd622ab79da4083d9fd02b3d6fe6
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1336
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6bbf1a6e176a07047a390a9d7888df6d
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1258
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6c9ac3ff103f79749a67d8cf81fe75aa
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1278
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7176bdfc037b3334fad898f333fe3965
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_855
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 72d40caabfe6d904e86482e8ba5013ad
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1526
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7506ae01941be7b4a94421511e07215b
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1329
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7e2e646a80c741f48b062ef86fa9689d
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1595
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7eb6aa6d1970c084e86df08f8bd541d1
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1281
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8078a63425291084692859613b264e91
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1305
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 829a3c0cf4d32ac41a53b96c4816e47e
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1549
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 84a5e8dcaeab2c7408ceac5a67c10001
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_807
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 855ab7b12548d3f4990030c157c34520
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1735
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 878dba762a04a5448ba44c747f2c7cad
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_853
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 89d0e53c61681bc4794bed8d5e50aa66
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1219
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8b3e4d7e34de1164baf5929cb88b8688
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_809
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8defa43f1f73ce44e86d603000ec72d3
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1302
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 90b52c4ff8cf58040a330c3a30673af8
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1645
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 95d73ecb9f1ca0940be029ecd3325b3f
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1728
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 97eeabf5ffff4324699fc9727c05de37
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1512
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9ac07000ab90a1841bda069da1631ef6
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_808
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a34d8fbef3157d54c819a2ef7c9c522e
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_215
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a74266bc21f5f824ca5f009217681546
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1280
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a84e08a02d141a0459eae95c3638cde6
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1446
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: aa179c99966e3d8419c6ab923f7834c7
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1640
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: aa7f95c15dad1de4a8d3d1b6478d8bd1
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1592
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b12b2e2f2c8023a42893fc53094099f3
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1220
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b3439f232ecf9ea4c8abba08951974a2
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1259
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b9d18e9997e11514ea814acab49fd25c
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1283
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bd5f2aad6baeab54d94e5f2cabd9f25f
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1299
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: be76b9ec6360f6848be069c1963d965b
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1282
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bfda083aa08597c4babf8d47452f9f03
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1598
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c11d9786175685b48b838755faf1ce32
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1641
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c127e19a3ec1ffe448accc4173580e43
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1524
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c9bc41d4b775c154eb45b8c87efff553
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1643
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ce3ac9474fc24314cb38b910864d023b
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1495
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cebe28ae418f2244da6ffebfbb35fa86
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1648
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cf0b4e0b7cbc00e48afeffd5ff054c7f
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1684
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d018cac92c190214d85fff1617d600a5
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1731
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dbb4d5b586a472f46b6b21ce0ec3d299
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1599
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e843b5f51fbd56743a636074d8f4e2cf
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1288
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ec3be3e83b033f94198734a8d1e5c1c4
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1690
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: eeb3b97d5c7c1d44995a4f19a242052f
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1649
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: eecb073c25e47be4eab607f198c0cf20
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1463
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: eff892829834ac14a81a95e7c145e93b
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1285
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f184ab3ae79ef8943889ea503dab5020
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1284
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f1ff63c63e68dcd4eb37fbf83d00e230
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1650
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f3bc9e3d2def9d944892ac5ad2e5fb65
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1218
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f4653d659cd68f5418ea39025aa18044
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1257
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f62e758e64d1a4b4a947add9fe080d4b
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1652
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f93db4beae69bbc44be60101de42339b
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1337
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f99a1af1c68456a4fa9df270952959d2
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1686
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fa24708a261292f44af916cf8f08797e
+    m_Address: SceneRefs/SceneRefs_Town_Ruins/RA_Ruins_1525
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: a6326a995240db6499d6ba2b3df61b9e, type: 2}
+    - {fileID: 11400000, guid: ae21eb80165f0f546a8f279cbe01a09a, type: 2}
