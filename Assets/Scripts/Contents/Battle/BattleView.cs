@@ -17,16 +17,18 @@ public class BattleView : BaseView
     [SerializeField]
     private TextMeshProUGUI killCountText;
 
+    private bool isShowing = false;
+
     public override async UniTask ShowAsync()
     {
         UpdateUI();
+        isShowing = true;
     }
 
     public void UpdateUI()
     {
         ShowSlider();
-        ShowTimer();
-        ShowKillCount();
+        killCountText.SafeSetText(Model.GetKillCountText());
     }
 
     private void ShowSlider()
@@ -37,21 +39,11 @@ public class BattleView : BaseView
         expSlider.value = Model.BattleExp / Model.NextBattleExp;
     }
 
-    private void ShowTimer()
+    private void FixedUpdate()
     {
-        if (timeText == null)
+        if (!isShowing || Model == null)
             return;
 
-        int minutes = Mathf.FloorToInt(Model.ElapsedTime / 60f);
-        int seconds = Mathf.FloorToInt(Model.ElapsedTime % 60f);
-        timeText.text = $"{minutes:00}:{seconds:00}";
-    }
-
-    private void ShowKillCount()
-    {
-        if (killCountText == null)
-            return;
-
-        killCountText.text = $"Kill: {Model.KillCount}";
+        timeText.SafeSetText(Model.GetElapsedTimeText());
     }
 }

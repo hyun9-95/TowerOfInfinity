@@ -30,6 +30,7 @@ public class CharacterUnitModel : IBaseUnitModel
     public bool IsFlipX { get; private set; }
     public float RepathTimer { get; private set; }
     public bool IsEnablePhysics { get; private set; }
+    public bool IsActivated { get; private set; }
     #endregion
 
     #region Value
@@ -37,6 +38,12 @@ public class CharacterUnitModel : IBaseUnitModel
     private Dictionary<StatType, float> statModifiers = new Dictionary<StatType, float>();
     private Dictionary<EquipmentType, Equipment> equippedEquipments;
     #endregion
+
+    public void SetIsActivate(bool value)
+    {
+        IsActivated = value;
+    }
+
     public void SetCharacterDataId(int id)
     {
         CharacterDataId = id;

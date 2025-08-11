@@ -10,7 +10,7 @@ public class BattleEventBalanceFactory : BaseManager<BattleEventBalanceFactory>
     private string folderPath = "AbilityCore/BattleEventBalance/";
     public async UniTask Initialize()
     {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder sb = GlobalStringBuilder.Get();
         foreach (BattleEventDefine define in Enum.GetValues(typeof(BattleEventDefine)))
         {
             if (define == BattleEventDefine.None)

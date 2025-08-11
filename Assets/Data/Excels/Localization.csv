@@ -31,8 +31,10 @@ Id,NameId,Korean,English,SimplifiedChinese
 70027,LOCAL_AB_BOULDER_SMASH_NAME,볼더스매시,Boulder Smash,巨石重击
 70028,LOCAL_AB_BOULDER_SMASH_DESC,근처의 적에게 거대한 돌을 떨어뜨립니다.,Drops massive stones on nearby enemies.,向附近的敌人投掷巨石。
 70029,LOCAL_AB_SWORD_WAVE_NAME,소드웨이브,Sword Wave,剑气波
-70030,LOCAL_AB_SWORD_WAVE_DESC,적을 관통하는 검기를 발사합니다.,Fires a sword wave that penetrates enemies.,发射穿透敌人的剑气。
+70030,LOCAL_AB_SWORD_WAVE_DESC,공격할 때마다 적을 관통하는 검기를 발사합니다.,Fires a penetrating sword wave with each attack.,每次攻击时发射穿透敌人的剑气。
 70031,LOCAL_AB_MAGIC_MISSILE_NAME,매직미사일,Magic Missile,魔法飞弹
 70032,LOCAL_AB_MAGIC_MISSILE_DESC,무작위 방향으로 빠른 투사체를 발사합니다.,Fires fast projectiles in random directions.,向随机方向发射快速弹射物。
 70033,LOCAL_EXP_GAIN_RANGE_UP_NAME,긴 팔,Long Arms,长臂
 70034,LOCAL_EXP_GAIN_RANGE_UP_DESC,획득 범위가 증가합니다.,Increases acquisition range.,增加获取范围。
+70035,LOCAL_WORD_KILL_COUNT,처치,Kills,击杀
+70036,LOCAL_WORD_TIME,시간,Time,时间

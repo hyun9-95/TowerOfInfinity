@@ -10,7 +10,7 @@ public class AbilityBalanceFactory : BaseManager<AbilityBalanceFactory>
 
     public async UniTask Initialize()
     {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder sb = GlobalStringBuilder.Get();
         foreach (AbilityDefine define in Enum.GetValues(typeof(AbilityDefine)))
         {
             if (define == AbilityDefine.None)

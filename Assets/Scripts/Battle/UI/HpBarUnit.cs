@@ -32,7 +32,7 @@ public class HpBarUnit : BaseUnit<HpBarUnitModel>
         if (!acitvated)
             return;
 
-        if (Model == null || Model.Owner == null)
+        if (Model.Owner.IsDead)
         {
             Hide();
             return;

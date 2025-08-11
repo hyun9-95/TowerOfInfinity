@@ -204,6 +204,9 @@ public class CharacterUnit : PoolableMono
             abilityProcessor.Update();
             battleEventProcessor.Update();
         }
+
+        // 활성 상태 동기화
+        Model.SetIsActivate(activated);
     }
 
     protected void UpdateState()

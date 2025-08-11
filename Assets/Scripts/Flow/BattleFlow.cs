@@ -31,16 +31,16 @@ public class BattleFlow : BaseFlow<BattleFlowModel>
 
         var battleInfo = CreateBattleInfo(Model.DataDungeon, battleTeam);
         
+        await battleSystemManager.Prepare(battleInfo);
         await battleSceneManager.Prepare(battleInfo);
         await battleUIManager.Prepare(battleInfo);
-        await battleSystemManager.Prepare(battleInfo);
     }
 
     public override async UniTask Process()
     {
-        await battleUIManager.ShowHpBar();
-        await battleSceneManager.StartSpawn();
         await battleSystemManager.StartBattle();
+        await battleSceneManager.StartSpawn();
+        await battleUIManager.ShowHpBar();
     }
 
     public override async UniTask Exit()

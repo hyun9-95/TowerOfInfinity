@@ -48,6 +48,7 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
 
         BattleViewModel viewModel = new BattleViewModel();
         viewModel.SetByBattleInfo(battleInfo);
+        viewModel.SetBattleStartTime(battleInfo.BattleStartTime);
 
         battleViewController.SetModel(viewModel);
 

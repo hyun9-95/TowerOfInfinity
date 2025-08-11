@@ -1,5 +1,7 @@
 using Cysharp.Threading.Tasks;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Profiling;
 
 public class CheatManager : BaseMonoManager<CheatManager>
 {
@@ -8,6 +10,11 @@ public class CheatManager : BaseMonoManager<CheatManager>
 #if CHEAT
         instance = this;
         SetState(State.Collapse);
+
+#if !UNITY_EDITOR
+        drawCallText.gameObject.SafeSetActive(false);
+#endif
+
 #else
         Destroy(gameObject);
 #endif
@@ -32,10 +39,92 @@ public class CheatManager : BaseMonoManager<CheatManager>
     [SerializeField]
     private GameObject expandObject;
 
+    [SerializeField]
+    private TextMeshProUGUI fpsText;
+
+    [SerializeField]
+    private TextMeshProUGUI memoryText;
+
+    [SerializeField]
+    private TextMeshProUGUI drawCallText;
+
     private CheatConfig cheatConfig;
+    
+    private float deltaTime = 0f;
+    private float updateInterval = 0.5f;
+    private float lastUpdateTime = 0f;
     #endregion
 
     #region Function
+    private void Update()
+    {
+        deltaTime += (Time.unscaledDeltaTime - deltaTime) * 0.1f;
+        
+        if (Time.time - lastUpdateTime >= updateInterval)
+        {
+            UpdatePerformanceDisplay();
+            lastUpdateTime = Time.time;
+        }
+    }
+    
+    private void UpdatePerformanceDisplay()
+    {
+        UpdateFPS();
+        UpdateMemoryUsage();
+
+#if UNITY_EDITOR
+        UpdateDrawCalls();
+#endif
+    }
+    
+    private void UpdateFPS()
+    {
+        if (fpsText == null)
+            return;
+            
+        float fps = 1.0f / deltaTime;
+        var sb = GlobalStringBuilder.Get();
+        sb.Append(fps.ToString("0"));
+        sb.Append(" fps");
+        fpsText.SafeSetText(sb.ToString());
+    }
+    
+    private void UpdateMemoryUsage()
+    {
+        if (memoryText == null)
+            return;
+            
+        long totalMemory = Profiler.GetTotalAllocatedMemoryLong();
+        long reservedMemory = Profiler.GetTotalReservedMemoryLong();
+        
+        float usedMemoryMB = totalMemory / (1024f * 1024f);
+        float usagePercentage = (float)totalMemory / reservedMemory * 100f;
+        
+        var sb = GlobalStringBuilder.Get();
+        sb.Append(usedMemoryMB.ToString("F0"));
+        sb.Append("mb (");
+        sb.Append(usagePercentage.ToString("F0"));
+        sb.Append("%)");
+        memoryText.SafeSetText(sb.ToString());
+    }
+    
+    private void UpdateDrawCalls()
+    {
+        if (drawCallText == null)
+            return;
+            
+#if UNITY_EDITOR
+        int batches = UnityEditor.UnityStats.batches;
+        int drawCalls = UnityEditor.UnityStats.drawCalls;
+        var sb = GlobalStringBuilder.Get();
+        sb.Append("b:");
+        sb.Append(batches.ToString());
+        sb.Append(" d:");
+        sb.Append(drawCalls.ToString());
+        drawCallText.SafeSetText(sb.ToString());
+#endif
+    }
+
     public void SetCheatConfig(CheatConfig config)
     {
         cheatConfig = config;

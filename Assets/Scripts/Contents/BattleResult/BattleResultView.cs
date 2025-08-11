@@ -24,14 +24,7 @@ public class BattleResultView : BaseView
 
     private void UpdateUI()
     {
-        if (killCountText != null)
-            killCountText.text = $"Kills: {Model.KillCount}";
-
-        if (timeText != null)
-        {
-            int minutes = Mathf.FloorToInt(Model.ElapsedTime / 60f);
-            int seconds = Mathf.FloorToInt(Model.ElapsedTime % 60f);
-            timeText.text = $"Time: {minutes:00}:{seconds:00}";
-        }
+        killCountText.SafeSetText(Model.GetKillCountText());
+        timeText.SafeSetText(Model.GetElapsedTimeText());
     }
 }

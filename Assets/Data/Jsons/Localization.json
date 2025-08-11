@@ -208,5 +208,17 @@
     "Korean": "획득 범위가 증가합니다.",
     "English": "Increases acquisition range.",
     "SimplifiedChinese": "增加获取范围。"
+  },
+  {
+    "id": 70035,
+    "Korean": "처치",
+    "English": "Kills",
+    "SimplifiedChinese": "击杀"
+  },
+  {
+    "id": 70036,
+    "Korean": "시간",
+    "English": "Time",
+    "SimplifiedChinese": "时间"
   }
 ]

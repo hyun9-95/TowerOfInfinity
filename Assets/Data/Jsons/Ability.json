@@ -54,7 +54,7 @@
   {
     "id": 51002,
     "SlotType": "Active",
-    "CastingType": "Auto",
+    "CastingType": "OnAttack",
     "BattleEvents": [
       "BE_DAMAGE_SWORD_WAVE"
     ],

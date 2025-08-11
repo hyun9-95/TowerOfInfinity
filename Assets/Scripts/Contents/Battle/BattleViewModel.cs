@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 public class BattleViewModel : IBaseViewModel
 {
@@ -7,7 +8,7 @@ public class BattleViewModel : IBaseViewModel
     public float BattleExp { get; private set; }
     public float NextBattleExp { get; private set; }
     public int KillCount { get; private set; }
-    public float ElapsedTime { get; private set; }
+    public float BattleStartTime { get; private set; }
     public int CurrentWave { get; private set; }
     #endregion
 
@@ -19,7 +20,6 @@ public class BattleViewModel : IBaseViewModel
         SetBattleExp(battleInfo.BattleExp);
         SetNextBattleExp(battleInfo.NextBattleExp);
         SetKillCount(battleInfo.KillCount);
-        SetElapsedTime(battleInfo.ElapsedTime);
         SetCurrentWave(battleInfo.CurrentWave);
     }
 
@@ -43,14 +43,39 @@ public class BattleViewModel : IBaseViewModel
         KillCount = killCount;
     }
 
-    public void SetElapsedTime(float elapsedTime)
+    public void SetBattleStartTime(float startTime)
     {
-        ElapsedTime = elapsedTime;
+        BattleStartTime = startTime;
     }
 
     public void SetCurrentWave(int currentWave)
     {
         CurrentWave = currentWave;
+    }
+
+    public string GetKillCountText()
+    {
+        var sb = GlobalStringBuilder.Get();
+        sb.Append(LocalizationManager.GetLocalization(LocalizationDefine.LOCAL_WORD_KILL_COUNT));
+        sb.Append(" - ");
+        sb.Append(KillCount.ToString());
+
+        return sb.ToString();
+    }
+
+    public string GetElapsedTimeText()
+    {
+        var sb = GlobalStringBuilder.Get();
+
+        float elapsedTime = Time.time - BattleStartTime;
+        int minutes = Mathf.FloorToInt(elapsedTime / FloatDefine.MINUTE_TO_SECONDS);
+        int seconds = Mathf.FloorToInt(elapsedTime % FloatDefine.MINUTE_TO_SECONDS);
+
+        sb.Append(LocalizationManager.GetLocalization(LocalizationDefine.LOCAL_WORD_TIME));
+        sb.Append(" - ");
+        sb.Append($"{minutes:00}:{seconds:00}");
+
+        return sb.ToString();
     }
     #endregion
 }
