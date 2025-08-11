@@ -113,15 +113,17 @@ public class AddressableBuildGenerator : BaseGenerator
         if (entry == null)
         {
             entry = addressableSettings.CreateOrMoveEntry(guid, targetGroup);
+            if (entry != null)
+                Logger.Log($"New addressable entry created: {assetPath}");
         }
         else if (entry.parentGroup != targetGroup)
         {
             addressableSettings.MoveEntry(entry, targetGroup);
+            Logger.Log($"Addressable entry moved to group '{entryName}': {assetPath}");
         }
 
         if (entry == null)
             return;
-
 
         // 기존 라벨 제거함
         entry.labels.Clear();
