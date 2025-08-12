@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   permanent: 0
-  lifetime: 0.7
+  lifetime: 1
   unscaledTime: 0
   enable3DGame: 0
   faceCameraView: 1

@@ -139,9 +139,7 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
         battleInfo.OnExpGain(exp);
 
         RefreshViewModel();
-
-        // 경험치 획득 시 UI 갱신해준다.
-        ObserverManager.NotifyObserver(BattleObserverID.ExpGain, observerParam);
+        ObserverManager.NotifyObserver(BattleObserverID.RefreshUI, observerParam);
 
         if (battleInfo.Level > prevLevel)
             OnLevelUp();
@@ -181,6 +179,9 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
                 OnExpGainRangeUp();
                 break;
         }
+
+        RefreshViewModel();
+        ObserverManager.NotifyObserver(BattleObserverID.RefreshUI, observerParam);
     }
 
     private void OnGetAbility(int abilityDataId)

@@ -33,8 +33,11 @@ public class BattleView : BaseView
 
     private void ShowSlider()
     {
-        if (expSlider == null)
+        if (Model.BattleExp == 0)
+        {
+            expSlider.value = 0;
             return;
+        }
 
         expSlider.value = Model.BattleExp / Model.NextBattleExp;
     }

@@ -67,5 +67,15 @@ public class BattleViewModel : IBaseViewModel
 
         return sb.ToString();
     }
+
+    public float GetExpSliderValue()
+    {
+        if (BattleExp == 0)
+            return 0;
+
+        var diff = NextBattleExp - BattleExp;
+
+        return Mathf.Clamp(diff, 0, 1);
+    }
     #endregion
 }

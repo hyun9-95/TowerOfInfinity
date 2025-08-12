@@ -10,7 +10,7 @@ public class BouncingProjectileTriggerUnit : ProjectileTriggerUnit
         if (!acitvate)
             return;
 
-        if (!other.gameObject.CheckLayer(LayerInt.Character))
+        if (!other.gameObject.CheckLayer(LayerFlag.Character))
             return;
 
         // 적과 충돌 시 바운스

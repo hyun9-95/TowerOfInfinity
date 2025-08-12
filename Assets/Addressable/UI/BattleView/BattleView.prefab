@@ -471,7 +471,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 320e675626f8fd84c9b7cb6ec5ede952, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  expSlider: {fileID: 0}
+  expSlider: {fileID: 6695100833650718636}
   timeText: {fileID: 1771048264073242976}
   killCountText: {fileID: 2814884049217604171}
 --- !u!1001 &8778075448704235990
@@ -579,6 +579,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f064d5abcdb04994198721203e4eae54, type: 3}
+--- !u!114 &6695100833650718636 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2681959139411480186, guid: f064d5abcdb04994198721203e4eae54, type: 3}
+  m_PrefabInstance: {fileID: 8778075448704235990}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &7759520880927323520 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1332685324520901718, guid: f064d5abcdb04994198721203e4eae54, type: 3}

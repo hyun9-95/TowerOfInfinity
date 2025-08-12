@@ -2,7 +2,7 @@ using UnityEngine;
 
 public enum BattleObserverID
 {
-    ExpGain,
+    RefreshUI,
     EnemyKilled,
     BattleEnd,
 }

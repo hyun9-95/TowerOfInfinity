@@ -11,6 +11,8 @@ public class BattleEventTriggerUnitModel : IBaseUnitModel
     public TeamTag DetectTeamTag { get; private set; }
 
     public int HitCount { get; private set; }
+
+    public Vector2 StartDirection { get; private set; }
     #endregion
 
     #region Value
@@ -20,11 +22,6 @@ public class BattleEventTriggerUnitModel : IBaseUnitModel
     /// 유닛에서 타겟을 검출할 때.
     /// </summary>
     private Func<Collider2D, Vector3, bool> onEventHit;
-
-    /// <summary>
-    /// 타겟을 트리거에서 이미 알고 있을 때
-    /// </summary>
-    public Action onEventSend { get; private set; }
     #endregion
 
     public void SetDetectTeamTag(TeamTag detectTeamTag)
@@ -35,11 +32,6 @@ public class BattleEventTriggerUnitModel : IBaseUnitModel
     public void SetOnEventHit(Func<Collider2D, Vector3, bool> onEventHit)
     {
         this.onEventHit = onEventHit;
-    }
-
-    public void SetOnEventSend(Action onEventSend)
-    {
-        this.onEventSend = onEventSend;
     }
 
     public void SetFollowTarget(Transform target)
@@ -55,6 +47,11 @@ public class BattleEventTriggerUnitModel : IBaseUnitModel
     public void SetHitCount(int count)
     {
         HitCount = count;
+    }
+
+    public void SetDirection(Vector3 direction)
+    {
+        StartDirection = direction;
     }
 
     public bool IsOverHitCount()

@@ -14,7 +14,7 @@ public class BattleViewController : BaseController<BattleViewModel>, IObserver
 
     private BattleObserverID[] observerIDs = new BattleObserverID[]
     {
-        BattleObserverID.ExpGain,
+        BattleObserverID.RefreshUI,
         BattleObserverID.EnemyKilled,
     };
 
@@ -34,13 +34,11 @@ public class BattleViewController : BaseController<BattleViewModel>, IObserver
         if (observerParam is not BattleObserverParam)
             return;
 
-        BattleObserverParam param = (BattleObserverParam)observerParam;
-
         switch (observerMessage)
         {
-            case BattleObserverID.ExpGain:
+            case BattleObserverID.RefreshUI:
             case BattleObserverID.EnemyKilled:
-                Refresh().Forget();
+                View.UpdateUI();
                 break;
         }
     }

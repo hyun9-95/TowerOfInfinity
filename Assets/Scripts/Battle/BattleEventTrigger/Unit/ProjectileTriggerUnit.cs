@@ -1,18 +1,12 @@
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-public class ProjectileTriggerUnit : PoolableBaseUnit<ProjectileTriggerUnitModel>, IBattleEventTriggerUnit
+public class ProjectileTriggerUnit : BaseTriggerUnit<ProjectileTriggerUnitModel>
 {
     public DirectionType StartDirectionType => startDirectionType;
 
     [SerializeField]
-    protected IBattleEventTriggerUnit.ColliderDetectType detectType;
-
-    [SerializeField]
     private DirectionType startDirectionType = DirectionType.Owner;
-
-    [SerializeField]
-    protected Collider2D hitCollider;
 
     [SerializeField]
     private float launchDelay = 0f;
@@ -25,20 +19,21 @@ public class ProjectileTriggerUnit : PoolableBaseUnit<ProjectileTriggerUnitModel
 
     protected Vector3 startPosition;
     protected Vector2 direction;
-
     protected bool acitvate;
 
-    private void Awake()
+    private void FixedUpdate()
     {
-        hitCollider.enabled = false;
+        if (acitvate == false)
+            return;
+
+        UpdateMove();
+        CheckDisable();
     }
 
-    private void OnValidate()
+    protected override void OnUnitDisable()
     {
-#if UNITY_EDITOR
-        if (effectSprite == null)
-            effectSprite = GetComponent<SpriteRenderer>();
-#endif
+        acitvate = false;
+        base.OnUnitDisable();
     }
 
     public override async UniTask ShowAsync()
@@ -54,16 +49,6 @@ public class ProjectileTriggerUnit : PoolableBaseUnit<ProjectileTriggerUnitModel
         Launch();
 
         effectSprite.enabled = true;
-    }
-
-
-    protected override void OnDisable()
-    {
-        TokenPool.Cancel(GetHashCode());
-        hitCollider.enabled = false;
-        acitvate = false;
-
-        base.OnDisable();
     }
 
     protected virtual void Launch()
@@ -89,19 +74,26 @@ public class ProjectileTriggerUnit : PoolableBaseUnit<ProjectileTriggerUnitModel
         direction = Model.StartDirection;
     }
 
-    private void FixedUpdate()
-    {
-        if (acitvate == false)
-            return;
-
-        UpdateMove();
-        CheckDisable();
-    }
-
     protected virtual void UpdateMove()
     {
         transform.position += Model.Speed * Time.fixedDeltaTime * (Vector3)direction;
         RotateSpriteToDirection();
+    }
+
+    protected void RotateSpriteToDirection()
+    {
+        if (direction == Vector2.zero)
+            return;
+
+        if (!rotateToDirection)
+        {
+            effectSprite.flipX = direction.x < 0;
+            return;
+        }
+
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+        effectSprite.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
     }
 
     private void CheckDisable()
@@ -124,61 +116,17 @@ public class ProjectileTriggerUnit : PoolableBaseUnit<ProjectileTriggerUnitModel
         return false;
     }
 
-    protected void RotateSpriteToDirection()
-    {
-        if (direction == Vector2.zero)
-            return;
-
-        if (!rotateToDirection)
-        {
-            effectSprite.flipX = direction.x < 0;
-            return;
-        }
-
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-
-        effectSprite.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (detectType != IBattleEventTriggerUnit.ColliderDetectType.Enter)
-            return;
-
-        OnDetectHit(other);
-    }
-
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        if (detectType != IBattleEventTriggerUnit.ColliderDetectType.Stay)
-            return;
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (detectType != IBattleEventTriggerUnit.ColliderDetectType.Exit)
-            return;
-
-        OnDetectHit(other);
-    }
-
-    protected virtual void OnDetectHit(Collider2D other)
-    {
-        if (!acitvate)
-            return;
-
-        if (!other.gameObject.CheckLayer(LayerFlag.Character))
-            return;
-
-        if (Model == null)
-            return;
-
-        Model.OnEventHit(other, transform.position);
-    }
-
     public override void Deactivate()
     {
         acitvate = false;
         effectSprite.DeactiveWithFade(fadeTime, gameObject);
+    }
+
+    protected override void OnDetectHit(Collider2D other)
+    {
+        if (!acitvate)
+            return;
+
+        base.OnDetectHit(other);
     }
 }
