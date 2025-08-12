@@ -10,8 +10,7 @@ public class BouncingProjectileTriggerUnit : ProjectileTriggerUnit
         if (!moveUpdate)
             return;
 
-        if (!other.gameObject.CheckLayer(LayerFlag.Character))
-            return;
+        base.OnDetectHit(other);
 
         // 적과 충돌 시 바운스
         var targetModel = BattleSceneManager.Instance.GetCharacterModel(other);
@@ -24,7 +23,6 @@ public class BouncingProjectileTriggerUnit : ProjectileTriggerUnit
 
         lastBounceTime = Time.time;
         BounceOffTarget(other);
-        Model.OnEventHit(other, transform.position);
     }
 
     private void BounceOffTarget(Collider2D hitTarget)

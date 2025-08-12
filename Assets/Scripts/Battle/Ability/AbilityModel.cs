@@ -32,7 +32,7 @@ public class AbilityModel : IBaseUnitModel
 
     public void LevelUp()
     {
-        Level = Math.Max(++Level, IntDefine.MAX_ABILITY_LEVEL);
+        Level = Math.Min(++Level, IntDefine.MAX_ABILITY_LEVEL);
     }
 
     public BattleEventTriggerModel CreateTriggerModel()

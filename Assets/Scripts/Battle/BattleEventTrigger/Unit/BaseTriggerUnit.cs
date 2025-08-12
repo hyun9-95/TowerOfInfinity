@@ -60,7 +60,7 @@ public abstract class BaseTriggerUnit<T> : PoolableBaseUnit<T>, IBattleEventTrig
         if (detectType != IBattleEventTriggerUnit.ColliderDetectType.Enter)
             return;
 
-        OnDetectHitWithCooltime(other);
+        OnDetectHit(other);
     }
 
     private void OnTriggerStay2D(Collider2D other)
@@ -68,7 +68,7 @@ public abstract class BaseTriggerUnit<T> : PoolableBaseUnit<T>, IBattleEventTrig
         if (detectType != IBattleEventTriggerUnit.ColliderDetectType.Stay)
             return;
 
-        OnDetectHitWithCooltime(other);
+        OnDetectHit(other);
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -76,21 +76,10 @@ public abstract class BaseTriggerUnit<T> : PoolableBaseUnit<T>, IBattleEventTrig
         if (detectType != IBattleEventTriggerUnit.ColliderDetectType.Exit)
             return;
 
-        OnDetectHitWithCooltime(other);
+        OnDetectHit(other);
     }
 
     protected virtual void OnDetectHit(Collider2D other)
-    {
-        if (!other.gameObject.CheckLayer(LayerFlag.Character))
-            return;
-
-        if (Model == null)
-            return;
-
-        Model.OnEventHit(other, transform.position);
-    }
-
-    protected virtual void OnDetectHitWithCooltime(Collider2D other)
     {
         if (!other.gameObject.CheckLayer(LayerFlag.Character) || Model == null)
             return;
