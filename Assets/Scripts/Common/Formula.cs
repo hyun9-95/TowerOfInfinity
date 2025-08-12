@@ -1,6 +1,8 @@
+using UnityEngine;
+
 public static class Formula
 {
-    public static float GetDamageAmount(CharacterUnitModel sender, CharacterUnitModel receiver, float attackValue, DamageType damageType)
+    public static int GetDamageAmount(CharacterUnitModel sender, CharacterUnitModel receiver, float attackValue, DamageType damageType)
     {
         float def = receiver.GetStatValue(StatType.Defense);
         float attack = attackValue;
@@ -10,7 +12,8 @@ public static class Formula
         if (damage <= 0)
             damage = 1;
 
-        return damage;
+        // 반올림
+        return Mathf.RoundToInt(damage);
     }
 
     public static float GetExpGainRangeRadius(int level)

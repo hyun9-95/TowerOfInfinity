@@ -69,14 +69,6 @@ public class BattleInfo
     public void SetDataDungeon(DataDungeon dataDungeon)
     {
         DataDungeon = dataDungeon;
-        
-        var enemyGroup = DataManager.Instance.GetDataById<DataEnemyGroup>((int)dataDungeon.EnemyGroup);
-
-        if (!enemyGroup.IsNull)
-        {
-            FinalBoss = enemyGroup.FinalBoss;
-            MidBoss = enemyGroup.MidBoss;
-        }
     }
 
     public void SetBattleResult(BattleResult battleResult)

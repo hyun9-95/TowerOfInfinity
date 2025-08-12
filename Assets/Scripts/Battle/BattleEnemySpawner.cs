@@ -21,6 +21,9 @@ public class BattleEnemySpawner : IObserver
 
         ObserverManager.AddObserver(BattleObserverID.BattleEnd, this);
 
+        bool isSpawnMidBoss = false;
+        bool isSpawnFinalBoss = false;
+
         while (!TokenPool.Get(GetHashCode()).IsCancellationRequested)
         {
             if (BattleSystemManager.Instance.InBattle)
@@ -31,6 +34,18 @@ public class BattleEnemySpawner : IObserver
                 if (currentWaveEnemies != null)
                     await SpawnWave(currentWaveEnemies);
 
+                if (!isSpawnMidBoss && currentWave == Model.MidBossWave)
+                {
+                    await SpawnMidBossAsync();
+                    isSpawnMidBoss = true;
+                }
+
+                if (!isSpawnFinalBoss && currentWave == Model.FinalBossWave)
+                {
+                    await SpawnBossAsync();
+                    isSpawnFinalBoss = true;
+                }
+
                 await UniTaskUtils.DelaySeconds(Model.SpawnIntervalSeconds, cancellationToken: TokenPool.Get(GetHashCode()));
             }
             else
@@ -38,35 +53,52 @@ public class BattleEnemySpawner : IObserver
                 await UniTask.NextFrame(cancellationToken: TokenPool.Get(GetHashCode()));
             }
         }
+
+        ObserverManager.RemoveObserver(BattleObserverID.BattleEnd, this);
+    }
+
+    private async UniTask SpawnMidBossAsync()
+    {
+        await SpawnWave(Model.MidBoss, true);
+        Logger.Log($"Spawn MidBoss : {Model.MidBoss}");
+    }
+
+    private async UniTask SpawnBossAsync()
+    {
+        await SpawnWave(Model.FinalBoss, true);
+        Logger.Log($"Spawn FinalBoss : {Model.FinalBoss}");
     }
 
     private async UniTask SpawnWave(CharacterDefine[] enemys)
     {
-        var characterContainer = DataManager.Instance.GetDataContainer<DataCharacter>();
-
         foreach (var characterDefine in enemys)
+            await SpawnWave(characterDefine);
+    }
+
+    private async UniTask SpawnWave(CharacterDefine characterDefine, bool spawnBoss = false)
+    {
+        var spawnPos = GetValidSpawnPosition();
+
+        if (spawnPos == Vector3.zero)
         {
-            var spawnPos = GetValidSpawnPosition();
+            int tryCount = 0;
 
-            if (spawnPos == Vector3.zero)
+            while (spawnPos != Vector3.zero && tryCount < safeCount)
             {
-                int tryCount = 0;
-
-                while (spawnPos != Vector3.zero && tryCount < safeCount)
-                {
-                    spawnPos = GetValidSpawnPosition();
-                    tryCount++;
-                }
-
-                if (spawnPos == Vector3.zero)
-                    continue;
+                spawnPos = GetValidSpawnPosition();
+                tryCount++;
             }
 
-            var enemy = await CharacterFactory.Instance.SpawnEnemy((int)characterDefine, spawnPos);
-
-            if (enemy)
-                Model.OnSpawnEnemy(enemy);
+            if (spawnPos == Vector3.zero)
+                return;
         }
+
+        var enemy = spawnBoss ?
+            await CharacterFactory.Instance.SpawnBoss((int)characterDefine, spawnPos):
+            await CharacterFactory.Instance.SpawnEnemy((int)characterDefine, spawnPos);
+
+        if (enemy)
+            Model.OnSpawnEnemy(enemy);
     }
 
     public void Cancel()

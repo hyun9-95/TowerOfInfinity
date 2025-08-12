@@ -14,6 +14,14 @@ public class BattleEnemyGeneratorModel
     public Action<CharacterUnit> OnSpawnEnemy { get; private set; }
 
     public bool CheckWalkablePosOnSpawn { get; private set; }
+
+    public CharacterDefine MidBoss { get; private set; }
+
+    public CharacterDefine FinalBoss { get; private set; }
+
+    public int MidBossWave { get; private set; }
+
+    public int FinalBossWave { get; private set; }
     #endregion
 
     #region Value
@@ -24,6 +32,15 @@ public class BattleEnemyGeneratorModel
     public void SetDataEnemyGroup(DataEnemyGroup dataEnemyGroup)
     {
         enemyGroup = dataEnemyGroup;
+
+        if (!enemyGroup.IsNull)
+        {
+            MidBoss = dataEnemyGroup.MidBoss;
+            FinalBoss = dataEnemyGroup.FinalBoss;
+
+            MidBossWave = IntDefine.MID_BOSS_WAVE;
+            FinalBossWave = IntDefine.FINAL_BOSS_WAVE;
+        }
     }
 
     public void SetSpawnInterval(float interaval)

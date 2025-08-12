@@ -10,6 +10,7 @@ public enum CharacterAnimState
     Roll = 7,
     Crouch = 8,
     Attack = 10,
+    Fire = 11,
 
     Die = 99,
     None = 100,

@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -5463155225954161578, guid: 3f669f6d112971a4ca167399c23c3769, type: 3}
+      propertyPath: baseStat
+      value: 
+      objectReference: {fileID: 11400000, guid: 0279081965bf9da449f9adebe85bb89c, type: 2}
     - target: {fileID: 375275871827160082, guid: 3f669f6d112971a4ca167399c23c3769, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -18,7 +22,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3248602934051070365, guid: 3f669f6d112971a4ca167399c23c3769, type: 3}
       propertyPath: m_Name
-      value: RedDragon_Enemy
+      value: RedDragon
       objectReference: {fileID: 0}
     - target: {fileID: 4855611840243421220, guid: 3f669f6d112971a4ca167399c23c3769, type: 3}
       propertyPath: m_SpriteLibraryAsset
@@ -28,6 +32,14 @@ PrefabInstance:
       propertyPath: baseStat
       value: 
       objectReference: {fileID: 11400000, guid: 0279081965bf9da449f9adebe85bb89c, type: 2}
+    - target: {fileID: 7747473371373772593, guid: 3f669f6d112971a4ca167399c23c3769, type: 3}
+      propertyPath: m_Radius
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7747473371373772593, guid: 3f669f6d112971a4ca167399c23c3769, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 9180189413164472241, guid: 3f669f6d112971a4ca167399c23c3769, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

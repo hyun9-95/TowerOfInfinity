@@ -117,7 +117,7 @@ public class CharacterUnitModel : IBaseUnitModel
     /// BattleSystemManager 외에 호출 금지
     /// </summary>
     /// <param name="value"></param>
-    public void AddDamage(float value)
+    public void AddDamage(int value)
     {
 #if CHEAT
         if (CharacterType == CharacterType.Main && CheatManager.CheatConfig.IsInvincible)

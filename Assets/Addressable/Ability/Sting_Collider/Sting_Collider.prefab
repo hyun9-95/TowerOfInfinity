@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6781900405216177287}
   - component: {fileID: 3948468271430011930}
   - component: {fileID: 3948468271430011933}
+  - component: {fileID: 3831470751070961709}
   m_Layer: 8
   m_Name: Sting_Collider
   m_TagString: Untagged
@@ -56,7 +57,7 @@ MonoBehaviour:
   fadeTime: 0.25
   hitCollider: {fileID: 6781900405216177287}
   useFlip: 1
-  detectStartTime: 0.1
+  detectStartTime: 0.05
   detectDuration: 0.05
   followTime: 0
 --- !u!61 &6781900405216177287
@@ -4975,3 +4976,15 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!210 &3831470751070961709
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3948468271430011932}
+  m_Enabled: 1
+  m_SortingLayerID: -1737824065
+  m_SortingLayer: 6
+  m_SortingOrder: 1
+  m_SortAtRoot: 0

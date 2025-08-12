@@ -86,6 +86,28 @@ public class CharacterFactory : BaseManager<CharacterFactory>
         return enemy;
     }
 
+    public async UniTask<CharacterUnit> SpawnBoss(int characterDataId, Vector3 pos = default, Quaternion rot = default)
+    {
+        var data = DataManager.Instance.GetDataById<DataCharacter>(characterDataId);
+        var enemy = await SpawnCharacter(data.PrefabName, null, pos, rot);
+
+        if (enemy == null)
+            return null;
+
+        await SetCharacterScriptableInfo(enemy, CharacterType.Boss, characterDataId);
+
+        CharacterInfo enemyCharacterInfo = new SubCharacterInfo();
+        enemyCharacterInfo.SetPrimaryWeaponAbility(data.PrimaryWeaponAbility);
+        enemyCharacterInfo.SetActiveAbility(data.ActiveSkill);
+        enemyCharacterInfo.SetPassiveAbility(data.PassiveSkill);
+
+        var model = CreateCharacterUnitModel(TeamTag.Enemy, CharacterType.Boss, CharacterSetUpType.Battle, enemyCharacterInfo);
+        model.SetCharacterDataId(characterDataId);
+        enemy.SetModel(model);
+
+        return enemy;
+    }
+
     public async UniTask<CharacterUnit> SpawnCharacter(string prefabPath, Transform transform = null, Vector3 pos = default, Quaternion rot = default)
     {
         var character = await InstantiateCharacter(prefabPath, transform, pos, rot);

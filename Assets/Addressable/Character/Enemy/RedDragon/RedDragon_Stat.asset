@@ -12,4 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55f4252d2dfaffd4e81d9792baaad074, type: 3}
   m_Name: RedDragon_Stat
   m_EditorClassIdentifier: 
-  stats: []
+  stats:
+  - statType: 0
+    value: 6000
+  - statType: 1
+    value: 30
+  - statType: 2
+    value: 0
+  - statType: 3
+    value: 4.5
