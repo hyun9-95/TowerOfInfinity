@@ -7,7 +7,7 @@ public class BouncingProjectileTriggerUnit : ProjectileTriggerUnit
 
     protected override void OnDetectHit(Collider2D other)
     {
-        if (!acitvate)
+        if (!moveUpdate)
             return;
 
         if (!other.gameObject.CheckLayer(LayerFlag.Character))

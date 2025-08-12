@@ -130,23 +130,25 @@ public class CharacterUnit : PoolableMono
     public void StopUpdate()
     {
         activated = false;
+
+        if (Model != null)
+            Model.SetIsActivate(activated);
     }
 
     private void OnDeactivate()
     {
         activated = false;
 
+        if (Model != null)
+            Model.SetIsActivate(activated);
+
         characterCollider2D.enabled = false;
         triggerCollider2D.enabled = false;
 
         moduleGroup.OnEventCharacterDeactivate(Model, moduleModelDic);
 
-        if (Model.IsDead)
-        {
-            abilityProcessor.Cancel();
-            battleEventProcessor.Cancel();
-        }
-
+        abilityProcessor.Cancel();
+        battleEventProcessor.Cancel();
         Model.ActionHandler.Cancel();
 
         DeadAsync().Forget();

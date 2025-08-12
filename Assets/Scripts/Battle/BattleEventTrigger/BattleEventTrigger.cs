@@ -178,6 +178,5 @@ public abstract class BattleEventTrigger
             
         return transforms;
     }
-
     #endregion
 }

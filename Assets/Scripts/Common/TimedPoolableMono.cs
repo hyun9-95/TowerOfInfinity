@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using System;
 using UnityEngine;
 
 public class TimedPoolableMono : PoolableMono
@@ -41,6 +42,18 @@ public class TimedPoolableMono : PoolableMono
         isCheckingLifeTime = false;
     }
 
+    protected void Deactivate(float fadeTime = 0)
+    {
+        if (fadeTime > 0 && effectSprite != null)
+        {
+            effectSprite.DeactiveWithFade(fadeTime, gameObject);
+        }
+        else
+        {
+            gameObject.SafeSetActive(false);
+        }
+    }
+
     public void Flip(bool value)
     {
         if (effectSprite)
@@ -74,7 +87,10 @@ public class TimedPoolableMono : PoolableMono
     public void ShowRenderer()
     {
         if (effectSprite != null)
+        {
             effectSprite.enabled = true;
+            effectSprite.RestoreAlpha();
+        }
 
         if (effectParticle != null)
             effectParticle.Play();

@@ -132,12 +132,6 @@ public static class ExtensionUtils
 
     public static void DeactiveWithFade(this SpriteRenderer renderer, float duration, GameObject gameObject, Action callback = null)
     {
-        if (duration == 0)
-        {
-            SetAlpha(renderer, 0);
-            return;
-        }
-
         renderer.DOFade(0f, duration).SetEase(Ease.Linear).OnComplete(() =>
         {
             gameObject.SafeSetActive(false);

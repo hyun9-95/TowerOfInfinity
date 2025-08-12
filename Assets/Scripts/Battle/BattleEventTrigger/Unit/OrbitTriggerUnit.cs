@@ -37,7 +37,8 @@ public class OrbitTriggerUnit : BaseTriggerUnit<OrbitTriggerUnitModel>
         
         StartOrbitMovement();
 
-        CheckLifeTime(Model.Duration).Forget();
+        // 지속시간 종료 후 페이드아웃하면서 꺼짐
+        UniTaskUtils.DelayAction(Model.Duration, DeactivateWithFade, TokenPool.Get(GetHashCode())).Forget();
     }
     #endregion
 

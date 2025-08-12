@@ -12,18 +12,15 @@ public class ProjectileTriggerUnit : BaseTriggerUnit<ProjectileTriggerUnitModel>
     private float launchDelay = 0f;
 
     [SerializeField]
-    private float fadeTime = 0.25f;
-
-    [SerializeField]
     private bool rotateToDirection = true;
 
     protected Vector3 startPosition;
     protected Vector2 direction;
-    protected bool acitvate;
+    protected bool moveUpdate;
 
     private void FixedUpdate()
     {
-        if (acitvate == false)
+        if (moveUpdate == false)
             return;
 
         UpdateMove();
@@ -32,7 +29,7 @@ public class ProjectileTriggerUnit : BaseTriggerUnit<ProjectileTriggerUnitModel>
 
     protected override void OnUnitDisable()
     {
-        acitvate = false;
+        moveUpdate = false;
         base.OnUnitDisable();
     }
 
@@ -43,14 +40,14 @@ public class ProjectileTriggerUnit : BaseTriggerUnit<ProjectileTriggerUnitModel>
         if (Model == null)
             return;
 
-        effectSprite.enabled = false;
-
         if (launchDelay > 0)
+        {
+            HideRenderer();
             await UniTaskUtils.DelaySeconds(launchDelay, TokenPool.Get(GetHashCode()));
+        }
 
         Launch();
-
-        effectSprite.enabled = true;
+        ShowRenderer();
     }
 
     protected virtual void Launch()
@@ -65,10 +62,9 @@ public class ProjectileTriggerUnit : BaseTriggerUnit<ProjectileTriggerUnitModel>
         startPosition = transform.position;
         RotateSpriteToDirection();
         hitCollider.enabled = true;
-        effectSprite.RestoreAlpha();
         gameObject.SafeSetActive(true);
 
-        acitvate = true;
+        moveUpdate = true;
     }
 
     protected virtual void SetStartDirection()
@@ -101,7 +97,7 @@ public class ProjectileTriggerUnit : BaseTriggerUnit<ProjectileTriggerUnitModel>
     private void CheckDisable()
     {
         if (CheckDisableCondition())
-            Deactivate();
+            DeactiveWithStopMove();
     }
 
     private bool CheckDisableCondition()
@@ -109,7 +105,7 @@ public class ProjectileTriggerUnit : BaseTriggerUnit<ProjectileTriggerUnitModel>
         if (Model.MoveDistance <= Vector3.Distance(transform.position, startPosition))
             return true;
 
-        if (!acitvate)
+        if (!moveUpdate)
             return true;
 
         if (Model.IsOverHitCount())
@@ -118,15 +114,15 @@ public class ProjectileTriggerUnit : BaseTriggerUnit<ProjectileTriggerUnitModel>
         return false;
     }
 
-    public override void Deactivate()
+    private void DeactiveWithStopMove()
     {
-        acitvate = false;
-        effectSprite.DeactiveWithFade(fadeTime, gameObject);
+        moveUpdate = false;
+        DeactivateWithFade();
     }
 
     protected override void OnDetectHit(Collider2D other)
     {
-        if (!acitvate)
+        if (!moveUpdate)
             return;
 
         base.OnDetectHit(other);
