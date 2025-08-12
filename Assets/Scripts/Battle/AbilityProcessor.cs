@@ -29,7 +29,10 @@ public class AbilityProcessor
     {
         // 같은 데이터를 쓰는 능력은 중복 불가함
         if (abilityDicById.ContainsKey(newAbilityDataId))
+        {
+            LevelUpAbility(newAbilityDataId);
             return;
+        }
 
         var newAbility = AbilityFactory.Create<Ability>(newAbilityDataId, owner);
 
@@ -50,7 +53,8 @@ public class AbilityProcessor
         abilitySetByCasting[newAbility.CastingType].Add(newAbility);
         abilitySlotDic[slotType].Add(newAbility);
 
-        if (newAbility.CastingType == CastingType.Instant)
+        // 오토 + 즉발은 최초 추가 시 1회 발동
+        if (newAbility.CastingType is CastingType.Instant or CastingType.Auto)
             newAbility.Cast();
     }
 

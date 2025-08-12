@@ -29,13 +29,10 @@ public class ColliderTriggerUnit : BaseTriggerUnit<BattleEventTriggerUnitModel>
 
     public override async UniTask ShowAsync()
     {
+        AddEnemyKilledObserver();
+
         if (useFlip)
             Flip(Model.IsFlip);
-
-        if (detectType == IBattleEventTriggerUnit.ColliderDetectType.Stay)
-        {
-            InitializeStayCooldown();
-        }
 
         var offset = useFlip ? GetFlipLocalPos(Model.IsFlip) : LocalPosOffset;
 

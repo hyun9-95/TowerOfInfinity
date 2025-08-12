@@ -16,3 +16,4 @@ Id,NameId,SlotType,CastingType,BattleEvents,TriggerType,TargetType,PrefabName,Ic
 51002,AB_ACTIVE_SWORD_WAVE,Active,OnAttack,BE_DAMAGE_SWORD_WAVE,Projectile,Enemy,Ability/SwordWave/SwordWave_Projectile,Ability/SwordWave/SwordWave_Projectile_Icon,NULL
 51003,AB_ACTIVE_MAGIC_MISSILE,Active,Auto,BE_DAMAGE_MAGIC_MISSILE,RandomProjectile,Enemy,Ability/MagicMissile/MagicMissile_Follow,Ability/MagicMissile/MagicMissile_Follow_Icon,NULL
 51004,AB_ACTIVE_ELECTRIC_RING,Active,Instant,BE_DAMAGE_ELECTRIC_RING,FollowCollider,Enemy,Ability/ElectricRing/ElectricRing_Collider,Ability/ElectricRing/ElectricRing_Collider_Icon,NULL
+51005,AB_ACTIVE_ELECTRIC_BALL,Active,Auto,BE_DAMAGE_ELECTRIC_BALL,Orbit,Enemy,Ability/ElectricBall/ElectricBall_Orbit,Ability/ElectricBall/ElectricBall_Orbit_Icon,NULL

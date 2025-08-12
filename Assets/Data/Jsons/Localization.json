@@ -250,5 +250,17 @@
     "Korean": "주변의 적에게 주기적으로 피해를 줍니다.",
     "English": "Periodically deals damage around yourself.",
     "SimplifiedChinese": "定期对自身周围造成伤害。"
+  },
+  {
+    "id": 70042,
+    "Korean": "일렉트릭볼",
+    "English": "Electric Ball",
+    "SimplifiedChinese": "电击球"
+  },
+  {
+    "id": 70043,
+    "Korean": "주변을 공전하며 피해를 주는 구체를 생성합니다.",
+    "English": "Creates orbs that orbit around you and deal damage.",
+    "SimplifiedChinese": "创造围绕你轨道运行并造成伤害的球体。"
   }
 ]

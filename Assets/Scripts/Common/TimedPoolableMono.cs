@@ -29,7 +29,7 @@ public class TimedPoolableMono : PoolableMono
         originLocalScale = transform.localScale;
     }
 
-    private async UniTask CheckLifeTime()
+    protected async UniTask CheckLifeTime(float lifeTime)
     {
         isCheckingLifeTime = true;
 
@@ -91,7 +91,7 @@ public class TimedPoolableMono : PoolableMono
             return;
 
         if (!isCheckingLifeTime)
-            CheckLifeTime().Forget();
+            CheckLifeTime(lifeTime).Forget();
     }
 
     protected override void OnDisable()

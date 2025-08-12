@@ -16,6 +16,7 @@ public static class BattleEventTriggerFactory
             BattleEventTriggerType.FollowProjectile => new FollowProjectileBattleEventTrigger(),
             BattleEventTriggerType.RandomProjectile => new RandomProjectileBattleEventTrigger(),
             BattleEventTriggerType.Self => selfBattleEventTrigger,
+            BattleEventTriggerType.Orbit => new OrbitBattleEventTrigger(),
             _ => null
         };
 
@@ -58,5 +59,26 @@ public static class BattleEventTriggerFactory
             colliderUnitModel.SetFollowTarget(followTarget);
 
         return colliderUnitModel;
+    }
+
+    public static OrbitTriggerUnitModel CreateOrbitUnitModel(
+        BattleEventTriggerModel triggerModel,
+        float startAngle,
+        Transform followTarget = null,
+        Func<Collider2D, Vector3, bool> onEventHit = null)
+    {
+        var orbitUnitModel = new OrbitTriggerUnitModel();
+        orbitUnitModel.SetFlip(triggerModel.Sender.IsFlipX);
+        orbitUnitModel.SetDetectTeamTag(triggerModel.TargetTeamTag);
+        orbitUnitModel.SetOnEventHit(onEventHit);
+        orbitUnitModel.SetHitCount(triggerModel.HitCount);
+        orbitUnitModel.SetOrbitRadius(triggerModel.Range);
+        orbitUnitModel.SetDuration(triggerModel.Duration);
+        orbitUnitModel.SetStartAngle(startAngle);
+
+        if (followTarget != null)
+            orbitUnitModel.SetFollowTarget(followTarget);
+
+        return orbitUnitModel;
     }
 }

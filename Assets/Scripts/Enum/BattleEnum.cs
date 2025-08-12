@@ -15,6 +15,7 @@ public enum BattleEventTriggerType
     FollowProjectile,       // 타겟을 추적하는 투사체 생성
     RandomProjectile,       // 랜덤 방향 투사체 생성
     Self,                   // 자기 자신 대상 이벤트 Send
+    Orbit,                  // 타겟 주변을 공전하는 콜라이더 생성
 }
 
 public enum BattleEventType

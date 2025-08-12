@@ -1,6 +1,5 @@
 #pragma warning disable CS1998
 using Cysharp.Threading.Tasks;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FollowProjectileBattleEventTrigger : BattleEventTrigger

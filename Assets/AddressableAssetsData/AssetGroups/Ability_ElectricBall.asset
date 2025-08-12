@@ -1,0 +1,137 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Ability_ElectricBall
+  m_EditorClassIdentifier: 
+  m_GroupName: Ability_ElectricBall
+  m_GUID: f80032d07930e044981e29f7b985c46b
+  m_SerializeEntries:
+  - m_GUID: 0c0dd00e385eda942a23bd8201b9984b
+    m_Address: Ability/ElectricBall/frame0003
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 22fd176e9f1443742bfd6c8b2cd2ffcc
+    m_Address: Ability/ElectricBall/frame0014
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 461d85ea4e1a2f447963964ba91c33bf
+    m_Address: Ability/ElectricBall/frame0006
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6127af7b3a63fdd469128a8827b027af
+    m_Address: Ability/ElectricBall/frame0002
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 788a1638bc7be7abf1beca0aa310a5fb
+    m_Address: Ability/ElectricBall/pj1_electricity_small_yellow_animator
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7c555f551067fec49a9d401952e6466c
+    m_Address: Ability/ElectricBall/frame0011
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7cf80c37907a04f46a6d1a7384125d35
+    m_Address: Ability/ElectricBall/frame0008
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7f2c1e28d4de7c78a141fa05f709730d
+    m_Address: Ability/ElectricBall/pj1_electricity_small_yellow_clip
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 913370a49d537d448acab26d9f5101c0
+    m_Address: Ability/ElectricBall/frame0009
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 95561c341b1b0024b9011214b4d3b02c
+    m_Address: Ability/ElectricBall/ElectricBall_Orbit
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9ab3971c433e491489a2a91973794328
+    m_Address: Ability/ElectricBall/frame0012
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a3417c1d8dcfe894582a77050836d360
+    m_Address: Ability/ElectricBall/ElectricBall_Orbit_Icon
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c5b2e531e909661409b98100db97a76c
+    m_Address: Ability/ElectricBall/frame0007
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c7bc7e9c8b0bbc940a85ea131f722713
+    m_Address: Ability/ElectricBall/frame0004
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: df0f89a403fb77f4ba77b8c1ecc2b110
+    m_Address: Ability/ElectricBall/frame0010
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: df44830efde94024aa2bd432fd80a7af
+    m_Address: Ability/ElectricBall/frame0001
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e84ae546659e1ef4c93bf87e59ae824e
+    m_Address: Ability/ElectricBall/frame0005
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fb4404051fc11e44d9556e781bc0d426
+    m_Address: Ability/ElectricBall/frame0015
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fc2ff73b7cdcaaa48941d86e7a488d30
+    m_Address: Ability/ElectricBall/frame0013
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: d15455c4a307a2342bb4ce5ef440dfd0, type: 2}
+    - {fileID: 11400000, guid: 263f77db2a9c7e2438062f15832b145b, type: 2}

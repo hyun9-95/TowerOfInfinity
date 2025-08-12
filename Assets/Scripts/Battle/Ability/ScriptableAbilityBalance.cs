@@ -136,7 +136,7 @@ public class ScriptableAbilityBalance : ScriptableObject
             Scale[i] = 0f;
             CoolTime[i] = 0f;
             SpawnCount[i] = 1;
-            HitForce[i] = 0f;
+            HitForce[0] = 0f;
         }
     }
 

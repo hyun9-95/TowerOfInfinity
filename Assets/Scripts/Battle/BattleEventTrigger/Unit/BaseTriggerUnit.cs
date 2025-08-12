@@ -1,16 +1,20 @@
+#pragma warning disable CS1998
+using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class BaseTriggerUnit<T> : PoolableBaseUnit<T>, IBattleEventTriggerUnit, IObserver where T : BattleEventTriggerUnitModel
 {
+    #region Value
     [SerializeField]
     protected IBattleEventTriggerUnit.ColliderDetectType detectType;
 
     [SerializeField]
     protected Collider2D hitCollider;
 
-    protected Dictionary<CharacterUnitModel, float> nextAllowedTime;
+    protected Dictionary<CharacterUnitModel, float> nextAllowedTime = new();
+    #endregion
 
     #region Lifecycle
     private void Awake()
@@ -27,17 +31,18 @@ public abstract class BaseTriggerUnit<T> : PoolableBaseUnit<T>, IBattleEventTrig
         base.OnDisable();
     }
 
+    public override async UniTask ShowAsync()
+    {
+        AddEnemyKilledObserver();
+    }
+
     protected virtual void OnUnitDisable()
     {
         TokenPool.Cancel(GetHashCode());
         hitCollider.enabled = false;
-        
-        if (detectType == IBattleEventTriggerUnit.ColliderDetectType.Stay)
-        {
-            OnStayDetectionDisable();
-            if (nextAllowedTime != null)
-                nextAllowedTime.Clear();
-        }
+
+        RemoveEnemyKilledObserver();
+        nextAllowedTime.Clear();
     }
     #endregion
 
@@ -47,7 +52,7 @@ public abstract class BaseTriggerUnit<T> : PoolableBaseUnit<T>, IBattleEventTrig
         if (detectType != IBattleEventTriggerUnit.ColliderDetectType.Enter)
             return;
 
-        OnDetectHit(other);
+        OnDetectHitWithCooltime(other);
     }
 
     private void OnTriggerStay2D(Collider2D other)
@@ -55,7 +60,7 @@ public abstract class BaseTriggerUnit<T> : PoolableBaseUnit<T>, IBattleEventTrig
         if (detectType != IBattleEventTriggerUnit.ColliderDetectType.Stay)
             return;
 
-        OnTriggerStayDetected(other);
+        OnDetectHitWithCooltime(other);
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -63,7 +68,7 @@ public abstract class BaseTriggerUnit<T> : PoolableBaseUnit<T>, IBattleEventTrig
         if (detectType != IBattleEventTriggerUnit.ColliderDetectType.Exit)
             return;
 
-        OnDetectHit(other);
+        OnDetectHitWithCooltime(other);
     }
 
     protected virtual void OnDetectHit(Collider2D other)
@@ -77,11 +82,6 @@ public abstract class BaseTriggerUnit<T> : PoolableBaseUnit<T>, IBattleEventTrig
         Model.OnEventHit(other, transform.position);
     }
 
-    protected virtual void OnTriggerStayDetected(Collider2D other)
-    {
-        OnDetectHitWithCooltime(other);
-    }
-
     protected virtual void OnDetectHitWithCooltime(Collider2D other)
     {
         if (!other.gameObject.CheckLayer(LayerFlag.Character) || Model == null)
@@ -92,10 +92,10 @@ public abstract class BaseTriggerUnit<T> : PoolableBaseUnit<T>, IBattleEventTrig
         if (targetModel == null)
             return;
 
-        float now = Time.time;
-        float cd = FloatDefine.COLLIDER_STAY_COOLTIME_PER_TARGET;
+        float nowTime = Time.time;
+        float coolTime = FloatDefine.COLLIDER_STAY_COOLTIME_PER_TARGET;
 
-        if (nextAllowedTime != null && nextAllowedTime.TryGetValue(targetModel, out var t) && now < t)
+        if (nextAllowedTime != null && nextAllowedTime.TryGetValue(targetModel, out var time) && nowTime < time)
             return;
 
         Model.OnEventHit(other, transform.position);
@@ -103,39 +103,25 @@ public abstract class BaseTriggerUnit<T> : PoolableBaseUnit<T>, IBattleEventTrig
         if (nextAllowedTime == null)
             nextAllowedTime = new Dictionary<CharacterUnitModel, float>();
             
-        nextAllowedTime[targetModel] = now + cd;
+        nextAllowedTime[targetModel] = nowTime + coolTime;
     }
     #endregion
 
     #region Stay Cooldown
-    protected virtual void InitializeStayCooldown()
-    {
-        if (detectType == IBattleEventTriggerUnit.ColliderDetectType.Stay)
-        {
-            OnStayDetectionEnable();
-
-            if (nextAllowedTime == null)
-                nextAllowedTime = new Dictionary<CharacterUnitModel, float>();
-        }
-    }
-
-    protected virtual void OnStayDetectionEnable()
+    protected void AddEnemyKilledObserver()
     {
         ObserverManager.AddObserver(BattleObserverID.EnemyKilled, this);
     }
 
-    protected virtual void OnStayDetectionDisable()
+    protected void RemoveEnemyKilledObserver()
     {
         ObserverManager.RemoveObserver(BattleObserverID.EnemyKilled, this);
     }
 
-    protected virtual void RemoveTargetFromCooldown(CharacterUnitModel targetModel)
+    private void RemoveTargetFromCooldown(CharacterUnitModel targetModel)
     {
-        if (detectType == IBattleEventTriggerUnit.ColliderDetectType.Stay)
-        {
-            if (nextAllowedTime != null && nextAllowedTime.ContainsKey(targetModel))
-                nextAllowedTime.Remove(targetModel);
-        }
+        if (nextAllowedTime != null && nextAllowedTime.ContainsKey(targetModel))
+            nextAllowedTime.Remove(targetModel);
     }
 
     void IObserver.HandleMessage(Enum observerMessage, IObserverParam observerParam)

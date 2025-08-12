@@ -89,5 +89,18 @@
     "PrefabName": "Ability/ElectricRing/ElectricRing_Collider",
     "IconPath": "Ability/ElectricRing/ElectricRing_Collider_Icon",
     "HitEffectPrefabName": ""
+  },
+  {
+    "id": 51005,
+    "SlotType": "Active",
+    "CastingType": "Auto",
+    "BattleEvents": [
+      "BE_DAMAGE_ELECTRIC_BALL"
+    ],
+    "TriggerType": "Orbit",
+    "TargetType": "Enemy",
+    "PrefabName": "Ability/ElectricBall/ElectricBall_Orbit",
+    "IconPath": "Ability/ElectricBall/ElectricBall_Orbit_Icon",
+    "HitEffectPrefabName": ""
   }
 ]

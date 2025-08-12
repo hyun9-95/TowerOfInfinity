@@ -38,6 +38,8 @@ public class ProjectileTriggerUnit : BaseTriggerUnit<ProjectileTriggerUnitModel>
 
     public override async UniTask ShowAsync()
     {
+        AddEnemyKilledObserver();
+
         if (Model == null)
             return;
 

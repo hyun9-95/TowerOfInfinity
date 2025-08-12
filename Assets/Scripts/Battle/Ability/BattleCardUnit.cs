@@ -1,9 +1,8 @@
 #pragma warning disable CS1998
+using Cysharp.Threading.Tasks;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
-using Cysharp.Threading.Tasks;
-using System;
 
 public class BattleCardUnit : BaseUnit<BattleCardUnitModel>
 {

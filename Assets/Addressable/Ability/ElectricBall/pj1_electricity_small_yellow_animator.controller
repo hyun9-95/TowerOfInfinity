@@ -54,7 +54,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pj1_electricity_small_yellow
+  m_Name: pj1_electricity_small_yellow_animator
   serializedVersion: 5
   m_AnimatorParameters: []
   m_AnimatorLayers:

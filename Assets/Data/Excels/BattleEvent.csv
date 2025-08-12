@@ -8,3 +8,4 @@ Id,NameId,Type,AffectStat,BattleEventCategory,BattleEventGroup,StatReference,Sta
 20004,BE_DAMAGE_SWORD_WAVE,Damage,Attack,Active,None,Sender,CurrentStat,Increase,FALSE
 20005,BE_DAMAGE_MAGIC_MISSILE,Damage,Attack,Active,None,Sender,CurrentStat,Increase,FALSE
 20006,BE_DAMAGE_ELECTRIC_RING,Damage,Attack,Active,None,Sender,CurrentStat,Increase,FALSE
+20007,BE_DAMAGE_ELECTRIC_BALL,Damage,Attack,Active,None,Sender,CurrentStat,Increase,FALSE

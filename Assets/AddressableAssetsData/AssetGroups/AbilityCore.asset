@@ -93,8 +93,20 @@ MonoBehaviour:
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: da567ec74c62a024ca48d77202dfec40
+    m_Address: AbilityCore/BattleEventBalance/BE_DAMAGE_ELECTRIC_BALL
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: dab6aa88682bd2a409a31bb2e9c65cb7
     m_Address: AbilityCore/BattleEventBalance/BE_DAMAGE_MAGIC_MISSILE
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e91d9ab75b68d684e8a55a4a62103314
+    m_Address: AbilityCore/AbilityBalance/AB_ACTIVE_ELECTRIC_BALL
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
