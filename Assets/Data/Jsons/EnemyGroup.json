@@ -1,17 +1,9 @@
 [
   {
     "id": 30000,
-    "Boss": "CHAR_GREEN_OGRE",
+    "MidBoss": "CHAR_GREEN_OGRE",
+    "FinalBoss": "CHAR_RED_DRAGON",
     "Enemys": [
-      [
-        "CHAR_BAT",
-        "CHAR_BAT",
-        "CHAR_GREEN_OGRE"
-      ],
-      [
-        "CHAR_BAT",
-        "CHAR_BAT"
-      ],
       [
         "CHAR_BAT",
         "CHAR_BAT"

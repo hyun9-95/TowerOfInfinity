@@ -139,7 +139,7 @@ public enum CharacterType
     Sub,
     NPC,
     Enemy,
-    EnemyBoss,
+    Boss,
 }
 
 public enum CharacterSetUpType

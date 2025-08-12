@@ -270,7 +270,7 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
             ObserverManager.NotifyObserver(BattleObserverID.EnemyKilled, newObserverParam);
 
             // 죽은 캐릭터가 보스라면 승리
-            if (deadCharacterModel.CharacterDefine == battleInfo.BossCharacterDefine)
+            if (deadCharacterModel.CharacterDefine == battleInfo.FinalBoss)
                 OnBattleEnd(BattleResult.Victory);
         }
         else if (deadCharacterModel == battleInfo.CurrentCharacter.Model)

@@ -38,7 +38,9 @@ public class BattleInfo
 
     public int CurrentWave { get; private set; }
 
-    public CharacterDefine BossCharacterDefine { get; private set; }
+    public CharacterDefine FinalBoss { get; private set; }
+
+    public CharacterDefine MidBoss {  get; private set; }
 
     public DataDungeon DataDungeon { get; private set; }
 
@@ -69,9 +71,12 @@ public class BattleInfo
         DataDungeon = dataDungeon;
         
         var enemyGroup = DataManager.Instance.GetDataById<DataEnemyGroup>((int)dataDungeon.EnemyGroup);
-        
+
         if (!enemyGroup.IsNull)
-            BossCharacterDefine = enemyGroup.Boss;
+        {
+            FinalBoss = enemyGroup.FinalBoss;
+            MidBoss = enemyGroup.MidBoss;
+        }
     }
 
     public void SetBattleResult(BattleResult battleResult)

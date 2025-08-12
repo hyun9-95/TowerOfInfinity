@@ -1,4 +1,5 @@
 #if UNITY_EDITOR
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
@@ -171,7 +172,8 @@ namespace Tools
 
         private string GetAccessModifier(string name)
         {
-            if (name.Contains("Id") || name.Contains("NameId") || name.Contains("id") || name.Contains("nameid"))
+            if (name.Equals("Id", StringComparison.OrdinalIgnoreCase) || 
+                name.Equals("NameId", StringComparison.OrdinalIgnoreCase))
                 return "private";
 
             return "public";

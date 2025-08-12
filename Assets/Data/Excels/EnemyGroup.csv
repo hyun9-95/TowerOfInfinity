@@ -1,4 +1,4 @@
-﻿아이디,이름,,,,,,,,,,,,,,,,
-int,string,CharacterDefine[],CharacterDefine[],CharacterDefine[],CharacterDefine[],CharacterDefine[],CharacterDefine[],CharacterDefine[],CharacterDefine[],CharacterDefine[],CharacterDefine[],CharacterDefine[],CharacterDefine[],CharacterDefine[],CharacterDefine[],CharacterDefine[],CharacterDefine
-Id,NameId,Enemys,Enemys,Enemys,Enemys,Enemys,Enemys,Enemys,Enemys,Enemys,Enemys,Enemys,Enemys,Enemys,Enemys,Enemys,Boss
-30000,ENEMY_GROUP_ATLANTIS,CHAR_BAT; CHAR_BAT; CHAR_GREEN_OGRE,CHAR_BAT; CHAR_BAT,CHAR_BAT; CHAR_BAT,CHAR_BAT; CHAR_BAT,CHAR_BAT; CHAR_BAT,CHAR_BAT; CHAR_BAT,CHAR_BAT; CHAR_BAT,CHAR_BAT; CHAR_BAT,CHAR_BAT; CHAR_BAT,CHAR_BAT; CHAR_BAT,CHAR_BAT; CHAR_BAT,CHAR_BAT; CHAR_BAT,CHAR_BAT; CHAR_BAT,CHAR_BAT; CHAR_BAT,CHAR_BAT; CHAR_BAT,CHAR_GREEN_OGRE
+﻿아이디,이름,,,,,,,,,,,,,,,
+int,string,CharacterDefine,CharacterDefine,CharacterDefine[],CharacterDefine[],CharacterDefine[],CharacterDefine[],CharacterDefine[],CharacterDefine[],CharacterDefine[],CharacterDefine[],CharacterDefine[],CharacterDefine[],CharacterDefine[],CharacterDefine[],CharacterDefine[]
+Id,NameId,MidBoss,FinalBoss,Enemys,Enemys,Enemys,Enemys,Enemys,Enemys,Enemys,Enemys,Enemys,Enemys,Enemys,Enemys,Enemys
+30000,ENEMY_GROUP_ATLANTIS,CHAR_GREEN_OGRE,CHAR_RED_DRAGON,CHAR_BAT; CHAR_BAT,CHAR_BAT; CHAR_BAT,CHAR_BAT; CHAR_BAT,CHAR_BAT; CHAR_BAT,CHAR_BAT; CHAR_BAT,CHAR_BAT; CHAR_BAT,CHAR_BAT; CHAR_BAT,CHAR_BAT; CHAR_BAT,CHAR_BAT; CHAR_BAT,CHAR_BAT; CHAR_BAT,CHAR_BAT; CHAR_BAT,CHAR_BAT; CHAR_BAT,CHAR_BAT; CHAR_BAT

@@ -30,7 +30,7 @@ public class PathDefine
     public const string CHARACTER_INFO_MAIN = "CharacterCore/ScriptableCharacterInfo/MainCharacterInfo";
     public const string CHARACTER_INFO_SUB = "CharacterCore/ScriptableCharacterInfo/SubCharacterInfo";
     public const string CHARACTER_INFO_ENEMY = "CharacterCore/ScriptableCharacterInfo/EnemyCharacterInfo";
-    public const string CHARACTER_INFO_ENEMY_BOSS = "CharacterCore/ScriptableCharacterInfo/EnemyBossCharacteInfo";
+    public const string CHARACTER_INFO_ENEMY_BOSS = "CharacterCore/ScriptableCharacterInfo/EnemyBossCharacterInfo";
     public const string CHARACTER_INFO_NPC = "CharacterCore/ScriptableCharacterInfo/NpcCharacterInfo";
     public const string CHARACTER_EXP_GAINER = "BattleCore/BattleExpGainer";
     public const string BATTLE_EXP_GEM = "BattleCore/BattleExpGem";

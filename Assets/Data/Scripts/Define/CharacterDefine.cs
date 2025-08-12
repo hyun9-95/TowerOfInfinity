@@ -10,5 +10,6 @@ public enum CharacterDefine
 	CHAR_GUARD = 10002,
 	CHAR_BAT = 11000,
 	CHAR_GREEN_OGRE = 11001,
+	CHAR_RED_DRAGON = 11002,
 
 }

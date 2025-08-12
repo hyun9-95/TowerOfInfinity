@@ -5,7 +5,7 @@
     "PrimaryWeaponAbility": "AB_WEAPON_STING",
     "ActiveSkill": "None",
     "PassiveSkill": "None",
-    "CustomCharacterInfo": ""
+    "CustomBossCharacterInfo": ""
   },
   {
     "id": 10001,
@@ -13,7 +13,7 @@
     "PrimaryWeaponAbility": "AB_WEAPON_ARROW",
     "ActiveSkill": "None",
     "PassiveSkill": "None",
-    "CustomCharacterInfo": ""
+    "CustomBossCharacterInfo": ""
   },
   {
     "id": 10002,
@@ -21,7 +21,7 @@
     "PrimaryWeaponAbility": "AB_WEAPON_STING",
     "ActiveSkill": "None",
     "PassiveSkill": "None",
-    "CustomCharacterInfo": ""
+    "CustomBossCharacterInfo": ""
   },
   {
     "id": 11000,
@@ -29,7 +29,7 @@
     "PrimaryWeaponAbility": "None",
     "ActiveSkill": "None",
     "PassiveSkill": "None",
-    "CustomCharacterInfo": ""
+    "CustomBossCharacterInfo": ""
   },
   {
     "id": 11001,
@@ -37,6 +37,14 @@
     "PrimaryWeaponAbility": "AB_WEAPON_GREEN_OGRE_SMASH",
     "ActiveSkill": "None",
     "PassiveSkill": "None",
-    "CustomCharacterInfo": "CharacterCore/ScriptableCharacterInfo/EnemyBossCharacterInfo"
+    "CustomBossCharacterInfo": ""
+  },
+  {
+    "id": 11002,
+    "PrefabName": "Character/Enemy/RedDragon/RedDragon",
+    "PrimaryWeaponAbility": "None",
+    "ActiveSkill": "None",
+    "PassiveSkill": "None",
+    "CustomBossCharacterInfo": ""
   }
 ]

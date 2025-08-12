@@ -115,6 +115,7 @@ public class CharacterFactory : BaseManager<CharacterFactory>
             CharacterType.Sub => PathDefine.CHARACTER_INFO_SUB,
             CharacterType.Enemy => PathDefine.CHARACTER_INFO_ENEMY,
             CharacterType.NPC => PathDefine.CHARACTER_INFO_NPC,
+            CharacterType.Boss => PathDefine.CHARACTER_INFO_ENEMY_BOSS,
             _ => string.Empty,
         };
     }
@@ -151,13 +152,14 @@ public class CharacterFactory : BaseManager<CharacterFactory>
 
         ScriptableCharacterInfo scriptableCharacterInfo = null;
 
-        if (dataId != 0)
+        // 보스로 사용 시 커스텀 상태그룹 + 모듈그룹을 가질 수 있다.
+        if (dataId != 0 && characterType == CharacterType.Boss)
         {
             var data = DataManager.Instance.GetDataById<DataCharacter>(dataId);
 
-            if (!data.IsNull && !string.IsNullOrEmpty(data.CustomCharacterInfo))
+            if (!data.IsNull && !string.IsNullOrEmpty(data.CustomBossCharacterInfo))
             {
-                var path = data.CustomCharacterInfo;
+                var path = data.CustomBossCharacterInfo;
                 var customCharacterInfo = await AddressableManager.Instance.
                     LoadAssetAsyncWithTracker<ScriptableCharacterInfo>(path, character.gameObject);
 
