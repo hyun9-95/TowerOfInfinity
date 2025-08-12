@@ -1,0 +1,2 @@
+TriggerName=Orbit
+Description=n개의 충돌체가 플레이어 주변을 따라다니며 공전. 개수에 따라서 적절하게 충돌체 별 간격이 처리됨

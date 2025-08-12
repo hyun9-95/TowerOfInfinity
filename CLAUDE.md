@@ -265,6 +265,56 @@ AffectStat=Attack
 - `Assets/Data/Excels/BattleEvent.csv` (new battle event entry)
 - `Assets/Data/Excels/Localization.csv` (new name and description entries)
 
+### `/newBattleEventTrigger`
+Creates a new BattleEventTrigger and TriggerUnit automatically with intelligent behavior detection:
+
+1. **Read** `NewBattleEventTriggerTemplate.txt` configuration file
+2. **Analyze** TriggerName to detect required behavior patterns (Random, Bounce, Spiral, etc.)
+3. **Determine** if existing TriggerUnit can be used or new one needs to be created
+4. **Generate** new BattleEventTrigger class with appropriate Unit spawning logic
+5. **Create** new TriggerUnit class (if special behavior detected) with SerializeField parameters
+6. **Update** BattleEventTriggerFactory and BattleEventTriggerType enum
+7. **Report** all created files and next steps
+
+**Usage**:
+1. Edit `NewBattleEventTriggerTemplate.txt` with desired trigger information
+2. Type `/newBattleEventTrigger` to execute the workflow
+
+**Template Configuration**:
+```
+# Basic Information Only
+TriggerName=RandomMove
+Description=불규칙하게 움직이는 투사체 생성
+```
+
+**Intelligent Behavior Detection**:
+- **Keywords**: "Random", "Bounce", "Spiral", "Follow", "Multi", "Chain", etc.
+- **Unit Type**: Automatically determines Projectile vs Collider based on name patterns
+- **Reuse Logic**: Uses existing ProjectileTriggerUnit/ColliderTriggerUnit when possible
+- **Special Units**: Creates new TriggerUnit only when unique behavior is required
+
+**Auto-Generated Files**:
+- **Always**: `{TriggerName}BattleEventTrigger.cs`
+- **Conditional**: `{TriggerName}TriggerUnit.cs` (only if special behavior detected)
+- **Updates**: `BattleEnum.cs`, `BattleEventTriggerFactory.cs`
+
+**Examples**:
+- `TriggerName=MultiShot` → Uses existing ProjectileTriggerUnit, creates MultiShotBattleEventTrigger
+- `TriggerName=BouncingBall` → Creates BouncingBallTriggerUnit with bounce physics
+- `TriggerName=SpiralMissile` → Creates SpiralMissileTriggerUnit with spiral movement
+
+**Architecture Pattern**:
+- **Model-Based**: Creates `{TriggerName}TriggerUnitModel` for complex units with custom parameters
+- **Factory Integration**: Adds `Create{TriggerName}UnitModel()` method to BattleEventTriggerFactory
+- **No Direct Setting**: Unit parameters set via Model, not direct method calls
+
+**Files Modified**:
+- `Assets/Scripts/Battle/BattleEventTrigger/{TriggerName}BattleEventTrigger.cs` (new trigger class)
+- `Assets/Scripts/Battle/BattleEventTrigger/Unit/{TriggerName}TriggerUnit.cs` (if needed)
+- `Assets/Scripts/Battle/BattleEventTrigger/Unit/{TriggerName}TriggerUnitModel.cs` (if custom params needed)
+- `Assets/Scripts/Enum/BattleEnum.cs` (BattleEventTriggerType enum updated)
+- `Assets/Scripts/Factory/BattleEventTriggerFactory.cs` (Create method + UnitModel factory updated)
+
 ## Code Restrictions
 
 ### Prohibited Features
