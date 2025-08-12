@@ -1,14 +1,14 @@
 # 어빌리티 기본 정보
-AbilityName=ElectricBall
-KoreanName=일렉트릭볼
-KoreanDesc=주변을 공전하며 피해를 주는 구체를 생성합니다.
+AbilityName=GreenOgreSmash
+KoreanName=
+KoreanDesc=
 
 # 게임플레이 설정
-CardType=GetAbility
-Tier=Common
-SlotType=Active
-CastingType=Auto
-TriggerType=Orbit
+CardType=
+Tier=
+SlotType=Weapon
+CastingType=OnAttack
+TriggerType=FollowCollider
 TargetType=Enemy
 
 # 배틀 이벤트 설정
@@ -22,6 +22,6 @@ StatusDirection=Increase
 Stackable=FALSE
 
 # 선택적 정보 (비워두면 기본값 사용)
-IconPath=
+IconPath=NULL
 PrefabPath=
-HitEffectPath=
+HitEffectPath=NULL

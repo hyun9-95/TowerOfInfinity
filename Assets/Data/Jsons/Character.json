@@ -30,7 +30,7 @@
   {
     "id": 11001,
     "PrefabName": "Character/Enemy/GreenOgre/GreenOgre",
-    "PrimaryWeaponAbility": "None",
+    "PrimaryWeaponAbility": "AB_WEAPON_GREEN_OGRE_SMASH",
     "ActiveSkill": "None",
     "PassiveSkill": "None"
   }

@@ -71,7 +71,12 @@ public class CharacterFactory : BaseManager<CharacterFactory>
         if (enemy == null)
             return null;
 
-        var model = CreateCharacterUnitModel(TeamTag.Enemy, CharacterType.Enemy, CharacterSetUpType.Battle);
+        CharacterInfo enemyCharacterInfo = new SubCharacterInfo();
+        enemyCharacterInfo.SetPrimaryWeaponAbility(data.PrimaryWeaponAbility);
+        enemyCharacterInfo.SetActiveAbility(data.ActiveSkill);
+        enemyCharacterInfo.SetPassiveAbility(data.PassiveSkill);
+
+        var model = CreateCharacterUnitModel(TeamTag.Enemy, CharacterType.Enemy, CharacterSetUpType.Battle, enemyCharacterInfo);
         model.SetCharacterDataId(characterDataId);
         enemy.SetModel(model);
 

@@ -26,6 +26,19 @@
     "HitEffectPrefabName": ""
   },
   {
+    "id": 50002,
+    "SlotType": "Weapon",
+    "CastingType": "OnAttack",
+    "BattleEvents": [
+      "BE_DAMAGE_GREEN_OGRE_SMASH"
+    ],
+    "TriggerType": "FollowCollider",
+    "TargetType": "Enemy",
+    "PrefabName": "Ability/GreenOgreSmash/GreenOgreSmash_Collider",
+    "IconPath": "",
+    "HitEffectPrefabName": ""
+  },
+  {
     "id": 51000,
     "SlotType": "Active",
     "CastingType": "Auto",

@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Ability_GreenOgreSmash
+  m_EditorClassIdentifier: 
+  m_GroupName: Ability_GreenOgreSmash
+  m_GUID: 70d4d25cb02c03243b354d86c373af1b
+  m_SerializeEntries:
+  - m_GUID: 2595e949b16290c449ee51f97d85adf2
+    m_Address: Ability/GreenOgreSmash/GreenOgreSmash_Collider
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6d331f67efc55d84bbe4291bf8ac638b
+    m_Address: Ability/GreenOgreSmash/Mine_normal_M
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a04d49ec2fb9d40479fb0d8b3137ec88
+    m_Address: Ability/GreenOgreSmash/mine_normal_SpriteSheet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 46b63ca519455e945be0ccfc85ba468b, type: 2}
+    - {fileID: 11400000, guid: 02182728ac9043542a52b67d0a5e2fe9, type: 2}

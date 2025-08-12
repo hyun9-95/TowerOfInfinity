@@ -15,6 +15,9 @@ public class CheatConfig
     [Header("Walkable Node + 경로 표시")]
     public bool IsDebugAStar;
 
+    [Header("무적")]
+    public bool IsInvincible;
+
     [Header("시작 마을 씬")]
     public SceneDefine SceneDefine;
 

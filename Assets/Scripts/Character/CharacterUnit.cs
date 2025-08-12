@@ -117,7 +117,7 @@ public class CharacterUnit : PoolableMono
         characterCollider2D.enabled = true;
         triggerCollider2D.enabled = true;
 
-        // 우선순위대로 정렬하므로
+        // 우선순위가 높은 순으로 정렬하므로
         // 가장 마지막에 있는 것이 기본 상태가 된다.
         stateGroup.Sort();
         defaultState = stateGroup.StateList.Last();

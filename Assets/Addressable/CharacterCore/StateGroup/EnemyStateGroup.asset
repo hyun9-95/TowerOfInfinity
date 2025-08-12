@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: EnemyStateGroup
   m_EditorClassIdentifier: 
   stateList:
+  - {fileID: 11400000, guid: 4f4211a8e47e5a541bab5585d8846157, type: 2}
   - {fileID: 11400000, guid: f799c4289bae6c148ba46d8e9e97b990, type: 2}
   - {fileID: 11400000, guid: c612e26ecce44414d8ed38190f3a3f85, type: 2}
-  - {fileID: 11400000, guid: 4f4211a8e47e5a541bab5585d8846157, type: 2}

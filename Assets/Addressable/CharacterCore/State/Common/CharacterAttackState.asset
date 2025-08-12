@@ -9,15 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55f4252d2dfaffd4e81d9792baaad074, type: 3}
-  m_Name: MainPlayerCharacter_Stat
+  m_Script: {fileID: 11500000, guid: acd4b8b05b7894f42bedfed38b621400, type: 3}
+  m_Name: CharacterAttackState
   m_EditorClassIdentifier: 
-  stats:
-  - statType: 0
-    value: 100
-  - statType: 1
-    value: 10
-  - statType: 2
-    value: 0
-  - statType: 3
-    value: 4

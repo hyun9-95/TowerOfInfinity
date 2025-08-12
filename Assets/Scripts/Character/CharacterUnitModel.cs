@@ -119,6 +119,10 @@ public class CharacterUnitModel : IBaseUnitModel
     /// <param name="value"></param>
     public void AddDamage(float value)
     {
+#if CHEAT
+        if (CharacterType == CharacterType.Main && CheatManager.CheatConfig.IsInvincible)
+            return;
+#endif
         AddHp(-value);
     }
 

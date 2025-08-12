@@ -7,6 +7,8 @@ public class AbilityModel : IBaseUnitModel
     public int Level { get; private set; }
     public float CoolTime => abilityBalance.GetCoolTime(Owner.Level);
 
+    public float Range => abilityBalance.GetRange(Owner.Level);
+
     private ScriptableAbilityBalance abilityBalance;
 
     public void SetByAbilityData(DataAbility ability, CharacterUnitModel owner)

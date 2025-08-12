@@ -53,12 +53,12 @@ MonoBehaviour:
   effectParticle: {fileID: 3948468271430011930}
   particleSystemRenderer: {fileID: 3948468271430011933}
   detectType: 0
-  colliderSizeType: 0
+  fadeTime: 0.25
   hitCollider: {fileID: 6781900405216177287}
   useFlip: 1
-  useTargetFollow: 1
-  detectStartTime: 0
-  detectEndTime: 0.05
+  detectStartTime: 0.1
+  detectDuration: 0.05
+  followTime: 0
 --- !u!61 &6781900405216177287
 BoxCollider2D:
   m_ObjectHideFlags: 0

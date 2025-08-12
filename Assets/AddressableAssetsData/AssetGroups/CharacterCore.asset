@@ -279,6 +279,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ab56131efae8aff4c866a9c5c9e4dfa2
+    m_Address: CharacterCore/State/Common/CharacterAttackState
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ad1828b8b7bfd864ebfa238546ec2b31
     m_Address: CharacterCore/AnimationEffect/Fall
     m_ReadOnly: 0
@@ -299,6 +305,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c612e26ecce44414d8ed38190f3a3f85
     m_Address: CharacterCore/State/Common/CharacterIdleState
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c7c0053cf80ecb443b69c7d3048a956b
+    m_Address: CharacterCore/StateGroup/EnemyBossStateGroup
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main

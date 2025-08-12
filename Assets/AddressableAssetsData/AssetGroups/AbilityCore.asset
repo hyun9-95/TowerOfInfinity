@@ -51,6 +51,18 @@ MonoBehaviour:
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4ef9683261f97e849b6fd9b1055eb0de
+    m_Address: AbilityCore/BattleEventBalance/BE_DAMAGE_GREEN_OGRE_SMASH
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 728d9494409d1f6438fd2e6de4c85d68
+    m_Address: AbilityCore/AbilityBalance/AB_WEAPON_GREEN_OGRE_SMASH
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7b3c5f61568f91b49b924e6ecf327672
     m_Address: AbilityCore/BattleEventBalance/BE_DAMAGE_COLLISION
     m_ReadOnly: 0

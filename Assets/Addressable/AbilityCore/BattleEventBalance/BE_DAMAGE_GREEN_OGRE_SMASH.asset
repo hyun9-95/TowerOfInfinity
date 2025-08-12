@@ -9,15 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55f4252d2dfaffd4e81d9792baaad074, type: 3}
-  m_Name: MainPlayerCharacter_Stat
+  m_Script: {fileID: 11500000, guid: ed11842cc8ba12d40aca11dedabb0006, type: 3}
+  m_Name: BE_DAMAGE_GREEN_OGRE_SMASH
   m_EditorClassIdentifier: 
-  stats:
-  - statType: 0
-    value: 100
-  - statType: 1
-    value: 10
-  - statType: 2
-    value: 0
-  - statType: 3
-    value: 4
+  define: 20008
+  value:
+  - 1
+  value2: []
+  duration: []
+  applyIntervalSeconds: []

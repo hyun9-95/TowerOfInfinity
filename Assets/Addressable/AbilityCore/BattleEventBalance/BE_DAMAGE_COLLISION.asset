@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: BE_DAMAGE_COLLISION
   m_EditorClassIdentifier: 
   define: 20001
-  duration: []
   value:
   - 1
+  value2: []
+  duration: []
   applyIntervalSeconds: []

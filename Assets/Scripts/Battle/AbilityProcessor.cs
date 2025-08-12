@@ -128,6 +128,14 @@ public class AbilityProcessor
         return GetPrimaryWeapon().IsCastable;
     }
 
+    public float GetPrimaryWeaponRange()
+    {
+        if (GetPrimaryWeapon() == null)
+            return 0;
+
+        return GetPrimaryWeapon().Model.Range;
+    }
+
     private Ability GetPrimaryWeapon()
     {
         if (!abilitySlotDic.TryGetValue(AbilitySlotType.Weapon, out var weaponAbilities))

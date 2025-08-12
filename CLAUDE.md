@@ -224,8 +224,8 @@ Creates a new battle card and ability automatically by reading template configur
 2. **Parse** ability settings (name, gameplay mechanics, battle events)
 3. **Generate** unique IDs for all related data entries
 4. **Convert** naming conventions (Fire Ball → FIRE_BALL → AB_ACTIVE_FIRE_BALL)
-5. **Add** entries to 4 CSV files with proper relationships
-6. **Translate** Korean descriptions to English and Chinese
+5. **Add** entries to CSV files with conditional logic
+6. **Translate** Korean descriptions to English and Chinese (if provided)
 7. **Report** all created entries with their IDs
 
 **Usage**: 
@@ -253,17 +253,22 @@ AffectStat=Attack
 # ... additional settings
 ```
 
+**Conditional Generation Logic**:
+- **KoreanName/KoreanDesc empty**: Skip Localization.csv entries
+- **CardType empty**: Skip BattleCard.csv entry (ability-only generation)
+- **Always generates**: Ability.csv and BattleEvent.csv entries
+
 **Auto-Generated Data**:
 - **IDs**: Automatically assigns next available IDs (100000+, 51000+, 20000+, 70000+ series)
 - **Naming**: Fire Ball → AB_ACTIVE_FIRE_BALL, BE_DAMAGE_FIRE_BALL, BATTLE_CARD_AB_FIRE_BALL
 - **Paths**: Ability/FireBall/FireBall_Projectile, Ability/FireBall/FireBall_Projectile_Icon
-- **Localization**: LOCAL_AB_FIRE_BALL_NAME, LOCAL_AB_FIRE_BALL_DESC with translations
+- **Localization**: LOCAL_AB_FIRE_BALL_NAME, LOCAL_AB_FIRE_BALL_DESC with translations (if Korean provided)
 
 **Files Modified**:
-- `Assets/Data/Excels/BattleCard.csv` (new battle card entry)
-- `Assets/Data/Excels/Ability.csv` (new ability entry) 
-- `Assets/Data/Excels/BattleEvent.csv` (new battle event entry)
-- `Assets/Data/Excels/Localization.csv` (new name and description entries)
+- `Assets/Data/Excels/Ability.csv` (always - new ability entry) 
+- `Assets/Data/Excels/BattleEvent.csv` (always - new battle event entry)
+- `Assets/Data/Excels/BattleCard.csv` (conditional - only if CardType provided)
+- `Assets/Data/Excels/Localization.csv` (conditional - only if KoreanName/KoreanDesc provided)
 
 ### `/newBattleEventTrigger`
 Creates a new BattleEventTrigger and TriggerUnit automatically with intelligent behavior detection:
