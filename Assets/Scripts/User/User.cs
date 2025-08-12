@@ -29,7 +29,8 @@ public class User
         CurrentTown = userSaveInfo.CurrentTown;
 
 #if CHEAT
-        CurrentTown = CheatManager.CheatConfig.SceneDefine;
+        if (CheatManager.CheatConfig.SceneDefine != SceneDefine.None)
+            CurrentTown = CheatManager.CheatConfig.SceneDefine;
 #endif
 
         UserCharacterInfo = new UserCharacterInfo();

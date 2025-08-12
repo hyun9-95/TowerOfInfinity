@@ -69,6 +69,13 @@ public class BattleEnemySpawner : IObserver
         Logger.Log($"Spawn FinalBoss : {Model.FinalBoss}");
     }
 
+#if CHEAT
+    public void CheatSpawnBoss()
+    {
+        SpawnBossAsync().Forget();
+    }
+#endif
+
     private async UniTask SpawnWave(CharacterDefine[] enemys)
     {
         foreach (var characterDefine in enemys)

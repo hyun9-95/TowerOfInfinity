@@ -39,6 +39,19 @@
     "HitEffectPrefabName": ""
   },
   {
+    "id": 50003,
+    "SlotType": "Weapon",
+    "CastingType": "OnAttack",
+    "BattleEvents": [
+      "BE_DAMAGE_DRAGON_BREATH"
+    ],
+    "TriggerType": "TargetProjectile",
+    "TargetType": "Enemy",
+    "PrefabName": "Ability/DragonBreath/DragonBreath_TargetProjectile",
+    "IconPath": "",
+    "HitEffectPrefabName": ""
+  },
+  {
     "id": 51000,
     "SlotType": "Active",
     "CastingType": "Auto",

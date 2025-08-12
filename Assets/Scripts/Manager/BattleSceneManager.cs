@@ -112,4 +112,14 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>
     {
         enemySpawn.Cancel();
     }
+
+#if CHEAT
+    public void CheatSpawnBoss()
+    {
+        if (!BattleSystemManager.Instance.InBattle)
+            return;
+
+        enemySpawn.CheatSpawnBoss();
+    }
+#endif
 }

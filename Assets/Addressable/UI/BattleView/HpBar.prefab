@@ -202,4 +202,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rectTransform: {fileID: 7099055734445155521}
   hpBar: {fileID: 6281134929441217228}
-  localOffset: {x: 0, y: -15}
+  localOffset: {x: 0, y: -43}

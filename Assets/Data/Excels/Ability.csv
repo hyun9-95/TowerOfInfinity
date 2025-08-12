@@ -4,6 +4,7 @@ Id,NameId,SlotType,CastingType,BattleEvents,TriggerType,TargetType,PrefabName,Ic
 50000,AB_WEAPON_ARROW,Weapon,OnAttack,BE_DAMAGE_ONE_SHOT_ATTACK,Projectile,Enemy,Ability/Arrow_Projectile/Arrow_Projectile,NULL,NULL
 50001,AB_WEAPON_STING,Weapon,OnAttack,BE_DAMAGE_ONE_SHOT_ATTACK,FollowCollider,Enemy,Ability/Sting_Collider/Sting_Collider,NULL,NULL
 50002,AB_WEAPON_GREEN_OGRE_SMASH,Weapon,OnAttack,BE_DAMAGE_GREEN_OGRE_SMASH,FollowCollider,Enemy,Ability/GreenOgreSmash/GreenOgreSmash_Collider,NULL,NULL
+50003,AB_WEAPON_DRAGON_BREATH,Weapon,OnAttack,BE_DAMAGE_DRAGON_BREATH,TargetProjectile,Enemy,Ability/DragonBreath/DragonBreath_TargetProjectile,NULL,NULL
 ,,,,,,,,,
 ,,,,,,,,,
 ,,,,,,,,,

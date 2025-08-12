@@ -202,6 +202,17 @@ public class CheatManager : BaseMonoManager<CheatManager>
 
         BattleSystemManager.instance.OnCheatLevelUp();
     }
+
+    public static void BattleSpawnBoss()
+    {
+        if (FlowManager.Instance.CurrentFlowType != FlowType.BattleFlow)
+            return;
+
+        if (BattleSystemManager.Instance == null)
+            return;
+
+        BattleSceneManager.Instance.CheatSpawnBoss();
+    }
     #endregion
     #endregion
 #endif

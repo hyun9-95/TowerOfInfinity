@@ -15,4 +15,4 @@ Id,NameId,PrefabName,PrimaryWeaponAbility,ActiveSkill,PassiveSkill,CustomBossCha
 ,,,,,,
 11000,CHAR_BAT,Character/Enemy/Bat/Bat,None,None,None,NULL
 11001,CHAR_GREEN_OGRE,Character/Enemy/GreenOgre/GreenOgre,AB_WEAPON_GREEN_OGRE_SMASH,None,None,NULL
-11002,CHAR_RED_DRAGON,Character/Enemy/RedDragon/RedDragon,None,None,None,NULL
+11002,CHAR_RED_DRAGON,Character/Enemy/RedDragon/RedDragon,AB_WEAPON_DRAGON_BREATH,None,None,NULL

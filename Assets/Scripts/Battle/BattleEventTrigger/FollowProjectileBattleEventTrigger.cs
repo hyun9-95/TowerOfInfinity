@@ -11,7 +11,6 @@ public class FollowProjectileBattleEventTrigger : BattleEventTrigger
 
     private async UniTask ProcessFollowProjectile()
     {
-        // 투사체의 타겟 감지 범위는 사거리의 절반
         var enemiesInRange = GetEnemiesInRange();
         
         if (enemiesInRange.Count == 0)
