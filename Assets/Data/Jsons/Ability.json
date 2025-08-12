@@ -71,7 +71,7 @@
     "BattleEvents": [
       "BE_DAMAGE_MAGIC_MISSILE"
     ],
-    "TriggerType": "RandomProjectile",
+    "TriggerType": "FollowProjectile",
     "TargetType": "Enemy",
     "PrefabName": "Ability/MagicMissile/MagicMissile_Follow",
     "IconPath": "Ability/MagicMissile/MagicMissile_Follow_Icon",

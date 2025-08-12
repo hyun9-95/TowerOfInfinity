@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 51003
   Speed:
-  - 12
+  - 10
   Range:
   - 10
   Duration: []
@@ -30,6 +30,6 @@ MonoBehaviour:
   - 0.5
   - 0.39999998
   - 0.29999998
-  SpawnCount: 01000000
+  SpawnCount: 0100000001000000020000000200000003000000030000000400000004000000
   HitForce:
   - 2
