@@ -193,6 +193,11 @@ public static class ExtensionUtils
         return TeamTag.Ally;
     }
 
+    public static Vector2 RandomInCircle(this Vector2 center, float radius)
+    {
+       return center + UnityEngine.Random.insideUnitCircle * radius;
+    }
+    
     #region Addressable SafeLoad Extensions
     public static async UniTask SafeLoadAsync(this Image image, string path)
     {

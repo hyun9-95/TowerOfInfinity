@@ -1,7 +1,6 @@
 #pragma warning disable CS1998
 using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -30,7 +29,6 @@ public class AddressableManager : BaseManager<AddressableManager>
     private Dictionary<string, AsyncOperationHandle<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>> sceneHandles = new Dictionary<string, AsyncOperationHandle<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>>();
     private Dictionary<GameObject, Dictionary<UnityEngine.Object, AsyncOperationHandle>> trackingAssetHandles = new Dictionary<GameObject, Dictionary<UnityEngine.Object, AsyncOperationHandle>>();
     private HashSet<string> loadedScenes = new HashSet<string>();
-    private HashSet<GameObject> excludedFromRelease = new HashSet<GameObject>();
 
     #region Initialize Addressable
     /// <summary>

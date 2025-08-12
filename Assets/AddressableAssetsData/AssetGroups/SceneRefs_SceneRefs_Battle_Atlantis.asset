@@ -75,6 +75,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2f51cbca13c5085468f845dcebe14afd
+    m_Address: SceneRefs/SceneRefs_Battle_Atlantis/0_TileChunk
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3456e4fb014b5c94cbe685658f1c87ce
     m_Address: SceneRefs/SceneRefs_Battle_Atlantis/RA_Atlantis_259
     m_ReadOnly: 0
@@ -117,6 +123,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 54f1f726a3cee1f4bbb8f8fffa34e62c
+    m_Address: SceneRefs/SceneRefs_Battle_Atlantis/1_TileChunk
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 569b106c04f8fe14eb8492a670a280fe
     m_Address: SceneRefs/SceneRefs_Battle_Atlantis/RA_Atlantis_217
     m_ReadOnly: 0
@@ -149,6 +161,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6b8e319548b92104691e5f0c494ea166
     m_Address: SceneRefs/SceneRefs_Battle_Atlantis/RA_Atlantis_218
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 74ebbfac07e07d749a86bc61f893370e
+    m_Address: SceneRefs/SceneRefs_Battle_Atlantis/2_TileChunk
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
@@ -197,6 +215,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a02648ca6df5fa14582fbc352098c0f2
     m_Address: SceneRefs/SceneRefs_Battle_Atlantis/RA_Atlantis_581
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a6e25d886c612e345bb445d978b1776a
+    m_Address: SceneRefs/SceneRefs_Battle_Atlantis/3_TileChunk
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main

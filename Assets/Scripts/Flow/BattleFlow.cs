@@ -11,6 +11,7 @@ public class BattleFlow : BaseFlow<BattleFlowModel>
     private BattleSceneManager battleSceneManager;
     private BattleSystemManager battleSystemManager;
     private BattleUIManager battleUIManager;
+    private InfinityTileManager infinityTileManager;
 
     public override async UniTask LoadingProcess()
     {
@@ -25,15 +26,20 @@ public class BattleFlow : BaseFlow<BattleFlowModel>
         // BattleSceneManager 하위의 매니저들
         battleSystemManager = BattleSystemManager.Instance;
         battleUIManager = BattleUIManager.Instance;
+        infinityTileManager = InfinityTileManager.Instance;
 
         var battleTeam = await CreatePlayerBattleTeam(PlayerManager.Instance.User.UserCharacterInfo.CurrentDeck,
             battleSceneManager.PlayerStartTransform);
 
         var battleInfo = CreateBattleInfo(Model.DataDungeon, battleTeam);
-        
+       
         await battleSystemManager.Prepare(battleInfo);
         await battleSceneManager.Prepare(battleInfo);
         await battleUIManager.Prepare(battleInfo);
+
+        var mainCharacterTransform = battleInfo.CurrentCharacter.transform;
+        bool useAStar = battleSceneManager.UseAStar;
+        await infinityTileManager.Prepare(mainCharacterTransform, useAStar);
     }
 
     public override async UniTask Process()

@@ -21,8 +21,7 @@ public abstract class BackgroundSceneManager<T> : MonoBehaviour where T : Backgr
     public Transform PlayerStartTransform => playerTransform;
     public Transform ObjectContainter => objectContainer;
     public CinemachineCamera CinemachineCamera => cinemachineCamera;
-    public int ChunkSize => chunkSize;
-    public bool UseAStar => walkableMaps != null || walkableMaps.Length > 0;
+    public bool UseAStar => useAstar;
     #endregion
 
     #region Value
@@ -36,16 +35,7 @@ public abstract class BackgroundSceneManager<T> : MonoBehaviour where T : Backgr
     protected Transform objectContainer;
 
     [SerializeField]
-    protected Tilemap[] walkableMaps;
-
-    [SerializeField]
-    protected Tilemap[] obstacleMaps;
-
-    [SerializeField]
-    protected Grid layoutGrid;
-
-    [SerializeField]
-    private int chunkSize = 20;
+    protected bool useAstar;
     #endregion
 
     public void SetFollowCamera(Transform target)

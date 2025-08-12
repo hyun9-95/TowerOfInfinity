@@ -4,17 +4,11 @@ using UnityEngine.Tilemaps;
 
 public class AStarManager : BaseManager<AStarManager>
 {
-    private AStar aStar;
+    private AStar aStar = new();
 
     public void Initialize(Tilemap[] walkableMaps, Tilemap[] obstacleMaps, Grid layoutGrid)
     {
-        aStar = new AStar();
         aStar.Initialize(walkableMaps, obstacleMaps, layoutGrid);
-        aStar.CreateGrid();
-    }
-
-    public void RefreshAStarGrid()
-    {
         aStar.CreateGrid();
     }
 

@@ -29,14 +29,9 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>
         SetCurrentCharacter(battleInfo.CurrentCharacter);
         CreateEnemyGenerator(battleInfo.DataDungeon);
 
-        if (UseAStar)
-            InitializeAStarManager();
+        // TilePoolManager가 AStar를 자체적으로 처리
     }
 
-    private void InitializeAStarManager()
-    {
-        AStarManager.Instance.Initialize(walkableMaps, obstacleMaps, layoutGrid);
-    }
 
     private void SetCurrentCharacter(CharacterUnit leaderCharacter)
     {
@@ -102,12 +97,6 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>
         liveCharacterModelDic.Remove(instanceId);
     }
     #endregion
-
-    public void RefreshAStarGrid()
-    {
-        AStarManager.Instance.RefreshAStarGrid();
-    }
-
     public void StopSpawn()
     {
         enemySpawn.Cancel();
