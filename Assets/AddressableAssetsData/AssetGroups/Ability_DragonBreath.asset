@@ -22,7 +22,7 @@ MonoBehaviour:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: abf239b8e19ad2c4cbb3c481c2b7e211
-    m_Address: Ability/DragonBreath/DragonBreath_Projectile
+    m_Address: Ability/DragonBreath/DragonBreath_TargetProjectile
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
