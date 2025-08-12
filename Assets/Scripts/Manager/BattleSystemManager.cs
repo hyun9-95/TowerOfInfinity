@@ -1,8 +1,6 @@
 #pragma warning disable CS1998
 using Cysharp.Threading.Tasks;
-using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEditor.Profiling.HierarchyFrameDataView;
 
 /// <summary>
 /// 전반적인 전투 로직을 관리한다.
