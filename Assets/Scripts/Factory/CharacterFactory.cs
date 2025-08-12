@@ -51,11 +51,12 @@ public class CharacterFactory : BaseManager<CharacterFactory>
 
         var prefabPath = dataCharacter.PrefabName;
 
-        var subCharacter = await SpawnCharacter
-            (CharacterType.Sub, prefabPath, transform, pos, rot);
+        var subCharacter = await SpawnCharacter(prefabPath, transform, pos, rot);
 
         if (subCharacter == null)
             return null;
+
+        await SetCharacterScriptableInfo(subCharacter, CharacterType.Sub, subCharacterInfo.CharacterDataId);
 
         var model = CreateCharacterUnitModel(TeamTag.Ally, CharacterType.Sub, CharacterSetUpType.Battle, subCharacterInfo);
         model.SetCharacterDataId(subCharacterInfo.CharacterDataId);
@@ -66,10 +67,12 @@ public class CharacterFactory : BaseManager<CharacterFactory>
     public async UniTask<CharacterUnit> SpawnEnemy(int characterDataId, Vector3 pos = default, Quaternion rot = default)
     {
         var data = DataManager.Instance.GetDataById<DataCharacter>(characterDataId);
-        var enemy = await SpawnCharacter(CharacterType.Enemy, data.PrefabName, null, pos, rot);
+        var enemy = await SpawnCharacter(data.PrefabName, null, pos, rot);
 
         if (enemy == null)
             return null;
+
+        await SetCharacterScriptableInfo(enemy, CharacterType.Enemy, characterDataId);
 
         CharacterInfo enemyCharacterInfo = new SubCharacterInfo();
         enemyCharacterInfo.SetPrimaryWeaponAbility(data.PrimaryWeaponAbility);
@@ -83,14 +86,12 @@ public class CharacterFactory : BaseManager<CharacterFactory>
         return enemy;
     }
 
-    public async UniTask<CharacterUnit> SpawnCharacter(CharacterType characterType, string prefabPath, Transform transform = null, Vector3 pos = default, Quaternion rot = default)
+    public async UniTask<CharacterUnit> SpawnCharacter(string prefabPath, Transform transform = null, Vector3 pos = default, Quaternion rot = default)
     {
         var character = await InstantiateCharacter(prefabPath, transform, pos, rot);
 
         if (character == null)
             return null;
-
-        await SetCharacterScriptableInfo(character, characterType);
 
         return character;
     }
@@ -113,7 +114,6 @@ public class CharacterFactory : BaseManager<CharacterFactory>
             CharacterType.Main => PathDefine.CHARACTER_INFO_MAIN,
             CharacterType.Sub => PathDefine.CHARACTER_INFO_SUB,
             CharacterType.Enemy => PathDefine.CHARACTER_INFO_ENEMY,
-            CharacterType.EnemyBoss => PathDefine.CHARACTER_INFO_ENEMY_BOSS,
             CharacterType.NPC => PathDefine.CHARACTER_INFO_NPC,
             _ => string.Empty,
         };
@@ -144,12 +144,31 @@ public class CharacterFactory : BaseManager<CharacterFactory>
             characterModel.SetCharacterInfo(characterInfo);
     }
 
-    public async UniTask SetCharacterScriptableInfo(CharacterUnit character, CharacterType characterType)
+    public async UniTask SetCharacterScriptableInfo(CharacterUnit character, CharacterType characterType, int dataId = 0)
     {
         if (character == null)
             return;
 
-        var scriptableCharacterInfo = await GetScriptableCharacterInfo(characterType);
+        ScriptableCharacterInfo scriptableCharacterInfo = null;
+
+        if (dataId != 0)
+        {
+            var data = DataManager.Instance.GetDataById<DataCharacter>(dataId);
+
+            if (!data.IsNull && !string.IsNullOrEmpty(data.CustomCharacterInfo))
+            {
+                var path = data.CustomCharacterInfo;
+                var customCharacterInfo = await AddressableManager.Instance.
+                    LoadAssetAsyncWithTracker<ScriptableCharacterInfo>(path, character.gameObject);
+
+                if (customCharacterInfo != null)
+                    scriptableCharacterInfo = customCharacterInfo;
+            }
+        }
+
+        if (scriptableCharacterInfo == null)
+            scriptableCharacterInfo = await GetScriptableCharacterInfo(characterType);
+
         character.SetStateGroup(scriptableCharacterInfo.StateGroup);
         character.SetModuleGroup(scriptableCharacterInfo.ModuleGroup);
     }

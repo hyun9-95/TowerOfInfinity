@@ -273,6 +273,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a6cebd4ee073d8846b59c7621ed6aa82
+    m_Address: CharacterCore/ScriptableCharacterInfo/EnemyBossCharacterInfo
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a99c731654ac58f4e9f10dd4e08ad27e
     m_Address: CharacterCore/Enemy/Animation/EnemyAnim_Move
     m_ReadOnly: 0

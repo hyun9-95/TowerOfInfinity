@@ -15,6 +15,12 @@ MonoBehaviour:
   m_GroupName: UI_Common
   m_GUID: 3a4a1894ac4ba1a4cb308e04a4ff7a65
   m_SerializeEntries:
+  - m_GUID: 26f5eb2fdcc4cee48896b24acbe117b1
+    m_Address: UI/Common/PopupPanel
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 31501ecde3476704b8a66143cd75c6be
     m_Address: UI/Common/DropDown
     m_ReadOnly: 0

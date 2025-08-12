@@ -15,6 +15,8 @@ public struct DataCharacter : IBaseData
     public readonly AbilityDefine ActiveSkill;
     [JsonProperty(PropertyName = "PassiveSkill")]
     public readonly AbilityDefine PassiveSkill;
+    [JsonProperty(PropertyName = "CustomCharacterInfo")]
+    public readonly string CustomCharacterInfo;
 	
 	public int Id => id;
     public bool IsNull => id == 0;
