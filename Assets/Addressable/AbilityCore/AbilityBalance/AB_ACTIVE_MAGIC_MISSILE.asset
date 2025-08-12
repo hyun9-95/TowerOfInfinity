@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 51003
   Speed:
-  - 10
+  - 5
   Range:
   - 10
   Duration: []

@@ -162,6 +162,8 @@ MonoBehaviour:
   effectParticle: {fileID: 0}
   particleSystemRenderer: {fileID: 0}
   detectType: 0
+  fadeTime: 0.25
+  fadeInTime: 0.25
   hitCollider: {fileID: 6180236320969764490}
 --- !u!58 &6180236320969764490
 CircleCollider2D:

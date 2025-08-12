@@ -139,6 +139,14 @@ public static class ExtensionUtils
         });
     }
 
+    public static void FadeIn(this SpriteRenderer renderer, float duration, Action callback = null)
+    {
+        renderer.DOFade(1f, duration).SetEase(Ease.Linear).OnComplete(() =>
+        {
+            callback?.Invoke();
+        });
+    }
+
     public static void RestoreAlpha(this SpriteRenderer renderer, float alpha = 1f)
     {
         SetAlpha(renderer, alpha);

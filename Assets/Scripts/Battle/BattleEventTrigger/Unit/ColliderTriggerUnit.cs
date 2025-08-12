@@ -45,7 +45,7 @@ public class ColliderTriggerUnit : BaseTriggerUnit<BattleEventTriggerUnitModel>
             transform.localPosition += offset;
         }
 
-        ShowRenderer();
+        ShowRenderer(fadeInTime);
 
         await EnableColliderAsync();
         await base.ShowAsync();

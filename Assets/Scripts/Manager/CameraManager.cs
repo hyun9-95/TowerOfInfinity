@@ -75,4 +75,15 @@ public class CameraManager : BaseMonoManager<CameraManager>
 
         return uiCameras[index];
     }
+
+    public bool IsVisibleFromWorldCamera(Vector3 pos)
+    {
+        Vector3 viewportPos = worldCamera.WorldToViewportPoint(pos);
+
+        bool isInView = viewportPos.z > 0 &&
+                        viewportPos.x > 0 && viewportPos.x < 1 &&
+                        viewportPos.y > 0 && viewportPos.y < 1;
+
+        return isInView;
+    }
 }

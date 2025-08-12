@@ -11,7 +11,10 @@ public abstract class BaseTriggerUnit<T> : PoolableBaseUnit<T>, IBattleEventTrig
     protected IBattleEventTriggerUnit.ColliderDetectType detectType;
 
     [SerializeField]
-    protected float fadeTime = 0.25f;
+    protected float fadeTime = 0f;
+
+    [SerializeField]
+    protected float fadeInTime = 0;
 
     [SerializeField]
     protected Collider2D hitCollider;

@@ -34,13 +34,13 @@ public class InRangeTargetBattleEventTrigger : BattleEventTrigger
         Vector2 senderPosition = Model.Sender.Transform.position;
         var positions = new Vector2[count];
         
-        var enemiesInRange = GetEnemyTransformsInRange();
+        var enemiesInRange = GetEnemiesInRange();
         
         for (int i = 0; i < count; i++)
         {
             if (i < enemiesInRange.Count)
             {
-                positions[i] = enemiesInRange[i].position;
+                positions[i] = enemiesInRange[i].Transform.position;
             }
             else
             {

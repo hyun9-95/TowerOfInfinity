@@ -47,7 +47,7 @@ public class ProjectileTriggerUnit : BaseTriggerUnit<ProjectileTriggerUnitModel>
         }
 
         Launch();
-        ShowRenderer();
+        ShowRenderer(fadeInTime);
     }
 
     protected virtual void Launch()
@@ -114,7 +114,7 @@ public class ProjectileTriggerUnit : BaseTriggerUnit<ProjectileTriggerUnitModel>
         return false;
     }
 
-    private void DeactiveWithStopMove()
+    protected void DeactiveWithStopMove()
     {
         moveUpdate = false;
         DeactivateWithFade();

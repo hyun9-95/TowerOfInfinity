@@ -54,6 +54,12 @@ public class TimedPoolableMono : PoolableMono
         }
     }
 
+    protected void FadeIn(float fadeInTime)
+    {
+        if (effectSprite != null)
+            effectSprite.FadeIn(fadeInTime);
+    }
+
     public void Flip(bool value)
     {
         if (effectSprite)
@@ -84,12 +90,20 @@ public class TimedPoolableMono : PoolableMono
             effectParticle.Stop();
     }
 
-    public void ShowRenderer()
+    public void ShowRenderer(float fadeInTime = 0)
     {
         if (effectSprite != null)
         {
             effectSprite.enabled = true;
-            effectSprite.RestoreAlpha();
+
+            if (fadeInTime > 0)
+            {
+                effectSprite.FadeIn(fadeInTime);
+            }
+            else
+            {
+                effectSprite.RestoreAlpha();
+            }   
         }
 
         if (effectParticle != null)

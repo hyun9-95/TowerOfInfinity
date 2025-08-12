@@ -11,14 +11,12 @@ public class FollowProjectileBattleEventTrigger : BattleEventTrigger
 
     private async UniTask ProcessFollowProjectile()
     {
+        // 투사체의 타겟 감지 범위는 사거리의 절반
         var enemiesInRange = GetEnemiesInRange();
         
         if (enemiesInRange.Count == 0)
-        {
-            await ProcessRandomDirectionProjectiles();
             return;
-        }
-        
+
         int spawnCount = Mathf.Min(Model.SpawnCount, enemiesInRange.Count);
         
         for (int i = 0; i < spawnCount; i++)
@@ -36,20 +34,4 @@ public class FollowProjectileBattleEventTrigger : BattleEventTrigger
             projectileUnit.ShowAsync().Forget();
         }
     }
-
-    private async UniTask ProcessRandomDirectionProjectiles()
-    {
-        for (int i = 0; i < Model.SpawnCount; i++)
-        {
-            var projectileUnit = await SpawnUnitAsync<ProjectileTriggerUnit>(Model.PrefabName, Model.Sender.Transform.position, Quaternion.identity);
-
-            if (projectileUnit == null)
-                continue;
-
-            var model = BattleEventTriggerFactory.CreateProjectileUnitModel(Model, GetRandomDirection(), null, OnEventHit);
-            projectileUnit.SetModel(model);
-            projectileUnit.ShowAsync().Forget();
-        }
-    }
-
 }

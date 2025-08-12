@@ -11,7 +11,7 @@ public class InRangeFollowBattleEventTrigger : BattleEventTrigger
 
     private async UniTask ProcessInRangeFollowEvent()
     {
-        var enemiesInRange = GetEnemyTransformsInRange();
+        var enemiesInRange = GetEnemiesInRange();
         
         if (enemiesInRange.Count == 0)
             return;
@@ -20,7 +20,7 @@ public class InRangeFollowBattleEventTrigger : BattleEventTrigger
         
         for (int i = 0; i < spawnCount; i++)
         {
-            Transform targetEnemy = enemiesInRange[i];
+            Transform targetEnemy = enemiesInRange[i].Transform;
             
             var colliderTriggerUnit = await SpawnUnitAsync<ColliderTriggerUnit>(Model.PrefabName, Model.Sender.Transform.position, Quaternion.identity);
 

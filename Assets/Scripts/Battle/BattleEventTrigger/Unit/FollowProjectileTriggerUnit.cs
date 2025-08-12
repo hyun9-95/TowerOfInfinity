@@ -12,9 +12,13 @@ public class FollowProjectileTriggerUnit : ProjectileTriggerUnit
 
     protected override void UpdateMove()
     {
-        if (followTarget == null)
+        if (!moveUpdate)
+            return;
+
+        if (followTarget == null || !followTarget.gameObject.activeSelf)
         {
             base.UpdateMove();
+            DeactiveWithStopMove();
             return;
         }
 

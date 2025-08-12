@@ -17,6 +17,7 @@ public static class BattleEventTriggerFactory
             BattleEventTriggerType.RandomProjectile => new RandomProjectileBattleEventTrigger(),
             BattleEventTriggerType.Self => selfBattleEventTrigger,
             BattleEventTriggerType.Orbit => new OrbitBattleEventTrigger(),
+            BattleEventTriggerType.TargetProjectile => new TargetProjectileBattleEventTrigger(),
             _ => null
         };
 

@@ -154,6 +154,10 @@ public abstract class BattleEventTrigger
         
         foreach (var collider in colliders)
         {
+            // 카메라에 보이는 것만 1차 필터링
+            if (!CameraManager.Instance.IsVisibleFromWorldCamera(collider.transform.position))
+                continue;
+
             var targetModel = BattleSceneManager.Instance.GetCharacterModel(collider);
 
             if (targetModel == null || targetModel.TeamTag == Model.Sender.TeamTag)
@@ -168,15 +172,5 @@ public abstract class BattleEventTrigger
         return enemies;
     }
 
-    protected List<Transform> GetEnemyTransformsInRange()
-    {
-        var enemies = GetEnemiesInRange();
-        var transforms = new List<Transform>();
-        
-        foreach (var enemy in enemies)
-            transforms.Add(enemy.Transform);
-            
-        return transforms;
-    }
     #endregion
 }

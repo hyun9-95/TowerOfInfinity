@@ -162,10 +162,11 @@ MonoBehaviour:
   effectParticle: {fileID: 0}
   particleSystemRenderer: {fileID: 0}
   detectType: 0
-  startDirectionType: 0
-  hitCollider: {fileID: 2015645150855121294}
-  launchDelay: 0
   fadeTime: 0.25
+  fadeInTime: 0.25
+  hitCollider: {fileID: 2015645150855121294}
+  startDirectionType: 0
+  launchDelay: 0
   rotateToDirection: 1
 --- !u!61 &2015645150855121294
 BoxCollider2D:

@@ -32,7 +32,7 @@ public class OrbitTriggerUnit : BaseTriggerUnit<OrbitTriggerUnitModel>
 
         currentAngle = Model.StartAngle;
 
-        ShowRenderer();
+        ShowRenderer(fadeInTime);
         hitCollider.enabled = true;
         
         StartOrbitMovement();
