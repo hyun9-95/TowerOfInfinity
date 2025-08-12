@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2477859979652061185, guid: 168b98fe679654b42b41d797e841ef95, type: 3}
+      propertyPath: m_Offset.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3128268920574224160, guid: 168b98fe679654b42b41d797e841ef95, type: 3}
       propertyPath: baseStat
       value: 
@@ -40,10 +44,18 @@ PrefabInstance:
       propertyPath: animStateResolver.keyValues.Array.data[0].Value
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 3869357135436307263, guid: 168b98fe679654b42b41d797e841ef95, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 4884866706097201598, guid: 168b98fe679654b42b41d797e841ef95, type: 3}
       propertyPath: baseStat
       value: 
       objectReference: {fileID: 11400000, guid: 6dc7b1e3601781b4fb031e51efa7c732, type: 2}
+    - target: {fileID: 5370577853513168275, guid: 168b98fe679654b42b41d797e841ef95, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 5788301345535835846, guid: 168b98fe679654b42b41d797e841ef95, type: 3}
       propertyPath: m_Name
       value: Thief
@@ -86,6 +98,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7004756419646656658, guid: 168b98fe679654b42b41d797e841ef95, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7448756835893251589, guid: 168b98fe679654b42b41d797e841ef95, type: 3}
+      propertyPath: m_Offset.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7767598542808246975, guid: 168b98fe679654b42b41d797e841ef95, type: 3}

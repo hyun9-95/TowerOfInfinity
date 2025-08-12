@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 873596953041191548}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -178,6 +178,7 @@ MonoBehaviour:
   agent: {fileID: 6394723101900763941}
   characterCollider2D: {fileID: 7747473371373772593}
   triggerCollider2D: {fileID: 1264580057160532463}
+  characterAnimationEffect: {fileID: 0}
   baseStat: {fileID: 0}
   debugLog: 0
 --- !u!95 &106869835892434893
@@ -258,7 +259,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.5}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -304,7 +305,7 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.5}
+  m_Offset: {x: 0, y: 0}
   m_Radius: 0.45
 --- !u!50 &431284183106862956
 Rigidbody2D:
@@ -363,7 +364,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7982744015288830996, guid: fa508e1c164795247b5cc0723b69cf5d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.25
       objectReference: {fileID: 0}
     - target: {fileID: 7982744015288830996, guid: fa508e1c164795247b5cc0723b69cf5d, type: 3}
       propertyPath: m_LocalPosition.z

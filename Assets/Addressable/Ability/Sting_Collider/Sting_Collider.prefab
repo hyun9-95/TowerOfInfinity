@@ -49,12 +49,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeTime: 0.45
-  localPosOffset: {x: 1.2, y: 0.3, z: 0}
+  localPosOffset: {x: 1.2, y: 0.05, z: 0}
   effectSprite: {fileID: 0}
   effectParticle: {fileID: 3948468271430011930}
   particleSystemRenderer: {fileID: 3948468271430011933}
   detectType: 0
   fadeTime: 0.25
+  fadeInTime: 0
   hitCollider: {fileID: 6781900405216177287}
   useFlip: 1
   detectStartTime: 0.05
