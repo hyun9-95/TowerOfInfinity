@@ -60,7 +60,8 @@ public class ColliderTriggerUnit : BaseTriggerUnit<BattleEventTriggerUnitModel>
 
         if (detectDuration == 0)
         {
-            await UniTask.NextFrame(PlayerLoopTiming.PostLateUpdate, TokenPool.Get(GetHashCode()));
+            await UniTask.NextFrame(TokenPool.Get(GetHashCode()));
+            await UniTask.NextFrame(TokenPool.Get(GetHashCode()));
         }
         else
         {

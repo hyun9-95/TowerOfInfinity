@@ -49,7 +49,7 @@ public class BattleEnemyGeneratorModel
         if (currentWave < IntDefine.MAX_DUNGEON_WAVE_COUNT)
             return enemyGroup.GetEnemys(currentWave);
 
-        return new CharacterDefine[] { enemyGroup.Boss };
+        return null;
     }
     #endregion
 }

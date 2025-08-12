@@ -196,6 +196,10 @@ PrefabInstance:
       value: 102
       objectReference: {fileID: 0}
     - target: {fileID: 6563164855511301765, guid: 3940ba4195ef515439c4944acbc4ba79, type: 3}
+      propertyPath: cheatConfig.IsInvincible
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6563164855511301765, guid: 3940ba4195ef515439c4944acbc4ba79, type: 3}
       propertyPath: config.IsEnterBattleDirectly
       value: 1
       objectReference: {fileID: 0}
@@ -213,7 +217,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6563164855511301765, guid: 3940ba4195ef515439c4944acbc4ba79, type: 3}
       propertyPath: 'cheatConfig.cheatAbility.Array.data[0]'
-      value: 51005
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6563164855511301765, guid: 3940ba4195ef515439c4944acbc4ba79, type: 3}
       propertyPath: 'cheatConfig.cheatAbility.Array.data[1]'

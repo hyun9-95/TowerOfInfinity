@@ -1,5 +1,6 @@
 #pragma warning disable CS1998
 using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -24,21 +25,57 @@ public class BattleCardUnit : BaseUnit<BattleCardUnitModel>
 
 	[SerializeField]
 	private CustomButton customButton;
+
+	[SerializeField]
+	private DOTweenAnimation cardAppearTween;
+
+	[SerializeField]
+	private DOTweenAnimation cardSelectTween;
     #endregion
 
     #region Function
+
+    private void Awake()
+    {
+		cardAppearTween.DORewind();
+    }
+
+    private void OnDisable()
+    {
+        cardAppearTween.DORewind();
+		cardSelectTween.DORewind();
+    }
+
+    public async UniTask LoadAsync()
+	{
+        var tasks = new UniTask[]
+        {
+            ShowTierFrame(),
+            ShowIcon(),
+        };
+
+        ShowTexts();
+
+        await UniTask.WhenAll(tasks);
+    }
+
     public override async UniTask ShowAsync()
     {
-		var tasks = new UniTask[]
-		{
-			ShowTierFrame(),
-			ShowIcon(),
-		};
-
-		ShowTexts();
-
-		await UniTask.WhenAll(tasks);
+		cardAppearTween.DORestart();
+		await cardAppearTween.tween.AsyncWaitForCompletion();
     }
+
+	public async UniTask HideAsync()
+	{
+		cardAppearTween.DOPlayBackwards();
+		await cardAppearTween.tween.AsyncWaitForRewind();
+	}
+
+	public async UniTask ShowSelectTweenAsync()
+	{
+		cardSelectTween.DORestart();
+		await cardSelectTween.tween.AsyncWaitForCompletion();
+	}
 
 	private async UniTask ShowTierFrame()
 	{
