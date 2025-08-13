@@ -23,7 +23,7 @@ public class UserEquipmentInfo
             
             var dataEquipment = equipmentContainer.GetById(equipmentId);
 
-            if (!dataEquipment.IsNull)
+            if (!dataEquipment.IsNullOrEmpty())
                 userEquipments[equipmentId] = new Equipment(dataEquipment, level);
         }
     }
@@ -49,7 +49,8 @@ public class UserEquipmentInfo
         {
             var equipmentContainer = DataManager.Instance.GetDataContainer<DataEquipment>();
             var dataEquipment = equipmentContainer.GetById(equipmentId);
-            if (!dataEquipment.IsNull)
+
+            if (!dataEquipment.IsNullOrEmpty())
                 userEquipments[equipmentId] = new Equipment(dataEquipment, level);
         }
     }

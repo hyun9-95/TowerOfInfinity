@@ -13,5 +13,5 @@ public class DataBalance : IBaseData
     public readonly int ValueCount;
 	
 	public int Id => id;
-    public bool IsNull => id == 0;
+    public bool IsEmpty => id == 0;
 }

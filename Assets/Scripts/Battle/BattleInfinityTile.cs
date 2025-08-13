@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using Cysharp.Threading.Tasks;
 
-public class InfinityTileManager : BaseMonoManager<InfinityTileManager>
+public class BattleInfinityTile : AddressableMono
 {
     [SerializeField]
     private string[] tileChunkAddresses;
@@ -14,22 +14,19 @@ public class InfinityTileManager : BaseMonoManager<InfinityTileManager>
     [SerializeField]
     private Grid grid;
     
-    private Transform playerTransform;
+    private Transform mainCharacterTransform;
     private int chunkSize;
     private bool isInitialized = false;
     
-    private Dictionary<Vector2Int, TileChunk> activeTiles = new Dictionary<Vector2Int, TileChunk>();
+    private Dictionary<Vector2Int, TileChunk> activeTiles = new();
     private Vector2Int lastPlayerGridPos = Vector2Int.zero;
     
     private Queue<TileChunk> availableTiles = new();
 
-    private bool useAStar = false;
-    
-    public async UniTask Prepare(Transform player, bool useAstar)
+    public async UniTask Prepare(Transform mainCharTr)
     {
-        playerTransform = player;
-        useAStar = useAstar;
-        
+        mainCharacterTransform = mainCharTr;
+
         if (tileChunkAddresses == null || tileChunkAddresses.Length == 0)
         {
             Logger.Null("Tile Chunk Address");
@@ -44,11 +41,13 @@ public class InfinityTileManager : BaseMonoManager<InfinityTileManager>
         
         await CreateChunkTiles();
 
+        isInitialized = true;
+
         UpdateTileGrid();
+        UpdateAStarGrid();
 
-        if (!AStarManager.Instance.IsWalkablePos(playerTransform.position))
+        if (!AStarManager.Instance.IsWalkablePos(mainCharacterTransform.position))
             RepositionPlayer();
-
     }
 
     // 타일 생성 후 플레이어 위치가 걸을 수 없는 경우 재배치
@@ -61,13 +60,13 @@ public class InfinityTileManager : BaseMonoManager<InfinityTileManager>
 
         while (tryCount < safeCount)
         {
-            Vector2 playerPos = playerTransform.position;
+            Vector2 playerPos = mainCharacterTransform.position;
             playerPos = playerPos.RandomInCircle(baseRadius + (tryCount * radiusIncrease));
-            playerTransform.position = playerPos;
+            mainCharacterTransform.position = playerPos;
 
             tryCount++;
 
-            if (AStarManager.Instance.IsWalkablePos(playerTransform.position))
+            if (AStarManager.Instance.IsWalkablePos(mainCharacterTransform.position))
             {
                 Logger.Log($"Reposition Player .. break at : {tryCount}");
                 return;
@@ -101,8 +100,6 @@ public class InfinityTileManager : BaseMonoManager<InfinityTileManager>
                         Logger.Error($"TileChunk의 사이즈가 다름! {chunk.ChunkSize} != {chunkSize}");
                 }
             }
-            
-            isInitialized = true;
         }
     }
 
@@ -122,10 +119,10 @@ public class InfinityTileManager : BaseMonoManager<InfinityTileManager>
 
     private void Update()
     {
-        if (!isInitialized || playerTransform == null)
+        if (!isInitialized)
             return;
            
-        Vector2Int currentPlayerGridPos = WorldToGridPosition(playerTransform.position);
+        Vector2Int currentPlayerGridPos = WorldToGridPosition(mainCharacterTransform.position);
         
         // 월드 기준 그리드 좌표가 변경되었다면 재배치
         if (currentPlayerGridPos != lastPlayerGridPos)
@@ -141,7 +138,7 @@ public class InfinityTileManager : BaseMonoManager<InfinityTileManager>
         if (!isInitialized)
             return;
             
-        Vector2Int playerGridPos = WorldToGridPosition(playerTransform.position);
+        Vector2Int playerGridPos = WorldToGridPosition(mainCharacterTransform.position);
         HashSet<Vector2Int> requiredPositions = new HashSet<Vector2Int>();
         
         int halfGrid = gridSize / 2;
@@ -156,14 +153,12 @@ public class InfinityTileManager : BaseMonoManager<InfinityTileManager>
             }
         }
         
-        // 먼저 불필요한 타일 제거 (pool에 반환)
+        // 먼저 불필요한 타일 제거
         List<Vector2Int> tilesToRemove = new List<Vector2Int>();
         foreach (var kvp in activeTiles)
         {
             if (!requiredPositions.Contains(kvp.Key))
-            {
                 tilesToRemove.Add(kvp.Key);
-            }
         }
         
         foreach (var gridPos in tilesToRemove)
@@ -175,15 +170,12 @@ public class InfinityTileManager : BaseMonoManager<InfinityTileManager>
             }
         }
         
-        // 그 다음에 새로운 타일 배치 (pool에서 가져옴)
+        // 그 다음에 새로운 타일 배치 
         foreach (var gridPos in requiredPositions)
         {
             if (!activeTiles.ContainsKey(gridPos))
                 ReplaceTileFromPool(gridPos);
         }
-        
-        // AStar 그리드 업데이트
-        UpdateAStarGrid();
     }
     
     private void ReplaceTileFromPool(Vector2Int gridPos)
@@ -212,25 +204,38 @@ public class InfinityTileManager : BaseMonoManager<InfinityTileManager>
     
     private Vector2Int WorldToGridPosition(Vector3 worldPos)
     {
+        // 월드 좌표를 청크 사이즈로 나누면, 현재 몇번째 그리드에 있는지 알 수 있다.
+        // ex) 청크 사이즈가 10일 때
+        // 월드(15.3, -5.7) => 그리드 좌표 (1, -1)
+        // 월드(-2.1, 8.9) => 그리드 좌표(-1, 0)
+
         int gridX = Mathf.FloorToInt(worldPos.x / chunkSize);
         int gridY = Mathf.FloorToInt(worldPos.y / chunkSize);
+
         return new Vector2Int(gridX, gridY);
     }
     
-    #region AStar Integration
+    #region AStar
     private void UpdateAStarGrid()
     {
-        if (!useAStar)
-            return;
-            
-        var allWalkableMaps = CollectActiveTilemaps(true);
-        var allObstacleMaps = CollectActiveTilemaps(false);
-        
+        var allWalkableMaps = GetWalkableMap();
+        var allObstacleMaps = GetObstacleMap();
+
         if (allWalkableMaps.Length > 0 && grid != null)
             AStarManager.Instance.Initialize(allWalkableMaps, allObstacleMaps, grid);
     }
-    
-    private Tilemap[] CollectActiveTilemaps(bool walkable)
+
+    private Tilemap[] GetWalkableMap()
+    {
+        return GetActiveTilemaps(true);
+    }
+
+    private Tilemap[] GetObstacleMap()
+    {
+        return GetActiveTilemaps(false);
+    }
+
+    private Tilemap[] GetActiveTilemaps(bool walkable)
     {
         List<Tilemap> tilemaps = new List<Tilemap>(activeTiles.Values.Count);
         

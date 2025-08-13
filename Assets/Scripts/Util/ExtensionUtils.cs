@@ -197,6 +197,14 @@ public static class ExtensionUtils
     {
        return center + UnityEngine.Random.insideUnitCircle * radius;
     }
+
+    public static bool IsNullOrEmpty<T>(this T data) where T : IBaseData
+    {
+        if (data == null || data.IsEmpty)
+            return true;
+
+        return false;
+    }
     
     #region Addressable SafeLoad Extensions
     public static async UniTask SafeLoadAsync(this Image image, string path)

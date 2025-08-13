@@ -33,7 +33,7 @@ public class MainCharacterPartsInfo
         {
             var data = partsContainer.GetById(id);
 
-            if (data.IsNull)
+            if (data.IsNullOrEmpty())
                 continue;
 
             PartsInfoDic[data.PartsType] = data;
@@ -46,7 +46,7 @@ public class MainCharacterPartsInfo
         
         var hairData = partsContainer.GetById(hairPartsId);
 
-        if (hairData.IsNull)
+        if (hairData.IsNullOrEmpty())
         {
             HairPartsId = (int)CharacterPartsDefine.PARTS_HAIR_HAIR_HAIR1;
             hairData = partsContainer.GetById(HairPartsId);
@@ -61,12 +61,12 @@ public class MainCharacterPartsInfo
         {
             var equipmentData = equipmentContainer.GetById((int)equipInfo.Value);
 
-            if (equipmentData.IsNull)
+            if (equipmentData.IsNullOrEmpty())
                 continue;
 
             var equipmentPartsData = partsContainer.GetById((int)equipmentData.PartsData);
 
-            if (equipmentPartsData.IsNull)
+            if (equipmentPartsData.IsNullOrEmpty())
                 continue;
 
             PartsInfoDic[equipmentPartsData.PartsType] = equipmentPartsData;

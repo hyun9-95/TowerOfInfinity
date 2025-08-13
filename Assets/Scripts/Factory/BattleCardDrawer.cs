@@ -47,7 +47,7 @@ public class BattleCardDrawer
 			drawRateByTierDic[tier] = drawRate;
 		}
 
-		var allCardDatas = DataManager.Instance.FindAllData<DataBattleCard>(x => !x.IsNull);
+		var allCardDatas = DataManager.Instance.FindAllData<DataBattleCard>(x => !x.IsEmpty);
 
 		foreach (var data in allCardDatas)
 		{

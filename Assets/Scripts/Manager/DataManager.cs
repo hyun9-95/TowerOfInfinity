@@ -31,7 +31,7 @@ public class DataManager : BaseManager<DataManager>
 
     public T[] GetAllData<T>() where T : IBaseData
     {
-        return GetDataContainer<T>() != null ? GetDataContainer<T>().FindAll(x => !x.IsNull) : default;
+        return GetDataContainer<T>() != null ? GetDataContainer<T>().FindAll(x => !x.IsEmpty) : default;
     }
 
     public bool GenerateDataContainerByDataDic(Dictionary<string, string> dicJsonByFileName)

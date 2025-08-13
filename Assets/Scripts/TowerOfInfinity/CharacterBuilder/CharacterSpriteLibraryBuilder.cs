@@ -142,7 +142,7 @@ public class CharacterSpriteLibraryBuilder : MonoBehaviour
         
         foreach (var partsData in partsDataArray)
         {
-            if (partsData.IsNull)
+            if (partsData.IsNullOrEmpty())
                 continue;
 
             var partsName = partsData.PartsName;
@@ -513,7 +513,7 @@ public class CharacterSpriteLibraryBuilder : MonoBehaviour
             p.PartsType == partsType && 
             p.PartsName == partName);
             
-        return targetPart.IsNull ? null : BuildPartsAddress(partsType, targetPart.PartsName);
+        return targetPart.IsNullOrEmpty() ? null : BuildPartsAddress(partsType, targetPart.PartsName);
     }
     
     private string GetPartNameFromPath(string partsPath)
@@ -665,7 +665,7 @@ public class CharacterSpriteLibraryBuilder : MonoBehaviour
         if (partsContainer == null)
             partsContainer = DataManager.Instance.GetDataContainer<DataCharacterParts>();
         
-        var preloadParts = partsContainer.FindAll(x => !x.IsNull && 
+        var preloadParts = partsContainer.FindAll(x => !x.IsEmpty && 
             (x.Category == CharacterPartsCategory.Race || x.Category == CharacterPartsCategory.Hair));
         
         var preloadTasks = CreatePreloadTasks(preloadParts);

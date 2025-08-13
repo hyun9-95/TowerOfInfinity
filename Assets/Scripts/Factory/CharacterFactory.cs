@@ -179,7 +179,7 @@ public class CharacterFactory : BaseManager<CharacterFactory>
         {
             var data = DataManager.Instance.GetDataById<DataCharacter>(dataId);
 
-            if (!data.IsNull && !string.IsNullOrEmpty(data.CustomBossCharacterInfo))
+            if (!data.IsNullOrEmpty() && !string.IsNullOrEmpty(data.CustomBossCharacterInfo))
             {
                 var path = data.CustomBossCharacterInfo;
                 var customCharacterInfo = await AddressableManager.Instance.

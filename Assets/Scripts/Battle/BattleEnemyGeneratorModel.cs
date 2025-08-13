@@ -33,7 +33,7 @@ public class BattleEnemyGeneratorModel
     {
         enemyGroup = dataEnemyGroup;
 
-        if (!enemyGroup.IsNull)
+        if (!enemyGroup.IsNullOrEmpty())
         {
             MidBoss = dataEnemyGroup.MidBoss;
             FinalBoss = dataEnemyGroup.FinalBoss;
@@ -60,7 +60,7 @@ public class BattleEnemyGeneratorModel
 
     public CharacterDefine[] GetCurrentWaveEnemies(int currentWave)
     {
-        if (enemyGroup.IsNull)
+        if (enemyGroup.IsNullOrEmpty())
             return null;
 
         if (currentWave < IntDefine.MAX_DUNGEON_WAVE_COUNT)

@@ -22,7 +22,7 @@ public class BattleEventTriggerModel
 
     public void Initialize(CharacterUnitModel sender, int level, DataAbility abilityData, ScriptableAbilityBalance balance)
     {
-        if (abilityData.IsNull)
+        if (abilityData.IsNullOrEmpty())
             return;
 
         AbilityDataId = abilityData.Id;
@@ -49,8 +49,8 @@ public class BattleEventTriggerModel
             foreach (var battleEventDefine in abilityData.BattleEvents)
             {
                 var battleEventData = DataManager.Instance.GetDataById<DataBattleEvent>((int)battleEventDefine);
-                
-                if (!battleEventData.IsNull)
+
+                if (!battleEventData.IsNullOrEmpty())
                     BattleEventDatas.Add(battleEventData);
             }
         }

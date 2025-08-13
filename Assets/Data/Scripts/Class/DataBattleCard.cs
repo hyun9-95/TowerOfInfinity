@@ -21,5 +21,5 @@ public class DataBattleCard : IBaseData
     public readonly LocalizationDefine Desc;
 	
 	public int Id => id;
-    public bool IsNull => id == 0;
+    public bool IsEmpty => id == 0;
 }

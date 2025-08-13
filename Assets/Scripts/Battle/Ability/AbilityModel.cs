@@ -13,7 +13,7 @@ public class AbilityModel : IBaseUnitModel
 
     public void SetByAbilityData(DataAbility ability, CharacterUnitModel owner)
     {
-        if (ability.IsNull)
+        if (ability.IsNullOrEmpty())
             return;
 
         abilityBalance = AbilityBalanceFactory.Instance.GetAbilityBalance(ability.Id);

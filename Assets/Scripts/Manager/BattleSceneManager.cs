@@ -12,6 +12,9 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>
     #endregion
 
     #region Value
+    [SerializeField]
+    private BattleInfinityTile infinityTile;
+
     private BattleEnemySpawner enemySpawn;
     private List<CharacterUnit> enemyCharacters = new();
     private BattleInfo battleInfo;
@@ -29,7 +32,7 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>
         SetCurrentCharacter(battleInfo.CurrentCharacter);
         CreateEnemyGenerator(battleInfo.DataDungeon);
 
-        // TilePoolManager가 AStar를 자체적으로 처리
+        await infinityTile.Prepare(battleInfo.CurrentCharacter.transform);
     }
 
 
@@ -46,7 +49,7 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>
         BattleEnemyGeneratorModel enemyGeneratorModel = new BattleEnemyGeneratorModel();
         enemyGeneratorModel.SetDataEnemyGroup(dataEnemyGroup);
         enemyGeneratorModel.SetSpawnInterval(5f);
-        enemyGeneratorModel.SetCheckWalkablePosOnSpawn(UseAStar);
+        enemyGeneratorModel.SetCheckWalkablePosOnSpawn(true);
         enemyGeneratorModel.SetOnSpawnEnemy(OnSpawnEnemy);
 
         enemySpawn = new BattleEnemySpawner(enemyGeneratorModel);
@@ -58,7 +61,7 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>
         
         var enemyModel = enemy.Model;
         enemyModel.SetTarget(battleInfo.CurrentCharacter.Model);
-        enemyModel.SetPathFindType(UseAStar ? PathFindType.AStar : PathFindType.Navmesh);
+        enemyModel.SetPathFindType(PathFindType.AStar);
 
         enemy.Initialize();
         enemy.Activate();

@@ -25,5 +25,5 @@ public class DataBattleEvent : IBaseData
     public readonly bool Stackable;
 	
 	public int Id => id;
-    public bool IsNull => id == 0;
+    public bool IsEmpty => id == 0;
 }

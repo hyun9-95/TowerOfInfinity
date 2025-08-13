@@ -24,7 +24,7 @@ public static class AbilityFactory
     {
         AbilityDefine abilityDefine = (AbilityDefine)abilityData.Id;
 
-        if (abilityData.IsNull)
+        if (abilityData.IsNullOrEmpty())
             return null;
 
         AbilityModel abilityModel = new AbilityModel();

@@ -25,5 +25,5 @@ public class DataAbility : IBaseData
     public readonly string HitEffectPrefabName;
 	
 	public int Id => id;
-    public bool IsNull => id == 0;
+    public bool IsEmpty => id == 0;
 }
