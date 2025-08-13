@@ -3,7 +3,7 @@ public class PathDefine
     #region const
     public const string Excel = "Assets/Data/Excels";
     public const string Json = "Assets/Data/Jsons";
-    public const string DataStruct = "Assets/Data/Scripts/Structs";
+    public const string DataClass = "Assets/Data/Scripts/Class";
     public const string Manager = "Assets/Scripts/Manager/";
     public const string DataContainerGenerator = "Assets/Data/Scripts/Container/DataContainerGenerator.cs";
     public const string DataContainer = "Assets/Data/Scripts/Container/";

@@ -3,7 +3,7 @@
 
 using Newtonsoft.Json;
 
-public struct DataEnemyGroup : IBaseData
+public class DataEnemyGroup : IBaseData
 {
     [JsonProperty(PropertyName = "id")]
     private readonly int id;

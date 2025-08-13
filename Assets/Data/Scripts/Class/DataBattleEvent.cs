@@ -3,7 +3,7 @@
 
 using Newtonsoft.Json;
 
-public struct DataBattleEvent : IBaseData
+public class DataBattleEvent : IBaseData
 {
     [JsonProperty(PropertyName = "id")]
     private readonly int id;

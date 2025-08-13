@@ -3,7 +3,7 @@
 
 using Newtonsoft.Json;
 
-public struct DataAbility : IBaseData
+public class DataAbility : IBaseData
 {
     [JsonProperty(PropertyName = "id")]
     private readonly int id;

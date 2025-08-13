@@ -7,16 +7,16 @@ using System.Text;
 
 namespace Tools
 {
-    public class StructGenerator : BaseGenerator
+    public class ClassGenerator : BaseGenerator
     {
-        private string structRootName;
-        private string structFileName;
+        private string classRootName;
+        private string classFileName;
         
         public void Init(string readExcelPath)
         {
-            structRootName = $"Data{Path.GetFileNameWithoutExtension(readExcelPath)}";
-            structFileName = structRootName + ".cs";
-            folderPath = PathDefine.DataStruct;
+            classRootName = $"Data{Path.GetFileNameWithoutExtension(readExcelPath)}";
+            classFileName = classRootName + ".cs";
+            folderPath = PathDefine.DataClass;
         }
 
         public void Generate(DataTable sheet)
@@ -41,7 +41,7 @@ namespace Tools
 
             StringBuilder sb = new();
 
-            sb.AppendLine(GetDataTemplate(TemplatePathDefine.StartDataTemplate, ("name", structRootName)));
+            sb.AppendLine(GetDataTemplate(TemplatePathDefine.StartDataTemplate, ("name", classRootName)));
 
             var processedColumns = new HashSet<string>();
 
@@ -66,9 +66,9 @@ namespace Tools
                 }
                 else
                 {
-                    if (type.Contains("struct:"))
+                    if (type.Contains("class:"))
                     {
-                        type = type.Replace("struct:", "");
+                        type = type.Replace("class:", "");
                         sb.AppendLine(GetDataTemplate(TemplatePathDefine.StructValueTemplate, ("type", type), ("name", name), ("modifier", modifier)));
                     }
                     else
@@ -80,7 +80,7 @@ namespace Tools
 
             sb.AppendLine(GetDataTemplate(TemplatePathDefine.EndDateTemplate));
 
-            SaveFileAtPath(folderPath, structFileName, sb.ToString());
+            SaveFileAtPath(folderPath, classFileName, sb.ToString());
         }
 
         private Dictionary<string, int> AnalyzeDuplicateColumns(List<string> columnNames, List<string> columnTypes)

@@ -3,12 +3,14 @@
 
 using Newtonsoft.Json;
 
-public struct DataDungeon : IBaseData
+public class DataBalance : IBaseData
 {
     [JsonProperty(PropertyName = "id")]
     private readonly int id;
-    [JsonProperty(PropertyName = "EnemyGroup")]
-    public readonly EnemyGroupDefine EnemyGroup;
+    [JsonProperty(PropertyName = "Values")]
+    public readonly float[] Values;
+    [JsonProperty(PropertyName = "ValueCount")]
+    public readonly int ValueCount;
 	
 	public int Id => id;
     public bool IsNull => id == 0;

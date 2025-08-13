@@ -14,7 +14,7 @@ namespace Tools
         private const string CsvFileExtension = ".csv";
 
         //반복사용하는 generator만 빼놓음
-        private static readonly StructGenerator structGenerator = new();
+        private static readonly ClassGenerator structGenerator = new();
         private static readonly JsonGenerator jsonGenerator = new();
         private static readonly DataDefineGenerator dataDefineGenerator = new();
         private static readonly CsvReader csvReader = new();
