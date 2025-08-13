@@ -115,12 +115,15 @@ public class CheatManager : BaseMonoManager<CheatManager>
             
 #if UNITY_EDITOR
         int batches = UnityEditor.UnityStats.batches;
-        int drawCalls = UnityEditor.UnityStats.drawCalls;
+        int dynBatched = UnityEditor.UnityStats.dynamicBatchedDrawCalls;
+        int statBatched = UnityEditor.UnityStats.staticBatchedDrawCalls;
+        int instBatched = UnityEditor.UnityStats.instancedBatchedDrawCalls;
+        int saved = dynBatched + statBatched + instBatched;
         var sb = GlobalStringBuilder.Get();
         sb.Append("b:");
         sb.Append(batches.ToString());
-        sb.Append(" d:");
-        sb.Append(drawCalls.ToString());
+        sb.Append(" s:");
+        sb.Append(saved.ToString());
         drawCallText.SafeSetText(sb.ToString());
 #endif
     }
