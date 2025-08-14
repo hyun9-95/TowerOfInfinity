@@ -180,6 +180,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2569268483276811176, guid: 038b43bb757f8a4489c7db6950a22f4c, type: 3}
+      propertyPath: gridSize
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2569268483276811176, guid: 038b43bb757f8a4489c7db6950a22f4c, type: 3}
       propertyPath: 'tileChunkAddresses.Array.data[0]'
       value: SceneRefs/SceneRefs_Battle_Atlantis/0_TileChunk
       objectReference: {fileID: 0}

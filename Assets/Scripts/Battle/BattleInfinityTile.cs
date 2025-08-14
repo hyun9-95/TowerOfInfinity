@@ -23,6 +23,15 @@ public class BattleInfinityTile : AddressableMono
     
     private Queue<TileChunk> availableTiles = new();
 
+    private void Awake()
+    {
+        if (gridSize % 2 == 0)
+        {
+            Logger.Log($"Grid Size는 홀수여야 한다! 조정된 사이즈 : {gridSize - 1}");
+            gridSize--;
+        }
+    }
+
     public async UniTask Prepare(Transform mainCharTr)
     {
         mainCharacterTransform = mainCharTr;
