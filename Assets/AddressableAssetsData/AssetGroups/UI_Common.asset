@@ -27,6 +27,36 @@ MonoBehaviour:
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 397946fa9ac046149981b813aa5d16ae
+    m_Address: UI/Common/RedButton
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ad99d7c84643d9149aacaa48d6b2a543
+    m_Address: UI/Common/RedButton_Small
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ba26b4cef7821504b8166083b8beffaf
+    m_Address: UI/Common/DiamondToggle
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bbe681c041344ad448fa6094fd10bbcc
+    m_Address: UI/Common/LabelToggle
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f064d5abcdb04994198721203e4eae54
+    m_Address: UI/Common/ExpSlider
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
   m_SchemaSet:

@@ -53,5 +53,9 @@ public class GameManager : BaseMonoManager<GameManager>
         if (testPlatformType != PlatformType.None)
             platform.SetPlatform(testPlatformType);
 #endif
+
+#if !UNITY_EDITOR
+        loadDataType = LoadDataType.Addressable;
+#endif
     }
 }

@@ -1,4 +1,3 @@
-using UnityEditor.Events;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,14 +12,13 @@ public class CustomButton : Button
     #endregion
 
     #region Function
+#if UNITY_EDITOR
     protected override void Reset()
     {
         base.Reset();
-
-#if UNITY_EDITOR
-        UnityEventTools.AddPersistentListener(onClick, OnPlayButtonSound);
-#endif
+        UnityEditor.Events.UnityEventTools.AddPersistentListener(onClick, OnPlayButtonSound);
     }
+#endif
 
     public void OnPlayButtonSound()
     {

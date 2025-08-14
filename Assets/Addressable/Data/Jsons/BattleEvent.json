@@ -1,0 +1,112 @@
+[
+  {
+    "id": 20000,
+    "Type": "Damage",
+    "AffectStat": "Attack",
+    "BattleEventCategory": "Active",
+    "BattleEventGroup": "None",
+    "StatReference": "Sender",
+    "StatReferenceCondition": "CurrentStat",
+    "StatusDirection": "Increase",
+    "Stackable": false
+  },
+  {
+    "id": 20001,
+    "Type": "Damage",
+    "AffectStat": "Attack",
+    "BattleEventCategory": "Active",
+    "BattleEventGroup": "None",
+    "StatReference": "Sender",
+    "StatReferenceCondition": "CurrentStat",
+    "StatusDirection": "Increase",
+    "Stackable": false
+  },
+  {
+    "id": 20002,
+    "Type": "Poison",
+    "AffectStat": "Attack",
+    "BattleEventCategory": "Active",
+    "BattleEventGroup": "Debuff",
+    "StatReference": "Sender",
+    "StatReferenceCondition": "CurrentStat",
+    "StatusDirection": "Increase",
+    "Stackable": true
+  },
+  {
+    "id": 20003,
+    "Type": "Damage",
+    "AffectStat": "Attack",
+    "BattleEventCategory": "Active",
+    "BattleEventGroup": "None",
+    "StatReference": "Sender",
+    "StatReferenceCondition": "CurrentStat",
+    "StatusDirection": "Increase",
+    "Stackable": false
+  },
+  {
+    "id": 20004,
+    "Type": "Damage",
+    "AffectStat": "Attack",
+    "BattleEventCategory": "Active",
+    "BattleEventGroup": "None",
+    "StatReference": "Sender",
+    "StatReferenceCondition": "CurrentStat",
+    "StatusDirection": "Increase",
+    "Stackable": false
+  },
+  {
+    "id": 20005,
+    "Type": "Damage",
+    "AffectStat": "Attack",
+    "BattleEventCategory": "Active",
+    "BattleEventGroup": "None",
+    "StatReference": "Sender",
+    "StatReferenceCondition": "CurrentStat",
+    "StatusDirection": "Increase",
+    "Stackable": false
+  },
+  {
+    "id": 20006,
+    "Type": "Damage",
+    "AffectStat": "Attack",
+    "BattleEventCategory": "Active",
+    "BattleEventGroup": "None",
+    "StatReference": "Sender",
+    "StatReferenceCondition": "CurrentStat",
+    "StatusDirection": "Increase",
+    "Stackable": false
+  },
+  {
+    "id": 20007,
+    "Type": "Damage",
+    "AffectStat": "Attack",
+    "BattleEventCategory": "Active",
+    "BattleEventGroup": "None",
+    "StatReference": "Sender",
+    "StatReferenceCondition": "CurrentStat",
+    "StatusDirection": "Increase",
+    "Stackable": false
+  },
+  {
+    "id": 20008,
+    "Type": "Damage",
+    "AffectStat": "Attack",
+    "BattleEventCategory": "Active",
+    "BattleEventGroup": "None",
+    "StatReference": "Sender",
+    "StatReferenceCondition": "CurrentStat",
+    "StatusDirection": "Increase",
+    "Stackable": false
+  },
+  {
+    "id": 20009,
+    "Type": "Damage",
+    "AffectStat": "Attack",
+    "BattleEventCategory": "Active",
+    "BattleEventGroup": "None",
+    "StatReference": "Sender",
+    "StatReferenceCondition": "CurrentStat",
+    "StatusDirection": "Increase",
+    "Stackable": false
+  }
+]

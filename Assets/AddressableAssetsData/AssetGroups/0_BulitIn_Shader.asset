@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: 0_BulitIn_Shader
+  m_EditorClassIdentifier: 
+  m_GroupName: 0_BulitIn_Shader
+  m_GUID: 6febc1047fe374b489ff62e3fe290e0c
+  m_SerializeEntries:
+  - m_GUID: 7ff230f3c1db85044b7c6865d4e256e9
+    m_Address: 0_BulitIn/Shader/Sprite-Lit-Default
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 51bb81af352dc444397d88092d7ce6f5, type: 2}
+    - {fileID: 11400000, guid: ac3ddee7f3bed60479981fcbe6b0e679, type: 2}

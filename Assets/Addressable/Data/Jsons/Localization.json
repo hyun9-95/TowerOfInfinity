@@ -1,0 +1,266 @@
+[
+  {
+    "id": 70000,
+    "Korean": "무한의 탑",
+    "English": "Tower of Infinity",
+    "SimplifiedChinese": "无限之塔"
+  },
+  {
+    "id": 70001,
+    "Korean": "데이터 로딩 중..",
+    "English": "Loading Data...",
+    "SimplifiedChinese": "数据加载中..."
+  },
+  {
+    "id": 70002,
+    "Korean": "리소스 로딩 중..",
+    "English": "Loading Resources...",
+    "SimplifiedChinese": "资源加载中..."
+  },
+  {
+    "id": 70003,
+    "Korean": "유저 정보 로딩 중..",
+    "English": "Loading User Info...",
+    "SimplifiedChinese": "用户信息加载中..."
+  },
+  {
+    "id": 70004,
+    "Korean": "다크엘프",
+    "English": "Dark Elf",
+    "SimplifiedChinese": "黑暗精灵"
+  },
+  {
+    "id": 70005,
+    "Korean": "악마",
+    "English": "Demon",
+    "SimplifiedChinese": "恶魔"
+  },
+  {
+    "id": 70006,
+    "Korean": "엘프",
+    "English": "Elf",
+    "SimplifiedChinese": "精灵"
+  },
+  {
+    "id": 70007,
+    "Korean": "리자드맨",
+    "English": "Lizardman",
+    "SimplifiedChinese": "蜥蜴人"
+  },
+  {
+    "id": 70008,
+    "Korean": "퍼리",
+    "English": "Furry",
+    "SimplifiedChinese": "拟人兽"
+  },
+  {
+    "id": 70009,
+    "Korean": "고블린",
+    "English": "Goblin",
+    "SimplifiedChinese": "哥布林"
+  },
+  {
+    "id": 70010,
+    "Korean": "인간",
+    "English": "Human",
+    "SimplifiedChinese": "人类"
+  },
+  {
+    "id": 70011,
+    "Korean": "어인",
+    "English": "Merman",
+    "SimplifiedChinese": "鱼人"
+  },
+  {
+    "id": 70012,
+    "Korean": "오크",
+    "English": "Orc",
+    "SimplifiedChinese": "兽人"
+  },
+  {
+    "id": 70013,
+    "Korean": "괴물",
+    "English": "Monster",
+    "SimplifiedChinese": "怪物"
+  },
+  {
+    "id": 70014,
+    "Korean": "뱀파이어",
+    "English": "Vampire",
+    "SimplifiedChinese": "吸血鬼"
+  },
+  {
+    "id": 70015,
+    "Korean": "언데드",
+    "English": "Undead",
+    "SimplifiedChinese": "不死族"
+  },
+  {
+    "id": 70016,
+    "Korean": "도둑의 튜닉",
+    "English": "Thief's Tunic",
+    "SimplifiedChinese": "盗贼束腰外衣"
+  },
+  {
+    "id": 70017,
+    "Korean": "도둑의 후드",
+    "English": "Thief's Hood",
+    "SimplifiedChinese": "盗贼兜帽"
+  },
+  {
+    "id": 70018,
+    "Korean": "단검",
+    "English": "Short Dagger",
+    "SimplifiedChinese": "短剑"
+  },
+  {
+    "id": 70019,
+    "Korean": "도둑의 팔 보호대",
+    "English": "Thief's Bracers",
+    "SimplifiedChinese": "盗贼护腕"
+  },
+  {
+    "id": 70020,
+    "Korean": "투구 보이기",
+    "English": "Show Helmet",
+    "SimplifiedChinese": "显示头盔"
+  },
+  {
+    "id": 70021,
+    "Korean": "장비 보이기",
+    "English": "Show Equipment",
+    "SimplifiedChinese": "显示装备"
+  },
+  {
+    "id": 70022,
+    "Korean": "저장",
+    "English": "Save",
+    "SimplifiedChinese": "保存"
+  },
+  {
+    "id": 70023,
+    "Korean": "종족",
+    "English": "Race",
+    "SimplifiedChinese": "种族"
+  },
+  {
+    "id": 70024,
+    "Korean": "헤어",
+    "English": "Hair",
+    "SimplifiedChinese": "头发"
+  },
+  {
+    "id": 70025,
+    "Korean": "베놈볼",
+    "English": "Venom Ball",
+    "SimplifiedChinese": "毒液球"
+  },
+  {
+    "id": 70026,
+    "Korean": "적에게 닿으면 튕기는 투사체를 던집니다.\\n닿은 적은 중독됩니다.",
+    "English": "Throws a bouncing projectile at enemies.\\nHit enemies become poisoned.",
+    "SimplifiedChinese": "向敌人投掷弹跳弹射物。\\n击中的敌人会中毒。"
+  },
+  {
+    "id": 70027,
+    "Korean": "볼더스매시",
+    "English": "Boulder Smash",
+    "SimplifiedChinese": "巨石重击"
+  },
+  {
+    "id": 70028,
+    "Korean": "근처의 적에게 거대한 돌을 떨어뜨립니다.",
+    "English": "Drops massive stones on nearby enemies.",
+    "SimplifiedChinese": "向附近的敌人投掷巨石。"
+  },
+  {
+    "id": 70029,
+    "Korean": "소드웨이브",
+    "English": "Sword Wave",
+    "SimplifiedChinese": "剑气波"
+  },
+  {
+    "id": 70030,
+    "Korean": "공격할 때마다 적을 관통하는 검기를 발사합니다.",
+    "English": "Fires a penetrating sword wave with each attack.",
+    "SimplifiedChinese": "每次攻击时发射穿透敌人的剑气。"
+  },
+  {
+    "id": 70031,
+    "Korean": "매직미사일",
+    "English": "Magic Missile",
+    "SimplifiedChinese": "魔法飞弹"
+  },
+  {
+    "id": 70032,
+    "Korean": "무작위 방향으로 빠른 투사체를 발사합니다.",
+    "English": "Fires fast projectiles in random directions.",
+    "SimplifiedChinese": "向随机方向发射快速弹射物。"
+  },
+  {
+    "id": 70033,
+    "Korean": "긴 팔",
+    "English": "Long Arms",
+    "SimplifiedChinese": "长臂"
+  },
+  {
+    "id": 70034,
+    "Korean": "획득 범위가 증가합니다.",
+    "English": "Increases acquisition range.",
+    "SimplifiedChinese": "增加获取范围。"
+  },
+  {
+    "id": 70035,
+    "Korean": "처치",
+    "English": "Kills",
+    "SimplifiedChinese": "击杀"
+  },
+  {
+    "id": 70036,
+    "Korean": "시간",
+    "English": "Time",
+    "SimplifiedChinese": "时间"
+  },
+  {
+    "id": 70037,
+    "Korean": "승리",
+    "English": "Victory",
+    "SimplifiedChinese": "胜利"
+  },
+  {
+    "id": 70038,
+    "Korean": "패배",
+    "English": "Defeat",
+    "SimplifiedChinese": "败北"
+  },
+  {
+    "id": 70039,
+    "Korean": "확인",
+    "English": "Confirm",
+    "SimplifiedChinese": "确认"
+  },
+  {
+    "id": 70040,
+    "Korean": "일렉트릭 링",
+    "English": "Electric Ring",
+    "SimplifiedChinese": "电击圈"
+  },
+  {
+    "id": 70041,
+    "Korean": "주변의 적에게 주기적으로 피해를 줍니다.",
+    "English": "Periodically deals damage around yourself.",
+    "SimplifiedChinese": "定期对自身周围造成伤害。"
+  },
+  {
+    "id": 70042,
+    "Korean": "일렉트릭볼",
+    "English": "Electric Ball",
+    "SimplifiedChinese": "电击球"
+  },
+  {
+    "id": 70043,
+    "Korean": "주변을 공전하며 피해를 주는 구체를 생성합니다.",
+    "English": "Creates orbs that orbit around you and deal damage.",
+    "SimplifiedChinese": "创造围绕你轨道运行并造成伤害的球体。"
+  }
+]

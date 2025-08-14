@@ -41,9 +41,6 @@ public class AddressableBuildGenerator : BaseGenerator
         string[] guids = AssetDatabase.FindAssets("t:Object", new[] { addresableAssetPath });
 
         UpdateEntry(addressableSettings, guids);
-
-        string json = JsonConvert.SerializeObject(addressableDic);
-        SaveFileAtPath(addresableAssetPath + "/BuildInfo", NameDefine.AddressablePathName, json);
     }
 
     private void UpdateEntry(AddressableAssetSettings addressableSettings, string[] guids)
@@ -253,20 +250,7 @@ public class AddressableBuildGenerator : BaseGenerator
 
     private void BuildAddressables()
     {
-        string buildPath = GetLocalBuildPath();
-
-        if (Directory.Exists(buildPath))
-        {
-            string[] files = Directory.GetFiles(buildPath);
-            foreach (string file in files)
-            {
-                File.Delete(file);
-            }
-        }
-
         AddressableAssetSettings.CleanPlayerContent(AddressableAssetSettingsDefaultObject.Settings.ActivePlayerDataBuilder);
-        AssetDatabase.Refresh();
-
         AddressableAssetSettings.BuildPlayerContent();
         AssetDatabase.Refresh();
     }
@@ -284,53 +268,9 @@ public class AddressableBuildGenerator : BaseGenerator
         return $"{projectPath}/{localBuildPath}";
     }
 
-    public static void UpdatePreviousAddressablesBuild()
+    // 에디터에 있는 JSON 파일들을 Addressable로 동기화
+    private void SyncJsons()
     {
-        AddressableAssetSettings settings = AddressableAssetSettingsDefaultObject.Settings;
-
-        ContentUpdateScript.BuildContentUpdate(settings, PathDefine.AddressableBinPath);
-    }
-
-    public Dictionary<string, string> GenerateAddressableBuildInfo(string addressableAssetPath)
-    {
-        Dictionary<string, string> buildInfoDic = new Dictionary<string, string>();
-        string[] guids = AssetDatabase.FindAssets("t:Object", new[] { addressableAssetPath });
-
-        foreach (var guid in guids)
-        {
-            string assetPath = AssetDatabase.GUIDToAssetPath(guid);
-
-            // 폴더는 제외
-            if (AssetDatabase.IsValidFolder(assetPath))
-                continue;
-
-            string assetAddress = assetPath.Replace("Assets/Addressable/", "");
-            assetAddress = Path.GetFileNameWithoutExtension(assetAddress);
-
-            // 중복 체크 및 추가
-            if (!buildInfoDic.ContainsKey(assetAddress))
-            {
-                buildInfoDic.Add(assetAddress, assetPath);
-                Logger.Log($"Add to BuildInfoDic {assetAddress} : {assetPath}");
-            }
-            else
-            {
-                Logger.Error($"Duplicate asset address found: {assetAddress}");
-            }
-        }
-
-        return buildInfoDic;
-    }
-
-    public string GenerateAddressableBuildInfoJson(string addressableAssetPath)
-    {
-        var buildInfoDic = GenerateAddressableBuildInfo(addressableAssetPath);
-        return JsonConvert.SerializeObject(buildInfoDic);
-    }
-
-    public void SaveAddressableBuildInfo(string addressableAssetPath)
-    {
-        string json = GenerateAddressableBuildInfoJson(addressableAssetPath);
-        SaveFileAtPath(addressableAssetPath + "/BuildInfo", NameDefine.AddressablePathName, json);
+        string jsonRootPath = PathDefine.Json;
     }
 }

@@ -1,0 +1,50 @@
+[
+  {
+    "id": 10000,
+    "PrefabName": "Character/Player/Thief/Thief",
+    "PrimaryWeaponAbility": "AB_WEAPON_STING",
+    "ActiveSkill": "None",
+    "PassiveSkill": "None",
+    "CustomBossCharacterInfo": ""
+  },
+  {
+    "id": 10001,
+    "PrefabName": "Character/Player/Archer/Archer",
+    "PrimaryWeaponAbility": "AB_WEAPON_ARROW",
+    "ActiveSkill": "None",
+    "PassiveSkill": "None",
+    "CustomBossCharacterInfo": ""
+  },
+  {
+    "id": 10002,
+    "PrefabName": "Character/Player/Guard/Guard",
+    "PrimaryWeaponAbility": "AB_WEAPON_STING",
+    "ActiveSkill": "None",
+    "PassiveSkill": "None",
+    "CustomBossCharacterInfo": ""
+  },
+  {
+    "id": 11000,
+    "PrefabName": "Character/Enemy/Bat/Bat",
+    "PrimaryWeaponAbility": "None",
+    "ActiveSkill": "None",
+    "PassiveSkill": "None",
+    "CustomBossCharacterInfo": ""
+  },
+  {
+    "id": 11001,
+    "PrefabName": "Character/Enemy/GreenOgre/GreenOgre",
+    "PrimaryWeaponAbility": "AB_WEAPON_GREEN_OGRE_SMASH",
+    "ActiveSkill": "None",
+    "PassiveSkill": "None",
+    "CustomBossCharacterInfo": ""
+  },
+  {
+    "id": 11002,
+    "PrefabName": "Character/Enemy/RedDragon/RedDragon",
+    "PrimaryWeaponAbility": "AB_WEAPON_DRAGON_BREATH",
+    "ActiveSkill": "None",
+    "PassiveSkill": "None",
+    "CustomBossCharacterInfo": ""
+  }
+]

@@ -1,8 +1,6 @@
 using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using UnityEngine;
 
 public abstract class BaseDataLoader : IBaseViewModel
 {

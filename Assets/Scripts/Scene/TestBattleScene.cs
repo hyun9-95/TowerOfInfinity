@@ -22,7 +22,7 @@ public class TestBattleScene : BaseScene
     {
         IntroController dataLoadingController = new();
 
-        LocalDataLoader localDataLoader = new();
+        EditorDataLoader localDataLoader = new();
         localDataLoader.SetLocalJsonDataPath(PathDefine.Json);
         await localDataLoader.LoadData();
 

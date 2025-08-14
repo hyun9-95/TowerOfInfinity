@@ -1,20 +1,20 @@
 using Cysharp.Threading.Tasks;
-using TMPro;
+using System.Net;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class IntroView : BaseView
 {
     private IntroViewModel Model => GetModel<IntroViewModel>();
 
     [SerializeField]
-    private TextMeshProUGUI progressText;
+    private AddressableLoader loadingBarLoader;
 
-    [SerializeField]
-    private Slider progressBar;
+    private LoadingBar loadingBar;
 
     public async UniTask ShowDataLoadingProgress()
     {
+        await LoadLoadingBar();
+
         while (Model.DataLoader.IsLoading)
         {
             UpdateLoadingUI();
@@ -22,9 +22,17 @@ public class IntroView : BaseView
         }
     }
 
+    private async UniTask LoadLoadingBar()
+    {
+        loadingBar = await loadingBarLoader.InstantiateAsyc<LoadingBar>();
+    }
+
     public void UpdateLoadingUI()
     {
-        progressText.SafeSetText(Model.GetLoadingProgressText());
-        progressBar.value = Model.DataLoader.CurrentProgressValue;
+        if (loadingBar == null)
+            return;
+
+        loadingBar.SetLoadingProgressText(Model.GetLoadingProgressText());
+        loadingBar.SetLoadingProgress(Model.DataLoader.CurrentProgressValue);
     }
 }

@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: 0_BulitIn_Fonts
+  m_EditorClassIdentifier: 
+  m_GroupName: 0_BulitIn_Fonts
+  m_GUID: cc6005530976ce04e8ed7616de7cdc7a
+  m_SerializeEntries:
+  - m_GUID: 29482f99c9601e14b88ed144027c6b39
+    m_Address: 0_BulitIn/Fonts/Silver
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 68e6db2ebdc24f95958faec2be5558d6
+    m_Address: 0_BulitIn/Fonts/TMP_SDF
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bd8208d340738d540bb3e58d02f522fd
+    m_Address: 0_BulitIn/Fonts/Silver SDF
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fe393ace9b354375a9cb14cdbbc28be4
+    m_Address: 0_BulitIn/Fonts/TMP_SDF-Mobile
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: c0f6cbc51d193d4448cc4731e656533a, type: 2}
+    - {fileID: 11400000, guid: d6e65954dfdfce64ab9a2fc6ae3e3115, type: 2}

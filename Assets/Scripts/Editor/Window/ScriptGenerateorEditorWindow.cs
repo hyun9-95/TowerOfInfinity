@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Tools
 {
-    public class ScriptGenerateorEditorWindow : BaseEdtiorWindow
+    public class ScriptGenerateorEditorWindow : BaseEditorWindow
     {
         private const float width = 400f;
         private const float height = 200f;

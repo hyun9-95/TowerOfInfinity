@@ -23,6 +23,8 @@ public class PathDefine
     
     public const string PATH_BATTLE_EVENT_BALANCE_FOLDER = "Assets/Addressable/AbilityCore/BattleEventBalance";
     public const string PATH_ABILITY_BALANCE_FOLDER = "Assets/Addressable/AbilityCore/AbilityBalance";
+    public const string PATH_ADDRESSABLE_JSON_LIST = "Data/Jsons/JsonList";
+    public const string PATH_ADDRESSABLE_JSON = "Data/Jsons/{0}";
     #endregion
 
     #region Resources

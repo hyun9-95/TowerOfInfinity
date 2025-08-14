@@ -1,0 +1,61 @@
+[
+  {
+    "id": 30000,
+    "MidBoss": "CHAR_GREEN_OGRE",
+    "FinalBoss": "CHAR_RED_DRAGON",
+    "Enemys": [
+      [
+        "CHAR_BAT",
+        "CHAR_BAT"
+      ],
+      [
+        "CHAR_BAT",
+        "CHAR_BAT"
+      ],
+      [
+        "CHAR_BAT",
+        "CHAR_BAT"
+      ],
+      [
+        "CHAR_BAT",
+        "CHAR_BAT"
+      ],
+      [
+        "CHAR_BAT",
+        "CHAR_BAT"
+      ],
+      [
+        "CHAR_BAT",
+        "CHAR_BAT"
+      ],
+      [
+        "CHAR_BAT",
+        "CHAR_BAT"
+      ],
+      [
+        "CHAR_BAT",
+        "CHAR_BAT"
+      ],
+      [
+        "CHAR_BAT",
+        "CHAR_BAT"
+      ],
+      [
+        "CHAR_BAT",
+        "CHAR_BAT"
+      ],
+      [
+        "CHAR_BAT",
+        "CHAR_BAT"
+      ],
+      [
+        "CHAR_BAT",
+        "CHAR_BAT"
+      ],
+      [
+        "CHAR_BAT",
+        "CHAR_BAT"
+      ]
+    ]
+  }
+]

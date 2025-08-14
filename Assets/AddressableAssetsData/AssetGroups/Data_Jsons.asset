@@ -1,0 +1,95 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Data_Jsons
+  m_EditorClassIdentifier: 
+  m_GroupName: Data_Jsons
+  m_GUID: 6f13e9e372c303e4a97b00cd88ebba11
+  m_SerializeEntries:
+  - m_GUID: 065af5c626ba7cd4aa3d81cceb58d110
+    m_Address: Data/Jsons/Ability
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 14998e5e11253c34680e8fc706b25a99
+    m_Address: Data/Jsons/Balance
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1bbf1de5144abfe4b9aee2faff42530d
+    m_Address: Data/Jsons/Localization
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2d82f794d4909cf49ac834facfce2571
+    m_Address: Data/Jsons/Character
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 331a9f5364815b342bc8cf8ce517642c
+    m_Address: Data/Jsons/EnemyGroup
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4ca53aabb64979242b2599cbe1a84d36
+    m_Address: Data/Jsons/Dungeon
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 62453e4b5eb191f44915127f22bd625d
+    m_Address: Data/Jsons/Equipment
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 75e73bdc518490b4a8097bf895d97ec1
+    m_Address: Data/Jsons/BattleEvent
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7692bc4b4ffa1804facb6d26e2c7ca7e
+    m_Address: Data/Jsons/CharacterParts
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7ab3cac06329e4c41b86f4f42f3c7fce
+    m_Address: Data/Jsons/JsonList
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7edd5389e382a5041bed68e8256857b7
+    m_Address: Data/Jsons/BattleCard
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9700f49169d645b4b9c070658e171cd0
+    m_Address: Data/Jsons/Version
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 456afdd8193e94a48a5cebc248bdf186, type: 2}
+    - {fileID: 11400000, guid: c0c48979bcc902b4d8eab76606ac9233, type: 2}

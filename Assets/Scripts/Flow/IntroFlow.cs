@@ -9,6 +9,7 @@ public class IntroFlow : BaseFlow<IntroFlowModel>
 
     public override async UniTask LoadingProcess()
     {
+        await AddressableManager.Instance.InitializeAsync();
     }
 
     private async UniTask ShowIntroView(LoadDataType loadDataType)
@@ -31,9 +32,35 @@ public class IntroFlow : BaseFlow<IntroFlowModel>
 
     private void OnCompleteLoading()
     {
+#if UNITY_EDITOR
+        CheatEnterGame();
+#else
+        EnterGame();
+#endif
+    }
+
+    private void EnterGame()
+    {
         bool isEnterCustomize = !PlayerManager.Instance.User.IsCompletePrologue;
 
-#if CHEAT
+        if (isEnterCustomize)
+        {
+            CustomizationFlowModel customizationFlowModel = new CustomizationFlowModel();
+
+            FlowManager.Instance.ChangeFlow(FlowType.CustomizationFlow, customizationFlowModel).Forget();
+        }
+        else
+        {
+            FlowManager.Instance.ChangeCurrentTownFlow
+                (PlayerManager.Instance.User.CurrentTown).Forget();
+        }
+    }
+
+    private void CheatEnterGame()
+    {
+        bool isEnterCustomize = !PlayerManager.Instance.User.IsCompletePrologue;
+
+#if UNITY_EDITOR && CHEAT
         if (!isEnterCustomize && CheatManager.CheatConfig.IsEnterCustomizationFlow)
             isEnterCustomize = true;
 
@@ -49,7 +76,7 @@ public class IntroFlow : BaseFlow<IntroFlowModel>
         else if (isEnterCustomize)
         {
             CustomizationFlowModel customizationFlowModel = new CustomizationFlowModel();
-            
+
             FlowManager.Instance.ChangeFlow(FlowType.CustomizationFlow, customizationFlowModel).Forget();
         }
         else
@@ -57,22 +84,10 @@ public class IntroFlow : BaseFlow<IntroFlowModel>
             FlowManager.Instance.ChangeCurrentTownFlow
                 (PlayerManager.Instance.User.CurrentTown).Forget();
         }
-
-        return;
 #endif
-
-        if (isEnterCustomize)
-        {
-            CustomizationFlowModel customizationFlowModel = new CustomizationFlowModel();
-
-            FlowManager.Instance.ChangeFlow(FlowType.CustomizationFlow, customizationFlowModel).Forget();
-        }
-        else
-        {
-            FlowManager.Instance.ChangeCurrentTownFlow
-                (PlayerManager.Instance.User.CurrentTown).Forget();
-        }
     }
+
+
 
     public override async UniTask Exit()
     {

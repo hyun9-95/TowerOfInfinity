@@ -64,8 +64,8 @@ public enum FlowType
 
 public enum LoadDataType
 {
-    Local,
-    Remote,
+    Editor,
+    Addressable,
 }
 
 public enum StatType

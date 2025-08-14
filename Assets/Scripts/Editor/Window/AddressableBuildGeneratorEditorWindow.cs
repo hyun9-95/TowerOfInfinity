@@ -3,7 +3,7 @@ using Tools;
 using UnityEditor;
 using UnityEngine;
 
-public class AddressableBuildGeneratorEditorWindow : BaseEdtiorWindow
+public class AddressableBuildGeneratorEditorWindow : BaseEditorWindow
 {
     private const float width = 600f;
     private const float height = 200f;
@@ -18,12 +18,6 @@ public class AddressableBuildGeneratorEditorWindow : BaseEdtiorWindow
     {
         AddressableBuildGeneratorEditorWindow window = (AddressableBuildGeneratorEditorWindow)GetWindow(typeof(AddressableBuildGeneratorEditorWindow));
         window.InitializeWindow(window, width, height, spacing);
-    }
-
-    [MenuItem("Tools/Addressable/Update Previous Addressable Build")]
-    public static void UpdatePreviousAddressableBuild()
-    {
-        AddressableBuildGenerator.UpdatePreviousAddressablesBuild();
     }
 
     protected override void InitializeParameters()

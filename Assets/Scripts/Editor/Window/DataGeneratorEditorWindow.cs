@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Tools
 {
-    public class DataGeneratorEditorWindow : BaseEdtiorWindow
+    public class DataGeneratorEditorWindow : BaseEditorWindow
     {
         private const float width = 400f;
         private const float height = 600f;

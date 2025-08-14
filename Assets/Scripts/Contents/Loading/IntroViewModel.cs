@@ -10,9 +10,23 @@ public class IntroViewModel : IBaseViewModel
         UserLoading,
     }
 
-    public BaseDataLoader DataLoader => LocalDataLoader;
+    public BaseDataLoader DataLoader
+    {
+        get
+        {
+            if (EditorDataLoader != null)
+                return EditorDataLoader;
+            
+            if (AddressableDataLoader != null)
+                return AddressableDataLoader;
+            
+            return null;
+        }
+    }
 
-    public LocalDataLoader LocalDataLoader { get; private set; }
+    public EditorDataLoader EditorDataLoader { get; private set; }
+    
+    public AddressableDataLoader AddressableDataLoader { get; private set; }
 
     public LoadDataType LoadDataType { get; private set; }
 
@@ -30,9 +44,14 @@ public class IntroViewModel : IBaseViewModel
         LoadDataType = loadDataType;
     }
 
-    public void SetLocalDataLoader(LocalDataLoader localDataLoader)
+    public void SetEditorDataLoader(EditorDataLoader editorDataLoader)
     {
-        LocalDataLoader = localDataLoader;
+        EditorDataLoader = editorDataLoader;
+    }
+
+    public void SetAddressableDataLoader(AddressableDataLoader addressableDataLoader)
+    {
+        AddressableDataLoader = addressableDataLoader;
     }
 
     public void SetOnComplteLoading(Action onCompleteLoading)

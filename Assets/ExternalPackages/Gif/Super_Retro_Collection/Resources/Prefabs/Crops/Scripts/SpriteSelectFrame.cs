@@ -74,7 +74,6 @@ public class SpriteSelectFrame : MonoBehaviour
     // load the spritesheet
     void loadVariables()
     {
-        Debug.Log("hello");
         spriteRenderer = GetComponent<SpriteRenderer>();
         LoadSpritesFromSpriteSheet(spriteRenderer.sprite);
     }

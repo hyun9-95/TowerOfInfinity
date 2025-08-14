@@ -1,0 +1,113 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: UI_Refs
+  m_EditorClassIdentifier: 
+  m_GroupName: UI_Refs
+  m_GUID: 1862dd4965255a04ab2ced249a53d23d
+  m_SerializeEntries:
+  - m_GUID: 004de00204ca41a4abd9b5946b7292f6
+    m_Address: UI/Common/Refs/Frame_title_dots
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0d850f5c18c2ffb43b234e26ec4aef3a
+    m_Address: UI/Common/Refs/F_UI_SlideBar_A5
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 13278fd68300beb4cab7318f73c7a80f
+    m_Address: UI/Common/Refs/F_UI_SilverBar
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 210d142b64945444190ea8d4117026b5
+    m_Address: UI/Common/Refs/T_bot_arrow
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3b8c1c0b6c3acd64bb6e8b72d56ac656
+    m_Address: UI/Common/Refs/F_UI_Panel_N
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 44168ef17beb46d4397aa423b9f037e2
+    m_Address: UI/Common/Refs/F_UI_Gems Tile Map 22x22
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 537aa108002f44a4e913022f025d201c
+    m_Address: UI/Common/Refs/F_UI_SlideBar_B5
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 76234b4b4d6b84a45867272033120b9a
+    m_Address: UI/Common/Refs/F_UI_Panel_H
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ada77d2eb2309e847aa796ecb28fce3f
+    m_Address: UI/Common/Refs/F_UI_Panel_A
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b39aedb207d30774a8122ddeea09b1e7
+    m_Address: UI/Common/Refs/2_options_on
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b68b996e88942794aa4935f3b2d6e3fe
+    m_Address: UI/Common/Refs/F_U_Frame14
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b6f3374714cb57a48b662e17ad5c16d3
+    m_Address: UI/Common/Refs/F_UI_RedBar
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c0a53c757cbed194e8904b240206afb5
+    m_Address: UI/Common/Refs/1_orange_button_pick
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: da01037398e12134b89ca562a25d71db
+    m_Address: UI/Common/Refs/2_options_off
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e6989eb00b9d34e47be8dcc487fc4af7
+    m_Address: UI/Common/Refs/1_orange_button
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 8105d2a25ec8b30418c1bba3d8e74b03, type: 2}
+    - {fileID: 11400000, guid: 4c208b576940ef34189ae1f0d09ffd7f, type: 2}

@@ -1,0 +1,132 @@
+[
+  {
+    "id": 50000,
+    "SlotType": "Weapon",
+    "CastingType": "OnAttack",
+    "BattleEvents": [
+      "BE_DAMAGE_ONE_SHOT_ATTACK"
+    ],
+    "TriggerType": "Projectile",
+    "TargetType": "Enemy",
+    "PrefabName": "Ability/Arrow_Projectile/Arrow_Projectile",
+    "IconPath": "",
+    "HitEffectPrefabName": ""
+  },
+  {
+    "id": 50001,
+    "SlotType": "Weapon",
+    "CastingType": "OnAttack",
+    "BattleEvents": [
+      "BE_DAMAGE_ONE_SHOT_ATTACK"
+    ],
+    "TriggerType": "FollowCollider",
+    "TargetType": "Enemy",
+    "PrefabName": "Ability/Sting_Collider/Sting_Collider",
+    "IconPath": "",
+    "HitEffectPrefabName": ""
+  },
+  {
+    "id": 50002,
+    "SlotType": "Weapon",
+    "CastingType": "OnAttack",
+    "BattleEvents": [
+      "BE_DAMAGE_GREEN_OGRE_SMASH"
+    ],
+    "TriggerType": "FollowCollider",
+    "TargetType": "Enemy",
+    "PrefabName": "Ability/GreenOgreSmash/GreenOgreSmash_Collider",
+    "IconPath": "",
+    "HitEffectPrefabName": ""
+  },
+  {
+    "id": 50003,
+    "SlotType": "Weapon",
+    "CastingType": "OnAttack",
+    "BattleEvents": [
+      "BE_DAMAGE_DRAGON_BREATH"
+    ],
+    "TriggerType": "TargetProjectile",
+    "TargetType": "Enemy",
+    "PrefabName": "Ability/DragonBreath/DragonBreath_TargetProjectile",
+    "IconPath": "",
+    "HitEffectPrefabName": ""
+  },
+  {
+    "id": 51000,
+    "SlotType": "Active",
+    "CastingType": "Auto",
+    "BattleEvents": [
+      "BE_POSION_VENOM_BALL"
+    ],
+    "TriggerType": "Projectile",
+    "TargetType": "Enemy",
+    "PrefabName": "Ability/VenomBall/VenomBall_Bouncing",
+    "IconPath": "Ability/VenomBall/VenomBall_Bouncing_Icon",
+    "HitEffectPrefabName": ""
+  },
+  {
+    "id": 51001,
+    "SlotType": "Active",
+    "CastingType": "Auto",
+    "BattleEvents": [
+      "BE_DAMAGE_BOULDER_SMASH"
+    ],
+    "TriggerType": "InRangeFollow",
+    "TargetType": "Enemy",
+    "PrefabName": "Ability/BoulderSmash/BoulderSmash_Range",
+    "IconPath": "Ability/BoulderSmash/BoulderSmash_Range_Icon",
+    "HitEffectPrefabName": ""
+  },
+  {
+    "id": 51002,
+    "SlotType": "Active",
+    "CastingType": "OnAttack",
+    "BattleEvents": [
+      "BE_DAMAGE_SWORD_WAVE"
+    ],
+    "TriggerType": "Projectile",
+    "TargetType": "Enemy",
+    "PrefabName": "Ability/SwordWave/SwordWave_Projectile",
+    "IconPath": "Ability/SwordWave/SwordWave_Projectile_Icon",
+    "HitEffectPrefabName": ""
+  },
+  {
+    "id": 51003,
+    "SlotType": "Active",
+    "CastingType": "Auto",
+    "BattleEvents": [
+      "BE_DAMAGE_MAGIC_MISSILE"
+    ],
+    "TriggerType": "FollowProjectile",
+    "TargetType": "Enemy",
+    "PrefabName": "Ability/MagicMissile/MagicMissile_Follow",
+    "IconPath": "Ability/MagicMissile/MagicMissile_Follow_Icon",
+    "HitEffectPrefabName": ""
+  },
+  {
+    "id": 51004,
+    "SlotType": "Active",
+    "CastingType": "Instant",
+    "BattleEvents": [
+      "BE_DAMAGE_ELECTRIC_RING"
+    ],
+    "TriggerType": "FollowCollider",
+    "TargetType": "Enemy",
+    "PrefabName": "Ability/ElectricRing/ElectricRing_Collider",
+    "IconPath": "Ability/ElectricRing/ElectricRing_Collider_Icon",
+    "HitEffectPrefabName": ""
+  },
+  {
+    "id": 51005,
+    "SlotType": "Active",
+    "CastingType": "Auto",
+    "BattleEvents": [
+      "BE_DAMAGE_ELECTRIC_BALL"
+    ],
+    "TriggerType": "Orbit",
+    "TargetType": "Enemy",
+    "PrefabName": "Ability/ElectricBall/ElectricBall_Orbit",
+    "IconPath": "Ability/ElectricBall/ElectricBall_Orbit_Icon",
+    "HitEffectPrefabName": ""
+  }
+]

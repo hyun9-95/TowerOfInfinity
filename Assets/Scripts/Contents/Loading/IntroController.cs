@@ -31,11 +31,22 @@ public class IntroController : BaseController<IntroViewModel>
     {
         switch (Model.LoadDataType)
         {
-            case LoadDataType.Local:
-                LocalDataLoader localDataLoader = new();
-                localDataLoader.SetLocalJsonDataPath(PathDefine.Json);
-                localDataLoader.SetOnSuccessLoadData(OnSuccessDataLoader);
-                Model.SetLocalDataLoader(localDataLoader);
+#if UNITY_EDITOR
+            case LoadDataType.Editor:
+                EditorDataLoader editorData = new();
+                editorData.SetLocalJsonDataPath(PathDefine.Json);
+                editorData.SetOnSuccessLoadData(OnSuccessDataLoader);
+                Model.SetEditorDataLoader(editorData);
+                break;
+#endif
+
+            case LoadDataType.Addressable:
+                AddressableDataLoader addressableDataLoader = new();
+                addressableDataLoader.SetOnSuccessLoadData(OnSuccessDataLoader);
+
+                // 뷰를 트래커로 할당해서, View가 파괴될 때 자동으로 TextAsset들을 해제한다.
+                addressableDataLoader.SetAddressableTracker(View.gameObject);
+                Model.SetAddressableDataLoader(addressableDataLoader);
                 break;
         }
     }
@@ -47,12 +58,10 @@ public class IntroController : BaseController<IntroViewModel>
     private async UniTask LoadResources()
     {
         Model.SetLoadingState(IntroViewModel.LoadingState.ResourceLoading);
-        View.UpdateLoadingUI();
+        
+        // 추후 어드레서블 리모트 사용 시 이 부분에 다운로드 / 무결성 체크 구현
 
-        if (Model.LoadDataType == LoadDataType.Local)
-        {
-            AddressableManager.Instance.LoadLocalAddressableBuildAsync();
-        }
+        View.UpdateLoadingUI();
     }
 
     private async UniTask LoadDatas()
@@ -62,7 +71,7 @@ public class IntroController : BaseController<IntroViewModel>
 
         await UniTask.WaitUntil(() => { return !Model.DataLoader.IsLoading; });
 
-        DataManager.Instance.GenerateDataContainerByDataDic(Model.LocalDataLoader.DicJsonByFileName);
+        DataManager.Instance.GenerateDataContainerByDataDic(Model.DataLoader.DicJsonByFileName);
         await AbilityBalanceFactory.Instance.Initialize();
         await BattleEventBalanceFactory.Instance.Initialize();
     }

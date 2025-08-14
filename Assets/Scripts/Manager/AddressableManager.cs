@@ -21,73 +21,15 @@ public class AddressableManager : BaseManager<AddressableManager>
 
     public Sequence CurrentSequence { get; private set; } = Sequence.LoadAddressableVersion;
 
-    private AddressableBuildInfo addressableBuildInfo;
-    private bool clearBundle;
-
     private Dictionary<GameObject, AsyncOperationHandle<GameObject>> instantiatedHandles = new Dictionary<GameObject, AsyncOperationHandle<GameObject>>();
     private Dictionary<UnityEngine.Object, AsyncOperationHandle> assetHandles = new Dictionary<UnityEngine.Object, AsyncOperationHandle>();
     private Dictionary<string, AsyncOperationHandle<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>> sceneHandles = new Dictionary<string, AsyncOperationHandle<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>>();
     private Dictionary<GameObject, Dictionary<UnityEngine.Object, AsyncOperationHandle>> trackingAssetHandles = new Dictionary<GameObject, Dictionary<UnityEngine.Object, AsyncOperationHandle>>();
     private HashSet<string> loadedScenes = new HashSet<string>();
 
-    #region Initialize Addressable
-    /// <summary>
-    /// FireBase 나중에 바꾸는거 고려해야함.. 비용문제
-    /// </summary>
-    /// <returns></returns>
-    public void LoadLocalAddressableBuildAsync()
+    public async UniTask InitializeAsync()
     {
-#if UNITY_EDITOR
-        addressableBuildInfo = GenerateAddressableBuildInfo(PathDefine.Addressable);
-#endif
-    }
-
-#if UNITY_EDITOR
-    private AddressableBuildInfo GenerateAddressableBuildInfo(string addressableAssetPath)
-    {
-        Dictionary<string, string> buildInfoDic = new Dictionary<string, string>();
-        string[] guids = UnityEditor.AssetDatabase.FindAssets("t:Object", new[] { addressableAssetPath });
-
-        foreach (var guid in guids)
-        {
-            string assetPath = UnityEditor.AssetDatabase.GUIDToAssetPath(guid);
-
-            // 폴더 제외
-            if (UnityEditor.AssetDatabase.IsValidFolder(assetPath))
-                continue;
-
-            string address = assetPath.Replace("Assets/Addressable/", "");
-            string[] split = address.Split(".");
-            address = split[0];
-
-            if (!buildInfoDic.ContainsKey(address))
-            {
-                buildInfoDic.Add(address, assetPath);
-            }
-            else
-            {
-                Logger.Warning($"중복된 주소: {address}");
-            }
-        }
-
-        return new AddressableBuildInfo(null, buildInfoDic);
-    }
-#endif
-
-    private bool IsContain(string address)
-    {
-        if (string.IsNullOrEmpty(address))
-        {
-            Logger.Null($"Addess");
-            return false;
-        }
-
-        bool result = addressableBuildInfo.AddressableDic.ContainsKey(address);
-
-        if (!result)
-            Logger.Warning($"{address} is not contains in addressable build Info");
-
-        return result;
+        await Addressables.InitializeAsync();
     }
 
     private bool IsAddressableScene(SceneDefine define)
@@ -98,7 +40,6 @@ public class AddressableManager : BaseManager<AddressableManager>
             _ => true,
         };
     }
-    #endregion
 
     public async UniTask<Scene> LoadSceneAsync(SceneDefine define,
     UnityEngine.SceneManagement.LoadSceneMode loadSceneMode = UnityEngine.SceneManagement.LoadSceneMode.Single)
@@ -163,9 +104,6 @@ public class AddressableManager : BaseManager<AddressableManager>
 
     private async UniTask<T> LoadAssetAsync<T>(string address, bool isHandle = true) where T : UnityEngine.Object
     {
-        if (!IsContain(address))
-            return null;
-
         var handle = Addressables.LoadAssetAsync<T>(address);
         var asset = await handle;
 
@@ -187,9 +125,6 @@ public class AddressableManager : BaseManager<AddressableManager>
     /// </summary>
     public async UniTask<T> LoadAssetAsyncWithTracker<T>(string address, GameObject tracker) where T : UnityEngine.Object
     {
-        if (!IsContain(address))
-            return null;
-
         if (tracker == null)
         {
             Logger.Error("Tracker를 등록해야 로드가 가능!");
@@ -231,9 +166,6 @@ public class AddressableManager : BaseManager<AddressableManager>
 
     public async UniTask<GameObject> InstantiateAsync(string address, Transform transform = null)
     {
-        if (!IsContain(address))
-            return null;
-
         var handle = Addressables.InstantiateAsync(address, transform);
         var go = await handle;
 
@@ -252,9 +184,6 @@ public class AddressableManager : BaseManager<AddressableManager>
     public async UniTask<T> InstantiateAddressableMonoAsync<T>(string address, Transform transform = null)
         where T : AddressableMono
     {
-        if (!IsContain(address))
-            return null;
-
         GameObject go = await InstantiateAsync(address, transform);
 
         if (go == null)
@@ -268,9 +197,6 @@ public class AddressableManager : BaseManager<AddressableManager>
     /// </summary>
     public async UniTask<T> InstantiateUntrackedAsync<T>(string address, Transform transform = null) where T : MonoBehaviour
     {
-        if (!IsContain(address))
-            return null;
-
         var handle = Addressables.InstantiateAsync(address, transform);
         var go = await handle;
 
