@@ -46,9 +46,9 @@ public class GameManager : BaseMonoManager<GameManager>
 #if UNITY_STANDALONE
         platform.SetPlatform(PlatformType.StandAlone);
 #elif UNITY_ANDROID
-        platform.SetPlatformType(PlatformType.Android);
+        platform.SetPlatform(PlatformType.Android);
 #elif UNITY_IOS
-        platform.SetPlatformType(PlatformType.IOS);
+        platform.SetPlatform(PlatformType.IOS);
 #endif
 
 #if UNITY_EDITOR
