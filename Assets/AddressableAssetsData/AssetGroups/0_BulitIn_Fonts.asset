@@ -21,20 +21,8 @@ MonoBehaviour:
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 68e6db2ebdc24f95958faec2be5558d6
-    m_Address: 0_BulitIn/Fonts/TMP_SDF
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Main
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: bd8208d340738d540bb3e58d02f522fd
     m_Address: 0_BulitIn/Fonts/Silver SDF
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Main
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: fe393ace9b354375a9cb14cdbbc28be4
-    m_Address: 0_BulitIn/Fonts/TMP_SDF-Mobile
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
