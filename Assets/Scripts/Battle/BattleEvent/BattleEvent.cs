@@ -143,5 +143,14 @@ public abstract class BattleEvent : IObserver
 
         return Model.Receiver;
     }
+
+    public void OnReapply(BattleEventModel model)
+    {
+        if (model == null || Model == null)
+            return;
+
+        Model.UpdateValue(model);
+        RemainDuration = model.Duration;
+    }
     #endregion
 }

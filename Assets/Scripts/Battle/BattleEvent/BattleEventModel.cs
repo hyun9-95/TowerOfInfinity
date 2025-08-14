@@ -41,4 +41,19 @@ public class BattleEventModel
             ApplyIntervalSeconds = levelBalance.GetApplyIntervalSeconds(level);
         }
     }
+
+    /// <summary>
+    /// 이미 같은 효과가 적용중일 때, 값만 교체하는 경우 사용
+    /// </summary>
+    /// <param name="model"></param>
+    public void UpdateValue(BattleEventModel model)
+    {
+        if (model == null)
+            return;
+
+        Value = model.Value;
+        Value2 = model.Value2;
+        Duration = model.Duration;
+        ApplyIntervalSeconds = model.ApplyIntervalSeconds;
+    }
 }
