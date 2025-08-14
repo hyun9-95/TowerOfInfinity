@@ -11,9 +11,29 @@ public class Platform
     #endregion
 
     #region Function
-    public void SetPlatformType(PlatformType type)
+    public void SetPlatform(PlatformType type)
     {
         Type = type;
+
+        InitializePlatform();
+    }
+
+    private void InitializePlatform()
+    {
+        switch (Type)
+        {
+            case PlatformType.None:
+                break;
+
+            case PlatformType.StandAlone:
+                break;
+
+            case PlatformType.Android:
+                break;
+
+            case PlatformType.IOS:
+                break;
+        }
     }
     #endregion
 }

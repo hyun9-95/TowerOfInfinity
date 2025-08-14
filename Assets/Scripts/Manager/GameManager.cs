@@ -42,7 +42,7 @@ public class GameManager : BaseMonoManager<GameManager>
         platform = new Platform();
 
 #if UNITY_STANDALONE
-        platform.SetPlatformType(PlatformType.StandAlone);
+        platform.SetPlatform(PlatformType.StandAlone);
 #elif UNITY_ANDROID
         platform.SetPlatformType(PlatformType.Android);
 #elif UNITY_IOS
@@ -51,7 +51,7 @@ public class GameManager : BaseMonoManager<GameManager>
 
 #if UNITY_EDITOR
         if (testPlatformType != PlatformType.None)
-            platform.SetPlatformType(testPlatformType);
+            platform.SetPlatform(testPlatformType);
 #endif
     }
 }
