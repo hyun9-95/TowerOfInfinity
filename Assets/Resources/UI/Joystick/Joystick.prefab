@@ -70,7 +70,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &22250466
 CanvasRenderer:
@@ -122,14 +122,13 @@ GameObject:
   - component: {fileID: 22237362}
   - component: {fileID: 11417906}
   - component: {fileID: 11467636}
-  - component: {fileID: 7303909154842707419}
   m_Layer: 5
   m_Name: Joystick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &22406132
 RectTransform:
   m_ObjectHideFlags: 0
@@ -214,16 +213,3 @@ MonoBehaviour:
   clickSprite: {fileID: 21300000, guid: a4a967c5b90c5934381c2f391ad6d4f7, type: 3}
   dragSprite: {fileID: 21300000, guid: df018f413c3afc140ac2dcc6534b4567, type: 3}
   isFollowStick: 0
---- !u!114 &7303909154842707419
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 165178}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d53faf3f4206a84dadcb42931e2a69c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  joystick: {fileID: 11467636}

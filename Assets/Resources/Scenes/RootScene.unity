@@ -169,19 +169,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6563164855511301765, guid: 3940ba4195ef515439c4944acbc4ba79, type: 3}
       propertyPath: testPlatformType
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6563164855511301765, guid: 3940ba4195ef515439c4944acbc4ba79, type: 3}
       propertyPath: cheatConfig.IsDebugAStar
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6563164855511301765, guid: 3940ba4195ef515439c4944acbc4ba79, type: 3}
       propertyPath: cheatConfig.IsInvincible
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6563164855511301765, guid: 3940ba4195ef515439c4944acbc4ba79, type: 3}
       propertyPath: cheatConfig.IsEnterBattleDirectly
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8370250158373965001, guid: 3940ba4195ef515439c4944acbc4ba79, type: 3}
       propertyPath: m_LocalPosition.x

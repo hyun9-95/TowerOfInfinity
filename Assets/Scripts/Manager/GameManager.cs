@@ -26,6 +26,8 @@ public class GameManager : BaseMonoManager<GameManager>
         CheatManager.instance.SetCheatConfig(cheatConfig);
 #endif
 
+        Application.targetFrameRate = 60;
+
         SelectPlatform();
     }
 

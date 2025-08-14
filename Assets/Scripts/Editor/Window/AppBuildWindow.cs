@@ -67,12 +67,15 @@ public class AppBuildWindow : EditorWindow
             }
         }
         EditorGUILayout.EndHorizontal();
+
+        bundleVersion = EditorGUILayout.TextField("Bundle Version", bundleVersion);
     }
 
     private void DrawFullBuildToggle()
     {
         fullBuild = EditorGUILayout.Toggle("Full Build", fullBuild);
         cheat = EditorGUILayout.Toggle("Cheat", cheat);
+        debugLog = EditorGUILayout.Toggle("Debug Log", debugLog);
     }
 
     private void DrawBuildButton()
@@ -82,25 +85,27 @@ public class AppBuildWindow : EditorWindow
 
         if (GUILayout.Button("Build", GUILayout.Width(150f), GUILayout.Height(40f)))
         {
-            OnBuild();
+#if UNITY_STANDALONE
+            OnBuild(NamedBuildTarget.Standalone, BuildTarget.StandaloneWindows64);
+#elif UNITY_ANDROID
+            OnBuild(NamedBuildTarget.Android, BuildTarget.Android);
+#endif
         }
 
         GUILayout.FlexibleSpace();
         EditorGUILayout.EndHorizontal();
     }
 
-    private void OnBuild()
+    private void OnBuild(NamedBuildTarget namedBuildTarget, BuildTarget buildTarget)
     {
         if (string.IsNullOrEmpty(buildPath))
         {
-            EditorUtility.DisplayDialog("Error", "Please select a build path.", "OK");
+            EditorUtility.DisplayDialog("Error", "Buildpath is empty", "OK");
             return;
         }
 
-        Logger.Log($"Build requested - Path: {buildPath}, FullBuild: {fullBuild}");
-
-        string originDefineSymbols = PlayerSettings.GetScriptingDefineSymbols(NamedBuildTarget.Standalone);
-        PlayerSettings.SetScriptingDefineSymbols(NamedBuildTarget.Standalone, MakeDefineSymbols());
+        string originDefineSymbols = PlayerSettings.GetScriptingDefineSymbols(namedBuildTarget);
+        PlayerSettings.SetScriptingDefineSymbols(namedBuildTarget, MakeDefineSymbols());
         PlayerSettings.bundleVersion = bundleVersion.ToString();
 
         AssetDatabase.Refresh();
@@ -109,13 +114,14 @@ public class AppBuildWindow : EditorWindow
         {
             if (fullBuild)
             {
+                // 어드레서블 빌드 후 빌드
                 AddressableAssetSettings.BuildPlayerContent(out AddressablesPlayerBuildResult result);
 
                 bool success = string.IsNullOrEmpty(result.Error);
 
                 if (success)
                 {
-                    AppBuild(BuildTarget.StandaloneWindows64);
+                    AppBuild(buildTarget);
                 }
                 else
                 {
@@ -125,7 +131,7 @@ public class AppBuildWindow : EditorWindow
             }
             else
             {
-                AppBuild(BuildTarget.StandaloneWindows64);
+                AppBuild(buildTarget);
             } 
         }
         catch (System.Exception e)
@@ -156,11 +162,6 @@ public class AppBuildWindow : EditorWindow
             Logger.Error($"Build failed");
             EditorUtility.DisplayDialog("Build Failed", $"BBuild failed =>{report.summary.result}", "OK");
         }
-    }
-    
-    private void BuildWindow()
-    {
-
     }
     
     private string MakeDefineSymbols()

@@ -41,7 +41,7 @@ public class InputManager : BaseMonoManager<InputManager>
         if (tempInput != ActionInput.None)
         {
             var actionButton = actionButtons[(int)tempInput];
-            
+               
             if (!actionButton.IsCoolTime && !actionButton.IsClicked)
             {
                 actionButton.OnAction(true);
