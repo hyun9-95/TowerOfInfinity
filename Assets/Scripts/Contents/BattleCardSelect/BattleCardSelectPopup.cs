@@ -17,7 +17,7 @@ public class BattleCardSelectPopup : BaseView
     private DoTweenSupport popupPanelTween;
 
     [SerializeField]
-    private CanvasGroup clickBlocker;
+    private GameObject clickBlocker;
 
     [SerializeField]
     private GameObject dim;

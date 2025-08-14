@@ -12,6 +12,9 @@ public class LoadingBar : BaseUnit
 
     [SerializeField]
 	private TMPro.TextMeshProUGUI loadingText;
+
+	[SerializeField]
+	private GameObject completeObject;
     #endregion
 
     #region Function
@@ -24,5 +27,19 @@ public class LoadingBar : BaseUnit
 	{
 		loadingBar.value = progress;
     }
+
+	public void SetComplete(bool value)
+	{
+		if (value)
+		{
+			loadingBar.gameObject.SafeSetActive(false);
+			completeObject.SafeSetActive(true);
+        }
+		else
+		{
+			loadingBar.gameObject.SafeSetActive(true);
+			completeObject.SafeSetActive(false);
+        }
+	}
     #endregion
 }
