@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using Mono.Cecil;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,9 +17,6 @@ public class MainPlayerCharacter : MonoBehaviour
 
     [SerializeField]
     private CharacterSpriteLibraryBuilder libraryBuilder;
-
-    [SerializeField]
-    private MainCharacterInput mainCharacterInput;
     #endregion
 
     public async UniTask UpdateMainCharacter(MainCharacterInfo mainCharacterInfo, CharacterSetUpType setUpType)
@@ -35,10 +33,6 @@ public class MainPlayerCharacter : MonoBehaviour
         foreach (var equipment in mainCharacterInfo.EquippedEquipments.Values)
             model.EquipEquipment(equipment);
 
-        // 조작 활성화
-        mainCharacterInput.Initialize(model);
-        mainCharacterInput.EnableInput(true);
-
         // 외형 업데이트
         await UpdateSpriteLibraryAsset(mainCharacterInfo.PartsInfo);
 
@@ -47,11 +41,6 @@ public class MainPlayerCharacter : MonoBehaviour
             if (characterUnit.TryGetComponent<BattleExpGainer>(out var battleExpGainer))
                 DestroyImmediate(battleExpGainer);
         }
-    }
-
-    public void SetEnableInput(bool value)
-    {
-        mainCharacterInput.EnableInput(value);
     }
 
     public async UniTask UpdateSpriteLibraryAsset(MainCharacterPartsInfo mainCharacterPartsInfo)

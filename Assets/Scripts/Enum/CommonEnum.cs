@@ -1,3 +1,11 @@
+public enum  PlatformType
+{
+    None = 0,
+    StandAlone,
+    Android,
+    IOS,
+}
+
 public enum CharacterAnimState
 {
     Idle = 0,
@@ -16,14 +24,11 @@ public enum CharacterAnimState
     None = 100,
 }
 
-public enum PlayerInput
+public enum ActionInput
 {
-    None,
     Attack,
     Roll,
-    SkillSlot_1,
-    SkillSlot_2,
-    SkillSlot_3,
+    None,
 }
 
 public enum UICanvasType

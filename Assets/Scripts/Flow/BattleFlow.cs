@@ -12,6 +12,11 @@ public class BattleFlow : BaseFlow<BattleFlowModel>
     private BattleSystemManager battleSystemManager;
     private BattleUIManager battleUIManager;
     private BattleInfinityTile infinityTileManager;
+    private float attackCoolTime = 0;
+    private float rollCoolTime = 0;
+
+    private BattleInfo battleInfo;
+    private BattleTeam battleTeam;
 
     public override async UniTask LoadingProcess()
     {
@@ -27,16 +32,14 @@ public class BattleFlow : BaseFlow<BattleFlowModel>
         battleSystemManager = BattleSystemManager.Instance;
         battleUIManager = BattleUIManager.Instance;
 
-        var battleTeam = await CreatePlayerBattleTeam(PlayerManager.Instance.User.UserCharacterInfo.CurrentDeck,
+        battleTeam = await CreatePlayerBattleTeam(PlayerManager.Instance.User.UserCharacterInfo.CurrentDeck,
             battleSceneManager.PlayerStartTransform);
 
-        var battleInfo = CreateBattleInfo(Model.DataDungeon, battleTeam);
+        battleInfo = CreateBattleInfo(Model.DataDungeon, battleTeam);
        
         await battleSystemManager.Prepare(battleInfo);
         await battleSceneManager.Prepare(battleInfo);
         await battleUIManager.Prepare(battleInfo);
-
-        var mainCharacterTransform = battleInfo.CurrentCharacter.transform;
     }
 
     public override async UniTask Process()
@@ -44,11 +47,33 @@ public class BattleFlow : BaseFlow<BattleFlowModel>
         await battleSystemManager.StartBattle();
         await battleSceneManager.StartSpawn();
         await battleUIManager.ShowHpBar();
+        EnableBattleInput();
     }
 
     public override async UniTask Exit()
     {
+        DisableBattleInput();
         battleSceneManager.StopSpawn();
+    }
+
+    private void EnableBattleInput()
+    {
+        var mainCharacter = battleInfo.CurrentCharacter;
+        attackCoolTime = mainCharacter.GetPrimaryWeaponCoolTime();
+        rollCoolTime = FloatDefine.DEAFAULT_ROLL_COOTIME;
+
+        InputManager.SetActionCoolTime(ActionInput.Attack, attackCoolTime);
+        InputManager.SetActionCoolTime(ActionInput.Roll, rollCoolTime);
+        InputManager.EnableMoveInput(true);
+        InputManager.EnableActionButtons(true);
+    }
+
+    private void DisableBattleInput()
+    {
+        InputManager.SetActionCoolTime(ActionInput.Attack, 0);
+        InputManager.SetActionCoolTime(ActionInput.Roll, 0);
+        InputManager.EnableMoveInput(false);
+        InputManager.EnableActionButtons(false);
     }
 
     private BattleInfo CreateBattleInfo(DataDungeon dataDungeon, BattleTeam battleTeam)

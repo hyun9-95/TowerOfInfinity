@@ -23,4 +23,6 @@ public class FloatDefine
     public const float MINUTE_TO_SECONDS = 60f;
 
     public const float COLLIDER_STAY_COOLTIME_PER_TARGET = 0.5f;
+
+    public const float DEAFAULT_ROLL_COOTIME = 3f;
 }

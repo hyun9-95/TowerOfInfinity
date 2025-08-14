@@ -10,10 +10,16 @@ public class PlayerAttackState : ScriptableCharacterState
 
     public override bool CheckEnterCondition(CharacterUnitModel model)
     {
+        if (InputManager.InputInfo.ActionInput != ActionInput.Attack)
+            return false;
+
         if (model.AbilityProcessor == null)
             return false;
 
-        return model.AbilityProcessor.IsPrimaryWeaponSlotReady() && !model.IsAttackState();
+        if (!model.AbilityProcessor.IsPrimaryWeaponSlotReady())
+            return false;
+
+        return !model.IsAttackState();
     }
 
     public override bool CheckExitCondition(CharacterUnitModel model)
@@ -29,9 +35,9 @@ public class PlayerAttackState : ScriptableCharacterState
         if (model.AbilityProcessor == null)
             return;
 
-        if (model.InputWrapper.IsMove)
+        if (InputManager.InputInfo.IsMove)
         {
-            model.ActionHandler.OnMovement(model.InputWrapper.Movement,
+            model.ActionHandler.OnMovement(InputManager.InputInfo.Movement,
             model.GetStatValue(StatType.MoveSpeed), true);
         }
 

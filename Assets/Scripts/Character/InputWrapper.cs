@@ -1,27 +1,42 @@
+using Cysharp.Threading.Tasks;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class InputWrapper
 {
     public bool IsMove { get; private set; }
 
-    public PlayerInput PlayerInput { get; private set; }
-
-    public bool IsSkillInput => PlayerInput is PlayerInput.SkillSlot_1 or PlayerInput.SkillSlot_2 or PlayerInput.SkillSlot_3;
+    public ActionInput ActionInput { get; private set; }
 
     public Vector2 Movement { get; private set; }
+
+    private Dictionary<ActionInput, float> actionInputCoolTime = new();
 
     public void SetIsMove(bool value)
     {
         IsMove = value;
     }
 
-    public void SetPlayerInput(PlayerInput playerInput)
+    public void SetActionInput(ActionInput playerInput)
     {
-        PlayerInput = playerInput;
+        ActionInput = playerInput;
     }
 
     public void SetMovement(Vector2 movement)
     {
         Movement = movement;
+    }
+
+    public void SetActionInputCoolTime(ActionInput actionInput, float coolTime)
+    {
+        actionInputCoolTime[actionInput] = coolTime;
+    }
+
+    public float GetActionInputCoolTime(ActionInput actionInput)
+    {
+        if (actionInputCoolTime.TryGetValue(actionInput, out float coolTime))
+            return coolTime;
+
+        return 0f;
     }
 }

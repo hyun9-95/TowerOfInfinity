@@ -9,19 +9,17 @@ public class PlayerMoveState : ScriptableCharacterState
 
     public override bool CheckEnterCondition(CharacterUnitModel model)
     {
-        return model.InputWrapper.IsMove && !model.IsDead;
+        return InputManager.InputInfo.IsMove && !model.IsDead;
     }
 
     public override bool CheckExitCondition(CharacterUnitModel model)
     {
-        return !model.InputWrapper.IsMove ||
-            model.InputWrapper.PlayerInput != PlayerInput.None ||
-            model.IsDead;
+        return !InputManager.InputInfo.IsMove || model.IsDead;
     }
 
     public override void OnStateAction(CharacterUnitModel model)
     {
-        model.ActionHandler.OnMovement(model.InputWrapper.Movement,
+        model.ActionHandler.OnMovement(InputManager.InputInfo.Movement,
             model.GetStatValue(StatType.MoveSpeed), true);
     }
 }

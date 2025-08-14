@@ -91,17 +91,20 @@ public class PlayerManager : BaseMonoManager<PlayerManager>
         return mainPlayerCharacter;
     }
 
-    public void EnableInput(bool value)
-    {
-        mainPlayerCharacter.SetEnableInput(value);
-    }
-
     public CharacterUnit GetMainPlayerCharacterUnit()
     {
         if (mainPlayerCharacter == null)
             return null;
 
         return mainPlayerCharacter.CharacterUnit;
+    }
+
+    public CharacterUnitModel GetMainPlayarCharacterUnitModel()
+    {
+        if (mainPlayerCharacter == null)
+            return null;
+
+        return mainPlayerCharacter.CharacterUnit.Model;
     }
 
     public MainCharacterInfo GetMainCharacterInfo()

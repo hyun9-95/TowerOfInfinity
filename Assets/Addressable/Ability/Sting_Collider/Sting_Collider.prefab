@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeTime: 0.45
-  localPosOffset: {x: 1.2, y: 0.05, z: 0}
+  localPosOffset: {x: 0.7, y: 0.05, z: 0}
   effectSprite: {fileID: 0}
   effectParticle: {fileID: 3948468271430011930}
   particleSystemRenderer: {fileID: 3948468271430011933}

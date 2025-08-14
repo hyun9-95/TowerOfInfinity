@@ -10,31 +10,16 @@ public class PlayerSkillState : ScriptableCharacterState
 
     public override bool CheckEnterCondition(CharacterUnitModel model)
     {
-        return model.InputWrapper.IsSkillInput;
+        return false;
     }
 
     public override bool CheckExitCondition(CharacterUnitModel model)
     {
-        return model.CurrentAnimState == CharacterAnimState.Idle ||
-            model.CurrentAnimState != animState;
+        return true;
     }
 
     public override void OnEnterState(CharacterUnitModel model)
     {
-        if (model.InputWrapper.IsSkillInput)
-        {
-            //BattleEventTriggerModel skillInfo = null;
-
-            //if (skillInfo != null)
-            //{
-            //    animState = CharacterAnimState.Slash;
-            //    skillInfo.SetSender(model);
-            //
-            //    BattleEventTrigger battleSkillTrigger = BattleEventTriggerFactory.Create(skillInfo.TriggerType);
-            //    battleSkillTrigger.SetModel(skillInfo);
-            //    battleSkillTrigger.Process().Forget();
-            //}
-        }
     }
 
     public override void OnStateAction(CharacterUnitModel model) { }

@@ -16,7 +16,6 @@ public class CharacterUnitModel : IBaseUnitModel
     public CharacterActionHandler ActionHandler { get; private set; }
     public Transform Transform { get; private set; }
     public CharacterUnitModel Target { get; private set; }
-    public InputWrapper InputWrapper { get; private set; } 
     public NavMeshAgent Agent { get; private set; }
     public BattleEventProcessor EventProcessor { get; private set; }
     public AbilityProcessor AbilityProcessor { get; private set; }
@@ -63,11 +62,6 @@ public class CharacterUnitModel : IBaseUnitModel
     public void SetAbilityProcessor(AbilityProcessor processor)
     {
         AbilityProcessor = processor;
-    }
-
-    public void SetInputWrapper(bool value)
-    {
-        InputWrapper = value ? new InputWrapper() : null;
     }
 
     public void SetTeamTag(TeamTag teamTag)

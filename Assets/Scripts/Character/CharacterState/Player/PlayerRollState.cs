@@ -16,10 +16,10 @@ public class PlayerRollState : ScriptableCharacterState
 
     public override bool CheckEnterCondition(CharacterUnitModel model)
     {
-        if (model.InputWrapper == null)
+        if (InputManager.InputInfo == null)
             return false;
 
-        return !model.ActionHandler.IsRolling && model.InputWrapper.PlayerInput == PlayerInput.Roll;
+        return !model.ActionHandler.IsRolling && InputManager.InputInfo.ActionInput == ActionInput.Roll;
     }
 
     public override bool CheckExitCondition(CharacterUnitModel model)
@@ -44,9 +44,38 @@ public class PlayerRollState : ScriptableCharacterState
 
     private async UniTask StartRolling(CharacterUnitModel model)
     {
-        await model.ActionHandler.OnRollingAsync(rollDelay, model.InputWrapper.Movement.normalized,
+        Vector2 rollDirection = GetRollDirection(model);
+        
+        await model.ActionHandler.OnRollingAsync(rollDelay, rollDirection,
             model.GetStatValue(StatType.MoveSpeed) * speedMultiplier);
 
         model.AbilityProcessor?.Cast(CastingType.OnRoll);
+    }
+
+    private Vector2 GetRollDirection(CharacterUnitModel model)
+    {
+        Vector2 movement = InputManager.InputInfo.Movement;
+        
+        if (movement == Vector2.zero)
+        {
+            return model.IsFlipX ? Vector2.left : Vector2.right;
+        }
+        
+        Vector2 adjustedMovement = AdjustRollAngle(movement);
+        return adjustedMovement.normalized;
+    }
+
+    // 수직으로 구르지 않게 조절
+    private Vector2 AdjustRollAngle(Vector2 movement)
+    {
+        float angle = Mathf.Atan2(movement.y, movement.x) * Mathf.Rad2Deg;
+        
+        if (Mathf.Abs(angle) > 70f && Mathf.Abs(angle) < 110f)
+        {
+            float adjustedAngle = angle > 0f ? 70f : -70f;
+            return new Vector2(Mathf.Cos(adjustedAngle * Mathf.Deg2Rad), Mathf.Sin(adjustedAngle * Mathf.Deg2Rad));
+        }
+        
+        return movement;
     }
 }

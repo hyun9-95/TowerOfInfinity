@@ -36,12 +36,14 @@ public class TownFlow : BaseFlow<TownFlowModel>
         InitializeBattlePortal();
         await ActiveCharacters();
         await ShowLobbyView();
+
+        InputManager.EnableMoveInput(true);
     }
 
     public override async UniTask Exit()
     {
+        InputManager.EnableMoveInput(false);
     }
-
 
     private async UniTask LoadPlayerCharacters()
     {
@@ -89,7 +91,7 @@ public class TownFlow : BaseFlow<TownFlowModel>
 
     private void WarpToBattle(Collider2D collider2D)
     {
-        PlayerManager.Instance.EnableInput(false);
+        InputManager.EnableMoveInput(false);
 
         BattleFlowModel battleFlowModel = new BattleFlowModel();
         battleFlowModel.SetSceneDefine(SceneDefine.Battle_Atlantis);

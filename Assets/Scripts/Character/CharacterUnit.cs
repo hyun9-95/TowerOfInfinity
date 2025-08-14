@@ -135,6 +135,14 @@ public class CharacterUnit : PoolableMono
             Model.SetIsActivate(activated);
     }
 
+    public float GetPrimaryWeaponCoolTime()
+    {
+        if (abilityProcessor == null)
+            return 0;
+
+        return abilityProcessor.GetPrimaryWeaponCoolTime();
+    }
+
     private void OnDeactivate()
     {
         activated = false;

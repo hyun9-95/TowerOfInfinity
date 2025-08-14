@@ -128,6 +128,14 @@ public class AbilityProcessor
         return GetPrimaryWeapon().IsCastable;
     }
 
+    public float GetPrimaryWeaponCoolTime()
+    {
+        if (GetPrimaryWeapon() == null)
+            return 0;
+
+        return GetPrimaryWeapon().Model.CoolTime;
+    }
+
     public float GetPrimaryWeaponRange()
     {
         if (GetPrimaryWeapon() == null)
