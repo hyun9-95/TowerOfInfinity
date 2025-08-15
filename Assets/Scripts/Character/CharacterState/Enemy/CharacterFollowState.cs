@@ -44,7 +44,7 @@ public class CharacterFollowState : ScriptableCharacterState
             model.ActionHandler.OnAStarMoveAlongPath();
             model.SetRepathTimer(model.RepathTimer + Time.deltaTime);
 
-            if (model.RepathTimer >= FloatDefine.ASTAR_REPATH_COOLTIME)
+            if (model.RepathTimer >= model.GetRepathCoolTime())
             {
                 model.SetRepathTimer(0);
                 model.ActionHandler.OnAStarUpdatePath(model.Target.Transform.position);

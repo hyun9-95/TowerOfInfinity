@@ -58,6 +58,16 @@ public class CharacterUnitModel : IBaseUnitModel
         DistanceToTarget = distanceToTarget;
     }
 
+    public float GetRepathCoolTime()
+    {
+        return DistanceToTarget switch
+        {
+            DistanceToTarget.Close => 0.5f,
+            DistanceToTarget.Nearby => 1f,
+            _ => 2f,
+        };
+    }
+
     public void SetActionHandler(CharacterActionHandler handler)
     {
         ActionHandler = handler;
