@@ -30,45 +30,61 @@ public class AStar
             new Vector3Int( 1, -1, 0)
     };
 
+    /// <summary>
+    /// 초기화
+    /// </summary>
     public void Initialize(Tilemap[] walkableMaps, Tilemap[] obstacleMaps, Grid layoutGrid)
     {
         this.walkableMaps = walkableMaps;
         this.obstacleMaps = obstacleMaps;
         this.layoutGrid = layoutGrid;
+
+        // 고정 크기인 값들은 미리 계산
+        gridBounds = CalculateMergedWorldBounds();
+        int totalCellCount = gridBounds.size.x * gridBounds.size.y;
+        nodeMap = new Dictionary<Vector3Int, AStarNode>(totalCellCount);
+
+        CreateGrid();
+    }
+
+    /// <summary>
+    /// 재배치 되는 경우
+    /// </summary>
+    public void ReCreateGrid(Tilemap[] walkableMaps, Tilemap[] obstacleMaps, Grid layoutGrid)
+    {
+        if (nodeMap == null)
+            return;
+
+        this.walkableMaps = walkableMaps;
+        this.obstacleMaps = obstacleMaps;
+        this.layoutGrid = layoutGrid;
+
+        CreateGrid();
     }
 
     public void CreateGrid()
     {
-        gridBounds = CalculateMergedWorldBounds();
-        nodeMap = new Dictionary<Vector3Int, AStarNode>();
+        // 배치 타일 수집으로 모든 장애물 위치를 미리 수집
+        HashSet<Vector3Int> obstaclePositions = CollectObstaclePositions();
 
+        // 좌표 변환 최적화: 반복문에서 불필요한 Vector3Int 생성 최소화
         for (int y = gridBounds.yMin; y < gridBounds.yMax; y++)
         {
             for (int x = gridBounds.xMin; x < gridBounds.xMax; x++)
             {
                 Vector3Int cellPos = new Vector3Int(x, y, 0);
+                
+                // 월드 좌표 변환은 실제로 필요한 경우에만 수행
                 Vector3 worldPos = layoutGrid.GetCellCenterWorld(cellPos);
 
                 AStarNode node = new AStarNode
                 {
                     xPos = worldPos.x,
                     yPos = worldPos.y,
-                    isWalkable = true
+                    
+                    // 해당 셀 위치에 장애물 타일이 겹쳐있다면 걸을 수 없음
+                    isWalkable = !obstaclePositions.Contains(cellPos)
                 };
-
-                foreach (var obstacle in obstacleMaps)
-                {
-                    if (obstacle == null)
-                        continue;
-
-                    Vector3Int localCell = obstacle.WorldToCell(worldPos);
-                    if (obstacle.HasTile(localCell))
-                    {
-                        // 장애물 타일이 있을 경우 NOT WALKABLE
-                        node.isWalkable = false;
-                        break;
-                    }
-                }
 
                 nodeMap[cellPos] = node;
             }
@@ -84,6 +100,50 @@ public class AStar
             viewer.SetNodeMap(nodeMap, layoutGrid);
         }
 #endif
+    }
+
+    private HashSet<Vector3Int> CollectObstaclePositions()
+    {
+        HashSet<Vector3Int> obstaclePositions = new HashSet<Vector3Int>();
+
+        if (obstacleMaps == null)
+            return obstaclePositions;
+
+        foreach (var obstacle in obstacleMaps)
+        {
+            if (obstacle == null)
+                continue;
+
+            // 타일맵의 실제 bounds만 체크
+            obstacle.CompressBounds();
+            BoundsInt obstacleBounds = obstacle.cellBounds;
+
+            if (obstacleBounds.size.x <= 0 || obstacleBounds.size.y <= 0)
+                continue;
+
+            // 실제 타일이 그려진 영역의 타일들만 한번에 가져온다.
+            // HasTile로 하나씩 체크하는 것보다 빠름.
+            // 해당 인덱스에 타일이 없다면 null임.
+            TileBase[] tilesArray = new TileBase[obstacleBounds.size.x * obstacleBounds.size.y];
+            obstacle.GetTilesBlockNonAlloc(obstacleBounds, tilesArray);
+
+            int index = 0;
+            for (int y = obstacleBounds.yMin; y < obstacleBounds.yMax; y++)
+            {
+                for (int x = obstacleBounds.xMin; x < obstacleBounds.xMax; x++)
+                {
+                    // 실제 타일이 있는 위치만 목록에 추가
+                    if (tilesArray[index] != null)
+                    {
+                        Vector3Int cellPos = new Vector3Int(x, y, 0);
+                        obstaclePositions.Add(cellPos);
+                    }
+                    index++;
+                }
+            }
+        }
+
+        return obstaclePositions;
     }
 
     private BoundsInt CalculateMergedWorldBounds()

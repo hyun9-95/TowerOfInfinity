@@ -9,7 +9,11 @@ public class AStarManager : BaseManager<AStarManager>
     public void Initialize(Tilemap[] walkableMaps, Tilemap[] obstacleMaps, Grid layoutGrid)
     {
         aStar.Initialize(walkableMaps, obstacleMaps, layoutGrid);
-        aStar.CreateGrid();
+    }
+
+    public void RecreateGrid(Tilemap[] walkableMaps, Tilemap[] obstacleMaps, Grid layoutGrid)
+    {
+        aStar.ReCreateGrid(walkableMaps, obstacleMaps, layoutGrid);
     }
 
     public List<AStarNode> FindPath(Vector3 start, Vector3 end)

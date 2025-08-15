@@ -53,7 +53,7 @@ public class BattleInfinityTile : AddressableMono
         isInitialized = true;
 
         UpdateTileGrid();
-        UpdateAStarGrid();
+        InitalizeAStarGrid();
 
         if (!AStarManager.Instance.IsWalkablePos(mainCharacterTransform.position))
             RepositionPlayer();
@@ -225,13 +225,22 @@ public class BattleInfinityTile : AddressableMono
     }
     
     #region AStar
-    private void UpdateAStarGrid()
+    public void InitalizeAStarGrid()
     {
         var allWalkableMaps = GetWalkableMap();
         var allObstacleMaps = GetObstacleMap();
 
         if (allWalkableMaps.Length > 0 && grid != null)
             AStarManager.Instance.Initialize(allWalkableMaps, allObstacleMaps, grid);
+    }
+
+    private void UpdateAStarGrid()
+    {
+        var allWalkableMaps = GetWalkableMap();
+        var allObstacleMaps = GetObstacleMap();
+
+        if (allWalkableMaps.Length > 0 && grid != null)
+            AStarManager.Instance.RecreateGrid(allWalkableMaps, allObstacleMaps, grid);
     }
 
     private Tilemap[] GetWalkableMap()
