@@ -68,8 +68,8 @@ public class CharacterPassingState : ScriptableCharacterState
         if (model.Target == null)
             return false;
 
-        var distance = Vector3.Distance(model.Transform.position, model.Target.Transform.position);
-        return distance <= passingTransitionDistance;
+        var distanceSqr = (model.Transform.position - model.Target.Transform.position).sqrMagnitude;
+        return distanceSqr <= passingTransitionDistance * passingTransitionDistance;
     }
 
     private bool IsExitDistance(CharacterUnitModel model)
@@ -77,7 +77,7 @@ public class CharacterPassingState : ScriptableCharacterState
         if (model.Target == null)
             return true;
 
-        var distance = Vector3.Distance(model.Transform.position, model.Target.Transform.position);
-        return distance >= passingExitDistance;
+        var distanceSqr = (model.Transform.position - model.Target.Transform.position).sqrMagnitude;
+        return distanceSqr >= passingExitDistance * passingExitDistance;
     }
 }

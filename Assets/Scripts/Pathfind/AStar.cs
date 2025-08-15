@@ -288,7 +288,10 @@ public class AStar
                 return node;
 
             // 현재 셀로부터의 거리가 탐색 반경을 초과하면 더 이상 탐색하지 않음
-            if (Vector3Int.Distance(originCell, currentCell) > searchRadius)
+            var cellDistance = (currentCell - originCell).sqrMagnitude;
+            var searchRadiusSqr = searchRadius * searchRadius;
+
+            if (cellDistance > searchRadiusSqr)
                 continue;
 
             // 이웃 셀 탐색

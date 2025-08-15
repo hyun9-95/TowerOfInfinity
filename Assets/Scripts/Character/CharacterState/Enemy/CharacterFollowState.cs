@@ -58,7 +58,9 @@ public class CharacterFollowState : ScriptableCharacterState
         if (model.Agent == null)
             return false;
 
-        var distance = Vector3.Distance(model.Transform.position, model.Target.Transform.position);
-        return distance <= model.Agent.stoppingDistance;
+        var distance = (model.Target.Transform.position - model.Transform.position).sqrMagnitude;
+        var stoppingDistance = model.Agent.stoppingDistance * model.Agent.stoppingDistance;
+
+        return distance <= stoppingDistance;
     }
 }

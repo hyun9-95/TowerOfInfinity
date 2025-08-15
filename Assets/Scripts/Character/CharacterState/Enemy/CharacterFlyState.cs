@@ -41,7 +41,7 @@ public class CharacterFlyState : ScriptableCharacterState
         if (model.Target == null)
             return false;
 
-        var distance = Vector3.Distance(model.Transform.position, model.Target.Transform.position);
-        return distance <= passingTransitionDistance;
+        var distanceSqr = (model.Transform.position - model.Target.Transform.position).sqrMagnitude;
+        return distanceSqr <= passingTransitionDistance * passingTransitionDistance;
     }
 }
