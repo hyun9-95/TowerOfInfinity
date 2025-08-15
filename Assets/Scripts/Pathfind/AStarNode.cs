@@ -9,11 +9,17 @@ public class AStarNode : IComparable<AStarNode>
     public float yPos;
     public bool isWalkable;
     public AStarNode parent;
+
+    // 시작점 => 현재 노드까지의 비용
     public int gCost = int.MaxValue;
+
+    // 현재 노드 => 목표 노드까지 예상 비용
     public int hCost;
 
+    // 총 비용 => 이미 온 경로 비용 + 예상 비용
     public int fCost => gCost + hCost;
 
+    // 비용이 낮은 순으로 정렬
     public int CompareTo(AStarNode other)
     {
         int result = fCost.CompareTo(other.fCost);
@@ -24,7 +30,7 @@ public class AStarNode : IComparable<AStarNode>
         return result;
     }
 
-    public void Reset()
+    public void ResetCost()
     {
         parent = null;
         gCost = int.MaxValue;

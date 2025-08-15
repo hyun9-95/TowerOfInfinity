@@ -22,6 +22,7 @@ public class BattleInfinityTile : AddressableMono
     private Vector2Int lastPlayerGridPos = Vector2Int.zero;
     
     private Queue<TileChunk> availableTiles = new();
+    
 
     private void Awake()
     {
@@ -227,20 +228,67 @@ public class BattleInfinityTile : AddressableMono
     #region AStar
     public void InitalizeAStarGrid()
     {
-        var allWalkableMaps = GetWalkableMap();
-        var allObstacleMaps = GetObstacleMap();
+        // 현재 영역 가져오기
+        BoundsInt currentBounds = GetCurrentBounds();
 
-        if (allWalkableMaps.Length > 0 && grid != null)
-            AStarManager.Instance.Initialize(allWalkableMaps, allObstacleMaps, grid);
+        // 재배치된 장애물 타일맵 가져오기
+        Tilemap[] allObstacleMaps = GetObstacleMap();
+
+        if (grid != null)
+            AStarManager.Instance.Initialize(currentBounds, allObstacleMaps, grid);
     }
 
     private void UpdateAStarGrid()
     {
-        var allWalkableMaps = GetWalkableMap();
-        var allObstacleMaps = GetObstacleMap();
+        // 현재 영역 가져오기
+        BoundsInt currentBounds = GetCurrentBounds();
 
-        if (allWalkableMaps.Length > 0 && grid != null)
-            AStarManager.Instance.RecreateGrid(allWalkableMaps, allObstacleMaps, grid);
+        // 재배치된 장애물 타일맵 가져오기
+        Tilemap[] allObstacleMaps = GetObstacleMap();
+        
+        AStarManager.Instance.UpdateObstacle(currentBounds, allObstacleMaps);
+    }
+
+    // 청크타일 배치가 바뀌었다면 BoundsInt를 새로 계산해야 함.
+    private BoundsInt GetCurrentBounds()
+    {
+        // 실제 타일맵의 bounds를 직접 계산
+        Bounds mergedWorldBounds = new Bounds();
+        bool isFirst = true;
+
+        foreach (var chunk in activeTiles.Values)
+        {
+            if (chunk != null)
+            {
+                var tilemap = chunk.WalkableTilemap;
+                tilemap.CompressBounds();
+
+                var cellBounds = tilemap.cellBounds;
+
+                Vector3 worldMin = tilemap.CellToWorld(cellBounds.min);
+                Vector3 worldMax = tilemap.CellToWorld(cellBounds.max);
+
+                Bounds worldBounds = new Bounds();
+                worldBounds.SetMinMax(worldMin, worldMax);
+
+                if (isFirst)
+                {
+                    mergedWorldBounds = worldBounds;
+                    isFirst = false;
+                }
+                else
+                {
+                    // Bounds 합치는 메소드
+                    mergedWorldBounds.Encapsulate(worldBounds);
+                }
+            }
+        }
+
+        // layoutGrid 기준으로 셀 좌표 변환
+        Vector3Int cellMin = grid.WorldToCell(mergedWorldBounds.min);
+        Vector3Int cellMax = grid.WorldToCell(mergedWorldBounds.max);
+
+        return new BoundsInt(cellMin, cellMax - cellMin);
     }
 
     private Tilemap[] GetWalkableMap()

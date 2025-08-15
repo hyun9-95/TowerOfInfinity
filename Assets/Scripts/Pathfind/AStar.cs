@@ -4,18 +4,12 @@ using UnityEngine.Tilemaps;
 
 public class AStar
 {
-    // 걸을 수 있는 타일
-    private Tilemap[] walkableMaps;
-
-    // 장애물 타일
-    private Tilemap[] obstacleMaps;
-
     // 타일의 상위 Grid
-    private Grid layoutGrid;
+    private Grid currentGrid;
 
     private Dictionary<Vector3Int, AStarNode> nodeMap;
 
-    private BoundsInt gridBounds;
+    private BoundsInt currentGridBounds;
 
     private Vector3Int[] directions = new Vector3Int[]
     {
@@ -33,49 +27,47 @@ public class AStar
     /// <summary>
     /// 초기화
     /// </summary>
-    public void Initialize(Tilemap[] walkableMaps, Tilemap[] obstacleMaps, Grid layoutGrid)
+    public void Initialize(BoundsInt bounds, Tilemap[] obstacleMaps, Grid layoutGrid)
     {
-        this.walkableMaps = walkableMaps;
-        this.obstacleMaps = obstacleMaps;
-        this.layoutGrid = layoutGrid;
+        currentGridBounds = bounds;
+        currentGrid = layoutGrid;
 
-        // 고정 크기인 값들은 미리 계산
-        gridBounds = CalculateMergedWorldBounds();
-        int totalCellCount = gridBounds.size.x * gridBounds.size.y;
+        // Bounds는 고정 크기이다.
+        int totalCellCount = currentGridBounds.size.x * currentGridBounds.size.y;
         nodeMap = new Dictionary<Vector3Int, AStarNode>(totalCellCount);
 
-        CreateGrid();
+        CreateGrid(obstacleMaps);
+
+        // 디버깅
+        CheatShowGridView();
     }
 
-    /// <summary>
-    /// 재배치 되는 경우
-    /// </summary>
-    public void ReCreateGrid(Tilemap[] walkableMaps, Tilemap[] obstacleMaps, Grid layoutGrid)
+    public void UpdateObstacle(BoundsInt changedBounds, Tilemap[] newObstacleMaps)
     {
         if (nodeMap == null)
             return;
 
-        this.walkableMaps = walkableMaps;
-        this.obstacleMaps = obstacleMaps;
-        this.layoutGrid = layoutGrid;
+        nodeMap.Clear();
+        currentGridBounds = changedBounds;
 
-        CreateGrid();
+        CreateGrid(newObstacleMaps);
+
+        // 디버깅
+        CheatShowGridView();
     }
 
-    public void CreateGrid()
+    public void CreateGrid(Tilemap[] obstacleMaps)
     {
-        // 배치 타일 수집으로 모든 장애물 위치를 미리 수집
-        HashSet<Vector3Int> obstaclePositions = CollectObstaclePositions();
+        HashSet<Vector3Int> obstaclePositions = GetObstacleCellPositions(obstacleMaps);
 
-        // 좌표 변환 최적화: 반복문에서 불필요한 Vector3Int 생성 최소화
-        for (int y = gridBounds.yMin; y < gridBounds.yMax; y++)
+        for (int y = currentGridBounds.yMin; y < currentGridBounds.yMax; y++)
         {
-            for (int x = gridBounds.xMin; x < gridBounds.xMax; x++)
+            for (int x = currentGridBounds.xMin; x < currentGridBounds.xMax; x++)
             {
                 Vector3Int cellPos = new Vector3Int(x, y, 0);
-                
-                // 월드 좌표 변환은 실제로 필요한 경우에만 수행
-                Vector3 worldPos = layoutGrid.GetCellCenterWorld(cellPos);
+
+                // 그리드 기준 셀좌표의 중심점의 월드 좌표
+                Vector3 worldPos = currentGrid.GetCellCenterWorld(cellPos);
 
                 AStarNode node = new AStarNode
                 {
@@ -89,25 +81,11 @@ public class AStar
                 nodeMap[cellPos] = node;
             }
         }
-
-#if CHEAT
-        if (CheatManager.CheatConfig.IsDebugAStar)
-        {
-            var viewer = GameManager.Instance.gameObject.GetComponent<AStarGridViewer>();
-            if (viewer == null)
-                viewer = GameManager.Instance.gameObject.AddComponent<AStarGridViewer>();
-
-            viewer.SetNodeMap(nodeMap, layoutGrid);
-        }
-#endif
     }
 
-    private HashSet<Vector3Int> CollectObstaclePositions()
+    private HashSet<Vector3Int> GetObstacleCellPositions(Tilemap[] obstacleMaps)
     {
         HashSet<Vector3Int> obstaclePositions = new HashSet<Vector3Int>();
-
-        if (obstacleMaps == null)
-            return obstaclePositions;
 
         foreach (var obstacle in obstacleMaps)
         {
@@ -117,7 +95,7 @@ public class AStar
             // 타일맵의 실제 bounds만 체크
             obstacle.CompressBounds();
             BoundsInt obstacleBounds = obstacle.cellBounds;
-
+            
             if (obstacleBounds.size.x <= 0 || obstacleBounds.size.y <= 0)
                 continue;
 
@@ -135,8 +113,16 @@ public class AStar
                     // 실제 타일이 있는 위치만 목록에 추가
                     if (tilesArray[index] != null)
                     {
-                        Vector3Int cellPos = new Vector3Int(x, y, 0);
-                        obstaclePositions.Add(cellPos);
+                        Vector3Int localCellPos = new Vector3Int(x, y, 0);
+                        
+                        // 타일맵 셀 좌표 => 월드 좌표
+                        Vector3 worldPos = obstacle.CellToWorld(localCellPos);
+
+                        // 월드 좌표를 그대로 사용하면 부동 소수점 오차 발생하므로
+                        // 셀좌표로 변환해서 사용
+                        Vector3Int globalCellPos = currentGrid.WorldToCell(worldPos);
+                        
+                        obstaclePositions.Add(globalCellPos);
                     }
                     index++;
                 }
@@ -146,40 +132,9 @@ public class AStar
         return obstaclePositions;
     }
 
-    private BoundsInt CalculateMergedWorldBounds()
-    {
-        if (walkableMaps == null || walkableMaps.Length == 0)
-            return new BoundsInt();
-
-        Bounds mergedWorldBounds = new Bounds();
-
-        for (int i = 0; i < walkableMaps.Length; i++)
-        {
-            var map = walkableMaps[i];
-            map.CompressBounds();
-            var cellBounds = map.cellBounds;
-
-            Vector3 worldMin = map.CellToWorld(cellBounds.min);
-            Vector3 worldMax = map.CellToWorld(cellBounds.max);
-
-            Bounds worldBounds = new Bounds();
-            worldBounds.SetMinMax(worldMin, worldMax);
-
-            if (i == 0)
-                mergedWorldBounds = worldBounds;
-            else
-                mergedWorldBounds.Encapsulate(worldBounds);
-        }
-
-        Vector3Int cellMin = layoutGrid.WorldToCell(mergedWorldBounds.min);
-        Vector3Int cellMax = layoutGrid.WorldToCell(mergedWorldBounds.max);
-
-        return new BoundsInt(cellMin, cellMax - cellMin);
-    }
-
     public AStarNode GetNodeFromWorld(Vector3 worldPosition)
     {
-        Vector3Int cellPos = layoutGrid.WorldToCell(worldPosition);
+        Vector3Int cellPos = currentGrid.WorldToCell(worldPosition);
         nodeMap.TryGetValue(cellPos, out var node);
         return node;
     }
@@ -189,7 +144,7 @@ public class AStar
         List<AStarNode> neighbors = new List<AStarNode>();
 
         // 셀 기준으로 좌표 재계산
-        Vector3Int cellPos = layoutGrid.WorldToCell(new Vector3(node.xPos, node.yPos));
+        Vector3Int cellPos = currentGrid.WorldToCell(new Vector3(node.xPos, node.yPos));
 
         // 상하좌우 탐색
         foreach (var dir in directions)
@@ -236,7 +191,7 @@ public class AStar
     public void ResetNode()
     {
         foreach (var node in nodeMap.Values)
-            node.Reset();
+            node.ResetCost();
     }
 
     #region Pathfind
@@ -315,7 +270,7 @@ public class AStar
         if (startNode != null && startNode.isWalkable)
             return startNode;
 
-        Vector3Int originCell = layoutGrid.WorldToCell(worldPosition);
+        Vector3Int originCell = currentGrid.WorldToCell(worldPosition);
         Queue<Vector3Int> queue = new Queue<Vector3Int>();
         queue.Enqueue(originCell);
 
@@ -356,6 +311,20 @@ public class AStar
         AStarNode endNode = FindNearestWalkableNode(end);
 
         return CreatePath(startNode, endNode, true);
+    }
+
+    private void CheatShowGridView()
+    {
+#if CHEAT && UNITY_EDITOR
+        if (CheatManager.CheatConfig.IsDebugAStar)
+        {
+            var viewer = GameManager.Instance.gameObject.GetComponent<AStarGridViewer>();
+            if (viewer == null)
+                viewer = GameManager.Instance.gameObject.AddComponent<AStarGridViewer>();
+
+            viewer.SetNodeMap(nodeMap, currentGrid);
+        }
+#endif
     }
     #endregion
 }

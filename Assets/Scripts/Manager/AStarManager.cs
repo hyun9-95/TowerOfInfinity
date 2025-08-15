@@ -6,14 +6,17 @@ public class AStarManager : BaseManager<AStarManager>
 {
     private AStar aStar = new();
 
-    public void Initialize(Tilemap[] walkableMaps, Tilemap[] obstacleMaps, Grid layoutGrid)
+    public void Initialize(BoundsInt bounds, Tilemap[] obstacleMaps, Grid layoutGrid)
     {
-        aStar.Initialize(walkableMaps, obstacleMaps, layoutGrid);
+        aStar.Initialize(bounds, obstacleMaps, layoutGrid);
     }
 
-    public void RecreateGrid(Tilemap[] walkableMaps, Tilemap[] obstacleMaps, Grid layoutGrid)
+    /// <summary>
+    /// 장애물 영역이 변경되었을 때, isWalkable을 다시 판단
+    /// </summary>
+    public void UpdateObstacle(BoundsInt changedBounds, Tilemap[] obstacleMaps)
     {
-        aStar.ReCreateGrid(walkableMaps, obstacleMaps, layoutGrid);
+        aStar.UpdateObstacle(changedBounds, obstacleMaps);
     }
 
     public List<AStarNode> FindPath(Vector3 start, Vector3 end)
