@@ -47,7 +47,7 @@ public class ProjectileTriggerUnit : BaseTriggerUnit<ProjectileTriggerUnitModel>
         }
 
         Launch();
-        ShowRenderer(fadeInTime);
+        ShowRenderer();
     }
 
     protected virtual void Launch()
@@ -117,7 +117,7 @@ public class ProjectileTriggerUnit : BaseTriggerUnit<ProjectileTriggerUnitModel>
     protected void DeactiveWithStopMove()
     {
         moveUpdate = false;
-        DeactivateWithFade();
+        Deactivate();
     }
 
     protected override void OnDetectHit(Collider2D other)

@@ -4,7 +4,10 @@ using UnityEngine;
 public class BattleEventTriggerUnitModel : IBaseUnitModel
 {
     #region Property
-    public Transform FollowTarget { get; private set; }
+    public CharacterUnitModel FollowTargetModel { get; private set; }
+    public Transform FollowTargetTransform => FollowTargetModel.Transform;
+
+    public bool IsEnableFollow => FollowTargetModel != null && FollowTargetModel.IsActivated && FollowTargetModel.Transform != null;
 
     public bool IsFlip { get; private set; }
 
@@ -34,9 +37,9 @@ public class BattleEventTriggerUnitModel : IBaseUnitModel
         this.onEventHit = onEventHit;
     }
 
-    public void SetFollowTarget(Transform target)
+    public void SetFollowTargetModel(CharacterUnitModel target)
     {
-        FollowTarget = target;
+        FollowTargetModel = target;
     }
 
     public void SetFlip(bool flip)

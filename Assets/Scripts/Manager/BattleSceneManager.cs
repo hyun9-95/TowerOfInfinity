@@ -84,6 +84,16 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>
         return liveCharacterModelDic[instanceId];
     }
 
+    public CharacterUnitModel GetCharacterModel(Transform transform)
+    {
+        return GetCharacterModel(transform.gameObject.GetInstanceID());
+    }
+
+    public CharacterUnitModel GetCharacterModel(GameObject gameObject)
+    {
+        return GetCharacterModel(gameObject.GetInstanceID());
+    }
+
     public CharacterUnitModel GetCharacterModel(Collider2D collider)
     {
         return GetCharacterModel(collider.gameObject.GetInstanceID());

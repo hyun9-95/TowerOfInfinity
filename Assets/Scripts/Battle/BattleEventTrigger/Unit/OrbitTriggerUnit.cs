@@ -24,21 +24,21 @@ public class OrbitTriggerUnit : BaseTriggerUnit<OrbitTriggerUnitModel>
 
         AddEnemyKilledObserver();
 
-        if (Model.FollowTarget != null)
+        if (Model.IsEnableFollow)
         {
-            followTarget = Model.FollowTarget;
+            followTarget = Model.FollowTargetTransform;
             centerOffset = Vector3.zero;
         }
 
         currentAngle = Model.StartAngle;
 
-        ShowRenderer(fadeInTime);
+        ShowRenderer();
         hitCollider.enabled = true;
         
         StartOrbitMovement();
 
         // 지속시간 종료 후 페이드아웃하면서 꺼짐
-        UniTaskUtils.DelayAction(Model.Duration, DeactivateWithFade, TokenPool.Get(GetHashCode())).Forget();
+        UniTaskUtils.DelayAction(Model.Duration, Deactivate, TokenPool.Get(GetHashCode())).Forget();
     }
     #endregion
 

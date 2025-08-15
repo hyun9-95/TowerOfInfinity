@@ -6,7 +6,7 @@ public class FollowProjectileTriggerUnit : ProjectileTriggerUnit
 
     protected override void SetStartDirection()
     {
-        followTarget = Model.FollowTarget;
+        followTarget = Model.FollowTargetTransform;
         direction = GetDirectionToTarget();
     }
 
@@ -15,7 +15,7 @@ public class FollowProjectileTriggerUnit : ProjectileTriggerUnit
         if (!moveUpdate)
             return;
 
-        if (followTarget == null || !followTarget.gameObject.activeSelf)
+        if (Model.IsEnableFollow)
         {
             base.UpdateMove();
             DeactiveWithStopMove();

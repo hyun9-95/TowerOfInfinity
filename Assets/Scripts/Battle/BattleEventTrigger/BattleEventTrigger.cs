@@ -25,7 +25,7 @@ public abstract class BattleEventTrigger
 
     protected virtual async UniTask OnProcess() { }
 
-    protected async UniTask<T> SpawnUnitAsync<T>(string prefabName, Vector3 position, Quaternion rotation) where T : PoolableBaseUnit, IBattleEventTriggerUnit
+    protected async UniTask<T> SpawnUnitAsync<T>(string prefabName, Vector3 position, Quaternion rotation) where T : PoolableMono, IBattleEventTriggerUnit
     {
         var unit = await ObjectPoolManager.Instance.SpawnPoolableMono<T>(prefabName, position, rotation);
 

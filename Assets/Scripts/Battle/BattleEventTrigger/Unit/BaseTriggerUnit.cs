@@ -11,12 +11,6 @@ public abstract class BaseTriggerUnit<T> : PoolableBaseUnit<T>, IBattleEventTrig
     protected IBattleEventTriggerUnit.ColliderDetectType detectType;
 
     [SerializeField]
-    protected float fadeTime = 0f;
-
-    [SerializeField]
-    protected float fadeInTime = 0;
-
-    [SerializeField]
     protected Collider2D hitCollider;
 
     protected Dictionary<CharacterUnitModel, float> nextAllowedTime = new();
@@ -51,10 +45,6 @@ public abstract class BaseTriggerUnit<T> : PoolableBaseUnit<T>, IBattleEventTrig
         nextAllowedTime.Clear();
     }
 
-    protected void DeactivateWithFade()
-    {
-        Deactivate(fadeTime);
-    }
     #endregion
 
     #region Trigger Detection

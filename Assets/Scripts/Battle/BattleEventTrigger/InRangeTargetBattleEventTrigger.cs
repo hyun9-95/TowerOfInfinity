@@ -1,5 +1,4 @@
 using Cysharp.Threading.Tasks;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class InRangeTargetBattleEventTrigger : BattleEventTrigger
@@ -11,12 +10,16 @@ public class InRangeTargetBattleEventTrigger : BattleEventTrigger
 
     private async UniTask ProcessRandomRangeEvent()
     {
-        int spawnCount = Model.SpawnCount;
-        var targetPositions = GetTargetPositions(spawnCount);
+        var enemiesInRange = GetEnemiesInRange();
+        
+        if (enemiesInRange.Count == 0)
+            return;
+        
+        int spawnCount = Mathf.Min(Model.SpawnCount, enemiesInRange.Count);
         
         for (int i = 0; i < spawnCount; i++)
         {
-            Vector2 targetPosition = targetPositions[i];
+            Vector2 targetPosition = enemiesInRange[i].Transform.position;
             
             var colliderTriggerUnit = await SpawnUnitAsync<ColliderTriggerUnit>(Model.TriggerUnitPath, targetPosition, Quaternion.identity);
 
@@ -29,33 +32,4 @@ public class InRangeTargetBattleEventTrigger : BattleEventTrigger
         }
     }
 
-    private Vector2[] GetTargetPositions(int count)
-    {
-        Vector2 senderPosition = Model.Sender.Transform.position;
-        var positions = new Vector2[count];
-        
-        var enemiesInRange = GetEnemiesInRange();
-        
-        for (int i = 0; i < count; i++)
-        {
-            if (i < enemiesInRange.Count)
-            {
-                positions[i] = enemiesInRange[i].Transform.position;
-            }
-            else
-            {
-                positions[i] = GetRandomPositionInRange(senderPosition);
-            }
-        }
-        
-        return positions;
-    }
-
-    private Vector2 GetRandomPositionInRange(Vector2 centerPosition)
-    {
-        Vector2 randomDirection = Random.insideUnitCircle.normalized;
-        float randomDistance = Random.Range(0f, Model.Range);
-        
-        return centerPosition + randomDirection * randomDistance;
-    }
 }

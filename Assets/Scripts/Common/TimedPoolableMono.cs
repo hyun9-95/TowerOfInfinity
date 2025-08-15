@@ -1,5 +1,5 @@
+#pragma warning disable CS1998
 using Cysharp.Threading.Tasks;
-using System;
 using UnityEngine;
 
 public class TimedPoolableMono : PoolableMono
@@ -8,6 +8,12 @@ public class TimedPoolableMono : PoolableMono
 
     [SerializeField]
     protected float lifeTime;
+
+    [SerializeField]
+    protected float fadeTime = 0f;
+
+    [SerializeField]
+    protected float fadeInTime = 0f;
 
     [SerializeField]
     protected Vector3 localPosOffset;
@@ -30,6 +36,14 @@ public class TimedPoolableMono : PoolableMono
         originLocalScale = transform.localScale;
     }
 
+    public virtual void Refresh() { }
+
+    public virtual async UniTask ShowAsync()
+    {
+        ShowRenderer();
+        gameObject.SafeSetActive(true);
+    }
+
     protected async UniTask CheckLifeTime(float lifeTime)
     {
         isCheckingLifeTime = true;
@@ -37,12 +51,12 @@ public class TimedPoolableMono : PoolableMono
         await UniTaskUtils.DelaySeconds(lifeTime, cancellationToken: TokenPool.Get(GetHashCode()));
         
         if (gameObject)
-            gameObject.SafeSetActive(false);
+            Deactivate();
 
         isCheckingLifeTime = false;
     }
 
-    protected void Deactivate(float fadeTime = 0)
+    protected void Deactivate()
     {
         if (fadeTime > 0 && effectSprite != null)
         {
@@ -90,7 +104,7 @@ public class TimedPoolableMono : PoolableMono
             effectParticle.Stop();
     }
 
-    public void ShowRenderer(float fadeInTime = 0)
+    public void ShowRenderer()
     {
         if (effectSprite != null)
         {

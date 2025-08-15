@@ -17,10 +17,10 @@ public class InfiniteFollowColliderTriggerUnit : ColliderTriggerUnit
 
     private void FixedUpdate()
     {
-		if (Model.FollowTarget == null)
+		if (Model.FollowTargetTransform == null)
 			return;
 
-		if (Model.FollowTarget.gameObject.activeSelf == false)
+		if (!Model.IsEnableFollow)
             gameObject.SafeSetActive(false);
     }
     #endregion

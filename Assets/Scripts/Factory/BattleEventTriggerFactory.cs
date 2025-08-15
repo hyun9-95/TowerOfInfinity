@@ -40,7 +40,12 @@ public static class BattleEventTriggerFactory
         projectileUnitModel.SetHitCount(triggerModel.HitCount);
 
         if (followTarget != null)
-            projectileUnitModel.SetFollowTarget(followTarget);
+        {
+            var targetModel = BattleSceneManager.Instance.GetCharacterModel(followTarget);
+
+            if (targetModel != null)
+                projectileUnitModel.SetFollowTargetModel(targetModel);
+        }
 
         return projectileUnitModel;
     }
@@ -57,7 +62,12 @@ public static class BattleEventTriggerFactory
         colliderUnitModel.SetHitCount(triggerModel.HitCount);
 
         if (followTarget != null)
-            colliderUnitModel.SetFollowTarget(followTarget);
+        {
+            var targetModel = BattleSceneManager.Instance.GetCharacterModel(followTarget);
+
+            if (targetModel != null)
+                colliderUnitModel.SetFollowTargetModel(targetModel);
+        }
 
         return colliderUnitModel;
     }
@@ -78,7 +88,12 @@ public static class BattleEventTriggerFactory
         orbitUnitModel.SetStartAngle(startAngle);
 
         if (followTarget != null)
-            orbitUnitModel.SetFollowTarget(followTarget);
+        {
+            var targetModel = BattleSceneManager.Instance.GetCharacterModel(followTarget);
+
+            if (targetModel != null)
+                orbitUnitModel.SetFollowTargetModel(targetModel);
+        }
 
         return orbitUnitModel;
     }

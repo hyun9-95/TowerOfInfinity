@@ -36,7 +36,7 @@ public class ColliderTriggerUnit : BaseTriggerUnit<BattleEventTriggerUnitModel>
 
         var offset = useFlip ? GetFlipLocalPos(Model.IsFlip) : LocalPosOffset;
 
-        if (Model.FollowTarget != null)
+        if (Model.IsEnableFollow)
         {
             FollowAsync(offset).Forget();
         }
@@ -45,7 +45,7 @@ public class ColliderTriggerUnit : BaseTriggerUnit<BattleEventTriggerUnitModel>
             transform.localPosition += offset;
         }
 
-        ShowRenderer(fadeInTime);
+        ShowRenderer();
 
         await EnableColliderAsync();
         await base.ShowAsync();
@@ -80,7 +80,7 @@ public class ColliderTriggerUnit : BaseTriggerUnit<BattleEventTriggerUnitModel>
             if (followTime > 0 && Time.time - startTime >= followTime)
                 break;
                 
-            transform.position = Model.FollowTarget.transform.position;
+            transform.position = Model.FollowTargetTransform.transform.position;
             transform.localPosition += localPosOffset;
             await UniTask.NextFrame(TokenPool.Get(GetHashCode()));
         }

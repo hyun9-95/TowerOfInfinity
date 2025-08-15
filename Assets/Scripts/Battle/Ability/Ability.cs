@@ -45,10 +45,26 @@ public class Ability
 
     public void Cast()
     {
+        CastAsync().Forget();
+    }
+
+    private async UniTask CastAsync()
+    {
         BattleEventTriggerModel battleEventTriggerModel = Model.CreateTriggerModel();
 
         if (battleEventTriggerModel == null)
             return;
+
+        var castEffectPath = Model.CastEffectPath;
+
+        if (!string.IsNullOrEmpty(castEffectPath))
+        {
+            var castEffect = await ObjectPoolManager.Instance.SpawnPoolableMono<TimedPoolableMono>
+                (Model.CastEffectPath, Model.Owner.Transform.position, Quaternion.identity);
+
+            if (castEffect != null)
+                await castEffect.ShowAsync();
+        }
 
         BattleEventTrigger battleSkillTrigger = BattleEventTriggerFactory.Create(battleEventTriggerModel.TriggerType);
         battleSkillTrigger.SetModel(battleEventTriggerModel);
