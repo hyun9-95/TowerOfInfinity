@@ -12,7 +12,7 @@ public class OrbitBattleEventTrigger : BattleEventTrigger
     {
         for (int i = 0; i < Model.SpawnCount; i++)
         {
-            var orbitUnit = await SpawnUnitAsync<OrbitTriggerUnit>(Model.PrefabName, Model.Sender.Transform.position, Quaternion.identity);
+            var orbitUnit = await SpawnUnitAsync<OrbitTriggerUnit>(Model.TriggerUnitPath, Model.Sender.Transform.position, Quaternion.identity);
 
             if (orbitUnit == null)
                 continue;

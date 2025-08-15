@@ -10,7 +10,7 @@ public class BattleEventTriggerModel
     public BattleEventTriggerType TriggerType { get; private set; }
     public BattleEventTargetType TargetType { get; private set; }
     public TeamTag TargetTeamTag { get; private set; }
-    public string PrefabName { get; private set; }
+    public string TriggerUnitPath { get; private set; }
     public string HitEffectPrefabName { get; private set; }
     public int HitCount { get; private set; }
     public float Range { get; private set; }
@@ -20,7 +20,7 @@ public class BattleEventTriggerModel
     public int SpawnCount { get; private set; }
     public float HitForce { get; private set; }
 
-    public void Initialize(CharacterUnitModel sender, int level, DataAbility abilityData, ScriptableAbilityBalance balance)
+    public BattleEventTriggerModel(CharacterUnitModel sender, int level, DataAbility abilityData, ScriptableAbilityBalance balance)
     {
         if (abilityData.IsNullOrEmpty())
             return;
@@ -31,7 +31,7 @@ public class BattleEventTriggerModel
         Level = level;
         TriggerType = abilityData.TriggerType;
         TargetType = abilityData.TargetType;
-        PrefabName = abilityData.PrefabName;
+        TriggerUnitPath = abilityData.TriggerUnitPath;
         HitEffectPrefabName = abilityData.HitEffectPrefabName;
         HitCount = balance.GetHitCount(Level);
         Range = balance.GetRange(Level);
@@ -65,7 +65,7 @@ public class BattleEventTriggerModel
         TargetType = BattleEventTargetType.None;
         HitCount = 0;
         Sender = null;
-        PrefabName = string.Empty;
+        TriggerUnitPath = string.Empty;
         HitEffectPrefabName = string.Empty;
         TargetTeamTag = TeamTag.Ally;
         Range = 0f;
@@ -86,8 +86,7 @@ public class BattleEventTriggerModel
     
     public BattleEventModel CreateBattleEventModel(CharacterUnitModel receiver)
     {
-        var battleEventModel = new BattleEventModel();
-        battleEventModel.Initialize(Sender, receiver, BattleEventDatas[0], Level);
+        BattleEventModel battleEventModel = new(Sender, receiver, BattleEventDatas[0], Level);
 
         return battleEventModel;
     }
@@ -97,8 +96,7 @@ public class BattleEventTriggerModel
         var battleEventModels = new BattleEventModel[BattleEventDatas.Count];
         for (int i = 0; i < BattleEventDatas.Count; i++)
         {
-            var battleEventModel = new BattleEventModel();
-            battleEventModel.Initialize(Sender, receiver, BattleEventDatas[i], Level);
+            BattleEventModel battleEventModel = new (Sender, receiver, BattleEventDatas[i], Level);
             battleEventModels[i] = battleEventModel;
         }
 

@@ -22,7 +22,7 @@ public class FollowProjectileBattleEventTrigger : BattleEventTrigger
         {
             Transform targetEnemy = i < enemiesInRange.Count ? enemiesInRange[i].Transform : null;
             
-            var projectileUnit = await SpawnUnitAsync<FollowProjectileTriggerUnit>(Model.PrefabName, Model.Sender.Transform.position, Quaternion.identity);
+            var projectileUnit = await SpawnUnitAsync<FollowProjectileTriggerUnit>(Model.TriggerUnitPath, Model.Sender.Transform.position, Quaternion.identity);
 
             if (projectileUnit == null)
                 continue;

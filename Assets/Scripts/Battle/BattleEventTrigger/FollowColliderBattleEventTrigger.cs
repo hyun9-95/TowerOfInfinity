@@ -10,7 +10,7 @@ public class FollowColliderBattleEventTrigger : BattleEventTrigger
 
     private async UniTask ProcessColliderEvent()
     {
-        var colliderTriggerUnit = await SpawnUnitAsync<ColliderTriggerUnit>(Model.PrefabName, Model.Sender.Transform.position, Quaternion.identity);
+        var colliderTriggerUnit = await SpawnUnitAsync<ColliderTriggerUnit>(Model.TriggerUnitPath, Model.Sender.Transform.position, Quaternion.identity);
         
         if (colliderTriggerUnit != null)
         {

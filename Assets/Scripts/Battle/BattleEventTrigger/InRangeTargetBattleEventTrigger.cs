@@ -18,7 +18,7 @@ public class InRangeTargetBattleEventTrigger : BattleEventTrigger
         {
             Vector2 targetPosition = targetPositions[i];
             
-            var colliderTriggerUnit = await SpawnUnitAsync<ColliderTriggerUnit>(Model.PrefabName, targetPosition, Quaternion.identity);
+            var colliderTriggerUnit = await SpawnUnitAsync<ColliderTriggerUnit>(Model.TriggerUnitPath, targetPosition, Quaternion.identity);
 
             if (colliderTriggerUnit != null)
             {

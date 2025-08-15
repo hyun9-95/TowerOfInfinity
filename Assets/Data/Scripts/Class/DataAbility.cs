@@ -17,8 +17,10 @@ public class DataAbility : IBaseData
     public readonly BattleEventTriggerType TriggerType;
     [JsonProperty(PropertyName = "TargetType")]
     public readonly BattleEventTargetType TargetType;
-    [JsonProperty(PropertyName = "PrefabName")]
-    public readonly string PrefabName;
+    [JsonProperty(PropertyName = "CastEffectPath")]
+    public readonly string CastEffectPath;
+    [JsonProperty(PropertyName = "TriggerUnitPath")]
+    public readonly string TriggerUnitPath;
     [JsonProperty(PropertyName = "IconPath")]
     public readonly string IconPath;
     [JsonProperty(PropertyName = "HitEffectPrefabName")]

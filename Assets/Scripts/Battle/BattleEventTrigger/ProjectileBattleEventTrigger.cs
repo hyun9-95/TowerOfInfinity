@@ -13,7 +13,7 @@ public class ProjectileBattleEventTrigger : BattleEventTrigger
     {
         for (int i = 0; i < Model.SpawnCount; i++)
         {
-            var projectileUnit = await SpawnUnitAsync<ProjectileTriggerUnit>(Model.PrefabName, Model.Sender.Transform.position, Quaternion.identity);
+            var projectileUnit = await SpawnUnitAsync<ProjectileTriggerUnit>(Model.TriggerUnitPath, Model.Sender.Transform.position, Quaternion.identity);
 
             if (projectileUnit == null)
                 continue;

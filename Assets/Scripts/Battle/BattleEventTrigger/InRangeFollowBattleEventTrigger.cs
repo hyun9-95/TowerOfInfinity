@@ -22,7 +22,7 @@ public class InRangeFollowBattleEventTrigger : BattleEventTrigger
         {
             Transform targetEnemy = enemiesInRange[i].Transform;
             
-            var colliderTriggerUnit = await SpawnUnitAsync<ColliderTriggerUnit>(Model.PrefabName, Model.Sender.Transform.position, Quaternion.identity);
+            var colliderTriggerUnit = await SpawnUnitAsync<ColliderTriggerUnit>(Model.TriggerUnitPath, Model.Sender.Transform.position, Quaternion.identity);
 
             if (colliderTriggerUnit != null)
             {

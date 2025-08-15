@@ -15,7 +15,6 @@ public static class AbilityFactory
             return null;
 
         T abliity = new T();
-        abliity.Initialize(model);
 
         return abliity;
     }
@@ -27,8 +26,7 @@ public static class AbilityFactory
         if (abilityData.IsNullOrEmpty())
             return null;
 
-        AbilityModel abilityModel = new AbilityModel();
-        abilityModel.SetByAbilityData(abilityData, owner);
+        AbilityModel abilityModel = new(abilityData, owner);
 
         return abilityModel;
     }

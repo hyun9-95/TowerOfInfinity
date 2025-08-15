@@ -5,26 +5,23 @@ public class AbilityModel : IBaseUnitModel
     public DataAbility AbilityData { get; private set; }
     public CharacterUnitModel Owner { get; private set; }
     public int Level { get; private set; }
+    public string CastEffectPath { get; private set; }
     public float CoolTime => abilityBalance.GetCoolTime(Owner.Level);
 
     public float Range => abilityBalance.GetRange(Owner.Level);
 
     private ScriptableAbilityBalance abilityBalance;
 
-    public void SetByAbilityData(DataAbility ability, CharacterUnitModel owner)
+    public AbilityModel(DataAbility ability, CharacterUnitModel owner)
     {
         if (ability.IsNullOrEmpty())
             return;
 
-        abilityBalance = AbilityBalanceFactory.Instance.GetAbilityBalance(ability.Id);
-
+        Level = 0;
         Owner = owner;
         AbilityData = ability;
-    }
-
-    public void SetOwner(CharacterUnitModel owner)
-    {
-        Owner = owner;
+        CastEffectPath = ability.CastEffectPath;
+        abilityBalance = AbilityBalanceFactory.Instance.GetAbilityBalance(ability.Id);
     }
 
     public void SetLevel(int level)
@@ -39,8 +36,7 @@ public class AbilityModel : IBaseUnitModel
 
     public BattleEventTriggerModel CreateTriggerModel()
     {
-        BattleEventTriggerModel triggerModel = new BattleEventTriggerModel();
-        triggerModel.Initialize(Owner, Level, AbilityData, abilityBalance);
+        BattleEventTriggerModel triggerModel = new(Owner, Level, AbilityData, abilityBalance);
 
         return triggerModel;
     }

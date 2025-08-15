@@ -18,7 +18,7 @@ public class BattleEventModel
     public float Value2 { get; private set; }
     public float ApplyIntervalSeconds { get; private set; }
 
-    public void Initialize(CharacterUnitModel sender, CharacterUnitModel receiver, DataBattleEvent dataBattleEvent, int level)
+    public BattleEventModel(CharacterUnitModel sender, CharacterUnitModel receiver, DataBattleEvent dataBattleEvent, int level)
     {
         Sender = sender;
         Receiver = receiver;
