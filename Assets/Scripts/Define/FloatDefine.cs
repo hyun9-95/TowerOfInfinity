@@ -6,7 +6,7 @@ public class FloatDefine
     /// <summary>
     /// 경로를 재계산하는 간격
     /// </summary>
-    public const float ASTAR_REPATH_COOLTIME = 0.25f;
+    public const float ASTAR_REPATH_COOLTIME = 0.3f;
 
     /// <summary>
     /// 다음 노드까지 이동했다고 판단할 거리

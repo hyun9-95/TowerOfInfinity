@@ -1,7 +1,6 @@
 using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.U2D.Animation;
@@ -75,6 +74,11 @@ public class CharacterUnit : PoolableMono
     private bool activated = false;
     private bool stateUpdate = false;
     private int lastAnimStateHash = -1;
+    private float cameraVisibleDistance = 0;
+    private float farDistance = 0;
+    private float veryFarDistance = 0;
+    private float updateInterval = 0;
+    private float updateTimer = 0;
 
     private AbilityProcessor abilityProcessor = new();
     private BattleEventProcessor battleEventProcessor = new();
@@ -138,6 +142,12 @@ public class CharacterUnit : PoolableMono
 
         stateUpdate = true;
         activated = true;
+        cameraVisibleDistance = CameraManager.Instance.DiagonalLengthFromCenter + 0.5f;
+        farDistance = cameraVisibleDistance * 2;
+        veryFarDistance = cameraVisibleDistance * 2.5f;
+        lastAnimStateHash = -1;
+        updateTimer = 0;
+
         gameObject.SafeSetActive(true);
     }
 
@@ -163,7 +173,7 @@ public class CharacterUnit : PoolableMono
         return abilityProcessor.GetPrimaryWeaponCoolTime();
     }
 
-    private void OnDeactivate()
+    private void OnDeactivate(bool deadAsync = true)
     {
         activated = false;
         stateUpdate = false;
@@ -183,7 +193,13 @@ public class CharacterUnit : PoolableMono
         battleEventProcessor.Cancel();
         Model.ActionHandler.Cancel();
 
-        DeadAsync().Forget();
+        if (deadAsync)
+            DeadAsync().Forget();
+        else
+        {
+            BattleSceneManager.Instance.RemoveLiveCharacter(gameObject.GetInstanceID());
+            gameObject.SafeSetActive(false);
+        }
     }
 
     private void OnFlipX(bool isFlip)
@@ -242,14 +258,64 @@ public class CharacterUnit : PoolableMono
             battleEventProcessor.Update();
         }
 
+        var distanceToTarget = DistanceToTarget.Close;
+
+        // 타겟이 있다면 거리 캐싱
+        if (Model.Target != null)
+        {
+            // 거리에 따라 업데이트 주기를 갱신
+            float distanceSqr = (Model.Target.Transform.position - gameObject.transform.position).sqrMagnitude;
+            Model.SetDistanceToTargetSqr(distanceSqr);
+
+            if (distanceSqr >= (veryFarDistance * veryFarDistance))
+            {
+                if (Model.CharacterType == CharacterType.Enemy)
+                {
+                    // 너무 멀다면 풀로 되돌린다.
+                    OnDeactivate(false);
+                    return;
+                }
+
+                distanceToTarget = DistanceToTarget.VeryFar;
+            }
+            else if (distanceSqr >= (farDistance * farDistance))
+            {
+                updateInterval = 1f;
+                distanceToTarget = DistanceToTarget.Far;
+            }
+            else if (distanceSqr >= (cameraVisibleDistance * cameraVisibleDistance))
+            {
+                updateInterval = 0.5f;
+                distanceToTarget = DistanceToTarget.Nearby;
+            }
+            else
+            {
+                updateInterval = 0;
+            }
+        }
+        else
+        {
+            Model.SetDistanceToTargetSqr(float.MaxValue);
+            updateInterval = 0;
+        }
+
         // 활성 상태 동기화
         Model.SetIsActivate(activated);
+        Model.SetDistanceToTarget(distanceToTarget);
     }
 
     protected void UpdateState()
     {
         if (Model == null)
             return;
+
+        updateTimer += Time.deltaTime;
+
+        if (updateTimer < updateInterval)
+            return;
+
+        // 상태 선택 로직이 무겁기 때문에 업데이트 주기를 조절
+        updateTimer = 0;
 
         if (CurrentState == defaultState || CurrentState.CheckExitCondition(Model))
         {
@@ -281,8 +347,12 @@ public class CharacterUnit : PoolableMono
 
     private void SelectState()
     {
-        foreach (ScriptableCharacterState state in stateGroup.StateList)
+        var stateList = stateGroup.StateList;
+        
+        for (int i = 0; i < stateList.Count; i++)
         {
+            var state = stateList[i];
+            
             if (state == null || state == CurrentState)
                 continue;
 
@@ -296,23 +366,26 @@ public class CharacterUnit : PoolableMono
 
     private void RefreshAnimState()
     {
-        var currentStateInfo = animator.GetCurrentAnimatorStateInfo(0);
-        
-        if (currentStateInfo.shortNameHash != lastAnimStateHash)
-        {
-            lastAnimStateHash = currentStateInfo.shortNameHash;
-            
-            if (shortNameHashDic.TryGetValue(currentStateInfo.shortNameHash, out CharacterAnimState animState))
-                Model.SetCurrentAnimState(animState);
-        }
+        AnimatorStateInfo currentStateInfo = animator.GetCurrentAnimatorStateInfo(0);
+
+        if (lastAnimStateHash == currentStateInfo.shortNameHash)
+            return;
+
+        if (shortNameHashDic.TryGetValue(currentStateInfo.shortNameHash, out CharacterAnimState animState))
+            Model.SetCurrentAnimState(animState);
+
+        lastAnimStateHash = currentStateInfo.shortNameHash;
     }
 
     private ScriptableCharacterState FindCandidateState()
     {
         var currentPriority = CurrentState.Priority;
+        var stateList = stateGroup.StateList;
         
-        foreach (ScriptableCharacterState state in stateGroup.StateList)
+        for (int i = 0; i < stateList.Count; i++)
         {
+            var state = stateList[i];
+            
             if (state == null || state == CurrentState)
                 continue;
 
@@ -342,7 +415,7 @@ public class CharacterUnit : PoolableMono
 
         var resolvedAnimState = ResolveAnimStateParameter(state.AnimState);
         animator.SetInteger(StringDefine.CHARACTER_ANIM_STATE_KEY, resolvedAnimState);
-
+        
         CurrentState.OnEnterState(Model);
 
         if (debugLog)
@@ -355,6 +428,8 @@ public class CharacterUnit : PoolableMono
         Model.InitializeStat(baseStat);
         Model.SetTransform(transform);
         Model.SetAgent(agent);
+        Model.SetIsActivate(false);
+        Model.SetDistanceToTarget(DistanceToTarget.Close);
 
         if (Model.CharacterSetUpType == CharacterSetUpType.Battle)
             InitializeBattleModel();
@@ -418,7 +493,7 @@ public class CharacterUnit : PoolableMono
         
         actionHandler.SetOnFlipX(OnFlipX);
         actionHandler.SetOnStopStateUpdate(OnStateUpdateChange);
-        actionHandler.SetOnDeactivate(OnDeactivate);
+        actionHandler.SetOnDeactivate(() => OnDeactivate(false));
 
         if (characterAnimationEffect != null)
             actionHandler.SetCharacterAnimEffect(characterAnimationEffect);

@@ -22,6 +22,8 @@ public class CameraManager : BaseMonoManager<CameraManager>
     {
         diagonalLengthFromCenter = CalculateCameraDiagonalLengthFromCenter();
         diagonalLengthFromCenter += offset;
+
+        Logger.Log($"CameraManager => DiagonalLength : {diagonalLengthFromCenter}");
     }
 
     public Camera GetWorldCamera()

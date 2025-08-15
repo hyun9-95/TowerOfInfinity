@@ -56,6 +56,10 @@ public class CheatManager : BaseMonoManager<CheatManager>
     #endregion
 
     #region Function
+    private void OnEnable()
+    {
+    }
+
     private void Update()
     {
         deltaTime += (Time.unscaledDeltaTime - deltaTime) * 0.1f;
@@ -131,6 +135,9 @@ public class CheatManager : BaseMonoManager<CheatManager>
     public void SetCheatConfig(CheatConfig config)
     {
         cheatConfig = config;
+
+        if (cheatConfig.enableGcAllocCallStack)
+            Profiler.enableAllocationCallstacks = true;
     }
 
     public void SetState(State state)

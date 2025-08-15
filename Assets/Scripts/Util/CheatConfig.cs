@@ -21,5 +21,7 @@ public class CheatConfig
     [Header("시작 마을 씬")]
     public SceneDefine SceneDefine;
 
+    public bool enableGcAllocCallStack = false;
+
     public LocalizationType testLocalType;
 }

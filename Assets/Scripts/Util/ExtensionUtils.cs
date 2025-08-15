@@ -208,7 +208,8 @@ public static class ExtensionUtils
 
     public static void ResetCurrentState(this Animator animator, int layer = 0, bool applyImmediately = true)
     {
-        if (animator == null) return;
+        if (animator == null)
+            return;
 
         var stateInfo = animator.GetCurrentAnimatorStateInfo(layer);
 

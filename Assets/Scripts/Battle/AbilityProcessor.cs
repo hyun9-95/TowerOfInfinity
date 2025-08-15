@@ -12,10 +12,6 @@ public class AbilityProcessor
     private Dictionary<CastingType, HashSet<Ability>> abilitySetByCasting = new();
     private Dictionary<int, Ability> abilityDicById = new();
     private Dictionary<AbilitySlotType, List<Ability>> abilitySlotDic = new();
-
-    // 한프레임 돌고 Clear되는 것들
-    private List<Ability> tempUpdateList = new List<Ability>();
-    private List<Ability> tempCastList = new List<Ability>();
     #endregion
 
     #region Function
@@ -87,11 +83,8 @@ public class AbilityProcessor
 
     public void Update()
     {
-        tempUpdateList.Clear();
-        tempUpdateList.AddRange(abilityDicById.Values);
-
         // 모든 어빌리티 쿨타임 갱신
-        foreach (var ability in tempUpdateList)
+        foreach (var ability in abilityDicById.Values)
             ability.ReduceCoolTime();
 
         Cast(CastingType.Auto);
@@ -102,10 +95,7 @@ public class AbilityProcessor
         if (!abilitySetByCasting.TryGetValue(castingType, out var abilities))
             return;
 
-        tempCastList.Clear();
-        tempCastList.AddRange(abilities);
-
-        foreach (var ability in tempCastList)
+        foreach (var ability in abilities)
         {
             if (ability.IsCastable)
                 ability.Cast();

@@ -43,8 +43,6 @@ public class CharacterAttackState : ScriptableCharacterState
             return false;
 
         var attackRange = model.AbilityProcessor.GetPrimaryWeaponRange();
-
-        var distanceSqr = (model.Transform.position - model.Target.Transform.position).sqrMagnitude;
-        return distanceSqr <= attackRange * attackRange;
+        return model.DistanceToTargetSqr <= attackRange * attackRange;
     }
 }

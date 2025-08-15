@@ -19,6 +19,10 @@ public class SpawnExpGemModule : ScriptableCharacterModule
     #region Function
     public override void OnCharacterDeactivate(CharacterUnitModel model, IModuleModel IModuleModel)
     {
+        // 죽어서 비활성화된게 아니면 경험치 드랍 X
+        if (model.Hp > 0)
+            return;
+
         SpawnExpGem(model).Forget();
     }
 

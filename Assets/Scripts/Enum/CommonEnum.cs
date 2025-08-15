@@ -6,6 +6,14 @@ public enum  PlatformType
     IOS,
 }
 
+public enum DistanceToTarget
+{
+    Close,
+    Nearby,
+    Far,
+    VeryFar,
+}
+
 public enum CharacterAnimState
 {
     Idle = 0,

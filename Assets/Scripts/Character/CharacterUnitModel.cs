@@ -13,6 +13,7 @@ public class CharacterUnitModel : IBaseUnitModel
     public TeamTag TeamTag { get; private set; }
     public CharacterType CharacterType { get; private set; }
     public CharacterSetUpType CharacterSetUpType { get; private set; }
+    public DistanceToTarget DistanceToTarget { get; private set; }
     public CharacterActionHandler ActionHandler { get; private set; }
     public Transform Transform { get; private set; }
     public CharacterUnitModel Target { get; private set; }
@@ -27,6 +28,7 @@ public class CharacterUnitModel : IBaseUnitModel
     public float RepathTimer { get; private set; }
     public bool IsEnablePhysics { get; private set; }
     public bool IsActivated { get; private set; }
+    public float DistanceToTargetSqr { get; private set; }
     #endregion
 
     #region Value
@@ -44,6 +46,16 @@ public class CharacterUnitModel : IBaseUnitModel
     {
         CharacterDataId = id;
         CharacterDefine = (CharacterDefine)id;
+    }
+
+    public void SetDistanceToTargetSqr(float sqr)
+    {
+        DistanceToTargetSqr = sqr;
+    }
+
+    public void SetDistanceToTarget(DistanceToTarget distanceToTarget)
+    {
+        DistanceToTarget = distanceToTarget;
     }
 
     public void SetActionHandler(CharacterActionHandler handler)

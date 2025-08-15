@@ -33,6 +33,14 @@ public class CharacterFollowState : ScriptableCharacterState
     {
         if (model.PathFindType == PathFindType.AStar)
         {
+            // 너무 멀다면 직선 이동
+            if (model.DistanceToTarget >= DistanceToTarget.Far)
+            {
+                Vector2 direction = (model.Target.Transform.position - model.Transform.position).normalized;
+                model.ActionHandler.OnMovement(direction, model.GetStatValue(StatType.MoveSpeed), true);
+                return;
+            }
+
             model.ActionHandler.OnAStarMoveAlongPath();
             model.SetRepathTimer(model.RepathTimer + Time.deltaTime);
 
@@ -58,9 +66,7 @@ public class CharacterFollowState : ScriptableCharacterState
         if (model.Agent == null)
             return false;
 
-        var distance = (model.Target.Transform.position - model.Transform.position).sqrMagnitude;
         var stoppingDistance = model.Agent.stoppingDistance * model.Agent.stoppingDistance;
-
-        return distance <= stoppingDistance;
+        return model.DistanceToTargetSqr <= stoppingDistance;
     }
 }
