@@ -125,7 +125,8 @@ namespace Tools
             
             try
             {
-                var results = DataIntegrityChecker.CheckAllJsonFilesStatic(JsonPath);
+                var assetJsonPath = $"Assets/{JsonPath}";
+                var results = DataIntegrityChecker.CheckAllJsonFilesStatic(assetJsonPath);
                 
                 int successCount = 0;
                 int errorCount = 0;

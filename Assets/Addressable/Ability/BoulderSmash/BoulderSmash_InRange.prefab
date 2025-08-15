@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6216159668604039621}
   - component: {fileID: 2432198015132277480}
   m_Layer: 8
-  m_Name: BoulderSmash_Range
+  m_Name: BoulderSmash_InRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

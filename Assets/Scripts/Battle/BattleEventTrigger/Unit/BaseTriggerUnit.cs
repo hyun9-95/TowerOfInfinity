@@ -13,6 +13,9 @@ public abstract class BaseTriggerUnit<T> : PoolableBaseUnit<T>, IBattleEventTrig
     [SerializeField]
     protected Collider2D hitCollider;
 
+    [SerializeField]
+    private bool hitFollowTargetOnly = false;
+
     protected Dictionary<CharacterUnitModel, float> nextAllowedTime = new();
     #endregion
 
@@ -75,6 +78,10 @@ public abstract class BaseTriggerUnit<T> : PoolableBaseUnit<T>, IBattleEventTrig
     protected virtual void OnDetectHit(Collider2D other)
     {
         if (!other.gameObject.CheckLayer(LayerFlag.Character) || Model == null)
+            return;
+
+        // 팔로우 대상에게만 히트하는 경우
+        if (hitFollowTargetOnly && Model.FollowTargetTransform != null && other.transform != Model.FollowTargetTransform)
             return;
 
         var targetModel = BattleSceneManager.Instance.GetCharacterModel(other);

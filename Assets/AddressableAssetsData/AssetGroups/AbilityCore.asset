@@ -81,6 +81,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9262c39894496f44ca7d60baf59d8f18
+    m_Address: AbilityCore/AbilityBalance/AB_ACTIVE_FROST_NOVA
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 94706e59cb0d10c49834dceae11dc2ef
     m_Address: AbilityCore/BattleEventBalance/BE_POSION_VENOM_BALL
     m_ReadOnly: 0
@@ -107,6 +113,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d1dde42fa15732d41ab8b76bfa994158
     m_Address: AbilityCore/BattleEventBalance/BE_DAMAGE_ONE_SHOT_ATTACK
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d925927f9e1298540917f56394cba0be
+    m_Address: AbilityCore/BattleEventBalance/BE_FROZEN_FROST_NOVA
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main

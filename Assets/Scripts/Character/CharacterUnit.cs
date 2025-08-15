@@ -91,11 +91,11 @@ public class CharacterUnit : PoolableMono
             return;
 
         var cc = GetCrowdControl();
+        
+        // CC 없을 때만 상태 업데이트
+        if (cc == BattleEventType.None)
+            UpdateState();
 
-        if (cc != BattleEventType.None)
-            return;
-
-        UpdateState();
         UpdatePhysics();
     }
 

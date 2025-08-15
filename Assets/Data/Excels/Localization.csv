@@ -45,3 +45,5 @@ Id,NameId,Korean,English,SimplifiedChinese
 70041,LOCAL_AB_ELECTRIC_RING_DESC,주변의 적에게 주기적으로 피해를 줍니다.,Periodically deals damage around yourself.,定期对自身周围造成伤害。
 70042,LOCAL_AB_ELECTRIC_BALL_NAME,일렉트릭볼,Electric Ball,电击球
 70043,LOCAL_AB_ELECTRIC_BALL_DESC,주변을 공전하며 피해를 주는 구체를 생성합니다.,Creates orbs that orbit around you and deal damage.,创造围绕你轨道运行并造成伤害的球体。
+70044,LOCAL_AB_FROST_NOVA_NAME,프로스트 노바,Frost Nova,霜冻新星
+70045,LOCAL_AB_FROST_NOVA_DESC,주변 적을 얼어붙게 만듭니다.,Freezes nearby enemies.,冻结附近的敌人。

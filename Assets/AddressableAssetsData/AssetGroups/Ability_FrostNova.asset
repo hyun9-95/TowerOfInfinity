@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Ability_FrostNova
+  m_EditorClassIdentifier: 
+  m_GroupName: Ability_FrostNova
+  m_GUID: a62211ac349ab5e438a208e6713c729e
+  m_SerializeEntries:
+  - m_GUID: 362f7d74bba6deb48aa7395e791e80a5
+    m_Address: Ability/FrostNova/FrostNova_InRange
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3f569eaaa871b304ba9f27ff375198ee
+    m_Address: Ability/FrostNova/frozen_0
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 430597e3fb325824fb8e2989272de166
+    m_Address: Ability/FrostNova/frozen
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7a6f9771cbfa6434ea661c7713ade443
+    m_Address: Ability/FrostNova/FrostNova_InRange_Icon
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b523cccaa88ce7e48b6aac60f24492f1
+    m_Address: Ability/FrostNova/fx_frozen
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: be73432ff8df2284394a75b5076db852, type: 2}
+    - {fileID: 11400000, guid: 3da64f66c6d0ab648a953db011d6a173, type: 2}

@@ -262,5 +262,17 @@
     "Korean": "주변을 공전하며 피해를 주는 구체를 생성합니다.",
     "English": "Creates orbs that orbit around you and deal damage.",
     "SimplifiedChinese": "创造围绕你轨道运行并造成伤害的球体。"
+  },
+  {
+    "id": 70044,
+    "Korean": "프로스트 노바",
+    "English": "Frost Nova",
+    "SimplifiedChinese": "霜冻新星"
+  },
+  {
+    "id": 70045,
+    "Korean": "주변 적을 얼어붙게 만듭니다.",
+    "English": "Freezes nearby enemies.",
+    "SimplifiedChinese": "冻结附近的敌人。"
   }
 ]

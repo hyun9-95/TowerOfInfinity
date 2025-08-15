@@ -108,5 +108,16 @@
     "StatReferenceCondition": "CurrentStat",
     "StatusDirection": "Increase",
     "Stackable": false
+  },
+  {
+    "id": 20010,
+    "Type": "Frozen",
+    "AffectStat": "Attack",
+    "BattleEventCategory": "Active",
+    "BattleEventGroup": "None",
+    "StatReference": "Sender",
+    "StatReferenceCondition": "CurrentStat",
+    "StatusDirection": "Increase",
+    "Stackable": false
   }
 ]

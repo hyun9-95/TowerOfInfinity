@@ -61,5 +61,14 @@
     "IconPath": "",
     "Name": "LOCAL_AB_ELECTRIC_BALL_NAME",
     "Desc": "LOCAL_AB_ELECTRIC_BALL_DESC"
+  },
+  {
+    "id": 100007,
+    "CardType": "GetAbility",
+    "Tier": "Uncommon",
+    "Ability": "AB_ACTIVE_FROST_NOVA",
+    "IconPath": "",
+    "Name": "LOCAL_AB_FROST_NOVA_NAME",
+    "Desc": "LOCAL_AB_FROST_NOVA_DESC"
   }
 ]

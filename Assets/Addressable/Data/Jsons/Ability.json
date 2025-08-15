@@ -79,8 +79,8 @@
     "TriggerType": "InRangeFollow",
     "TargetType": "Enemy",
     "CastEffectPath": "AbilityCast/GroundDust/GroundDustEffect",
-    "TriggerUnitPath": "Ability/BoulderSmash/BoulderSmash_Range",
-    "IconPath": "Ability/BoulderSmash/BoulderSmash_Range_Icon",
+    "TriggerUnitPath": "Ability/BoulderSmash/BoulderSmash_InRange",
+    "IconPath": "Ability/BoulderSmash/BoulderSmash_InRange_Icon",
     "HitEffectPrefabName": ""
   },
   {
@@ -137,6 +137,20 @@
     "CastEffectPath": "",
     "TriggerUnitPath": "Ability/ElectricBall/ElectricBall_Orbit",
     "IconPath": "Ability/ElectricBall/ElectricBall_Orbit_Icon",
+    "HitEffectPrefabName": ""
+  },
+  {
+    "id": 51006,
+    "SlotType": "Active",
+    "CastingType": "Auto",
+    "BattleEvents": [
+      "BE_FROZEN_FROST_NOVA"
+    ],
+    "TriggerType": "InRangeFollow",
+    "TargetType": "Enemy",
+    "CastEffectPath": "AbilityCast/GroundEnergy/GroundEnergyEffect",
+    "TriggerUnitPath": "Ability/FrostNova/FrostNova_InRange",
+    "IconPath": "Ability/FrostNova/FrostNova_InRange_Icon",
     "HitEffectPrefabName": ""
   }
 ]
