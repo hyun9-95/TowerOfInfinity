@@ -11,16 +11,14 @@ public class FollowProjectileBattleEventTrigger : BattleEventTrigger
 
     private async UniTask ProcessFollowProjectile()
     {
-        var enemiesInRange = GetEnemiesInRange();
+        var enemiesInRange = GetEnemiesInRange(Model.SpawnCount);
         
         if (enemiesInRange.Count == 0)
             return;
 
-        int spawnCount = Mathf.Min(Model.SpawnCount, enemiesInRange.Count);
-        
-        for (int i = 0; i < spawnCount; i++)
+        foreach (var enemy in enemiesInRange)
         {
-            Transform targetEnemy = i < enemiesInRange.Count ? enemiesInRange[i].Transform : null;
+            Transform targetEnemy = enemy.Transform;
             
             var projectileUnit = await SpawnUnitAsync<FollowProjectileTriggerUnit>(Model.TriggerUnitPath, Model.Sender.Transform.position, Quaternion.identity);
 

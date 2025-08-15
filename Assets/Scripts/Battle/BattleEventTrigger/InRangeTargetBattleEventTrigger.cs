@@ -10,16 +10,14 @@ public class InRangeTargetBattleEventTrigger : BattleEventTrigger
 
     private async UniTask ProcessRandomRangeEvent()
     {
-        var enemiesInRange = GetEnemiesInRange();
+        var enemiesInRange = GetEnemiesInRange(Model.SpawnCount);
         
         if (enemiesInRange.Count == 0)
             return;
         
-        int spawnCount = Mathf.Min(Model.SpawnCount, enemiesInRange.Count);
-        
-        for (int i = 0; i < spawnCount; i++)
+        foreach (var enemy in enemiesInRange)
         {
-            Vector2 targetPosition = enemiesInRange[i].Transform.position;
+            Vector2 targetPosition = enemy.Transform.position;
             
             var colliderTriggerUnit = await SpawnUnitAsync<ColliderTriggerUnit>(Model.TriggerUnitPath, targetPosition, Quaternion.identity);
 

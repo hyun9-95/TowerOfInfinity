@@ -144,16 +144,19 @@ public abstract class BattleEventTrigger
         return new Vector2(Mathf.Cos(randomAngle), Mathf.Sin(randomAngle));
     }
 
-    protected List<CharacterUnitModel> GetEnemiesInRange()
+    protected HashSet<CharacterUnitModel> GetEnemiesInRange(int maxCount = 0)
     {
         Vector2 senderPosition = Model.Sender.Transform.position;
         var colliders = Physics2D.OverlapCircleAll(senderPosition, Model.Range, (int)LayerFlag.Character);
-        var enemies = new List<CharacterUnitModel>();
+        var enemies = new HashSet<CharacterUnitModel>();
         
         colliders.SortByNearest(senderPosition);
         
         foreach (var collider in colliders)
         {
+            if (maxCount > 0 && enemies.Count >= maxCount)
+                break;
+                
             // 카메라에 보이는 것만 1차 필터링
             if (!CameraManager.Instance.IsVisibleFromWorldCamera(collider.transform.position))
                 continue;

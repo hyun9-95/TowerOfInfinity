@@ -156,12 +156,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 791b5c794a1673b418d78c6e5029d6ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeTime: 0.824
-  fadeTime: 0.25
+  lifeTime: 0.8
+  fadeTime: 1.55
   fadeInTime: 0
   awaitTime: 0
   localPosOffset: {x: 0, y: 0.1, z: 0}
   effectSprite: {fileID: 5446121353078132538}
+  spriteAnimator: {fileID: 2116637936064831478}
   effectParticle: {fileID: 0}
   particleSystemRenderer: {fileID: 0}
   detectType: 0
@@ -170,7 +171,7 @@ MonoBehaviour:
   useFlip: 0
   detectStartTime: 0.45
   detectDuration: 0.05
-  followTime: 0.5
+  followTime: 0
 --- !u!61 &597143706735559156
 BoxCollider2D:
   m_ObjectHideFlags: 0

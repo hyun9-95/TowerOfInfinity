@@ -205,7 +205,21 @@ public static class ExtensionUtils
 
         return false;
     }
-    
+
+    public static void ResetCurrentState(this Animator animator, int layer = 0, bool applyImmediately = true)
+    {
+        if (animator == null) return;
+
+        var stateInfo = animator.GetCurrentAnimatorStateInfo(layer);
+
+        int currentStateHash = stateInfo.shortNameHash;
+
+        animator.Play(currentStateHash, layer, 0f);
+
+        if (applyImmediately)
+            animator.Update(0f);
+    }
+
     #region Addressable SafeLoad Extensions
     public static async UniTask SafeLoadAsync(this Image image, string path)
     {

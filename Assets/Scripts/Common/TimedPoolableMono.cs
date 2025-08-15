@@ -25,6 +25,9 @@ public class TimedPoolableMono : PoolableMono
     protected SpriteRenderer effectSprite;
 
     [SerializeField]
+    protected Animator spriteAnimator;
+
+    [SerializeField]
     protected ParticleSystem effectParticle;
 
     [SerializeField]
@@ -71,6 +74,9 @@ public class TimedPoolableMono : PoolableMono
     {
         if (fadeTime > 0 && effectSprite != null)
         {
+            if (spriteAnimator != null)
+                spriteAnimator.speed = 0;
+
             effectSprite.DeactiveWithFade(fadeTime, gameObject);
         }
         else
@@ -120,6 +126,12 @@ public class TimedPoolableMono : PoolableMono
         if (effectSprite != null)
         {
             effectSprite.enabled = true;
+            
+            if (spriteAnimator != null)
+            {
+                spriteAnimator.speed = 1f;
+                spriteAnimator.ResetCurrentState();
+            }
 
             if (fadeInTime > 0)
             {

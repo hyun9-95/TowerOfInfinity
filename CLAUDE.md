@@ -262,6 +262,7 @@ AffectStat=Attack
 - **IDs**: Automatically assigns next available IDs (100000+, 51000+, 20000+, 70000+ series)
 - **Naming**: Fire Ball → AB_ACTIVE_FIRE_BALL, BE_DAMAGE_FIRE_BALL, BATTLE_CARD_AB_FIRE_BALL
 - **Paths**: Ability/FireBall/FireBall_Projectile, Ability/FireBall/FireBall_Projectile_Icon
+- **IconPath**: When empty, defaults to TriggerUnitPath + "_Icon" (e.g., TriggerUnitPath_Icon)
 - **Localization**: LOCAL_AB_FIRE_BALL_NAME, LOCAL_AB_FIRE_BALL_DESC with translations (if Korean provided)
 
 **Files Modified**:

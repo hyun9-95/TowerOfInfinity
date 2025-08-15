@@ -47,13 +47,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeTime: 2.917
+  fadeTime: 0.25
+  fadeInTime: 0
+  awaitTime: 0
   localPosOffset: {x: 0, y: 0, z: 0}
   effectSprite: {fileID: 4628612756764113780}
+  spriteAnimator: {fileID: 5398384183011042696}
   effectParticle: {fileID: 0}
   particleSystemRenderer: {fileID: 0}
   detectType: 0
-  fadeTime: 0.25
   hitCollider: {fileID: 2432198015132277480}
+  hitFollowTargetOnly: 0
   useFlip: 0
   detectStartTime: 1.75
   detectDuration: 0.05

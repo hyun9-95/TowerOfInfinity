@@ -23,7 +23,7 @@ public class TargetProjectileBattleEventTrigger : BattleEventTrigger
         }
     }
 
-    private Vector2 GetTargetDirection(List<CharacterUnitModel> enemies, HashSet<CharacterUnitModel> usedTargets)
+    private Vector2 GetTargetDirection(HashSet<CharacterUnitModel> enemies, HashSet<CharacterUnitModel> usedTargets)
     {
         CharacterUnitModel selectedTarget = null;
 

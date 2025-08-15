@@ -1,5 +1,4 @@
 using Cysharp.Threading.Tasks;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class InRangeFollowBattleEventTrigger : BattleEventTrigger
@@ -11,16 +10,14 @@ public class InRangeFollowBattleEventTrigger : BattleEventTrigger
 
     private async UniTask ProcessInRangeFollowEvent()
     {
-        var enemiesInRange = GetEnemiesInRange();
+        var enemiesInRange = GetEnemiesInRange(Model.SpawnCount);
         
         if (enemiesInRange.Count == 0)
             return;
 
-        int spawnCount = Mathf.Min(Model.SpawnCount, enemiesInRange.Count);
-        
-        for (int i = 0; i < spawnCount; i++)
+        foreach (var enemy in enemiesInRange)
         {
-            Transform targetEnemy = enemiesInRange[i].Transform;
+            Transform targetEnemy = enemy.Transform;
             
             var colliderTriggerUnit = await SpawnUnitAsync<ColliderTriggerUnit>(Model.TriggerUnitPath, Model.Sender.Transform.position, Quaternion.identity);
 
