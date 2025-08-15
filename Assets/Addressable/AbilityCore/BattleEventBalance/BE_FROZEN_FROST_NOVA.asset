@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   define: 20010
   value:
-  - 0.1
+  - 1
   value2: []
   duration:
   - 2

@@ -15,18 +15,18 @@ MonoBehaviour:
   type: 51006
   Speed: []
   Range:
-  - 7
+  - 5
   Duration: []
   HitCount: 01000000
   Scale: []
   CoolTime:
   - 8
-  - 7.75
+  - 8
   - 7.5
-  - 7.25
+  - 7.5
   - 7
-  - 6.75
+  - 7
   - 6.5
-  - 6.25
-  SpawnCount: 04000000
+  - 6.5
+  SpawnCount: 0400000005000000060000000700000008000000090000000a0000000a000000
   HitForce: []
