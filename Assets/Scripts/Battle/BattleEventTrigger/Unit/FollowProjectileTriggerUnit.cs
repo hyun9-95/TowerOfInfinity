@@ -15,7 +15,7 @@ public class FollowProjectileTriggerUnit : ProjectileTriggerUnit
         if (!moveUpdate)
             return;
 
-        if (Model.IsEnableFollow)
+        if (!Model.IsEnableFollow)
         {
             base.UpdateMove();
             DeactiveWithStopMove();

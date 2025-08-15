@@ -15,7 +15,6 @@ public class IntroView : BaseView
 
     public async UniTask ShowDataLoadingProgress()
     {
-        touchToStart.SafeSetActive(false); 
         await LoadLoadingBar();
 
         while (Model.DataLoader.IsLoading)
@@ -23,11 +22,6 @@ public class IntroView : BaseView
             UpdateLoadingUI();
             await UniTask.NextFrame(TokenPool.Get(GetHashCode()));
         }
-
-        await UniTaskUtils.DelaySeconds(0.5f);
-
-        loadingBar.SetComplete(true);
-        touchToStart.SafeSetActive(true);
     }
 
     private async UniTask LoadLoadingBar()
@@ -43,6 +37,12 @@ public class IntroView : BaseView
 
         loadingBar.SetLoadingProgressText(Model.GetLoadingProgressText());
         loadingBar.SetLoadingProgress(Model.DataLoader.CurrentProgressValue);
+    }
+
+    public void ShowComplete(bool value)
+    {
+        loadingBar.SetComplete(value);
+        touchToStart.SafeSetActive(value);
     }
 
     public void OnClickStart()

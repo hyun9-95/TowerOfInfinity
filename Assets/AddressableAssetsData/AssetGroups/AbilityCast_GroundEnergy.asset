@@ -14,7 +14,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_GroupName: AbilityCast_GroundEnergy
   m_GUID: 354b916cc32e38c4690da6309158238e
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 3ae56795c089b5548813cdfea4ce0435
+    m_Address: AbilityCast/GroundEnergy/GroundEnergyEffect
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3d0e4e70a9e90a945b59bf01dd8a665a
+    m_Address: AbilityCast/GroundEnergy/energyhaloground
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4438889db29fa224f951d26edd96d0e9
+    m_Address: AbilityCast/GroundEnergy/energyhaloground_0
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5efb8a0913636f6408680660ca44563c
+    m_Address: AbilityCast/GroundEnergy/fx_energyhaloground
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
   m_SchemaSet:

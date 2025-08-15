@@ -87,7 +87,7 @@ namespace Tools
         private static void Initialize(string folderPathValue, string jsonPathValue, int versionValue)
         {
             excelFolderPath = folderPathValue;
-            jsonFolderPath = jsonPathValue;
+            jsonFolderPath = $"Assets/{jsonPathValue}";
             version = versionValue;
 
             progress = 0f;
@@ -190,7 +190,9 @@ namespace Tools
         {
             EditorUtility.DisplayProgressBar(PathDefine.Manager, $"Writing DataContainerManager.cs..", progress);
 
-            string[] dataNames = Directory.GetFiles(jsonFolderPath, "*.json").Select(x => $"Data{Path.GetFileNameWithoutExtension(x)}").ToArray();
+            string absoluteJsonPath = Path.Combine(UnityEngine.Application.dataPath.Replace("Assets", ""), jsonFolderPath);
+            Logger.Log($"GenerateContainerManager: absoluteJsonPath = {absoluteJsonPath}");
+            string[] dataNames = Directory.GetFiles(absoluteJsonPath, "*.json").Select(x => $"Data{Path.GetFileNameWithoutExtension(x)}").ToArray();
             
             DataContainerGeneratorGenerator containerManagerGenerator = new();
             containerManagerGenerator.Generate(dataNames);
@@ -200,8 +202,9 @@ namespace Tools
         {
             EditorUtility.DisplayProgressBar("Finishing", $"Writing JsonList.txt..", progress);
 
+            string absoluteJsonPath = Path.Combine(UnityEngine.Application.dataPath.Replace("Assets", ""), jsonFolderPath);
             JsonListGenerator jsonListGenerator = new ();
-            jsonListGenerator.Generate(jsonFolderPath);
+            jsonListGenerator.Generate(absoluteJsonPath, jsonFolderPath);
         }
 
         private static void GenerateVersion()

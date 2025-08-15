@@ -55,22 +55,34 @@ public class Ability
         if (battleEventTriggerModel == null)
             return;
 
-        var castEffectPath = Model.CastEffectPath;
+        RemainCoolTime = Model.CoolTime;
 
+        var castEffectPath = Model.CastEffectPath;
+        
         if (!string.IsNullOrEmpty(castEffectPath))
         {
-            var castEffect = await ObjectPoolManager.Instance.SpawnPoolableMono<TimedPoolableMono>
+            var castEffect = await ObjectPoolManager.Instance.SpawnPoolableMono<BattleEffect>
                 (Model.CastEffectPath, Model.Owner.Transform.position, Quaternion.identity);
+            
+            if (castEffect.IsFollowTarget)
+            {
+                var model = new BattleEffectModel();
+                model.SetFollowTarget(Model.Owner.Transform);
+
+                castEffect.SetModel(model);
+            }
+            else
+            {
+                castEffect.transform.localPosition += castEffect.LocalPosOffset;
+            }
 
             if (castEffect != null)
-                await castEffect.ShowAsync();
+                await castEffect.ShowAwaitLifeTime();
         }
 
         BattleEventTrigger battleSkillTrigger = BattleEventTriggerFactory.Create(battleEventTriggerModel.TriggerType);
         battleSkillTrigger.SetModel(battleEventTriggerModel);
         battleSkillTrigger.Process().Forget();
-
-        RemainCoolTime = Model.CoolTime;
     }
     #endregion
 

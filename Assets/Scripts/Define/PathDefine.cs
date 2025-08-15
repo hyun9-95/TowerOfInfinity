@@ -7,8 +7,8 @@ public class PathDefine
     public const string Manager = "Assets/Scripts/Manager/";
     public const string DataContainerGenerator = "Assets/Data/Scripts/Container/DataContainerGenerator.cs";
     public const string DataContainer = "Assets/Data/Scripts/Container/";
-    public const string VersionText = "Assets/Data/Jsons/Version.txt";
-    public const string JsonListText = "Assets/Data/Jsons/JsonList.txt";
+    public const string VersionText = "Data/Jsons/Version.txt";
+    public const string JsonListText = "Data/Jsons/JsonList.txt";
     public const string DefaultPrefabPath = "Prefab";
     public const string UIAddressableFullPath = "Assets/Addressable/UI";
     public const string ContentsScriptsFolderPath = "Assets/Scripts/Contents";

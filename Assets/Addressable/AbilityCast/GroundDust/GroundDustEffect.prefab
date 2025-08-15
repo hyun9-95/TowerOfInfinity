@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2396738582925507907}
-  - component: {fileID: 569071255016557325}
+  - component: {fileID: 4200050857913537449}
   - component: {fileID: 967866465205615693}
   - component: {fileID: 2777430041226337567}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GroundDustEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,12 +29,12 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &569071255016557325
+--- !u!114 &4200050857913537449
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -43,16 +43,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 4326806022770676760}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 410066e5d1a8d904c86d2912f7de7809, type: 3}
+  m_Script: {fileID: 11500000, guid: 69afd4666f6411040ad79c2c2a80c148, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeTime: 0.667
+  lifeTime: 0.61
   fadeTime: 0
   fadeInTime: 0
-  localPosOffset: {x: 0, y: 0, z: 0}
+  awaitTime: 0
+  localPosOffset: {x: 0, y: -0.2, z: 0}
   effectSprite: {fileID: 967866465205615693}
   effectParticle: {fileID: 0}
   particleSystemRenderer: {fileID: 0}
+  isFollowTarget: 1
 --- !u!212 &967866465205615693
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -94,10 +96,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1737824065
+  m_SortingLayer: 6
   m_SortingOrder: 0
-  m_Sprite: {fileID: 187173484, guid: 415603a78444e6d449cdbf7f26930cf8, type: 3}
+  m_Sprite: {fileID: 2007866416, guid: 415603a78444e6d449cdbf7f26930cf8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

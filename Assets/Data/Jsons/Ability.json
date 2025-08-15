@@ -78,7 +78,7 @@
     ],
     "TriggerType": "InRangeFollow",
     "TargetType": "Enemy",
-    "CastEffectPath": "",
+    "CastEffectPath": "AbilityCast/GroundDust/GroundDustEffect",
     "TriggerUnitPath": "Ability/BoulderSmash/BoulderSmash_Range",
     "IconPath": "Ability/BoulderSmash/BoulderSmash_Range_Icon",
     "HitEffectPrefabName": ""

@@ -9,12 +9,16 @@ public static class AbilityFactory
 
     public static T Create<T>(DataAbility data, CharacterUnitModel owner) where T : Ability, new()
     {
+        if (data.IsNullOrEmpty())
+            return null;
+
         var model = GetAbilityModel(data, owner);
 
         if (model == null)
             return null;
 
         T abliity = new T();
+        abliity.Initialize(model);
 
         return abliity;
     }

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
+using Unity.VisualScripting.YamlDotNet.Core;
 
 namespace Tools
 {
@@ -115,7 +116,12 @@ namespace Tools
             }
 
             string newJson = JsonConvert.SerializeObject(dataDicList, Formatting.Indented);
-            SaveFileAtPath(folderPath, jsonFileName, newJson);
+
+            string assetsPath = folderPath;
+            string addressablePath = folderPath.Replace("Assets/", "Assets/Addressable/");
+
+            SaveFileAtPath(assetsPath, jsonFileName, newJson);
+            SaveFileAtPath(addressablePath, jsonFileName, newJson);
         }
 
         private System.Type GetDataType(string columnType)

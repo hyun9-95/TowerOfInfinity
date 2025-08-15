@@ -8,7 +8,8 @@
     ],
     "TriggerType": "Projectile",
     "TargetType": "Enemy",
-    "PrefabName": "Ability/Arrow_Projectile/Arrow_Projectile",
+    "CastEffectPath": "",
+    "TriggerUnitPath": "Ability/Arrow_Projectile/Arrow_Projectile",
     "IconPath": "",
     "HitEffectPrefabName": ""
   },
@@ -21,7 +22,8 @@
     ],
     "TriggerType": "FollowCollider",
     "TargetType": "Enemy",
-    "PrefabName": "Ability/Sting_Collider/Sting_Collider",
+    "CastEffectPath": "",
+    "TriggerUnitPath": "Ability/Sting_Collider/Sting_Collider",
     "IconPath": "",
     "HitEffectPrefabName": ""
   },
@@ -34,7 +36,8 @@
     ],
     "TriggerType": "FollowCollider",
     "TargetType": "Enemy",
-    "PrefabName": "Ability/GreenOgreSmash/GreenOgreSmash_Collider",
+    "CastEffectPath": "",
+    "TriggerUnitPath": "Ability/GreenOgreSmash/GreenOgreSmash_Collider",
     "IconPath": "",
     "HitEffectPrefabName": ""
   },
@@ -47,7 +50,8 @@
     ],
     "TriggerType": "TargetProjectile",
     "TargetType": "Enemy",
-    "PrefabName": "Ability/DragonBreath/DragonBreath_TargetProjectile",
+    "CastEffectPath": "",
+    "TriggerUnitPath": "Ability/DragonBreath/DragonBreath_TargetProjectile",
     "IconPath": "",
     "HitEffectPrefabName": ""
   },
@@ -60,7 +64,8 @@
     ],
     "TriggerType": "Projectile",
     "TargetType": "Enemy",
-    "PrefabName": "Ability/VenomBall/VenomBall_Bouncing",
+    "CastEffectPath": "",
+    "TriggerUnitPath": "Ability/VenomBall/VenomBall_Bouncing",
     "IconPath": "Ability/VenomBall/VenomBall_Bouncing_Icon",
     "HitEffectPrefabName": ""
   },
@@ -73,7 +78,8 @@
     ],
     "TriggerType": "InRangeFollow",
     "TargetType": "Enemy",
-    "PrefabName": "Ability/BoulderSmash/BoulderSmash_Range",
+    "CastEffectPath": "AbilityCast/GroundDust/GroundDustEffect",
+    "TriggerUnitPath": "Ability/BoulderSmash/BoulderSmash_Range",
     "IconPath": "Ability/BoulderSmash/BoulderSmash_Range_Icon",
     "HitEffectPrefabName": ""
   },
@@ -86,7 +92,8 @@
     ],
     "TriggerType": "Projectile",
     "TargetType": "Enemy",
-    "PrefabName": "Ability/SwordWave/SwordWave_Projectile",
+    "CastEffectPath": "",
+    "TriggerUnitPath": "Ability/SwordWave/SwordWave_Projectile",
     "IconPath": "Ability/SwordWave/SwordWave_Projectile_Icon",
     "HitEffectPrefabName": ""
   },
@@ -99,7 +106,8 @@
     ],
     "TriggerType": "FollowProjectile",
     "TargetType": "Enemy",
-    "PrefabName": "Ability/MagicMissile/MagicMissile_Follow",
+    "CastEffectPath": "",
+    "TriggerUnitPath": "Ability/MagicMissile/MagicMissile_Follow",
     "IconPath": "Ability/MagicMissile/MagicMissile_Follow_Icon",
     "HitEffectPrefabName": ""
   },
@@ -112,7 +120,8 @@
     ],
     "TriggerType": "FollowCollider",
     "TargetType": "Enemy",
-    "PrefabName": "Ability/ElectricRing/ElectricRing_Collider",
+    "CastEffectPath": "",
+    "TriggerUnitPath": "Ability/ElectricRing/ElectricRing_Collider",
     "IconPath": "Ability/ElectricRing/ElectricRing_Collider_Icon",
     "HitEffectPrefabName": ""
   },
@@ -125,7 +134,8 @@
     ],
     "TriggerType": "Orbit",
     "TargetType": "Enemy",
-    "PrefabName": "Ability/ElectricBall/ElectricBall_Orbit",
+    "CastEffectPath": "",
+    "TriggerUnitPath": "Ability/ElectricBall/ElectricBall_Orbit",
     "IconPath": "Ability/ElectricBall/ElectricBall_Orbit_Icon",
     "HitEffectPrefabName": ""
   }

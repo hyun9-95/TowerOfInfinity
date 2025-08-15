@@ -75,6 +75,9 @@ public class SoundManager : BaseMonoManager<SoundManager>
         if (volumeRatio > 1)
             volumeRatio = 1;
 
+        if (PlayerManager.instance.UserSettings == null)
+            return 1;
+
         float volume = PlayerManager.instance.UserSettings == null ?
             1 : PlayerManager.Instance.UserSettings.GetVolume(soundType);
 

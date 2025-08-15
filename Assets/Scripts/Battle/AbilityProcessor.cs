@@ -37,7 +37,10 @@ public class AbilityProcessor
         var newAbility = AbilityFactory.Create<Ability>(newAbilityDataId, owner);
 
         if (newAbility == null)
+        {
+            Logger.Error($"Add Ability Failed : {newAbilityDataId}");
             return;
+        }    
 
         abilityDicById[newAbilityDataId] = newAbility;
 

@@ -9,8 +9,6 @@ public class IntroController : BaseController<IntroViewModel>
 
     public override UICanvasType UICanvasType => UICanvasType.View;
 
-    public bool IsSuccess => Model.DataLoader.CurrentState == BaseDataLoader.State.Success;
-
     private IntroView View => GetView<IntroView>();
 
     public override void Enter()
@@ -23,6 +21,8 @@ public class IntroController : BaseController<IntroViewModel>
         await LoadResources();
         await LoadDatas();
         await LoadUser();
+
+        View.ShowComplete(true);
     }
 
     private void InitializeDataLoader()

@@ -39,6 +39,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 22999937811e4ae4fafce2ffe3e6c8c9
+    m_Address: UI/Common/Refs/1_orange_button_s_pick
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3b8c1c0b6c3acd64bb6e8b72d56ac656
     m_Address: UI/Common/Refs/F_UI_Panel_N
     m_ReadOnly: 0
@@ -89,6 +95,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c0a53c757cbed194e8904b240206afb5
     m_Address: UI/Common/Refs/1_orange_button_pick
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c6b53521998bc91489d6783d1f7e8a56
+    m_Address: UI/Common/Refs/1_orange_button_s
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main

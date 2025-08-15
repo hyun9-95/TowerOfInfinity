@@ -16,6 +16,9 @@ public class TimedPoolableMono : PoolableMono
     protected float fadeInTime = 0f;
 
     [SerializeField]
+    protected float awaitTime = 0f;
+
+    [SerializeField]
     protected Vector3 localPosOffset;
 
     [SerializeField]
@@ -44,7 +47,15 @@ public class TimedPoolableMono : PoolableMono
         gameObject.SafeSetActive(true);
     }
 
-    protected async UniTask CheckLifeTime(float lifeTime)
+    public async UniTask ShowAwaitLifeTime()
+    {
+        ShowAsync().Forget();
+
+        if (lifeTime > 0 && awaitTime > 0)
+            await UniTaskUtils.DelaySeconds(awaitTime, cancellationToken: TokenPool.Get(GetHashCode()));
+    }
+
+    protected async UniTask CheckLifeTime()
     {
         isCheckingLifeTime = true;
 
@@ -135,7 +146,7 @@ public class TimedPoolableMono : PoolableMono
             return;
 
         if (!isCheckingLifeTime)
-            CheckLifeTime(lifeTime).Forget();
+            CheckLifeTime().Forget();
     }
 
     protected override void OnDisable()

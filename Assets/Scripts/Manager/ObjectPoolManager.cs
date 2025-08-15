@@ -24,16 +24,22 @@ public class ObjectPoolManager : BaseMonoManager<ObjectPoolManager>
         return parent;
     }
 
-    private async UniTask<GameObject> Spawn(string name, Vector3 position = default, Quaternion rotation = default)
+    private async UniTask<GameObject> Spawn(string address, Vector3 position = default, Quaternion rotation = default)
     {
-        if (!poolDictionary.ContainsKey(name))
-            poolDictionary[name] = new Queue<GameObject>();
+        if (string.IsNullOrEmpty(address))
+        {
+            Logger.Error("ObjectPoolManager Spawn Failed.. Address is Empty!!");
+            return null;
+        }
+
+        if (!poolDictionary.ContainsKey(address))
+            poolDictionary[address] = new Queue<GameObject>();
 
         GameObject go;
 
-        if (poolDictionary[name].Count > 0)
+        if (poolDictionary[address].Count > 0)
         {
-            go = poolDictionary[name].Dequeue();
+            go = poolDictionary[address].Dequeue();
             go.transform.SetPositionAndRotation(position, rotation);
 
             if (originScaleDic.TryGetValue(go.GetInstanceID(), out Vector3 originScale))
@@ -43,12 +49,12 @@ public class ObjectPoolManager : BaseMonoManager<ObjectPoolManager>
         }
         else
         {
-            go = await AddressableManager.Instance.InstantiateAsync(name, GetPoolParent(name));
+            go = await AddressableManager.Instance.InstantiateAsync(address, GetPoolParent(address));
 
             if (go == null)
                 return null;
 
-            go.name = name;
+            go.name = address;
             go.transform.SetPositionAndRotation(position, rotation);
             originScaleDic[go.GetInstanceID()] = go.transform.localScale;
         }

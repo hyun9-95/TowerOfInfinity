@@ -10,7 +10,11 @@ namespace Tools
 
         public void Generate(string jsonFolderPath, string version)
         {
-            SaveFileAtPath(jsonFolderPath, VersionTextName, version);
+            string assetsPath = jsonFolderPath;
+            string addressablePath = jsonFolderPath.Replace("Assets/", "Assets/Addressable/");
+
+            SaveFileAtPath(assetsPath, VersionTextName, version);
+            SaveFileAtPath(addressablePath, VersionTextName, version);
         }
     }
 }

@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2331526400847901205}
-  - component: {fileID: 3853199401667013900}
+  - component: {fileID: 7690115853795069804}
   - component: {fileID: 4920788247552494248}
   - component: {fileID: 1089104712809281115}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GroundEnergyEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34,7 +34,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3853199401667013900
+--- !u!114 &7690115853795069804
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -43,16 +43,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 3327606194286562531}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 410066e5d1a8d904c86d2912f7de7809, type: 3}
+  m_Script: {fileID: 11500000, guid: 69afd4666f6411040ad79c2c2a80c148, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   lifeTime: 0.5
   fadeTime: 0
   fadeInTime: 0
+  awaitTime: 0
   localPosOffset: {x: 0, y: 0, z: 0}
   effectSprite: {fileID: 4920788247552494248}
   effectParticle: {fileID: 0}
   particleSystemRenderer: {fileID: 0}
+  isFollowTarget: 1
 --- !u!212 &4920788247552494248
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -94,8 +96,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1737824065
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 19135301, guid: 5efb8a0913636f6408680660ca44563c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

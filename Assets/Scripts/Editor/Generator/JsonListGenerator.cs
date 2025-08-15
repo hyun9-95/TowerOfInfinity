@@ -8,9 +8,9 @@ namespace Tools
     {
         private string JsonListName => Path.GetFileName(PathDefine.JsonListText);
 
-        public void Generate(string jsonFolderPathValue)
+        public void Generate(string absoluteJsonPath, string relativeJsonPath)
         {
-            string[] jsonFiles = Directory.GetFiles(jsonFolderPathValue, $"*.json").Select(Path.GetFileName).ToArray();
+            string[] jsonFiles = Directory.GetFiles(absoluteJsonPath, $"*.json").Select(Path.GetFileName).ToArray();
             string jsonListDesc;
 
             if (jsonFiles.Length == 0)
@@ -21,7 +21,11 @@ namespace Tools
 
             jsonListDesc = string.Join(",", jsonFiles);
 
-            SaveFileAtPath(jsonFolderPathValue, JsonListName, jsonListDesc);
+            string assetsPath = relativeJsonPath;
+            string addressablePath = relativeJsonPath.Replace("Assets/", "Assets/Addressable/");
+
+            SaveFileAtPath(assetsPath, JsonListName, jsonListDesc);
+            SaveFileAtPath(addressablePath, JsonListName, jsonListDesc);
         }
     }
 }
