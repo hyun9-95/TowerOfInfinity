@@ -1,6 +1,7 @@
 #pragma warning disable CS1998
 using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class BattleEnemySpawner : IObserver
@@ -34,7 +35,6 @@ public class BattleEnemySpawner : IObserver
         bool isBurstSpawn = false;
         float currentIntervalSeconds = Model.SpawnIntervalSeconds;
         
-        var token = TokenPool.Get(GetHashCode());
         while (!TokenPool.Get(GetHashCode()).IsCancellationRequested)
         {
             if (BattleSystemManager.Instance.InBattle)
@@ -85,11 +85,11 @@ public class BattleEnemySpawner : IObserver
                     }          
                 }
 
-                await UniTaskUtils.DelaySeconds(currentIntervalSeconds, cancellationToken: token);
+                await UniTaskUtils.DelaySeconds(currentIntervalSeconds, cancellationToken: TokenPool.Get(GetHashCode()));
             }
             else
             {
-                await UniTaskUtils.NextFrame(cancellationToken: token);
+                await UniTaskUtils.NextFrame(cancellationToken: TokenPool.Get(GetHashCode()));
             }
         }
 

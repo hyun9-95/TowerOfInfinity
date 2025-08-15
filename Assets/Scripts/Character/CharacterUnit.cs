@@ -135,6 +135,7 @@ public class CharacterUnit : PoolableMono
         defaultState = stateGroup.StateList.Last();
         ChangeState(defaultState);
 
+        stateUpdate = true;
         activated = true;
         gameObject.SafeSetActive(true);
     }
@@ -164,6 +165,7 @@ public class CharacterUnit : PoolableMono
     private void OnDeactivate()
     {
         activated = false;
+        stateUpdate = false;
 
         if (Model != null)
             Model.SetIsActivate(activated);
