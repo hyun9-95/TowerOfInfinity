@@ -90,6 +90,11 @@ public class CharacterUnit : PoolableMono
         if (!activated)
             return;
 
+        var cc = GetCrowdControl();
+
+        if (cc != BattleEventType.None)
+            return;
+
         UpdateState();
         UpdatePhysics();
     }
@@ -217,6 +222,14 @@ public class CharacterUnit : PoolableMono
 
         // 활성 상태 동기화
         Model.SetIsActivate(activated);
+    }
+
+    private BattleEventType GetCrowdControl()
+    {
+        if (battleEventProcessor == null)
+            return BattleEventType.None;
+
+        return battleEventProcessor.IsCrowdControl();
     }
 
     protected void UpdateState()

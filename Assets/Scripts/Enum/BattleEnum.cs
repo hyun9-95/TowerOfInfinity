@@ -21,8 +21,10 @@ public enum BattleEventTriggerType
 
 public enum BattleEventType
 {
+    None,
     Damage,
     Poison,
+    Frozen,
 }
 
 public enum BattleEventGroup

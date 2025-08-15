@@ -232,7 +232,7 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
     #endregion
 
     #region Public OnEvent
-    public void OnDamage(CharacterUnitModel sender, CharacterUnitModel receiver, float value, DamageType damageType)
+    public void OnDamage(CharacterUnitModel sender, CharacterUnitModel receiver, float value, DamageType damageType = DamageType.Normal)
     {
         if (receiver == null || receiver.IsDead)
             return;
@@ -248,13 +248,13 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
         if (receiver.TeamTag == TeamTag.Enemy)
             damageNumbersGroup.ShowDamage(damageType, receiver.Transform, finalDamage.ToString());
 
-        OnHitEffect(receiver, damageType);
+        OnHitBodyColor(receiver, damageType);
     }
 
-    public void OnHitEffect(CharacterUnitModel receiver, DamageType damageType)
+    private void OnHitBodyColor(CharacterUnitModel receiver, DamageType damageType)
     {
         if (!receiver.IsDead)
-            receiver.ActionHandler.OnHitEffectAsync(GetHitColorByDamageType(damageType)).Forget();
+            receiver.ActionHandler.OnHitBodyColorAsync(GetHitColorByDamageType(damageType)).Forget();
     }
 
     public void OnDeadCharacter(CharacterUnitModel deadCharacterModel)

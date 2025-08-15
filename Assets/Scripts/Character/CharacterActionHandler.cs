@@ -1,6 +1,8 @@
 using Cysharp.Threading.Tasks;
 using System;
+using System.Threading;
 using UnityEngine;
+using static DG.DemiLib.External.DeHierarchyComponent;
 
 public class CharacterActionHandler
 {
@@ -17,7 +19,7 @@ public class CharacterActionHandler
     private CharacterAnimationEffect animEffect;
 
     #region Hit
-    private bool blinking = false;
+    private bool bodyColorChanging = false;
     private bool rolling = false;
     private bool addingForce = false;
     private Color originColor;
@@ -113,16 +115,16 @@ public class CharacterActionHandler
         pathFinder.OnStopPathFind();
     }
 
-    public async UniTask OnHitEffectAsync(Color hitColor)
+    public async UniTask OnHitBodyColorAsync(Color hitColor)
     {
-        if (blinking)
+        if (bodyColorChanging)
             return;
 
-        blinking = true;
+        bodyColorChanging = true;
 
         int blinkCount = 0;
 
-        while (bodySprite != null && blinkCount < IntDefine.HIT_BLINK_COUNT && blinking)
+        while (bodySprite != null && blinkCount < IntDefine.HIT_BLINK_COUNT && bodyColorChanging)
         {
             bodySprite.color = hitColor;
             await UniTaskUtils.DelaySeconds(FloatDefine.HIT_BLINK_INTERVAL, TokenPool.Get(GetHashCode()));
@@ -136,7 +138,50 @@ public class CharacterActionHandler
         if (bodySprite != null)
             bodySprite.color = originColor;
 
-        blinking = false;
+        bodyColorChanging = false;
+    }
+
+    public async UniTask OnBodyColorChange(Color frozenColor, CancellationToken token)
+    {
+        if (bodyColorChanging)
+        {
+            bodyColorChanging = false;
+            TokenPool.Cancel(GetHashCode());
+            await UniTask.NextFrame(token);
+        }
+
+        bodyColorChanging = true;
+
+        while (bodySprite != null && !token.IsCancellationRequested)
+        {
+            bodySprite.color = frozenColor;
+            await UniTask.NextFrame(cancellationToken:token);
+        }
+
+        if (bodySprite != null)
+            bodySprite.color = originColor;
+
+        bodyColorChanging = false;
+    }
+
+    public void OnCCStart(BattleEventType battleEventType)
+    {
+        switch (battleEventType)
+        {
+            case BattleEventType.Frozen:
+                animator.speed = 0;
+                break;
+        }
+    }
+
+    public void OnCCEnd(BattleEventType battleEventType)
+    {
+        switch (battleEventType)
+        {
+            case BattleEventType.Frozen:
+                animator.speed = 1;
+                break;
+        }
     }
 
     public async UniTask OnRollingAsync(float rollDelay, Vector2 direction, float force)
@@ -164,7 +209,7 @@ public class CharacterActionHandler
     public void Cancel()
     {
         TokenPool.Cancel(GetHashCode());
-        blinking = false;
+        bodyColorChanging = false;
         rolling = false;
         addingForce = false;
     }
