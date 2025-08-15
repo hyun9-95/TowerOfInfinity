@@ -174,25 +174,28 @@ public class CharacterFactory : BaseManager<CharacterFactory>
         ScriptableCharacterInfo scriptableCharacterInfo = null;
 
         // 보스로 사용 시 커스텀 상태그룹 + 모듈그룹을 가질 수 있다.
-        if (dataId != 0 && characterType == CharacterType.Boss)
-        {
-            var data = DataManager.Instance.GetDataById<DataCharacter>(dataId);
-
-            if (!data.IsNullOrEmpty() && !string.IsNullOrEmpty(data.CustomBossCharacterInfo))
-            {
-                var path = data.CustomBossCharacterInfo;
-                var customCharacterInfo = await AddressableManager.Instance.
-                    LoadAssetAsyncWithTracker<ScriptableCharacterInfo>(path, character.gameObject);
-
-                if (customCharacterInfo != null)
-                    scriptableCharacterInfo = customCharacterInfo;
-            }
-        }
+        //if (dataId != 0 && characterType == CharacterType.Boss)
+        //{
+        //    var data = DataManager.Instance.GetDataById<DataCharacter>(dataId);
+        //
+        //    if (!data.IsNullOrEmpty() && !string.IsNullOrEmpty(data.CustomBossCharacterInfo))
+        //    {
+        //        var path = data.CustomBossCharacterInfo;
+        //        var customCharacterInfo = await AddressableManager.Instance.
+        //            LoadAssetAsyncWithTracker<ScriptableCharacterInfo>(path, character.gameObject);
+        //
+        //        if (customCharacterInfo != null)
+        //            scriptableCharacterInfo = customCharacterInfo;
+        //    }
+        //}
 
         if (scriptableCharacterInfo == null)
             scriptableCharacterInfo = await GetScriptableCharacterInfo(characterType);
 
-        character.SetStateGroup(scriptableCharacterInfo.StateGroup);
+        // 별도 스테이트 그룹이 없는 경우 캐릭터타입에 따른 기본 상태그룹을 넣어줌
+        if (!character.IsCustomStateGroup)
+            character.SetStateGroup(scriptableCharacterInfo.StateGroup);
+
         character.SetModuleGroup(scriptableCharacterInfo.ModuleGroup);
     }
 

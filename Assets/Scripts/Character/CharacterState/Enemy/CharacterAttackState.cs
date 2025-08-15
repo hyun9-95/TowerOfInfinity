@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "ScriptableCharacterStates/Character/Attack")]
 public class CharacterAttackState : ScriptableCharacterState
 {
-    public override int Priority => 2;
+    public override int Priority => 4;
     public override CharacterAnimState AnimState => CharacterAnimState.Attack;
 
     public override bool CheckEnterCondition(CharacterUnitModel model)

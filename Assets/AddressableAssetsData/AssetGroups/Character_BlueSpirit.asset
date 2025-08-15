@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Character_BlueSpirit
+  m_EditorClassIdentifier: 
+  m_GroupName: Character_BlueSpirit
+  m_GUID: b94443a34a34dca4fa31f48dc54e4e3e
+  m_SerializeEntries:
+  - m_GUID: 2a04c85a90f654447b84affe2c64d69a
+    m_Address: Character/Enemy/BlueSpirit/BlueSpiritPassingState
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 78642ffa7a1ad1c4486224e3611f514a
+    m_Address: Character/Enemy/BlueSpirit/BlueSpirit_Stat
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a139df9397e686b4bb08e484fc8be4ea
+    m_Address: Character/Enemy/BlueSpirit/BlueSpiritFlyState
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bd4978f441e626c4e978853fb5e903a1
+    m_Address: Character/Enemy/BlueSpirit/BlueSpirit
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dea7abc99dbdbc54bb127c2a2f9d9f84
+    m_Address: Character/Enemy/BlueSpirit/BlueSpiritStateGroup
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e2dd0eaa9a5d40249990dd785b4206d5
+    m_Address: Character/Enemy/BlueSpirit/BlueSpirit_SL
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ec081a99c71f4553afaf2dd7a36f48fe
+    m_Address: Character/Enemy/BlueSpirit/BlueSpirit_S
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 356ba6ebc5ce3b24da0a6792e5836685, type: 2}
+    - {fileID: 11400000, guid: cb59647486dfc184899abe26f2b296ef, type: 2}

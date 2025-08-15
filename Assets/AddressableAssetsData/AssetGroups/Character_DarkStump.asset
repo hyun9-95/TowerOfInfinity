@@ -10,37 +10,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Ability_BoulderSmash
+  m_Name: Character_DarkStump
   m_EditorClassIdentifier: 
-  m_GroupName: Ability_BoulderSmash
-  m_GUID: d428315e7ea33d343a96a8f40e5f2eda
+  m_GroupName: Character_DarkStump
+  m_GUID: 52e28e5c249c4c84396b7a9679d5a66f
   m_SerializeEntries:
-  - m_GUID: 28792ab1ca99e0c4ca6792b6c5274b7c
-    m_Address: Ability/BoulderSmash/BoulderSmash_Sprites
+  - m_GUID: 2374704ff36e40f2a67b3c8e6d787337
+    m_Address: Character/Enemy/DarkStump/DarkStump_S
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 5dba01297e1d5f8418c3873d6d363211
-    m_Address: Ability/BoulderSmash/bouldersphere
+  - m_GUID: 386b3fdfbf992704b87f8bbb0c50ef80
+    m_Address: Character/Enemy/DarkStump/DarkStump_Stat
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 891b97904a7665b4e9b8410a2812b917
-    m_Address: Ability/BoulderSmash/bouldersphere_0
+  - m_GUID: 6eb4c9ed691fca64cabb331a1651d074
+    m_Address: Character/Enemy/DarkStump/DarkStump
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: ddb8d9c324054604aa384b65433adad4
-    m_Address: Ability/BoulderSmash/BoulderSmash_InRange_Icon
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Main
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: f192417a2fa0df4498c1eec7d50c2b5a
-    m_Address: Ability/BoulderSmash/BoulderSmash_InRange
+  - m_GUID: 73c1dc1ce3a84cab88408ccae4cbe0e4
+    m_Address: Character/Enemy/DarkStump/DarkStump_SL
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
@@ -49,5 +43,5 @@ MonoBehaviour:
   m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 06abe5148b1751a4cbf8019e080a63d1, type: 2}
-    - {fileID: 11400000, guid: 64d99c02383b0ae4e9feff7f36fb7464, type: 2}
+    - {fileID: 11400000, guid: 62e124466b24c7b4f8c7e6f433d5bf75, type: 2}
+    - {fileID: 11400000, guid: e241f966c96de22409befac30f34e2bb, type: 2}

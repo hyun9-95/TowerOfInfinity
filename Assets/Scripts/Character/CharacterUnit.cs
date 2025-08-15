@@ -9,6 +9,8 @@ public class CharacterUnit : PoolableMono
 {
     public SpriteLibrary SpriteLibrary => spriteLibrary;
 
+    public bool IsCustomStateGroup => stateGroup != null;
+
     public CharacterUnitModel Model { get; private set; }
 
     public void SetModel(CharacterUnitModel model)
@@ -62,9 +64,11 @@ public class CharacterUnit : PoolableMono
     protected ScriptableCharacterStat baseStat;
 
     [SerializeField]
+    private ScriptableCharacterStateGroup stateGroup;
+
+    [SerializeField]
     private bool debugLog;
 
-    private ScriptableCharacterStateGroup stateGroup;
     private ScriptableCharacterModuleGroup moduleGroup;
     private ScriptableCharacterState defaultState;
     private bool activated = false;
@@ -119,8 +123,12 @@ public class CharacterUnit : PoolableMono
         }
 
         bodySprite.RestoreAlpha();
-        characterCollider2D.enabled = true;
-        triggerCollider2D.enabled = true;
+
+        if (characterCollider2D)
+            characterCollider2D.enabled = true;
+
+        if (triggerCollider2D)
+            triggerCollider2D.enabled = true;
 
         // 우선순위가 높은 순으로 정렬하므로
         // 가장 마지막에 있는 것이 기본 상태가 된다.
@@ -155,8 +163,11 @@ public class CharacterUnit : PoolableMono
         if (Model != null)
             Model.SetIsActivate(activated);
 
-        characterCollider2D.enabled = false;
-        triggerCollider2D.enabled = false;
+        if (characterCollider2D)
+            characterCollider2D.enabled = false;
+
+        if (triggerCollider2D)
+            triggerCollider2D.enabled = false;
 
         moduleGroup.OnEventCharacterDeactivate(Model, moduleModelDic);
 
@@ -199,8 +210,11 @@ public class CharacterUnit : PoolableMono
                 agent.enabled = false;
         }
 
-        characterCollider2D.enabled = false;
-        triggerCollider2D.enabled = false;
+        if (characterCollider2D)
+            characterCollider2D.enabled = false;
+
+        if (triggerCollider2D)
+            triggerCollider2D.enabled = false;
     }
 
     private void InitializeModule()

@@ -180,6 +180,7 @@ MonoBehaviour:
   triggerCollider2D: {fileID: 1264580057160532463}
   characterAnimationEffect: {fileID: 0}
   baseStat: {fileID: 0}
+  stateGroup: {fileID: 0}
   debugLog: 0
 --- !u!95 &106869835892434893
 Animator:
@@ -238,7 +239,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0

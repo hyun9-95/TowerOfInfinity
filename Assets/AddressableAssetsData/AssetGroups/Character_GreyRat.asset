@@ -10,37 +10,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Ability_BoulderSmash
+  m_Name: Character_GreyRat
   m_EditorClassIdentifier: 
-  m_GroupName: Ability_BoulderSmash
-  m_GUID: d428315e7ea33d343a96a8f40e5f2eda
+  m_GroupName: Character_GreyRat
+  m_GUID: 1d0e091bec561be469cf314023e29d3f
   m_SerializeEntries:
-  - m_GUID: 28792ab1ca99e0c4ca6792b6c5274b7c
-    m_Address: Ability/BoulderSmash/BoulderSmash_Sprites
+  - m_GUID: 0e5f7102f7cf401ab50ad1856733bc08
+    m_Address: Character/Enemy/GreyRat/GreyRat_S
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 5dba01297e1d5f8418c3873d6d363211
-    m_Address: Ability/BoulderSmash/bouldersphere
+  - m_GUID: 1f8a3668ae38d4d478aeb1031c4e5e97
+    m_Address: Character/Enemy/GreyRat/GreyRat_Stat
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 891b97904a7665b4e9b8410a2812b917
-    m_Address: Ability/BoulderSmash/bouldersphere_0
+  - m_GUID: f27aa7383612f38408f4f996004b7338
+    m_Address: Character/Enemy/GreyRat/GreyRat
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: ddb8d9c324054604aa384b65433adad4
-    m_Address: Ability/BoulderSmash/BoulderSmash_InRange_Icon
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Main
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: f192417a2fa0df4498c1eec7d50c2b5a
-    m_Address: Ability/BoulderSmash/BoulderSmash_InRange
+  - m_GUID: f4957d5e07b44266a723e0265cd2d432
+    m_Address: Character/Enemy/GreyRat/GreyRat_SL
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
@@ -49,5 +43,5 @@ MonoBehaviour:
   m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 06abe5148b1751a4cbf8019e080a63d1, type: 2}
-    - {fileID: 11400000, guid: 64d99c02383b0ae4e9feff7f36fb7464, type: 2}
+    - {fileID: 11400000, guid: dd37a7ca6773fea48881312ce91e968f, type: 2}
+    - {fileID: 11400000, guid: 7c96ba37fb64bd44cb559e63b7e6cb23, type: 2}

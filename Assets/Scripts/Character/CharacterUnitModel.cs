@@ -22,9 +22,6 @@ public class CharacterUnitModel : IBaseUnitModel
     public CharacterInfo CharacterInfo { get; private set; }
     public bool IsDead => Hp <= 0;
     public float Hp { get; private set; }
-    public float Attack { get; private set; }
-    public float Defense { get; private set; }
-    public float MoveSpeed { get; private set; }
     public PathFindType PathFindType { get; private set; }
     public bool IsFlipX { get; private set; }
     public float RepathTimer { get; private set; }

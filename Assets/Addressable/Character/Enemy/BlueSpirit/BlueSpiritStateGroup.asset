@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 323acb49e51cc0844b489c75f397a224, type: 3}
+  m_Name: BlueSpiritStateGroup
+  m_EditorClassIdentifier: 
+  stateList:
+  - {fileID: 11400000, guid: 2a04c85a90f654447b84affe2c64d69a, type: 2}
+  - {fileID: 11400000, guid: a139df9397e686b4bb08e484fc8be4ea, type: 2}
+  - {fileID: 11400000, guid: c612e26ecce44414d8ed38190f3a3f85, type: 2}
+  - {fileID: 11400000, guid: 4f4211a8e47e5a541bab5585d8846157, type: 2}

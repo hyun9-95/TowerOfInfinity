@@ -6,7 +6,10 @@
     "Enemys": [
       [
         "CHAR_BAT",
-        "CHAR_BAT"
+        "CHAR_BAT",
+        "CHAR_GREY_RAT",
+        "CHAR_BLUE_SPIRIT",
+        "CHAR_DARK_STUMP"
       ],
       [
         "CHAR_BAT",

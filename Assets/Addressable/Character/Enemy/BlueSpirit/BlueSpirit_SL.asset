@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5bf7c34a0dc4e6348bea04faa70406ee, type: 3}
-  m_Name: BlueSpirit
+  m_Name: BlueSpirit_SL
   m_EditorClassIdentifier: 
   m_Labels:
   - m_Name: Attack
@@ -106,3 +106,5 @@ MonoBehaviour:
     - m_Name: 5
       m_Hash: 78719918
       m_Sprite: {fileID: -2217414122262695004, guid: ec081a99c71f4553afaf2dd7a36f48fe, type: 3}
+  m_ModificationHash: 0
+  m_Version: 1
