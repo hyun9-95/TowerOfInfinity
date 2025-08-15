@@ -74,6 +74,7 @@ public class CharacterUnit : PoolableMono
     private ScriptableCharacterState defaultState;
     private bool activated = false;
     private bool stateUpdate = false;
+    private int lastAnimStateHash = -1;
 
     private AbilityProcessor abilityProcessor = new();
     private BattleEventProcessor battleEventProcessor = new();
@@ -296,19 +297,29 @@ public class CharacterUnit : PoolableMono
     private void RefreshAnimState()
     {
         var currentStateInfo = animator.GetCurrentAnimatorStateInfo(0);
-
-        if (shortNameHashDic.TryGetValue(currentStateInfo.shortNameHash, out CharacterAnimState animState))
-            Model.SetCurrentAnimState(animState);
+        
+        if (currentStateInfo.shortNameHash != lastAnimStateHash)
+        {
+            lastAnimStateHash = currentStateInfo.shortNameHash;
+            
+            if (shortNameHashDic.TryGetValue(currentStateInfo.shortNameHash, out CharacterAnimState animState))
+                Model.SetCurrentAnimState(animState);
+        }
     }
 
     private ScriptableCharacterState FindCandidateState()
     {
+        var currentPriority = CurrentState.Priority;
+        
         foreach (ScriptableCharacterState state in stateGroup.StateList)
         {
             if (state == null || state == CurrentState)
                 continue;
 
-            if (state.CheckEnterCondition(Model) && CurrentState.Priority < state.Priority)
+            if (state.Priority <= currentPriority)
+                continue;
+
+            if (state.CheckEnterCondition(Model))
                 return state;
         }
 
