@@ -27,6 +27,7 @@ public class GameManager : BaseMonoManager<GameManager>
 #endif
 
         Application.targetFrameRate = 60;
+        QualitySettings.vSyncCount = 1;
 
         SelectPlatform();
     }

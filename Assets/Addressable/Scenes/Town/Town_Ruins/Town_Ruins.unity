@@ -5952,10 +5952,6 @@ MonoBehaviour:
   playerTransform: {fileID: 1631606230}
   cinemachineCamera: {fileID: 1350910652}
   objectContainer: {fileID: 0}
-  walkableMaps: []
-  obstacleMaps: []
-  layoutGrid: {fileID: 0}
-  chunkSize: 20
   battlePortal: {fileID: 2043820954}
 --- !u!4 &1239961155
 Transform:
@@ -6499,13 +6495,13 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.21648699, y: 8.811567}
-      - {x: -13.51761, y: 8.721888}
-      - {x: -14.049578, y: 2.3448372}
-      - {x: -14.222197, y: -4.780109}
-      - {x: 0.4049533, y: -4.979574}
-      - {x: 14.969959, y: -4.858378}
-      - {x: 14.476794, y: 8.867928}
+    - - {x: -0.29767984, y: 18.947998}
+      - {x: -19.115292, y: 18.018036}
+      - {x: -19.747217, y: 4.5439262}
+      - {x: -19.220125, y: -4.780109}
+      - {x: 0.11114365, y: -4.9061217}
+      - {x: 23.766308, y: -4.4585376}
+      - {x: 23.474302, y: 18.452728}
   m_UseDelaunayMesh: 0
 --- !u!4 &1792115850
 Transform:
