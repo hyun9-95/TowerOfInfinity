@@ -20,7 +20,7 @@ public class IntroView : BaseView
         while (Model.DataLoader.IsLoading)
         {
             UpdateLoadingUI();
-            await UniTask.NextFrame(TokenPool.Get(GetHashCode()));
+            await UniTaskUtils.NextFrame(TokenPool.Get(GetHashCode()));
         }
     }
 

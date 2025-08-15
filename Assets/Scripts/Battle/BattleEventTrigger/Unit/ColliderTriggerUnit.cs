@@ -60,8 +60,8 @@ public class ColliderTriggerUnit : BaseTriggerUnit<BattleEventTriggerUnitModel>
 
         if (detectDuration == 0)
         {
-            await UniTask.NextFrame(TokenPool.Get(GetHashCode()));
-            await UniTask.NextFrame(TokenPool.Get(GetHashCode()));
+            await UniTaskUtils.NextFrame(TokenPool.Get(GetHashCode()));
+            await UniTaskUtils.NextFrame(TokenPool.Get(GetHashCode()));
         }
         else
         {
@@ -82,7 +82,7 @@ public class ColliderTriggerUnit : BaseTriggerUnit<BattleEventTriggerUnitModel>
                 
             transform.position = Model.FollowTargetTransform.transform.position;
             transform.localPosition += localPosOffset;
-            await UniTask.NextFrame(TokenPool.Get(GetHashCode()));
+            await UniTaskUtils.NextFrame(TokenPool.Get(GetHashCode()));
         }
     }
 }

@@ -147,7 +147,7 @@ public class CharacterActionHandler
         {
             bodyColorChanging = false;
             TokenPool.Cancel(GetHashCode());
-            await UniTask.NextFrame(token);
+            await UniTaskUtils.NextFrame(token).SuppressCancellationThrow();
         }
 
         bodyColorChanging = true;
@@ -155,9 +155,9 @@ public class CharacterActionHandler
         while (bodySprite != null && !token.IsCancellationRequested)
         {
             bodySprite.color = frozenColor;
-            await UniTask.NextFrame(cancellationToken:token);
+            await UniTaskUtils.NextFrame(token).SuppressCancellationThrow();
         }
-
+        
         if (bodySprite != null)
             bodySprite.color = originColor;
 

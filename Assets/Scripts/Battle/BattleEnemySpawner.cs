@@ -50,7 +50,7 @@ public class BattleEnemySpawner : IObserver
             }
             else
             {
-                await UniTask.NextFrame(cancellationToken: TokenPool.Get(GetHashCode()));
+                await UniTaskUtils.NextFrame(cancellationToken: TokenPool.Get(GetHashCode()));
             }
         }
 

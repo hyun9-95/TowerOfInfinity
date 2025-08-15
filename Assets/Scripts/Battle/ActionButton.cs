@@ -61,7 +61,7 @@ public class ActionButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 
 			var fillAmount = 1f - (elapsedTime / coolTime);
 			coolDownDim.fillAmount = fillAmount;
-			await UniTask.NextFrame(TokenPool.Get(GetHashCode()));	
+			await UniTaskUtils.NextFrame(TokenPool.Get(GetHashCode()));	
         }
 
 		isCoolTime = false;

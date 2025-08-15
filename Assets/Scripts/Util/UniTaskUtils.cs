@@ -14,4 +14,9 @@ public static class UniTaskUtils
         await DelaySeconds(delay, cancellationToken);
         action?.Invoke();
     }
+
+    public static async UniTask NextFrame(CancellationToken cancellationToken = default)
+    {
+        await UniTask.NextFrame(cancellationToken: cancellationToken).SuppressCancellationThrow();
+    }
 }
