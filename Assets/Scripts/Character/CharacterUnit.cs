@@ -1,6 +1,7 @@
 using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.U2D.Animation;
@@ -72,6 +73,7 @@ public class CharacterUnit : PoolableMono
     private ScriptableCharacterModuleGroup moduleGroup;
     private ScriptableCharacterState defaultState;
     private bool activated = false;
+    private bool stateUpdate = false;
 
     private AbilityProcessor abilityProcessor = new();
     private BattleEventProcessor battleEventProcessor = new();
@@ -94,10 +96,7 @@ public class CharacterUnit : PoolableMono
         if (!activated)
             return;
 
-        var cc = GetCrowdControl();
-        
-        // CC 없을 때만 상태 업데이트
-        if (cc == BattleEventType.None)
+        if (stateUpdate)
             UpdateState();
 
         UpdatePhysics();
@@ -143,9 +142,15 @@ public class CharacterUnit : PoolableMono
     public void StopUpdate()
     {
         activated = false;
+        stateUpdate = false;
 
         if (Model != null)
             Model.SetIsActivate(activated);
+    }
+
+    public void OnStateUpdateChange(bool value)
+    {
+        stateUpdate = value;
     }
 
     public float GetPrimaryWeaponCoolTime()
@@ -238,14 +243,6 @@ public class CharacterUnit : PoolableMono
         Model.SetIsActivate(activated);
     }
 
-    private BattleEventType GetCrowdControl()
-    {
-        if (battleEventProcessor == null)
-            return BattleEventType.None;
-
-        return battleEventProcessor.IsCrowdControl();
-    }
-
     protected void UpdateState()
     {
         if (Model == null)
@@ -264,9 +261,6 @@ public class CharacterUnit : PoolableMono
         }
 
         CurrentState.OnStateAction(Model);
-
-        if (CurrentState is CharacterDeadState)
-            OnDeactivate();
     }
 
     protected void UpdatePhysics()
@@ -410,6 +404,8 @@ public class CharacterUnit : PoolableMono
             actionHandler = new CharacterActionHandler(animator, rigidBody2D, bodySprite, gameObject, pathFinder);
         
         actionHandler.SetOnFlipX(OnFlipX);
+        actionHandler.SetOnStopStateUpdate(OnStateUpdateChange);
+        actionHandler.SetOnDeactivate(OnDeactivate);
 
         if (characterAnimationEffect != null)
             actionHandler.SetCharacterAnimEffect(characterAnimationEffect);

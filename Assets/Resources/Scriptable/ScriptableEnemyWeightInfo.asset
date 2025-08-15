@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e427a134bd502344a8738af62b1ba679, type: 3}
+  m_Name: ScriptableEnemyWeightInfo
+  m_EditorClassIdentifier: 
+  enemyWeights:
+    _serializedList:
+    - Key: 11000
+      Value:
+        StartWeight: 3
+        EndWeight: 2
+    - Key: 11003
+      Value:
+        StartWeight: 1
+        EndWeight: 2
+    - Key: 11005
+      Value:
+        StartWeight: 3
+        EndWeight: 3
+    - Key: 11004
+      Value:
+        StartWeight: 2
+        EndWeight: 2

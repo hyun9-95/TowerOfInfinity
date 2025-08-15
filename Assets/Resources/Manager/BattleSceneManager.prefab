@@ -390,6 +390,7 @@ MonoBehaviour:
   cinemachineCamera: {fileID: 3432115595563684008}
   objectContainer: {fileID: 9151639476228099314}
   infinityTile: {fileID: 2569268483276811176}
+  enemyWeightInfo: {fileID: 11400000, guid: c93d6a7caf947b34f8086816ee695c7f, type: 2}
 --- !u!1 &6620468501725758362
 GameObject:
   m_ObjectHideFlags: 0

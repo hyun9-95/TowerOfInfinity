@@ -1,5 +1,6 @@
 #pragma warning disable CS1998
 using Cysharp.Threading.Tasks;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BattleEnemySpawner : IObserver
@@ -8,6 +9,10 @@ public class BattleEnemySpawner : IObserver
 
     private float minDistance;
     private int safeCount = 3;
+
+    private float[] currentWaveWeights;
+    private CharacterDefine[] currentWaveEnemies;
+    private float totalWeight;
 
     public BattleEnemySpawner(BattleEnemyGeneratorModel battleEnemyGeneratorModel)
     {
@@ -24,16 +29,28 @@ public class BattleEnemySpawner : IObserver
         bool isSpawnMidBoss = false;
         bool isSpawnFinalBoss = false;
 
+        int currentWave = -1;
+        int burstSpawnCount = 1;
+        bool isBurstSpawn = false;
+        float currentIntervalSeconds = Model.SpawnIntervalSeconds;
+        
+        var token = TokenPool.Get(GetHashCode());
         while (!TokenPool.Get(GetHashCode()).IsCancellationRequested)
         {
             if (BattleSystemManager.Instance.InBattle)
             {
-                int currentWave = BattleSystemManager.Instance.CurrentWave;
-                var currentWaveEnemies = Model.GetCurrentWaveEnemies(currentWave);
+                var tempWave = BattleSystemManager.Instance.CurrentWave;
 
-                if (currentWaveEnemies != null)
-                    await SpawnWave(currentWaveEnemies);
-
+                if (tempWave != currentWave)
+                {
+                    currentWave = tempWave;
+                    currentIntervalSeconds = Model.GetCurrentSpawnInterval(currentWave);
+                    currentWaveEnemies = Model.GetCurrentWaveEnemies(currentWave);
+                    CachingCurrentWaveWeight(currentWaveEnemies, currentWave);
+                    burstSpawnCount = Model.GetBurstWaveValue(currentWave);
+                    isBurstSpawn = false;
+                }
+                
                 if (!isSpawnMidBoss && currentWave == Model.MidBossWave)
                 {
                     await SpawnMidBossAsync();
@@ -46,15 +63,78 @@ public class BattleEnemySpawner : IObserver
                     isSpawnFinalBoss = true;
                 }
 
-                await UniTaskUtils.DelaySeconds(Model.SpawnIntervalSeconds, cancellationToken: TokenPool.Get(GetHashCode()));
+                if (!isSpawnFinalBoss && currentWaveWeights != null)
+                {
+                    // 특정 웨이브 도달 시 대량 스폰 1회
+                    if (!isBurstSpawn && burstSpawnCount > 0)
+                    {
+                        var tasks = new List<UniTask>(burstSpawnCount);
+                        for (int i = 0; i < burstSpawnCount; i++)
+                        {
+                            var enemy = PickRandomEnemy();
+                            tasks.Add(SpawnWave(enemy));
+                        }
+                        await UniTask.WhenAll(tasks);
+
+                        isBurstSpawn = true;
+                    }
+                    else
+                    {
+                        var enemy = PickRandomEnemy();
+                        await SpawnWave(enemy);
+                    }          
+                }
+
+                await UniTaskUtils.DelaySeconds(currentIntervalSeconds, cancellationToken: token);
             }
             else
             {
-                await UniTaskUtils.NextFrame(cancellationToken: TokenPool.Get(GetHashCode()));
+                await UniTaskUtils.NextFrame(cancellationToken: token);
             }
         }
 
         ObserverManager.RemoveObserver(BattleObserverID.BattleEnd, this);
+    }
+
+    // 웨이브의 적 종류별 가중치를 캐싱해놓는다.
+    private void CachingCurrentWaveWeight(CharacterDefine[] enemies, int currentWave)
+    {
+        currentWaveWeights = new float[enemies.Length];
+        currentWaveEnemies = enemies;
+        totalWeight = 0f;
+        var weightSum = 0f;
+
+        for (int i = 0; i < enemies.Length; i++)
+        {
+            var enemy = enemies[i];
+            var enemyWeight = Model.OnGetEnemySpawnWeight(enemy, currentWave);
+
+            weightSum += enemyWeight;
+            currentWaveWeights[i] = weightSum;
+        }
+
+        totalWeight = weightSum;
+    }
+
+    // 캐싱한 가중치 배열에서 적을 랜덤으로 선택한다.
+    private CharacterDefine PickRandomEnemy()
+    {
+        float randomValue = UnityEngine.Random.value * totalWeight;
+
+        int selectIndex = 0;
+        int highIndex = currentWaveWeights.Length - 1;
+
+        while (selectIndex <= highIndex)
+        {
+            int midIndex = (selectIndex + highIndex) / 2;
+
+            if (currentWaveWeights[midIndex] < randomValue)
+                selectIndex = midIndex + 1;
+            else
+                highIndex = midIndex - 1;
+        }
+
+        return currentWaveEnemies[selectIndex];
     }
 
     private async UniTask SpawnMidBossAsync()
@@ -76,12 +156,6 @@ public class BattleEnemySpawner : IObserver
     }
 #endif
 
-    private async UniTask SpawnWave(CharacterDefine[] enemys)
-    {
-        foreach (var characterDefine in enemys)
-            await SpawnWave(characterDefine);
-    }
-
     private async UniTask SpawnWave(CharacterDefine characterDefine, bool spawnBoss = false)
     {
         var spawnPos = GetValidSpawnPosition();
@@ -90,8 +164,9 @@ public class BattleEnemySpawner : IObserver
         {
             int tryCount = 0;
 
-            while (spawnPos != Vector3.zero && tryCount < safeCount)
+            while (spawnPos == Vector3.zero && tryCount < safeCount)
             {
+                await UniTaskUtils.NextFrame(cancellationToken: TokenPool.Get(GetHashCode()));
                 spawnPos = GetValidSpawnPosition();
                 tryCount++;
             }

@@ -15,6 +15,9 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>
     [SerializeField]
     private BattleInfinityTile infinityTile;
 
+    [SerializeField]
+    private ScriptableEnemyWeightInfo enemyWeightInfo;
+
     private BattleEnemySpawner enemySpawn;
     private List<CharacterUnit> enemyCharacters = new();
     private BattleInfo battleInfo;
@@ -48,9 +51,9 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>
 
         BattleEnemyGeneratorModel enemyGeneratorModel = new BattleEnemyGeneratorModel();
         enemyGeneratorModel.SetDataEnemyGroup(dataEnemyGroup);
-        enemyGeneratorModel.SetSpawnInterval(5f);
         enemyGeneratorModel.SetCheckWalkablePosOnSpawn(true);
         enemyGeneratorModel.SetOnSpawnEnemy(OnSpawnEnemy);
+        enemyGeneratorModel.SetOnGetEnemySpawnWeight(OnGetEnemySpawnWeight);
 
         enemySpawn = new BattleEnemySpawner(enemyGeneratorModel);
     }
@@ -68,6 +71,18 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>
 
         enemyCharacters.Add(enemy);
         AddLiveCharacter(enemy.gameObject.GetInstanceID(), enemyModel);
+    }
+
+    private float OnGetEnemySpawnWeight(CharacterDefine enemy, int currentWave)
+    {
+        if (enemyWeightInfo == null)
+        {
+            Logger.Null("Enemy Weight Info");
+            return 0f;
+        }
+
+        // 현재 웨이브에 해당하는 적의 가중치를 반환
+        return enemyWeightInfo.GetCurrentWeight(enemy, currentWave);
     }
     #endregion
 

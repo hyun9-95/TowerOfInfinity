@@ -1,7 +1,6 @@
 public class FloatDefine
 {
     public const float DEFAULT_MOVE_SPEED = 5f;
-    public const float DEFAULT_SPAWN_INTERVAL = 0.5f;
     public const float DEFAULT_BATTLE_START_DELAY = 0.5f;
     public const float DEFAULT_COLLISION_DAMAGE_INTERVAL = 0.5f;
     /// <summary>
@@ -25,4 +24,6 @@ public class FloatDefine
     public const float COLLIDER_STAY_COOLTIME_PER_TARGET = 0.5f;
 
     public const float DEAFAULT_ROLL_COOTIME = 3f;
+
+    public const float BATTLE_BURST_DURATION = 10f;
 }

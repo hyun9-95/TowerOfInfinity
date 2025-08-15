@@ -3,61 +3,85 @@
     "id": 30000,
     "MidBoss": "CHAR_GREEN_OGRE",
     "FinalBoss": "CHAR_RED_DRAGON",
+    "SpawnInterval": 0.2,
+    "IntervalDecrease": 0.02,
+    "BurstWave": [
+      2,
+      5,
+      8,
+      11,
+      13
+    ],
+    "BurstValue": [
+      50,
+      60,
+      70,
+      80,
+      90
+    ],
     "Enemys": [
       [
+        "CHAR_BAT"
+      ],
+      [
+        "CHAR_BAT"
+      ],
+      [
         "CHAR_BAT",
+        "CHAR_GREY_RAT"
+      ],
+      [
+        "CHAR_BAT",
+        "CHAR_GREY_RAT"
+      ],
+      [
+        "CHAR_BAT",
+        "CHAR_GREY_RAT"
+      ],
+      [
         "CHAR_BAT",
         "CHAR_GREY_RAT",
-        "CHAR_BLUE_SPIRIT",
         "CHAR_DARK_STUMP"
       ],
       [
         "CHAR_BAT",
-        "CHAR_BAT"
+        "CHAR_GREY_RAT",
+        "CHAR_DARK_STUMP"
       ],
       [
         "CHAR_BAT",
-        "CHAR_BAT"
+        "CHAR_GREY_RAT",
+        "CHAR_DARK_STUMP"
       ],
       [
         "CHAR_BAT",
-        "CHAR_BAT"
+        "CHAR_GREY_RAT",
+        "CHAR_DARK_STUMP",
+        "CHAR_BLUE_SPIRIT"
       ],
       [
         "CHAR_BAT",
-        "CHAR_BAT"
+        "CHAR_GREY_RAT",
+        "CHAR_DARK_STUMP",
+        "CHAR_BLUE_SPIRIT"
       ],
       [
         "CHAR_BAT",
-        "CHAR_BAT"
+        "CHAR_GREY_RAT",
+        "CHAR_DARK_STUMP",
+        "CHAR_BLUE_SPIRIT"
       ],
       [
         "CHAR_BAT",
-        "CHAR_BAT"
+        "CHAR_GREY_RAT",
+        "CHAR_DARK_STUMP",
+        "CHAR_BLUE_SPIRIT"
       ],
       [
         "CHAR_BAT",
-        "CHAR_BAT"
-      ],
-      [
-        "CHAR_BAT",
-        "CHAR_BAT"
-      ],
-      [
-        "CHAR_BAT",
-        "CHAR_BAT"
-      ],
-      [
-        "CHAR_BAT",
-        "CHAR_BAT"
-      ],
-      [
-        "CHAR_BAT",
-        "CHAR_BAT"
-      ],
-      [
-        "CHAR_BAT",
-        "CHAR_BAT"
+        "CHAR_GREY_RAT",
+        "CHAR_DARK_STUMP",
+        "CHAR_BLUE_SPIRIT"
       ]
     ]
   }

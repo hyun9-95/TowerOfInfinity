@@ -9,6 +9,7 @@ public class CharacterDeadState : ScriptableCharacterState
 
     public override void OnEnterState(CharacterUnitModel model)
     {
+        model.ActionHandler.OnDeactivate();
     }
 
     public override void OnStateAction(CharacterUnitModel model)

@@ -11,6 +11,14 @@ public class DataEnemyGroup : IBaseData
     public readonly CharacterDefine MidBoss;
     [JsonProperty(PropertyName = "FinalBoss")]
     public readonly CharacterDefine FinalBoss;
+    [JsonProperty(PropertyName = "SpawnInterval")]
+    public readonly float SpawnInterval;
+    [JsonProperty(PropertyName = "IntervalDecrease")]
+    public readonly float IntervalDecrease;
+    [JsonProperty(PropertyName = "BurstWave")]
+    public readonly int[] BurstWave;
+    [JsonProperty(PropertyName = "BurstValue")]
+    public readonly int[] BurstValue;
     [JsonProperty(PropertyName = "Enemys")]
     private readonly CharacterDefine[][] enemys;
 
