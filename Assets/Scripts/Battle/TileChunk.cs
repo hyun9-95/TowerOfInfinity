@@ -12,16 +12,23 @@ public class TileChunk : AddressableMono
     [SerializeField]
     private Tilemap obstacleTilemap;
     
+    // 장애물 정보 캐시
+    private TileChunkObstacleInfo cachedObstacleInfo;
+    
     public int ChunkSize => chunkSize;
     public Tilemap WalkableTilemap => walkableTilemap;
     public Tilemap ObstacleTilemap => obstacleTilemap;
     
-    public void SetPosition(Vector3 worldPos)
+    // 생성 시 캐싱하는 장애물 타일, 영역 정보
+    public TileChunkObstacleInfo GetObstacleInfo()
     {
-        transform.position = worldPos;
+        if (cachedObstacleInfo == null)
+            cachedObstacleInfo = new TileChunkObstacleInfo(obstacleTilemap);
+
+        return cachedObstacleInfo;
     }
     
-    public void SetPosition(Vector2Int gridPos, int chunkSize)
+    public void SetGridPosition(Vector2Int gridPos, int chunkSize)
     {
         Vector3 worldPos = new Vector3(gridPos.x * chunkSize, gridPos.y * chunkSize, 0);
         transform.position = worldPos;

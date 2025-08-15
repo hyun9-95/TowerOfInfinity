@@ -27,7 +27,7 @@ public class AStar
     /// <summary>
     /// 초기화
     /// </summary>
-    public void Initialize(BoundsInt bounds, Tilemap[] obstacleMaps, Grid layoutGrid)
+    public void Initialize(BoundsInt bounds, TileChunkObstacleInfo[] obstacleInfos, Grid layoutGrid)
     {
         currentGridBounds = bounds;
         currentGrid = layoutGrid;
@@ -36,13 +36,13 @@ public class AStar
         int totalCellCount = currentGridBounds.size.x * currentGridBounds.size.y;
         nodeMap = new Dictionary<Vector3Int, AStarNode>(totalCellCount);
 
-        CreateGrid(obstacleMaps);
+        CreateGrid(obstacleInfos);
 
         // 디버깅
         CheatShowGridView();
     }
 
-    public void UpdateObstacle(BoundsInt changedBounds, Tilemap[] newObstacleMaps)
+    public void UpdateObstacle(BoundsInt changedBounds, TileChunkObstacleInfo[] newObstacleInfos)
     {
         if (nodeMap == null)
             return;
@@ -50,15 +50,15 @@ public class AStar
         nodeMap.Clear();
         currentGridBounds = changedBounds;
 
-        CreateGrid(newObstacleMaps);
+        CreateGrid(newObstacleInfos);
 
         // 디버깅
         CheatShowGridView();
     }
 
-    public void CreateGrid(Tilemap[] obstacleMaps)
+    public void CreateGrid(TileChunkObstacleInfo[] obstacleInfos)
     {
-        HashSet<Vector3Int> obstaclePositions = GetObstacleCellPositions(obstacleMaps);
+        HashSet<Vector3Int> obstaclePositions = GetObstacleCellPositions(obstacleInfos);
 
         for (int y = currentGridBounds.yMin; y < currentGridBounds.yMax; y++)
         {
@@ -83,40 +83,42 @@ public class AStar
         }
     }
 
-    private HashSet<Vector3Int> GetObstacleCellPositions(Tilemap[] obstacleMaps)
+    private HashSet<Vector3Int> GetObstacleCellPositions(TileChunkObstacleInfo[] obstacleInfos)
     {
         HashSet<Vector3Int> obstaclePositions = new HashSet<Vector3Int>();
 
-        foreach (var obstacle in obstacleMaps)
+        foreach (var obstacleInfo in obstacleInfos)
         {
-            if (obstacle == null)
+            if (obstacleInfo == null || !obstacleInfo.IsValid())
                 continue;
 
-            // 타일맵의 실제 bounds만 체크
-            obstacle.CompressBounds();
-            BoundsInt obstacleBounds = obstacle.cellBounds;
-            
+            // TilChunkObstacleInfo => 타일 청크 생성 시 변하지 않는 값들을 미리 계산해놓음
+
+            // 장애물 타일정보
+            var cachedTiles = obstacleInfo.CachedTiles;
+
+            // 장애물 영역 Bounds
+            var obstacleBounds = obstacleInfo.ObstacleBounds;
+
+            // 장애물 타일맵
+            var sourceTilemap = obstacleInfo.ObstacleTilemap;
+
             if (obstacleBounds.size.x <= 0 || obstacleBounds.size.y <= 0)
                 continue;
 
-            // 실제 타일이 그려진 영역의 타일들만 한번에 가져온다.
-            // HasTile로 하나씩 체크하는 것보다 빠름.
-            // 해당 인덱스에 타일이 없다면 null임.
-            TileBase[] tilesArray = new TileBase[obstacleBounds.size.x * obstacleBounds.size.y];
-            obstacle.GetTilesBlockNonAlloc(obstacleBounds, tilesArray);
-
+           
             int index = 0;
             for (int y = obstacleBounds.yMin; y < obstacleBounds.yMax; y++)
             {
                 for (int x = obstacleBounds.xMin; x < obstacleBounds.xMax; x++)
                 {
                     // 실제 타일이 있는 위치만 목록에 추가
-                    if (tilesArray[index] != null)
+                    if (cachedTiles[index] != null)
                     {
                         Vector3Int localCellPos = new Vector3Int(x, y, 0);
                         
                         // 타일맵 셀 좌표 => 월드 좌표
-                        Vector3 worldPos = obstacle.CellToWorld(localCellPos);
+                        Vector3 worldPos = sourceTilemap.CellToWorld(localCellPos);
 
                         // 월드 좌표를 그대로 사용하면 부동 소수점 오차 발생하므로
                         // 셀좌표로 변환해서 사용

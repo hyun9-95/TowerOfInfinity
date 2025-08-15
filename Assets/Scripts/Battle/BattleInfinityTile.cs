@@ -193,7 +193,7 @@ public class BattleInfinityTile : AddressableMono
         var tileChunk = GetAvailableTileChunk();
         if (tileChunk != null)
         {
-            tileChunk.SetPosition(gridPos, chunkSize);
+            tileChunk.SetGridPosition(gridPos, chunkSize);
             activeTiles[gridPos] = tileChunk;
         }
     }
@@ -231,11 +231,11 @@ public class BattleInfinityTile : AddressableMono
         // 현재 영역 가져오기
         BoundsInt currentBounds = GetCurrentBounds();
 
-        // 재배치된 장애물 타일맵 가져오기
-        Tilemap[] allObstacleMaps = GetObstacleMap();
+        // 캐싱된 장애물 정보 가져오기
+        TileChunkObstacleInfo[] allObstacleInfos = GetObstacleInfos();
 
         if (grid != null)
-            AStarManager.Instance.Initialize(currentBounds, allObstacleMaps, grid);
+            AStarManager.Instance.Initialize(currentBounds, allObstacleInfos, grid);
     }
 
     private void UpdateAStarGrid()
@@ -243,10 +243,10 @@ public class BattleInfinityTile : AddressableMono
         // 현재 영역 가져오기
         BoundsInt currentBounds = GetCurrentBounds();
 
-        // 재배치된 장애물 타일맵 가져오기
-        Tilemap[] allObstacleMaps = GetObstacleMap();
+        // 캐싱된 장애물 정보 가져오기
+        TileChunkObstacleInfo[] allObstacleInfos = GetObstacleInfos();
         
-        AStarManager.Instance.UpdateObstacle(currentBounds, allObstacleMaps);
+        AStarManager.Instance.UpdateObstacle(currentBounds, allObstacleInfos);
     }
 
     // 청크타일 배치가 바뀌었다면 BoundsInt를 새로 계산해야 함.
@@ -289,6 +289,26 @@ public class BattleInfinityTile : AddressableMono
         Vector3Int cellMax = grid.WorldToCell(mergedWorldBounds.max);
 
         return new BoundsInt(cellMin, cellMax - cellMin);
+    }
+
+    /// <summary>
+    /// 캐싱된 장애물 정보
+    /// </summary>
+    private TileChunkObstacleInfo[] GetObstacleInfos()
+    {
+        List<TileChunkObstacleInfo> obstacleInfos = new(activeTiles.Values.Count);
+        
+        foreach (var chunk in activeTiles.Values)
+        {
+            if (chunk != null)
+            {
+                var obstacleInfo = chunk.GetObstacleInfo();
+                if (obstacleInfo != null && obstacleInfo.IsValid())
+                    obstacleInfos.Add(obstacleInfo);
+            }
+        }
+        
+        return obstacleInfos.ToArray();
     }
 
     private Tilemap[] GetWalkableMap()
