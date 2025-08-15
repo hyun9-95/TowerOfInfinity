@@ -493,7 +493,7 @@ public class CharacterUnit : PoolableMono
         
         actionHandler.SetOnFlipX(OnFlipX);
         actionHandler.SetOnStopStateUpdate(OnStateUpdateChange);
-        actionHandler.SetOnDeactivate(() => OnDeactivate(false));
+        actionHandler.SetOnDeactivate(() => OnDeactivate(true));
 
         if (characterAnimationEffect != null)
             actionHandler.SetCharacterAnimEffect(characterAnimationEffect);
