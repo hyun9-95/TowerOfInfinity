@@ -4,10 +4,9 @@ using UnityEngine;
 public class BattleEventTriggerUnitModel : IBaseUnitModel
 {
     #region Property
-    public CharacterUnitModel FollowTargetModel { get; private set; }
-    public Transform FollowTargetTransform => FollowTargetModel.Transform;
+    public Transform FollowTargetTransform => followTargetModel.Transform;
 
-    public bool IsEnableFollow => FollowTargetModel != null && FollowTargetModel.IsActivated && FollowTargetModel.Transform != null;
+    public bool IsEnableFollow => followTargetModel != null && followTargetModel.IsActivated && followTargetModel.Transform != null;
 
     public bool IsFlip { get; private set; }
 
@@ -20,7 +19,7 @@ public class BattleEventTriggerUnitModel : IBaseUnitModel
 
     #region Value
     public int currentHitCount;
-
+    private CharacterUnitModel followTargetModel;
     /// <summary>
     /// 유닛에서 타겟을 검출할 때.
     /// </summary>
@@ -39,7 +38,7 @@ public class BattleEventTriggerUnitModel : IBaseUnitModel
 
     public void SetFollowTargetModel(CharacterUnitModel target)
     {
-        FollowTargetModel = target;
+        followTargetModel = target;
     }
 
     public void SetFlip(bool flip)
