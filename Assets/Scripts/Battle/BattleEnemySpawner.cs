@@ -36,7 +36,10 @@ public class BattleEnemySpawner : IObserver
 
 #if CHEAT && UNITY_EDITOR
         if (CheatManager.CheatConfig.bossSpawnWhenBattleStart)
-            SpawnBossAsync().Forget();
+            await SpawnBossAsync();
+
+        if (CheatManager.CheatConfig.midBossSpawnWhenBattleStart)
+            await SpawnMidBossAsync();
 #endif
 
         while (BattleSystemManager.InBattle)

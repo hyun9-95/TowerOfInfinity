@@ -16,11 +16,16 @@ public class FrozenBattleEvent : BattleEvent
     {
         frozenTokenSource = new CancellationTokenSource();
 
-        BattleSystemManager.Instance.OnDamage
-            (Model.Sender, Model.Receiver, GetAppliableStatValue());
-
         Model.Receiver.ActionHandler.OnBodyColorChange(GetFrozenBodyColor(), frozenTokenSource.Token).Forget();
         Model.Receiver.ActionHandler.OnCCStart(BattleEventType.Frozen);
+
+        DelayDamage();
+    }
+
+    private void DelayDamage()
+    {
+        UniTaskUtils.DelayAction(1f, () => BattleSystemManager.Instance.OnDamage
+            (Model.Sender, Model.Receiver, GetAppliableStatValue()), TokenPool.Get(GetHashCode())).Forget();
     }
 
     public override void OnEnd()

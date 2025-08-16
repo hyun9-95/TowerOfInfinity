@@ -93,23 +93,24 @@ public class CharacterUnit : PoolableMono
 
     private Dictionary<int, CharacterAnimState> shortNameHashDic = new();
 
-    protected virtual void Update()
+    private void FixedUpdate()
     {
         if (!activated)
             return;
-
-        PrepareState();
-    }
-
-    private void LateUpdate()
-    {
-        if (!activated)
-            return;
-
-        if (stateUpdate)
-            UpdateState();
 
         UpdatePhysics();
+        PrepareState();
+
+        if (stateUpdate)
+        {
+            ProcessCurrentState();
+            CheckNextState();
+        }
+        else if (Model.IsDead)
+        {
+            // 죽었다면 즉시 상태 검사
+            CheckNextState(false);
+        }
     }
 
     public virtual void Initialize()
@@ -317,19 +318,27 @@ public class CharacterUnit : PoolableMono
         Model.SetDistanceToTarget(distanceToTarget);
     }
 
-    protected void UpdateState()
+    protected void ProcessCurrentState()
     {
         if (Model == null)
             return;
 
-        updateTimer += Time.deltaTime;
+        CurrentState.OnStateAction(Model);
+    }
 
-        if (updateTimer < updateInterval)
-            return;
+    protected void CheckNextState(bool checkTimer = true)
+    {
+        if (checkTimer)
+        {
+            updateTimer += Time.deltaTime;
 
-        // 상태 선택 로직이 무겁기 때문에 업데이트 주기를 조절
-        updateTimer = 0;
+            if (updateTimer < updateInterval)
+                return;
 
+            // 상태 로직이 무겁기 때문에 업데이트 주기를 조절
+            updateTimer = 0;
+        }
+        
         if (CurrentState == defaultState || CurrentState.CheckExitCondition(Model))
         {
             SelectState();
@@ -341,8 +350,6 @@ public class CharacterUnit : PoolableMono
             if (candidateState != null)
                 ChangeState(candidateState);
         }
-
-        CurrentState.OnStateAction(Model);
     }
 
     protected void UpdatePhysics()

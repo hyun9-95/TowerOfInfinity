@@ -20,4 +20,6 @@ public class CheatConfig
     public LocalizationType testLocalType;
 
     public bool bossSpawnWhenBattleStart = false;
+
+    public bool midBossSpawnWhenBattleStart = false;
 }

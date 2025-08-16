@@ -81,7 +81,7 @@ public class ColliderTriggerUnit : BaseTriggerUnit<BattleEventTriggerUnitModel>
                 
             transform.position = Model.FollowTargetTransform.transform.position;
             transform.localPosition += localPosOffset;
-            await UniTaskUtils.NextFrame(TokenPool.Get(GetHashCode()));
+            await UniTaskUtils.WaitForFixedUpdate(TokenPool.Get(GetHashCode()));
         }
     }
 }

@@ -108,10 +108,11 @@ public class AStarPathFinder : IPathFinder
 
             Vector2 beforeMoveDelta = targetPos - currentPos;
 
-            rigidBody2D.MovePosition(
-                currentPos + onGetMoveSpeed.Invoke() * Time.fixedDeltaTime * moveDir);
+            float step = onGetMoveSpeed.Invoke() * Time.fixedDeltaTime;
+            Vector2 nextPos = Vector2.MoveTowards(rigidBody2D.position, targetPos, step);
+            rigidBody2D.MovePosition(nextPos);
 
-            Vector2 afterMoveDelta = targetPos - rigidBody2D.position;
+            Vector2 afterMoveDelta = targetPos - nextPos;
 
             // 1. 일정거리만큼 가까워졌거나
             // 2. 이미 다음 목표 노드를 지나쳤다면
@@ -127,5 +128,6 @@ public class AStarPathFinder : IPathFinder
     {
         currentPath = null;
         currentPathIndex = 0;
+        currentTargetPosition = Vector3.zero;
     }
 }
