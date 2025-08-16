@@ -11,7 +11,6 @@ public class BattleFlow : BaseFlow<BattleFlowModel>
     private BattleSceneManager battleSceneManager;
     private BattleSystemManager battleSystemManager;
     private BattleUIManager battleUIManager;
-    private BattleInfinityTile infinityTileManager;
     private float attackCoolTime = 0;
     private float rollCoolTime = 0;
 

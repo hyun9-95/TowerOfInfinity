@@ -29,6 +29,7 @@ public class CharacterUnitModel : IBaseUnitModel
     public bool IsEnablePhysics { get; private set; }
     public bool IsActivated { get; private set; }
     public float DistanceToTargetSqr { get; private set; }
+    public float ReadyCoolTime { get; private set; }
     #endregion
 
     #region Value
@@ -259,5 +260,17 @@ public class CharacterUnitModel : IBaseUnitModel
     public void SetIsEnablePhysics(bool value)
     {
         IsEnablePhysics = value;
+    }
+
+    public void SetReadyCoolTime(float time)
+    {
+        ReadyCoolTime = time;
+    }
+
+    public void ReduceReadyCoolTime()
+    {
+        ReadyCoolTime -= Time.deltaTime;
+        if (ReadyCoolTime < 0)
+            ReadyCoolTime = 0;
     }
 }

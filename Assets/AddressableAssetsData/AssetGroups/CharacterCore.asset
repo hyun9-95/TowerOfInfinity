@@ -33,12 +33,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 03e3dbb226f56964f81eccdf341ef1c4
-    m_Address: CharacterCore/ScriptableCharacterInfo/MainCharacterInfo
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Main
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 03eca4309e2d8b34ba98fc6e47bfd33c
     m_Address: CharacterCore/AnimationEffect/FireMuzzleM
     m_ReadOnly: 0
@@ -100,7 +94,7 @@ MonoBehaviour:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1cd847ba144e20b4fb5d7daa80b06d16
-    m_Address: CharacterCore/StateGroup/ServentStateGroup
+    m_Address: CharacterCore/StateGroup/SubPCStateGroup
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
@@ -136,7 +130,7 @@ MonoBehaviour:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3b8644d45f6e0ae44a3c90d71c7ef9ba
-    m_Address: CharacterCore/StateGroup/LeaderStateGroup
+    m_Address: CharacterCore/StateGroup/MainPCStateGroup
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
@@ -243,12 +237,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 92edc707b5d92e446bf12ed654a7cae7
-    m_Address: CharacterCore/ScriptableCharacterInfo/SubCharacterInfo
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Main
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 954bba01c65f10c49aed5d15f492ff48
     m_Address: CharacterCore/State/Player/PlayerMoveState
     m_ReadOnly: 0
@@ -269,12 +257,6 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a2a62a9fab85c1748b30191dbf8fa225
     m_Address: CharacterCore/Player/Animation/PlayerAnim_Crouch
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Main
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: a6cebd4ee073d8846b59c7621ed6aa82
-    m_Address: CharacterCore/ScriptableCharacterInfo/EnemyBossCharacterInfo
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
@@ -347,12 +329,6 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d5f24f5a56c9a3249ac51c06943f5fff
     m_Address: CharacterCore/Player/Animation/PlayerAnim_BowShot
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Main
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: e30580ce83dd9d84997fdf985e903f9c
-    m_Address: CharacterCore/ScriptableCharacterInfo/EnemyCharacterInfo
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main

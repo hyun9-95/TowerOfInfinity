@@ -133,7 +133,7 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>
 #if CHEAT
     public void CheatSpawnBoss()
     {
-        if (!BattleSystemManager.Instance.InBattle)
+        if (!BattleSystemManager.InBattle)
             return;
 
         enemySpawn.CheatSpawnBoss();

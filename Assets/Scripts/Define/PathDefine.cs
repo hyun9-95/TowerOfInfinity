@@ -29,11 +29,15 @@ public class PathDefine
 
     #region Resources
     public const string Resources_UI_View = "UI/{0}/{1}";
-    public const string CHARACTER_INFO_MAIN = "CharacterCore/ScriptableCharacterInfo/MainCharacterInfo";
-    public const string CHARACTER_INFO_SUB = "CharacterCore/ScriptableCharacterInfo/SubCharacterInfo";
-    public const string CHARACTER_INFO_ENEMY = "CharacterCore/ScriptableCharacterInfo/EnemyCharacterInfo";
-    public const string CHARACTER_INFO_ENEMY_BOSS = "CharacterCore/ScriptableCharacterInfo/EnemyBossCharacterInfo";
-    public const string CHARACTER_INFO_NPC = "CharacterCore/ScriptableCharacterInfo/NpcCharacterInfo";
+    public const string STATE_GROUP_MAIN = "CharacterCore/StateGroup/MainPCStateGroup";
+    public const string STATE_GROUP_SUB = "CharacterCore/StateGroup/SubPCStateGroup";
+    public const string STATE_GROUP_ENEMY = "CharacterCore/StateGroup/EnemyStateGroup";
+    public const string STATE_GROUP_ENEMY_BOSS = "CharacterCore/StateGroup/EnemyBossStateGroup";
+    public const string STATE_GROUP_NPC = "";
+
+    public const string MODULE_GROUP_PLAYER = "CharacterCore/ModuleGroup/PlayerModuleGroup";
+    public const string MODULE_GROUP_ENEMY = "CharacterCore/ModuleGroup/EnemyModuleGroup";
+
     public const string CHARACTER_EXP_GAINER = "BattleCore/BattleExpGainer";
     public const string BATTLE_EXP_GEM = "BattleCore/BattleExpGem";
     public const string DAMAGE_GROUP = "UI/Damages/DamageNumbersGroup";

@@ -5,4 +5,5 @@ public enum BattleObserverID
     RefreshUI,
     EnemyKilled,
     BattleEnd,
+    AbilityReady,
 }

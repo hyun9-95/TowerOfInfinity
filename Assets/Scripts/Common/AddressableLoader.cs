@@ -14,7 +14,7 @@ public class AddressableLoader : AddressableMono
 	#region Function
 	public async UniTask<T> LoadAsync<T>() where T : UnityEngine.Object
 	{
-		return await AddressableManager.Instance.LoadAssetAsyncWithTracker<T>(address, gameObject);
+		return await AddressableManager.Instance.LoadAssetAsyncWithTracker<T>(address, this);
 	}
 
 	public async UniTask<T> InstantiateAsyc<T>() where T : AddressableMono

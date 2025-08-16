@@ -121,9 +121,9 @@ public class AddressableManager : BaseManager<AddressableManager>
     }
 
     /// <summary>
-    /// Tracker가 파괴되었으면 ReleaseGameObject 호출 필요
+    /// Tracker가 파괴되었으면 ReleaseGameObject 호출
     /// </summary>
-    public async UniTask<T> LoadAssetAsyncWithTracker<T>(string address, GameObject tracker) where T : UnityEngine.Object
+    public async UniTask<T> LoadAssetAsyncWithTracker<T>(string address, AddressableMono tracker) where T : UnityEngine.Object
     {
         if (tracker == null)
         {
@@ -143,13 +143,13 @@ public class AddressableManager : BaseManager<AddressableManager>
 
         if (tracker != null)
         {
-            if (trackingAssetHandles.TryGetValue(tracker, out var assetToHandleMap))
+            if (trackingAssetHandles.TryGetValue(tracker.gameObject, out var assetToHandleMap))
             {
                 assetToHandleMap[asset] = handle;
             }
             else
             {
-                trackingAssetHandles.Add(tracker, new Dictionary<UnityEngine.Object, AsyncOperationHandle>() { { asset, handle } });
+                trackingAssetHandles.Add(tracker.gameObject, new Dictionary<UnityEngine.Object, AsyncOperationHandle>() { { asset, handle } });
             }
         }
 

@@ -8,9 +8,10 @@ using UnityEngine;
 public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
 {
     #region Property
-    public bool InBattle => battleInfo == null ? false : battleInfo.BattleState == BattleState.Playing;
+    public static bool InBattle => instance ? instance.inBattle : false;
     public int CurrentWave => battleInfo.CurrentWave;
     public Vector3 CurrentCharacterPos => battleInfo.CurrentCharacter.transform.position;
+    private bool inBattle => battleInfo == null ? false : battleInfo.BattleState == BattleState.Playing;
     #endregion
 
     #region Value

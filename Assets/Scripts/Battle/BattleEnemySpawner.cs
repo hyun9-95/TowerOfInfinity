@@ -35,62 +35,55 @@ public class BattleEnemySpawner : IObserver
         bool isBurstSpawn = false;
         float currentIntervalSeconds = Model.SpawnIntervalSeconds;
         
-        while (!TokenPool.Get(GetHashCode()).IsCancellationRequested)
+        while (BattleSystemManager.InBattle)
         {
-            if (BattleSystemManager.Instance.InBattle)
+            var tempWave = BattleSystemManager.Instance.CurrentWave;
+
+            if (tempWave != currentWave)
             {
-                var tempWave = BattleSystemManager.Instance.CurrentWave;
+                currentWave = tempWave;
+                currentIntervalSeconds = Model.GetCurrentSpawnInterval(currentWave);
+                currentWaveEnemies = Model.GetCurrentWaveEnemies(currentWave);
+                CachingCurrentWaveWeight(currentWaveEnemies, currentWave);
+                burstSpawnCount = Model.GetBurstWaveValue(currentWave);
+                isBurstSpawn = false;
+            }
 
-                if (tempWave != currentWave)
-                {
-                    currentWave = tempWave;
-                    currentIntervalSeconds = Model.GetCurrentSpawnInterval(currentWave);
-                    currentWaveEnemies = Model.GetCurrentWaveEnemies(currentWave);
-                    CachingCurrentWaveWeight(currentWaveEnemies, currentWave);
-                    burstSpawnCount = Model.GetBurstWaveValue(currentWave);
-                    isBurstSpawn = false;
-                }
-                
-                if (!isSpawnMidBoss && currentWave == Model.MidBossWave)
-                {
-                    await SpawnMidBossAsync();
-                    isSpawnMidBoss = true;
-                }
+            if (!isSpawnMidBoss && currentWave == Model.MidBossWave)
+            {
+                await SpawnMidBossAsync();
+                isSpawnMidBoss = true;
+            }
 
-                if (!isSpawnFinalBoss && currentWave == Model.FinalBossWave)
-                {
-                    await SpawnBossAsync();
-                    isSpawnFinalBoss = true;
-                }
+            if (!isSpawnFinalBoss && currentWave == Model.FinalBossWave)
+            {
+                await SpawnBossAsync();
+                isSpawnFinalBoss = true;
+            }
 
-                if (!isSpawnFinalBoss && currentWaveWeights != null)
+            if (!isSpawnFinalBoss && currentWaveWeights != null)
+            {
+                // 특정 웨이브 도달 시 대량 스폰 1회
+                if (!isBurstSpawn && burstSpawnCount > 0)
                 {
-                    // 특정 웨이브 도달 시 대량 스폰 1회
-                    if (!isBurstSpawn && burstSpawnCount > 0)
-                    {
-                        var tasks = new List<UniTask>(burstSpawnCount);
-                        for (int i = 0; i < burstSpawnCount; i++)
-                        {
-                            var enemy = PickRandomEnemy();
-                            tasks.Add(SpawnWave(enemy));
-                        }
-                        await UniTask.WhenAll(tasks);
-
-                        isBurstSpawn = true;
-                    }
-                    else
+                    var tasks = new List<UniTask>(burstSpawnCount);
+                    for (int i = 0; i < burstSpawnCount; i++)
                     {
                         var enemy = PickRandomEnemy();
-                        await SpawnWave(enemy);
-                    }          
-                }
+                        tasks.Add(SpawnWave(enemy));
+                    }
+                    await UniTask.WhenAll(tasks);
 
-                await UniTaskUtils.DelaySeconds(currentIntervalSeconds, cancellationToken: TokenPool.Get(GetHashCode()));
+                    isBurstSpawn = true;
+                }
+                else
+                {
+                    var enemy = PickRandomEnemy();
+                    await SpawnWave(enemy);
+                }
             }
-            else
-            {
-                await UniTaskUtils.NextFrame(cancellationToken: TokenPool.Get(GetHashCode()));
-            }
+
+            await UniTaskUtils.DelaySeconds(currentIntervalSeconds, cancellationToken: TokenPool.Get(GetHashCode()));
         }
 
         ObserverManager.RemoveObserver(BattleObserverID.BattleEnd, this);

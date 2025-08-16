@@ -9,7 +9,7 @@ public class CharacterUnit : PoolableMono
 {
     public SpriteLibrary SpriteLibrary => spriteLibrary;
 
-    public bool IsCustomStateGroup => stateGroup != null;
+    public string CustomStateGroupAddress => customStateGroupAddress;
 
     public CharacterUnitModel Model { get; private set; }
 
@@ -64,11 +64,12 @@ public class CharacterUnit : PoolableMono
     protected ScriptableCharacterStat baseStat;
 
     [SerializeField]
-    private ScriptableCharacterStateGroup stateGroup;
+    private string customStateGroupAddress;
 
     [SerializeField]
     private bool debugLog;
 
+    private ScriptableCharacterStateGroup stateGroup;
     private ScriptableCharacterModuleGroup moduleGroup;
     private ScriptableCharacterState defaultState;
     private bool activated = false;

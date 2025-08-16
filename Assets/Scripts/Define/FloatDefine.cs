@@ -26,4 +26,6 @@ public class FloatDefine
     public const float DEAFAULT_ROLL_COOTIME = 3f;
 
     public const float BATTLE_BURST_DURATION = 10f;
+
+    public const float DEFAULT_ABILITY_READY_COOLTIME = 2f;
 }

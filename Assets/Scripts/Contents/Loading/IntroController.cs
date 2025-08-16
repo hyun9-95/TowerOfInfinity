@@ -43,7 +43,7 @@ public class IntroController : BaseController<IntroViewModel>
                 addressableDataLoader.SetOnSuccessLoadData(OnSuccessDataLoader);
 
                 // 뷰를 트래커로 할당해서, View가 파괴될 때 자동으로 TextAsset들을 해제한다.
-                addressableDataLoader.SetAddressableTracker(View.gameObject);
+                addressableDataLoader.SetAddressableTracker(View);
                 Model.SetAddressableDataLoader(addressableDataLoader);
                 break;
         }

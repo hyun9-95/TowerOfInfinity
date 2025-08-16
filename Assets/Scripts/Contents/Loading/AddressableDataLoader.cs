@@ -3,13 +3,13 @@ using UnityEngine;
 
 public class AddressableDataLoader : BaseDataLoader
 {
-    public GameObject AddressableTracker { get; private set; }
+    public AddressableMono AddressableTracker { get; private set; }
 
     /// <summary>
     /// 모두 로드 후에 ReleaseGameObject로 텍스트에셋들 해제
     /// </summary>
     /// <param name="tracker"></param>
-    public void SetAddressableTracker(GameObject tracker)
+    public void SetAddressableTracker(AddressableMono tracker)
     {
         AddressableTracker = tracker;
     }

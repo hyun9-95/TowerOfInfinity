@@ -8,7 +8,7 @@ using TowerOfInfinity.CharacterBuilder;
 using UnityEngine;
 using UnityEngine.U2D.Animation;
 
-public class CharacterSpriteLibraryBuilder : MonoBehaviour
+public class CharacterSpriteLibraryBuilder : AddressableMono
 {
     public enum Mode
     {
@@ -447,7 +447,7 @@ public class CharacterSpriteLibraryBuilder : MonoBehaviour
 
         ReleaseExistingTexture(partsType);
 
-        var texture = await AddressableManager.Instance.LoadAssetAsyncWithTracker<Texture2D>(texturePath, gameObject);
+        var texture = await AddressableManager.Instance.LoadAssetAsyncWithTracker<Texture2D>(texturePath, this);
 
         if (texture == null)
         {
@@ -696,7 +696,7 @@ public class CharacterSpriteLibraryBuilder : MonoBehaviour
         if (preloadedParts.ContainsKey(address))
             return;
 
-        var texture = await AddressableManager.Instance.LoadAssetAsyncWithTracker<Texture2D>(address, gameObject);
+        var texture = await AddressableManager.Instance.LoadAssetAsyncWithTracker<Texture2D>(address, this);
 
         if (texture == null)
         {

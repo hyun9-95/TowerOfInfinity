@@ -78,4 +78,9 @@ public class CharacterPassingState : ScriptableCharacterState
 
         return model.DistanceToTargetSqr >= passingExitDistance * passingExitDistance;
     }
+
+    private void OnDisable()
+    {
+        fixedDirections.Clear();
+    }
 }

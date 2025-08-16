@@ -7,7 +7,7 @@ public class ScriptableCharacterStateGroup : ScriptableObject
     public IReadOnlyList<ScriptableCharacterState> StateList => stateList;
 
     [SerializeField]
-    private List<ScriptableCharacterState> stateList = new List<ScriptableCharacterState>();
+    protected List<ScriptableCharacterState> stateList = new List<ScriptableCharacterState>();
 
     private bool isSorted = false;
 

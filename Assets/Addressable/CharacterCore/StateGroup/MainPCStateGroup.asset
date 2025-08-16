@@ -10,9 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 323acb49e51cc0844b489c75f397a224, type: 3}
-  m_Name: ServentStateGroup
+  m_Name: MainPCStateGroup
   m_EditorClassIdentifier: 
   stateList:
-  - {fileID: 11400000, guid: f799c4289bae6c148ba46d8e9e97b990, type: 2}
-  - {fileID: 11400000, guid: c612e26ecce44414d8ed38190f3a3f85, type: 2}
   - {fileID: 11400000, guid: 4f4211a8e47e5a541bab5585d8846157, type: 2}
+  - {fileID: 11400000, guid: 0ebcb74036ea8dd4dab117dd05d31f97, type: 2}
+  - {fileID: 11400000, guid: 87e601a8b80ba604c8d64b393374338b, type: 2}
+  - {fileID: 11400000, guid: cb6c0daa6143982449cbf7559ae50e2d, type: 2}
+  - {fileID: 11400000, guid: 954bba01c65f10c49aed5d15f492ff48, type: 2}
+  - {fileID: 11400000, guid: c612e26ecce44414d8ed38190f3a3f85, type: 2}

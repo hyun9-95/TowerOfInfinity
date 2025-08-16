@@ -50,7 +50,7 @@ public class BattleView : BaseView
         if (Model == null)
             return;
 
-        if (!BattleSystemManager.Instance.InBattle)
+        if (!BattleSystemManager.InBattle)
             return;
 
         timeText.SafeSetText(Model.GetElapsedTimeText());

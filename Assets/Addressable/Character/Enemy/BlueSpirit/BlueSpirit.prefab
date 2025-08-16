@@ -88,6 +88,10 @@ PrefabInstance:
       propertyPath: characterCollider2D
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: -5463155225954161578, guid: 3f669f6d112971a4ca167399c23c3769, type: 3}
+      propertyPath: customStateGroupAddress
+      value: Character/Enemy/BlueSpirit/BlueSpiritStateGroup
+      objectReference: {fileID: 0}
     - target: {fileID: 375275871827160082, guid: 3f669f6d112971a4ca167399c23c3769, type: 3}
       propertyPath: m_Size.x
       value: 4
