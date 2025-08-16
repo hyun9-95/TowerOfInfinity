@@ -322,5 +322,17 @@
     "Korean": "이동속도가 증가합니다.",
     "English": "Increases movement speed.",
     "SimplifiedChinese": "增加移动速度。"
+  },
+  {
+    "id": 70054,
+    "Korean": "헬 게이트",
+    "English": "Hell Gate",
+    "SimplifiedChinese": "地狱之门"
+  },
+  {
+    "id": 70055,
+    "Korean": "적을 끌어당기며 피해를 입히는 문을 소환합니다.",
+    "English": "Summons a gate that pulls enemies and deals damage.",
+    "SimplifiedChinese": "召唤一扇吸引敌人并造成伤害的门。"
   }
 ]

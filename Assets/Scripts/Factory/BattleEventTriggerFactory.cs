@@ -20,6 +20,7 @@ public static class BattleEventTriggerFactory
             BattleEventTriggerType.Orbit => new OrbitBattleEventTrigger(),
             BattleEventTriggerType.TargetProjectile => new TargetProjectileBattleEventTrigger(),
             BattleEventTriggerType.InRangeRandom => new InRangeRandomBattleEventTrigger(),
+            BattleEventTriggerType.Blackhole => new BlackholeBattleEventTrigger(),
             _ => null
         };
 
@@ -98,5 +99,18 @@ public static class BattleEventTriggerFactory
         }
 
         return orbitUnitModel;
+    }
+
+    public static BlackholeTriggerUnitModel CreateBlackholeUnitModel(
+        BattleEventTriggerModel triggerModel,
+        Func<Collider2D, Vector3, bool> onEventHit = null)
+    {
+        var blackholeUnitModel = new BlackholeTriggerUnitModel();
+        blackholeUnitModel.SetDetectTeamTag(triggerModel.TargetTeamTag);
+        blackholeUnitModel.SetOnEventHit(onEventHit);
+        blackholeUnitModel.SetHitCount(triggerModel.HitCount);
+        blackholeUnitModel.SetPullForce(triggerModel.HitForce);
+
+        return blackholeUnitModel;
     }
 }

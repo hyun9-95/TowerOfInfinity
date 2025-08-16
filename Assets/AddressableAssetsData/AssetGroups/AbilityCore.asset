@@ -105,6 +105,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5f886a1abb37f164db8e092f2e9a21e9
+    m_Address: AbilityCore/AbilityBalance/AB_ACTIVE_HELL_GATE
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6e5df379b6b1ee942b022750ccd009ce
     m_Address: AbilityCore/BattleEventBalance/BE_DAMAGE_REPULSOR_DOME
     m_ReadOnly: 0
@@ -143,6 +149,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 98347707bdac57149a5fefb7c947ec2a
     m_Address: AbilityCore/BattleEventBalance/BE_DAMAGE_BOULDER_SMASH
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9b943e77e4238e846b47359791e53cf6
+    m_Address: AbilityCore/BattleEventBalance/BE_DAMAGE_HELL_GATE
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main

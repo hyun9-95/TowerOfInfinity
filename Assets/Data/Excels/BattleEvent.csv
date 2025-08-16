@@ -18,3 +18,4 @@ Id,NameId,Type,AffectStat,BattleEventCategory,BattleEventGroup,StatReference,Sta
 20014,BE_DAMAGE_REPULSOR_DOME,Damage,Attack,Active,None,Sender,CurrentStat,Increase,FALSE,Mutiply
 20015,BE_DAMAGE_SHADOW_GRASP,Damage,Attack,Active,None,Sender,CurrentStat,Increase,FALSE,Mutiply
 20016,BE_BUFF_GOLDEN_BOOTS,Buff,MoveSpeed,Passive,Buff,None,CurrentStat,Increase,TRUE,Fixed
+20017,BE_DAMAGE_HELL_GATE,Damage,Attack,Active,None,Sender,CurrentStat,Increase,FALSE,Mutiply

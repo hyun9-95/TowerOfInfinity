@@ -236,5 +236,19 @@
     "TriggerUnitPath": "",
     "IconPath": "GoldenBoots_Icon",
     "HitEffectPrefabName": ""
+  },
+  {
+    "id": 51013,
+    "SlotType": "Active",
+    "CastingType": "Auto",
+    "BattleEvents": [
+      "BE_DAMAGE_HELL_GATE"
+    ],
+    "TriggerType": "Blackhole",
+    "TargetType": "Enemy",
+    "CastEffectPath": "",
+    "TriggerUnitPath": "Ability/HellGate/HellGate_Blackhole",
+    "IconPath": "Ability/HellGate/HellGate_Blackhole_Icon",
+    "HitEffectPrefabName": ""
   }
 ]

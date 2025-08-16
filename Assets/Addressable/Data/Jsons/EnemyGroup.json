@@ -3,8 +3,8 @@
     "id": 30000,
     "MidBoss": "CHAR_GREEN_OGRE",
     "FinalBoss": "CHAR_RED_DRAGON",
-    "SpawnInterval": 0.5,
-    "IntervalDecrease": 0.02,
+    "SpawnInterval": 1.0,
+    "IntervalDecrease": 0.05,
     "BurstWave": [
       2,
       5,

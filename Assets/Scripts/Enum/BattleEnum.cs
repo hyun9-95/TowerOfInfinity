@@ -20,6 +20,7 @@ public enum BattleEventTriggerType
     TargetProjectile,       // 범위 내 타겟 방향 또는 랜덤 방향 투사체 생성
     FollowDirectionCollider, // Sender의 이동 방향을 따라 회전하며 위치를 따라다니는 콜라이더
     InRangeRandom,          // 원형 범위 내에 랜덤 위치에 여러 콜라이더 생성
+    Blackhole,              // 적을 끌어당기는 블랙홀 콜라이더 생성
 }
 
 public enum BattleEventType

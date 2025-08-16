@@ -197,10 +197,22 @@
     "AffectStat": "MoveSpeed",
     "BattleEventCategory": "Passive",
     "BattleEventGroup": "Buff",
-    "StatReference": "Receiver",
+    "StatReference": "None",
     "StatReferenceCondition": "CurrentStat",
     "StatusDirection": "Increase",
     "Stackable": true,
     "ValueApplyType": "Fixed"
+  },
+  {
+    "id": 20017,
+    "Type": "Damage",
+    "AffectStat": "Attack",
+    "BattleEventCategory": "Active",
+    "BattleEventGroup": "None",
+    "StatReference": "Sender",
+    "StatReferenceCondition": "CurrentStat",
+    "StatusDirection": "Increase",
+    "Stackable": false,
+    "ValueApplyType": "Mutiply"
   }
 ]

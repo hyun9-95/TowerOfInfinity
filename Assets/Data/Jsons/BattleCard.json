@@ -106,5 +106,14 @@
     "IconPath": "",
     "Name": "LOCAL_AB_GOLDEN_BOOTS_NAME",
     "Desc": "LOCAL_AB_GOLDEN_BOOTS_DESC"
+  },
+  {
+    "id": 100012,
+    "CardType": "GetAbility",
+    "Tier": "Epic",
+    "Ability": "AB_ACTIVE_HELL_GATE",
+    "IconPath": "",
+    "Name": "LOCAL_AB_HELL_GATE_NAME",
+    "Desc": "LOCAL_AB_HELL_GATE_DESC"
   }
 ]

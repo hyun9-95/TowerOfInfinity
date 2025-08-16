@@ -65,7 +65,7 @@ public class BattleEventTriggerUnitModel : IBaseUnitModel
         return currentHitCount >= HitCount;
     }
 
-    public void OnEventHit(Collider2D collider, Vector3 hitPos)
+    public virtual void OnEventHit(Collider2D collider, Vector3 hitPos)
     {
         if (IsOverHitCount())
             return;

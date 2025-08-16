@@ -24,4 +24,5 @@ Id,NameId,SlotType,CastingType,BattleEvents,TriggerType,TargetType,CastEffectPat
 51009,AB_ACTIVE_DAGGER_THROW,Active,OnRoll,BE_DAMAGE_DAGGER_THROW,FrontAngleProjectile,Enemy,NULL,Ability/DaggerThrow/DaggerThrow_Projectile,Ability/DaggerThrow/DaggerThrow_Projectile_Icon,NULL
 51010,AB_ACTIVE_REPULSOR_DOME,Active,Auto,BE_DAMAGE_REPULSOR_DOME,FollowCollider,Enemy,NULL,Ability/RepulsorDome/RepulsorDome_Collider,Ability/RepulsorDome/RepulsorDome_Collider_Icon,NULL
 51011,AB_ACTIVE_SHADOW_GRASP,Active,Auto,BE_DAMAGE_SHADOW_GRASP,InRangeRandom,Enemy,NULL,Ability/ShadowGrasp/ShadowGrasp_InRangeRandom,Ability/ShadowGrasp/ShadowGrasp_InRangeRandom_Icon,NULL
-51012,AB_PASSIVE_GOLDEN_BOOTS,Passive,Instant,BE_BUFF_GOLDEN_BOOTS,Self,Ally,NULL,NULL,GoldenBoots_Icon,NULL
+51012,AB_PASSIVE_GOLDEN_BOOTS,Passive,Instant,BE_BUFF_GOLDEN_BOOTS,Self,Ally,NULL,NULL,Ability/GoldenBoots/GoldenBoots_Icon,NULL
+51013,AB_ACTIVE_HELL_GATE,Active,Auto,BE_DAMAGE_HELL_GATE,Blackhole,Enemy,NULL,Ability/HellGate/HellGate_Blackhole,Ability/HellGate/HellGate_Blackhole_Icon,NULL

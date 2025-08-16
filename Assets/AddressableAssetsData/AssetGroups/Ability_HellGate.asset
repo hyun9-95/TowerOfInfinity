@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Ability_HellGate
+  m_EditorClassIdentifier: 
+  m_GroupName: Ability_HellGate
+  m_GUID: cbcbfaf119eddc449a25538232b736ec
+  m_SerializeEntries:
+  - m_GUID: 0c3a34eb40230494db0c620024a66669
+    m_Address: Ability/HellGate/HellGate_Blackhole_Icon
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4bc19906b879b8544abb46d1f9ebffa4
+    m_Address: Ability/HellGate/HellGate_Blackhole
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5f154495b9420394b8ce5a83ea01ff55
+    m_Address: Ability/HellGate/riteundervault
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7acb7d2dbcd2d014a98bc5437d22ec97
+    m_Address: Ability/HellGate/fx_f4_riteundervault
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e8e591319b8805640acfe756b83a4372
+    m_Address: Ability/HellGate/riteundervault_0
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: adf119ebffa2d1145b3ff8d389247eae, type: 2}
+    - {fileID: 11400000, guid: c53f22d5bbed704449e2062eb4602bc0, type: 2}
