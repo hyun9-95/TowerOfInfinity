@@ -6,6 +6,7 @@ TagManager:
   tags:
   - BATTLE_ALLY
   - BATTLE_ENEMY
+  - RESET_ANIM_075
   layers:
   - Default
   - TransparentFX

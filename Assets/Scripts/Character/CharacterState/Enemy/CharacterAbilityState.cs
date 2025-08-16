@@ -61,6 +61,11 @@ public class CharacterAbilityState : SoloScriptableState
         lastEnterTime = Time.time;
     }
 
+    protected override void OnExitStateInternal(CharacterUnitModel model)
+    {
+        model.SetReadyCoolTime(0);
+    }
+
     private void CreateAbility(CharacterUnitModel owner)
     {
         int abilityId = (int)abilityDefine;

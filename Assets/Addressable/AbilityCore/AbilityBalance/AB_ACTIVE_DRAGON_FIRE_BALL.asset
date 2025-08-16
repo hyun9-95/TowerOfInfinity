@@ -21,7 +21,7 @@ MonoBehaviour:
   HitCount: 03000000
   Scale: []
   CoolTime:
-  - 5
+  - 4
   SpawnCount: 03000000
   HitForce:
   - 5
