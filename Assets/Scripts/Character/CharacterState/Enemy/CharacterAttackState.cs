@@ -26,6 +26,10 @@ public class CharacterAttackState : ScriptableCharacterState
     public override void OnEnterState(CharacterUnitModel model)
     {
         model.ActionHandler.OnStopPathFind();
+
+#if CHEAT
+        CheatManager.DrawWireSphereAtPosition(model.Transform.position, model.AbilityProcessor.GetPrimaryWeaponRange());
+#endif
     }
 
     public override void OnStateAction(CharacterUnitModel model)

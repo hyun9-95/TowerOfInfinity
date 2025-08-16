@@ -187,7 +187,7 @@ public class CharacterFactory : BaseManager<CharacterFactory>
             CharacterType.Main => PathDefine.MODULE_GROUP_PLAYER,
             CharacterType.Sub => PathDefine.MODULE_GROUP_PLAYER,
             CharacterType.Enemy => PathDefine.MODULE_GROUP_ENEMY,
-            CharacterType.Boss => PathDefine.STATE_GROUP_ENEMY_BOSS,
+            CharacterType.Boss => PathDefine.MODULE_GROUP_ENEMY,
             _ => string.Empty,
         };
     }

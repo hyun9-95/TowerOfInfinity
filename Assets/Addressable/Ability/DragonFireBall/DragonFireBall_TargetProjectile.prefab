@@ -122,7 +122,7 @@ GameObject:
   - component: {fileID: 3793734677802039787}
   - component: {fileID: 2015645150855121294}
   m_Layer: 8
-  m_Name: DragonBreath_TargetProjectile
+  m_Name: DragonFireBall_TargetProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

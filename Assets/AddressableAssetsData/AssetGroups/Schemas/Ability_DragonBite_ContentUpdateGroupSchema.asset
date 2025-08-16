@@ -9,18 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dceb0da3ed51b6e47a7efb36ff83fcff, type: 3}
-  m_Name: AB_WEAPON_DRAGON_BITE
+  m_Script: {fileID: 11500000, guid: 5834b5087d578d24c926ce20cd31e6d6, type: 3}
+  m_Name: Ability_DragonBite_ContentUpdateGroupSchema
   m_EditorClassIdentifier: 
-  type: 50003
-  Speed: []
-  Range:
-  - 6
-  Duration: []
-  HitCount: 01000000
-  Scale: []
-  CoolTime:
-  - 5
-  SpawnCount: 01000000
-  HitForce:
-  - 10
+  m_Group: {fileID: 11400000, guid: b81885c5734b60c45829ac3a833f1f5b, type: 2}
+  m_StaticContent: 0

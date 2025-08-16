@@ -40,7 +40,7 @@ MonoBehaviour:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3a06a062b6928ba4fb2e04d92c6244a3
-    m_Address: AbilityCore/AbilityBalance/AB_WEAPON_DRAGON_BREATH
+    m_Address: AbilityCore/AbilityBalance/AB_WEAPON_DRAGON_BITE
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
@@ -76,7 +76,7 @@ MonoBehaviour:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9096d8cc66a612149b0a76a2bb581433
-    m_Address: AbilityCore/BattleEventBalance/BE_DAMAGE_DRAGON_BREATH
+    m_Address: AbilityCore/BattleEventBalance/BE_DAMAGE_DRAGON_BITE
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main

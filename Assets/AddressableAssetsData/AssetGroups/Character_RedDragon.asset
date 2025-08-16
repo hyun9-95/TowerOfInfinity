@@ -27,8 +27,20 @@ MonoBehaviour:
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 17380dfebe2d3a84189739e355a32ab3
+    m_Address: Character/Enemy/RedDragon/RedDragon_BreathState
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2665e1e32d173c847b6fa757aa1f728e
     m_Address: Character/Enemy/RedDragon/RedDragon
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 57bce2eb450590342b97518faf084be9
+    m_Address: Character/Enemy/RedDragon/RedDragon_FireBallState
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
