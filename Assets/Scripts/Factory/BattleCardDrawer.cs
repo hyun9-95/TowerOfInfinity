@@ -76,14 +76,16 @@ public class BattleCardDrawer
 		return BattleCardTier.Epic;
 	}
 
-    public DataBattleCard[] DrawBattleCards(int battleLevel)
+    public DataBattleCard[] DrawBattleCards(int battleLevel, AbilityProcessor abilityProcessor)
     {
         var resultCards = new DataBattleCard[drawCount];
         var drawnCardsIds = new HashSet<int>();
 
         int drawnCount = 0;  // 실제 뽑은 카드 수
+		int tryCount = 0;
+		int safeCount = 100;
 
-        while (drawnCount < resultCards.Length)
+        while (drawnCount < resultCards.Length && tryCount < safeCount)
         {
             BattleCardTier drawTier = GetDrawTier(battleLevel);
 
@@ -99,9 +101,14 @@ public class BattleCardDrawer
             if (drawnCardsIds.Contains(drawnCard.Id))
                 continue;
 
+			// 이미 최대레벨인 건 허용 안함
+			if (!abilityProcessor.IsDrawable(drawnCard.Id))
+				continue;
+
             resultCards[drawnCount] = drawnCard;
             drawnCardsIds.Add(drawnCard.Id);
             drawnCount++;
+			tryCount++;
         }
 
         return resultCards;

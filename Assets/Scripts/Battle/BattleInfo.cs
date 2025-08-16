@@ -107,7 +107,7 @@ public class BattleInfo
         expPerLevel = new float[maxLevel];
 
         for (int level = 0; level < maxLevel; level++)
-            expPerLevel[level] = startExp + (growthRate * level);
+            expPerLevel[level] = startExp + (growthRate * level * startExp);
     }
 
     public void OnExpGain(float exp)

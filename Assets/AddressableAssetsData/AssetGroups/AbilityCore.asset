@@ -33,6 +33,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 26ed42bc1da8a4e48aab9c16b2ca4801
+    m_Address: AbilityCore/AbilityBalance/AB_ACTIVE_REPULSOR_DOME
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2c7eee72960f5474e96fecc6622d570c
     m_Address: AbilityCore/BattleEventBalance/BE_DAMAGE_DRAGON_BREATH
     m_ReadOnly: 0
@@ -89,6 +95,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5c4f0e0733682dc49ae283ecc894e097
     m_Address: AbilityCore/BattleEventBalance/BE_DAMAGE_DRAGON_FIRE_BALL
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6e5df379b6b1ee942b022750ccd009ce
+    m_Address: AbilityCore/BattleEventBalance/BE_DAMAGE_REPULSOR_DOME
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main

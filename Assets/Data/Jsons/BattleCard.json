@@ -79,5 +79,14 @@
     "IconPath": "",
     "Name": "LOCAL_AB_DAGGER_THROW_NAME",
     "Desc": "LOCAL_AB_DAGGER_THROW_DESC"
+  },
+  {
+    "id": 100009,
+    "CardType": "GetAbility",
+    "Tier": "Uncommon",
+    "Ability": "AB_ACTIVE_REPULSOR_DOME",
+    "IconPath": "",
+    "Name": "LOCAL_AB_REPULSOR_DOME_NAME",
+    "Desc": "LOCAL_AB_REPULSOR_DOME_DESC"
   }
 ]

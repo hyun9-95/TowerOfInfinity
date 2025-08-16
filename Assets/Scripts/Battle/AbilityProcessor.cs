@@ -168,6 +168,17 @@ public class AbilityProcessor
         return abilities;
     }
 
+    public bool IsDrawable(int dataId)
+    {
+        if (!abilityDicById.TryGetValue(dataId, out var ability))
+            return true;
+
+        if (ability.Model.Level >= IntDefine.MAX_ABILITY_LEVEL)
+            return false;
+
+        return true;
+    }
+
     public void Cancel()
     {
         abilityDicById.Clear();
