@@ -274,5 +274,17 @@
     "Korean": "주변 적을 얼어붙게 만듭니다.",
     "English": "Freezes nearby enemies.",
     "SimplifiedChinese": "冻结附近的敌人。"
+  },
+  {
+    "id": 70046,
+    "Korean": "단검 던지기",
+    "English": "Throw Dagger",
+    "SimplifiedChinese": "匕首投掷"
+  },
+  {
+    "id": 70047,
+    "Korean": "구르면서 단검을 여러개 던집니다.",
+    "English": "Throws multiple daggers while rolling.",
+    "SimplifiedChinese": "翻滚时投掷多把匕首。"
   }
 ]

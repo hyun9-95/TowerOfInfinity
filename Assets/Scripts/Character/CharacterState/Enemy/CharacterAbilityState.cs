@@ -55,7 +55,7 @@ public class CharacterAbilityState : SoloScriptableState
     {
         if (ability == null)
             return;
-
+        
         model.ActionHandler.OnStopPathFind();
         ability.DelayCast(animDelay).Forget();
         lastEnterTime = Time.time;

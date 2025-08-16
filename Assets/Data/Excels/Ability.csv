@@ -21,3 +21,4 @@ Id,NameId,SlotType,CastingType,BattleEvents,TriggerType,TargetType,CastEffectPat
 51006,AB_ACTIVE_FROST_NOVA,Active,Auto,BE_FROZEN_FROST_NOVA,InRangeFollow,Enemy,AbilityCast/GroundEnergy/GroundEnergyEffect,Ability/FrostNova/FrostNova_InRange,Ability/FrostNova/FrostNova_InRange_Icon,NULL
 51007,AB_ACTIVE_DRAGON_FIRE_BALL,Active,Auto,BE_DAMAGE_DRAGON_FIRE_BALL,FrontAngleProjectile,Enemy,NULL,Ability/DragonFireBall/DragonFireBall_TargetProjectile,NULL,NULL
 51008,AB_ACITVE_DRAGON_BREATH,Active,Auto,BE_DAMAGE_DRAGON_BREATH,FollowCollider,Enemy,NULL,Ability/DragonBreath/DragonBreath_Collider,NULL,NULL
+51009,AB_ACTIVE_DAGGER_THROW,Active,OnRoll,BE_DAMAGE_DAGGER_THROW,FrontAngleProjectile,Enemy,NULL,Ability/DaggerThrow/DaggerThrow_Projectile,Ability/DaggerThrow/DaggerThrow_Projectile_Icon,NULL

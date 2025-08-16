@@ -39,6 +39,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2c7fb2e5a87c5234caf71136a1dcfb5c
+    m_Address: AbilityCore/BattleEventBalance/BE_DAMAGE_DAGGER_THROW
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2e8ccb4c2d3a12449ac23693b68353e8
     m_Address: AbilityCore/AbilityBalance/AB_ACTIVE_MAGIC_MISSILE
     m_ReadOnly: 0
@@ -131,6 +137,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: bf8154837826add42b49ccf4c2596af6
     m_Address: AbilityCore/AbilityBalance/AB_ACTIVE_BOULDER_SMASH
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ce1af8a515dfff54db81946d17bf9a0c
+    m_Address: AbilityCore/AbilityBalance/AB_ACTIVE_DAGGER_THROW
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main

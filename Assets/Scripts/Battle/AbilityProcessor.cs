@@ -102,6 +102,18 @@ public class AbilityProcessor
         }
     }
 
+    public void DelayCast(CastingType castingType, float delay)
+    {
+        if (!abilitySetByCasting.TryGetValue(castingType, out var abilities))
+            return;
+
+        foreach (var ability in abilities)
+        {
+            if (ability.IsCastable)
+                ability.DelayCast(delay).Forget();
+        }
+    }
+
     public async UniTask CastPrimaryWeapon(float delay)
     {
         var primaryWeapon = GetPrimaryWeapon();

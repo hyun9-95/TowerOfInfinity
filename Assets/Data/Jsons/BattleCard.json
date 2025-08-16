@@ -70,5 +70,14 @@
     "IconPath": "",
     "Name": "LOCAL_AB_FROST_NOVA_NAME",
     "Desc": "LOCAL_AB_FROST_NOVA_DESC"
+  },
+  {
+    "id": 100008,
+    "CardType": "GetAbility",
+    "Tier": "Common",
+    "Ability": "AB_ACTIVE_DAGGER_THROW",
+    "IconPath": "",
+    "Name": "LOCAL_AB_DAGGER_THROW_NAME",
+    "Desc": "LOCAL_AB_DAGGER_THROW_DESC"
   }
 ]

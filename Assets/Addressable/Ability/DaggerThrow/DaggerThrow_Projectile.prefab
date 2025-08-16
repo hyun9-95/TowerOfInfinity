@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5182369952624305072}
   - component: {fileID: 6168766080118888153}
   m_Layer: 8
-  m_Name: Arrow_Projectile
+  m_Name: DaggerThrow_Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48,9 +48,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifeTime: 1
   fadeTime: 0.25
-  fadeInTime: 0
+  fadeInTime: 0.1
   awaitTime: 0
-  localPosOffset: {x: 0, y: 0.5, z: 0}
+  localPosOffset: {x: 0.5, y: 0, z: 0}
   effectSprite: {fileID: 5182369952624305072}
   spriteAnimator: {fileID: 0}
   effectParticle: {fileID: 0}
@@ -58,7 +58,7 @@ MonoBehaviour:
   detectType: 0
   hitCollider: {fileID: 6168766080118888153}
   hitFollowTargetOnly: 0
-  startDirectionType: 5
+  startDirectionType: 0
   launchDelay: 0
   rotateToDirection: 1
 --- !u!212 &5182369952624305072
@@ -105,7 +105,7 @@ SpriteRenderer:
   m_SortingLayerID: -1737824065
   m_SortingLayer: 6
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 39c55ceb84939834ea552efadae17091, type: 3}
+  m_Sprite: {fileID: 21300000, guid: dac9c157e3c1a834b8721f00940c4238, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -129,7 +129,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -146,7 +146,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -154,11 +154,11 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 0.71875}
+    oldSize: {x: 0.8125, y: 0.5}
     newSize: {x: 96, y: 64}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2, y: 0.625}
+  m_Size: {x: 1, y: 0.5}
   m_EdgeRadius: 0

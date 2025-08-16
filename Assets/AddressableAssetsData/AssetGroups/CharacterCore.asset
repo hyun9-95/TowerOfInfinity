@@ -255,6 +255,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a1c885c5e7da0a143ad80f180b6d4141
+    m_Address: CharacterCore/State/Common/CharacterAttackFollowState
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a2a62a9fab85c1748b30191dbf8fa225
     m_Address: CharacterCore/Player/Animation/PlayerAnim_Crouch
     m_ReadOnly: 0

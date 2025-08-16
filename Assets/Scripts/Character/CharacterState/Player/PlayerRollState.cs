@@ -45,11 +45,11 @@ public class PlayerRollState : ScriptableCharacterState
     private async UniTask StartRolling(CharacterUnitModel model)
     {
         Vector2 rollDirection = GetRollDirection(model);
-        
+
+        model.AbilityProcessor.DelayCast(CastingType.OnRoll, rollDelay);
+
         await model.ActionHandler.OnRollingAsync(rollDelay, rollDirection,
             model.GetStatValue(StatType.MoveSpeed) * speedMultiplier);
-
-        model.AbilityProcessor?.Cast(CastingType.OnRoll);
     }
 
     private Vector2 GetRollDirection(CharacterUnitModel model)

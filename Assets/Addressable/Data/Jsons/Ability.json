@@ -180,5 +180,19 @@
     "TriggerUnitPath": "Ability/DragonBreath/DragonBreath_Collider",
     "IconPath": "",
     "HitEffectPrefabName": ""
+  },
+  {
+    "id": 51009,
+    "SlotType": "Active",
+    "CastingType": "OnRoll",
+    "BattleEvents": [
+      "BE_DAMAGE_DAGGER_THROW"
+    ],
+    "TriggerType": "FrontAngleProjectile",
+    "TargetType": "Enemy",
+    "CastEffectPath": "",
+    "TriggerUnitPath": "Ability/DaggerThrow/DaggerThrow_Projectile",
+    "IconPath": "Ability/DaggerThrow/DaggerThrow_Projectile_Icon",
+    "HitEffectPrefabName": ""
   }
 ]
