@@ -35,6 +35,9 @@ public class MainPlayerCharacter : MonoBehaviour
         // 외형 업데이트
         await UpdateSpriteLibraryAsset(mainCharacterInfo.PartsInfo);
 
+        // 인풋 정보 할당
+        model.SetInputWrapper(InputManager.InputInfo);
+
         if (model.CharacterSetUpType != CharacterSetUpType.Battle)
         {
             if (characterUnit.TryGetComponent<BattleExpGainer>(out var battleExpGainer))

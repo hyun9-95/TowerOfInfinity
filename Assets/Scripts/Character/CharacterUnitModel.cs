@@ -16,6 +16,7 @@ public class CharacterUnitModel : IBaseUnitModel
     public CharacterSetUpType CharacterSetUpType { get; private set; }
     public DistanceToTarget DistanceToTarget { get; private set; }
     public CharacterActionHandler ActionHandler { get; private set; }
+    public InputWrapper InputWrapper { get; private set; }
     public Transform Transform { get; private set; }
     public CharacterUnitModel Target { get; private set; }
     public NavMeshAgent Agent { get; private set; }
@@ -40,6 +41,11 @@ public class CharacterUnitModel : IBaseUnitModel
     private Dictionary<EquipmentType, Equipment> equippedEquipments;
     private Dictionary<CharacterAnimState, float> animDelayDic;
     #endregion
+    public void SetInputWrapper(InputWrapper inputWrapper)
+    {
+        InputWrapper = inputWrapper;
+    }
+
     public void SetAnimDelayDic(SerializedDictionary<CharacterAnimState, float> animDelayDicValue)
     {
         animDelayDic = animDelayDicValue;
