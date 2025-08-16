@@ -5,6 +5,7 @@ public class BattleObserverParam : IObserverParam
     #region Property
     public int IntValue { get; private set; }
     public float FloatValue { get; private set; }
+    public bool BoolValue { get; private set; }
     public CharacterUnitModel  ModelValue { get; private set; }
     #endregion
 
@@ -21,6 +22,11 @@ public class BattleObserverParam : IObserverParam
     public void SetFloatValue(float value)
     {
         FloatValue = value;
+    }
+
+    public void SetBoolValue(bool value)
+    {
+        BoolValue = value;
     }
 
     public void SetModelValue(CharacterUnitModel modelValue)

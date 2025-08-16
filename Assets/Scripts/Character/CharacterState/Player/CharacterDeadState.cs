@@ -3,7 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "ScriptableCharacterStates/Character/Dead")]
 public class CharacterDeadState : ScriptableCharacterState
 {
-    public override int Priority => 100;
+    public override int Priority => IntDefine.STATE_DEAD_PRIORITY;
 
     public override CharacterAnimState AnimState => CharacterAnimState.Die;
 

@@ -9,6 +9,8 @@ public class ScriptableCharacterStateGroup : ScriptableObject
     [SerializeField]
     private List<ScriptableCharacterState> stateList = new List<ScriptableCharacterState>();
 
+    private bool isSorted = false;
+
     private int CompareStates(ScriptableCharacterState a, ScriptableCharacterState b)
     {
         int compare = b.Priority.CompareTo(a.Priority);
@@ -21,6 +23,10 @@ public class ScriptableCharacterStateGroup : ScriptableObject
 
     public void Sort()
     {
+        if (isSorted)
+            return;
+
         stateList.Sort(CompareStates);
+        isSorted = true;
     }
 }

@@ -9,4 +9,5 @@ public class IntDefine
     public const int FINAL_BOSS_WAVE = 14;
     public const int BATTLE_CARD_DRAW_COUNT = 3;
     public const int HIT_BLINK_COUNT = 2;
+    public const int STATE_DEAD_PRIORITY = 100;
 }
