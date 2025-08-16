@@ -258,6 +258,15 @@ public class CharacterUnit : PoolableMono
             battleEventProcessor.Update();
         }
 
+        // 활성 상태 동기화
+        Model.SetIsActivate(activated);
+
+        // 플레이어와의 거리에 따라 업데이트 주기 갱신
+        UpdateDistantceToTarget();
+    }
+
+    private void UpdateDistantceToTarget()
+    {
         var distanceToTarget = DistanceToTarget.Close;
 
         // 타겟이 있다면 거리 캐싱
@@ -277,6 +286,7 @@ public class CharacterUnit : PoolableMono
                 }
 
                 distanceToTarget = DistanceToTarget.VeryFar;
+                updateInterval = 1.5f;
             }
             else if (distanceSqr >= (farDistance * farDistance))
             {
@@ -299,8 +309,6 @@ public class CharacterUnit : PoolableMono
             updateInterval = 0;
         }
 
-        // 활성 상태 동기화
-        Model.SetIsActivate(activated);
         Model.SetDistanceToTarget(distanceToTarget);
     }
 
