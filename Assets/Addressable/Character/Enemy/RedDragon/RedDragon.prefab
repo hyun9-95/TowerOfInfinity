@@ -15,7 +15,7 @@ PrefabInstance:
     - target: {fileID: 375275871827160082, guid: 3f669f6d112971a4ca167399c23c3769, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 1740535230, guid: 0e0c49562085468e8b180291b8414bf8, type: 3}
+      objectReference: {fileID: -17514963, guid: 0e0c49562085468e8b180291b8414bf8, type: 3}
     - target: {fileID: 375275871827160082, guid: 3f669f6d112971a4ca167399c23c3769, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -31,6 +31,14 @@ PrefabInstance:
     - target: {fileID: 3248602934051070365, guid: 3f669f6d112971a4ca167399c23c3769, type: 3}
       propertyPath: m_Name
       value: RedDragon
+      objectReference: {fileID: 0}
+    - target: {fileID: 3783430769333235779, guid: 3f669f6d112971a4ca167399c23c3769, type: 3}
+      propertyPath: m_SpriteKey
+      value: 0.0000000026791864
+      objectReference: {fileID: 0}
+    - target: {fileID: 3783430769333235779, guid: 3f669f6d112971a4ca167399c23c3769, type: 3}
+      propertyPath: m_SpriteHash
+      value: 451254897
       objectReference: {fileID: 0}
     - target: {fileID: 4855611840243421220, guid: 3f669f6d112971a4ca167399c23c3769, type: 3}
       propertyPath: m_SpriteLibraryAsset

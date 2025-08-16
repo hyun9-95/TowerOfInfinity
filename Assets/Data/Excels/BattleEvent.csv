@@ -12,3 +12,5 @@ Id,NameId,Type,AffectStat,BattleEventCategory,BattleEventGroup,StatReference,Sta
 20008,BE_DAMAGE_GREEN_OGRE_SMASH,Damage,Attack,Active,None,Sender,CurrentStat,Increase,FALSE
 20009,BE_DAMAGE_DRAGON_BITE,Damage,Attack,Active,None,Sender,CurrentStat,Increase,FALSE
 20010,BE_FROZEN_FROST_NOVA,Frozen,Attack,Active,None,Sender,CurrentStat,Increase,FALSE
+20011,BE_DAMAGE_DRAGON_BREATH,Damage,Attack,Active,None,Sender,CurrentStat,Increase,FALSE
+20012,BE_DAMAGE_DRAGON_FIRE_BALL,Damage,Attack,Active,None,Sender,CurrentStat,Increase,FALSE

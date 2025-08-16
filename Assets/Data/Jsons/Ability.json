@@ -152,5 +152,33 @@
     "TriggerUnitPath": "Ability/FrostNova/FrostNova_InRange",
     "IconPath": "Ability/FrostNova/FrostNova_InRange_Icon",
     "HitEffectPrefabName": ""
+  },
+  {
+    "id": 51007,
+    "SlotType": "Active",
+    "CastingType": "Auto",
+    "BattleEvents": [
+      "BE_DAMAGE_DRAGON_FIRE_BALL"
+    ],
+    "TriggerType": "TargetProjectile",
+    "TargetType": "Enemy",
+    "CastEffectPath": "",
+    "TriggerUnitPath": "Ability/DragonFireBall/DragonFireBall_TargetProjectile",
+    "IconPath": "",
+    "HitEffectPrefabName": ""
+  },
+  {
+    "id": 51008,
+    "SlotType": "Active",
+    "CastingType": "Auto",
+    "BattleEvents": [
+      "BE_DAMAGE_DRAGON_BREATH"
+    ],
+    "TriggerType": "FollowCollider",
+    "TargetType": "Enemy",
+    "CastEffectPath": "",
+    "TriggerUnitPath": "Ability/DragonBreath/DragonBreath_Collider",
+    "IconPath": "",
+    "HitEffectPrefabName": ""
   }
 ]
