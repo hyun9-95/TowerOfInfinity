@@ -24,13 +24,11 @@ public class CharacterAbilityReadyState : ScriptableCharacterState
     public override void OnEnterState(CharacterUnitModel model)
     {
         model.ActionHandler.OnStopPathFind();
-        model.SetIsEnablePhysics(false);
     }
 
     public override void OnExitState(CharacterUnitModel model)
     {
         model.SetReadyCoolTime(FloatDefine.DEFAULT_ABILITY_READY_COOLTIME);
-        model.SetIsEnablePhysics(true);
     }
 
     public override void OnStateAction(CharacterUnitModel model)

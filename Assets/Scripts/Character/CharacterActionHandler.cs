@@ -85,7 +85,7 @@ public class CharacterActionHandler
         
         while (gameObject != null && gameObject.activeSelf && elapsedTime < FloatDefine.ADD_FORCE_DURATION)
         {
-            await UniTask.Yield(PlayerLoopTiming.FixedUpdate);
+            await UniTask.WaitForFixedUpdate();
             elapsedTime += Time.fixedDeltaTime;
 
             rigidBody2D.MovePosition(rigidBody2D.position + (velocity * Time.fixedDeltaTime));
@@ -124,7 +124,7 @@ public class CharacterActionHandler
 
             var absX = Mathf.Abs(dir.x);
 
-            if (absX < 0.1f)
+            if (absX < 0.01f)
                 return;
 
             Flip(dir);
@@ -227,7 +227,7 @@ public class CharacterActionHandler
         rolling = false;
     }
 
-    private void Flip(Vector2 movement)
+    public void Flip(Vector2 movement)
     {
         bodySprite.flipX = movement.x < 0;
 

@@ -20,8 +20,8 @@ public static class UniTaskUtils
         await UniTask.NextFrame(cancellationToken: cancellationToken).SuppressCancellationThrow();
     }
 
-    public static async UniTask NextFixedUpdate(CancellationToken cancellationToken = default)
+    public static async UniTask WaitForFixedUpdate(CancellationToken cancellationToken = default)
     {
-        await UniTask.Yield(PlayerLoopTiming.FixedUpdate, cancellationToken: cancellationToken).SuppressCancellationThrow();
+        await UniTask.WaitForFixedUpdate(cancellationToken: cancellationToken).SuppressCancellationThrow();
     }
 }

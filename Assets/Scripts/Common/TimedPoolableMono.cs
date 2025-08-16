@@ -106,12 +106,9 @@ public class TimedPoolableMono : PoolableMono
             }
             else
             {
-                float xValue = value ? -1f : 1;
+                float rot = value ? 180 : 0;
 
-                if (originLocalScale == Vector3.zero)
-                    originLocalScale = transform.localScale;
-
-                transform.localScale = new Vector3(originLocalScale.x * xValue, originLocalScale.y, originLocalScale.z);
+                transform.rotation = Quaternion.Euler(0, 0, 180);
             }
         }
     }

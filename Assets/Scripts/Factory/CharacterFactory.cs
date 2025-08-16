@@ -103,6 +103,7 @@ public class CharacterFactory : BaseManager<CharacterFactory>
 
         var model = CreateCharacterUnitModel(TeamTag.Enemy, CharacterType.Boss, CharacterSetUpType.Battle, enemyCharacterInfo);
         model.SetCharacterDataId(characterDataId);
+        model.SetIsEnablePhysics(false);
         enemy.SetModel(model);
 
         await SetCharacterScriptableInfo(enemy, CharacterType.Boss, characterDataId);

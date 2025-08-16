@@ -18,7 +18,7 @@ MonoBehaviour:
   Range:
   - 16
   Duration: []
-  HitCount: 01000000
+  HitCount: 03000000
   Scale: []
   CoolTime:
   - 5

@@ -157,8 +157,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeTime: 0
-  fadeTime: 0
-  fadeInTime: 0
+  fadeTime: 0.1
+  fadeInTime: 0.25
   awaitTime: 0
   localPosOffset: {x: 3.55, y: 0.1, z: 0}
   effectSprite: {fileID: 4666526232327487443}

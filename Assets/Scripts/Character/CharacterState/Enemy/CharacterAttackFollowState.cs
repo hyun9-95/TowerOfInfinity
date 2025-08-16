@@ -50,6 +50,7 @@ public class CharacterAttackFollowState : ScriptableCharacterState
         var attackRange = model.AbilityProcessor.GetPrimaryWeaponRange();
         bool isInRange = model.DistanceToTargetSqr <= attackRange * attackRange;
         
+
         if (isInRange)
         {
             // 거리 내에 있다면 Y축 차이 확인
@@ -62,7 +63,10 @@ public class CharacterAttackFollowState : ScriptableCharacterState
                 Vector3 currentPosition = model.Transform.position;
                 
                 Vector2 yDirection = new Vector2(0, targetPosition.y > currentPosition.y ? 1 : -1);
+                Vector2 direction = (model.Target.Transform.position - model.Transform.position).normalized;
+
                 model.ActionHandler.OnMovement(yDirection, model.GetStatValue(StatType.MoveSpeed), true);
+                model.ActionHandler.Flip(direction);
                 return;
             }
         }

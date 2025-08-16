@@ -30,6 +30,9 @@ public class CharacterAttackState : ScriptableCharacterState
     {
         model.ActionHandler.OnStopPathFind();
 
+        Vector2 direction = (model.Target.Transform.position - model.Transform.position).normalized;
+        model.ActionHandler.Flip(direction);
+
 #if CHEAT
         CheatManager.DrawWireSphereAtPosition(model.Transform.position, model.AbilityProcessor.GetPrimaryWeaponRange());
 #endif

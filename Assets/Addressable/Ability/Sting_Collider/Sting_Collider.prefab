@@ -49,17 +49,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeTime: 0.45
+  fadeTime: 0.25
+  fadeInTime: 0
+  awaitTime: 0
   localPosOffset: {x: 0.7, y: 0.05, z: 0}
   effectSprite: {fileID: 0}
+  spriteAnimator: {fileID: 0}
   effectParticle: {fileID: 3948468271430011930}
   particleSystemRenderer: {fileID: 3948468271430011933}
   detectType: 0
-  fadeTime: 0.25
-  fadeInTime: 0
   hitCollider: {fileID: 6781900405216177287}
+  hitFollowTargetOnly: 0
   useFlip: 1
   detectStartTime: 0.05
-  detectDuration: 0.05
+  detectDuration: 0
   followTime: 0
 --- !u!61 &6781900405216177287
 BoxCollider2D:
