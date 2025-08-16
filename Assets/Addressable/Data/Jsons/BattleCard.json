@@ -11,7 +11,7 @@
   {
     "id": 100001,
     "CardType": "GetAbility",
-    "Tier": "Common",
+    "Tier": "Uncommon",
     "Ability": "AB_ACTIVE_BOULDER_SMASH",
     "IconPath": "",
     "Name": "LOCAL_AB_BOULDER_SMASH_NAME",
@@ -88,5 +88,23 @@
     "IconPath": "",
     "Name": "LOCAL_AB_REPULSOR_DOME_NAME",
     "Desc": "LOCAL_AB_REPULSOR_DOME_DESC"
+  },
+  {
+    "id": 100010,
+    "CardType": "GetAbility",
+    "Tier": "Rare",
+    "Ability": "AB_ACTIVE_SHADOW_GRASP",
+    "IconPath": "",
+    "Name": "LOCAL_AB_SHADOW_GRASP_NAME",
+    "Desc": "LOCAL_AB_SHADOW_GRASP_DESC"
+  },
+  {
+    "id": 100011,
+    "CardType": "GetAbility",
+    "Tier": "Common",
+    "Ability": "AB_PASSIVE_GOLDEN_BOOTS",
+    "IconPath": "",
+    "Name": "LOCAL_AB_GOLDEN_BOOTS_NAME",
+    "Desc": "LOCAL_AB_GOLDEN_BOOTS_DESC"
   }
 ]

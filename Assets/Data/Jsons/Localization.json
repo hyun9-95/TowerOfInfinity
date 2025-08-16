@@ -297,6 +297,30 @@
     "id": 70049,
     "Korean": "주변의 적을 강하게 밀어냅니다.",
     "English": "Forcefully pushes away nearby enemies.",
-    "SimplifiedChinese": "强力推开周围的敌人。"
+    "SimplifiedChinese": "强力推开周围의敌人。"
+  },
+  {
+    "id": 70050,
+    "Korean": "그림자 손아귀",
+    "English": "Shadow Grasp",
+    "SimplifiedChinese": "暗影之爪"
+  },
+  {
+    "id": 70051,
+    "Korean": "무작위 범위에 강한 피해를 줍니다.",
+    "English": "Deals strong damage to random areas.",
+    "SimplifiedChinese": "对随机区域造成强力伤害。"
+  },
+  {
+    "id": 70052,
+    "Korean": "황금 장화",
+    "English": "Golden Boots",
+    "SimplifiedChinese": "黄金靴子"
+  },
+  {
+    "id": 70053,
+    "Korean": "이동속도가 증가합니다.",
+    "English": "Increases movement speed.",
+    "SimplifiedChinese": "增加移动速度。"
   }
 ]

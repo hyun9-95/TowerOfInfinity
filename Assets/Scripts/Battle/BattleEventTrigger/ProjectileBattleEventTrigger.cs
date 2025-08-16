@@ -22,6 +22,9 @@ public class ProjectileBattleEventTrigger : BattleEventTrigger
             var model = BattleEventTriggerFactory.CreateProjectileUnitModel(Model, fixedDirection, null, OnEventHit);
             projectileUnit.SetModel(model);
             projectileUnit.ShowAsync().Forget();
+
+            if (Model.SpawnInterval > 0 && i < Model.SpawnCount - 1)
+                await UniTaskUtils.DelaySeconds(Model.SpawnInterval);
         }
     }
 }

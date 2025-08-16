@@ -208,5 +208,33 @@
     "TriggerUnitPath": "Ability/RepulsorDome/RepulsorDome_Collider",
     "IconPath": "Ability/RepulsorDome/RepulsorDome_Collider_Icon",
     "HitEffectPrefabName": ""
+  },
+  {
+    "id": 51011,
+    "SlotType": "Active",
+    "CastingType": "Auto",
+    "BattleEvents": [
+      "BE_DAMAGE_SHADOW_GRASP"
+    ],
+    "TriggerType": "InRangeRandom",
+    "TargetType": "Enemy",
+    "CastEffectPath": "",
+    "TriggerUnitPath": "Ability/ShadowGrasp/ShadowGrasp_InRangeRandom",
+    "IconPath": "Ability/ShadowGrasp/ShadowGrasp_InRangeRandom_Icon",
+    "HitEffectPrefabName": ""
+  },
+  {
+    "id": 51012,
+    "SlotType": "Passive",
+    "CastingType": "Instant",
+    "BattleEvents": [
+      "BE_BUFF_GOLDEN_BOOTS"
+    ],
+    "TriggerType": "Self",
+    "TargetType": "Ally",
+    "CastEffectPath": "",
+    "TriggerUnitPath": "",
+    "IconPath": "GoldenBoots_Icon",
+    "HitEffectPrefabName": ""
   }
 ]

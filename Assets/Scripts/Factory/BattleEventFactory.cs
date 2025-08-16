@@ -13,6 +13,9 @@ public struct BattleEventFactory
             case BattleEventType.Frozen:
                 return new FrozenBattleEvent();
 
+            case BattleEventType.Buff:
+                return new BuffBattleEvent();
+
             default:
                 Logger.Error($"정의되지 않은 BattleStatusEffect : {eventType}");
                 break;

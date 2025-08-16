@@ -25,6 +25,9 @@ public class OrbitBattleEventTrigger : BattleEventTrigger
             var model = BattleEventTriggerFactory.CreateOrbitUnitModel(Model, angleOffset, Model.Sender.Transform, OnEventHit);
             orbitUnit.SetModel(model);
             orbitUnit.ShowAsync().Forget();
+
+            if (Model.SpawnInterval > 0 && i < Model.SpawnCount - 1)
+                await UniTaskUtils.DelaySeconds(Model.SpawnInterval);
         }
     }
 }

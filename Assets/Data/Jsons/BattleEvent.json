@@ -8,7 +8,8 @@
     "StatReference": "Sender",
     "StatReferenceCondition": "CurrentStat",
     "StatusDirection": "Increase",
-    "Stackable": false
+    "Stackable": false,
+    "ValueApplyType": "Mutiply"
   },
   {
     "id": 20001,
@@ -19,7 +20,8 @@
     "StatReference": "Sender",
     "StatReferenceCondition": "CurrentStat",
     "StatusDirection": "Increase",
-    "Stackable": false
+    "Stackable": false,
+    "ValueApplyType": "Mutiply"
   },
   {
     "id": 20002,
@@ -30,7 +32,8 @@
     "StatReference": "Sender",
     "StatReferenceCondition": "CurrentStat",
     "StatusDirection": "Increase",
-    "Stackable": true
+    "Stackable": true,
+    "ValueApplyType": "Mutiply"
   },
   {
     "id": 20003,
@@ -41,7 +44,8 @@
     "StatReference": "Sender",
     "StatReferenceCondition": "CurrentStat",
     "StatusDirection": "Increase",
-    "Stackable": false
+    "Stackable": false,
+    "ValueApplyType": "Mutiply"
   },
   {
     "id": 20004,
@@ -52,7 +56,8 @@
     "StatReference": "Sender",
     "StatReferenceCondition": "CurrentStat",
     "StatusDirection": "Increase",
-    "Stackable": false
+    "Stackable": false,
+    "ValueApplyType": "Mutiply"
   },
   {
     "id": 20005,
@@ -63,7 +68,8 @@
     "StatReference": "Sender",
     "StatReferenceCondition": "CurrentStat",
     "StatusDirection": "Increase",
-    "Stackable": false
+    "Stackable": false,
+    "ValueApplyType": "Mutiply"
   },
   {
     "id": 20006,
@@ -74,7 +80,8 @@
     "StatReference": "Sender",
     "StatReferenceCondition": "CurrentStat",
     "StatusDirection": "Increase",
-    "Stackable": false
+    "Stackable": false,
+    "ValueApplyType": "Mutiply"
   },
   {
     "id": 20007,
@@ -85,7 +92,8 @@
     "StatReference": "Sender",
     "StatReferenceCondition": "CurrentStat",
     "StatusDirection": "Increase",
-    "Stackable": false
+    "Stackable": false,
+    "ValueApplyType": "Mutiply"
   },
   {
     "id": 20008,
@@ -96,7 +104,8 @@
     "StatReference": "Sender",
     "StatReferenceCondition": "CurrentStat",
     "StatusDirection": "Increase",
-    "Stackable": false
+    "Stackable": false,
+    "ValueApplyType": "Mutiply"
   },
   {
     "id": 20009,
@@ -107,18 +116,20 @@
     "StatReference": "Sender",
     "StatReferenceCondition": "CurrentStat",
     "StatusDirection": "Increase",
-    "Stackable": false
+    "Stackable": false,
+    "ValueApplyType": "Mutiply"
   },
   {
     "id": 20010,
     "Type": "Frozen",
     "AffectStat": "Attack",
     "BattleEventCategory": "Active",
-    "BattleEventGroup": "None",
+    "BattleEventGroup": "Debuff",
     "StatReference": "Sender",
     "StatReferenceCondition": "CurrentStat",
     "StatusDirection": "Increase",
-    "Stackable": false
+    "Stackable": false,
+    "ValueApplyType": "Mutiply"
   },
   {
     "id": 20011,
@@ -129,7 +140,8 @@
     "StatReference": "Sender",
     "StatReferenceCondition": "CurrentStat",
     "StatusDirection": "Increase",
-    "Stackable": false
+    "Stackable": false,
+    "ValueApplyType": "Mutiply"
   },
   {
     "id": 20012,
@@ -140,7 +152,8 @@
     "StatReference": "Sender",
     "StatReferenceCondition": "CurrentStat",
     "StatusDirection": "Increase",
-    "Stackable": false
+    "Stackable": false,
+    "ValueApplyType": "Mutiply"
   },
   {
     "id": 20013,
@@ -151,7 +164,8 @@
     "StatReference": "Sender",
     "StatReferenceCondition": "CurrentStat",
     "StatusDirection": "Increase",
-    "Stackable": false
+    "Stackable": false,
+    "ValueApplyType": "Mutiply"
   },
   {
     "id": 20014,
@@ -162,6 +176,31 @@
     "StatReference": "Sender",
     "StatReferenceCondition": "CurrentStat",
     "StatusDirection": "Increase",
-    "Stackable": false
+    "Stackable": false,
+    "ValueApplyType": "Mutiply"
+  },
+  {
+    "id": 20015,
+    "Type": "Damage",
+    "AffectStat": "Attack",
+    "BattleEventCategory": "Active",
+    "BattleEventGroup": "None",
+    "StatReference": "Sender",
+    "StatReferenceCondition": "CurrentStat",
+    "StatusDirection": "Increase",
+    "Stackable": false,
+    "ValueApplyType": "Mutiply"
+  },
+  {
+    "id": 20016,
+    "Type": "Buff",
+    "AffectStat": "MoveSpeed",
+    "BattleEventCategory": "Passive",
+    "BattleEventGroup": "Buff",
+    "StatReference": "Receiver",
+    "StatReferenceCondition": "CurrentStat",
+    "StatusDirection": "Increase",
+    "Stackable": true,
+    "ValueApplyType": "Fixed"
   }
 ]

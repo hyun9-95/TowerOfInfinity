@@ -18,6 +18,8 @@ public enum BattleEventTriggerType
     Self,                   // 자기 자신 대상 이벤트 Send
     Orbit,                  // 타겟 주변을 공전하는 콜라이더 생성
     TargetProjectile,       // 범위 내 타겟 방향 또는 랜덤 방향 투사체 생성
+    FollowDirectionCollider, // Sender의 이동 방향을 따라 회전하며 위치를 따라다니는 콜라이더
+    InRangeRandom,          // 원형 범위 내에 랜덤 위치에 여러 콜라이더 생성
 }
 
 public enum BattleEventType
@@ -26,6 +28,7 @@ public enum BattleEventType
     Damage,
     Poison,
     Frozen,
+    Buff,
 }
 
 public enum BattleEventGroup

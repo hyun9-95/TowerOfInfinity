@@ -59,6 +59,8 @@ public class BattleEnemySpawner : IObserver
                 currentWaveEnemies = Model.GetCurrentWaveEnemies(currentWave);
                 CachingCurrentWaveWeight(currentWaveEnemies, currentWave);
                 burstSpawnCount = Model.GetBurstWaveValue(currentWave);
+
+                Logger.BattleLog($"Wave Changed {currentWave} => Interval {currentIntervalSeconds} / Burst {burstSpawnCount}");
             }
 
             if (!isSpawnMidBoss && currentWave == Model.MidBossWave)

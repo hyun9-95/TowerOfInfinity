@@ -16,6 +16,7 @@ public class FollowProjectileBattleEventTrigger : BattleEventTrigger
         if (enemiesInRange.Count == 0)
             return;
 
+        int index = 0;
         foreach (var enemy in enemiesInRange)
         {
             Transform targetEnemy = enemy.Transform;
@@ -29,6 +30,11 @@ public class FollowProjectileBattleEventTrigger : BattleEventTrigger
             var model = BattleEventTriggerFactory.CreateProjectileUnitModel(Model, direction, targetEnemy, OnEventHit);
             projectileUnit.SetModel(model);
             projectileUnit.ShowAsync().Forget();
+
+            if (Model.SpawnInterval > 0 && index < enemiesInRange.Count - 1)
+                await UniTaskUtils.DelaySeconds(Model.SpawnInterval);
+            
+            index++;
         }
     }
 }

@@ -11,7 +11,8 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
     public static bool InBattle => instance ? instance.inBattle : false;
     public int CurrentWave => battleInfo.CurrentWave;
     public Vector3 CurrentCharacterPos => battleInfo.CurrentCharacter.transform.position;
-    private bool inBattle => battleInfo == null ? false : battleInfo.BattleState == BattleState.Playing;
+    private bool inBattle => battleInfo == null ?
+        false : battleInfo.BattleState is BattleState.Playing or BattleState.Paused;
     #endregion
 
     #region Value
@@ -42,6 +43,26 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
         await ActiveAllyCharacters();
 
         battleInfo.SetBattleState(BattleState.Playing);
+
+        StartWaveAddAsync().Forget();
+    }
+
+    public void Stop()
+    {
+        TokenPool.Cancel(GetHashCode());
+    }
+
+    private async UniTask StartWaveAddAsync()
+    {
+        while (inBattle && battleInfo.CurrentWave < IntDefine.MAX_DUNGEON_WAVE_COUNT)
+        {
+            await UniTaskUtils.DelaySeconds(60, TokenPool.Get(GetHashCode()));
+
+            if (battleInfo != null)
+                battleInfo.SetLevel(battleInfo.Level + 1);
+
+            Logger.BattleLog($"Current Wave => {battleInfo.Level}");
+        }
     }
 
     private async UniTask ShowBattleView()
@@ -242,8 +263,6 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
 
         var finalDamage = damageAmount;
         receiver.AddDamage(finalDamage);
-
-        Logger.BattleLog($"{sender.CharacterDefine} -> {receiver.CharacterDefine} : {finalDamage} / Remain HP : {receiver.Hp}");
 
         // 적인 경우에만 대미지를 표시.
         if (receiver.TeamTag == TeamTag.Enemy)

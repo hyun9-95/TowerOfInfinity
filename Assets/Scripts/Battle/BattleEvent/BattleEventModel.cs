@@ -18,6 +18,8 @@ public class BattleEventModel
     public float Value2 { get; private set; }
     public float ApplyIntervalSeconds { get; private set; }
 
+    public ValueApplyType ValueApplyType { get; private set; }
+
     public BattleEventModel(CharacterUnitModel sender, CharacterUnitModel receiver, DataBattleEvent dataBattleEvent, int level)
     {
         Sender = sender;
@@ -31,6 +33,7 @@ public class BattleEventModel
         StatReferenceCondition = dataBattleEvent.StatReferenceCondition;
         StatusDirection = dataBattleEvent.StatusDirection;
         Stackable = dataBattleEvent.Stackable;
+        ValueApplyType = dataBattleEvent.ValueApplyType;
 
         var levelBalance = BattleEventBalanceFactory.Instance.GetLevelBalance(dataBattleEvent.Id);
         if (levelBalance != null)

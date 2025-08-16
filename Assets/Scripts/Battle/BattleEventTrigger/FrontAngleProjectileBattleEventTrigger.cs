@@ -27,6 +27,9 @@ public class FrontAngleProjectileBattleEventTrigger : BattleEventTrigger
             var model = BattleEventTriggerFactory.CreateProjectileUnitModel(Model, direction, null, OnEventHit);
             projectileUnit.SetModel(model);
             projectileUnit.ShowAsync().Forget();
+
+            if (Model.SpawnInterval > 0 && i < Model.SpawnCount - 1)
+                await UniTaskUtils.DelaySeconds(Model.SpawnInterval);
         }
     }
 

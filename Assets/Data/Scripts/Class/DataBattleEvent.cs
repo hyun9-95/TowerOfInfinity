@@ -23,6 +23,8 @@ public class DataBattleEvent : IBaseData
     public readonly StatusDirection StatusDirection;
     [JsonProperty(PropertyName = "Stackable")]
     public readonly bool Stackable;
+    [JsonProperty(PropertyName = "ValueApplyType")]
+    public readonly ValueApplyType ValueApplyType;
 	
 	public int Id => id;
     public bool IsEmpty => id == 0;

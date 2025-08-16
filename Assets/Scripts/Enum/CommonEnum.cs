@@ -189,6 +189,14 @@ public enum StatusDirection
     Decrease,
 }
 
+public enum ValueApplyType
+{
+    None,
+    Mutiply,
+    Fixed,
+    Add,
+}
+
 public enum StatReference
 {
     None,

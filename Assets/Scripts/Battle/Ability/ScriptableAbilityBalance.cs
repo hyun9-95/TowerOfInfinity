@@ -36,6 +36,9 @@ public class ScriptableAbilityBalance : ScriptableObject
     [SerializeField]
     private float[] HitForce;
 
+    [SerializeField]
+    private float[] SpawnInterval;
+
     public float GetSpeed(int level)
     {
         if (Speed == null || Speed.Length == 0)
@@ -116,28 +119,28 @@ public class ScriptableAbilityBalance : ScriptableObject
         return HitForce[level];
     }
 
+    public float GetSpawnInterval(int level)
+    {
+        if (SpawnInterval == null || SpawnInterval.Length == 0)
+            return 0f;
+
+        if (level >= SpawnInterval.Length)
+            return SpawnInterval[SpawnInterval.Length - 1];
+
+        return SpawnInterval[level];
+    }
+
     public void ResetBalanceValues()
     {
-        Speed = new float[IntDefine.MAX_ABILITY_LEVEL];
-        Range = new float[IntDefine.MAX_ABILITY_LEVEL];
-        Duration = new float[IntDefine.MAX_ABILITY_LEVEL];
-        HitCount = new int[IntDefine.MAX_ABILITY_LEVEL];
-        Scale = new float[IntDefine.MAX_ABILITY_LEVEL];
-        CoolTime = new float[IntDefine.MAX_ABILITY_LEVEL];
-        SpawnCount = new int[IntDefine.MAX_ABILITY_LEVEL];
-        HitForce = new float[1];
-
-        for (int i = 0; i < IntDefine.MAX_ABILITY_LEVEL; i++)
-        {
-            Speed[i] = 0f;
-            Range[i] = 0f;
-            Duration[i] = 0f;
-            HitCount[i] = 0;
-            Scale[i] = 0f;
-            CoolTime[i] = 0f;
-            SpawnCount[i] = 1;
-            HitForce[0] = 0f;
-        }
+        Speed = new float[0];
+        Range = new float[0];
+        Duration = new float[0];
+        HitCount = new int[0];
+        Scale = new float[0];
+        CoolTime = new float[0];
+        SpawnCount = new int[0];
+        HitForce = new float[0];
+        SpawnInterval = new float[0];
     }
 
     public void DeepCopy(ScriptableAbilityBalance source)
@@ -150,5 +153,6 @@ public class ScriptableAbilityBalance : ScriptableObject
         CoolTime = source.CoolTime != null ? (float[])source.CoolTime.Clone() : null;
         SpawnCount = source.SpawnCount != null ? (int[])source.SpawnCount.Clone() : null;
         HitForce = source.HitForce != null ? (float[])source.HitForce.Clone() : null;
+        SpawnInterval = source.SpawnInterval != null ? (float[])source.SpawnInterval.Clone() : null;
     }
 }

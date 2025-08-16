@@ -15,6 +15,7 @@ public class InRangeTargetBattleEventTrigger : BattleEventTrigger
         if (enemiesInRange.Count == 0)
             return;
         
+        int index = 0;
         foreach (var enemy in enemiesInRange)
         {
             Vector2 targetPosition = enemy.Transform.position;
@@ -27,6 +28,11 @@ public class InRangeTargetBattleEventTrigger : BattleEventTrigger
                 colliderTriggerUnit.SetModel(model);
                 colliderTriggerUnit.ShowAsync().Forget();
             }
+
+            if (Model.SpawnInterval > 0 && index < enemiesInRange.Count - 1)
+                await UniTaskUtils.DelaySeconds(Model.SpawnInterval);
+            
+            index++;
         }
     }
 

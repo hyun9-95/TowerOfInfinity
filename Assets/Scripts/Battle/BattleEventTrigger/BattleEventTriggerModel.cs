@@ -19,6 +19,7 @@ public class BattleEventTriggerModel
     public float Duration { get; private set; }
     public int SpawnCount { get; private set; }
     public float HitForce { get; private set; }
+    public float SpawnInterval { get; private set; }
 
     public BattleEventTriggerModel(CharacterUnitModel sender, int level, DataAbility abilityData, ScriptableAbilityBalance balance)
     {
@@ -40,6 +41,7 @@ public class BattleEventTriggerModel
         Scale = balance.GetScale(Level);
         SpawnCount = balance.GetSpawnCount(Level);
         HitForce = balance.GetHitForce(Level);
+        SpawnInterval = balance.GetSpawnInterval(Level);
 
         TargetTeamTag = abilityData.TargetType == BattleEventTargetType.Ally ?
             Sender.TeamTag : GetOppositeTeamTag(Sender.TeamTag);
@@ -74,6 +76,7 @@ public class BattleEventTriggerModel
         Duration = 0f;
         SpawnCount = 1;
         HitForce = 0f;
+        SpawnInterval = 0f;
     }
 
     private TeamTag GetOppositeTeamTag(TeamTag teamTag)

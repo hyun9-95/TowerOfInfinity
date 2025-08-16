@@ -99,6 +99,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5ef8e982bcd9ee74ab7b1451830e51ab
+    m_Address: AbilityCore/AbilityBalance/AB_PASSIVE_GOLDEN_BOOTS
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6e5df379b6b1ee942b022750ccd009ce
     m_Address: AbilityCore/BattleEventBalance/BE_DAMAGE_REPULSOR_DOME
     m_ReadOnly: 0
@@ -147,8 +153,20 @@ MonoBehaviour:
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a427af84ab6bb4e4db8886cab1fecfd4
+    m_Address: AbilityCore/BattleEventBalance/BE_BUFF_GOLDEN_BOOTS
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: bf8154837826add42b49ccf4c2596af6
     m_Address: AbilityCore/AbilityBalance/AB_ACTIVE_BOULDER_SMASH
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c3daa24f1b5b1824ebeae46a706949c2
+    m_Address: AbilityCore/BattleEventBalance/BE_DAMAGE_SHADOW_GRASP
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
@@ -197,6 +215,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ee2be24fcafa34d4bb8a27db00403bc1
     m_Address: AbilityCore/AbilityBalance/AB_ACITVE_DRAGON_BREATH
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f73cf0a764ea8c240804e5b4380df2a5
+    m_Address: AbilityCore/AbilityBalance/AB_ACTIVE_SHADOW_GRASP
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main

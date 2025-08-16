@@ -91,6 +91,9 @@ public abstract class BattleEvent : IObserver
         if (Model == null)
             return 0;
 
+        if (Model.ValueApplyType == ValueApplyType.None)
+            return 0;
+
         var statReferenceTarget = GetStatReferenceTarget();
 
         if (statReferenceTarget == null)
@@ -98,12 +101,17 @@ public abstract class BattleEvent : IObserver
 
         float finalValue = Model.Value;
 
-        if (Model.AffectStat != StatType.None)
+        if (Model.StatReference != StatReference.None)
         {
             var baseStat = statReferenceTarget.GetStatValue(Model.AffectStat, Model.StatReferenceCondition);
-            finalValue = baseStat * Model.Value;
+            
+            if (Model.ValueApplyType == ValueApplyType.Mutiply)
+                finalValue = baseStat * Model.Value;
+
+            if (Model.ValueApplyType == ValueApplyType.Add)
+                finalValue = baseStat + Model.Value;
         }
-        
+
         var sign = Model.StatusDirection is StatusDirection.Increase ? 1 : -1;
 
         return finalValue * sign;

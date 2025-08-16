@@ -206,9 +206,9 @@ public class CharacterUnitModel : IBaseUnitModel
         return GetBaseStatValue(statType) + statModifiers[statType];
     }
 
-    public void ChangeStatValue(StatType statType, float value)
+    public void AddStatValue(StatType statType, float value)
     {
-        statModifiers[statType] = value;
+        statModifiers[statType] += value;
     }
 
     public void SetCurrentAnimState(CharacterAnimState animState)

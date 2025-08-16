@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Ability_GoldenBoots
+  m_EditorClassIdentifier: 
+  m_GroupName: Ability_GoldenBoots
+  m_GUID: c251407c8270cce47b7bc1b96d372b59
+  m_SerializeEntries:
+  - m_GUID: a702e605c5878734a8f50f4325c878bd
+    m_Address: Ability/GoldenBoots/GoldenBoots_Icon
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: b33bde962cc1e8d4583d1bd9b4d8d68d, type: 2}
+    - {fileID: 11400000, guid: 1ae6e3aa5015dbf489801d306babcdc9, type: 2}

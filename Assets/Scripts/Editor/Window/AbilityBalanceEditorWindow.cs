@@ -25,6 +25,7 @@ public class AbilityBalanceEditorWindow : BalanceEditorWindowBase<AbilityBalance
         DrawArrayPropertyField(serializedObject, "HitCount", "Hit 횟수");
         DrawArrayPropertyField(serializedObject, "HitForce", "Hit 시 미는 힘");
         DrawArrayPropertyField(serializedObject, "SpawnCount", "Unit 생성 개수");
+        DrawArrayPropertyField(serializedObject, "SpawnInterval", "Unit 생성 간격");
         DrawArrayPropertyField(serializedObject, "Range", "범위");
         DrawArrayPropertyField(serializedObject, "Speed", "속도");
         DrawArrayPropertyField(serializedObject, "Scale", "유닛 스케일");

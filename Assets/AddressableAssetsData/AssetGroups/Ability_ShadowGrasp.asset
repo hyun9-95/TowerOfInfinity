@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Ability_ShadowGrasp
+  m_EditorClassIdentifier: 
+  m_GroupName: Ability_ShadowGrasp
+  m_GUID: bea71c9b0198b3b448561bc58b8b280a
+  m_SerializeEntries:
+  - m_GUID: 09e5e8cf2cf0b1f48b1fceba0e690f02
+    m_Address: Ability/ShadowGrasp/ShadowGrasp_InRangeRandom
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 31339c8165b1adc4f91da59d54f8ba26
+    m_Address: Ability/ShadowGrasp/shadowreflection
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c0d8065a7b3002e4eac914b74d6cf766
+    m_Address: Ability/ShadowGrasp/shadowreflection_0
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c3a9266ff48af50408353c49c04a3e94
+    m_Address: Ability/ShadowGrasp/ShadowGrasp_InRangeRandom_Icon
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c97ebc44a945399499dbfbbbb4d9057d
+    m_Address: Ability/ShadowGrasp/fx_f4_shadowreflection
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: ed7a6f6bc9afd9f429fcb055e8f52c7a, type: 2}
+    - {fileID: 11400000, guid: 5c2f9feffd3081f4a8302059d9c5819b, type: 2}
