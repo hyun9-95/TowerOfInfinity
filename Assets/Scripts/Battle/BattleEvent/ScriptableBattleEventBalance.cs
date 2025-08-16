@@ -63,18 +63,10 @@ public class ScriptableBattleEventBalance : ScriptableObject
 
     public void ResetBalanceValues()
     {
-        duration = new float[IntDefine.MAX_ABILITY_LEVEL];
-        value = new float[IntDefine.MAX_ABILITY_LEVEL];
-        value2 = new float[IntDefine.MAX_ABILITY_LEVEL];
-        applyIntervalSeconds = new float[IntDefine.MAX_ABILITY_LEVEL];
-
-        for (int i = 0; i < IntDefine.MAX_ABILITY_LEVEL; i++)
-        {
-            duration[i] = 0f;
-            value[i] = 0f;
-            value2[i] = 0f;
-            applyIntervalSeconds[i] = 0f;
-        }
+        duration = new float[0];
+        value = new float[0];
+        value2 = new float[0];
+        applyIntervalSeconds = new float[0];
     }
 
     public void DeepCopy(ScriptableBattleEventBalance source)
