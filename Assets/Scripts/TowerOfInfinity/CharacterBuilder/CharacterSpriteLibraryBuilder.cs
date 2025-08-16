@@ -742,7 +742,7 @@ public class CharacterSpriteLibraryBuilder : AddressableMono
         return currentlyUsedAddresses.Contains(address);
     }
     
-    private void OnDestroy()
+    public override void OnDestroy()
     {
         foreach (var partsInfo in loadedParts.Values)
         {

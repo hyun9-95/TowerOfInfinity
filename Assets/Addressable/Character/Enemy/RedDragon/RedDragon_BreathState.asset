@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35a1f3d3d76825340b763c39f138f948, type: 3}
   m_Name: RedDragon_BreathState
   m_EditorClassIdentifier: 
-  abilityDefine: 0
-  probability: 0
-  animState: 0
-  targetProbability: 0
+  abilityDefine: 51008
+  probability: 0.3
+  animState: 12
+  targetProbability: 99

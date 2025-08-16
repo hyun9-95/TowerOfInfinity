@@ -18,4 +18,6 @@ public class CheatConfig
     public bool enableGcAllocCallStack = false;
 
     public LocalizationType testLocalType;
+
+    public bool bossSpawnWhenBattleStart = false;
 }

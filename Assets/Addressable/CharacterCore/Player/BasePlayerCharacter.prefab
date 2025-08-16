@@ -179,6 +179,11 @@ MonoBehaviour:
   triggerCollider2D: {fileID: 2477859979652061185}
   characterAnimationEffect: {fileID: 0}
   baseStat: {fileID: 0}
+  animDelayDic:
+    _serializedList:
+    - Key: 10
+      Value: 0.12
+  customStateGroupAddress: 
   debugLog: 0
 --- !u!61 &2477859979652061185
 BoxCollider2D:
@@ -214,7 +219,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.15}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -224,7 +229,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.8, y: 0.8}
   m_EdgeRadius: 0
 --- !u!58 &7448756835893251589
 CircleCollider2D:
@@ -260,7 +265,7 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.15}
   m_Radius: 0.5
 --- !u!50 &4362995998241216317
 Rigidbody2D:

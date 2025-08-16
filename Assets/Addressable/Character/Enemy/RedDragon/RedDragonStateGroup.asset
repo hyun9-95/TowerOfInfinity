@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a58a7921631088a46b72af66910d2f19, type: 3}
+  m_Name: RedDragonStateGroup
+  m_EditorClassIdentifier: 
+  stateList:
+  - {fileID: 11400000, guid: 4f4211a8e47e5a541bab5585d8846157, type: 2}
+  - {fileID: 11400000, guid: ab56131efae8aff4c866a9c5c9e4dfa2, type: 2}
+  - {fileID: 11400000, guid: 57bce2eb450590342b97518faf084be9, type: 2}
+  - {fileID: 11400000, guid: e545f85c4d4ac5549a62a908b2e02f8e, type: 2}
+  - {fileID: 11400000, guid: a1c885c5e7da0a143ad80f180b6d4141, type: 2}
+  - {fileID: 11400000, guid: c612e26ecce44414d8ed38190f3a3f85, type: 2}

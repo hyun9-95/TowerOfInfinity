@@ -42,6 +42,6 @@ public class PlayerAttackState : ScriptableCharacterState
         }
 
         if (model.AbilityProcessor.IsPrimaryWeaponSlotReady() && model.IsAttackState())
-            model.AbilityProcessor.CastPrimaryWeapon(GetAnimationDelay(AnimState)).Forget();
+            model.AbilityProcessor.CastPrimaryWeapon(model.GetAnimationDelay((AnimState))).Forget();
     }
 }

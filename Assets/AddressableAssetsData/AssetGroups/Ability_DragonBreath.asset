@@ -15,32 +15,8 @@ MonoBehaviour:
   m_GroupName: Ability_DragonBreath
   m_GUID: cb9845ecbc865044da03e87651293a3f
   m_SerializeEntries:
-  - m_GUID: 2373b86af7b816946aa529c19a14b1b9
-    m_Address: Ability/DragonBreath/DragonBreathAnim
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Main
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: abf239b8e19ad2c4cbb3c481c2b7e211
-    m_Address: Ability/DragonBreath/DragonBreath_TargetProjectile
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Main
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: d091de45e7cce5a4988cca89418c56da
-    m_Address: Ability/DragonBreath/DragonBreath_Projectile_1
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Main
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: db58fa4103e2ad64580ef5be9f2e2258
-    m_Address: Ability/DragonBreath/DragonBreath_Projectile_0
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Main
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: e7f6d50c810c07648b63023c4f0e0e2f
-    m_Address: Ability/DragonBreath/DragonBreathClip
+  - m_GUID: 3191c9e66f719a04d9950d76d329f87d
+    m_Address: Ability/DragonBreath/DragonBreath_Collider
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main

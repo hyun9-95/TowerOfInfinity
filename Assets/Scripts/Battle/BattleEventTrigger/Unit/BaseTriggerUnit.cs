@@ -95,7 +95,10 @@ public abstract class BaseTriggerUnit<T> : PoolableBaseUnit<T>, IBattleEventTrig
         if (nextAllowedTime != null && nextAllowedTime.TryGetValue(targetModel, out var time) && nowTime < time)
             return;
 
-        Model.OnEventHit(other, hitCollider.transform.position);
+        Vector3 hitPoint = hitCollider.ClosestPoint(transform.position);
+        var hitDir = (other.transform.position - hitPoint).normalized; 
+
+        Model.OnEventHit(other, hitDir);
         
         if (nextAllowedTime == null)
             nextAllowedTime = new Dictionary<CharacterUnitModel, float>();

@@ -4,7 +4,7 @@ Id,NameId,SlotType,CastingType,BattleEvents,TriggerType,TargetType,CastEffectPat
 50000,AB_WEAPON_ARROW,Weapon,OnAttack,BE_DAMAGE_ONE_SHOT_ATTACK,Projectile,Enemy,NULL,Ability/Arrow_Projectile/Arrow_Projectile,NULL,NULL
 50001,AB_WEAPON_STING,Weapon,OnAttack,BE_DAMAGE_ONE_SHOT_ATTACK,FollowCollider,Enemy,NULL,Ability/Sting_Collider/Sting_Collider,NULL,NULL
 50002,AB_WEAPON_GREEN_OGRE_SMASH,Weapon,OnAttack,BE_DAMAGE_GREEN_OGRE_SMASH,FollowCollider,Enemy,NULL,Ability/GreenOgreSmash/GreenOgreSmash_Collider,NULL,NULL
-50003,AB_WEAPON_DRAGON_BITE,Weapon,OnAttack,BE_DAMAGE_DRAGON_BITE,TargetProjectile,Enemy,NULL,Ability/DragonBite/DragonBite_Collider,NULL,NULL
+50003,AB_WEAPON_DRAGON_BITE,Weapon,OnAttack,BE_DAMAGE_DRAGON_BITE,FollowCollider,Enemy,NULL,Ability/DragonBite/DragonBite_Collider,NULL,NULL
 ,,,,,,,,,,
 ,,,,,,,,,,
 ,,,,,,,,,,
@@ -19,5 +19,5 @@ Id,NameId,SlotType,CastingType,BattleEvents,TriggerType,TargetType,CastEffectPat
 51004,AB_ACTIVE_ELECTRIC_RING,Active,Instant,BE_DAMAGE_ELECTRIC_RING,FollowCollider,Enemy,NULL,Ability/ElectricRing/ElectricRing_Collider,Ability/ElectricRing/ElectricRing_Collider_Icon,NULL
 51005,AB_ACTIVE_ELECTRIC_BALL,Active,Auto,BE_DAMAGE_ELECTRIC_BALL,Orbit,Enemy,NULL,Ability/ElectricBall/ElectricBall_Orbit,Ability/ElectricBall/ElectricBall_Orbit_Icon,NULL
 51006,AB_ACTIVE_FROST_NOVA,Active,Auto,BE_FROZEN_FROST_NOVA,InRangeFollow,Enemy,AbilityCast/GroundEnergy/GroundEnergyEffect,Ability/FrostNova/FrostNova_InRange,Ability/FrostNova/FrostNova_InRange_Icon,NULL
-51007,AB_ACTIVE_DRAGON_FIRE_BALL,Active,Auto,BE_DAMAGE_DRAGON_FIRE_BALL,TargetProjectile,Enemy,NULL,Ability/DragonFireBall/DragonFireBall_TargetProjectile,NULL,NULL
+51007,AB_ACTIVE_DRAGON_FIRE_BALL,Active,Auto,BE_DAMAGE_DRAGON_FIRE_BALL,FrontAngleProjectile,Enemy,NULL,Ability/DragonFireBall/DragonFireBall_TargetProjectile,NULL,NULL
 51008,AB_ACITVE_DRAGON_BREATH,Active,Auto,BE_DAMAGE_DRAGON_BREATH,FollowCollider,Enemy,NULL,Ability/DragonBreath/DragonBreath_Collider,NULL,NULL

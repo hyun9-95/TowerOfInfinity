@@ -14,6 +14,8 @@ public class BattleEnemySpawner : IObserver
     private float[] currentWaveWeights;
     private CharacterDefine[] currentWaveEnemies;
     private float totalWeight;
+    bool isSpawnMidBoss = false;
+    bool isSpawnFinalBoss = false;
 
     public BattleEnemySpawner(BattleEnemyGeneratorModel battleEnemyGeneratorModel)
     {
@@ -27,14 +29,16 @@ public class BattleEnemySpawner : IObserver
 
         ObserverManager.AddObserver(BattleObserverID.BattleEnd, this);
 
-        bool isSpawnMidBoss = false;
-        bool isSpawnFinalBoss = false;
-
         int currentWave = -1;
         int burstSpawnCount = 1;
         bool isBurstSpawn = false;
         float currentIntervalSeconds = Model.SpawnIntervalSeconds;
-        
+
+#if CHEAT && UNITY_EDITOR
+        if (CheatManager.CheatConfig.bossSpawnWhenBattleStart)
+            SpawnBossAsync().Forget();
+#endif
+
         while (BattleSystemManager.InBattle)
         {
             var tempWave = BattleSystemManager.Instance.CurrentWave;
@@ -133,12 +137,14 @@ public class BattleEnemySpawner : IObserver
     private async UniTask SpawnMidBossAsync()
     {
         await SpawnWave(Model.MidBoss, true);
+        isSpawnMidBoss = true;
         Logger.Log($"Spawn MidBoss : {Model.MidBoss}");
     }
 
     private async UniTask SpawnBossAsync()
     {
         await SpawnWave(Model.FinalBoss, true);
+        isSpawnFinalBoss = true;
         Logger.Log($"Spawn FinalBoss : {Model.FinalBoss}");
     }
 

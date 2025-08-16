@@ -1,3 +1,4 @@
+using AYellowpaper.SerializedCollections;
 using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
 using System.Linq;
@@ -62,6 +63,9 @@ public class CharacterUnit : PoolableMono
 
     [SerializeField]
     protected ScriptableCharacterStat baseStat;
+
+    [SerializeField]
+    protected SerializedDictionary<CharacterAnimState, float> animDelayDic;
 
     [SerializeField]
     private string customStateGroupAddress;
@@ -426,6 +430,7 @@ public class CharacterUnit : PoolableMono
         animator.SetInteger(StringDefine.CHARACTER_ANIM_STATE_KEY, resolvedAnimState);
         
         CurrentState.OnEnterState(Model);
+        Model.SetStateEnterTime(Time.time);
 
         if (debugLog)
             Logger.Log($"[{name}] Current State : {state}");
@@ -439,6 +444,7 @@ public class CharacterUnit : PoolableMono
         Model.SetAgent(agent);
         Model.SetIsActivate(false);
         Model.SetDistanceToTarget(DistanceToTarget.Close);
+        Model.SetAnimDelayDic(animDelayDic);
 
         if (Model.CharacterSetUpType == CharacterSetUpType.Battle)
             InitializeBattleModel();

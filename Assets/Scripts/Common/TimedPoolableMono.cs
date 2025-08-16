@@ -106,8 +106,12 @@ public class TimedPoolableMono : PoolableMono
             }
             else
             {
-                transform.localScale = new Vector3(value ? originLocalScale.x * -1 : originLocalScale.x
-                    , originLocalScale.y, originLocalScale.z);
+                float xValue = value ? -1f : 1;
+
+                if (originLocalScale == Vector3.zero)
+                    originLocalScale = transform.localScale;
+
+                transform.localScale = new Vector3(originLocalScale.x * xValue, originLocalScale.y, originLocalScale.z);
             }
         }
     }

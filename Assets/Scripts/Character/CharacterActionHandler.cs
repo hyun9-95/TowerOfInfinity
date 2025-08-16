@@ -2,7 +2,6 @@ using Cysharp.Threading.Tasks;
 using System;
 using System.Threading;
 using UnityEngine;
-using static DG.DemiLib.External.DeHierarchyComponent;
 
 public class CharacterActionHandler
 {
@@ -61,6 +60,9 @@ public class CharacterActionHandler
 
     public void OnMovement(Vector2 movement, float speed, bool enableFlip)
     {
+        if (addingForce)
+            return;
+
         if (rigidBody2D == null)
             return;
 
@@ -119,6 +121,12 @@ public class CharacterActionHandler
         if (pathFinder is AStarPathFinder astarFinder)
         {
             var dir = astarFinder.OnMoveAlongPath();
+
+            var absX = Mathf.Abs(dir.x);
+
+            if (absX < 0.1f)
+                return;
+
             Flip(dir);
         }
     }

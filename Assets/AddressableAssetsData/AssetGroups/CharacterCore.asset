@@ -333,6 +333,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e545f85c4d4ac5549a62a908b2e02f8e
+    m_Address: CharacterCore/State/Common/CharacterReadyState
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e91b8eadf733b784b945369305e78b8a
     m_Address: CharacterCore/Enemy/Animation/EnemyAnim_Ready
     m_ReadOnly: 0

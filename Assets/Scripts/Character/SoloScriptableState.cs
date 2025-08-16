@@ -5,6 +5,11 @@ public abstract class SoloScriptableState : ScriptableCharacterState
     public void SetOwner(CharacterUnitModel model)
     {
         owner = model;
+        OnSetOwner(model);
+    }
+
+    protected virtual void OnSetOwner(CharacterUnitModel model)
+    {
     }
 
     protected CharacterUnitModel GetOwner()

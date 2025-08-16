@@ -15,6 +15,7 @@ public static class BattleEventTriggerFactory
             BattleEventTriggerType.InRangeFollow => new InRangeFollowBattleEventTrigger(),
             BattleEventTriggerType.FollowProjectile => new FollowProjectileBattleEventTrigger(),
             BattleEventTriggerType.RandomProjectile => new RandomProjectileBattleEventTrigger(),
+            BattleEventTriggerType.FrontAngleProjectile => new FrontAngleProjectileBattleEventTrigger(),
             BattleEventTriggerType.Self => selfBattleEventTrigger,
             BattleEventTriggerType.Orbit => new OrbitBattleEventTrigger(),
             BattleEventTriggerType.TargetProjectile => new TargetProjectileBattleEventTrigger(),

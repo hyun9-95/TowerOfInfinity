@@ -25,12 +25,8 @@ public abstract class ScriptableCharacterState : ScriptableObject
     {
     }
 
-    protected float GetAnimationDelay(CharacterAnimState state)
+    protected bool IsJustEntered(CharacterUnitModel model)
     {
-        return state switch
-        {
-            CharacterAnimState.Attack => 0.12f,
-            _ => 0f,
-        };
+        return Time.time - model.StateEnterTime < FloatDefine.DEFAULT_MINIMUM_STATE_DURATION;
     }
 }

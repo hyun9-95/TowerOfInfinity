@@ -48,7 +48,7 @@
     "BattleEvents": [
       "BE_DAMAGE_DRAGON_BITE"
     ],
-    "TriggerType": "TargetProjectile",
+    "TriggerType": "FollowCollider",
     "TargetType": "Enemy",
     "CastEffectPath": "",
     "TriggerUnitPath": "Ability/DragonBite/DragonBite_Collider",
@@ -160,7 +160,7 @@
     "BattleEvents": [
       "BE_DAMAGE_DRAGON_FIRE_BALL"
     ],
-    "TriggerType": "TargetProjectile",
+    "TriggerType": "FrontAngleProjectile",
     "TargetType": "Enemy",
     "CastEffectPath": "",
     "TriggerUnitPath": "Ability/DragonFireBall/DragonFireBall_TargetProjectile",

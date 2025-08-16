@@ -33,6 +33,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2c7eee72960f5474e96fecc6622d570c
+    m_Address: AbilityCore/BattleEventBalance/BE_DAMAGE_DRAGON_BREATH
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2e8ccb4c2d3a12449ac23693b68353e8
     m_Address: AbilityCore/AbilityBalance/AB_ACTIVE_MAGIC_MISSILE
     m_ReadOnly: 0
@@ -57,8 +63,26 @@ MonoBehaviour:
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4eb3a9b3310eb904799ec91e0d524a07
+    m_Address: AbilityCore/AbilityBalance/AB_ACTIVE_DRAGON_BREATH
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4ef9683261f97e849b6fd9b1055eb0de
     m_Address: AbilityCore/BattleEventBalance/BE_DAMAGE_GREEN_OGRE_SMASH
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 56f663b835346674f82f9dd7646bac26
+    m_Address: AbilityCore/AbilityBalance/AB_ACTIVE_DRAGON_FIRE_BALL
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5c4f0e0733682dc49ae283ecc894e097
+    m_Address: AbilityCore/BattleEventBalance/BE_DAMAGE_DRAGON_FIRE_BALL
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
@@ -143,6 +167,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e91d9ab75b68d684e8a55a4a62103314
     m_Address: AbilityCore/AbilityBalance/AB_ACTIVE_ELECTRIC_BALL
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ee2be24fcafa34d4bb8a27db00403bc1
+    m_Address: AbilityCore/AbilityBalance/AB_ACITVE_DRAGON_BREATH
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main

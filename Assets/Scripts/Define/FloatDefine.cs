@@ -28,4 +28,6 @@ public class FloatDefine
     public const float BATTLE_BURST_DURATION = 10f;
 
     public const float DEFAULT_ABILITY_READY_COOLTIME = 2f;
+
+    public const float DEFAULT_MINIMUM_STATE_DURATION = 0.1f;
 }

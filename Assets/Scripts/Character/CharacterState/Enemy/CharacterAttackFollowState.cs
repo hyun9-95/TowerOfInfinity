@@ -1,7 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "ScriptableCharacterStates/Character/Follow")]
-public class CharacterFollowState : ScriptableCharacterState
+[CreateAssetMenu(menuName = "ScriptableCharacterStates/Character/AttackFollow")]
+public class CharacterAttackFollowState : ScriptableCharacterState
 {
     public override int Priority => 1;
     public override CharacterAnimState AnimState => CharacterAnimState.Move;
@@ -11,10 +11,10 @@ public class CharacterFollowState : ScriptableCharacterState
         if (model.Target == null && model.Target.IsDead)
             return false;
 
-        if (IsTooClose(model))
+        if (IsInAttackRange(model))
             return false;
 
-        return !IsStoppingDistance(model);
+        return true;
     }
 
     public override bool CheckExitCondition(CharacterUnitModel model)
@@ -25,7 +25,7 @@ public class CharacterFollowState : ScriptableCharacterState
         if (IsJustEntered(model))
             return false;
 
-        return IsStoppingDistance(model);
+        return IsInAttackRange(model);
     }
 
     public override void OnEnterState(CharacterUnitModel model)
@@ -46,6 +46,28 @@ public class CharacterFollowState : ScriptableCharacterState
 
     public override void OnStateAction(CharacterUnitModel model)
     {
+        // 먼저 거리 확인
+        var attackRange = model.AbilityProcessor.GetPrimaryWeaponRange();
+        bool isInRange = model.DistanceToTargetSqr <= attackRange * attackRange;
+        
+        if (isInRange)
+        {
+            // 거리 내에 있다면 Y축 차이 확인
+            float yDiff = Mathf.Abs(model.Target.Transform.position.y - model.Transform.position.y);
+            
+            if (yDiff >= 1f)
+            {
+                // Y축 차이가 크면 Y축만 맞추는 이동
+                Vector3 targetPosition = model.Target.Transform.position;
+                Vector3 currentPosition = model.Transform.position;
+                
+                Vector2 yDirection = new Vector2(0, targetPosition.y > currentPosition.y ? 1 : -1);
+                model.ActionHandler.OnMovement(yDirection, model.GetStatValue(StatType.MoveSpeed), true);
+                return;
+            }
+        }
+        
+        // 일반 추적
         if (model.PathFindType == PathFindType.AStar)
         {
             // 너무 멀다면 직선 이동
@@ -76,24 +98,20 @@ public class CharacterFollowState : ScriptableCharacterState
         model.ActionHandler.OnStopPathFind();
     }
 
-    private bool IsStoppingDistance(CharacterUnitModel model)
+    private bool IsInAttackRange(CharacterUnitModel model)
     {
-        if (model.Agent == null)
+        if (model.Agent == null || model.Target == null)
             return false;
 
-        var stoppingDistance = model.Agent.stoppingDistance * model.Agent.stoppingDistance;
-        return model.DistanceToTargetSqr <= stoppingDistance;
-    }
+        var attackRange = model.AbilityProcessor.GetPrimaryWeaponRange();
 
-    // 너무 바로 따라가지 않게
-    private bool IsTooClose(CharacterUnitModel model)
-    {
-        if (model.Agent == null)
+        bool isClose = model.DistanceToTargetSqr <= attackRange * attackRange;
+
+        if (!isClose)
             return false;
 
-        var chaseDistance = model.Agent.stoppingDistance * model.Agent.stoppingDistance;
-        chaseDistance -= 0.2f;
+        float yDiff = Mathf.Abs(model.Target.Transform.position.y - model.Transform.position.y);
 
-        return model.DistanceToTargetSqr <= chaseDistance;
+        return yDiff < 1f;
     }
 }

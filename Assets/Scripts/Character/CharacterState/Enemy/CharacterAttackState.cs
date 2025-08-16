@@ -20,7 +20,10 @@ public class CharacterAttackState : ScriptableCharacterState
         if (model.AbilityProcessor == null)
             return true;
 
-        return !model.AbilityProcessor.IsPrimaryWeaponSlotReady() && !model.IsAttackState();
+        if (Time.time - model.StateEnterTime < FloatDefine.DEFAULT_MINIMUM_STATE_DURATION)
+            return false;
+
+        return !model.IsAttackState();
     }
 
     public override void OnEnterState(CharacterUnitModel model)
@@ -38,7 +41,7 @@ public class CharacterAttackState : ScriptableCharacterState
             return;
 
         if (model.AbilityProcessor.IsPrimaryWeaponSlotReady() && model.IsAttackState())
-            model.AbilityProcessor.CastPrimaryWeapon(GetAnimationDelay(AnimState)).Forget();
+            model.AbilityProcessor.CastPrimaryWeapon(model.GetAnimationDelay(AnimState)).Forget();
     }
 
     private bool IsInAttackRange(CharacterUnitModel model)
@@ -47,6 +50,14 @@ public class CharacterAttackState : ScriptableCharacterState
             return false;
 
         var attackRange = model.AbilityProcessor.GetPrimaryWeaponRange();
-        return model.DistanceToTargetSqr <= attackRange * attackRange;
+
+        bool isClose = model.DistanceToTargetSqr <= attackRange * attackRange;
+
+        if (!isClose)
+            return false;
+
+        float yDiff = Mathf.Abs(model.Target.Transform.position.y - model.Transform.position.y);
+
+        return yDiff < 1f;
     }
 }

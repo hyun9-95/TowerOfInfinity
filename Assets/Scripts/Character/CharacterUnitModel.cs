@@ -1,3 +1,4 @@
+using AYellowpaper.SerializedCollections;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -30,13 +31,24 @@ public class CharacterUnitModel : IBaseUnitModel
     public bool IsActivated { get; private set; }
     public float DistanceToTargetSqr { get; private set; }
     public float ReadyCoolTime { get; private set; }
+    public float StateEnterTime { get; private set; }
     #endregion
 
     #region Value
     private ScriptableCharacterStat baseStat;
     private Dictionary<StatType, float> statModifiers = new Dictionary<StatType, float>();
     private Dictionary<EquipmentType, Equipment> equippedEquipments;
+    private Dictionary<CharacterAnimState, float> animDelayDic;
     #endregion
+    public void SetAnimDelayDic(SerializedDictionary<CharacterAnimState, float> animDelayDicValue)
+    {
+        animDelayDic = animDelayDicValue;
+    }
+
+    public void SetStateEnterTime(float value)
+    {
+        StateEnterTime = value;
+    }
 
     public void SetIsActivate(bool value)
     {
@@ -125,6 +137,14 @@ public class CharacterUnitModel : IBaseUnitModel
     public void SetIsFlipX(bool value)
     {
         IsFlipX = value;
+    }
+
+    public float GetAnimationDelay(CharacterAnimState characterAnimState)
+    {
+        if (animDelayDic.TryGetValue(characterAnimState, out var delay))
+            return delay;
+
+        return 0;
     }
 
     /// <summary>

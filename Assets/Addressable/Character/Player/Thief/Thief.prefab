@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2477859979652061185, guid: 168b98fe679654b42b41d797e841ef95, type: 3}
       propertyPath: m_Offset.y
-      value: 0
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 3128268920574224160, guid: 168b98fe679654b42b41d797e841ef95, type: 3}
       propertyPath: baseStat
@@ -102,7 +102,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7448756835893251589, guid: 168b98fe679654b42b41d797e841ef95, type: 3}
       propertyPath: m_Offset.y
-      value: 0
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 7767598542808246975, guid: 168b98fe679654b42b41d797e841ef95, type: 3}
       propertyPath: m_SpriteLibraryAsset

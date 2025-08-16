@@ -14,6 +14,7 @@ public enum BattleEventTriggerType
     InRangeFollow,          // 범위 안의 타겟 위치에 콜라이더 생성 후 Follow
     FollowProjectile,       // 타겟을 추적하는 투사체 생성
     RandomProjectile,       // 랜덤 방향 투사체 생성
+    FrontAngleProjectile,   // 전방 부채꼴 각도로 투사체 생성
     Self,                   // 자기 자신 대상 이벤트 Send
     Orbit,                  // 타겟 주변을 공전하는 콜라이더 생성
     TargetProjectile,       // 범위 내 타겟 방향 또는 랜덤 방향 투사체 생성
