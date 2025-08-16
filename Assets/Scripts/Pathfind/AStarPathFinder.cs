@@ -104,8 +104,7 @@ public class AStarPathFinder : IPathFinder
         {
             AStarNode targetNode = currentPath[currentPathIndex];
             Vector2 targetPos = new Vector2(targetNode.xPos, targetNode.yPos);
-            moveDir = (targetPos - currentPos).normalized;
-
+            
             Vector2 beforeMoveDelta = targetPos - currentPos;
 
             float step = onGetMoveSpeed.Invoke() * Time.fixedDeltaTime;
@@ -119,6 +118,10 @@ public class AStarPathFinder : IPathFinder
             // => 다음 경로를 찾는다.
             if (afterMoveDelta.magnitude < nextNodeThreshold || Vector2.Dot(beforeMoveDelta, afterMoveDelta) < 0)
                 currentPathIndex++;
+
+            // 이동방향은 다음 경로가 아닌 최종 타겟 방향으로 (경로가 튀는 경우 방향이 왔다갔다함)
+            Vector2 finalTarget = currentTargetPosition;
+            moveDir = (finalTarget - currentPos).normalized;
         }
 
         return moveDir;

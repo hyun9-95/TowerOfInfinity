@@ -38,6 +38,11 @@ public class CharacterAttackState : ScriptableCharacterState
 #endif
     }
 
+    public override void OnExitState(CharacterUnitModel model)
+    {
+        model.SetReadyCoolTime(0);
+    }
+
     public override void OnStateAction(CharacterUnitModel model)
     {
         if (model.AbilityProcessor == null)

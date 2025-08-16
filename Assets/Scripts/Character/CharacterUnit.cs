@@ -93,7 +93,7 @@ public class CharacterUnit : PoolableMono
 
     private Dictionary<int, CharacterAnimState> shortNameHashDic = new();
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (!activated)
             return;
@@ -109,7 +109,7 @@ public class CharacterUnit : PoolableMono
         else if (Model.IsDead)
         {
             // 죽었다면 즉시 상태 검사
-            CheckNextState(false);
+            CheckNextState();
         }
     }
 
@@ -306,13 +306,13 @@ public class CharacterUnit : PoolableMono
             }
             else
             {
-                updateInterval = 0;
+                updateInterval = 0f;
             }
         }
         else
         {
             Model.SetDistanceToTargetSqr(float.MaxValue);
-            updateInterval = 0;
+            updateInterval = 0f;
         }
 
         Model.SetDistanceToTarget(distanceToTarget);
@@ -326,9 +326,9 @@ public class CharacterUnit : PoolableMono
         CurrentState.OnStateAction(Model);
     }
 
-    protected void CheckNextState(bool checkTimer = true)
+    protected void CheckNextState()
     {
-        if (checkTimer)
+        if (!Model.IsDead)
         {
             updateTimer += Time.deltaTime;
 

@@ -31,7 +31,7 @@ public class BattleEnemySpawner : IObserver
 
         int currentWave = -1;
         int burstSpawnCount = 1;
-        bool isBurstSpawn = false;
+        int burstSpawnCountPerInterval = 5;
         float currentIntervalSeconds = Model.SpawnIntervalSeconds;
 
 #if CHEAT && UNITY_EDITOR
@@ -40,6 +40,12 @@ public class BattleEnemySpawner : IObserver
 
         if (CheatManager.CheatConfig.midBossSpawnWhenBattleStart)
             await SpawnMidBossAsync();
+
+        if (CheatManager.CheatConfig.stopSpawnEnemy)
+        {
+            ObserverManager.RemoveObserver(BattleObserverID.BattleEnd, this);
+            return;
+        }
 #endif
 
         while (BattleSystemManager.InBattle)
@@ -53,7 +59,6 @@ public class BattleEnemySpawner : IObserver
                 currentWaveEnemies = Model.GetCurrentWaveEnemies(currentWave);
                 CachingCurrentWaveWeight(currentWaveEnemies, currentWave);
                 burstSpawnCount = Model.GetBurstWaveValue(currentWave);
-                isBurstSpawn = false;
             }
 
             if (!isSpawnMidBoss && currentWave == Model.MidBossWave)
@@ -70,18 +75,17 @@ public class BattleEnemySpawner : IObserver
 
             if (!isSpawnFinalBoss && currentWaveWeights != null)
             {
-                // 특정 웨이브 도달 시 대량 스폰 1회
-                if (!isBurstSpawn && burstSpawnCount > 0)
+                // 특정 웨이브 도달 시 대량 스폰
+                if (burstSpawnCount > 0 && burstSpawnCount > burstSpawnCountPerInterval)
                 {
-                    var tasks = new List<UniTask>(burstSpawnCount);
-                    for (int i = 0; i < burstSpawnCount; i++)
+                    var tasks = new List<UniTask>(burstSpawnCountPerInterval);
+                    for (int i = 0; i < burstSpawnCountPerInterval; i++)
                     {
                         var enemy = PickRandomEnemy();
                         tasks.Add(SpawnWave(enemy));
+                        burstSpawnCount--;
                     }
                     await UniTask.WhenAll(tasks);
-
-                    isBurstSpawn = true;
                 }
                 else
                 {

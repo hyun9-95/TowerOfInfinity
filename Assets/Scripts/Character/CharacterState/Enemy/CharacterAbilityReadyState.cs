@@ -8,8 +8,6 @@ public class CharacterAbilityReadyState : ScriptableCharacterState
 
     public override bool CheckEnterCondition(CharacterUnitModel model)
     {
-        model.ReduceReadyCoolTime();
-
         return model.ReadyCoolTime <= 0;
     }
 

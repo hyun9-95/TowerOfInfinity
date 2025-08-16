@@ -22,4 +22,6 @@ public class CheatConfig
     public bool bossSpawnWhenBattleStart = false;
 
     public bool midBossSpawnWhenBattleStart = false;
+
+    public bool stopSpawnEnemy = false;
 }
