@@ -9,19 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dceb0da3ed51b6e47a7efb36ff83fcff, type: 3}
-  m_Name: AB_WEAPON_DRAGON_BREATH
+  m_Script: {fileID: 11500000, guid: 35a1f3d3d76825340b763c39f138f948, type: 3}
+  m_Name: RedDragon_BreathState
   m_EditorClassIdentifier: 
-  type: 50003
-  Speed:
-  - 5
-  Range:
-  - 7
-  Duration: []
-  HitCount: 01000000
-  Scale: []
-  CoolTime:
-  - 2
-  SpawnCount: 01000000
-  HitForce:
-  - 5
+  abilityDefine: 0
+  probability: 0
+  animState: 0
+  targetProbability: 0

@@ -15,7 +15,7 @@ Id,NameId,PrefabName,PrimaryWeaponAbility,ActiveSkill,PassiveSkill
 ,,,,,
 11000,CHAR_BAT,Character/Enemy/Bat/Bat,None,None,None
 11001,CHAR_GREEN_OGRE,Character/Enemy/GreenOgre/GreenOgre,AB_WEAPON_GREEN_OGRE_SMASH,None,None
-11002,CHAR_RED_DRAGON,Character/Enemy/RedDragon/RedDragon,AB_WEAPON_DRAGON_BREATH,None,None
+11002,CHAR_RED_DRAGON,Character/Enemy/RedDragon/RedDragon,AB_WEAPON_DRAGON_BITE,None,None
 11003,CHAR_BLUE_SPIRIT,Character/Enemy/BlueSpirit/BlueSpirit,None,None,None
 11004,CHAR_DARK_STUMP,Character/Enemy/DarkStump/DarkStump,None,None,None
 11005,CHAR_GREY_RAT,Character/Enemy/GreyRat/GreyRat,None,None,None

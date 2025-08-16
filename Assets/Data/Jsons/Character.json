@@ -37,7 +37,7 @@
   {
     "id": 11002,
     "PrefabName": "Character/Enemy/RedDragon/RedDragon",
-    "PrimaryWeaponAbility": "AB_WEAPON_DRAGON_BREATH",
+    "PrimaryWeaponAbility": "AB_WEAPON_DRAGON_BITE",
     "ActiveSkill": "None",
     "PassiveSkill": "None"
   },

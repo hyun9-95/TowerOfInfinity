@@ -46,12 +46,12 @@
     "SlotType": "Weapon",
     "CastingType": "OnAttack",
     "BattleEvents": [
-      "BE_DAMAGE_DRAGON_BREATH"
+      "BE_DAMAGE_DRAGON_BITE"
     ],
     "TriggerType": "TargetProjectile",
     "TargetType": "Enemy",
     "CastEffectPath": "",
-    "TriggerUnitPath": "Ability/DragonBreath/DragonBreath_TargetProjectile",
+    "TriggerUnitPath": "Ability/DragonBite/DragonBite_Collider",
     "IconPath": "",
     "HitEffectPrefabName": ""
   },

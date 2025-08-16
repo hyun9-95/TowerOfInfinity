@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ed11842cc8ba12d40aca11dedabb0006, type: 3}
-  m_Name: BE_DAMAGE_DRAGON_BREATH
+  m_Name: BE_DAMAGE_DRAGON_BITE
   m_EditorClassIdentifier: 
   define: 20009
   value:
