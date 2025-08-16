@@ -89,9 +89,8 @@ public class BattleCardDrawer
         {
             BattleCardTier drawTier = GetDrawTier(battleLevel);
 
-            // 해당 티어에 카드가 없다면 Common
-            if (!cardByTierDic.ContainsKey(drawTier))
-                drawTier = BattleCardTier.Common;
+			if (!cardByTierDic.ContainsKey(drawTier))
+				drawTier = GetDrawFailTier(drawTier);
 
             var cards = cardByTierDic[drawTier];
             var drawIndex = UnityEngine.Random.Range(0, cards.Count);
@@ -112,6 +111,17 @@ public class BattleCardDrawer
         }
 
         return resultCards;
+    }
+
+	private BattleCardTier GetDrawFailTier(BattleCardTier drawnTier)
+	{
+        for (BattleCardTier tier = drawnTier; tier > BattleCardTier.Common; tier--)
+		{
+			if (cardByTierDic.ContainsKey(tier))
+				return tier;
+		}
+
+		return BattleCardTier.Common;
     }
     #endregion
 }

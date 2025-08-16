@@ -146,7 +146,7 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
 
     private void OnLevelUp()
     {
-        var drawnCards = cardDrawer.DrawBattleCards(battleInfo.Level);
+        var drawnCards = cardDrawer.DrawBattleCards(battleInfo.Level, battleInfo.CurrentCharacter.Model.AbilityProcessor);
 
         if (drawnCards == null || drawnCards.Length == 0)
         {
