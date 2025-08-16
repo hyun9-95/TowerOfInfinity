@@ -60,8 +60,6 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>
 
     private void OnSpawnEnemy(CharacterUnit enemy)
     {
-        enemy.gameObject.tag = StringDefine.BATTLE_TAG_ENEMY;
-        
         var enemyModel = enemy.Model;
         enemyModel.SetTarget(battleInfo.CurrentCharacter.Model);
         enemyModel.SetPathFindType(PathFindType.AStar);

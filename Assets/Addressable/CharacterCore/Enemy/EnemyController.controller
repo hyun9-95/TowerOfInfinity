@@ -271,6 +271,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timing: 1
+  normalizeTimeByTag:
+    _serializedList: []
 --- !u!1102 &3216116582026859982
 AnimatorState:
   serializedVersion: 6
@@ -311,6 +313,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timing: 1
+  normalizeTimeByTag:
+    _serializedList: []
 --- !u!114 &4450914115151628220
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -324,6 +328,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timing: 1
+  normalizeTimeByTag:
+    _serializedList:
+    - Key: RESET_ANIM_075
+      Value: 0.75
 --- !u!1107 &4960274374232111306
 AnimatorStateMachine:
   serializedVersion: 6

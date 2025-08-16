@@ -56,6 +56,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GreenOgre
       objectReference: {fileID: 0}
+    - target: {fileID: 3248602934051070365, guid: 3f669f6d112971a4ca167399c23c3769, type: 3}
+      propertyPath: m_TagString
+      value: RESET_ANIM_075
+      objectReference: {fileID: 0}
     - target: {fileID: 3783430769333235779, guid: 3f669f6d112971a4ca167399c23c3769, type: 3}
       propertyPath: m_SpriteHash
       value: 288431053
