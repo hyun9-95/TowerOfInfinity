@@ -30,6 +30,7 @@ public enum BattleEventType
     Poison,
     Frozen,
     Buff,
+    Heal,
 }
 
 public enum BattleEventGroup
@@ -90,4 +91,12 @@ public enum BattleResult
     None,
     Victory,
     Defeat,
+}
+
+public enum ValueApplyType
+{
+    None,
+    Multiply,
+    Fixed,
+    Add,
 }

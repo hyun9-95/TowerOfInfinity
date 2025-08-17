@@ -234,7 +234,7 @@
     "TargetType": "Ally",
     "CastEffectPath": "",
     "TriggerUnitPath": "",
-    "IconPath": "GoldenBoots_Icon",
+    "IconPath": "Ability/GoldenBoots/GoldenBoots_Icon",
     "HitEffectPrefabName": ""
   },
   {
@@ -249,6 +249,20 @@
     "CastEffectPath": "",
     "TriggerUnitPath": "Ability/HellGate/HellGate_Blackhole",
     "IconPath": "Ability/HellGate/HellGate_Blackhole_Icon",
+    "HitEffectPrefabName": ""
+  },
+  {
+    "id": 51014,
+    "SlotType": "Passive",
+    "CastingType": "Auto",
+    "BattleEvents": [
+      "BE_HEAL_HEAL"
+    ],
+    "TriggerType": "Self",
+    "TargetType": "Ally",
+    "CastEffectPath": "AbilityCast/Heal/HealEffect",
+    "TriggerUnitPath": "",
+    "IconPath": "Ability/Heal/Heal_Icon",
     "HitEffectPrefabName": ""
   }
 ]

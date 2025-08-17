@@ -9,7 +9,7 @@
     "StatReferenceCondition": "CurrentStat",
     "StatusDirection": "Increase",
     "Stackable": false,
-    "ValueApplyType": "Mutiply"
+    "ValueApplyType": "Multiply"
   },
   {
     "id": 20001,
@@ -21,7 +21,7 @@
     "StatReferenceCondition": "CurrentStat",
     "StatusDirection": "Increase",
     "Stackable": false,
-    "ValueApplyType": "Mutiply"
+    "ValueApplyType": "Multiply"
   },
   {
     "id": 20002,
@@ -33,7 +33,7 @@
     "StatReferenceCondition": "CurrentStat",
     "StatusDirection": "Increase",
     "Stackable": true,
-    "ValueApplyType": "Mutiply"
+    "ValueApplyType": "Multiply"
   },
   {
     "id": 20003,
@@ -45,7 +45,7 @@
     "StatReferenceCondition": "CurrentStat",
     "StatusDirection": "Increase",
     "Stackable": false,
-    "ValueApplyType": "Mutiply"
+    "ValueApplyType": "Multiply"
   },
   {
     "id": 20004,
@@ -57,7 +57,7 @@
     "StatReferenceCondition": "CurrentStat",
     "StatusDirection": "Increase",
     "Stackable": false,
-    "ValueApplyType": "Mutiply"
+    "ValueApplyType": "Multiply"
   },
   {
     "id": 20005,
@@ -69,7 +69,7 @@
     "StatReferenceCondition": "CurrentStat",
     "StatusDirection": "Increase",
     "Stackable": false,
-    "ValueApplyType": "Mutiply"
+    "ValueApplyType": "Multiply"
   },
   {
     "id": 20006,
@@ -81,7 +81,7 @@
     "StatReferenceCondition": "CurrentStat",
     "StatusDirection": "Increase",
     "Stackable": false,
-    "ValueApplyType": "Mutiply"
+    "ValueApplyType": "Multiply"
   },
   {
     "id": 20007,
@@ -93,7 +93,7 @@
     "StatReferenceCondition": "CurrentStat",
     "StatusDirection": "Increase",
     "Stackable": false,
-    "ValueApplyType": "Mutiply"
+    "ValueApplyType": "Multiply"
   },
   {
     "id": 20008,
@@ -105,7 +105,7 @@
     "StatReferenceCondition": "CurrentStat",
     "StatusDirection": "Increase",
     "Stackable": false,
-    "ValueApplyType": "Mutiply"
+    "ValueApplyType": "Multiply"
   },
   {
     "id": 20009,
@@ -117,7 +117,7 @@
     "StatReferenceCondition": "CurrentStat",
     "StatusDirection": "Increase",
     "Stackable": false,
-    "ValueApplyType": "Mutiply"
+    "ValueApplyType": "Multiply"
   },
   {
     "id": 20010,
@@ -129,7 +129,7 @@
     "StatReferenceCondition": "CurrentStat",
     "StatusDirection": "Increase",
     "Stackable": false,
-    "ValueApplyType": "Mutiply"
+    "ValueApplyType": "Multiply"
   },
   {
     "id": 20011,
@@ -141,7 +141,7 @@
     "StatReferenceCondition": "CurrentStat",
     "StatusDirection": "Increase",
     "Stackable": false,
-    "ValueApplyType": "Mutiply"
+    "ValueApplyType": "Multiply"
   },
   {
     "id": 20012,
@@ -153,7 +153,7 @@
     "StatReferenceCondition": "CurrentStat",
     "StatusDirection": "Increase",
     "Stackable": false,
-    "ValueApplyType": "Mutiply"
+    "ValueApplyType": "Multiply"
   },
   {
     "id": 20013,
@@ -165,7 +165,7 @@
     "StatReferenceCondition": "CurrentStat",
     "StatusDirection": "Increase",
     "Stackable": false,
-    "ValueApplyType": "Mutiply"
+    "ValueApplyType": "Multiply"
   },
   {
     "id": 20014,
@@ -177,7 +177,7 @@
     "StatReferenceCondition": "CurrentStat",
     "StatusDirection": "Increase",
     "Stackable": false,
-    "ValueApplyType": "Mutiply"
+    "ValueApplyType": "Multiply"
   },
   {
     "id": 20015,
@@ -189,7 +189,7 @@
     "StatReferenceCondition": "CurrentStat",
     "StatusDirection": "Increase",
     "Stackable": false,
-    "ValueApplyType": "Mutiply"
+    "ValueApplyType": "Multiply"
   },
   {
     "id": 20016,
@@ -213,6 +213,18 @@
     "StatReferenceCondition": "CurrentStat",
     "StatusDirection": "Increase",
     "Stackable": false,
-    "ValueApplyType": "Mutiply"
+    "ValueApplyType": "Multiply"
+  },
+  {
+    "id": 20018,
+    "Type": "Heal",
+    "AffectStat": "MaxHp",
+    "BattleEventCategory": "Active",
+    "BattleEventGroup": "Buff",
+    "StatReference": "Sender",
+    "StatReferenceCondition": "CurrentStat",
+    "StatusDirection": "Increase",
+    "Stackable": true,
+    "ValueApplyType": "Multiply"
   }
 ]

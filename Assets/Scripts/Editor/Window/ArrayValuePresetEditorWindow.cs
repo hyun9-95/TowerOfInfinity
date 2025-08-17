@@ -20,6 +20,11 @@ public class ArrayValuePresetEditorWindow : EditorWindow
     // Log
     private float logStartValue = 1f; // 0이 될 수 없음
     private float logFactor = 1.1f;
+    
+    // Interpolate
+    private float interpolateStartValue = 0f;
+    private float interpolateEndValue = 10f;
+    
     private float initialValue;
 
     public static void ShowWindow(SerializedProperty property, int size, float initialValue_)
@@ -37,6 +42,8 @@ public class ArrayValuePresetEditorWindow : EditorWindow
         linearStartValue = initialValue;
         stepStartValue = initialValue;
         logStartValue = initialValue; // Log는 0이 될 수 없으므로 주의
+        interpolateStartValue = initialValue;
+        interpolateEndValue = initialValue + 10f;
     }
 
     private void OnGUI()
@@ -83,6 +90,10 @@ public class ArrayValuePresetEditorWindow : EditorWindow
                 logFactor = EditorGUILayout.FloatField("계수", logFactor);
                 logFactor = Mathf.Max(1.001f, logFactor); // 1 이상
                 break;
+            case EditorGraph.Interpolate:
+                interpolateStartValue = EditorGUILayout.FloatField("시작 값", interpolateStartValue);
+                interpolateEndValue = EditorGUILayout.FloatField("최종 값", interpolateEndValue);
+                break;
         }
     }
 
@@ -127,6 +138,17 @@ public class ArrayValuePresetEditorWindow : EditorWindow
                 break;
             case EditorGraph.Log:
                 calculatedValue = logStartValue * Mathf.Log(index + 1, logFactor); // index + 1로 0 방지
+                break;
+            case EditorGraph.Interpolate:
+                if (arraySize <= 1)
+                {
+                    calculatedValue = interpolateStartValue;
+                }
+                else
+                {
+                    float t = (float)index / (arraySize - 1);
+                    calculatedValue = Mathf.Lerp(interpolateStartValue, interpolateEndValue, t);
+                }
                 break;
         }
         return calculatedValue;

@@ -115,5 +115,14 @@
     "IconPath": "",
     "Name": "LOCAL_AB_HELL_GATE_NAME",
     "Desc": "LOCAL_AB_HELL_GATE_DESC"
+  },
+  {
+    "id": 100013,
+    "CardType": "GetAbility",
+    "Tier": "Uncommon",
+    "Ability": "AB_ACTIVE_HEAL",
+    "IconPath": "",
+    "Name": "LOCAL_AB_HEAL_NAME",
+    "Desc": "LOCAL_AB_HEAL_DESC"
   }
 ]

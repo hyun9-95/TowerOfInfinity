@@ -271,6 +271,17 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
         OnHitBodyColor(receiver, damageType);
     }
 
+    public void OnHeal(CharacterUnitModel sender, CharacterUnitModel receiver, float value)
+    {
+        var damageType = DamageType.Heal;
+
+        receiver.AddHp(value);
+
+        damageNumbersGroup.ShowDamage(damageType, receiver.Transform, value.ToString());
+
+        OnHitBodyColor(receiver, damageType);
+    }
+
     private void OnHitBodyColor(CharacterUnitModel receiver, DamageType damageType)
     {
         if (!receiver.IsDead)

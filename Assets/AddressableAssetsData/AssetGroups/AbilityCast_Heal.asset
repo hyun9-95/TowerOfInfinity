@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: AbilityCast_Heal
+  m_EditorClassIdentifier: 
+  m_GroupName: AbilityCast_Heal
+  m_GUID: bf2f290a8f6b40f48b8e72830bb2cf99
+  m_SerializeEntries:
+  - m_GUID: 9e7a02dd7c7a17b4c96f659f527ade21
+    m_Address: AbilityCast/Heal/HealEffect
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 34dc61f64b645c64b87b79d6d4f05b80, type: 2}
+    - {fileID: 11400000, guid: b5b8e94fbffc8124c96f4e9d0b66febd, type: 2}

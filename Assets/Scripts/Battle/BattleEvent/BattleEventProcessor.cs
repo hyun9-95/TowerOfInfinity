@@ -125,7 +125,7 @@ public class BattleEventProcessor
             if (stackableEventDic.TryGetValue(battleEvent.Model.DataID, out BattleEvent existingEvent))
             {
                 // 동일한 효과의 경우 지속시간 + 값 갱신
-                existingEvent.OnReapply(battleEvent.Model);
+                existingEvent.Reapply(battleEvent.Model);
             }
             else
             {
@@ -141,7 +141,7 @@ public class BattleEventProcessor
                 if (isEqual)
                 {
                     // 동일한 효과의 경우 지속시간 + 값 갱신
-                    existingEvent.OnReapply(battleEvent.Model);
+                    existingEvent.Reapply(battleEvent.Model);
                     return;
                 }
                 else

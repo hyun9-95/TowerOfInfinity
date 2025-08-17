@@ -334,5 +334,17 @@
     "Korean": "적을 끌어당기며 피해를 입히는 문을 소환합니다.",
     "English": "Summons a gate that pulls enemies and deals damage.",
     "SimplifiedChinese": "召唤一扇吸引敌人并造成伤害的门。"
+  },
+  {
+    "id": 70056,
+    "Korean": "치유",
+    "English": "Heal",
+    "SimplifiedChinese": "治愈"
+  },
+  {
+    "id": 70057,
+    "Korean": "주기적으로 체력을 회복합니다.",
+    "English": "Periodically restores health.",
+    "SimplifiedChinese": "定期恢复生命值。"
   }
 ]

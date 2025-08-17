@@ -171,6 +171,18 @@ MonoBehaviour:
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a5c7d4d42a6456540b286ca28814379e
+    m_Address: AbilityCore/BattleEventBalance/BE_HEAL_HEAL
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: aa1d438b97ac11349aa0009562bd7fd8
+    m_Address: AbilityCore/AbilityBalance/AB_ACTIVE_HEAL
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: bf8154837826add42b49ccf4c2596af6
     m_Address: AbilityCore/AbilityBalance/AB_ACTIVE_BOULDER_SMASH
     m_ReadOnly: 0

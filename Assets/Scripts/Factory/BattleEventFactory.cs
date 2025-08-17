@@ -16,6 +16,9 @@ public struct BattleEventFactory
             case BattleEventType.Buff:
                 return new BuffBattleEvent();
 
+            case BattleEventType.Heal:
+                return new HealBattleEvent();
+
             default:
                 Logger.Error($"정의되지 않은 BattleStatusEffect : {eventType}");
                 break;

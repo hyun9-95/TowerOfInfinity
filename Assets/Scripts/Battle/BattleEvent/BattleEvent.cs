@@ -105,7 +105,7 @@ public abstract class BattleEvent : IObserver
         {
             var baseStat = statReferenceTarget.GetStatValue(Model.AffectStat, Model.StatReferenceCondition);
             
-            if (Model.ValueApplyType == ValueApplyType.Mutiply)
+            if (Model.ValueApplyType == ValueApplyType.Multiply)
                 finalValue = baseStat * Model.Value;
 
             if (Model.ValueApplyType == ValueApplyType.Add)
@@ -118,6 +118,10 @@ public abstract class BattleEvent : IObserver
     }
 
     public virtual void OnEnd()
+    {
+    }
+
+    public virtual void OnReapply()
     {
     }
 
@@ -152,13 +156,15 @@ public abstract class BattleEvent : IObserver
         return Model.Receiver;
     }
 
-    public void OnReapply(BattleEventModel model)
+    public void Reapply(BattleEventModel model)
     {
         if (model == null || Model == null)
             return;
 
         Model.UpdateValue(model);
         RemainDuration = model.Duration;
+
+        OnReapply();
     }
     #endregion
 }
