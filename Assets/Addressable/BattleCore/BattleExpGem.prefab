@@ -200,6 +200,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shadow
       objectReference: {fileID: 0}
+    - target: {fileID: 155101846172067461, guid: fa508e1c164795247b5cc0723b69cf5d, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3646414421363297363, guid: fa508e1c164795247b5cc0723b69cf5d, type: 3}
+      propertyPath: m_SortingLayer
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3646414421363297363, guid: fa508e1c164795247b5cc0723b69cf5d, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3646414421363297363, guid: fa508e1c164795247b5cc0723b69cf5d, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1148060041
+      objectReference: {fileID: 0}
     - target: {fileID: 7982744015288830996, guid: fa508e1c164795247b5cc0723b69cf5d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

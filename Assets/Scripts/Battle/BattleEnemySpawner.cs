@@ -51,6 +51,8 @@ public class BattleEnemySpawner : IObserver
         }
 #endif
 
+        inBattle = true;
+
         while (inBattle)
         {
             if (!isSpawnMidBoss && currentWave == Model.MidBossWave)
@@ -94,9 +96,6 @@ public class BattleEnemySpawner : IObserver
 
     private void OnChangeWave(int changedWave)
     {
-        if (currentWave == changedWave)
-            return;
-
         currentWave = changedWave;
         currentIntervalSeconds = Model.GetCurrentSpawnInterval(currentWave);
         currentWaveEnemies = Model.GetCurrentWaveEnemies(currentWave);
