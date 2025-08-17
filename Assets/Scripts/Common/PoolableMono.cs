@@ -8,7 +8,9 @@ public class PoolableMono : AddressableMono
 
     private void ReturnPool()
     {
-        if (ObjectPoolManager.Instance)
-            ObjectPoolManager.Instance.ReturnToPool(gameObject, gameObject.name);
+        if (ObjectPoolManager.Instance.CheckSafeNull())
+            return;
+
+        ObjectPoolManager.Instance.ReturnToPool(gameObject, gameObject.name);
     }
 }

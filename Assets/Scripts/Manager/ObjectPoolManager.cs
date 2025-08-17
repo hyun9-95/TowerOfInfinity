@@ -89,6 +89,9 @@ public class ObjectPoolManager : BaseMonoManager<ObjectPoolManager>
 
     public void ReturnToPool(GameObject obj, string name)
     {
+        if (obj.CheckSafeNull())
+            return;
+
         obj.SetActive(false);
 
         if (!poolDictionary.ContainsKey(name))
