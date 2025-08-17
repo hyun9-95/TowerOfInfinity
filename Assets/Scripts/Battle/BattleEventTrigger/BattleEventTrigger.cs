@@ -38,7 +38,7 @@ public abstract class BattleEventTrigger
 
     private CharacterUnitModel GetTargetModel(Collider2D collider)
     {
-        var targetModel = BattleSceneManager.Instance.GetCharacterModel(collider);
+        var targetModel = BattleSceneManager.GetCharacterModel(collider);
 
         // 죽으면 타겟으로 감지안함.
         if (targetModel != null && targetModel.Hp <= 0)
@@ -161,7 +161,7 @@ public abstract class BattleEventTrigger
             if (!CameraManager.Instance.IsVisibleFromWorldCamera(collider.transform.position))
                 continue;
 
-            var targetModel = BattleSceneManager.Instance.GetCharacterModel(collider);
+            var targetModel = BattleSceneManager.GetCharacterModel(collider);
 
             if (targetModel == null || targetModel.TeamTag == Model.Sender.TeamTag)
                 continue;

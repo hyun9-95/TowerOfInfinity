@@ -20,12 +20,9 @@ public class BattleView : BaseView
     [SerializeField]
     private TextMeshProUGUI waveText;
 
-    private bool isShowing = false;
-
     public override async UniTask ShowAsync()
     {
         UpdateUI();
-        isShowing = true;
     }
 
     public void UpdateUI()
@@ -39,19 +36,5 @@ public class BattleView : BaseView
     private void ShowSlider()
     {
         expSlider.value = Model.GetExpSliderValue();
-    }
-
-    private void LateUpdate()
-    {
-        if (!isShowing)
-            return;
-
-        if (Model == null)
-            return;
-
-        if (!BattleSystemManager.InBattle)
-            return;
-
-        UpdateUI();
     }
 }

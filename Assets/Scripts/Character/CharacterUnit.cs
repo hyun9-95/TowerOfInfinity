@@ -207,7 +207,7 @@ public class CharacterUnit : PoolableMono
             DeadAsync().Forget();
         else
         {
-            BattleSceneManager.Instance.RemoveLiveCharacter(gameObject.GetInstanceID());
+            BattleSceneManager.RemoveLiveCharacter(gameObject.GetInstanceID());
             gameObject.SafeSetActive(false);
         }
     }
@@ -586,8 +586,7 @@ public class CharacterUnit : PoolableMono
 
     private async UniTask DeadAsync()
     {
-        if (BattleSceneManager.Instance != null)
-            BattleSceneManager.Instance.RemoveLiveCharacter(gameObject.GetInstanceID());
+        BattleSceneManager.RemoveLiveCharacter(gameObject.GetInstanceID());
 
         if (animator == null)
             return;
@@ -602,8 +601,7 @@ public class CharacterUnit : PoolableMono
         if (bodySprite)
             bodySprite.DeactiveWithFade(1, gameObject);
 
-        if (BattleSystemManager.Instance)
-            BattleSystemManager.Instance.OnDeadCharacter(Model);
+        BattleSystemManager.OnDeadCharacter(Model);
     }
 
     #region Collision

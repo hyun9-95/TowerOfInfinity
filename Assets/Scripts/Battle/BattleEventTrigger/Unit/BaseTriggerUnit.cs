@@ -84,7 +84,7 @@ public abstract class BaseTriggerUnit<T> : PoolableBaseUnit<T>, IBattleEventTrig
         if (hitFollowTargetOnly && Model.FollowTargetTransform != null && other.transform != Model.FollowTargetTransform)
             return;
 
-        var targetModel = BattleSceneManager.Instance.GetCharacterModel(other);
+        var targetModel = BattleSceneManager.GetCharacterModel(other);
 
         if (targetModel == null)
             return;
@@ -129,7 +129,8 @@ public abstract class BaseTriggerUnit<T> : PoolableBaseUnit<T>, IBattleEventTrig
         if (observerParam is not BattleObserverParam param)
             return;
 
-        RemoveTargetFromCooldown(param.ModelValue);
+        if (observerMessage is BattleObserverID.EnemyKilled)
+            RemoveTargetFromCooldown(param.ModelValue);
     }
     #endregion
 }

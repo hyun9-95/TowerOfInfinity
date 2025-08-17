@@ -30,7 +30,9 @@ public class BattleInfo
 
     public BattleTeam BattleTeam { get; private set; }
 
-    public CharacterUnit CurrentCharacter => BattleTeam.CurrentCharacter;
+    public CharacterUnit MainCharacter => BattleTeam.CurrentCharacter;
+
+    public CharacterUnitModel MainCharModel => MainCharacter.Model;
 
     public int KillCount { get; private set; }
 

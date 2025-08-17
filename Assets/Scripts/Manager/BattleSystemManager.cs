@@ -8,10 +8,7 @@ using UnityEngine;
 public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
 {
     #region Property
-    public static bool InBattle => instance ? instance.inBattle : false;
-    public int CurrentWave => battleInfo.CurrentWave;
-    public Vector3 CurrentCharacterPos => battleInfo.CurrentCharacter.transform.position;
-    private bool inBattle => battleInfo == null ?
+    private bool InBattle => battleInfo == null ?
         false : battleInfo.BattleState is BattleState.Playing or BattleState.Paused;
     #endregion
 
@@ -23,7 +20,9 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
     private DamageNumbersGroup damageNumbersGroup;
     private BattleCardDrawer cardDrawer;
     private BattleInfo battleInfo;
-    private BattleObserverParam observerParam = new();
+
+    // 값 필요 없는 param인 경우 new()하지말고 이거 재사용
+    private BattleObserverParam noValueObserverParam = new();
     private BattleViewController battleViewController;
     #endregion
 
@@ -34,7 +33,7 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
         cardDrawer = new BattleCardDrawer();
         cardDrawer.Initialize();
 
-        await InitilalizeExpGainer(battleInfo.CurrentCharacter);
+        await InitilalizeExpGainer(battleInfo.MainCharacter);
         await InitializeDamageGroup();
     }
 
@@ -55,7 +54,7 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
 
     private async UniTask StartWaveAddAsync()
     {
-        while (inBattle && battleInfo.CurrentWave < IntDefine.MAX_DUNGEON_WAVE_COUNT)
+        while (InBattle && battleInfo.CurrentWave < IntDefine.MAX_DUNGEON_WAVE_COUNT)
         {
             var waveSeconds = GetWaveSeconds();
             await UniTaskUtils.DelaySeconds(waveSeconds, TokenPool.Get(GetHashCode()));
@@ -71,6 +70,10 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
             battleInfo.SetCurrentWave(battleInfo.CurrentWave + 1);
             RefreshBattleView();
         }
+
+        var observerParam = new BattleObserverParam();
+        observerParam.SetIntValue(battleInfo.CurrentWave);
+        ObserverManager.NotifyObserver(BattleObserverID.ChangeWave, observerParam);
 
         Logger.BattleLog($"Current Wave => {battleInfo.CurrentWave}");
     }
@@ -176,7 +179,7 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
             exp *= BattleDefine.CHEAT_EXP_MULTIPLIER;
 #endif
 
-        if (!inBattle)
+        if (!InBattle)
             return;
 
         int prevLevel = battleInfo.Level;
@@ -193,7 +196,7 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
     {
         // firstDraw => 첫장에 특정 티어 확정 출연 (Common이면 적용 X)
 
-        var abProcessor = battleInfo.CurrentCharacter.Model.AbilityProcessor;
+        var abProcessor = battleInfo.MainCharacter.Model.AbilityProcessor;
         var drawnCards = cardDrawer.DrawBattleCards(battleInfo.Level, abProcessor, firstDraw);
 
         if (drawnCards == null || drawnCards.Length == 0)
@@ -232,7 +235,7 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
 
     private void OnGetAbility(int abilityDataId)
     {
-        var currentCharacter = battleInfo.CurrentCharacter;
+        var currentCharacter = battleInfo.MainCharacter;
 
         if (currentCharacter == null)
             return;
@@ -255,12 +258,19 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
         Logger.BattleLog($"Exp gainer level up : {prevLevel} => {model.Level}");
     }
 
+    private void OnHitBodyColor(CharacterUnitModel receiver, DamageType damageType)
+    {
+        if (!receiver.IsDead)
+            receiver.ActionHandler.OnHitBodyColorAsync(GetHitColorByDamageType(damageType)).Forget();
+    }
+
     private void OnBattleEnd(BattleResult result)
     {
         battleInfo.SetBattleResult(result);
         battleInfo.SetBattleState(BattleState.End);
 
-        ObserverManager.NotifyObserver(BattleObserverID.BattleEnd, observerParam);
+        RefreshBattleView();
+        ObserverManager.NotifyObserver(BattleObserverID.BattleEnd, noValueObserverParam);
 
         var battleResultController = new BattleResultController();
         var battleResultModel = new BattleResultViewModel();
@@ -280,9 +290,12 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
     #endregion
 
     #region Public OnEvent
-    public void OnDamage(CharacterUnitModel sender, CharacterUnitModel receiver, float value, DamageType damageType = DamageType.Normal)
+    public static void OnDamage(CharacterUnitModel sender, CharacterUnitModel receiver, float value, DamageType damageType = DamageType.Normal)
     {
-        if (receiver == null || receiver.IsDead)
+        if (instance == null || !instance.InBattle)
+            return;
+
+        if (sender == null || sender.IsDead || receiver == null || receiver.IsDead)
             return;
 
         var damageAmount = Formula.GetDamageAmount(sender, receiver, value, damageType);
@@ -292,35 +305,40 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
 
         // 적인 경우에만 대미지를 표시.
         if (receiver.TeamTag == TeamTag.Enemy)
-            damageNumbersGroup.ShowDamage(damageType, receiver.Transform, finalDamage.ToString());
+            instance.damageNumbersGroup.ShowDamage(damageType, receiver.Transform, finalDamage.ToString());
 
-        OnHitBodyColor(receiver, damageType);
+        instance.OnHitBodyColor(receiver, damageType);
     }
 
-    public void OnHeal(CharacterUnitModel sender, CharacterUnitModel receiver, float value)
+    public static void OnHeal(CharacterUnitModel sender, CharacterUnitModel receiver, float value)
     {
+        if (instance == null || !instance.InBattle)
+            return;
+
+        if (sender == null || sender.IsDead || receiver == null || receiver.IsDead)
+            return;
+
         var damageType = DamageType.Heal;
 
         receiver.AddHp(value);
 
-        damageNumbersGroup.ShowDamage(damageType, receiver.Transform, value.ToString());
+        instance.damageNumbersGroup.ShowDamage(damageType, receiver.Transform, value.ToString());
 
-        OnHitBodyColor(receiver, damageType);
+        instance.OnHitBodyColor(receiver, damageType);
     }
 
-    private void OnHitBodyColor(CharacterUnitModel receiver, DamageType damageType)
+    public static void OnDeadCharacter(CharacterUnitModel deadCharacterModel)
     {
-        if (!receiver.IsDead)
-            receiver.ActionHandler.OnHitBodyColorAsync(GetHitColorByDamageType(damageType)).Forget();
-    }
+        if (instance == null || !instance.InBattle)
+            return;
 
-    public void OnDeadCharacter(CharacterUnitModel deadCharacterModel)
-    {
         if (deadCharacterModel.TeamTag == TeamTag.Enemy)
         {
+            var battleInfo = instance.battleInfo;
+
             battleInfo.AddKill();
 
-            RefreshBattleView();
+            instance.RefreshBattleView();
 
             var newObserverParam = new BattleObserverParam();
             newObserverParam.SetModelValue(deadCharacterModel);
@@ -328,22 +346,22 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
 
             // 죽은 캐릭터가 보스라면 승리
             if (deadCharacterModel.CharacterDefine == battleInfo.FinalBoss)
-                OnBattleEnd(BattleResult.Victory);
+                instance.OnBattleEnd(BattleResult.Victory);
         }
-        else if (deadCharacterModel == battleInfo.CurrentCharacter.Model)
+        else if (deadCharacterModel == instance.battleInfo.MainCharacter.Model)
         {
             // 죽은 캐릭터가 메인캐릭터라면 패배
-            OnBattleEnd(BattleResult.Defeat);
+            instance.OnBattleEnd(BattleResult.Defeat);
         }
     }
 
 #if CHEAT
-    public void OnCheatLevelUp()
+    public void CheatLevelUp()
     {
-        OnCheatLevelUpWithDraw();
+        CheatLevelUpWithDraw();
     }
 
-    public void OnCheatLevelUpWithDraw(BattleCardTier tier = BattleCardTier.Common)
+    public void CheatLevelUpWithDraw(BattleCardTier tier = BattleCardTier.Common)
     {
         var nextExp = battleInfo.NextBattleExp;
         var currentExp = battleInfo.BattleExp;
@@ -361,7 +379,7 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
             OnLevelUp(tier);
     }
 
-    public void OnCheatAddWave()
+    public void CheatAddWave()
     {
         AddWave();
     }

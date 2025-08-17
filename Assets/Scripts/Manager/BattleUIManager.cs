@@ -22,21 +22,19 @@ public class BattleUIManager : BaseMonoManager<BattleUIManager>
     private HpBarUnit hpBarUnit;
 
     private Camera battleUICamera;
-    private BattleInfo battleInfo;
     #endregion
 
-    public async UniTask Prepare(BattleInfo battleInfo)
+    public async UniTask Prepare()
     {
         if (battleUICanvas != null)
             battleUICamera = battleUICanvas.worldCamera;
-
-        this.battleInfo = battleInfo;
     }
 
     #region HPBar
-    public async UniTask ShowHpBar()
+    public async UniTask ShowHpBar(CharacterUnitModel owner)
     {
-        var owner = battleInfo.CurrentCharacter.Model;
+        if (owner == null)
+            return;
 
         if (hpBarUnit.Model == null)
             hpBarUnit.SetModel(new HpBarUnitModel());

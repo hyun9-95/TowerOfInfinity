@@ -38,14 +38,14 @@ public class BattleFlow : BaseFlow<BattleFlowModel>
        
         await battleSystemManager.Prepare(battleInfo);
         await battleSceneManager.Prepare(battleInfo);
-        await battleUIManager.Prepare(battleInfo);
+        await battleUIManager.Prepare();
     }
 
     public override async UniTask Process()
     {
         await battleSystemManager.StartBattle();
         await battleSceneManager.StartSpawn();
-        await battleUIManager.ShowHpBar();
+        await battleUIManager.ShowHpBar(battleInfo.MainCharModel);
         EnableBattleInput();
     }
 
@@ -57,7 +57,7 @@ public class BattleFlow : BaseFlow<BattleFlowModel>
 
     private void EnableBattleInput()
     {
-        var mainCharacter = battleInfo.CurrentCharacter;
+        var mainCharacter = battleInfo.MainCharacter;
         attackCoolTime = mainCharacter.GetPrimaryWeaponCoolTime();
         rollCoolTime = FloatDefine.DEAFAULT_ROLL_COOTIME;
 

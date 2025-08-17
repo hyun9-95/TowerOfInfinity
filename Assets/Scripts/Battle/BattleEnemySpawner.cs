@@ -1,25 +1,33 @@
 #pragma warning disable CS1998
 using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
-using System.Threading;
 using UnityEngine;
 
 public class BattleEnemySpawner : IObserver
 {
     public BattleEnemyGeneratorModel Model;
 
+    #region Value
     private float minDistance;
     private int safeCount = BattleDefine.ENEMY_SPAWN_SAFE_COUNT;
-
     private float[] currentWaveWeights;
     private CharacterDefine[] currentWaveEnemies;
     private float totalWeight;
-    bool isSpawnMidBoss = false;
-    bool isSpawnFinalBoss = false;
+    private bool isSpawnMidBoss = false;
+    private bool isSpawnFinalBoss = false;
+    private bool inBattle = false;
+    private int currentWave = 0;
+    private int burstSpawnCount = 1;
+    private int burstSpawnCountPerInterval = BattleDefine.BURST_SPAWN_COUNT_PER_INTERVAL;
+    private float currentIntervalSeconds = 0;
+    #endregion
 
     public BattleEnemySpawner(BattleEnemyGeneratorModel battleEnemyGeneratorModel)
     {
         Model = battleEnemyGeneratorModel;
+        currentIntervalSeconds = Model.SpawnIntervalSeconds;
+
+        OnChangeWave(0);
     }
 
     public async UniTask StartGenerateAsync()
@@ -28,11 +36,6 @@ public class BattleEnemySpawner : IObserver
         minDistance = CameraManager.Instance.DiagonalLengthFromCenter;
 
         ObserverManager.AddObserver(BattleObserverID.BattleEnd, this);
-
-        int currentWave = -1;
-        int burstSpawnCount = 1;
-        int burstSpawnCountPerInterval = BattleDefine.BURST_SPAWN_COUNT_PER_INTERVAL;
-        float currentIntervalSeconds = Model.SpawnIntervalSeconds;
 
 #if CHEAT && UNITY_EDITOR
         if (CheatManager.CheatConfig.bossSpawnWhenBattleStart)
@@ -48,21 +51,8 @@ public class BattleEnemySpawner : IObserver
         }
 #endif
 
-        while (BattleSystemManager.InBattle)
+        while (inBattle)
         {
-            var tempWave = BattleSystemManager.Instance.CurrentWave;
-
-            if (tempWave != currentWave)
-            {
-                currentWave = tempWave;
-                currentIntervalSeconds = Model.GetCurrentSpawnInterval(currentWave);
-                currentWaveEnemies = Model.GetCurrentWaveEnemies(currentWave);
-                CachingCurrentWaveWeight(currentWaveEnemies, currentWave);
-                burstSpawnCount = Model.GetBurstWaveValue(currentWave);
-
-                Logger.BattleLog($"Wave Changed {currentWave} => Interval {currentIntervalSeconds} / Burst {burstSpawnCount}");
-            }
-
             if (!isSpawnMidBoss && currentWave == Model.MidBossWave)
             {
                 await SpawnMidBossAsync();
@@ -100,6 +90,21 @@ public class BattleEnemySpawner : IObserver
         }
 
         ObserverManager.RemoveObserver(BattleObserverID.BattleEnd, this);
+    }
+
+    private void OnChangeWave(int changedWave)
+    {
+        if (currentWave == changedWave)
+            return;
+
+        currentWave = changedWave;
+        currentIntervalSeconds = Model.GetCurrentSpawnInterval(currentWave);
+        currentWaveEnemies = Model.GetCurrentWaveEnemies(currentWave);
+        CachingCurrentWaveWeight(currentWaveEnemies, currentWave);
+        burstSpawnCount = Model.GetBurstWaveValue(currentWave);
+
+        if (currentWave > 0)
+            Logger.BattleLog($"Wave Changed {currentWave} => Interval {currentIntervalSeconds} / Burst {burstSpawnCount}");
     }
 
     // 웨이브의 적 종류별 가중치를 캐싱해놓는다.
@@ -243,7 +248,12 @@ public class BattleEnemySpawner : IObserver
         switch (observerMessage)
         {
             case BattleObserverID.BattleEnd:
+                inBattle = false;
                 Cancel();
+                break;
+
+            case BattleObserverID.ChangeWave:
+                OnChangeWave(param.IntValue);
                 break;
         }
     }
