@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "ScriptableAbilityEventBalance")]
+[CreateAssetMenu(menuName = "ScriptableObject/Balance/Ability Balance")]
 public class ScriptableAbilityBalance : ScriptableObject
 {
     [SerializeField]

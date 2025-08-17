@@ -1,7 +1,7 @@
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "ScriptableCharacterStates/Character/Attack")]
+[CreateAssetMenu(menuName = "ScriptableObject/Character/State/Enemy/Attack")]
 public class CharacterAttackState : ScriptableCharacterState
 {
     public override int Priority => 4;

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "ScriptableCharacterStates/Character/AbilityReady")]
+[CreateAssetMenu(menuName = "ScriptableObject/Character/State/Enemy/Ability Ready")]
 public class CharacterAbilityReadyState : ScriptableCharacterState
 {
     public override int Priority => 2;

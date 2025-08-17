@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "ScriptableCharacterStates/Character/Idle")]
+[CreateAssetMenu(menuName = "ScriptableObject/Character/State/Character/Idle")]
 public class CharacterIdleState : ScriptableCharacterState
 {
     public override int Priority => 0;

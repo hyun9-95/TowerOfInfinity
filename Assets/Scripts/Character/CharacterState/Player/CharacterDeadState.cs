@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "ScriptableCharacterStates/Character/Dead")]
+[CreateAssetMenu(menuName = "ScriptableObject/Character/State/Character/Dead")]
 public class CharacterDeadState : ScriptableCharacterState
 {
     public override int Priority => IntDefine.STATE_DEAD_PRIORITY;

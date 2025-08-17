@@ -18,7 +18,7 @@ namespace Tools
         private ScriptGenerator.ManagerType ManagerType => GetParameter<ScriptGenerator.ManagerType>("ManagerType");
         private string ContentsName => GetParameter<string>("ContentsName");
 
-        [MenuItem("Tools/Generate Script")]
+        [MenuItem("Tools/Code Generation/Script Generator")]
         public static void OpenScriptGenerateorWindow()
         {
             ScriptGenerateorEditorWindow window = (ScriptGenerateorEditorWindow)GetWindow(typeof(ScriptGenerateorEditorWindow));

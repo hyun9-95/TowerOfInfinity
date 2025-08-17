@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ScriptableCharacterStat", menuName = "Scriptable Objects/ScriptableCharacterStat")]
+[CreateAssetMenu(fileName = "ScriptableCharacterStat", menuName = "ScriptableObject/Character/Character Stat")]
 public class ScriptableCharacterStat : ScriptableObject
 {
     [SerializeField]

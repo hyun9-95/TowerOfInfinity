@@ -30,7 +30,7 @@ namespace TowerOfInfinity.Editor
         private readonly List<AnimatorState> stateList = new();
         private readonly List<string> statePathList = new();
 
-        [MenuItem("Window/Animator Preview Tool")]
+        [MenuItem("Tools/Animation/Animator Preview Tool")]
         public static void ShowWindow()
         {
             GetWindow<AnimatorPreviewEditorWindow>("Animator Preview");

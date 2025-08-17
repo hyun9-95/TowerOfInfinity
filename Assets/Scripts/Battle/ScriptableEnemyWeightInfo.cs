@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEditor;
 #endif
 
-[CreateAssetMenu(menuName = "ScriptableEnemyWeightInfo", fileName = "ScriptableEnemyWeightInfo")]
+[CreateAssetMenu(menuName = "ScriptableObject/Battle/Enemy Weight Info", fileName = "ScriptableEnemyWeightInfo")]
 public class ScriptableEnemyWeightInfo : ScriptableObject
 {
     [Header("Enemy Spawn Weights")]

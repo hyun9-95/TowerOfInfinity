@@ -7,7 +7,7 @@ public static class AbilityEditorUtil
 {
     private static string assetPath = PathDefine.PATH_ABILITY_BALANCE_FOLDER;
 
-    [MenuItem("Tools/Ability Balance/Refresh All")]
+    [MenuItem("Tools/Balance/Refresh All Abilities")]
     public static void RefreshAll()
     {
         RefreshAll(true);

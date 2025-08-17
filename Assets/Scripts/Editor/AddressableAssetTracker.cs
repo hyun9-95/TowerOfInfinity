@@ -9,7 +9,7 @@ public class AddressableAssetTracker
     private const string ADDRESSABLE_ROOT = "Assets/Addressable";
     private const string UNTRACKED_FOLDER = "Assets/Addressable/Untracked";
     
-    [MenuItem("Tools/Move Untracked Assets to Addressable Folder")]
+    [MenuItem("Tools/Addressable/Move Untracked Assets")]
     public static void MoveUntrackedAssetsToAddressable()
     {
         var assetSourceMap = new Dictionary<string, HashSet<string>>();

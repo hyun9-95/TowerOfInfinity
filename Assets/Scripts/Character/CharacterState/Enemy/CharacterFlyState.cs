@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "ScriptableCharacterStates/Character/Fly")]
+[CreateAssetMenu(menuName = "ScriptableObject/Character/State/Enemy/Fly")]
 public class CharacterFlyState : ScriptableCharacterState
 {
     [Header("Fly State Settings")]

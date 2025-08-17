@@ -18,7 +18,7 @@ namespace TowerOfInfinity.Editor
         private AnimatorStateInfo currentStateInfo;
         private AnimationClip currentClip;
 
-        [MenuItem("Window/Sprite Animator Preview Tool")]
+        [MenuItem("Tools/Animation/Sprite Animator Preview Tool")]
         public static void ShowWindow()
         {
             GetWindow<SpriteAnimatorPreviewEditorWindow>("Animator Preview");

@@ -13,7 +13,7 @@ public class DataIntegrityChecker : EditorWindow
     private bool isChecking = false;
     private Dictionary<string, Type> dataTypeMap;
 
-    [MenuItem("Window/Data Integrity Checker")]
+    [MenuItem("Tools/Data/Data Integrity Checker")]
     public static void ShowWindow()
     {
         GetWindow<DataIntegrityChecker>("Data Integrity Checker");

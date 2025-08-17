@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "SoloStateGroup", menuName = "Scriptable Objects/SoloStateGroup")]
+[CreateAssetMenu(fileName = "SoloStateGroup", menuName = "ScriptableObject/Character/Solo State Group")]
 public class SoloScriptableStateGroup : ScriptableCharacterStateGroup
 {
 	#region Property

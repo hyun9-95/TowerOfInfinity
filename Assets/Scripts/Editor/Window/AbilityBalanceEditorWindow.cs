@@ -7,7 +7,7 @@ public class AbilityBalanceEditorWindow : BalanceEditorWindowBase<AbilityBalance
     protected override string[] TabTitles => new string[] { "편집", "관리" };
     protected override string AssetFilter => "t:ScriptableAbilityBalance";
 
-    [MenuItem("Tools/Ability Balance/Editor")]
+    [MenuItem("Tools/Balance/Ability Balance Editor")]
     public static void ShowWindow()
     {
         ShowWindow<AbilityBalanceEditorWindow>("Ability Balance Editor");

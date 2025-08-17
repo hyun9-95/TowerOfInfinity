@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ScriptableCharacterStateGroup", menuName = "Scriptable Objects/ScriptableCharacterStateGroup")]
+[CreateAssetMenu(fileName = "ScriptableCharacterStateGroup", menuName = "ScriptableObject/Character/State Group")]
 public class ScriptableCharacterStateGroup : ScriptableObject
 {
     public IReadOnlyList<ScriptableCharacterState> StateList => stateList;

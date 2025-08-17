@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "ScriptableCharacterModule/CharacterUIModule")]
+[CreateAssetMenu(menuName = "ScriptableObject/Character/Module/Character UI")]
 public class CharacterUIModule : ScriptableCharacterModule
 {
     public override ModuleType GetModuleType()

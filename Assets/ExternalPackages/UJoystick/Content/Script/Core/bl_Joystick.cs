@@ -263,8 +263,13 @@ public class bl_Joystick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     private void ResetJoystick()
     {
         lastId = -2;
-        StopAllCoroutines();
-        StartCoroutine(ScaleJoysctick(false));
+        
+        if (gameObject.SafeActiveSelf())
+        {
+            StopAllCoroutines();
+            StartCoroutine(ScaleJoysctick(false));
+        }
+
         inputVector = Vector2.zero;
 
         if (backImage != null)

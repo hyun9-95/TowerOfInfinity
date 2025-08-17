@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "ScriptableCharacterModuleGroup")]
+[CreateAssetMenu(menuName = "ScriptableObject/Character/Module Group")]
 public class ScriptableCharacterModuleGroup : ScriptableObject
 {
     public IReadOnlyList<ScriptableCharacterModule> ModuleList => moduleList;
