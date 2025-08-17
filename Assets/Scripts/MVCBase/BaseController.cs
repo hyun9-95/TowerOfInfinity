@@ -17,13 +17,13 @@ public abstract class BaseController
     /// <summary> 프리팹 네이밍은 View와 동일하게.. ex)DataBoardController => DataBoardView </summary>
     public bool IsView => UICanvasType == UICanvasType.View;
     public abstract UIType UIType { get; }
-    public abstract UICanvasType UICanvasType { get; }
+    public virtual UICanvasType UICanvasType { get; }
 
     protected BaseView baseView;
 
     protected IBaseViewModel baseModel;
 
-    public abstract void Enter();
+    public virtual void Enter() { }
 
     public T GetModel<T>() where T : IBaseViewModel
     {
