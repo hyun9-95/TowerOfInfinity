@@ -56,13 +56,29 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
     {
         while (inBattle && battleInfo.CurrentWave < IntDefine.MAX_DUNGEON_WAVE_COUNT)
         {
-            await UniTaskUtils.DelaySeconds(60, TokenPool.Get(GetHashCode()));
+            var waveSeconds = GetWaveSeconds();
+            await UniTaskUtils.DelaySeconds(waveSeconds, TokenPool.Get(GetHashCode()));
 
             if (battleInfo != null)
-                battleInfo.SetLevel(battleInfo.Level + 1);
+            {
+                battleInfo.SetCurrentWave(battleInfo.CurrentWave + 1);
+                RefreshViewModel();
+            }
 
-            Logger.BattleLog($"Current Wave => {battleInfo.Level}");
+            Logger.BattleLog($"Current Wave => {battleInfo.CurrentWave}");
         }
+    }
+
+    private float GetWaveSeconds()
+    {
+        float waveSeconds = 60;
+
+#if CHEAT
+        if (CheatManager.CheatConfig.ToggleWaveBoostX2)
+            waveSeconds = waveSeconds / 2;
+#endif
+
+        return waveSeconds;
     }
 
     private async UniTask ShowBattleView()
@@ -131,6 +147,7 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
 
         viewModel.SetLevel(battleInfo.Level);
         viewModel.SetBattleExp(battleInfo.BattleExp);
+        viewModel.SetCurrentLevelExp(battleInfo.CurrentLevelExp);
         viewModel.SetNextBattleExp(battleInfo.NextBattleExp);
         viewModel.SetKillCount(battleInfo.KillCount);
         viewModel.SetCurrentWave(battleInfo.CurrentWave);

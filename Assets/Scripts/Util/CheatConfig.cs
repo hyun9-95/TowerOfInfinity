@@ -11,7 +11,7 @@ public class CheatConfig
 
     public bool IsDebugAStar;
 
-    public bool IsInvincible;
+    public bool ToggleInvincible;
 
     public SceneDefine SceneDefine;
 
@@ -24,4 +24,14 @@ public class CheatConfig
     public bool midBossSpawnWhenBattleStart = false;
 
     public bool stopSpawnEnemy = false;
+
+    public bool ToggleExpBoostX2 = false;
+
+    public bool ToggleWaveBoostX2 = false;
+
+    public bool drawUncommon = false;
+
+    public bool drawRare = false;
+
+    public bool drawEpic = false;
 }

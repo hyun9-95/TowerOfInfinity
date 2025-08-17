@@ -2,6 +2,7 @@ using Cysharp.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Profiling;
+using UnityEngine.UI;
 
 public class CheatManager : BaseMonoManager<CheatManager>
 {
@@ -47,6 +48,15 @@ public class CheatManager : BaseMonoManager<CheatManager>
 
     [SerializeField]
     private TextMeshProUGUI drawCallText;
+
+    [SerializeField]
+    private Toggle toggleInvincible;
+
+    [SerializeField]
+    private Toggle toggleExpBoost;
+
+    [SerializeField]
+    private Toggle toggleWaveBoost;
 
     private CheatConfig cheatConfig;
     
@@ -138,6 +148,15 @@ public class CheatManager : BaseMonoManager<CheatManager>
 
         if (cheatConfig.enableGcAllocCallStack)
             Profiler.enableAllocationCallstacks = true;
+
+        toggleInvincible.isOn = cheatConfig.ToggleInvincible;
+        toggleExpBoost.isOn = cheatConfig.ToggleExpBoostX2;
+        toggleWaveBoost.isOn = cheatConfig.ToggleWaveBoostX2;
+
+#if !UNITY_EDITOR
+        memoryText.gameObject.SafeSetActive(false);
+        drawCallText.gameObject.SafeSetActive(false);
+#endif
     }
 
     public void SetState(State state)
@@ -223,7 +242,38 @@ public class CheatManager : BaseMonoManager<CheatManager>
 
         BattleSceneManager.Instance.CheatSpawnBoss();
     }
+
+
+    public static void OnToggleInvincible(bool value)
+    {
+        CheatConfig.ToggleInvincible = value;
+    }
+
+    #region 구현 필요
+
+    public static void OnToggleExpBoost(bool value)
+    {
+        // True일 경우 경험치 획득량 2배
+        CheatConfig.ToggleExpBoostX2 = value;
+    }
+
+    public static void OnToggleWaveBoost(bool value)
+    {
+        // True일 경우 
+        CheatConfig.ToggleWaveBoostX2 = value;
+    }
+
+    public static void BattleAddWave()
+    {
+    }
+
+    public static void BattleDrawCard(int tierInt)
+    {
+        BattleCardTier tier = (BattleCardTier)tierInt;
+    }
+    #endregion 구현 필요
+
     #endregion
-    #endregion
+#endregion
 #endif
-}
+    }

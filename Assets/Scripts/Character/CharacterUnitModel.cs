@@ -160,7 +160,7 @@ public class CharacterUnitModel : IBaseUnitModel
     public void AddDamage(int value)
     {
 #if CHEAT
-        if (CharacterType == CharacterType.Main && CheatManager.CheatConfig.IsInvincible)
+        if (CharacterType == CharacterType.Main && CheatManager.CheatConfig.ToggleInvincible)
             return;
 #endif
         AddHp(-value);

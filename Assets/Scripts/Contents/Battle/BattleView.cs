@@ -17,6 +17,9 @@ public class BattleView : BaseView
     [SerializeField]
     private TextMeshProUGUI killCountText;
 
+    [SerializeField]
+    private TextMeshProUGUI waveText;
+
     private bool isShowing = false;
 
     public override async UniTask ShowAsync()
@@ -29,17 +32,12 @@ public class BattleView : BaseView
     {
         ShowSlider();
         killCountText.SafeSetText(Model.GetKillCountText());
+        waveText.SafeSetText(Model.GetWaveText());
     }
 
     private void ShowSlider()
     {
-        if (Model.BattleExp == 0)
-        {
-            expSlider.value = 0;
-            return;
-        }
-
-        expSlider.value = Model.BattleExp / Model.NextBattleExp;
+        expSlider.value = Model.GetExpSliderValue();
     }
 
     private void FixedUpdate()

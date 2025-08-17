@@ -10,6 +10,14 @@ public class BattleInfo
 
     public float BattleExp { get; private set; }
 
+    public float CurrentLevelExp
+    {
+        get
+        {
+            return 0;
+        }
+    }
+
     public float NextBattleExp
     {
         get
@@ -18,11 +26,13 @@ public class BattleInfo
                 return 0;
 
             int nextLevel = Level + 1;
-
             if (nextLevel >= expPerLevel.Length)
                 return expPerLevel[expPerLevel.Length - 1];
 
-            return expPerLevel[nextLevel];
+            float currentLevelCumulativeExp = Level == 0 ? 0 : expPerLevel[Level - 1];
+            float nextLevelCumulativeExp = expPerLevel[Level];
+
+            return nextLevelCumulativeExp - currentLevelCumulativeExp;
         }
     }
 
@@ -91,6 +101,11 @@ public class BattleInfo
         BattleExp += exp;
     }
 
+    public void SetCurrentWave(int wave)
+    {
+        CurrentWave = wave;
+    }
+
     public void SetExpTable()
     {
         var startExpData = DataManager.Instance.GetDataById<DataBalance>((int)BalanceDefine.BALANCE_BATTLE_START_EXP);
@@ -112,13 +127,19 @@ public class BattleInfo
 
     public void OnExpGain(float exp)
     {
+        Logger.Log($"Exp Gain: +{exp:F1} (Before: Level={Level}, BattleExp={BattleExp:F1})");
+        
         AddBattleExp(exp);
 
-        if (BattleExp >= NextBattleExp)
+        while (BattleExp >= NextBattleExp)
         {
+            float overflowExp = BattleExp - NextBattleExp;
+            Logger.Log($"Level Up: {Level} -> {Level + 1} (Overflow: {overflowExp:F1})");
             Level++;
-            BattleExp = 0;
+            BattleExp = overflowExp;
         }
+        
+        Logger.Log($"Exp Gain Result: Level={Level}, BattleExp={BattleExp:F1}, CurrentLevelExp={CurrentLevelExp:F1}, NextBattleExp={NextBattleExp:F1}");
     }
 
     public void AddKill()

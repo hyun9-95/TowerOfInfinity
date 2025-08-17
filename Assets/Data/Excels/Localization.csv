@@ -59,3 +59,4 @@ Id,NameId,Korean,English,SimplifiedChinese
 70055,LOCAL_AB_HELL_GATE_DESC,적을 끌어당기며 피해를 입히는 문을 소환합니다.,Summons a gate that pulls enemies and deals damage.,召唤一扇吸引敌人并造成伤害的门。
 70056,LOCAL_AB_HEAL_NAME,치유,Heal,治愈
 70057,LOCAL_AB_HEAL_DESC,주기적으로 체력을 회복합니다.,Periodically restores health.,定期恢复生命值。
+70058,LOCAL_WORD_WAVE,웨이브,Wave,波次

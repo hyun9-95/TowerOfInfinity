@@ -346,5 +346,11 @@
     "Korean": "주기적으로 체력을 회복합니다.",
     "English": "Periodically restores health.",
     "SimplifiedChinese": "定期恢复生命值。"
+  },
+  {
+    "id": 70058,
+    "Korean": "웨이브",
+    "English": "Wave",
+    "SimplifiedChinese": "波次"
   }
 ]
