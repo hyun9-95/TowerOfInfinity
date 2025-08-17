@@ -15,7 +15,6 @@ public class BattleViewController : BaseController<BattleViewModel>, IObserver
     private BattleObserverID[] observerIDs = new BattleObserverID[]
     {
         BattleObserverID.RefreshUI,
-        BattleObserverID.EnemyKilled,
     };
 
     public override void Enter()
@@ -37,7 +36,6 @@ public class BattleViewController : BaseController<BattleViewModel>, IObserver
         switch (observerMessage)
         {
             case BattleObserverID.RefreshUI:
-            case BattleObserverID.EnemyKilled:
                 View.UpdateUI();
                 break;
         }

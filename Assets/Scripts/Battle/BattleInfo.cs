@@ -10,14 +10,6 @@ public class BattleInfo
 
     public float BattleExp { get; private set; }
 
-    public float CurrentLevelExp
-    {
-        get
-        {
-            return 0;
-        }
-    }
-
     public float NextBattleExp
     {
         get
@@ -127,19 +119,14 @@ public class BattleInfo
 
     public void OnExpGain(float exp)
     {
-        Logger.Log($"Exp Gain: +{exp:F1} (Before: Level={Level}, BattleExp={BattleExp:F1})");
-        
         AddBattleExp(exp);
 
         while (BattleExp >= NextBattleExp)
         {
             float overflowExp = BattleExp - NextBattleExp;
-            Logger.Log($"Level Up: {Level} -> {Level + 1} (Overflow: {overflowExp:F1})");
             Level++;
             BattleExp = overflowExp;
         }
-        
-        Logger.Log($"Exp Gain Result: Level={Level}, BattleExp={BattleExp:F1}, CurrentLevelExp={CurrentLevelExp:F1}, NextBattleExp={NextBattleExp:F1}");
     }
 
     public void AddKill()

@@ -147,7 +147,6 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
 
         viewModel.SetLevel(battleInfo.Level);
         viewModel.SetBattleExp(battleInfo.BattleExp);
-        viewModel.SetCurrentLevelExp(battleInfo.CurrentLevelExp);
         viewModel.SetNextBattleExp(battleInfo.NextBattleExp);
         viewModel.SetKillCount(battleInfo.KillCount);
         viewModel.SetCurrentWave(battleInfo.CurrentWave);
@@ -176,7 +175,6 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
         battleInfo.OnExpGain(exp);
 
         RefreshViewModel();
-        ObserverManager.NotifyObserver(BattleObserverID.RefreshUI, observerParam);
 
         if (battleInfo.Level > prevLevel)
             OnLevelUp();
@@ -218,7 +216,6 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
         }
 
         RefreshViewModel();
-        ObserverManager.NotifyObserver(BattleObserverID.RefreshUI, observerParam);
     }
 
     private void OnGetAbility(int abilityDataId)

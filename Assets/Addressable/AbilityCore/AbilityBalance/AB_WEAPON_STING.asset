@@ -16,7 +16,7 @@ MonoBehaviour:
   Speed: []
   Range: []
   Duration: []
-  HitCount: 01000000
+  HitCount: 03000000
   Scale:
   - 0
   - 0.1
@@ -37,4 +37,5 @@ MonoBehaviour:
   - 0.8
   SpawnCount: 01000000
   HitForce:
-  - 0.3
+  - 3
+  SpawnInterval: []

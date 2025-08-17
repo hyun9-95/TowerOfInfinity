@@ -6,7 +6,6 @@ public class BattleViewModel : IBaseViewModel
     #region Property
     public int Level { get; private set; }
     public float BattleExp { get; private set; }
-    public float CurrentLevelExp { get; private set; }
     public float NextBattleExp { get; private set; }
     public int KillCount { get; private set; }
     public float BattleStartTime { get; private set; }
@@ -22,11 +21,6 @@ public class BattleViewModel : IBaseViewModel
     public void SetBattleExp(float exp)
     {
         BattleExp = exp;
-    }
-
-    public void SetCurrentLevelExp(float exp)
-    {
-        CurrentLevelExp = exp;
     }
 
     public void SetNextBattleExp(float exp)
@@ -86,31 +80,13 @@ public class BattleViewModel : IBaseViewModel
 
     public float GetExpSliderValue()
     {
-        if (NextBattleExp <= CurrentLevelExp)
-        {
-            Logger.Warning($"NextBattleExp ({NextBattleExp}) <= CurrentLevelExp ({CurrentLevelExp})");
+        if (NextBattleExp <= 0)
             return 1;
-        }
 
-        float expRange = NextBattleExp - CurrentLevelExp;
-        if (expRange <= 0)
-        {
-            Logger.Warning($"ExpRange <= 0: {expRange}");
-            return 1;
-        }
-
-        float currentProgress = BattleExp - CurrentLevelExp;
-        float sliderValue = Mathf.Clamp01(currentProgress / expRange);
-
-        Logger.Log($"Exp Slider: Level={Level}, BattleExp={BattleExp:F1}, CurrentLevelExp={CurrentLevelExp:F1}, NextBattleExp={NextBattleExp:F1}, Progress={currentProgress:F1}/{expRange:F1}, Value={sliderValue:F3}");
-
-        if (currentProgress < 0)
-        {
-            Logger.Error($"Current progress is negative: {currentProgress}");
+        if (BattleExp < 0)
             return 0;
-        }
 
-        return sliderValue;
+        return Mathf.Clamp01(BattleExp / NextBattleExp);
     }
     #endregion
 }

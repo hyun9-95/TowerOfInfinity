@@ -33,6 +33,7 @@ public class BattleView : BaseView
         ShowSlider();
         killCountText.SafeSetText(Model.GetKillCountText());
         waveText.SafeSetText(Model.GetWaveText());
+        timeText.SafeSetText(Model.GetElapsedTimeText());
     }
 
     private void ShowSlider()
@@ -40,7 +41,7 @@ public class BattleView : BaseView
         expSlider.value = Model.GetExpSliderValue();
     }
 
-    private void FixedUpdate()
+    private void LateUpdate()
     {
         if (!isShowing)
             return;
@@ -51,6 +52,6 @@ public class BattleView : BaseView
         if (!BattleSystemManager.InBattle)
             return;
 
-        timeText.SafeSetText(Model.GetElapsedTimeText());
+        UpdateUI();
     }
 }
