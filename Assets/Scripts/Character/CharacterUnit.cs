@@ -118,7 +118,7 @@ public class CharacterUnit : PoolableMono
         InitializeAnimState();
         InitializeModel();
         InitializeComponent();
-        InitializeModule();
+        InitializeValues();
     }
 
     /// <summary>
@@ -139,21 +139,25 @@ public class CharacterUnit : PoolableMono
 
         if (triggerCollider2D)
             triggerCollider2D.enabled = true;
-
+        
         // 우선순위가 높은 순으로 정렬하므로
         // 가장 마지막에 있는 것이 기본 상태가 된다.
         stateGroup.Sort();
         defaultState = stateGroup.StateList.Last();
+
+        // 기본 상태 설정
         ChangeState(defaultState);
+
+        // 전투 이벤트 시작
+        battleEventProcessor.Start();
+
+        // 어빌리티 처리 시작
+        abilityProcessor.Start();
 
         stateUpdate = true;
         activated = true;
-        cameraVisibleDistance = CameraManager.Instance.DiagonalLengthFromCenter + 0.5f;
-        farDistance = cameraVisibleDistance * 2;
-        veryFarDistance = cameraVisibleDistance * 2.5f;
-        lastAnimStateHash = -1;
-        updateTimer = 0;
 
+        Model.SetIsActivate(true);
         gameObject.SafeSetActive(true);
     }
 
@@ -250,9 +254,14 @@ public class CharacterUnit : PoolableMono
             animator.updateMode = AnimatorUpdateMode.Normal;
     }
 
-    private void InitializeModule()
+    private void InitializeValues()
     {
         moduleModelDic = moduleGroup.CreateModuleModelDic();
+        cameraVisibleDistance = CameraManager.Instance.DiagonalLengthFromCenter + 0.5f;
+        farDistance = cameraVisibleDistance * 2;
+        veryFarDistance = cameraVisibleDistance * 2.5f;
+        lastAnimStateHash = -1;
+        updateTimer = 0;
     }
 
     protected virtual void PrepareState()
@@ -463,11 +472,11 @@ public class CharacterUnit : PoolableMono
     private void InitializeBattleModel()
     {
         // 배틀 이벤트 처리
-        battleEventProcessor.SetOwner(Model);
+        battleEventProcessor.Initialize(Model);
         Model.SetEventProcessor(battleEventProcessor);
 
         // 어빌리티 처리
-        abilityProcessor.SetOwner(Model);
+        abilityProcessor.Initialize(Model);
 
         // 무기 슬롯 어빌리티 추가
         if (Model.CharacterType == CharacterType.Main)

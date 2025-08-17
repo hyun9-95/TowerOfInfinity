@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,19 +25,45 @@ public class BattleEventProcessor
     // 버프/디버프 그룹
     private Dictionary<BattleEventGroup, Dictionary<int, BattleEvent>> eventGroupDic = new Dictionary<BattleEventGroup, Dictionary<int, BattleEvent>>();
 
-    // 한프레임 돌고 Clear되는 리스트
-    private List<BattleEvent> tempUpdateList = new List<BattleEvent>();
     private List<BattleEvent> tempRemoveList = new List<BattleEvent>();
+
+    private bool isUpdate = false;
     #endregion
 
     #region Function
 
-    public void SetOwner(CharacterUnitModel ownerValue)
+    public void Initialize(CharacterUnitModel ownerValue)
     {
         owner = ownerValue;
 
         // 오너 변경시 클리어
         Cancel();
+    }
+
+    public void Start()
+    {
+        isUpdate = true;
+    }
+
+    public void Cancel()
+    {
+        isUpdate = false;
+
+        DelayClear().Forget();
+    }
+
+    private async UniTask DelayClear()
+    {
+        await UniTaskUtils.WaitForLastUpdate();
+
+        // 먼저 모든 상태 효과를 종료 처리
+        StopAllBattleEvent();
+
+        pendingEvents.Clear();
+        uniqueEventDic.Clear();
+        stackableEventCountDic.Clear();
+        stackableEventDic.Clear();
+        eventGroupDic.Clear();
     }
 
     public void ReceiveBattleEvent(BattleEventModel model)
@@ -74,6 +101,9 @@ public class BattleEventProcessor
 
     public void Update()
     {
+        if (!isUpdate)
+            return;
+
         // 대기중인 효과들을 업데이트 목록에 추가
         ProcessPendingBattleEvents();
 
@@ -97,13 +127,15 @@ public class BattleEventProcessor
 
     private void UpdateAllBattleEvents()
     {
-        tempUpdateList.Clear();
-        tempRemoveList.Clear();
+        foreach (var battleEvent in uniqueEventDic.Values)
+        {
+            if (battleEvent == null)
+                continue;
 
-        tempUpdateList.AddRange(uniqueEventDic.Values);
-        tempUpdateList.AddRange(stackableEventDic.Values);
+            UpdateBattleEvents(battleEvent, tempRemoveList);
+        }
 
-        foreach (var battleEvent in tempUpdateList)
+        foreach (var battleEvent in stackableEventDic.Values)
         {
             if (battleEvent == null)
                 continue;
@@ -270,18 +302,6 @@ public class BattleEventProcessor
             battleEvent.OnEnd();
             battleEvent.RemoveObserverIds();
         }
-    }
-
-    public void Cancel()
-    {
-        // 먼저 모든 상태 효과를 종료 처리
-        StopAllBattleEvent();
-
-        pendingEvents.Clear();
-        uniqueEventDic.Clear();
-        stackableEventCountDic.Clear();
-        stackableEventDic.Clear();
-        eventGroupDic.Clear();
     }
 
     #region Util

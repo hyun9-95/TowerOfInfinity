@@ -12,14 +12,24 @@ public class AbilityProcessor
     private Dictionary<CastingType, HashSet<Ability>> abilitySetByCasting = new();
     private Dictionary<int, Ability> abilityDicById = new();
     private Dictionary<AbilitySlotType, List<Ability>> abilitySlotDic = new();
+    private bool isUpdate = false;
     #endregion
 
     #region Function
-    public void SetOwner(CharacterUnitModel owner)
+    public void Initialize(CharacterUnitModel owner)
     {
         this.owner = owner;
+
+        abilitySetByCasting.Clear();
+        abilityDicById.Clear();
+        abilitySlotDic.Clear();
+        isUpdate = false;
     }
 
+    public void Start()
+    {
+        isUpdate = true;
+    }
 
     public void AddAbility(int newAbilityDataId)
     {
@@ -83,6 +93,9 @@ public class AbilityProcessor
 
     public void Update()
     {
+        if (!isUpdate)
+            return;
+
         // 모든 어빌리티 쿨타임 갱신
         foreach (var ability in abilityDicById.Values)
             ability.ReduceCoolTime();
@@ -181,6 +194,15 @@ public class AbilityProcessor
 
     public void Cancel()
     {
+        isUpdate = false;
+
+        DelayClear().Forget();
+    }
+
+    private async UniTask DelayClear()
+    {
+        await UniTaskUtils.WaitForLastUpdate();
+
         abilityDicById.Clear();
         abilitySetByCasting.Clear();
         abilitySlotDic.Clear();

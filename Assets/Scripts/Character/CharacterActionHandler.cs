@@ -168,7 +168,8 @@ public class CharacterActionHandler
         {
             bodyColorChanging = false;
             TokenPool.Cancel(GetHashCode());
-            await UniTaskUtils.NextFrame(token).SuppressCancellationThrow();
+
+            await UniTaskUtils.WaitForLastUpdate(TokenPool.Get(GetHashCode()));
         }
 
         bodyColorChanging = true;

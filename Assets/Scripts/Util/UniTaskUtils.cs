@@ -24,4 +24,9 @@ public static class UniTaskUtils
     {
         await UniTask.WaitForFixedUpdate(cancellationToken: cancellationToken).SuppressCancellationThrow();
     }
+
+    public static async UniTask WaitForLastUpdate(CancellationToken cancellationToken = default)
+    {
+        await UniTask.Yield(PlayerLoopTiming.LastPostLateUpdate, cancellationToken: cancellationToken).SuppressCancellationThrow();
+    }
 }
