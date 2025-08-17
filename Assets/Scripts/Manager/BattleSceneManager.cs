@@ -91,10 +91,10 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>
 
     public static CharacterUnitModel GetCharacterModel(int instanceId)
     {
-        if (instance == null)
+        if (Instance == null)
             return null;
 
-        var liveCharacterModelDic = instance.liveCharacterModelDic;
+        var liveCharacterModelDic = Instance.liveCharacterModelDic;
 
         if (!liveCharacterModelDic.ContainsKey(instanceId))
             return null;
@@ -125,10 +125,10 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>
     //죽으면 제거
     public static void RemoveLiveCharacter(int instanceId)
     {
-        if (instance == null)
+        if (Instance == null)
             return;
 
-        var liveCharacterModelDic = instance.liveCharacterModelDic;
+        var liveCharacterModelDic = Instance.liveCharacterModelDic;
 
         liveCharacterModelDic.Remove(instanceId);
     }

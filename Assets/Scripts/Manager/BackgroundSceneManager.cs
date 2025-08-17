@@ -3,7 +3,7 @@ using UnityEngine;
 
 public abstract class BackgroundSceneManager<T> : MonoBehaviour where T : BackgroundSceneManager<T>, new()
 {
-    protected static T instance;
+    private static T instance;
 
     public static T Instance
     {
