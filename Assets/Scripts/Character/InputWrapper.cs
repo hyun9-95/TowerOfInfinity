@@ -12,6 +12,15 @@ public class InputWrapper
 
     private Dictionary<ActionInput, float> actionInputCoolTime = new();
 
+
+    public void Reset()
+    {
+        IsMove = false;
+        ActionInput = ActionInput.None;
+        Movement = Vector2.zero;
+        actionInputCoolTime.Clear();
+    }
+
     public void SetIsMove(bool value)
     {
         IsMove = value;

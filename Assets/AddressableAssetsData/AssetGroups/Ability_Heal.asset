@@ -14,7 +14,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_GroupName: Ability_Heal
   m_GUID: c3d41135cec592642b8bbf43316934cf
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 7f6ebc112bce7924a8b9a92b1942a0bc
+    m_Address: Ability/Heal/heal_0
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8b33ae251debc3049806e1b7480536e3
+    m_Address: Ability/Heal/heal
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b1a199c912177504c9f7d5c8889c4e75
+    m_Address: Ability/Heal/fx_heal
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c8bdf92d5f19b2d4e97c4fb1bd1d0299
+    m_Address: Ability/Heal/Heal_Icon
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
   m_SchemaSet:

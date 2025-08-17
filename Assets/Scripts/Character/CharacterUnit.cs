@@ -245,6 +245,9 @@ public class CharacterUnit : PoolableMono
 
         if (triggerCollider2D)
             triggerCollider2D.enabled = false;
+
+        if (animator)
+            animator.updateMode = AnimatorUpdateMode.Normal;
     }
 
     private void InitializeModule()

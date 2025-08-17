@@ -32,7 +32,7 @@ public class IntroFlow : BaseFlow<IntroFlowModel>
 
     private void OnCompleteLoading()
     {
-#if UNITY_EDITOR
+#if UNITY_EDITOR && CHEAT
         CheatEnterGame();
 #else
         EnterGame();

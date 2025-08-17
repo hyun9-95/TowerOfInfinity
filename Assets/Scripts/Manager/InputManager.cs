@@ -112,6 +112,9 @@ public class InputManager : BaseMonoManager<InputManager>
         
         instance.moveInput.EnableInput(value, platform.IsMobile);
         instance.enableInput = value;
+
+        if (!value)
+            InputInfo.Reset();
     }
 
     public static void EnableActionButtons(bool value)
