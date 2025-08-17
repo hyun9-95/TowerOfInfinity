@@ -846,7 +846,7 @@ PlayerSettings:
   webGLCloseOnQuit: 0
   webWasm2023: 0
   scriptingDefineSymbols:
-    Android: 
+    Android: MOREMOUNTAINS_NICEVIBRATIONS_INSTALLED;DEBUG_LOG;CHEAT
     EmbeddedLinux: DOTWEEN
     GameCoreScarlett: DOTWEEN
     GameCoreXboxOne: DOTWEEN
