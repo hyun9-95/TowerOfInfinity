@@ -8,7 +8,7 @@ public class BattleEventBalanceEditorWindow : BalanceEditorWindowBase<BattleEven
     protected override string[] TabTitles => new string[] { "편집", "관리" };
     protected override string AssetFilter => "t:ScriptableBattleEventBalance";
 
-    [MenuItem("Tools/Battle Event Balance/Editor")]
+    [MenuItem("Tools/Balance/Battle Event Balance Editor")]
     public static void ShowWindow()
     {
         ShowWindow<BattleEventBalanceEditorWindow>("Battle Event Balance Editor");

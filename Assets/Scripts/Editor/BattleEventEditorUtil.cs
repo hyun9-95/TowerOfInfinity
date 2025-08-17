@@ -6,7 +6,7 @@ public static class BattleEventEditorUtil
 {
     private static string assetPath = PathDefine.PATH_BATTLE_EVENT_BALANCE_FOLDER;
 
-    [MenuItem("Tools/Battle Event Balance/Refresh All")]
+    [MenuItem("Tools/Balance/Refresh All Battle Events")]
     public static void RefreshAll()
     {
         RefreshAll(true);

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "ScriptableCharacterStates/Character/Passing")]
+[CreateAssetMenu(menuName = "ScriptableObject/Character/State/Enemy/Passing")]
 public class CharacterPassingState : ScriptableCharacterState
 {
     [SerializeField]

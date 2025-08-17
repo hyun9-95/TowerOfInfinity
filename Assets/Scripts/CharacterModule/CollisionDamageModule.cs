@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "ScriptableCharacterModule/CollisionDamage")]
+[CreateAssetMenu(menuName = "ScriptableObject/Character/Module/Collision Damage")]
 public class CollisionDamageModule : ScriptableCharacterModule
 {
     private DataBattleEvent defaultDamageEventData;

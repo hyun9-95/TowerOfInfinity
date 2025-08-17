@@ -1,7 +1,7 @@
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "ScriptableCharacterStates/Character/Ability")]
+[CreateAssetMenu(menuName = "ScriptableObject/Character/State/Enemy/Ability")]
 public class CharacterAbilityState : SoloScriptableState
 {
     public override int Priority => targetProbability;

@@ -1,7 +1,7 @@
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "ScriptableCharacterModule/SpawnExpGem")]
+[CreateAssetMenu(menuName = "ScriptableObject/Character/Module/Spawn Exp Gem")]
 public class SpawnExpGemModule : ScriptableCharacterModule
 {
     public override ModuleType GetModuleType() => ModuleType.SpawnExpGem;

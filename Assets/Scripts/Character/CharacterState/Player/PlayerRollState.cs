@@ -1,7 +1,7 @@
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "ScriptableCharacterStates/Player/Roll")]
+[CreateAssetMenu(menuName = "ScriptableObject/Character/State/Player/Roll")]
 public class PlayerRollState : ScriptableCharacterState
 {
     [SerializeField]

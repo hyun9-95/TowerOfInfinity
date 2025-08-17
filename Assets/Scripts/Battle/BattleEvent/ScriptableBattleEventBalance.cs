@@ -1,7 +1,7 @@
 
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "ScriptableBattleEventBalance")]
+[CreateAssetMenu(menuName = "ScriptableObject/Balance/Battle Event Balance")]
 public class ScriptableBattleEventBalance : ScriptableObject
 {
     [SerializeField]

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "ScriptableCharacterStates/Character/AttackFollow")]
+[CreateAssetMenu(menuName = "ScriptableObject/Character/State/Enemy/Attack Follow")]
 public class CharacterAttackFollowState : ScriptableCharacterState
 {
     public override int Priority => 1;

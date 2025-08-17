@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "ScriptableCharacterStates/Player/Move")]
+[CreateAssetMenu(menuName = "ScriptableObject/Character/State/Player/Move")]
 public class PlayerMoveState : ScriptableCharacterState
 {
     public override int Priority => 1;

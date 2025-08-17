@@ -14,7 +14,7 @@ public class BookmarkAsset : EditorWindow
         Ctrl_F4,
     }
 
-    [MenuItem("Tools/Util/BookmarkAsset/Open", false, 15)]
+    [MenuItem("Tools/Utilities/Bookmark Asset Window", false, 15)]
     public static void ShowWindow()
     {
         BookmarkAsset window = (BookmarkAsset)GetWindow(typeof(BookmarkAsset));
@@ -23,7 +23,7 @@ public class BookmarkAsset : EditorWindow
         window.LoadShortcuts();
     }
 
-    [MenuItem("Tools/Util/BookmarkAsset/Play Root Scene %F1")]
+    [MenuItem("Tools/Utilities/Play Root Scene %F1")]
     public static void PlayRootScene()
     {
         UnityEditor.SceneManagement.EditorSceneManager.OpenScene("Assets/Resources/Scenes/RootScene.unity");
