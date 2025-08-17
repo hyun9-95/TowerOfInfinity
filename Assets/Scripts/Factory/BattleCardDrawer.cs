@@ -41,8 +41,8 @@ public class BattleCardDrawer
 			var drawRate = new CardDrawRate();
 
 			// 확률은 천분율
-			drawRate.startValue = startTierRateData.Values[index] / 1000;
-			drawRate.endValue = endTierRateData.Values[index] / 1000;
+			drawRate.startValue = startTierRateData.Values[index] / BattleDefine.TIER_RATE_DIVISOR;
+			drawRate.endValue = endTierRateData.Values[index] / BattleDefine.TIER_RATE_DIVISOR;
 
 			drawRateByTierDic[tier] = drawRate;
 		}

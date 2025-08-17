@@ -258,8 +258,8 @@ public class CharacterUnit : PoolableMono
     {
         moduleModelDic = moduleGroup.CreateModuleModelDic();
         cameraVisibleDistance = CameraManager.Instance.DiagonalLengthFromCenter + 0.5f;
-        farDistance = cameraVisibleDistance * 2;
-        veryFarDistance = cameraVisibleDistance * 2.5f;
+        farDistance = cameraVisibleDistance * BattleDefine.CAMERA_DISTANCE_FAR_MULTIPLIER;
+        veryFarDistance = cameraVisibleDistance * BattleDefine.CAMERA_DISTANCE_VERY_FAR_MULTIPLIER;
         lastAnimStateHash = -1;
         updateTimer = 0;
     }
@@ -304,7 +304,7 @@ public class CharacterUnit : PoolableMono
                 }
 
                 distanceToTarget = DistanceToTarget.VeryFar;
-                updateInterval = 1.5f;
+                updateInterval = BattleDefine.UPDATE_INTERVAL_VERY_FAR;
             }
             else if (distanceSqr >= (farDistance * farDistance))
             {

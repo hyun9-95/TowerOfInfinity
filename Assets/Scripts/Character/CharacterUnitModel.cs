@@ -81,9 +81,9 @@ public class CharacterUnitModel : IBaseUnitModel
     {
         return DistanceToTarget switch
         {
-            DistanceToTarget.Close => 0.5f,
-            DistanceToTarget.Nearby => 1f,
-            _ => 2f,
+            DistanceToTarget.Close => BattleDefine.REPATH_COOLTIME_CLOSE,
+            DistanceToTarget.Nearby => BattleDefine.REPATH_COOLTIME_NEARBY,
+            _ => BattleDefine.REPATH_COOLTIME_DEFAULT,
         };
     }
 

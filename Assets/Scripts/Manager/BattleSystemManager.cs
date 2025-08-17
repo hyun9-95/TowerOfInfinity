@@ -77,11 +77,11 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
 
     private float GetWaveSeconds()
     {
-        float waveSeconds = 60;
+        float waveSeconds = BattleDefine.DEFAULT_WAVE_DURATION_SECONDS;
 
 #if CHEAT
         if (CheatManager.CheatConfig.ToggleWaveBoostX2)
-            waveSeconds = waveSeconds / 2;
+            waveSeconds = waveSeconds * BattleDefine.CHEAT_WAVE_DURATION_MULTIPLIER;
 #endif
 
         return waveSeconds;
@@ -173,7 +173,7 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
     {
 #if CHEAT
         if (CheatManager.CheatConfig.ToggleExpBoostX2)
-            exp *= 2;
+            exp *= BattleDefine.CHEAT_EXP_MULTIPLIER;
 #endif
 
         if (!inBattle)
