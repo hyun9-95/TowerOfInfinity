@@ -160,6 +160,11 @@ public class UIManager : BaseMonoManager<UIManager>
         return currentViewController;
     }
 
+    public T GetCurrentViewController<T>() where T : BaseController
+    {
+        return currentViewController as T;
+    }
+
     public async UniTask RefreshCurrentUI()
     {
         if (currentViewController == null)

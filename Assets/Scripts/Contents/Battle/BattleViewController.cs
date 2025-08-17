@@ -28,6 +28,16 @@ public class BattleViewController : BaseController<BattleViewModel>, IObserver
         await base.Exit();
     }
 
+    public void RefreshBattleInfo(BattleInfo battleInfo)
+    {
+        Model.SetLevel(battleInfo.Level);
+        Model.SetBattleExp(battleInfo.BattleExp);
+        Model.SetNextBattleExp(battleInfo.NextBattleExp);
+        Model.SetKillCount(battleInfo.KillCount);
+        Model.SetCurrentWave(battleInfo.CurrentWave);
+        Model.SetBattleStartTime(battleInfo.BattleStartTime);
+    }
+
     void IObserver.HandleMessage(Enum observerMessage, IObserverParam observerParam)
     {
         if (observerParam is not BattleObserverParam)
