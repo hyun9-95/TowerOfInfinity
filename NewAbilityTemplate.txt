@@ -1,27 +1,28 @@
 # 어빌리티 기본 정보
-AbilityName=GreenOgreSmash
-KoreanName=
-KoreanDesc=
+AbilityName=Heal
+KoreanName=치유
+KoreanDesc=주기적으로 체력을 회복합니다.
 
 # 게임플레이 설정
-CardType=
-Tier=
-SlotType=Weapon
-CastingType=OnAttack
-TriggerType=FollowCollider
-TargetType=Enemy
+CardType=GetAbility
+Tier=Uncommon
+SlotType=Passive
+CastingType=Instant
+TriggerType=Self
+TargetType=Ally
 
 # 배틀 이벤트 설정
-BattleEventType=Damage
-AffectStat=Attack
-BattleEventCategory=Active
-BattleEventGroup=None
+BattleEventType=Heal
+AffectStat=MaxHp
+BattleEventCategory=Passive
+BattleEventGroup=Buff
 StatReference=Sender
 StatReferenceCondition=CurrentStat
 StatusDirection=Increase
-Stackable=FALSE
+Stackable=TRUE
+ValueApplyType=Multiply
 
 # 선택적 정보 (비워두면 기본값 사용)
-IconPath=NULL
+IconPath=
 PrefabPath=
 HitEffectPath=NULL
