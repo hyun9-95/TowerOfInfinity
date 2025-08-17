@@ -220,29 +220,13 @@ public class CheatManager : BaseMonoManager<CheatManager>
 
     public static void BattleLevelUp()
     {
-        if (FlowManager.Instance.CurrentFlowType != FlowType.BattleFlow)
-            return;
-
-        if (BattleSystemManager.Instance == null)
-            return;
-
-        if (UIManager.instance.CurrentOpenUI == UIType.BattleCardSelectPopup)
-            return;
-
-        BattleSystemManager.instance.OnCheatLevelUp();
+        BattleSystemManager.instance.CheatLevelUp();
     }
 
     public static void BattleSpawnBoss()
     {
-        if (FlowManager.Instance.CurrentFlowType != FlowType.BattleFlow)
-            return;
-
-        if (BattleSystemManager.Instance == null)
-            return;
-
         BattleSceneManager.Instance.CheatSpawnBoss();
     }
-
 
     public static void OnToggleInvincible(bool value)
     {
@@ -264,32 +248,13 @@ public class CheatManager : BaseMonoManager<CheatManager>
 
     public static void BattleAddWave()
     {
-        if (FlowManager.Instance.CurrentFlowType != FlowType.BattleFlow)
-            return;
-
-        if (BattleSystemManager.Instance == null)
-            return;
-
-        if (UIManager.instance.CurrentOpenUI == UIType.BattleCardSelectPopup)
-            return;
-
-        BattleSystemManager.instance.OnCheatAddWave();
+        BattleSystemManager.instance.CheatAddWave();
     }
 
     public static void BattleDrawCard(int tierInt)
     {
         BattleCardTier tier = (BattleCardTier)tierInt;
-
-        if (FlowManager.Instance.CurrentFlowType != FlowType.BattleFlow)
-            return;
-
-        if (BattleSystemManager.Instance == null)
-            return;
-
-        if (UIManager.instance.CurrentOpenUI == UIType.BattleCardSelectPopup)
-            return;
-
-        BattleSystemManager.instance.OnCheatLevelUpWithDraw(tier);
+        BattleSystemManager.instance.CheatLevelUpWithDraw(tier);
     }
 
     #endregion

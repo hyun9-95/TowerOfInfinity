@@ -10,9 +10,15 @@ public class BattleViewModel : IBaseViewModel
     public int KillCount { get; private set; }
     public float BattleStartTime { get; private set; }
     public int CurrentWave { get; private set; }
+    public BattleState BattleState { get; private set; }
     #endregion
 
     #region Value
+    public void SetBattleState(BattleState state)
+    {
+        BattleState = state;
+    }
+
     public void SetLevel(int level)
     {
         Level = level;

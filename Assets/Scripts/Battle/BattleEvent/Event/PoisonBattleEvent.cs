@@ -11,13 +11,13 @@ public class PoisonBattleEvent : BattleEvent
     #region Function
     public override void OnStart()
     {
-        BattleSystemManager.Instance.OnDamage
+        BattleSystemManager.OnDamage
             (Model.Sender, Model.Receiver, GetAppliableStatValue(), DamageType.Poison);
     }
 
     public override void OnInterval()
     {
-        BattleSystemManager.Instance.OnDamage
+        BattleSystemManager.OnDamage
             (Model.Sender, Model.Receiver, GetAppliableStatValue(), DamageType.Poison);
     }
 	#endregion

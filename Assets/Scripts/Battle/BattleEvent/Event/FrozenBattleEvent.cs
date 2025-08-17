@@ -24,8 +24,8 @@ public class FrozenBattleEvent : BattleEvent
 
     private void DelayDamage()
     {
-        UniTaskUtils.DelayAction(1f, () => BattleSystemManager.Instance.OnDamage
-            (Model.Sender, Model.Receiver, GetAppliableStatValue()), TokenPool.Get(GetHashCode())).Forget();
+        UniTaskUtils.DelayAction(1f, () => BattleSystemManager.OnDamage
+            (Model.Sender, Model.Receiver, GetAppliableStatValue()), frozenTokenSource.Token).Forget();
     }
 
     public override void OnEnd()

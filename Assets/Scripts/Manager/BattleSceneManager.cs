@@ -32,10 +32,10 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>
     {
         this.battleInfo = battleInfo;
 
-        SetCurrentCharacter(battleInfo.CurrentCharacter);
+        SetCurrentCharacter(battleInfo.MainCharacter);
         CreateEnemyGenerator(battleInfo.DataDungeon);
 
-        await infinityTile.Prepare(battleInfo.CurrentCharacter.transform);
+        await infinityTile.Prepare(battleInfo.MainCharacter.transform);
     }
 
 
@@ -61,7 +61,7 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>
     private void OnSpawnEnemy(CharacterUnit enemy)
     {
         var enemyModel = enemy.Model;
-        enemyModel.SetTarget(battleInfo.CurrentCharacter.Model);
+        enemyModel.SetTarget(battleInfo.MainCharacter.Model);
         enemyModel.SetPathFindType(PathFindType.AStar);
 
         enemy.Initialize();
@@ -89,25 +89,30 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>
         enemySpawn.StartGenerateAsync().Forget();
     }
 
-    public CharacterUnitModel GetCharacterModel(int instanceId)
+    public static CharacterUnitModel GetCharacterModel(int instanceId)
     {
+        if (instance == null)
+            return null;
+
+        var liveCharacterModelDic = instance.liveCharacterModelDic;
+
         if (!liveCharacterModelDic.ContainsKey(instanceId))
             return null;
 
         return liveCharacterModelDic[instanceId];
     }
 
-    public CharacterUnitModel GetCharacterModel(Transform transform)
+    public static CharacterUnitModel GetCharacterModel(Transform transform)
     {
         return GetCharacterModel(transform.gameObject.GetInstanceID());
     }
 
-    public CharacterUnitModel GetCharacterModel(GameObject gameObject)
+    public static CharacterUnitModel GetCharacterModel(GameObject gameObject)
     {
         return GetCharacterModel(gameObject.GetInstanceID());
     }
 
-    public CharacterUnitModel GetCharacterModel(Collider2D collider)
+    public static CharacterUnitModel GetCharacterModel(Collider2D collider)
     {
         return GetCharacterModel(collider.gameObject.GetInstanceID());
     }
@@ -118,10 +123,16 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>
     }
 
     //죽으면 제거
-    public void RemoveLiveCharacter(int instanceId)
+    public static void RemoveLiveCharacter(int instanceId)
     {
+        if (instance == null)
+            return;
+
+        var liveCharacterModelDic = instance.liveCharacterModelDic;
+
         liveCharacterModelDic.Remove(instanceId);
     }
+
     #endregion
     public void StopSpawn()
     {
@@ -131,9 +142,6 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>
 #if CHEAT
     public void CheatSpawnBoss()
     {
-        if (!BattleSystemManager.InBattle)
-            return;
-
         enemySpawn.CheatSpawnBoss();
     }
 #endif

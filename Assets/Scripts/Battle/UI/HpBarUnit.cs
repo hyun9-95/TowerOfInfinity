@@ -24,10 +24,11 @@ public class HpBarUnit : BaseUnit<HpBarUnitModel>
 
     public void Hide()
     {
+        acitvated = false;
         gameObject.SetActive(false);
     }
 
-    private void FixedUpdate()
+    private void LateUpdate()
     {
         if (!acitvated)
             return;
