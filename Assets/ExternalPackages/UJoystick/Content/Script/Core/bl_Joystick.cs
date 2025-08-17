@@ -118,6 +118,7 @@ public class bl_Joystick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         else
         {
             isUpdate = false;
+            ResetJoystick();
         }
         gameObject.SafeSetActive(value);
     }
@@ -256,27 +257,32 @@ public class bl_Joystick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         currentVelocity = Vector3.zero;
 
         if (data.pointerId == lastId)
+            ResetJoystick();
+    }
+
+    private void ResetJoystick()
+    {
+        lastId = -2;
+        StopAllCoroutines();
+        StartCoroutine(ScaleJoysctick(false));
+        inputVector = Vector2.zero;
+
+        if (backImage != null)
         {
-            lastId = -2;
-            StopAllCoroutines();
-            StartCoroutine(ScaleJoysctick(false));
-            inputVector = Vector2.zero;
+            backImage.CrossFadeColor(normalColor, Duration, true, true);
+        }
+        if (stickImage != null)
+        {
+            stickImage.CrossFadeColor(normalColor, Duration, true, true);
 
-            if (backImage != null)
-            {
-                backImage.CrossFadeColor(normalColor, Duration, true, true);
-            }
-            if (stickImage != null)
-            {
-                stickImage.CrossFadeColor(normalColor, Duration, true, true);
-                if (defaultSprite != null) stickImage.sprite = defaultSprite;
-            }
+            if (defaultSprite != null)
+                stickImage.sprite = defaultSprite;
+        }
 
-            StickRect.rotation = Quaternion.identity;
-            if (isFollowStick)
-            {
-                StickRect.position = DeathArea;
-            }
+        StickRect.rotation = Quaternion.identity;
+        if (isFollowStick)
+        {
+            StickRect.position = DeathArea;
         }
     }
 

@@ -180,6 +180,9 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
             exp *= 2;
 #endif
 
+        if (!inBattle)
+            return;
+
         int prevLevel = battleInfo.Level;
 
         battleInfo.OnExpGain(exp);

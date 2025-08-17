@@ -73,6 +73,14 @@ public static class ExtensionUtils
         gameObject.SetActive(active);
     }
 
+    public static bool SafeActiveSelf(this UnityEngine.GameObject gameObject)
+    {
+        if (gameObject.CheckSafeNull())
+            return false;
+
+        return gameObject.activeSelf;
+    }
+
     public static void SortByNearest(this Collider2D[] colliders, Vector3 center)
     {
         if (colliders == null)

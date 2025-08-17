@@ -120,7 +120,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4278524595504450780}
   - component: {fileID: 6134060477004596683}
-  - component: {fileID: 4144115088514167110}
+  - component: {fileID: 5152558162323321638}
   m_Layer: 8
   m_Name: VenomBall_Bouncing
   m_TagString: Untagged
@@ -167,13 +167,13 @@ MonoBehaviour:
   effectParticle: {fileID: 0}
   particleSystemRenderer: {fileID: 0}
   detectType: 0
-  hitCollider: {fileID: 4144115088514167110}
+  hitCollider: {fileID: 5152558162323321638}
   hitFollowTargetOnly: 0
   startDirectionType: 5
   launchDelay: 0
   rotateToDirection: 1
---- !u!61 &4144115088514167110
-BoxCollider2D:
+--- !u!58 &5152558162323321638
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -207,17 +207,7 @@ BoxCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_Radius: 0.5
 --- !u!1001 &1576757141619058935
 PrefabInstance:
   m_ObjectHideFlags: 0

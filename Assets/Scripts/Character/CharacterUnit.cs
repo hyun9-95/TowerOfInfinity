@@ -589,11 +589,21 @@ public class CharacterUnit : PoolableMono
         if (BattleSceneManager.Instance != null)
             BattleSceneManager.Instance.RemoveLiveCharacter(gameObject.GetInstanceID());
 
-        await UniTask.WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f);
+        if (animator == null)
+            return;
 
-        bodySprite.DeactiveWithFade(1, gameObject);
+        await UniTaskUtils.WaitForLastUpdate();
 
-        BattleSystemManager.Instance.OnDeadCharacter(Model);
+        var deadStateInfo = animator.GetCurrentAnimatorStateInfo(0);
+
+        while (gameObject.SafeActiveSelf() && deadStateInfo.normalizedTime >= 1f)
+            await UniTaskUtils.NextFrame();
+
+        if (bodySprite)
+            bodySprite.DeactiveWithFade(1, gameObject);
+
+        if (BattleSystemManager.Instance)
+            BattleSystemManager.Instance.OnDeadCharacter(Model);
     }
 
     #region Collision
