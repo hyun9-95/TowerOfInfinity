@@ -246,10 +246,9 @@ public class CheatManager : BaseMonoManager<CheatManager>
 
     public static void OnToggleInvincible(bool value)
     {
+        // True일 경우 받는 피해 0
         CheatConfig.ToggleInvincible = value;
     }
-
-    #region 구현 필요
 
     public static void OnToggleExpBoost(bool value)
     {
@@ -259,21 +258,41 @@ public class CheatManager : BaseMonoManager<CheatManager>
 
     public static void OnToggleWaveBoost(bool value)
     {
-        // True일 경우 
+        // True일 경우 웨이브 증가 요구 시간 2분의 1로 감소
         CheatConfig.ToggleWaveBoostX2 = value;
     }
 
     public static void BattleAddWave()
     {
+        if (FlowManager.Instance.CurrentFlowType != FlowType.BattleFlow)
+            return;
+
+        if (BattleSystemManager.Instance == null)
+            return;
+
+        if (UIManager.instance.CurrentOpenUI == UIType.BattleCardSelectPopup)
+            return;
+
+        BattleSystemManager.instance.OnCheatAddWave();
     }
 
     public static void BattleDrawCard(int tierInt)
     {
         BattleCardTier tier = (BattleCardTier)tierInt;
+
+        if (FlowManager.Instance.CurrentFlowType != FlowType.BattleFlow)
+            return;
+
+        if (BattleSystemManager.Instance == null)
+            return;
+
+        if (UIManager.instance.CurrentOpenUI == UIType.BattleCardSelectPopup)
+            return;
+
+        BattleSystemManager.instance.OnCheatLevelUpWithDraw(tier);
     }
-    #endregion 구현 필요
 
     #endregion
-#endregion
+    #endregion
 #endif
     }

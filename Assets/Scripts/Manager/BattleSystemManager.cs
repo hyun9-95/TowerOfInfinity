@@ -59,14 +59,19 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
             var waveSeconds = GetWaveSeconds();
             await UniTaskUtils.DelaySeconds(waveSeconds, TokenPool.Get(GetHashCode()));
 
-            if (battleInfo != null)
-            {
-                battleInfo.SetCurrentWave(battleInfo.CurrentWave + 1);
-                RefreshViewModel();
-            }
-
-            Logger.BattleLog($"Current Wave => {battleInfo.CurrentWave}");
+            AddWave();
         }
+    }
+
+    private void AddWave()
+    {
+        if (battleInfo != null)
+        {
+            battleInfo.SetCurrentWave(battleInfo.CurrentWave + 1);
+            RefreshViewModel();
+        }
+
+        Logger.BattleLog($"Current Wave => {battleInfo.CurrentWave}");
     }
 
     private float GetWaveSeconds()
@@ -170,6 +175,11 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
 
     private void OnExpGain(float exp)
     {
+#if CHEAT
+        if (CheatManager.CheatConfig.ToggleExpBoostX2)
+            exp *= 2;
+#endif
+
         int prevLevel = battleInfo.Level;
 
         battleInfo.OnExpGain(exp);
@@ -180,9 +190,12 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
             OnLevelUp();
     }
 
-    private void OnLevelUp()
+    private void OnLevelUp(BattleCardTier firstDraw = BattleCardTier.Common)
     {
-        var drawnCards = cardDrawer.DrawBattleCards(battleInfo.Level, battleInfo.CurrentCharacter.Model.AbilityProcessor);
+        // firstDraw => 첫장에 특정 티어 확정 출연 (Common이면 적용 X)
+
+        var abProcessor = battleInfo.CurrentCharacter.Model.AbilityProcessor;
+        var drawnCards = cardDrawer.DrawBattleCards(battleInfo.Level, abProcessor, firstDraw);
 
         if (drawnCards == null || drawnCards.Length == 0)
         {
@@ -325,15 +338,35 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
         }
     }
 
+#if CHEAT
     public void OnCheatLevelUp()
     {
-#if UNITY_EDITOR
+        OnCheatLevelUpWithDraw();
+    }
+
+    public void OnCheatLevelUpWithDraw(BattleCardTier tier = BattleCardTier.Common)
+    {
         var nextExp = battleInfo.NextBattleExp;
         var currentExp = battleInfo.BattleExp;
         var diff = nextExp - currentExp;
 
-        OnExpGain(currentExp + diff);
-#endif
+        var exp = currentExp + diff;
+
+        int prevLevel = battleInfo.Level;
+
+        battleInfo.OnExpGain(exp);
+
+        RefreshViewModel();
+
+        if (battleInfo.Level > prevLevel)
+            OnLevelUp(tier);
     }
-    #endregion
+
+    public void OnCheatAddWave()
+    {
+        AddWave();
+    }
+#endif
+
+#endregion
 }

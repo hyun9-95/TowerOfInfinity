@@ -40,9 +40,9 @@ public class BattleCardDrawer
 
 			var drawRate = new CardDrawRate();
 
-			// 확률은 백분율
-			drawRate.startValue = startTierRateData.Values[index] / 100;
-			drawRate.endValue = endTierRateData.Values[index] / 100;
+			// 확률은 천분율
+			drawRate.startValue = startTierRateData.Values[index] / 1000;
+			drawRate.endValue = endTierRateData.Values[index] / 1000;
 
 			drawRateByTierDic[tier] = drawRate;
 		}
@@ -76,7 +76,7 @@ public class BattleCardDrawer
 		return BattleCardTier.Epic;
 	}
 
-    public DataBattleCard[] DrawBattleCards(int battleLevel, AbilityProcessor abilityProcessor)
+    public DataBattleCard[] DrawBattleCards(int battleLevel, AbilityProcessor abilityProcessor, BattleCardTier firstDraw = BattleCardTier.Common)
     {
         var resultCards = new DataBattleCard[drawCount];
         var drawnCardsIds = new HashSet<int>();
@@ -87,9 +87,14 @@ public class BattleCardDrawer
 
         while (drawnCount < resultCards.Length && tryCount < safeCount)
         {
+            tryCount++;
+
             BattleCardTier drawTier = GetDrawTier(battleLevel);
 
-			if (!cardByTierDic.ContainsKey(drawTier))
+            if (tryCount == 1 && firstDraw != BattleCardTier.Common)
+                drawTier = firstDraw;
+
+            if (!cardByTierDic.ContainsKey(drawTier))
 				drawTier = GetDrawFailTier(drawTier);
 
             var cards = cardByTierDic[drawTier];
@@ -107,7 +112,6 @@ public class BattleCardDrawer
             resultCards[drawnCount] = drawnCard;
             drawnCardsIds.Add(drawnCard.Id);
             drawnCount++;
-			tryCount++;
         }
 
         return resultCards;

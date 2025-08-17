@@ -141,12 +141,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 4659e370b1c48f948b086bee9f7e1c5c
-    m_Address: CharacterCore/Shadow/Shadow_texture
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Main
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 48908527277e83b46a3f35423cfb8332
     m_Address: CharacterCore/Player/Animation/PlayerAnim_Crawl
     m_ReadOnly: 0
@@ -371,12 +365,6 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f799c4289bae6c148ba46d8e9e97b990
     m_Address: CharacterCore/State/Common/CharacterFollowState
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Main
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: fa508e1c164795247b5cc0723b69cf5d
-    m_Address: CharacterCore/Shadow/Shadow
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
