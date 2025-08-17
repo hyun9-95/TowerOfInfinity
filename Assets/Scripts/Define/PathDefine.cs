@@ -14,7 +14,7 @@ public class PathDefine
     public const string ContentsScriptsFolderPath = "Assets/Scripts/Contents";
     public const string Addressable = "Assets/Addressable";
     public const string AddressablePathJson = "Assets/Addressable/BuildInfo/AddressablePath.json";
-    public const string DefinePath = "Assets/Scripts/Public/Define";
+    public const string DefinePath = "Assets/Scripts/Define";
     public const string EditorWindowPath = "Assets/Scripts/Editor/Window";
     public const string SkillPrefabPath = "Assets/Addressable/Skill/";
     public const string DataDefinePath = "Assets/Data/Scripts/Define";
