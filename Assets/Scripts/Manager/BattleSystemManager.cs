@@ -24,6 +24,7 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
     private BattleCardDrawer cardDrawer;
     private BattleInfo battleInfo;
     private BattleObserverParam observerParam = new();
+    private BattleViewController battleViewController;
     #endregion
 
     public async UniTask Prepare(BattleInfo battleInfo)
@@ -68,7 +69,7 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
         if (battleInfo != null)
         {
             battleInfo.SetCurrentWave(battleInfo.CurrentWave + 1);
-            RefreshViewModel();
+            RefreshBattleView();
         }
 
         Logger.BattleLog($"Current Wave => {battleInfo.CurrentWave}");
@@ -88,12 +89,12 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
 
     private async UniTask ShowBattleView()
     {
-        var battleViewController = new BattleViewController();
+        battleViewController = new BattleViewController();
 
         BattleViewModel viewModel = new BattleViewModel();
-        RefreshViewModel(viewModel);
-
         battleViewController.SetModel(viewModel);
+
+        battleViewController.RefreshBattleInfo(battleInfo);
 
         await UIManager.Instance.ChangeView(battleViewController, true);
     }
@@ -145,17 +146,12 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
         };
     }
 
-    private void RefreshViewModel(BattleViewModel viewModel = null)
+    private void RefreshBattleView()
     {
-        if (viewModel == null)
-            viewModel = UIManager.instance.GetCurrentViewController().GetModel<BattleViewModel>();
+        if (battleViewController == null)
+            battleViewController = UIManager.instance.GetCurrentViewController<BattleViewController>();
 
-        viewModel.SetLevel(battleInfo.Level);
-        viewModel.SetBattleExp(battleInfo.BattleExp);
-        viewModel.SetNextBattleExp(battleInfo.NextBattleExp);
-        viewModel.SetKillCount(battleInfo.KillCount);
-        viewModel.SetCurrentWave(battleInfo.CurrentWave);
-        viewModel.SetBattleStartTime(battleInfo.BattleStartTime);
+        battleViewController.RefreshBattleInfo(battleInfo);
     }
 
     #region OnEvent
@@ -187,7 +183,7 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
 
         battleInfo.OnExpGain(exp);
 
-        RefreshViewModel();
+        RefreshBattleView();
 
         if (battleInfo.Level > prevLevel)
             OnLevelUp();
@@ -231,7 +227,7 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
                 break;
         }
 
-        RefreshViewModel();
+        RefreshBattleView();
     }
 
     private void OnGetAbility(int abilityDataId)
@@ -324,7 +320,7 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
         {
             battleInfo.AddKill();
 
-            RefreshViewModel();
+            RefreshBattleView();
 
             var newObserverParam = new BattleObserverParam();
             newObserverParam.SetModelValue(deadCharacterModel);
@@ -359,7 +355,7 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
 
         battleInfo.OnExpGain(exp);
 
-        RefreshViewModel();
+        RefreshBattleView();
 
         if (battleInfo.Level > prevLevel)
             OnLevelUp(tier);
