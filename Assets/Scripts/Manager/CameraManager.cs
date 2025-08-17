@@ -16,7 +16,7 @@ public class CameraManager : BaseMonoManager<CameraManager>
     private Camera[] uiCameras;
 
     private float diagonalLengthFromCenter;
-    private float offset = 0.5f;
+    private float offset = BattleDefine.CAMERA_DIAGONAL_OFFSET;
 
     private void Awake()
     {
@@ -40,12 +40,12 @@ public class CameraManager : BaseMonoManager<CameraManager>
         var diagonalLength = Mathf.Sqrt(width * width + height * height);
 
         // 중심점으로부터의 대각선 길이를 구해야되기 때문에 2로 나눠줌
-        return diagonalLength / 2;
+        return diagonalLength / BattleDefine.CAMERA_ORTHOGRAPHIC_HEIGHT_MULTIPLIER;
     }
 
     public Bounds GetOrthographicCameraBounds(Camera camera)
     {
-        float height = 2f * camera.orthographicSize;
+        float height = BattleDefine.CAMERA_ORTHOGRAPHIC_HEIGHT_MULTIPLIER * camera.orthographicSize;
         float width = height * camera.aspect;
 
         Vector3 center = camera.transform.position;

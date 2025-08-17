@@ -17,10 +17,10 @@ public class OrbitBattleEventTrigger : BattleEventTrigger
             if (orbitUnit == null)
                 continue;
 
-            float angleOffset = (360f / Model.SpawnCount) * i;
+            float angleOffset = (BattleDefine.FULL_CIRCLE_DEGREES / Model.SpawnCount) * i;
             
             // 위에서 부터
-            angleOffset += 90f;
+            angleOffset += BattleDefine.QUARTER_CIRCLE_DEGREES;
             
             var model = BattleEventTriggerFactory.CreateOrbitUnitModel(Model, angleOffset, Model.Sender.Transform, OnEventHit);
             orbitUnit.SetModel(model);

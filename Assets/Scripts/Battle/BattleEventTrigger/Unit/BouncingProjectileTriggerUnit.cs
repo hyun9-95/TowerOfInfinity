@@ -3,7 +3,7 @@ using UnityEngine;
 public class BouncingProjectileTriggerUnit : ProjectileTriggerUnit
 {
     private float lastBounceTime = 0f;
-    private float bounceCooldown = 0.1f;
+    private float bounceCooldown = BattleDefine.BOUNCE_COOLDOWN_SECONDS;
 
     protected override void OnDetectHit(Collider2D other)
     {
@@ -36,7 +36,7 @@ public class BouncingProjectileTriggerUnit : ProjectileTriggerUnit
         // D: 현재 진행 방향 (Direction)  
         // N: 충돌면의 법선 벡터 (Normal)
         Vector2 currentDirection = direction.normalized;  // D
-        Vector2 reflectedDirection = currentDirection - 2f * Vector2.Dot(currentDirection, normal) * normal;  // R
+        Vector2 reflectedDirection = currentDirection - BattleDefine.BOUNCE_VECTOR_MULTIPLIER * Vector2.Dot(currentDirection, normal) * normal;  // R
         
         direction = reflectedDirection.normalized;
     }

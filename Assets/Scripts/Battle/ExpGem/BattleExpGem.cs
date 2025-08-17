@@ -80,7 +80,7 @@ public class BattleExpGem : PoolableBaseUnit<BattleExpGemModel>
         Vector3 initialDir = (target.position - transform.position).normalized;
         Vector3 bounceDir = initialDir * -1;
 
-        while (Vector2.Distance(target.position, transform.position) > 0.8f)
+        while (Vector2.Distance(target.position, transform.position) > BattleDefine.EXP_GEM_DISTANCE_THRESHOLD)
         {
             float accelerateTime = Mathf.Clamp01(elapsedTime / accelerationDuration);
             float curveValue = accelerationCurve.Evaluate(accelerateTime);

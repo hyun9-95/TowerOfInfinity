@@ -10,7 +10,7 @@ public static class Formula
         float damage = attack - def;
 
         if (damage <= 0)
-            damage = 1;
+            damage = BattleDefine.MIN_DAMAGE_VALUE;
 
         // 반올림
         return Mathf.RoundToInt(damage);
@@ -18,6 +18,6 @@ public static class Formula
 
     public static float GetExpGainRangeRadius(int level)
     {
-        return 1 + (level * 0.1f);
+        return BattleDefine.EXP_RANGE_BASE_RADIUS + (level * BattleDefine.EXP_RANGE_LEVEL_MULTIPLIER);
     }
 }

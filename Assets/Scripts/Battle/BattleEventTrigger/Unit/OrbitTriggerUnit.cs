@@ -5,7 +5,7 @@ using UnityEngine;
 public class OrbitTriggerUnit : BaseTriggerUnit<OrbitTriggerUnitModel>
 {
     // 초당 1바퀴
-    private float orbitSpeed = 360f;
+    private float orbitSpeed = BattleDefine.ORBIT_SPEED_DEGREES_PER_SECOND;
     
     private float currentAngle;
     private Transform followTarget;
@@ -53,8 +53,8 @@ public class OrbitTriggerUnit : BaseTriggerUnit<OrbitTriggerUnitModel>
         while (!gameObject.CheckSafeNull() && gameObject.activeSelf && followTarget != null)
         {
             currentAngle += orbitSpeed * Time.fixedDeltaTime;
-            if (currentAngle >= 360f)
-                currentAngle -= 360f;
+            if (currentAngle >= BattleDefine.FULL_CIRCLE_DEGREES)
+                currentAngle -= BattleDefine.FULL_CIRCLE_DEGREES;
 
             float radians = currentAngle * Mathf.Deg2Rad;
             Vector3 offset = new Vector3(

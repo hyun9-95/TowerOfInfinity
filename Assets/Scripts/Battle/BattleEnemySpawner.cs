@@ -9,7 +9,7 @@ public class BattleEnemySpawner : IObserver
     public BattleEnemyGeneratorModel Model;
 
     private float minDistance;
-    private int safeCount = 3;
+    private int safeCount = BattleDefine.ENEMY_SPAWN_SAFE_COUNT;
 
     private float[] currentWaveWeights;
     private CharacterDefine[] currentWaveEnemies;
@@ -31,7 +31,7 @@ public class BattleEnemySpawner : IObserver
 
         int currentWave = -1;
         int burstSpawnCount = 1;
-        int burstSpawnCountPerInterval = 5;
+        int burstSpawnCountPerInterval = BattleDefine.BURST_SPAWN_COUNT_PER_INTERVAL;
         float currentIntervalSeconds = Model.SpawnIntervalSeconds;
 
 #if CHEAT && UNITY_EDITOR
@@ -204,11 +204,11 @@ public class BattleEnemySpawner : IObserver
         Vector3 cameraCenter = CameraManager.Instance.GetBrainOutputPosition();
 
         // 랜덤 각도
-        float angle = Random.Range(0f, 360f) * Mathf.Deg2Rad;
+        float angle = Random.Range(0f, BattleDefine.FULL_CIRCLE_DEGREES) * Mathf.Deg2Rad;
         Vector2 direction = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
 
         // 랜덤 거리 (카메라 범위에서 벗어난 거리 + offset)
-        float offset = 0.5f;
+        float offset = BattleDefine.SPAWN_POSITION_OFFSET;
         float distance = Random.Range(minDistance, minDistance + offset);
 
         Vector3 validPos = cameraCenter + (Vector3)(direction * distance);
