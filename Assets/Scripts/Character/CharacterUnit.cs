@@ -68,6 +68,9 @@ public class CharacterUnit : PoolableMono
     protected SerializedDictionary<CharacterAnimState, float> animDelayDic;
 
     [SerializeField]
+    protected SerializedDictionary<CharacterAnimState, CharacterAnimState> alternativeAnimDic;
+
+    [SerializeField]
     private string customStateGroupAddress;
 
     [SerializeField]
@@ -91,12 +94,19 @@ public class CharacterUnit : PoolableMono
         if (!activated)
             return;
 
-        UpdatePhysics();
-        PrepareState();
-        ProcessCurrentState();
+        UpdateSubModules();
 
         if (CheckUpdatableState())
             CheckNextState();
+    }
+
+    private void FixedUpdate()
+    {
+        if (!activated)
+            return;
+
+        UpdatePhysics();
+        ProcessCurrentState();
     }
 
     public virtual void Initialize()
@@ -156,7 +166,7 @@ public class CharacterUnit : PoolableMono
             Model.SetIsActivate(activated);
     }
 
-    private void OnDeactivate(bool deadAsync = true)
+    private void OnDeactivate()
     {
         activated = false;
 
@@ -179,12 +189,16 @@ public class CharacterUnit : PoolableMono
 
         Model.ActionHandler.Cancel();
 
-        if (deadAsync)
-            DeadAsync().Forget();
+        NotifyDeadCharacter();
+
+        // 거리가 멀다면 죽음 애니 생략
+        if (Model.DistanceToTarget >= DistanceToTarget.Far)
+        {
+            gameObject.SafeSetActive(false);
+        }
         else
         {
-            BattleSceneManager.RemoveLiveCharacter(gameObject.GetInstanceID());
-            gameObject.SafeSetActive(false);
+            DeadAnimAsync().Forget();
         }
     }
 
@@ -237,7 +251,7 @@ public class CharacterUnit : PoolableMono
         updateTimer = 0;
     }
 
-    protected virtual void PrepareState()
+    protected virtual void UpdateSubModules()
     {
         RefreshAnimState();
 
@@ -257,6 +271,14 @@ public class CharacterUnit : PoolableMono
     {
         if (Model == null)
             return;
+
+        if (Model.BattleEventProcessor != null)
+        {
+            bool isOnCC = Model.BattleEventProcessor.IsCrowdControl();
+
+            if (isOnCC)
+                return;
+        }
 
         CurrentState.OnStateAction(Model);
     }
@@ -302,11 +324,14 @@ public class CharacterUnit : PoolableMono
             updateTimer = 0;
         }
 
-        bool isOnCC = Model.BattleEventProcessor.IsCrowdControl();
+        if (Model.BattleEventProcessor != null)
+        {
+            bool isOnCC = Model.BattleEventProcessor.IsCrowdControl();
 
-        if (isOnCC)
-            return false;
-
+            if (isOnCC)
+                return false;
+        }
+        
         return true;
     }
 
@@ -416,7 +441,7 @@ public class CharacterUnit : PoolableMono
             actionHandler = new CharacterActionHandler(animator, rigidBody2D, bodySprite, gameObject, pathFinder);
         
         actionHandler.SetOnFlipX(OnFlipX);
-        actionHandler.SetOnDeactivate(() => OnDeactivate(true));
+        actionHandler.SetOnDeactivate(OnDeactivate);
 
         if (characterAnimationEffect != null)
             actionHandler.SetCharacterAnimEffect(characterAnimationEffect);
@@ -435,6 +460,12 @@ public class CharacterUnit : PoolableMono
             if (state == CharacterAnimState.None)
                 continue;
 
+            var stringHash = Animator.StringToHash(state.ToString());
+
+            if (alternativeAnimDic != null &&
+                alternativeAnimDic.TryGetValue(state, out var alterAnim))
+                state = alterAnim;
+
             shortNameHashDic[Animator.StringToHash(state.ToString())] = state;
         }
     }
@@ -449,6 +480,10 @@ public class CharacterUnit : PoolableMono
             if (weapon != null)
                 return (int)weapon.AttackAnimState;
         }
+
+        if (alternativeAnimDic != null &&
+            alternativeAnimDic.TryGetValue(animState, out var alterAnim))
+            return (int)alterAnim;
 
         return (int)animState;
     }
@@ -479,10 +514,8 @@ public class CharacterUnit : PoolableMono
         return Model.GetStatValue(StatType.MoveSpeed);
     }
 
-    private async UniTask DeadAsync()
+    private async UniTask DeadAnimAsync()
     {
-        BattleSceneManager.RemoveLiveCharacter(gameObject.GetInstanceID());
-
         if (animator == null)
             return;
 
@@ -495,8 +528,15 @@ public class CharacterUnit : PoolableMono
 
         if (bodySprite)
             bodySprite.DeactiveWithFade(1, gameObject);
+    }
 
-        BattleSystemManager.OnDeadCharacter(Model);
+    private void NotifyDeadCharacter()
+    {
+        var battleObserverParam = new BattleObserverParam();
+        battleObserverParam.SetIntValue(gameObject.GetInstanceID());
+        battleObserverParam.SetModelValue(Model);
+
+        ObserverManager.NotifyObserver(BattleObserverID.DeadCharacter, battleObserverParam);
     }
 
     #region Collision

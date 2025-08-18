@@ -8,7 +8,7 @@ public class CharacterFollowState : ScriptableCharacterState
 
     public override bool CheckEnterCondition(CharacterUnitModel model)
     {
-        if (model.Target == null && model.Target.IsDead)
+        if (model.Target == null || model.Target.IsDead)
             return false;
 
         if (IsTooClose(model))

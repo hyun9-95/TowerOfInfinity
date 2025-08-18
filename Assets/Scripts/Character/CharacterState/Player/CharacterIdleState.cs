@@ -18,17 +18,10 @@ public class CharacterIdleState : ScriptableCharacterState
             var direction = (model.Target.Transform.position - model.Transform.position).normalized;
             model.ActionHandler.Flip(direction);
         }
-        
     }
 
     public override bool CheckEnterCondition(CharacterUnitModel model)
     {
-        if (model == null)
-            return true;
-
-        if (model.TeamTag != TeamTag.Ally && IsJustEntered(model))
-            return false;
-
         return true;
     }
 }

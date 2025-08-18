@@ -35,7 +35,8 @@ public class CheckTargetDistanceModule : ScriptableCharacterModule
 
         if (distanceSqr >= (veryFarDistance * veryFarDistance))
         {
-            distanceToTarget = DistanceToTarget.VeryFar;
+            distanceToTarget = model.CharacterType == CharacterType.Enemy ?
+                DistanceToTarget.OutOfRange : DistanceToTarget.VeryFar;
         }
         else if (distanceSqr >= (farDistance * farDistance))
         {
@@ -51,6 +52,9 @@ public class CheckTargetDistanceModule : ScriptableCharacterModule
         }
 
         model.SetDistanceToTarget(distanceToTarget);
+
+        if (distanceToTarget == DistanceToTarget.OutOfRange)
+            model.ActionHandler.OnDeactivate();
     }
 
 }

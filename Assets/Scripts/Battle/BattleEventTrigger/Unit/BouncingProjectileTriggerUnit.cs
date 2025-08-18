@@ -13,7 +13,7 @@ public class BouncingProjectileTriggerUnit : ProjectileTriggerUnit
         base.OnDetectHit(other);
 
         // 적과 충돌 시 바운스
-        var targetModel = BattleSceneManager.GetCharacterModel(other);
+        var targetModel = BattleSceneManager.GetAliveCharModel(other);
 
         if (targetModel == null || targetModel.TeamTag != Model.DetectTeamTag)
             return;

@@ -18,13 +18,13 @@ public class MainPlayerCharacter : MonoBehaviour
     private CharacterSpriteLibraryBuilder libraryBuilder;
     #endregion
 
-    public async UniTask UpdateMainCharacter(MainCharacterInfo mainCharacterInfo, CharacterSetUpType setUpType)
+    public async UniTask UpdateMainCharacter(MainCharacterInfo mainCharacterInfo)
     {
         if (characterUnit.Model == null)
             characterUnit.SetModel(new CharacterUnitModel());
 
         CharacterFactory.Instance.SetCharacterUnitModel(
-            characterUnit.Model, TeamTag.Ally, CharacterType.Main, setUpType, mainCharacterInfo);
+            characterUnit.Model, TeamTag.Ally, CharacterType.Main, mainCharacterInfo);
 
         var model = characterUnit.Model;
 

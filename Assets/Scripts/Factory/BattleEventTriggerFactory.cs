@@ -44,7 +44,7 @@ public static class BattleEventTriggerFactory
 
         if (followTarget != null)
         {
-            var targetModel = BattleSceneManager.GetCharacterModel(followTarget);
+            var targetModel = BattleSceneManager.GetAliveCharModel(followTarget);
 
             if (targetModel != null)
                 projectileUnitModel.SetFollowTargetModel(targetModel);
@@ -66,7 +66,7 @@ public static class BattleEventTriggerFactory
 
         if (followTarget != null)
         {
-            var targetModel = BattleSceneManager.GetCharacterModel(followTarget);
+            var targetModel = BattleSceneManager.GetAliveCharModel(followTarget);
 
             if (targetModel != null)
                 colliderUnitModel.SetFollowTargetModel(targetModel);
@@ -92,7 +92,7 @@ public static class BattleEventTriggerFactory
 
         if (followTarget != null)
         {
-            var targetModel = BattleSceneManager.GetCharacterModel(followTarget);
+            var targetModel = BattleSceneManager.GetAliveCharModel(followTarget);
 
             if (targetModel != null)
                 orbitUnitModel.SetFollowTargetModel(targetModel);

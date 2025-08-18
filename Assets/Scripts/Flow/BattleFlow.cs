@@ -51,8 +51,9 @@ public class BattleFlow : BaseFlow<BattleFlowModel>
 
     public override async UniTask Exit()
     {
+        battleSystemManager.Stop();
+        battleSceneManager.Stop();
         DisableBattleInput();
-        battleSceneManager.StopSpawn();
     }
 
     private void EnableBattleInput()
@@ -89,7 +90,7 @@ public class BattleFlow : BaseFlow<BattleFlowModel>
 
     private async UniTask<BattleTeam> CreatePlayerBattleTeam(SubCharacterAbilityInfo[] currentDeck, Transform playerTransform)
     {
-        await PlayerManager.Instance.UpdateMainPlayerCharacter(CharacterSetUpType.Battle);
+        await PlayerManager.Instance.UpdateMainPlayerCharacter();
 
         var playerCharacters = new List<CharacterUnit>();
         int leaderIndex = 0;

@@ -1,11 +1,12 @@
 #pragma warning disable CS1998
 using Cysharp.Threading.Tasks;
+using System;
 using UnityEngine;
 
 /// <summary>
 /// 전반적인 전투 로직을 관리한다.
 /// </summary>
-public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
+public class BattleSystemManager : BaseMonoManager<BattleSystemManager>, IObserver
 {
     #region Property
     private bool InBattle => battleInfo == null ?
@@ -35,6 +36,8 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
 
         await InitilalizeExpGainer(battleInfo.MainCharacter);
         await InitializeDamageGroup();
+
+        ObserverManager.AddObserver(BattleObserverID.DeadCharacter, this);
     }
 
     public async UniTask StartBattle()
@@ -49,6 +52,8 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
 
     public void Stop()
     {
+        OnResume();
+        ObserverManager.RemoveObserver(BattleObserverID.DeadCharacter, this);
         TokenPool.Cancel(GetHashCode());
     }
 
@@ -264,8 +269,10 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
             receiver.ActionHandler.OnHitBodyColorAsync(GetHitColorByDamageType(damageType)).Forget();
     }
 
-    private void OnBattleEnd(BattleResult result)
+    private async UniTask OnBattleEnd(BattleResult result)
     {
+        await UniTaskUtils.DelaySeconds(FloatDefine.DEFAULT_BATTLE_START_DELAY);
+
         battleInfo.SetBattleResult(result);
         battleInfo.SetBattleState(BattleState.End);
 
@@ -278,14 +285,56 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
         battleResultModel.SetOnReturnToTown(OnReturnToTown);
         battleResultController.SetModel(battleResultModel);
 
+        OnPause();
+
         UIManager.instance.OpenPopup(battleResultController).Forget();
     }
 
     private void OnReturnToTown()
     {
+        Time.timeScale = 1;
+
         var currentTown = PlayerManager.instance.User.CurrentTown;
 
         FlowManager.Instance.ChangeCurrentTownFlow(currentTown).Forget();
+    }
+
+    private void OnDeadCharacter(CharacterUnitModel deadCharacterModel)
+    {
+        if (!InBattle || deadCharacterModel == null)
+            return;
+
+        if (deadCharacterModel.TeamTag == TeamTag.Enemy)
+        {
+            var battleInfo = instance.battleInfo;
+
+            if (deadCharacterModel.DistanceToTarget < DistanceToTarget.OutOfRange)
+                battleInfo.AddKill();
+
+            RefreshBattleView();
+
+            // 죽은 캐릭터가 보스라면 승리
+            if (deadCharacterModel.CharacterDefine == battleInfo.FinalBoss)
+                OnBattleEnd(BattleResult.Victory).Forget();
+        }
+        else if (deadCharacterModel == instance.battleInfo.MainCharacter.Model)
+        {
+            // 죽은 캐릭터가 메인캐릭터라면 패배
+            OnBattleEnd(BattleResult.Defeat).Forget();
+        }
+    }
+
+    void IObserver.HandleMessage(Enum observerMessage, IObserverParam observerParam)
+    {
+        if (observerParam is not BattleObserverParam battleObserverParam)
+            return;
+
+        switch (observerMessage)
+        {
+            case BattleObserverID.DeadCharacter:
+                OnDeadCharacter(battleObserverParam.ModelValue);
+                break;
+        }
     }
     #endregion
 
@@ -327,34 +376,6 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
         instance.OnHitBodyColor(receiver, damageType);
     }
 
-    public static void OnDeadCharacter(CharacterUnitModel deadCharacterModel)
-    {
-        if (instance == null || !instance.InBattle)
-            return;
-
-        if (deadCharacterModel.TeamTag == TeamTag.Enemy)
-        {
-            var battleInfo = instance.battleInfo;
-
-            battleInfo.AddKill();
-
-            instance.RefreshBattleView();
-
-            var newObserverParam = new BattleObserverParam();
-            newObserverParam.SetModelValue(deadCharacterModel);
-            ObserverManager.NotifyObserver(BattleObserverID.EnemyKilled, newObserverParam);
-
-            // 죽은 캐릭터가 보스라면 승리
-            if (deadCharacterModel.CharacterDefine == battleInfo.FinalBoss)
-                instance.OnBattleEnd(BattleResult.Victory);
-        }
-        else if (deadCharacterModel == instance.battleInfo.MainCharacter.Model)
-        {
-            // 죽은 캐릭터가 메인캐릭터라면 패배
-            instance.OnBattleEnd(BattleResult.Defeat);
-        }
-    }
-
 #if CHEAT
     public void CheatLevelUp()
     {
@@ -385,5 +406,5 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>
     }
 #endif
 
-#endregion
+    #endregion
 }

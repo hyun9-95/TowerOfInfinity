@@ -21,7 +21,7 @@ public class CollisionDamageModule : ScriptableCharacterModule
         {
             if (IsTriggerTarget(collider))
             {
-                var targetModel = BattleSceneManager.GetCharacterModel(collider);
+                var targetModel = BattleSceneManager.GetAliveCharModel(collider);
 
                 if (targetModel != null)
                     moduleModel.CollisionEnterTargetTimer[collider.gameObject] = new CollisionDamageInfo(FloatDefine.DEFAULT_COLLISION_DAMAGE_INTERVAL, targetModel);

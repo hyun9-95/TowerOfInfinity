@@ -2,6 +2,7 @@ public class FloatDefine
 {
     public const float DEFAULT_MOVE_SPEED = 5f;
     public const float DEFAULT_BATTLE_START_DELAY = 0.5f;
+    public const float DEFAULT_BATTLE_END_DELAY = 1.5f;
     public const float DEFAULT_COLLISION_DAMAGE_INTERVAL = 0.5f;
     /// <summary>
     /// 경로를 재계산하는 간격

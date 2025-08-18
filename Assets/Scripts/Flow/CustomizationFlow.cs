@@ -36,7 +36,7 @@ public class CustomizationFlow : BaseFlow<CustomizationFlowModel>
 
     private async UniTask LoadPlayerCharacters()
     {
-        await PlayerManager.Instance.UpdateMainPlayerCharacter(CharacterSetUpType.Town);
+        await PlayerManager.Instance.UpdateMainPlayerCharacter();
 
         var playerTransform = townSceneManager.PlayerStartTransform;
         var mainCharacter = PlayerManager.Instance.GetMainPlayerCharacterUnit();

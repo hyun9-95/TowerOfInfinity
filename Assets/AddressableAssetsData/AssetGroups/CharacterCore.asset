@@ -231,6 +231,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 931c72f210b86c347bdebd3512b638bc
+    m_Address: CharacterCore/Module/CheckTargetDistance
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 954bba01c65f10c49aed5d15f492ff48
     m_Address: CharacterCore/State/Player/PlayerMoveState
     m_ReadOnly: 0

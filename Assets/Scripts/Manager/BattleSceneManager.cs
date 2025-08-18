@@ -1,12 +1,13 @@
 #pragma warning disable CS1998
 using Cysharp.Threading.Tasks;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
 /// 전투 씬 초기 세팅 및, 적과 아군의 스폰을 담당한다.
 /// </summary>
-public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>
+public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>, IObserver
 {
     #region Property
     #endregion
@@ -36,6 +37,8 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>
         CreateEnemyGenerator(battleInfo.DataDungeon);
 
         await infinityTile.Prepare(battleInfo.MainCharacter.transform);
+        
+        ObserverManager.AddObserver(BattleObserverID.DeadCharacter, this);
     }
 
 
@@ -89,7 +92,7 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>
         enemySpawn.StartGenerateAsync().Forget();
     }
 
-    public static CharacterUnitModel GetCharacterModel(int instanceId)
+    public static CharacterUnitModel GetAliveCharModel(int instanceId)
     {
         if (Instance == null)
             return null;
@@ -102,19 +105,19 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>
         return liveCharacterModelDic[instanceId];
     }
 
-    public static CharacterUnitModel GetCharacterModel(Transform transform)
+    public static CharacterUnitModel GetAliveCharModel(Transform transform)
     {
-        return GetCharacterModel(transform.gameObject.GetInstanceID());
+        return GetAliveCharModel(transform.gameObject.GetInstanceID());
     }
 
-    public static CharacterUnitModel GetCharacterModel(GameObject gameObject)
+    public static CharacterUnitModel GetAliveCharModel(GameObject gameObject)
     {
-        return GetCharacterModel(gameObject.GetInstanceID());
+        return GetAliveCharModel(gameObject.GetInstanceID());
     }
 
-    public static CharacterUnitModel GetCharacterModel(Collider2D collider)
+    public static CharacterUnitModel GetAliveCharModel(Collider2D collider)
     {
-        return GetCharacterModel(collider.gameObject.GetInstanceID());
+        return GetAliveCharModel(collider.gameObject.GetInstanceID());
     }
 
     private void AddLiveCharacter(int instanceId, CharacterUnitModel model)
@@ -123,21 +126,31 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>
     }
 
     //죽으면 제거
-    public static void RemoveLiveCharacter(int instanceId)
+    private void RemoveLiveCharacter(int instanceId)
     {
-        if (Instance == null)
-            return;
-
-        var liveCharacterModelDic = Instance.liveCharacterModelDic;
-
         liveCharacterModelDic.Remove(instanceId);
     }
 
-    #endregion
-    public void StopSpawn()
+    void IObserver.HandleMessage(Enum observerMessage, IObserverParam observerParam)
+    {
+        if (observerParam is not BattleObserverParam battleObserverParam)
+            return;
+
+        switch (observerMessage)
+        {
+            case BattleObserverID.DeadCharacter:
+                RemoveLiveCharacter(battleObserverParam.IntValue);
+                break;
+        }
+    }
+
+    public void Stop()
     {
         enemySpawn.Cancel();
+        ObserverManager.RemoveObserver(BattleObserverID.DeadCharacter, this);
     }
+
+    #endregion
 
 #if CHEAT
     public void CheatSpawnBoss()

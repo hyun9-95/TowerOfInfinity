@@ -196,51 +196,57 @@ public class CharacterFactory : BaseManager<CharacterFactory>
             CharacterSetUpType.Battle : CharacterSetUpType.Town;
 
         CharacterUnitModel characterModel = new CharacterUnitModel();
-        SetCharacterUnitModel(characterModel, teamTag, characterType, characterSetUpType, characterInfo);
+        SetCharacterUnitModel(characterModel, teamTag, characterType, characterInfo);
 
         return characterModel;
     }
 
     public void SetCharacterUnitModel(CharacterUnitModel characterModel,TeamTag teamTag, CharacterType characterType,
-        CharacterSetUpType setUpType = CharacterSetUpType.Town, CharacterAbilityInfo abilityInfo = null)
+        CharacterAbilityInfo abilityInfo = null)
     {
         CharacterSetUpType characterSetUpType = FlowManager.Instance.CurrentFlowType == FlowType.BattleFlow ?
             CharacterSetUpType.Battle : CharacterSetUpType.Town;
 
         characterModel.SetTeamTag(teamTag);
         characterModel.SetCharacterType(characterType);
-        characterModel.SetCharacterSetUpType(setUpType);
+        characterModel.SetCharacterSetUpType(characterSetUpType);
         characterModel.SetOnFindAStarNodes(AStarManager.Instance.FindPath);
         characterModel.SetAbilityInfo(abilityInfo);
 
-        var battleEventProcessor = new BattleEventProcessor();
-        var abilityProcessor = new AbilityProcessor();
-
-        // 배틀 이벤트 처리
-        battleEventProcessor.Initialize(characterModel);
-        characterModel.SetEventProcessor(battleEventProcessor);
-
-        // 어빌리티 처리
-        abilityProcessor.Initialize(characterModel);
-
-        foreach (var ability in abilityInfo.GetAllAbilityDefines())
+        if (characterSetUpType == CharacterSetUpType.Battle)
         {
-            if (ability != AbilityDefine.None)
-                abilityProcessor.AddAbility((int)ability);
-        }
+            var battleEventProcessor = new BattleEventProcessor();
+            var abilityProcessor = new AbilityProcessor();
+
+            // 배틀 이벤트 처리
+            battleEventProcessor.Initialize(characterModel);
+            characterModel.SetEventProcessor(battleEventProcessor);
+
+            // 어빌리티 처리
+            abilityProcessor.Initialize(characterModel);
+
+            foreach (var ability in abilityInfo.GetAllAbilityDefines())
+            {
+                if (ability != AbilityDefine.None)
+                    abilityProcessor.AddAbility((int)ability);
+            }
 
 #if CHEAT
-        if (CheatManager.CheatConfig.cheatAbility != null)
-        {
-            foreach (var ability in CheatManager.CheatConfig.cheatAbility)
+            if (characterType == CharacterType.Main)
             {
-                abilityProcessor.AddAbility((int)ability);
-                Logger.Log($"Cheat Ability Added : {ability}");
+                if (CheatManager.CheatConfig.cheatAbility != null)
+                {
+                    foreach (var ability in CheatManager.CheatConfig.cheatAbility)
+                    {
+                        abilityProcessor.AddAbility((int)ability);
+                        Logger.Log($"Cheat Ability Added : {ability}");
+                    }
+                }
             }
-        }
 #endif
 
-        characterModel.SetAbilityProcessor(abilityProcessor);
+            characterModel.SetAbilityProcessor(abilityProcessor);
+        }
     }
 
     public async UniTask SetCharacterScriptableInfo(CharacterUnit character, CharacterType characterType, int dataId = 0)

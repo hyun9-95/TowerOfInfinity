@@ -78,12 +78,12 @@ public class PlayerManager : BaseMonoManager<PlayerManager>
     /// 사용하려면 다시 활성화해줘야함
     /// </summary>
     /// <returns></returns>
-    public async UniTask UpdateMainPlayerCharacter(CharacterSetUpType setUpType, bool isStopUnitUpdate = true)
+    public async UniTask UpdateMainPlayerCharacter(bool isStopUnitUpdate = true)
     {
         if (isStopUnitUpdate)
             mainPlayerCharacter.CharacterUnit.StopUpdate();
 
-        await mainPlayerCharacter.UpdateMainCharacter(User.UserCharacterInfo.MainCharacterInfo, setUpType);
+        await mainPlayerCharacter.UpdateMainCharacter(User.UserCharacterInfo.MainCharacterInfo);
     }
 
     public MainPlayerCharacter GetMainPlayerCharacter()

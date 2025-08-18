@@ -13,6 +13,7 @@ public enum DistanceToTarget
     Nearby,
     Far,
     VeryFar,
+    OutOfRange,     // 너무 멀어서 비활성화되는 거리
 }
 
 public enum CharacterAnimState

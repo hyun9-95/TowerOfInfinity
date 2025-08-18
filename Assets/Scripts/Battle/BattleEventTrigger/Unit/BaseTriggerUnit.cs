@@ -84,7 +84,7 @@ public abstract class BaseTriggerUnit<T> : PoolableBaseUnit<T>, IBattleEventTrig
         if (hitFollowTargetOnly && Model.FollowTargetTransform != null && other.transform != Model.FollowTargetTransform)
             return;
 
-        var targetModel = BattleSceneManager.GetCharacterModel(other);
+        var targetModel = BattleSceneManager.GetAliveCharModel(other);
 
         if (targetModel == null)
             return;
@@ -110,17 +110,17 @@ public abstract class BaseTriggerUnit<T> : PoolableBaseUnit<T>, IBattleEventTrig
     #region Stay Cooldown
     protected void AddEnemyKilledObserver()
     {
-        ObserverManager.AddObserver(BattleObserverID.EnemyKilled, this);
+        ObserverManager.AddObserver(BattleObserverID.DeadCharacter, this);
     }
 
     protected void RemoveEnemyKilledObserver()
     {
-        ObserverManager.RemoveObserver(BattleObserverID.EnemyKilled, this);
+        ObserverManager.RemoveObserver(BattleObserverID.DeadCharacter, this);
     }
 
     private void RemoveTargetFromCooldown(CharacterUnitModel targetModel)
     {
-        if (nextAllowedTime != null && nextAllowedTime.ContainsKey(targetModel))
+        if (nextAllowedTime != null)
             nextAllowedTime.Remove(targetModel);
     }
 
@@ -129,7 +129,7 @@ public abstract class BaseTriggerUnit<T> : PoolableBaseUnit<T>, IBattleEventTrig
         if (observerParam is not BattleObserverParam param)
             return;
 
-        if (observerMessage is BattleObserverID.EnemyKilled)
+        if (observerMessage is BattleObserverID.DeadCharacter)
             RemoveTargetFromCooldown(param.ModelValue);
     }
     #endregion
