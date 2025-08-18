@@ -85,8 +85,6 @@ public class CharacterUnit : PoolableMono
     private float updateInterval = 0;
     private float updateTimer = 0;
 
-    private AbilityProcessor abilityProcessor = new();
-    private BattleEventProcessor battleEventProcessor = new();
     private CharacterActionHandler actionHandler;
 
     private Dictionary<ModuleType, IModuleModel> moduleModelDic;
@@ -149,10 +147,12 @@ public class CharacterUnit : PoolableMono
         ChangeState(defaultState);
 
         // 전투 이벤트 시작
-        battleEventProcessor.Start();
+        if (Model.BattleEventProcessor != null)
+            Model.BattleEventProcessor.Start();
 
         // 어빌리티 처리 시작
-        abilityProcessor.Start();
+        if (Model.AbilityProcessor != null)
+            Model.AbilityProcessor.Start();
 
         stateUpdate = true;
         activated = true;
@@ -175,14 +175,6 @@ public class CharacterUnit : PoolableMono
         stateUpdate = value;
     }
 
-    public float GetPrimaryWeaponCoolTime()
-    {
-        if (abilityProcessor == null)
-            return 0;
-
-        return abilityProcessor.GetPrimaryWeaponCoolTime();
-    }
-
     private void OnDeactivate(bool deadAsync = true)
     {
         activated = false;
@@ -199,8 +191,12 @@ public class CharacterUnit : PoolableMono
 
         moduleGroup.OnEventCharacterDeactivate(Model, moduleModelDic);
 
-        abilityProcessor.Cancel();
-        battleEventProcessor.Cancel();
+        if (Model.AbilityProcessor != null)
+            Model.AbilityProcessor.Cancel();
+
+        if (Model.BattleEventProcessor != null)
+            Model.BattleEventProcessor.Cancel();
+
         Model.ActionHandler.Cancel();
 
         if (deadAsync)
@@ -270,11 +266,11 @@ public class CharacterUnit : PoolableMono
 
         moduleGroup.OnEventUpdate(Model, moduleModelDic);
 
-        if (Model.CharacterSetUpType == CharacterSetUpType.Battle)
-        {
-            abilityProcessor.Update();
-            battleEventProcessor.Update();
-        }
+        if (Model.BattleEventProcessor != null)
+            Model.BattleEventProcessor.Update();
+
+        if (Model.AbilityProcessor != null)
+            Model.AbilityProcessor.Update();
 
         // 활성 상태 동기화
         Model.SetIsActivate(activated);
@@ -464,60 +460,7 @@ public class CharacterUnit : PoolableMono
         Model.SetIsActivate(false);
         Model.SetDistanceToTarget(DistanceToTarget.Close);
         Model.SetAnimDelayDic(animDelayDic);
-
-        if (Model.CharacterSetUpType == CharacterSetUpType.Battle)
-            InitializeBattleModel();
     }
-
-    private void InitializeBattleModel()
-    {
-        // 배틀 이벤트 처리
-        battleEventProcessor.Initialize(Model);
-        Model.SetEventProcessor(battleEventProcessor);
-
-        // 어빌리티 처리
-        abilityProcessor.Initialize(Model);
-
-        // 무기 슬롯 어빌리티 추가
-        if (Model.CharacterType == CharacterType.Main)
-        {
-            var equipmentWeapon = Model.GetEquipment(EquipmentType.Weapon);
-
-            if (equipmentWeapon != null)
-                abilityProcessor.AddAbility((int)equipmentWeapon.Ability);
-
-#if CHEAT
-            if (CheatManager.CheatConfig.cheatAbility != null)
-            {
-                foreach (var ability in CheatManager.CheatConfig.cheatAbility)
-                {
-                    abilityProcessor.AddAbility((int)ability);
-                    Logger.Log($"Cheat Ability Added : {ability}");
-                }
-            }
-#endif
-        }
-        else
-        {
-            // 주무기 슬롯 어빌리티 추가
-            var weaponAbilityId = Model.GetAbilityDataIdBySlot(AbilitySlotType.Weapon);
-            if (weaponAbilityId != 0)
-                abilityProcessor.AddAbility(weaponAbilityId);
-
-            // 액티브 슬롯 어빌리티 추가
-            var activeAbilityId = Model.GetAbilityDataIdBySlot(AbilitySlotType.Active);
-            if (activeAbilityId != 0)
-                abilityProcessor.AddAbility(activeAbilityId);
-
-            // 패시브 슬롯 어빌리티 추가
-            var passiveAbilityId = Model.GetAbilityDataIdBySlot(AbilitySlotType.Passive);
-            if (passiveAbilityId != 0)
-                abilityProcessor.AddAbility(passiveAbilityId);
-        }
-
-        Model.SetAbilityProcessor(abilityProcessor);
-    }
-
     private CharacterActionHandler CreateActionHandler()
     {
         var pathFinder = CreatePathFinder();

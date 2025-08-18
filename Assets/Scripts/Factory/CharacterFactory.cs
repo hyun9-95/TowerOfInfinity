@@ -47,7 +47,7 @@ public class CharacterFactory : BaseManager<CharacterFactory>
         
     }
 
-    public async UniTask<CharacterUnit> SpawnSubCharacter(SubCharacterInfo subCharacterInfo, Transform transform = null, Vector3 pos = default, Quaternion rot = default)
+    public async UniTask<CharacterUnit> SpawnSubCharacter(SubCharacterAbilityInfo subCharacterInfo, Transform transform = null, Vector3 pos = default, Quaternion rot = default)
     {
         DataCharacter dataCharacter = DataManager.Instance.GetDataById<DataCharacter>(subCharacterInfo.CharacterDataId);
 
@@ -74,10 +74,8 @@ public class CharacterFactory : BaseManager<CharacterFactory>
         if (enemy == null)
             return null;
 
-        CharacterAbilityInfo enemyABInfo = new SubCharacterInfo();
-        enemyABInfo.SetPrimaryWeaponAbility(data.PrimaryWeaponAbility);
-        enemyABInfo.SetActiveAbility(data.ActiveSkill);
-        enemyABInfo.SetPassiveAbility(data.PassiveSkill);
+        CharacterAbilityInfo enemyABInfo = new CharacterAbilityInfo();
+        enemyABInfo.SetAbilityByCharacterData(data);
 
         var model = CreateCharacterUnitModel(TeamTag.Enemy, CharacterType.Enemy, enemyABInfo);
         model.SetCharacterDataId(characterDataId);
@@ -96,10 +94,8 @@ public class CharacterFactory : BaseManager<CharacterFactory>
         if (enemy == null)
             return null;
 
-        CharacterAbilityInfo enemyABInfo = new SubCharacterInfo();
-        enemyABInfo.SetPrimaryWeaponAbility(data.PrimaryWeaponAbility);
-        enemyABInfo.SetActiveAbility(data.ActiveSkill);
-        enemyABInfo.SetPassiveAbility(data.PassiveSkill);
+        CharacterAbilityInfo enemyABInfo = new CharacterAbilityInfo();
+        enemyABInfo.SetAbilityByCharacterData(data);
 
         var model = CreateCharacterUnitModel(TeamTag.Enemy, CharacterType.Boss, enemyABInfo);
         model.SetCharacterDataId(characterDataId);
@@ -216,6 +212,35 @@ public class CharacterFactory : BaseManager<CharacterFactory>
         characterModel.SetCharacterSetUpType(setUpType);
         characterModel.SetOnFindAStarNodes(AStarManager.Instance.FindPath);
         characterModel.SetAbilityInfo(abilityInfo);
+
+        var battleEventProcessor = new BattleEventProcessor();
+        var abilityProcessor = new AbilityProcessor();
+
+        // 배틀 이벤트 처리
+        battleEventProcessor.Initialize(characterModel);
+        characterModel.SetEventProcessor(battleEventProcessor);
+
+        // 어빌리티 처리
+        abilityProcessor.Initialize(characterModel);
+
+        foreach (var ability in abilityInfo.GetAllAbilityDefines())
+        {
+            if (ability != AbilityDefine.None)
+                abilityProcessor.AddAbility((int)ability);
+        }
+
+#if CHEAT
+        if (CheatManager.CheatConfig.cheatAbility != null)
+        {
+            foreach (var ability in CheatManager.CheatConfig.cheatAbility)
+            {
+                abilityProcessor.AddAbility((int)ability);
+                Logger.Log($"Cheat Ability Added : {ability}");
+            }
+        }
+#endif
+
+        characterModel.SetAbilityProcessor(abilityProcessor);
     }
 
     public async UniTask SetCharacterScriptableInfo(CharacterUnit character, CharacterType characterType, int dataId = 0)

@@ -80,7 +80,7 @@ public abstract class BattleEventTrigger
     private void SendBattleEvent(CharacterUnitModel target)
     {
         var battleEventModel = Model.CreateBattleEventModel(target);
-        target.EventProcessor.ReceiveBattleEvent(battleEventModel);
+        target.BattleEventProcessor.ReceiveBattleEvent(battleEventModel);
     }
 
     private void SendBattleEvents(CharacterUnitModel target)
@@ -88,7 +88,7 @@ public abstract class BattleEventTrigger
         var battleEventModels = Model.CreateBattleEventModels(target);
         foreach (var battleEventModel in battleEventModels)
         {
-            target.EventProcessor.ReceiveBattleEvent(battleEventModel);
+            target.BattleEventProcessor.ReceiveBattleEvent(battleEventModel);
         }
     }
 

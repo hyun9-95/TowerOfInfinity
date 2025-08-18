@@ -4,8 +4,8 @@ public class UserCharacterInfo
 {
     #region Property
     public MainCharacterInfo MainCharacterInfo { get; private set; }
-    public SubCharacterInfo[] SubCharacterInfos { get; private set; }
-    public SubCharacterInfo[] CurrentDeck { get; private set; } = new SubCharacterInfo[3];
+    public SubCharacterAbilityInfo[] SubCharacterInfos { get; private set; }
+    public SubCharacterAbilityInfo[] CurrentDeck { get; private set; } = new SubCharacterAbilityInfo[3];
     #endregion
 
     #region Function
@@ -14,7 +14,7 @@ public class UserCharacterInfo
         MainCharacterInfo = mainCharacterInfo;
     }
 
-    public void SetSubCharacterInfos(SubCharacterInfo[] subCharacterInfos)
+    public void SetSubCharacterInfos(SubCharacterAbilityInfo[] subCharacterInfos)
     {
         SubCharacterInfos = subCharacterInfos;
     }

@@ -58,7 +58,7 @@ public class CollisionDamageModule : ScriptableCharacterModule
             defaultDamageEventData = DataManager.Instance.GetDataById<DataBattleEvent>((int)BattleEventDefine.BE_DAMAGE_ONE_SHOT_ATTACK);
 
         BattleEventModel eventModel = new (owner, info.targetModel, defaultDamageEventData, owner.Level);
-        info.targetModel.EventProcessor.ReceiveBattleEvent(eventModel);
+        info.targetModel.BattleEventProcessor.ReceiveBattleEvent(eventModel);
     }
 
     private bool IsTriggerTarget(Collider2D collider)

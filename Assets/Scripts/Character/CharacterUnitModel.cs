@@ -20,7 +20,7 @@ public class CharacterUnitModel : IBaseUnitModel
     public Transform Transform { get; private set; }
     public CharacterUnitModel Target { get; private set; }
     public NavMeshAgent Agent { get; private set; }
-    public BattleEventProcessor EventProcessor { get; private set; }
+    public BattleEventProcessor BattleEventProcessor { get; private set; }
     public AbilityProcessor AbilityProcessor { get; private set; }
     public CharacterAbilityInfo AbilityInfo { get; private set; }
     public bool IsDead => Hp <= 0;
@@ -100,7 +100,7 @@ public class CharacterUnitModel : IBaseUnitModel
 
     public void SetEventProcessor(BattleEventProcessor processor)
     {
-        EventProcessor = processor;
+        BattleEventProcessor = processor;
     }
 
     public void SetAbilityProcessor(AbilityProcessor processor)
@@ -230,20 +230,6 @@ public class CharacterUnitModel : IBaseUnitModel
     public void SetAbilityInfo(CharacterAbilityInfo characterInfo)
     {
         AbilityInfo = characterInfo;
-    }
-
-    public int GetAbilityDataIdBySlot(AbilitySlotType slotType)
-    {
-        if (AbilityInfo == null)
-            return 0;
-
-        return slotType switch
-        {
-            AbilitySlotType.Weapon => (int)AbilityInfo.PrimaryWeapon,
-            AbilitySlotType.Active => (int)AbilityInfo.ActiveAbility,
-            AbilitySlotType.Passive => (int)AbilityInfo.PassiveAbility,
-            _ => 0
-        };
     }
 
     public bool IsAttackState()

@@ -58,7 +58,7 @@ public class BattleFlow : BaseFlow<BattleFlowModel>
     private void EnableBattleInput()
     {
         var mainCharacter = battleInfo.MainCharacter;
-        attackCoolTime = mainCharacter.GetPrimaryWeaponCoolTime();
+        attackCoolTime = mainCharacter.Model.AbilityProcessor.GetPrimaryWeaponCoolTime();
         rollCoolTime = FloatDefine.DEAFAULT_ROLL_COOTIME;
 
         InputManager.SetActionCoolTime(ActionInput.Attack, attackCoolTime);
@@ -87,7 +87,7 @@ public class BattleFlow : BaseFlow<BattleFlowModel>
         return battleInfo;
     }
 
-    private async UniTask<BattleTeam> CreatePlayerBattleTeam(SubCharacterInfo[] currentDeck, Transform playerTransform)
+    private async UniTask<BattleTeam> CreatePlayerBattleTeam(SubCharacterAbilityInfo[] currentDeck, Transform playerTransform)
     {
         await PlayerManager.Instance.UpdateMainPlayerCharacter(CharacterSetUpType.Battle);
 

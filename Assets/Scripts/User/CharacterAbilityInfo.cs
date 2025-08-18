@@ -1,30 +1,42 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterAbilityInfo
 {
     #region Property
-    public AbilityDefine PrimaryWeapon { get; private set; }
-    public AbilityDefine ActiveAbility { get; private set; }
-    public AbilityDefine PassiveAbility { get; private set; }
     #endregion
 
     #region Value
+    private Dictionary<AbilitySlotType, AbilityDefine> abilitySlotDic = new();
     #endregion
 
     #region Function
-    public void SetPrimaryWeaponAbility(AbilityDefine abilityWeapon)
+    public void SetAbilityByCharacterData(DataCharacter charData)
     {
-        PrimaryWeapon = abilityWeapon;
+        SetAbility(AbilitySlotType.Weapon, charData.PrimaryWeaponAbility);
+        SetAbility(AbilitySlotType.Active, charData.ActiveSkill);
+        SetAbility(AbilitySlotType.Passive, charData.PassiveSkill);
     }
 
-    public void SetActiveAbility(AbilityDefine activeAbility)
+    public void SetAbility(AbilitySlotType slotType, AbilityDefine ability)
     {
-        ActiveAbility = activeAbility;
+        abilitySlotDic[slotType] = ability;
     }
 
-    public void SetPassiveAbility(AbilityDefine passiveAbility)
+    public IEnumerable<AbilityDefine> GetAllAbilityDefines()
     {
-        PassiveAbility = passiveAbility;
+        if (abilitySlotDic == null)
+            return null;
+
+        return abilitySlotDic.Values;
+    }
+
+    public AbilityDefine GetAbility(AbilitySlotType slotType)
+    {
+        if (abilitySlotDic.TryGetValue(slotType, out var abilityDefine))
+            return abilityDefine;
+
+        return abilitySlotDic[slotType];
     }
     #endregion
 }
