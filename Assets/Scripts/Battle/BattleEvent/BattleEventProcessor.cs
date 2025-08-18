@@ -327,12 +327,17 @@ public class BattleEventProcessor
         return 0;
     }
 
-    public BattleEventType IsCrowdControl()
+    public BattleEventType GetCrowdControl()
     {
         if (IsProcessingBattleEvent(BattleEventType.Frozen))
             return BattleEventType.Frozen;
 
         return BattleEventType.None;
+    }
+
+    public bool IsCrowdControl()
+    {
+        return GetCrowdControl() != BattleEventType.None;
     }
 
     public IEnumerable<BattleEvent> GetBattleEventsByEffectGroup(BattleEventGroup effectGroupType)

@@ -33,6 +33,7 @@ public class CharacterUnitModel : IBaseUnitModel
     public float DistanceToTargetSqr { get; private set; }
     public float ReadyCoolTime { get; private set; }
     public float StateEnterTime { get; private set; }
+    public bool IsOnCC { get; private set; }
     public Func<Vector3, Vector3, List<AStarNode>> OnFindAStarNodes { get; private set; }
     #endregion
 
@@ -42,6 +43,7 @@ public class CharacterUnitModel : IBaseUnitModel
     private Dictionary<EquipmentType, Equipment> equippedEquipments;
     private Dictionary<CharacterAnimState, float> animDelayDic;
     #endregion
+
     public void SetOnFindAStarNodes(Func<Vector3, Vector3, List<AStarNode>> func)
     {
         OnFindAStarNodes = func;
@@ -90,6 +92,17 @@ public class CharacterUnitModel : IBaseUnitModel
             DistanceToTarget.Close => BattleDefine.REPATH_COOLTIME_CLOSE,
             DistanceToTarget.Nearby => BattleDefine.REPATH_COOLTIME_NEARBY,
             _ => BattleDefine.REPATH_COOLTIME_DEFAULT,
+        };
+    }
+
+    public float GetUpdateInterval()
+    {
+        return DistanceToTarget switch
+        {
+            DistanceToTarget.Nearby => BattleDefine.UPDATE_INTERVAL_NEARBY,
+            DistanceToTarget.Far => BattleDefine.UPDATE_INTERVAL_FAR,
+            DistanceToTarget.VeryFar => BattleDefine.UPDATE_INTERVAL_VERY_FAR,
+            _ => 0
         };
     }
 

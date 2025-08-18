@@ -8,6 +8,7 @@ public enum  PlatformType
 
 public enum DistanceToTarget
 {
+    None,
     Close,
     Nearby,
     Far,
@@ -144,9 +145,10 @@ public enum TeamTag
 
 public enum ModuleType
 {
-    CollisionDamage,
-    CharacterUI,
-    SpawnExpGem,
+    CollisionDamage,            // 충돌 대미지
+    CharacterUI,                // 특정 UI 
+    SpawnExpGem,                // 죽을 때 경험치 젠
+    DynamicUpdateInterval,      // 타겟과의 거리 기반 및 업데이트 간격 동적 조절
 }
 
 public enum CharacterType

@@ -77,12 +77,7 @@ public class CharacterUnit : PoolableMono
     private ScriptableCharacterModuleGroup moduleGroup;
     private ScriptableCharacterState defaultState;
     private bool activated = false;
-    private bool stateUpdate = false;
     private int lastAnimStateHash = -1;
-    private float cameraVisibleDistance = 0;
-    private float farDistance = 0;
-    private float veryFarDistance = 0;
-    private float updateInterval = 0;
     private float updateTimer = 0;
 
     private CharacterActionHandler actionHandler;
@@ -98,17 +93,10 @@ public class CharacterUnit : PoolableMono
 
         UpdatePhysics();
         PrepareState();
+        ProcessCurrentState();
 
-        if (stateUpdate)
-        {
-            ProcessCurrentState();
+        if (!CheckUpdatableState())
             CheckNextState();
-        }
-        else if (Model.IsDead)
-        {
-            // 죽었다면 즉시 상태 검사
-            CheckNextState();
-        }
     }
 
     public virtual void Initialize()
@@ -154,7 +142,6 @@ public class CharacterUnit : PoolableMono
         if (Model.AbilityProcessor != null)
             Model.AbilityProcessor.Start();
 
-        stateUpdate = true;
         activated = true;
 
         Model.SetIsActivate(true);
@@ -164,21 +151,14 @@ public class CharacterUnit : PoolableMono
     public void StopUpdate()
     {
         activated = false;
-        stateUpdate = false;
 
         if (Model != null)
             Model.SetIsActivate(activated);
     }
 
-    public void OnStateUpdateChange(bool value)
-    {
-        stateUpdate = value;
-    }
-
     private void OnDeactivate(bool deadAsync = true)
     {
         activated = false;
-        stateUpdate = false;
 
         if (Model != null)
             Model.SetIsActivate(activated);
@@ -253,9 +233,6 @@ public class CharacterUnit : PoolableMono
     private void InitializeValues()
     {
         moduleModelDic = moduleGroup.CreateModuleModelDic();
-        cameraVisibleDistance = CameraManager.Instance.DiagonalLengthFromCenter + 0.5f;
-        farDistance = cameraVisibleDistance * BattleDefine.CAMERA_DISTANCE_FAR_MULTIPLIER;
-        veryFarDistance = cameraVisibleDistance * BattleDefine.CAMERA_DISTANCE_VERY_FAR_MULTIPLIER;
         lastAnimStateHash = -1;
         updateTimer = 0;
     }
@@ -274,56 +251,6 @@ public class CharacterUnit : PoolableMono
 
         // 활성 상태 동기화
         Model.SetIsActivate(activated);
-
-        // 플레이어와의 거리에 따라 업데이트 주기 갱신
-        UpdateDistantceToTarget();
-    }
-
-    private void UpdateDistantceToTarget()
-    {
-        var distanceToTarget = DistanceToTarget.Close;
-
-        // 타겟이 있다면 거리 캐싱
-        if (Model.Target != null)
-        {
-            // 거리에 따라 업데이트 주기를 갱신
-            float distanceSqr = (Model.Target.Transform.position - gameObject.transform.position).sqrMagnitude;
-            Model.SetDistanceToTargetSqr(distanceSqr);
-
-            if (distanceSqr >= (veryFarDistance * veryFarDistance))
-            {
-                if (Model.CharacterType == CharacterType.Enemy)
-                {
-                    // 너무 멀다면 풀로 되돌린다.
-                    OnDeactivate(false);
-                    return;
-                }
-
-                distanceToTarget = DistanceToTarget.VeryFar;
-                updateInterval = BattleDefine.UPDATE_INTERVAL_VERY_FAR;
-            }
-            else if (distanceSqr >= (farDistance * farDistance))
-            {
-                updateInterval = 1f;
-                distanceToTarget = DistanceToTarget.Far;
-            }
-            else if (distanceSqr >= (cameraVisibleDistance * cameraVisibleDistance))
-            {
-                updateInterval = 0.5f;
-                distanceToTarget = DistanceToTarget.Nearby;
-            }
-            else
-            {
-                updateInterval = 0f;
-            }
-        }
-        else
-        {
-            Model.SetDistanceToTargetSqr(float.MaxValue);
-            updateInterval = 0f;
-        }
-
-        Model.SetDistanceToTarget(distanceToTarget);
     }
 
     protected void ProcessCurrentState()
@@ -336,14 +263,13 @@ public class CharacterUnit : PoolableMono
 
     protected void CheckNextState()
     {
-        if (!Model.IsDead)
+        if (Model.GetUpdateInterval() > 0)
         {
             updateTimer += Time.deltaTime;
 
-            if (updateTimer < updateInterval)
+            if (updateTimer < Model.GetUpdateInterval())
                 return;
 
-            // 상태 로직이 무겁기 때문에 업데이트 주기를 조절
             updateTimer = 0;
         }
         
@@ -360,13 +286,33 @@ public class CharacterUnit : PoolableMono
         }
     }
 
+    private bool CheckUpdatableState()
+    {
+        // 즉시 Dead 상태 전환 필요
+        if (Model.IsDead)
+            return true;
+
+        if (Model.GetUpdateInterval() > 0)
+        {
+            updateTimer += Time.deltaTime;
+
+            if (updateTimer < Model.GetUpdateInterval())
+                return false;
+
+            updateTimer = 0;
+        }
+
+        bool isOnCC = Model.BattleEventProcessor.IsCrowdControl();
+
+        if (isOnCC)
+            return false;
+
+        return true;
+    }
+
     protected void UpdatePhysics()
     {
-        if (Model.IsEnablePhysics)
-        {
-            
-        }
-        else
+        if (!Model.IsEnablePhysics)
         {
             rigidBody2D.linearVelocity = Vector2.zero;
             rigidBody2D.angularVelocity = 0;
@@ -461,6 +407,7 @@ public class CharacterUnit : PoolableMono
         Model.SetDistanceToTarget(DistanceToTarget.Close);
         Model.SetAnimDelayDic(animDelayDic);
     }
+
     private CharacterActionHandler CreateActionHandler()
     {
         var pathFinder = CreatePathFinder();
@@ -469,7 +416,6 @@ public class CharacterUnit : PoolableMono
             actionHandler = new CharacterActionHandler(animator, rigidBody2D, bodySprite, gameObject, pathFinder);
         
         actionHandler.SetOnFlipX(OnFlipX);
-        actionHandler.SetOnStopStateUpdate(OnStateUpdateChange);
         actionHandler.SetOnDeactivate(() => OnDeactivate(true));
 
         if (characterAnimationEffect != null)

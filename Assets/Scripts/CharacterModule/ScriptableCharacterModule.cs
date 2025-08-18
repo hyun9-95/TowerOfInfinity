@@ -4,7 +4,7 @@ public abstract class ScriptableCharacterModule : ScriptableObject
 {
     public abstract ModuleType GetModuleType();
 
-    public abstract IModuleModel CreateModuleModel();
+    public virtual IModuleModel CreateModuleModel() { return null; }
 
     public virtual void OnEventUpdate(CharacterUnitModel model, IModuleModel IModuleModel) { }
 

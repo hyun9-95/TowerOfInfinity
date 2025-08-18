@@ -16,9 +16,7 @@ public class ScriptableCharacterModuleGroup : ScriptableObject
         foreach (var module in moduleList)
         {
             var moduleModel = module.CreateModuleModel();
-
-            if (moduleModel != null)
-                moduleModelDic.Add(module.GetModuleType(), moduleModel);
+            moduleModelDic.Add(module.GetModuleType(), moduleModel);
         }
 
         return moduleModelDic;

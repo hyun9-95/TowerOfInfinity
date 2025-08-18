@@ -10,7 +10,6 @@ public class CharacterActionHandler
 
 
     private Action<bool> onFlipX;
-    private Action<bool> onStateUpdateChange;
     private Action onDeactivate;
 
     private Animator animator;
@@ -46,11 +45,6 @@ public class CharacterActionHandler
     public void SetOnFlipX(Action<bool> action)
     {
         onFlipX = action;
-    }
-
-    public void SetOnStopStateUpdate(Action<bool> value)
-    {
-        onStateUpdateChange = value;
     }
 
     public void SetOnDeactivate(Action action)
@@ -192,7 +186,6 @@ public class CharacterActionHandler
         {
             case BattleEventType.Frozen:
                 animator.speed = 0;
-                onStateUpdateChange.Invoke(false);
                 break;
         }
     }
@@ -203,7 +196,6 @@ public class CharacterActionHandler
         {
             case BattleEventType.Frozen:
                 animator.speed = 1;
-                onStateUpdateChange.Invoke(true);
                 break;
         }
     }

@@ -6,10 +6,6 @@ public class SpawnExpGemModule : ScriptableCharacterModule
 {
     public override ModuleType GetModuleType() => ModuleType.SpawnExpGem;
 
-    public override IModuleModel CreateModuleModel()
-    {
-        return new SpawnExpGemModuleModel();
-    }
     #region Property
     #endregion
 
