@@ -566,17 +566,23 @@ public class CharacterUnit : PoolableMono
 
     private IPathFinder CreatePathFinder()
     {
-        if (Model.PathFindType == PathFindType.Navmesh)
+        switch (Model.PathFindType)
         {
-            NavmeshPathFinder navmeshPathFinder = new NavmeshPathFinder(transform, agent);
-            return navmeshPathFinder;
-        }
-        else
-        {
-            AStarPathFinder aStarPathFinder = new AStarPathFinder(rigidBody2D, FloatDefine.ASTAR_NEXT_NODE_THRESHOLD,
+            case PathFindType.Navmesh:
+                NavmeshPathFinder navmeshPathFinder = new NavmeshPathFinder(transform, agent);
+                return navmeshPathFinder;
+
+            case PathFindType.AStar:
+                AStarPathFinder aStarPathFinder = new AStarPathFinder(
+                Model.OnFindAStarNodes,
+                rigidBody2D,
+                FloatDefine.ASTAR_NEXT_NODE_THRESHOLD,
                 OnGetMoveSpeed);
-            return aStarPathFinder;
+
+                return aStarPathFinder;
         }
+
+        return null;
     }
 
     private float OnGetMoveSpeed()

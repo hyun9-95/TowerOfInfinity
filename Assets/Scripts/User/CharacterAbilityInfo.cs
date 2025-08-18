@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CharacterInfo
+public class CharacterAbilityInfo
 {
     #region Property
     public AbilityDefine PrimaryWeapon { get; private set; }

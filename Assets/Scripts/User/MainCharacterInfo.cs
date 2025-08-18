@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MainCharacterInfo : CharacterInfo
+public class MainCharacterInfo : CharacterAbilityInfo
 {
     #region Property
     public string MainCharacterPath => PathDefine.CHARACTER_MAIN_CHARACTER_PATH;

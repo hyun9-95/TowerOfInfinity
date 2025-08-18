@@ -11,9 +11,12 @@ public class AStarPathFinder : IPathFinder
     private int currentPathIndex;
     private List<AStarNode> currentPath = new List<AStarNode>();
     private Vector3 currentTargetPosition;
+    private Func<Vector3, Vector3, List<AStarNode>> onFindPath;
 
-    public AStarPathFinder(Rigidbody2D rigidBody2D, float nextNodeThreshold, Func<float> onGetMoveSpeed)
+    public AStarPathFinder(Func<Vector3, Vector3, List<AStarNode>> onFindPath,
+        Rigidbody2D rigidBody2D, float nextNodeThreshold, Func<float> onGetMoveSpeed)
     {
+        this.onFindPath = onFindPath;
         this.rigidBody2D = rigidBody2D;
         this.nextNodeThreshold = nextNodeThreshold;
         this.onGetMoveSpeed = onGetMoveSpeed;
@@ -21,8 +24,11 @@ public class AStarPathFinder : IPathFinder
 
     public void OnPathFind(Vector3 targetPosition)
     {
+        if (onFindPath == null)
+            return;
+
         currentTargetPosition = targetPosition;
-        currentPath = AStarManager.Instance.FindPath(rigidBody2D.position, targetPosition);
+        currentPath = onFindPath(rigidBody2D.position, targetPosition);
 
         if (currentPath != null && currentPath.Count > 0)
         {

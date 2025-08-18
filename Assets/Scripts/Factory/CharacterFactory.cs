@@ -58,7 +58,7 @@ public class CharacterFactory : BaseManager<CharacterFactory>
         if (subCharacter == null)
             return null;
 
-        var model = CreateCharacterUnitModel(TeamTag.Ally, CharacterType.Sub, CharacterSetUpType.Battle, subCharacterInfo);
+        var model = CreateCharacterUnitModel(TeamTag.Ally, CharacterType.Sub, subCharacterInfo);
         model.SetCharacterDataId(subCharacterInfo.CharacterDataId);
 
         await SetCharacterScriptableInfo(subCharacter, CharacterType.Sub, subCharacterInfo.CharacterDataId);
@@ -74,12 +74,12 @@ public class CharacterFactory : BaseManager<CharacterFactory>
         if (enemy == null)
             return null;
 
-        CharacterInfo enemyCharacterInfo = new SubCharacterInfo();
-        enemyCharacterInfo.SetPrimaryWeaponAbility(data.PrimaryWeaponAbility);
-        enemyCharacterInfo.SetActiveAbility(data.ActiveSkill);
-        enemyCharacterInfo.SetPassiveAbility(data.PassiveSkill);
+        CharacterAbilityInfo enemyABInfo = new SubCharacterInfo();
+        enemyABInfo.SetPrimaryWeaponAbility(data.PrimaryWeaponAbility);
+        enemyABInfo.SetActiveAbility(data.ActiveSkill);
+        enemyABInfo.SetPassiveAbility(data.PassiveSkill);
 
-        var model = CreateCharacterUnitModel(TeamTag.Enemy, CharacterType.Enemy, CharacterSetUpType.Battle, enemyCharacterInfo);
+        var model = CreateCharacterUnitModel(TeamTag.Enemy, CharacterType.Enemy, enemyABInfo);
         model.SetCharacterDataId(characterDataId);
         enemy.SetModel(model);
 
@@ -96,12 +96,12 @@ public class CharacterFactory : BaseManager<CharacterFactory>
         if (enemy == null)
             return null;
 
-        CharacterInfo enemyCharacterInfo = new SubCharacterInfo();
-        enemyCharacterInfo.SetPrimaryWeaponAbility(data.PrimaryWeaponAbility);
-        enemyCharacterInfo.SetActiveAbility(data.ActiveSkill);
-        enemyCharacterInfo.SetPassiveAbility(data.PassiveSkill);
+        CharacterAbilityInfo enemyABInfo = new SubCharacterInfo();
+        enemyABInfo.SetPrimaryWeaponAbility(data.PrimaryWeaponAbility);
+        enemyABInfo.SetActiveAbility(data.ActiveSkill);
+        enemyABInfo.SetPassiveAbility(data.PassiveSkill);
 
-        var model = CreateCharacterUnitModel(TeamTag.Enemy, CharacterType.Boss, CharacterSetUpType.Battle, enemyCharacterInfo);
+        var model = CreateCharacterUnitModel(TeamTag.Enemy, CharacterType.Boss, enemyABInfo);
         model.SetCharacterDataId(characterDataId);
         model.SetIsEnablePhysics(false);
         enemy.SetModel(model);
@@ -194,18 +194,19 @@ public class CharacterFactory : BaseManager<CharacterFactory>
     }
 
 
-    public CharacterUnitModel CreateCharacterUnitModel(TeamTag teamTag, CharacterType characterType, CharacterSetUpType setUpType = CharacterSetUpType.Town, CharacterInfo characterInfo = null)
+    public CharacterUnitModel CreateCharacterUnitModel(TeamTag teamTag, CharacterType characterType, CharacterAbilityInfo characterInfo = null)
     {
         CharacterSetUpType characterSetUpType = FlowManager.Instance.CurrentFlowType == FlowType.BattleFlow ?
             CharacterSetUpType.Battle : CharacterSetUpType.Town;
 
         CharacterUnitModel characterModel = new CharacterUnitModel();
-        SetCharacterUnitModel(characterModel, teamTag, characterType, setUpType, characterInfo);
+        SetCharacterUnitModel(characterModel, teamTag, characterType, characterSetUpType, characterInfo);
 
         return characterModel;
     }
 
-    public void SetCharacterUnitModel(CharacterUnitModel characterModel,TeamTag teamTag, CharacterType characterType, CharacterSetUpType setUpType = CharacterSetUpType.Town, CharacterInfo characterInfo = null)
+    public void SetCharacterUnitModel(CharacterUnitModel characterModel,TeamTag teamTag, CharacterType characterType,
+        CharacterSetUpType setUpType = CharacterSetUpType.Town, CharacterAbilityInfo abilityInfo = null)
     {
         CharacterSetUpType characterSetUpType = FlowManager.Instance.CurrentFlowType == FlowType.BattleFlow ?
             CharacterSetUpType.Battle : CharacterSetUpType.Town;
@@ -213,10 +214,8 @@ public class CharacterFactory : BaseManager<CharacterFactory>
         characterModel.SetTeamTag(teamTag);
         characterModel.SetCharacterType(characterType);
         characterModel.SetCharacterSetUpType(setUpType);
-
-        // CharacterInfo 설정
-        if (characterInfo != null)
-            characterModel.SetCharacterInfo(characterInfo);
+        characterModel.SetOnFindAStarNodes(AStarManager.Instance.FindPath);
+        characterModel.SetAbilityInfo(abilityInfo);
     }
 
     public async UniTask SetCharacterScriptableInfo(CharacterUnit character, CharacterType characterType, int dataId = 0)

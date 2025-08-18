@@ -22,7 +22,7 @@ public class CharacterUnitModel : IBaseUnitModel
     public NavMeshAgent Agent { get; private set; }
     public BattleEventProcessor EventProcessor { get; private set; }
     public AbilityProcessor AbilityProcessor { get; private set; }
-    public CharacterInfo CharacterInfo { get; private set; }
+    public CharacterAbilityInfo AbilityInfo { get; private set; }
     public bool IsDead => Hp <= 0;
     public float Hp { get; private set; }
     public PathFindType PathFindType { get; private set; }
@@ -33,6 +33,7 @@ public class CharacterUnitModel : IBaseUnitModel
     public float DistanceToTargetSqr { get; private set; }
     public float ReadyCoolTime { get; private set; }
     public float StateEnterTime { get; private set; }
+    public Func<Vector3, Vector3, List<AStarNode>> OnFindAStarNodes { get; private set; }
     #endregion
 
     #region Value
@@ -41,6 +42,11 @@ public class CharacterUnitModel : IBaseUnitModel
     private Dictionary<EquipmentType, Equipment> equippedEquipments;
     private Dictionary<CharacterAnimState, float> animDelayDic;
     #endregion
+    public void SetOnFindAStarNodes(Func<Vector3, Vector3, List<AStarNode>> func)
+    {
+        OnFindAStarNodes = func;
+    }
+
     public void SetInputWrapper(InputWrapper inputWrapper)
     {
         InputWrapper = inputWrapper;
@@ -221,21 +227,21 @@ public class CharacterUnitModel : IBaseUnitModel
         PathFindType = pathFindType;
     }
 
-    public void SetCharacterInfo(CharacterInfo characterInfo)
+    public void SetAbilityInfo(CharacterAbilityInfo characterInfo)
     {
-        CharacterInfo = characterInfo;
+        AbilityInfo = characterInfo;
     }
 
     public int GetAbilityDataIdBySlot(AbilitySlotType slotType)
     {
-        if (CharacterInfo == null)
+        if (AbilityInfo == null)
             return 0;
 
         return slotType switch
         {
-            AbilitySlotType.Weapon => (int)CharacterInfo.PrimaryWeapon,
-            AbilitySlotType.Active => (int)CharacterInfo.ActiveAbility,
-            AbilitySlotType.Passive => (int)CharacterInfo.PassiveAbility,
+            AbilitySlotType.Weapon => (int)AbilityInfo.PrimaryWeapon,
+            AbilitySlotType.Active => (int)AbilityInfo.ActiveAbility,
+            AbilitySlotType.Passive => (int)AbilityInfo.PassiveAbility,
             _ => 0
         };
     }

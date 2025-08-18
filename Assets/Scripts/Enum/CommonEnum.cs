@@ -131,6 +131,7 @@ public enum TransitionType
 
 public enum PathFindType
 {
+    None,
     Navmesh,
     AStar,
 }

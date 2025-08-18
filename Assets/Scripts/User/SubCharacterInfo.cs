@@ -1,4 +1,4 @@
-public class SubCharacterInfo : CharacterInfo
+public class SubCharacterInfo : CharacterAbilityInfo
 {
     #region Property
     public int CharacterDataId { get; private set; }
