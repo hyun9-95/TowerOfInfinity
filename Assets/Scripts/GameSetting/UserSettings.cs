@@ -8,7 +8,7 @@ public class UserSettings
     private VolumeSetting volume;
     private LocalizationSetting localization;
 
-    public void LoadSettings(int id)
+    public void LoadSettings(string id)
     {
         volume = new VolumeSetting();
         volume.SetPrefsKey(id);
@@ -27,7 +27,10 @@ public class UserSettings
                 return volume.Bgm;
 
             case SoundType.Sfx:
-                return volume.Sfx; 
+                return volume.Sfx;
+
+            case SoundType.Amb:
+                return volume.Amb;
         }
 
         return 1;

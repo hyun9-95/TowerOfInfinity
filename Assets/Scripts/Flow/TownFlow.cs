@@ -38,10 +38,12 @@ public class TownFlow : BaseFlow<TownFlowModel>
         await ShowLobbyView();
 
         InputManager.EnableMoveInput(true);
+        SoundManager.Instance.PlaySoloSound(SoundType.Bgm, PathDefine.BGM_TOWN).Forget();
     }
 
     public override async UniTask Exit()
     {
+        SoundManager.Instance.StopCurrentSoloSound(SoundType.Bgm).Forget();
         InputManager.EnableMoveInput(false);
     }
 

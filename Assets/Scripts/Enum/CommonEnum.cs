@@ -54,6 +54,7 @@ public enum SoundType
 {
     Bgm,
     Sfx,
+    Amb,
     None = 99,
 }
 

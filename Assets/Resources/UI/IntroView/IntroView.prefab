@@ -348,7 +348,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  playSoundType: 0
+  playSoundType: 1
 --- !u!1 &8715230967386497071
 GameObject:
   m_ObjectHideFlags: 0
@@ -397,4 +397,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58bb67d74778da04c9b18073bcade331, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  address: 0_BulitIn/LoadingBar/LoadingBar
+  address: 0_BuiltIn/LoadingBar/LoadingBar

@@ -2,9 +2,9 @@ using UnityEngine;
 
 public abstract class BaseSetting
 {
-    public int UserId { get; private set; }
+    public string UserId { get; private set; }
 
-    public void SetPrefsKey(int id)
+    public void SetPrefsKey(string id)
     {
         UserId = id;
     }

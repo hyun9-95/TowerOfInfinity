@@ -174,7 +174,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1174,7 +1174,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1302,8 +1302,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_Resource: {fileID: 8300000, guid: 6a70f3955d04ad949923611629a278c4, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1453,7 +1453,7 @@ MonoBehaviour:
   coolDownDim: {fileID: 2919422264097656524}
   defaultSprite: {fileID: 21300000, guid: 94ba82713e8c90e489085ea3261b01e4, type: 3}
   clickedSprite: {fileID: 21300000, guid: 129efb04167273749bb0666d7b6a8cc6, type: 3}
-  buttonSoundType: 0
+  buttonSoundType: 99
 --- !u!114 &6556353357444235410
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2371,8 +2371,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4156573141273017205}
   - component: {fileID: 7508081110895649001}
-  - component: {fileID: 752473159454512647}
   - component: {fileID: 4382803799990800839}
+  - component: {fileID: 752473159454512647}
   - component: {fileID: 4021106567672738367}
   m_Layer: 5
   m_Name: Action_Attack
@@ -2409,6 +2409,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2370313745903267548}
   m_CullTransparentMesh: 1
+--- !u!114 &4382803799990800839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2370313745903267548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc12f394011d4684ba02bee31f8115f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputType: 0
+  buttonImage: {fileID: 752473159454512647}
+  coolDownDim: {fileID: 8894791103324104767}
+  defaultSprite: {fileID: 21300000, guid: da2ef31fa83507b45a0af6bbd2214c89, type: 3}
+  clickedSprite: {fileID: 21300000, guid: 15a8d00fa053e864aa3ba537fe111181, type: 3}
+  buttonSoundType: 99
 --- !u!114 &752473159454512647
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2439,24 +2457,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &4382803799990800839
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2370313745903267548}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc12f394011d4684ba02bee31f8115f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inputType: 0
-  buttonImage: {fileID: 752473159454512647}
-  coolDownDim: {fileID: 8894791103324104767}
-  defaultSprite: {fileID: 21300000, guid: da2ef31fa83507b45a0af6bbd2214c89, type: 3}
-  clickedSprite: {fileID: 21300000, guid: 15a8d00fa053e864aa3ba537fe111181, type: 3}
-  buttonSoundType: 0
 --- !u!114 &4021106567672738367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2723,8 +2723,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_Resource: {fileID: 8300000, guid: 80fc1fa51e19e7840a71219434095995, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -6394,8 +6394,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_Resource: {fileID: 8300000, guid: 8d583c66a4f009547b3c8bdc085b433c, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -6842,6 +6842,7 @@ MonoBehaviour:
   - {fileID: 1565870630811943769}
   - {fileID: 3022594010492949990}
   - {fileID: 1975482333903138848}
+  titleBgmClip: {fileID: 8300000, guid: 714d19f1eace0664f939e4e099c9f505, type: 3}
   audioListener: {fileID: 1933712699642925320}
 --- !u!81 &1933712699642925320
 AudioListener:

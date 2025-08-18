@@ -267,10 +267,4 @@ public class AddressableBuildGenerator : BaseGenerator
 
         return $"{projectPath}/{localBuildPath}";
     }
-
-    // 에디터에 있는 JSON 파일들을 Addressable로 동기화
-    private void SyncJsons()
-    {
-        string jsonRootPath = PathDefine.Json;
-    }
 }

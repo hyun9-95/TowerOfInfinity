@@ -11,19 +11,29 @@ public class SoundManager : BaseMonoManager<SoundManager>
     private AudioSource[] buttonSoundAudioSources;
 
     [SerializeField]
+    private AudioClip titleBgmClip;
+
+    [SerializeField]
     private AudioListener audioListener;
 
     private Dictionary<SoundType, string> currentSoloClipPathDic = new()
     {
         { SoundType.Bgm, ""},
         { SoundType.Sfx, ""},
+        { SoundType.Amb, ""},
     };
+
+    private string titleBgmPath = PathDefine.BGM_TITLE;
+    private bool isFading = false;
 
     /// <summary>
     /// ratio는 유저세팅 볼륨값에 곱해서 처리함
     /// </summary>
-    public async UniTask PlaySoloSound(string path, SoundType soundType)
+    public async UniTask PlaySoloSound(SoundType soundType, string path)
     {
+        if (isFading)
+            await UniTask.WaitWhile(() => isFading);
+
         int index = (int)soundType;
 
         if (index >= soloSoundAudioSources.Length)
@@ -39,16 +49,52 @@ public class SoundManager : BaseMonoManager<SoundManager>
             return;
 
         if (audioSource.isPlaying)
-            audioSource.Stop();
+            await StopFading(audioSource, 1f);
 
         await LoadAudioClip(audioSource, path);
 
         if (audioSource.clip != null)
         {
-            audioSource.volume = GetVolume(soundType, 1);
+            audioSource.volume = GetVolume(soundType);
             audioSource.Play();
             currentSoloClipPathDic[soundType] = path;
         }
+    }
+
+    public async UniTask StopCurrentSoloSound(SoundType soundType)
+    {
+        int index = (int)soundType;
+
+        if (index >= soloSoundAudioSources.Length)
+            return;
+
+        var audioSource = soloSoundAudioSources[index];
+
+        if (audioSource == null || !audioSource.isPlaying)
+            return;
+
+        await StopFading(audioSource, FloatDefine.SOUND_FADE_TIME);
+    }
+
+    private async UniTask StopFading(AudioSource source, float duration)
+    {
+        isFading = true;
+        float startVolume = source.volume;
+        float elapsedTime = 0;
+
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+
+            float progress = elapsedTime / duration;
+
+            source.volume = Mathf.Lerp(startVolume, 0, progress);
+            await UniTask.NextFrame(TokenPool.Get(GetHashCode()));
+        }
+
+        source.volume = 0;
+        source.Stop();
+        isFading = false;
     }
 
     public void PlayButtonSound(ButtonSoundType buttonSoundType)
@@ -66,19 +112,19 @@ public class SoundManager : BaseMonoManager<SoundManager>
         if (audioSource.isPlaying)
             audioSource.Stop();
 
-        audioSource.volume = GetVolume(SoundType.Sfx, 1);
+        audioSource.volume = GetVolume(SoundType.Sfx);
         audioSource.Play();
     }
 
-    private float GetVolume(SoundType soundType, float volumeRatio)
+    private float GetVolume(SoundType soundType, float volumeRatio = 1)
     {
         if (volumeRatio > 1)
             volumeRatio = 1;
 
-        if (PlayerManager.instance.UserSettings == null)
+        if (PlayerManager.Instance.UserSettings == null)
             return 1;
 
-        float volume = PlayerManager.instance.UserSettings == null ?
+        float volume = PlayerManager.Instance.UserSettings == null ?
             1 : PlayerManager.Instance.UserSettings.GetVolume(soundType);
 
         return volume * volumeRatio;
@@ -88,6 +134,12 @@ public class SoundManager : BaseMonoManager<SoundManager>
     {
         if (source == null)
             return;
+
+        if (path.Equals(titleBgmPath))
+        {
+            source.clip = titleBgmClip;
+            return;
+        }
 
         await AddressableManager.Instance.SafeLoadAsync(source, path);
     }

@@ -28,6 +28,7 @@ public class IntroFlow : BaseFlow<IntroFlowModel>
     public override async UniTask Process()
     {
         ShowIntroView(Model.LoadDataType).Forget();
+        SoundManager.Instance.PlaySoloSound(SoundType.Bgm, PathDefine.BGM_TITLE).Forget();
     }
 
     private void OnCompleteLoading()
@@ -91,5 +92,6 @@ public class IntroFlow : BaseFlow<IntroFlowModel>
 
     public override async UniTask Exit()
     {
+        SoundManager.Instance.StopCurrentSoloSound(SoundType.Bgm).Forget();
     }
 }

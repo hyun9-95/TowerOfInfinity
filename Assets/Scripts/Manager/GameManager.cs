@@ -23,13 +23,15 @@ public class GameManager : BaseMonoManager<GameManager>
         DontDestroyOnLoad(this);
 
 #if CHEAT
-        CheatManager.instance.SetCheatConfig(cheatConfig);
+        CheatManager.Instance.SetCheatConfig(cheatConfig);
 #endif
 
         Application.targetFrameRate = 60;
         QualitySettings.vSyncCount = 1;
 
         SelectPlatform();
+
+        PlayerManager.Instance.LoadUserSettings(SystemInfo.deviceUniqueIdentifier);
     }
 
     private void Start()

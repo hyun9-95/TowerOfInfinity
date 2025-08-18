@@ -53,10 +53,10 @@ public class PlayerManager : BaseMonoManager<PlayerManager>
         File.WriteAllText(userSaveInfoPath, newSaveInfoJson);
     }
 
-    public void LoadUserSettings()
+    public void LoadUserSettings(string id)
     {
         settings = new UserSettings();
-        settings.LoadSettings(user.ID);
+        settings.LoadSettings(id);
     }
 
     public async UniTask LoadMainPlayerCharacter()

@@ -47,10 +47,14 @@ public class BattleFlow : BaseFlow<BattleFlowModel>
         await battleSceneManager.StartSpawn();
         await battleUIManager.ShowHpBar(battleInfo.MainCharModel);
         EnableBattleInput();
+
+        SoundManager.Instance.PlaySoloSound(SoundType.Bgm, PathDefine.BGM_BATTLE).Forget();
     }
 
     public override async UniTask Exit()
     {
+        SoundManager.Instance.StopCurrentSoloSound(SoundType.Bgm).Forget();
+
         battleSystemManager.Stop();
         battleSceneManager.Stop();
         DisableBattleInput();

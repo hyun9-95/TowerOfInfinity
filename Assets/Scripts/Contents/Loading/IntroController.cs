@@ -81,7 +81,6 @@ public class IntroController : BaseController<IntroViewModel>
 
         // 유저 로드
         PlayerManager.Instance.LoadUser();
-        PlayerManager.Instance.LoadUserSettings();
 
         // 유저 로컬 세팅
         InitializeLocalization();

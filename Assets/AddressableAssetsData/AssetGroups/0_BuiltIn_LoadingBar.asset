@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: 0_BuiltIn_LoadingBar
+  m_EditorClassIdentifier: 
+  m_GroupName: 0_BuiltIn_LoadingBar
+  m_GUID: 19c339ed444e5e846ac44224baec40a1
+  m_SerializeEntries:
+  - m_GUID: 36359bde1cbaf484bb0e5326e8864889
+    m_Address: 0_BuiltIn/LoadingBar/LoadingBar
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5382b82117fb2ab47a65982739cf50e8
+    m_Address: 0_BuiltIn/LoadingBar/F_UI_SlideBar_A3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7828a0454bdd8d64bb3a3a1969f40c3d
+    m_Address: 0_BuiltIn/LoadingBar/BlueSlider
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c5166d02c90b0b4428dbcb840981bbe7
+    m_Address: 0_BuiltIn/LoadingBar/F_UI_BlueBar
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 41089ed538dc1b441aaa08aa14aeb6cb, type: 2}
+    - {fileID: 11400000, guid: 5606d71ca996b374798c86639f425f5f, type: 2}
