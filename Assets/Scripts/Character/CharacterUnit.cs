@@ -95,7 +95,7 @@ public class CharacterUnit : PoolableMono
         PrepareState();
         ProcessCurrentState();
 
-        if (!CheckUpdatableState())
+        if (CheckUpdatableState())
             CheckNextState();
     }
 
