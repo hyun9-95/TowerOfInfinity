@@ -26,8 +26,6 @@ public class BattleEnemySpawner : IObserver
     {
         Model = battleEnemyGeneratorModel;
         currentIntervalSeconds = Model.SpawnIntervalSeconds;
-
-        OnChangeWave(0);
     }
 
     public async UniTask StartGenerateAsync()
@@ -35,6 +33,8 @@ public class BattleEnemySpawner : IObserver
         // 카메라 영역에서 벗어나기 위한 중심점으로부터의 최소 거리
         minDistance = CameraManager.Instance.DiagonalLengthFromCenter;
 
+        OnChangeWave(0);
+        ObserverManager.AddObserver(BattleObserverID.ChangeWave, this);
         ObserverManager.AddObserver(BattleObserverID.BattleEnd, this);
 
 #if CHEAT && UNITY_EDITOR
@@ -46,6 +46,7 @@ public class BattleEnemySpawner : IObserver
 
         if (CheatManager.CheatConfig.stopSpawnEnemy)
         {
+            ObserverManager.RemoveObserver(BattleObserverID.ChangeWave, this);
             ObserverManager.RemoveObserver(BattleObserverID.BattleEnd, this);
             return;
         }
@@ -197,6 +198,7 @@ public class BattleEnemySpawner : IObserver
 
     public void Cancel()
     {
+        ObserverManager.RemoveObserver(BattleObserverID.ChangeWave, this);
         TokenPool.Cancel(GetHashCode());
     }
 
