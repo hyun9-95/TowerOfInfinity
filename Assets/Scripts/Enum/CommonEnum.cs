@@ -53,8 +53,8 @@ public enum UICanvasType
 public enum SoundType
 {
     Bgm,
-    Sfx,
     Amb,
+    Sfx,
     None = 99,
 }
 

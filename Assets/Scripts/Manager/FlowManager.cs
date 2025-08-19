@@ -21,6 +21,8 @@ public class FlowManager : BaseManager<FlowManager>
         if (newFlow == null)
             return;
 
+        StopBgm(baseFlowModel.FlowBGMPath);
+
         // Transition In
         await TransitionManager.Instance.In(newFlow.TransitionType);
         await ProcessStateEvent(FlowState.TranstionIn, baseFlowModel);
@@ -51,6 +53,8 @@ public class FlowManager : BaseManager<FlowManager>
         await currentFlow.Process();
         await ProcessStateEvent(FlowState.Process, baseFlowModel);
 
+        await PlayBgmAsync(baseFlowModel.FlowBGMPath);
+
         // Transition Out
         if (baseFlowModel.IsExistStateEvent(FlowState.TransitionOut))
         {
@@ -69,6 +73,7 @@ public class FlowManager : BaseManager<FlowManager>
     {
         var townFlowModel = new TownFlowModel();
         townFlowModel.SetSceneDefine(sceneDefine);
+        townFlowModel.SetFlowBGMPath(PathDefine.BGM_TOWN);
 
         await ChangeFlow(FlowType.TownFlow, townFlowModel);
     }
@@ -78,7 +83,26 @@ public class FlowManager : BaseManager<FlowManager>
         await flowModel.ProcessStateEvent(state);
     }
 
-    
+    private void StopBgm(string path)
+    {
+        if (string.IsNullOrEmpty(path))
+            return;
+        
+        // 이미 동일 BGM 재생중일 경우 그대로 재생
+        if (SoundManager.Instance.IsPlayingSoloSound(SoundType.Bgm, path))
+            return;
+
+        SoundManager.Instance.StopCurrentSoloSound(SoundType.Bgm).Forget();
+    }
+
+    private async UniTask PlayBgmAsync(string path)
+    {
+        if (string.IsNullOrEmpty(path))
+            return;
+
+        await SoundManager.Instance.PlaySoloSound(SoundType.Bgm, path);
+    }
+
     private async UniTask CleanUpAsync()
     {
         // 풀링해놨던 팩토리, 매니저 들을 Clear 해준다.

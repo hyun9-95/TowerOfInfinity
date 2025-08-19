@@ -28,7 +28,6 @@ public class IntroFlow : BaseFlow<IntroFlowModel>
     public override async UniTask Process()
     {
         ShowIntroView(Model.LoadDataType).Forget();
-        SoundManager.Instance.PlaySoloSound(SoundType.Bgm, PathDefine.BGM_TITLE).Forget();
     }
 
     private void OnCompleteLoading()
@@ -47,6 +46,7 @@ public class IntroFlow : BaseFlow<IntroFlowModel>
         if (isEnterCustomize)
         {
             CustomizationFlowModel customizationFlowModel = new CustomizationFlowModel();
+            customizationFlowModel.SetFlowBGMPath(PathDefine.BGM_TOWN);
 
             FlowManager.Instance.ChangeFlow(FlowType.CustomizationFlow, customizationFlowModel).Forget();
         }
@@ -69,6 +69,7 @@ public class IntroFlow : BaseFlow<IntroFlowModel>
         {
             BattleFlowModel battleFlowModel = new BattleFlowModel();
             battleFlowModel.SetSceneDefine(SceneDefine.Battle_Atlantis);
+            battleFlowModel.SetFlowBGMPath(PathDefine.BGM_BATTLE);
             battleFlowModel.SetDataDungeon(DataManager.Instance.GetDataById<DataDungeon>((int)DungeonDefine.DUNGEON_ATLANTIS));
 
             FlowManager.Instance.ChangeFlow(FlowType.BattleFlow, battleFlowModel).Forget();
@@ -77,6 +78,7 @@ public class IntroFlow : BaseFlow<IntroFlowModel>
         else if (isEnterCustomize)
         {
             CustomizationFlowModel customizationFlowModel = new CustomizationFlowModel();
+            customizationFlowModel.SetFlowBGMPath(PathDefine.BGM_TOWN);
 
             FlowManager.Instance.ChangeFlow(FlowType.CustomizationFlow, customizationFlowModel).Forget();
         }
@@ -92,6 +94,5 @@ public class IntroFlow : BaseFlow<IntroFlowModel>
 
     public override async UniTask Exit()
     {
-        SoundManager.Instance.StopCurrentSoloSound(SoundType.Bgm).Forget();
     }
 }

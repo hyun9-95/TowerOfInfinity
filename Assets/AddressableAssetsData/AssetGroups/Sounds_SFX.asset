@@ -16,31 +16,31 @@ MonoBehaviour:
   m_GUID: 576635803c3726d45999962835a7c6f3
   m_SerializeEntries:
   - m_GUID: 1d139cf83add6d04eb0476bd37dbb4ba
-    m_Address: Sounds/SFX/sfx_card_draw_01
+    m_Address: Sounds/SFX/SFX_Card_Draw_01
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5028acc5dc712604cbba654e620dce5d
-    m_Address: Sounds/SFX/sfx_card_pick
+    m_Address: Sounds/SFX/SFX_Card_Pick
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7ada0cb677087c6489c073a0e2b98b9d
-    m_Address: Sounds/SFX/sfx_level_up
+    m_Address: Sounds/SFX/SFX_Level_Up
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a5ba0d1c0b3c9a249a029c2ee1a77b25
-    m_Address: Sounds/SFX/sfx_card_draw_03
+    m_Address: Sounds/SFX/SFX_Card_Draw_03
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f25f33d191c6c6b4699b810d853d2f32
-    m_Address: Sounds/SFX/sfx_card_draw_02
+    m_Address: Sounds/SFX/SFX_Card_Draw_02
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main

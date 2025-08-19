@@ -6,6 +6,8 @@ public class BaseFlowModel
 {
     #region Property
     public SceneDefine SceneDefine { get; private set; }
+
+    public string FlowBGMPath {  get; private set; }
     #endregion
 
     #region Value
@@ -16,6 +18,11 @@ public class BaseFlowModel
     public void SetSceneDefine(SceneDefine define)
     {
         SceneDefine = define;
+    }
+
+    public void SetFlowBGMPath(string value)
+    {
+        FlowBGMPath = value;
     }
 
     public void AddStateEvent(FlowState state, Func<UniTask> stateEvent)

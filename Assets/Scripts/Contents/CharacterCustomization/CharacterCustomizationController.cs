@@ -157,6 +157,7 @@ public class CharacterCustomizationController : BaseController<CharacterCustomiz
 
         TownFlowModel townFlowModel = new TownFlowModel();
         townFlowModel.SetSceneDefine(PlayerManager.Instance.User.CurrentTown);
+        townFlowModel.SetFlowBGMPath(PathDefine.BGM_TOWN);
         townFlowModel.AddStateEvent(FlowState.TranstionIn, async() =>
         {
             await OnChangePartsAsync(true, true);

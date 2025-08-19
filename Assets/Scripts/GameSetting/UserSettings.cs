@@ -1,14 +1,14 @@
 using UnityEngine;
 
-public class UserSettings
+public static class UserSettings
 {
-    public VolumeSetting Volume => volume;
-    public LocalizationSetting Localization => localization;
+    public static VolumeSetting Volume => volume;
+    public static LocalizationSetting Localization => localization;
 
-    private VolumeSetting volume;
-    private LocalizationSetting localization;
+    private static VolumeSetting volume;
+    private static LocalizationSetting localization;
 
-    public void LoadSettings(string id)
+    public static void Load(string id)
     {
         volume = new VolumeSetting();
         volume.SetPrefsKey(id);
@@ -19,7 +19,7 @@ public class UserSettings
         localization.Load();
     }
 
-    public float GetVolume(SoundType soundType)
+    public static float GetVolume(SoundType soundType)
     {
         switch (soundType)
         {
@@ -36,7 +36,7 @@ public class UserSettings
         return 1;
     }
 
-    public LocalizationType GetLocalizationType()
+    public static LocalizationType GetLocalizationType()
     {
         return localization.Type;
     }

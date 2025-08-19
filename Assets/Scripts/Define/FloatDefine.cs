@@ -33,4 +33,7 @@ public class FloatDefine
     public const float DEFAULT_MINIMUM_STATE_DURATION = 0.1f;
 
     public const float SOUND_FADE_TIME = 1f;
+
+    public const float SOUND_AUDIOSOURCE_MIN_DISTANCE = 2f;
+    public const float SOUND_AUDIOSOURCE_MAX_DISTANCE = 30f;
 }

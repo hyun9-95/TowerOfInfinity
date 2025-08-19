@@ -29,17 +29,34 @@ public class GameManager : BaseMonoManager<GameManager>
         Application.targetFrameRate = 60;
         QualitySettings.vSyncCount = 1;
 
+        LoadUserSettings();
         SelectPlatform();
-
-        PlayerManager.Instance.LoadUserSettings(SystemInfo.deviceUniqueIdentifier);
     }
 
     private void Start()
     {
         IntroFlowModel introFlowModel = new IntroFlowModel();
-        introFlowModel.SetLoadDataType(loadDataType);   
+        introFlowModel.SetLoadDataType(loadDataType);
+        introFlowModel.SetFlowBGMPath(PathDefine.BGM_TITLE);
         
         FlowManager.Instance.ChangeFlow(FlowType.IntroFlow, introFlowModel).Forget();
+    }
+
+    private void LoadUserSettings()
+    {
+        UserSettings.Load(SystemInfo.deviceUniqueIdentifier);
+
+        var applyLocal = UserSettings.GetLocalizationType();
+
+#if CHEAT
+        if (CheatManager.CheatConfig.testLocalType != LocalizationType.None)
+            applyLocal = CheatManager.CheatConfig.testLocalType;
+#endif
+
+        if (applyLocal == LocalizationType.None)
+            applyLocal = LocalizationType.English;
+
+        LocalizationManager.Instance.SetLocalizationType(applyLocal);
     }
 
     private void SelectPlatform()

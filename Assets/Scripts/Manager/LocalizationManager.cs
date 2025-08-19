@@ -3,9 +3,13 @@ public class LocalizationManager : BaseManager<LocalizationManager>
     private LocalizationType localizationType;
     private DataContainer<DataLocalization> localContainer;
 
-    public void Initialize(LocalizationType type)
+    public void SetLocalizationType(LocalizationType localizationType)
     {
-        localizationType = type;
+        this.localizationType = localizationType;
+    }
+
+    public void Initialize()
+    {
         localContainer = DataManager.Instance.GetDataContainer<DataLocalization>();
     }
 

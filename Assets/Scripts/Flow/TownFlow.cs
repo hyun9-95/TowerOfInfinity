@@ -38,12 +38,10 @@ public class TownFlow : BaseFlow<TownFlowModel>
         await ShowLobbyView();
 
         InputManager.EnableMoveInput(true);
-        SoundManager.Instance.PlaySoloSound(SoundType.Bgm, PathDefine.BGM_TOWN).Forget();
     }
 
     public override async UniTask Exit()
     {
-        SoundManager.Instance.StopCurrentSoloSound(SoundType.Bgm).Forget();
         InputManager.EnableMoveInput(false);
     }
 
@@ -97,6 +95,7 @@ public class TownFlow : BaseFlow<TownFlowModel>
 
         BattleFlowModel battleFlowModel = new BattleFlowModel();
         battleFlowModel.SetSceneDefine(SceneDefine.Battle_Atlantis);
+        battleFlowModel.SetFlowBGMPath(PathDefine.BGM_BATTLE);
         battleFlowModel.SetDataDungeon(DataManager.Instance.GetDataById<DataDungeon>((int)DungeonDefine.DUNGEON_ATLANTIS));
 
         FlowManager.Instance.ChangeFlow(FlowType.BattleFlow, battleFlowModel).Forget();

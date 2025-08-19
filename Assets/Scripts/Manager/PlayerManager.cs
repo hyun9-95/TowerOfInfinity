@@ -7,7 +7,6 @@ using UnityEngine;
 public class PlayerManager : BaseMonoManager<PlayerManager>
 {
     #region Property
-    public UserSettings UserSettings => settings;
     public User User => user;
     #endregion
 
@@ -17,7 +16,6 @@ public class PlayerManager : BaseMonoManager<PlayerManager>
 
     private MainPlayerCharacter mainPlayerCharacter;
     private User user;
-    private UserSettings settings;
     #endregion
 
     public void LoadUser()
@@ -51,12 +49,6 @@ public class PlayerManager : BaseMonoManager<PlayerManager>
 
         var newSaveInfoJson = JsonConvert.SerializeObject(userSaveInfo);
         File.WriteAllText(userSaveInfoPath, newSaveInfoJson);
-    }
-
-    public void LoadUserSettings(string id)
-    {
-        settings = new UserSettings();
-        settings.LoadSettings(id);
     }
 
     public async UniTask LoadMainPlayerCharacter()
