@@ -19,9 +19,6 @@ MonoBehaviour:
   - 0.6
   - 0.7
   - 0.8
-  - 0.90000004
-  - 1
-  - 1.1
   value2: []
   duration:
   - 2
@@ -29,8 +26,5 @@ MonoBehaviour:
   - 2
   - 2.5
   - 2.5
-  - 2.5
-  - 3
-  - 3
   applyIntervalSeconds:
   - 0.5

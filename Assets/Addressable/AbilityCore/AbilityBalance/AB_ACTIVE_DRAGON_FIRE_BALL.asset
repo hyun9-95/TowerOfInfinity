@@ -25,3 +25,4 @@ MonoBehaviour:
   SpawnCount: 03000000
   HitForce:
   - 5
+  SpawnInterval: []

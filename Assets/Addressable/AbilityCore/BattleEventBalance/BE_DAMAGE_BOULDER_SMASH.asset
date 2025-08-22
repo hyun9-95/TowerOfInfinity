@@ -19,9 +19,6 @@ MonoBehaviour:
   - 2.5
   - 2.75
   - 3
-  - 3.25
-  - 3.5
-  - 3.75
   value2: []
   duration: []
   applyIntervalSeconds: []
