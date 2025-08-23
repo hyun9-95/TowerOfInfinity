@@ -55,6 +55,10 @@ public class SoundManager : BaseMonoManager<SoundManager>
         if (audioSource.clip != null)
         {
             audioSource.volume = GetVolume(soundType);
+
+            if (soundType is SoundType.Bgm or SoundType.Amb)
+                audioSource.loop = true;
+
             audioSource.Play();
         }
 

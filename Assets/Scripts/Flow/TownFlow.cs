@@ -94,9 +94,8 @@ public class TownFlow : BaseFlow<TownFlowModel>
         InputManager.EnableMoveInput(false);
 
         BattleFlowModel battleFlowModel = new BattleFlowModel();
-        battleFlowModel.SetSceneDefine(SceneDefine.Battle_Atlantis);
         battleFlowModel.SetFlowBGMPath(PathDefine.BGM_BATTLE);
-        battleFlowModel.SetDataDungeon(DataManager.Instance.GetDataById<DataDungeon>((int)DungeonDefine.DUNGEON_ATLANTIS));
+        battleFlowModel.SetDataDungeon(DataManager.Instance.GetDataById<DataDungeon>((int)DungeonDefine.DUNGEON_RUINS));
 
         FlowManager.Instance.ChangeFlow(FlowType.BattleFlow, battleFlowModel).Forget();
     }

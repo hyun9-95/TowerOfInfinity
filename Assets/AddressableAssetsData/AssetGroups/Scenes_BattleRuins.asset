@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Scenes_BattleRuins
+  m_EditorClassIdentifier: 
+  m_GroupName: Scenes_BattleRuins
+  m_GUID: d27b047c90d472d49baf31345795d765
+  m_SerializeEntries:
+  - m_GUID: 0a4f04b1210f947459fb0b1dbb5439b0
+    m_Address: Battle_Ruins
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: e8d87fc58f0fc754aabd98b14e7024b7, type: 2}
+    - {fileID: 11400000, guid: 3570c1db2a3c02645968cf10d1c0e51f, type: 2}

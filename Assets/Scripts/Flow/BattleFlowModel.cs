@@ -4,8 +4,9 @@ public class BattleFlowModel : BaseFlowModel
 {
     public DataDungeon DataDungeon { get; private set; }
 
-    public void SetDataDungeon(DataDungeon dataEnemyGroup)
+    public void SetDataDungeon(DataDungeon dataDungeon)
     {
-        DataDungeon = dataEnemyGroup; 
+        DataDungeon = dataDungeon;
+        SetSceneDefine(dataDungeon.BattleScene);
     }
 }

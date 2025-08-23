@@ -68,9 +68,8 @@ public class IntroFlow : BaseFlow<IntroFlowModel>
         if (CheatManager.CheatConfig.IsEnterBattleDirectly)
         {
             BattleFlowModel battleFlowModel = new BattleFlowModel();
-            battleFlowModel.SetSceneDefine(SceneDefine.Battle_Atlantis);
+            battleFlowModel.SetDataDungeon(DataManager.Instance.GetDataById<DataDungeon>((int)DungeonDefine.DUNGEON_RUINS));
             battleFlowModel.SetFlowBGMPath(PathDefine.BGM_BATTLE);
-            battleFlowModel.SetDataDungeon(DataManager.Instance.GetDataById<DataDungeon>((int)DungeonDefine.DUNGEON_ATLANTIS));
 
             FlowManager.Instance.ChangeFlow(FlowType.BattleFlow, battleFlowModel).Forget();
             return;

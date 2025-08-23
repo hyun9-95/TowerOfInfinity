@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: TileChunk
+  m_EditorClassIdentifier: 
+  m_GroupName: TileChunk
+  m_GUID: 71e969f7e11e0fc42a52d120e0592b97
+  m_SerializeEntries:
+  - m_GUID: bd5da3cffbfc8d34f8eea0aeb29edd3b
+    m_Address: TileChunk/TileChunk
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 7f7728748ba024342959f14676288f52, type: 2}
+    - {fileID: 11400000, guid: 2f9513b9e74d9d34db672d8389abd243, type: 2}

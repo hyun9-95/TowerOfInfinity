@@ -47,11 +47,11 @@ TagManager:
   - name: Background
     uniqueID: 2320343209
     locked: 0
-  - name: BackgroundDetail
-    uniqueID: 795965705
-    locked: 0
   - name: Obstacle
     uniqueID: 2523222317
+    locked: 0
+  - name: BackgroundDetail
+    uniqueID: 795965705
     locked: 0
   - name: Object
     uniqueID: 1148060041

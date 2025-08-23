@@ -1,6 +1,7 @@
 [
   {
     "id": 40000,
-    "EnemyGroup": "ENEMY_GROUP_ATLANTIS"
+    "BattleScene": "Battle_Ruins",
+    "EnemyGroup": "ENEMY_GROUP_RUINS"
   }
 ]

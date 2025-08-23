@@ -5,6 +5,6 @@ using Newtonsoft.Json.Converters;
 public enum EnemyGroupDefine
 {
 	None = 0,
-	ENEMY_GROUP_ATLANTIS = 30000,
+	ENEMY_GROUP_RUINS = 30000,
 
 }

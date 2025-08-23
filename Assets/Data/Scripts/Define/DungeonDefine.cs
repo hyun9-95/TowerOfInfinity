@@ -5,6 +5,6 @@ using Newtonsoft.Json.Converters;
 public enum DungeonDefine
 {
 	None = 0,
-	DUNGEON_ATLANTIS = 40000,
+	DUNGEON_RUINS = 40000,
 
 }

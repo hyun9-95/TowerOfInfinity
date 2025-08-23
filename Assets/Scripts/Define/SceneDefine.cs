@@ -11,7 +11,7 @@ public enum SceneDefine
     Town_Max = 199,
 
     // 200 ~ 499 : Battle
-    Battle_Atlantis = 200,
+    Battle_Ruins = 200,
     Battle_Max = 499,
 
     TestBattleScene,

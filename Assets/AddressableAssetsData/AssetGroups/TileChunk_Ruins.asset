@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: TileChunk_Ruins
+  m_EditorClassIdentifier: 
+  m_GroupName: TileChunk_Ruins
+  m_GUID: 9a1bc6053a2e44a42a9ee1065399dcd1
+  m_SerializeEntries:
+  - m_GUID: 0ca895331300c8945b01eb647f6f8d57
+    m_Address: TileChunk/Ruins/RuleTile_Ruins
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1924275d46d6a5544b4282c0f5811692
+    m_Address: TileChunk/Ruins/TileChunk_Ruins_3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3c6e4b43dcc32d144a668bb9a80fe31c
+    m_Address: TileChunk/Ruins/TileChunk_Ruins_2
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3d4f21e4dc170434bbd854fd5c018e34
+    m_Address: TileChunk/Ruins/TileChunk_Ruins_0
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 72c85dc9207fb144096ffbe88cfa5f95
+    m_Address: TileChunk/Ruins/RuleTile_Ruins_Palette
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 973c8b8fdd523084ab28609adac1eba7
+    m_Address: TileChunk/Ruins/TileChunk_Ruins_4
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b19e9a3b9339a054dbec41cc12711cd2
+    m_Address: TileChunk/Ruins/TileChunk_Ruins_1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 893e47207a643304c898fe2d28fae3b0, type: 2}
+    - {fileID: 11400000, guid: 30f65a2ae7b1d89409c721e7715305a5, type: 2}
