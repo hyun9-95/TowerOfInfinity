@@ -13,7 +13,7 @@ public class CheatConfig
 
     public bool ToggleInvincible;
 
-    public SceneDefine SceneDefine;
+    public TownDefine TownDefine;
 
     public bool enableGcAllocCallStack = false;
 

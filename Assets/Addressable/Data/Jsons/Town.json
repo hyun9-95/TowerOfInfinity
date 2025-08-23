@@ -1,0 +1,14 @@
+[
+  {
+    "id": 110000,
+    "TownScene": "Town_Ruins",
+    "BGM": "Sounds/BGM/BGM_EmotionalSpectrum",
+    "PortalDungeon": "DUNGEON_RUINS"
+  },
+  {
+    "id": 110001,
+    "TownScene": "Town_Customization",
+    "BGM": "Sounds/BGM/BGM_LostInSpace_Loop",
+    "PortalDungeon": "None"
+  }
+]

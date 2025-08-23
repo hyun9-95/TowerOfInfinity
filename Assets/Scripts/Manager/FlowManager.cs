@@ -69,11 +69,11 @@ public class FlowManager : BaseManager<FlowManager>
         baseFlowModel.ClearStateEvent();
     }
 
-    public async UniTask ChangeCurrentTownFlow(SceneDefine sceneDefine)
+    public async UniTask ChangeCurrentTownFlow()
     {
         var townFlowModel = new TownFlowModel();
-        townFlowModel.SetSceneDefine(sceneDefine);
-        townFlowModel.SetFlowBGMPath(PathDefine.BGM_TOWN);
+        var townData = PlayerManager.Instance.GetCurrentTownData();
+        townFlowModel.SetDataTown(townData);
 
         await ChangeFlow(FlowType.TownFlow, townFlowModel);
     }

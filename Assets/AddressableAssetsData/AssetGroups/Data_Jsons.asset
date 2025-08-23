@@ -57,6 +57,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 62e55514a9767f34a9ffe66b8c8d8245
+    m_Address: Data/Jsons/Town
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 75e73bdc518490b4a8097bf895d97ec1
     m_Address: Data/Jsons/BattleEvent
     m_ReadOnly: 0

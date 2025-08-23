@@ -1767,7 +1767,7 @@ MonoBehaviour:
     IsEnterCustomizationFlow: 0
     IsDebugAStar: 0
     ToggleInvincible: 0
-    SceneDefine: 0
+    TownDefine: 0
     enableGcAllocCallStack: 0
     testLocalType: 0
     bossSpawnWhenBattleStart: 0
@@ -6296,7 +6296,7 @@ Transform:
   m_GameObject: {fileID: 7460172169197530429}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalPosition: {x: -0.0014769789, y: 0.23555, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6338,7 +6338,7 @@ Camera:
   far clip plane: 5
   field of view: 40
   orthographic: 1
-  orthographic size: 5.625
+  orthographic size: 4.69375
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -6368,7 +6368,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowDebugText: 0
   ShowCameraFrustum: 1
-  IgnoreTimeScale: 0
+  IgnoreTimeScale: 1
   WorldUpOverride: {fileID: 0}
   ChannelMask: -1
   UpdateMethod: 2

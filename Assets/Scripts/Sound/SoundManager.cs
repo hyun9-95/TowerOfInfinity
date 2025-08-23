@@ -158,7 +158,7 @@ public class SoundManager : BaseMonoManager<SoundManager>
 
         while (elapsedTime < duration)
         {
-            elapsedTime += Time.deltaTime;
+            elapsedTime += Time.unscaledDeltaTime;
 
             float progress = elapsedTime / duration;
 

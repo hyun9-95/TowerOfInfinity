@@ -8,5 +8,6 @@ public class BattleFlowModel : BaseFlowModel
     {
         DataDungeon = dataDungeon;
         SetSceneDefine(dataDungeon.BattleScene);
+        SetFlowBGMPath(dataDungeon.BGM);
     }
 }

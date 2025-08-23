@@ -9,6 +9,8 @@ public class DataDungeon : IBaseData
     private readonly int id;
     [JsonProperty(PropertyName = "BattleScene")]
     public readonly SceneDefine BattleScene;
+    [JsonProperty(PropertyName = "BGM")]
+    public readonly string BGM;
     [JsonProperty(PropertyName = "EnemyGroup")]
     public readonly EnemyGroupDefine EnemyGroup;
 	

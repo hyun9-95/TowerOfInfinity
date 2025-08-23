@@ -41,55 +41,26 @@ public class IntroFlow : BaseFlow<IntroFlowModel>
 
     private void EnterGame()
     {
-        bool isEnterCustomize = !PlayerManager.Instance.User.IsCompletePrologue;
-
-        if (isEnterCustomize)
-        {
-            CustomizationFlowModel customizationFlowModel = new CustomizationFlowModel();
-            customizationFlowModel.SetFlowBGMPath(PathDefine.BGM_TOWN);
-
-            FlowManager.Instance.ChangeFlow(FlowType.CustomizationFlow, customizationFlowModel).Forget();
-        }
-        else
-        {
-            FlowManager.Instance.ChangeCurrentTownFlow
-                (PlayerManager.Instance.User.CurrentTown).Forget();
-        }
+        FlowManager.Instance.ChangeCurrentTownFlow().Forget();
     }
 
     private void CheatEnterGame()
     {
-        bool isEnterCustomize = !PlayerManager.Instance.User.IsCompletePrologue;
-
 #if UNITY_EDITOR && CHEAT
-        if (!isEnterCustomize && CheatManager.CheatConfig.IsEnterCustomizationFlow)
-            isEnterCustomize = true;
-
         if (CheatManager.CheatConfig.IsEnterBattleDirectly)
         {
             BattleFlowModel battleFlowModel = new BattleFlowModel();
             battleFlowModel.SetDataDungeon(DataManager.Instance.GetDataById<DataDungeon>((int)DungeonDefine.DUNGEON_RUINS));
-            battleFlowModel.SetFlowBGMPath(PathDefine.BGM_BATTLE);
 
             FlowManager.Instance.ChangeFlow(FlowType.BattleFlow, battleFlowModel).Forget();
             return;
         }
-        else if (isEnterCustomize)
-        {
-            CustomizationFlowModel customizationFlowModel = new CustomizationFlowModel();
-            customizationFlowModel.SetFlowBGMPath(PathDefine.BGM_TOWN);
-
-            FlowManager.Instance.ChangeFlow(FlowType.CustomizationFlow, customizationFlowModel).Forget();
-        }
         else
         {
-            FlowManager.Instance.ChangeCurrentTownFlow
-                (PlayerManager.Instance.User.CurrentTown).Forget();
+            FlowManager.Instance.ChangeCurrentTownFlow().Forget();
         }
 #endif
     }
-
-
 
     public override async UniTask Exit()
     {

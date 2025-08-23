@@ -16,6 +16,7 @@ public class BattleInfinityTile : AddressableMono
     
     private Transform mainCharacterTransform;
     private int chunkSize;
+    private int lastChunkIndex = -1;
     private bool isInitialized = false;
     
     private Dictionary<Vector2Int, TileChunk> activeTiles = new();
@@ -118,7 +119,14 @@ public class BattleInfinityTile : AddressableMono
         if (tileChunkAddresses.Length == 0)
             return null;
 
-        string randomAddress = tileChunkAddresses[Random.Range(0, tileChunkAddresses.Length)];
+        int randomIndex = lastChunkIndex;
+
+        while (lastChunkIndex == randomIndex || randomIndex < 0)
+            randomIndex = Random.Range(0, tileChunkAddresses.Length);
+
+        lastChunkIndex = randomIndex;
+
+        string randomAddress = tileChunkAddresses[lastChunkIndex];
 
         var tileChunk = await AddressableManager.Instance.InstantiateAddressableMonoAsync<TileChunk>(randomAddress, grid.transform);
         tileChunk.transform.position = Vector3.zero;

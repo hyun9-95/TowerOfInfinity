@@ -2,6 +2,7 @@
   {
     "id": 40000,
     "BattleScene": "Battle_Ruins",
+    "BGM": "Sounds/BGM/BGM_EmotionalSpectrumLong",
     "EnemyGroup": "ENEMY_GROUP_RUINS"
   }
 ]

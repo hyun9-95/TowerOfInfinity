@@ -48,8 +48,8 @@ public class PathDefine
     public const string CARD_TIER_FRAME_FORMAT = "UI/Battle/Card/BattleCardFrame{0}_{1}";
 
     public const string BGM_TITLE = "Sounds/BGM/BGM_Unbreakable";
-    public const string BGM_TOWN = "Sounds/BGM/BGM_EmotionalSpectrum";
-    public const string BGM_BATTLE = "Sounds/BGM/BGM_DancingOnBattle";
+
+    public const string TARGET_VIRTUAL_CAMERA = "BattleCore/TargetVirtualCamera";
     #endregion
 
     #region property

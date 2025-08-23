@@ -1,0 +1,5 @@
+﻿아이디,이름,,,
+int,string,SceneDefine,string,DungeonDefine
+Id,NameId,TownScene,BGM,PortalDungeon
+110000,TOWN_RUINS,Town_Ruins,Sounds/BGM/BGM_EmotionalSpectrum,DUNGEON_RUINS
+110001,TOWN_CUSTOMIZATION,Town_Customization,Sounds/BGM/BGM_LostInSpace_Loop,None

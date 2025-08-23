@@ -311,6 +311,8 @@ public class BattleSystem : MonoBehaviour, IObserver
     {
         await UniTaskUtils.DelaySeconds(FloatDefine.DEFAULT_BATTLE_START_DELAY);
 
+        SoundManager.Instance.StopCurrentSoloSound(SoundType.Bgm).Forget();
+
         battleInfo.SetBattleResult(result);
         battleInfo.SetBattleState(BattleState.End);
 
@@ -332,9 +334,7 @@ public class BattleSystem : MonoBehaviour, IObserver
     {
         Time.timeScale = 1;
 
-        var currentTown = PlayerManager.Instance.User.CurrentTown;
-
-        FlowManager.Instance.ChangeCurrentTownFlow(currentTown).Forget();
+        FlowManager.Instance.ChangeCurrentTownFlow().Forget();
     }
 
     private void OnDeadCharacter(CharacterUnitModel deadCharacterModel)

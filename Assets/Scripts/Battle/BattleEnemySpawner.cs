@@ -31,7 +31,7 @@ public class BattleEnemySpawner : IObserver
     public async UniTask StartGenerateAsync()
     {
         // 카메라 영역에서 벗어나기 위한 중심점으로부터의 최소 거리
-        minDistance = CameraManager.Instance.DiagonalLengthFromCenter;
+        minDistance = CameraManager.Instance.DiagonalLengthFromCenter + 1f;
 
         OnChangeWave(0);
         ObserverManager.AddObserver(BattleObserverID.ChangeWave, this);

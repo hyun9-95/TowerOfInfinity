@@ -10,8 +10,7 @@ public class User
     public int ID { get; set; }
     public UserCharacterInfo UserCharacterInfo { get; private set; }
     public UserEquipmentInfo UserEquipmentInfo { get; private set; }
-    public SceneDefine CurrentTown { get; private set; }
-    
+    public TownDefine CurrentTown { get; private set; }
     // 기본 정보
     public string UserId { get; private set; }
     public bool IsCompletePrologue { get; set; }
@@ -29,8 +28,8 @@ public class User
         CurrentTown = userSaveInfo.CurrentTown;
 
 #if CHEAT
-        if (CheatManager.CheatConfig.SceneDefine != SceneDefine.None)
-            CurrentTown = CheatManager.CheatConfig.SceneDefine;
+        if (CheatManager.CheatConfig.TownDefine != TownDefine.None)
+            CurrentTown = CheatManager.CheatConfig.TownDefine;
 #endif
 
         UserCharacterInfo = new UserCharacterInfo();
@@ -102,7 +101,7 @@ public class User
         IsCompletePrologue = value;
     }
 
-    public void SetCurrentTown(SceneDefine town)
+    public void SetCurrentTown(TownDefine town)
     {
         // 추후 마을은 데이터로 분리하자.
         CurrentTown = town;
@@ -122,6 +121,8 @@ public class User
 
         var saveInfoJson = JsonConvert.SerializeObject(userSaveInfo);
         File.WriteAllText(userSaveInfoPath, saveInfoJson);
+
+        Logger.Log($"User Info Saved");
     }
 
     private UserSaveInfo CreateUserSaveInfo()

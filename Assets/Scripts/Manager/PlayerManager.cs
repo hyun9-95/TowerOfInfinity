@@ -103,4 +103,14 @@ public class PlayerManager : BaseMonoManager<PlayerManager>
     {
         return User.UserCharacterInfo.MainCharacterInfo;
     }
+
+    public DataTown GetCurrentTownData()
+    {
+        var data = DataManager.Instance.GetDataById<DataTown>((int)user.CurrentTown);
+
+        if (data == null)
+            return DataManager.Instance.GetDataById<DataTown>((int)TownDefine.TOWN_RUINS);
+
+        return DataManager.Instance.GetDataById<DataTown>((int)user.CurrentTown);
+    }
 }

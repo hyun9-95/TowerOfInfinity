@@ -1,4 +1,4 @@
-using System;
+using Cysharp.Threading.Tasks;
 using Unity.Cinemachine;
 using UnityEngine;
 
@@ -76,6 +76,25 @@ public class CameraManager : BaseMonoManager<CameraManager>
             return null;
 
         return uiCameras[index];
+    }
+
+    public async UniTask BlendingAsync(CinemachineCamera targetCamera, float time)
+    {
+        float originTime = cinemachineBrain.DefaultBlend.Time;
+
+        if (time != cinemachineBrain.DefaultBlend.Time)
+            cinemachineBrain.DefaultBlend.Time = time;
+
+        targetCamera.Priority = 99;
+
+        await UniTaskUtils.WaitForLastUpdate();
+
+        while (cinemachineBrain.IsBlending)
+            await UniTaskUtils.NextFrame();
+
+        targetCamera.Priority = 0;
+
+        cinemachineBrain.DefaultBlend.Time = originTime;
     }
 
     public bool IsVisibleFromWorldCamera(Vector3 pos)

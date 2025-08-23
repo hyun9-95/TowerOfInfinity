@@ -1,4 +1,4 @@
-﻿아이디,이름,,
-int,string,SceneDefine,EnemyGroupDefine
-Id,NameId,BattleScene,EnemyGroup
-40000,DUNGEON_RUINS,Battle_Ruins,ENEMY_GROUP_RUINS
+﻿아이디,이름,,,
+int,string,SceneDefine,string,EnemyGroupDefine
+Id,NameId,BattleScene,BGM,EnemyGroup
+40000,DUNGEON_RUINS,Battle_Ruins,Sounds/BGM/BGM_EmotionalSpectrumLong,ENEMY_GROUP_RUINS

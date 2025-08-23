@@ -72,6 +72,7 @@ public class DataContainerGenerator
 			{ typeof(DataEnemyGroup), json => AddDataContainer<DataEnemyGroup>(json) },
 			{ typeof(DataEquipment), json => AddDataContainer<DataEquipment>(json) },
 			{ typeof(DataLocalization), json => AddDataContainer<DataLocalization>(json) },
+			{ typeof(DataTown), json => AddDataContainer<DataTown>(json) },
 		};
 	}
 

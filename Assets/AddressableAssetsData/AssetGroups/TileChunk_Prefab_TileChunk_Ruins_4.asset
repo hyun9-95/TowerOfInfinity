@@ -14,7 +14,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_GroupName: TileChunk_Prefab_TileChunk_Ruins_4
   m_GUID: ab2fe1284c8bddf44937813f73320cef
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 1fb97f0cc4f5d09409b7cae233479b72
+    m_Address: TileChunk/Ruins/Prefab_TileChunk_Ruins_4/RA_Ruins_1815
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dbe825cc359dd20499b5274632936f62
+    m_Address: TileChunk/Ruins/Prefab_TileChunk_Ruins_4/RA_Ruins_1718
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fb36eccfe30bbf343b498612d436947e
+    m_Address: TileChunk/Ruins/Prefab_TileChunk_Ruins_4/RA_Ruins_1200
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
   m_SchemaSet:

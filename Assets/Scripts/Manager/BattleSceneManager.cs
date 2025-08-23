@@ -3,6 +3,7 @@ using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
 /// <summary>
 /// 전투 씬 초기 세팅 및, 적과 아군의 스폰을 담당한다.
@@ -21,6 +22,9 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>, IO
 
     [SerializeField]
     private BattleWorldUI battleWorldUI;
+
+    [SerializeField]
+    private TargetVirtualCameraBlending bossBlendingCamera;
 
     [SerializeField]
     private ScriptableEnemyWeightInfo enemyWeightInfo;
@@ -105,6 +109,25 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>, IO
 
         enemyCharacters.Add(enemy);
         AddLiveCharacter(enemy.gameObject.GetInstanceID(), enemyModel);
+
+        if (enemyModel.CharacterType == CharacterType.Boss)
+            BossBledingAsync(enemy.transform).Forget();
+    }
+
+    private async UniTask BossBledingAsync(Transform tr)
+    {
+        InputManager.EnableMoveInput(false);
+        InputManager.EnableActionButtons(false);
+
+        Time.timeScale = 0;
+
+        bossBlendingCamera.SetTarget(tr);
+        await bossBlendingCamera.StartBlending(2f, false);
+
+        Time.timeScale = 1;
+
+        InputManager.EnableMoveInput(true);
+        InputManager.EnableActionButtons(true);
     }
 
     private float OnGetEnemySpawnWeight(CharacterDefine enemy, int currentWave)

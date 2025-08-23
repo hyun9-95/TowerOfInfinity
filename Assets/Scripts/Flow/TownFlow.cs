@@ -29,6 +29,8 @@ public class TownFlow : BaseFlow<TownFlowModel>
         }
 
         await LoadPlayerCharacters();
+
+        PlayerManager.Instance.User.SetCurrentTown((TownDefine)Model.DataTown.Id);
     }
 
     public override async UniTask Process()
@@ -94,8 +96,9 @@ public class TownFlow : BaseFlow<TownFlowModel>
         InputManager.EnableMoveInput(false);
 
         BattleFlowModel battleFlowModel = new BattleFlowModel();
-        battleFlowModel.SetFlowBGMPath(PathDefine.BGM_BATTLE);
-        battleFlowModel.SetDataDungeon(DataManager.Instance.GetDataById<DataDungeon>((int)DungeonDefine.DUNGEON_RUINS));
+
+        var dataDungeon = DataManager.Instance.GetDataById<DataDungeon>((int)Model.DataTown.PortalDungeon);
+        battleFlowModel.SetDataDungeon(dataDungeon);
 
         FlowManager.Instance.ChangeFlow(FlowType.BattleFlow, battleFlowModel).Forget();
     }

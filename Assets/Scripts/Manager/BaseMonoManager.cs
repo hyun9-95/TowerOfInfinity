@@ -2,23 +2,21 @@ using UnityEngine;
 
 public abstract class BaseMonoManager<T> : MonoBehaviour where T : BaseMonoManager<T>, new()
 {
-    protected static T instance;
+    private static T instance;
 
     public static T Instance
     {
         get
         {
             if (instance == null)
-            {
-                GameObject go = GameObject.Find(typeof(T).Name);
-
-                if (go == null)
-                    return null;
-
-                instance = go.GetComponent<T>();
-            }
+                instance = FindFirstObjectByType<T>();
 
             return instance;
         }
+    }
+
+    protected void SetInstance(T instanceValue) 
+    {
+        instance = instanceValue;
     }
 }

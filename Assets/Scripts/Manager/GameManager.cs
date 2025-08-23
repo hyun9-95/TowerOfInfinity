@@ -19,7 +19,7 @@ public class GameManager : BaseMonoManager<GameManager>
 
     private void Awake()
     {
-        instance = this;
+        SetInstance(this);
         DontDestroyOnLoad(this);
 
 #if CHEAT
@@ -40,6 +40,14 @@ public class GameManager : BaseMonoManager<GameManager>
         introFlowModel.SetFlowBGMPath(PathDefine.BGM_TITLE);
         
         FlowManager.Instance.ChangeFlow(FlowType.IntroFlow, introFlowModel).Forget();
+    }
+
+    private void OnApplicationQuit()
+    {
+        if (PlayerManager.Instance == null || PlayerManager.Instance.User == null)
+            return;
+
+        PlayerManager.Instance.User.Save();
     }
 
     private void LoadUserSettings()

@@ -4,9 +4,9 @@ using System.Threading;
 
 public static class UniTaskUtils
 {
-    public static async UniTask DelaySeconds(float value, CancellationToken cancellationToken = default)
+    public static async UniTask DelaySeconds(float value, CancellationToken cancellationToken = default, bool ignoreTimeScale = false)
     {
-        await UniTask.Delay((int)(value * IntDefine.MILLI_SECOND), cancellationToken: cancellationToken).SuppressCancellationThrow();
+        await UniTask.Delay((int)(value * IntDefine.MILLI_SECOND), ignoreTimeScale:ignoreTimeScale, cancellationToken: cancellationToken).SuppressCancellationThrow();
     }
 
     public static async UniTask DelayAction(float delay, Action action, CancellationToken cancellationToken)

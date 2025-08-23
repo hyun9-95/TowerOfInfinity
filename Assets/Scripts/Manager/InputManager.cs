@@ -21,7 +21,7 @@ public class InputManager : BaseMonoManager<InputManager>
     #region Function
     private void Awake()
     {
-        instance = this;
+        SetInstance(this);
     }
 
     private void Update()
@@ -104,13 +104,13 @@ public class InputManager : BaseMonoManager<InputManager>
 
     public static void EnableMoveInput(bool value)
     {
-        if (instance.moveInput == null)
+        if (Instance.moveInput == null)
             return;
 
         var platform = GameManager.Platform;
         
-        instance.moveInput.EnableInput(value, platform.IsMobile);
-        instance.enableInput = value;
+        Instance.moveInput.EnableInput(value, platform.IsMobile);
+        Instance.enableInput = value;
 
         if (!value)
             InputInfo.Reset();
@@ -118,16 +118,16 @@ public class InputManager : BaseMonoManager<InputManager>
 
     public static void EnableActionButtons(bool value)
     {
-        if (instance.actionButtons == null)
+        if (Instance.actionButtons == null)
             return;
 
-        foreach (var button in instance.actionButtons)
+        foreach (var button in Instance.actionButtons)
         {
             if (button != null)
             {
                 if (value)
                 {
-                    var coolTime = instance.inputInfo.GetActionInputCoolTime(button.InputType);
+                    var coolTime = Instance.inputInfo.GetActionInputCoolTime(button.InputType);
                     button.Enable(coolTime);
                 }
                 else
@@ -140,10 +140,10 @@ public class InputManager : BaseMonoManager<InputManager>
 
     public static void SetActionCoolTime(ActionInput actionType, float coolTime)
     {
-        if (instance.inputInfo == null)
+        if (Instance.inputInfo == null)
             return;
 
-        instance.inputInfo.SetActionInputCoolTime(actionType, coolTime);
+        Instance.inputInfo.SetActionInputCoolTime(actionType, coolTime);
     }
     #endregion
 }

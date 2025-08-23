@@ -285,16 +285,6 @@ public class CharacterUnit : PoolableMono
 
     protected void CheckNextState()
     {
-        if (Model.GetUpdateInterval() > 0)
-        {
-            updateTimer += Time.deltaTime;
-
-            if (updateTimer < Model.GetUpdateInterval())
-                return;
-
-            updateTimer = 0;
-        }
-        
         if (CurrentState == defaultState || CurrentState.CheckExitCondition(Model))
         {
             SelectState();

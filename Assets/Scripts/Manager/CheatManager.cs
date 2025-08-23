@@ -9,7 +9,7 @@ public class CheatManager : BaseMonoManager<CheatManager>
     private void Awake()
     {
 #if CHEAT
-        instance = this;
+        SetInstance(this);
         SetState(State.Collapse);
 
 #if !UNITY_EDITOR

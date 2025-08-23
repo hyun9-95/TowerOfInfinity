@@ -192,9 +192,6 @@ public class CharacterFactory : BaseManager<CharacterFactory>
 
     public CharacterUnitModel CreateCharacterUnitModel(TeamTag teamTag, CharacterType characterType, CharacterAbilityInfo characterInfo = null)
     {
-        CharacterSetUpType characterSetUpType = FlowManager.Instance.CurrentFlowType == FlowType.BattleFlow ?
-            CharacterSetUpType.Battle : CharacterSetUpType.Town;
-
         CharacterUnitModel characterModel = new CharacterUnitModel();
         SetCharacterUnitModel(characterModel, teamTag, characterType, characterInfo);
 

@@ -21,8 +21,20 @@ MonoBehaviour:
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 562889acdf7984540b304ec991d15e92
+    m_Address: Sounds/BGM/BGM_EmotionalSpectrumLong
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: df3e048b359126c429801f06618f9d0c
     m_Address: Sounds/BGM/BGM_DancingOnBattle
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ea674fccfd92e5e4d8ae27d76af5dd83
+    m_Address: Sounds/BGM/BGM_LostInSpace_Loop
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
