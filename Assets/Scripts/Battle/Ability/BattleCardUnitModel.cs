@@ -9,6 +9,7 @@ public class BattleCardUnitModel : IBaseUnitModel
     public string IconPath { get; private set; }
     public string NameText { get; private set; }
     public string DescriptionText { get; private set; }
+    public int Level { get; private set; }
     #endregion
 
     #region Value
@@ -16,6 +17,11 @@ public class BattleCardUnitModel : IBaseUnitModel
     #endregion
 
     #region Function
+    public void SetLevel(int level)
+    {
+        Level = level;
+    }
+
     public void SetCardData(DataBattleCard card)
     {
         CardData = card;

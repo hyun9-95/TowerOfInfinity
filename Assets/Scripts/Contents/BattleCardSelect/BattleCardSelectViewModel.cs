@@ -18,9 +18,9 @@ public class BattleCardSelectViewModel : IBaseViewModel
     #endregion
 
     #region Function
-    public void SetBattleCardUnitModels(DataBattleCard[] cards)
+    public void SetBattleCardUnitModels(List<BattleCardUnitModel> cards)
     {
-        cardUnitModels = CreateBattleCardUnitModelList(cards);
+        cardUnitModels = cards;
     }
 
     public void SetOnSelectBattleCard(Action<DataBattleCard> onSelectCard)
@@ -31,40 +31,6 @@ public class BattleCardSelectViewModel : IBaseViewModel
     public void SetOnClickBattleCard(Action<int> onClickBattleCard)
     {
         OnClickBattleCard = onClickBattleCard;
-    }
-
-    private List<BattleCardUnitModel> CreateBattleCardUnitModelList(DataBattleCard[] cards)
-    {
-        if (cards == null || cards.Length == 0)
-            return null;
-
-        var cardUnitModelList = new List<BattleCardUnitModel>();
-        var abilityContainer = DataManager.Instance.GetDataContainer<DataAbility>();
-
-        for (int i = 0; i < cards.Length; i++)
-        {
-            var card = cards[i];
-            var model = new BattleCardUnitModel();
-            model.SetCardData(card);
-            model.SetTier(card.Tier);
-
-            if (card.CardType == BattleCardType.GetAbility)
-            {
-                var abilityData = abilityContainer.GetById((int)card.Ability);
-                model.SetIconPath(abilityData.IconPath);
-            }
-            else
-            {
-                model.SetIconPath(card.IconPath);
-            }
-
-            model.SetNameText(LocalizationManager.GetLocalization(card.Name));
-            model.SetDescriptionText(LocalizationManager.GetLocalization(card.Desc));
-
-            cardUnitModelList.Add(model);
-        }
-
-        return cardUnitModelList;
     }
 
     public void SetOnCompleteSelect(Action onCompleteSelect)

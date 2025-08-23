@@ -43,11 +43,24 @@ public static class AbilityEditorUtil
             {
                 // 파일이 이미 존재하는 경우
                 ScriptableAbilityBalance existingBalance = AssetDatabase.LoadAssetAtPath<ScriptableAbilityBalance>(fullPath);
-                if (existingBalance != null && !existingBalance.Type.Equals(define))
+                if (existingBalance != null)
                 {
-                    existingBalance.SetType(define);
-                    EditorUtility.SetDirty(existingBalance);
-                    Logger.Log($"{fileName} 타입 갱신 {existingBalance.Type} => {define}");
+                    bool isDirty = false;
+                    
+                    if (!existingBalance.Type.Equals(define))
+                    {
+                        existingBalance.SetType(define);
+                        isDirty = true;
+                        Logger.Log($"{fileName} 타입 갱신 {existingBalance.Type} => {define}");
+                    }
+                    
+                    existingBalance.TruncateArraysToMaxLevel();
+                    isDirty = true;
+                    
+                    if (isDirty)
+                    {
+                        EditorUtility.SetDirty(existingBalance);
+                    }
                 }
             }
         }

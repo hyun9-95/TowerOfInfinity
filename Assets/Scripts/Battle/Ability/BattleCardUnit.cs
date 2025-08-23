@@ -15,7 +15,7 @@ public class BattleCardUnit : BaseUnit<BattleCardUnitModel>
 	private Image tierFrame;
 
 	[SerializeField]
-	private Image icon;
+	private AbilityThumbnailUnit abilityThumbnailUnit;
 
 	[SerializeField]
 	private TextMeshProUGUI nameText;
@@ -51,7 +51,7 @@ public class BattleCardUnit : BaseUnit<BattleCardUnitModel>
         var tasks = new UniTask[]
         {
             ShowTierFrame(),
-            ShowIcon(),
+            ShowAbilityThumb(),
         };
 
         ShowTexts();
@@ -87,16 +87,17 @@ public class BattleCardUnit : BaseUnit<BattleCardUnitModel>
 		await tierFrame.SafeLoadAsync(path);
 	}
 
-	private async UniTask ShowIcon()
+	private async UniTask ShowAbilityThumb()
 	{
-		if (string.IsNullOrEmpty(Model.IconPath))
-		{
-			icon.gameObject.SafeSetActive(false);
-			return;
-		}
+		if (abilityThumbnailUnit.Model == null)
+			abilityThumbnailUnit.SetModel(new AbilityThumbnailUnitModel());
 
-		await icon.SafeLoadAsync(Model.IconPath);
-		icon.gameObject.SafeSetActive(true);
+		var model = abilityThumbnailUnit.Model;
+		model.SetLevel(Model.Level);
+        model.SetIconPath(Model.IconPath);
+
+		abilityThumbnailUnit.SetModel(model);
+		await abilityThumbnailUnit.ShowAsync();
 	}
 
 	private void ShowTexts()

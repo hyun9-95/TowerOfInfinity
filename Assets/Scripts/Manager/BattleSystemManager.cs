@@ -1,6 +1,7 @@
 #pragma warning disable CS1998
 using Cysharp.Threading.Tasks;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -202,9 +203,9 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>, IObserv
         // firstDraw => 첫장에 특정 티어 확정 출연 (Common이면 적용 X)
 
         var abProcessor = battleInfo.MainCharacter.Model.AbilityProcessor;
-        var drawnCards = cardDrawer.DrawBattleCards(battleInfo.Level, abProcessor, firstDraw);
+        var cards = cardDrawer.DrawBattleCards(battleInfo.Level, abProcessor, firstDraw);
 
-        if (drawnCards == null || drawnCards.Length == 0)
+        if (cards == null || cards.Length == 0)
         {
             Logger.Error("Draw Failed!");
             return;
@@ -212,14 +213,49 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>, IObserv
 
         BattleCardSelectController battleCardSelectController = new BattleCardSelectController();
         var battleCardSelectModel = new BattleCardSelectViewModel();
-        battleCardSelectModel.SetOnCompleteSelect(OnResume);
-        battleCardSelectModel.SetBattleCardUnitModels(drawnCards);
-        battleCardSelectModel.SetOnSelectBattleCard(OnSelectBattleCard);
+        var cardUnitModelList = new List<BattleCardUnitModel>();
+        var abilityContainer = DataManager.Instance.GetDataContainer<DataAbility>();
 
-        battleCardSelectController.SetModel(battleCardSelectModel);
+        if (cards != null && cards.Length != 0)
+        {
+            for (int i = 0; i < cards.Length; i++)
+            {
+                var card = cards[i];
+                int level =
+                    card.CardType == BattleCardType.GetAbility ?
+                    abProcessor.GetLevel((int)card.Ability) : expGainer.Model.Level;
+
+                var model = new BattleCardUnitModel();
+                model.SetCardData(card);
+                model.SetTier(card.Tier);
+
+                if (card.CardType == BattleCardType.GetAbility)
+                {
+                    var abilityData = abilityContainer.GetById((int)card.Ability);
+                    model.SetIconPath(abilityData.IconPath);
+                }
+                else
+                {
+                    model.SetIconPath(card.IconPath);
+                }
+
+                model.SetNameText(LocalizationManager.GetLocalization(card.Name));
+                model.SetDescriptionText(LocalizationManager.GetLocalization(card.Desc));
+                model.SetLevel(level);
+
+                cardUnitModelList.Add(model);
+            }
+
+            battleCardSelectModel.SetBattleCardUnitModels(cardUnitModelList);
+            battleCardSelectModel.SetOnCompleteSelect(OnResume);
+            battleCardSelectModel.SetOnSelectBattleCard(OnSelectBattleCard);
+
+            battleCardSelectController.SetModel(battleCardSelectModel);
+
+            UIManager.Instance.OpenPopup(battleCardSelectController).Forget();
+        }
 
         OnPause();
-        UIManager.Instance.OpenPopup(battleCardSelectController).Forget();
     }
 
     private void OnSelectBattleCard(DataBattleCard card)
@@ -249,7 +285,7 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>, IObserv
         characterModel.AbilityProcessor.AddAbility(abilityDataId);
     }
 
-    private void OnExpGainRangeUp()
+    public void OnExpGainRangeUp()
     {
         if (expGainer == null)
             return;

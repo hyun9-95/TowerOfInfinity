@@ -69,6 +69,37 @@ public class ScriptableBattleEventBalance : ScriptableObject
         applyIntervalSeconds = new float[0];
     }
 
+    public void TruncateArraysToMaxLevel()
+    {
+        if (duration != null && duration.Length > IntDefine.MAX_ABILITY_LEVEL)
+        {
+            float[] newArray = new float[IntDefine.MAX_ABILITY_LEVEL];
+            System.Array.Copy(duration, newArray, IntDefine.MAX_ABILITY_LEVEL);
+            duration = newArray;
+        }
+
+        if (value != null && value.Length > IntDefine.MAX_ABILITY_LEVEL)
+        {
+            float[] newArray = new float[IntDefine.MAX_ABILITY_LEVEL];
+            System.Array.Copy(value, newArray, IntDefine.MAX_ABILITY_LEVEL);
+            value = newArray;
+        }
+
+        if (value2 != null && value2.Length > IntDefine.MAX_ABILITY_LEVEL)
+        {
+            float[] newArray = new float[IntDefine.MAX_ABILITY_LEVEL];
+            System.Array.Copy(value2, newArray, IntDefine.MAX_ABILITY_LEVEL);
+            value2 = newArray;
+        }
+
+        if (applyIntervalSeconds != null && applyIntervalSeconds.Length > IntDefine.MAX_ABILITY_LEVEL)
+        {
+            float[] newArray = new float[IntDefine.MAX_ABILITY_LEVEL];
+            System.Array.Copy(applyIntervalSeconds, newArray, IntDefine.MAX_ABILITY_LEVEL);
+            applyIntervalSeconds = newArray;
+        }
+    }
+
     public void DeepCopy(ScriptableBattleEventBalance source)
     {
         duration = source.duration != null ? (float[])source.duration.Clone() : null;

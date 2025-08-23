@@ -42,11 +42,24 @@ public static class BattleEventEditorUtil
             {
                 // 파일이 이미 존재하는 경우
                 ScriptableBattleEventBalance existingBalance = AssetDatabase.LoadAssetAtPath<ScriptableBattleEventBalance>(fullPath);
-                if (existingBalance != null && !existingBalance.Define.Equals(define))
+                if (existingBalance != null)
                 {
-                    existingBalance.SetType(define);
-                    EditorUtility.SetDirty(existingBalance);
-                    Logger.Log($"{fileName} 타입 갱신 {existingBalance.Define} => {define}");
+                    bool isDirty = false;
+                    
+                    if (!existingBalance.Define.Equals(define))
+                    {
+                        existingBalance.SetType(define);
+                        isDirty = true;
+                        Logger.Log($"{fileName} 타입 갱신 {existingBalance.Define} => {define}");
+                    }
+                    
+                    existingBalance.TruncateArraysToMaxLevel();
+                    isDirty = true;
+                    
+                    if (isDirty)
+                    {
+                        EditorUtility.SetDirty(existingBalance);
+                    }
                 }
             }
         }

@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: UI_Ability
+  m_EditorClassIdentifier: 
+  m_GroupName: UI_Ability
+  m_GUID: b25e5f755b517714b884e66976f6f94f
+  m_SerializeEntries:
+  - m_GUID: 5337207ab709b7e41b622b1974bba6d0
+    m_Address: UI/Battle/Ability/AbilitySlotUnit
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7d585d6690804f24a9e239c20cf6b8ee
+    m_Address: UI/Battle/Ability/Options_lattice__fill
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 92f81f06d6536f0459eb4d692df3579c
+    m_Address: UI/Battle/Ability/AbilityExpSlider
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 97bceee3c3bd4784d8a37d5632071fb5
+    m_Address: UI/Battle/Ability/AbilityThumbnailUnit
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fe8f9187add0ccb49832d8fced4dd974
+    m_Address: UI/Battle/Ability/Options_lattice_5
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 555fd8e3db715ad4b8f36aa9487312f0, type: 2}
+    - {fileID: 11400000, guid: 3eb8328629f2a9446aee476f9b2d4d45, type: 2}

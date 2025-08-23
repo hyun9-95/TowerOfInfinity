@@ -143,6 +143,72 @@ public class ScriptableAbilityBalance : ScriptableObject
         SpawnInterval = new float[0];
     }
 
+    public void TruncateArraysToMaxLevel()
+    {
+        if (Speed != null && Speed.Length > IntDefine.MAX_ABILITY_LEVEL)
+        {
+            float[] newArray = new float[IntDefine.MAX_ABILITY_LEVEL];
+            System.Array.Copy(Speed, newArray, IntDefine.MAX_ABILITY_LEVEL);
+            Speed = newArray;
+        }
+
+        if (Range != null && Range.Length > IntDefine.MAX_ABILITY_LEVEL)
+        {
+            float[] newArray = new float[IntDefine.MAX_ABILITY_LEVEL];
+            System.Array.Copy(Range, newArray, IntDefine.MAX_ABILITY_LEVEL);
+            Range = newArray;
+        }
+
+        if (Duration != null && Duration.Length > IntDefine.MAX_ABILITY_LEVEL)
+        {
+            float[] newArray = new float[IntDefine.MAX_ABILITY_LEVEL];
+            System.Array.Copy(Duration, newArray, IntDefine.MAX_ABILITY_LEVEL);
+            Duration = newArray;
+        }
+
+        if (HitCount != null && HitCount.Length > IntDefine.MAX_ABILITY_LEVEL)
+        {
+            int[] newArray = new int[IntDefine.MAX_ABILITY_LEVEL];
+            System.Array.Copy(HitCount, newArray, IntDefine.MAX_ABILITY_LEVEL);
+            HitCount = newArray;
+        }
+
+        if (Scale != null && Scale.Length > IntDefine.MAX_ABILITY_LEVEL)
+        {
+            float[] newArray = new float[IntDefine.MAX_ABILITY_LEVEL];
+            System.Array.Copy(Scale, newArray, IntDefine.MAX_ABILITY_LEVEL);
+            Scale = newArray;
+        }
+
+        if (CoolTime != null && CoolTime.Length > IntDefine.MAX_ABILITY_LEVEL)
+        {
+            float[] newArray = new float[IntDefine.MAX_ABILITY_LEVEL];
+            System.Array.Copy(CoolTime, newArray, IntDefine.MAX_ABILITY_LEVEL);
+            CoolTime = newArray;
+        }
+
+        if (SpawnCount != null && SpawnCount.Length > IntDefine.MAX_ABILITY_LEVEL)
+        {
+            int[] newArray = new int[IntDefine.MAX_ABILITY_LEVEL];
+            System.Array.Copy(SpawnCount, newArray, IntDefine.MAX_ABILITY_LEVEL);
+            SpawnCount = newArray;
+        }
+
+        if (HitForce != null && HitForce.Length > IntDefine.MAX_ABILITY_LEVEL)
+        {
+            float[] newArray = new float[IntDefine.MAX_ABILITY_LEVEL];
+            System.Array.Copy(HitForce, newArray, IntDefine.MAX_ABILITY_LEVEL);
+            HitForce = newArray;
+        }
+
+        if (SpawnInterval != null && SpawnInterval.Length > IntDefine.MAX_ABILITY_LEVEL)
+        {
+            float[] newArray = new float[IntDefine.MAX_ABILITY_LEVEL];
+            System.Array.Copy(SpawnInterval, newArray, IntDefine.MAX_ABILITY_LEVEL);
+            SpawnInterval = newArray;
+        }
+    }
+
     public void DeepCopy(ScriptableAbilityBalance source)
     {
         Speed = source.Speed != null ? (float[])source.Speed.Clone() : null;

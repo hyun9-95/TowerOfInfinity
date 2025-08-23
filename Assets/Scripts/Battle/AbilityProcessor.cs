@@ -192,6 +192,14 @@ public class AbilityProcessor
         return true;
     }
 
+    public int GetLevel(int dataId)
+    {
+        if (!abilityDicById.TryGetValue(dataId, out var ability))
+            return 0;
+
+        return ability.Model.Level;
+    }
+
     public void Cancel()
     {
         isUpdate = false;
