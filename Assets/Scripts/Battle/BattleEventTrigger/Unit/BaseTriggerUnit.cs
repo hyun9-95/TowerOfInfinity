@@ -84,7 +84,7 @@ public abstract class BaseTriggerUnit<T> : PoolableBaseUnit<T>, IBattleEventTrig
         if (hitFollowTargetOnly && Model.FollowTargetTransform != null && other.transform != Model.FollowTargetTransform)
             return;
 
-        var targetModel = BattleSceneManager.GetAliveCharModel(other);
+        var targetModel = BattleApi.OnGetAliveCharModel(other);
 
         if (targetModel == null)
             return;

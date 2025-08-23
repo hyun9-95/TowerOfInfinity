@@ -19,7 +19,7 @@ public class BlackholeTriggerUnitModel : BattleEventTriggerUnitModel
 
         if (PullForce > 0)
         {
-            var targetModel = BattleSceneManager.GetAliveCharModel(collider);
+            var targetModel = BattleApi.OnGetAliveCharModel(collider);
             if (targetModel != null && targetModel.TeamTag == DetectTeamTag)
             {
                 Vector2 direction = (hitPos - collider.transform.position).normalized;

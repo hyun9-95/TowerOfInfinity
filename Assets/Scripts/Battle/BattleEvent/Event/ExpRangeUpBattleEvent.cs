@@ -9,7 +9,7 @@ public class ExpRangeUpBattleEvent : BattleEvent
     #region Function
     public override void OnStart()
     {
-        BattleSystemManager.Instance.OnExpGainRangeUp();
+        BattleApi.OnExpGainRangeUp();
     }
 
     public override void OnReapply()

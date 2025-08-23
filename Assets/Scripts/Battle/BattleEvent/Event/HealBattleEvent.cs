@@ -23,7 +23,7 @@ public class HealBattleEvent : BattleEvent
     private void Heal()
     {
         var value = GetAppliableStatValue();
-        BattleSystemManager.OnHeal(Model.Sender, Model.Receiver, value);
+        BattleApi.OnHeal(Model.Sender, Model.Receiver, value);
 
         Logger.BattleLog($"Heal => {value}");
     }

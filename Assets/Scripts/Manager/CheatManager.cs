@@ -220,12 +220,12 @@ public class CheatManager : BaseMonoManager<CheatManager>
 
     public static void BattleLevelUp()
     {
-        BattleSystemManager.instance.CheatLevelUp();
+        BattleApi.OnCheatLevelUp();
     }
 
     public static void BattleSpawnBoss()
     {
-        BattleSceneManager.Instance.CheatSpawnBoss();
+        BattleApi.OnCheatSpawnBoss();
     }
 
     public static void OnToggleInvincible(bool value)
@@ -248,13 +248,13 @@ public class CheatManager : BaseMonoManager<CheatManager>
 
     public static void BattleAddWave()
     {
-        BattleSystemManager.instance.CheatAddWave();
+        BattleApi.OnCheatAddWave();
     }
 
     public static void BattleDrawCard(int tierInt)
     {
         BattleCardTier tier = (BattleCardTier)tierInt;
-        BattleSystemManager.instance.CheatLevelUpWithDraw(tier);
+        BattleApi.OnCheatLevelUpWithDraw(tier);
     }
 
     #endregion

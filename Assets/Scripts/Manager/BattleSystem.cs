@@ -7,7 +7,7 @@ using UnityEngine;
 /// <summary>
 /// 전반적인 전투 로직을 관리한다.
 /// </summary>
-public class BattleSystemManager : BaseMonoManager<BattleSystemManager>, IObserver
+public class BattleSystem : MonoBehaviour, IObserver
 {
     #region Property
     private bool InBattle => battleInfo == null ?
@@ -158,7 +158,7 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>, IObserv
     private void RefreshBattleView()
     {
         if (battleViewController == null)
-            battleViewController = UIManager.instance.GetCurrentViewController<BattleViewController>();
+            battleViewController = UIManager.Instance.GetCurrentViewController<BattleViewController>();
 
         battleViewController.RefreshBattleInfo(battleInfo);
     }
@@ -323,14 +323,14 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>, IObserv
 
         OnPause();
 
-        UIManager.instance.OpenPopup(battleResultController).Forget();
+        UIManager.Instance.OpenPopup(battleResultController).Forget();
     }
 
     private void OnReturnToTown()
     {
         Time.timeScale = 1;
 
-        var currentTown = PlayerManager.instance.User.CurrentTown;
+        var currentTown = PlayerManager.Instance.User.CurrentTown;
 
         FlowManager.Instance.ChangeCurrentTownFlow(currentTown).Forget();
     }
@@ -342,8 +342,6 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>, IObserv
 
         if (deadCharacterModel.TeamTag == TeamTag.Enemy)
         {
-            var battleInfo = instance.battleInfo;
-
             if (deadCharacterModel.DistanceToTarget < DistanceToTarget.OutOfRange)
                 battleInfo.AddKill();
 
@@ -353,7 +351,7 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>, IObserv
             if (deadCharacterModel.CharacterDefine == battleInfo.FinalBoss)
                 OnBattleEnd(BattleResult.Victory).Forget();
         }
-        else if (deadCharacterModel == instance.battleInfo.MainCharacter.Model)
+        else if (deadCharacterModel == battleInfo.MainCharacter.Model)
         {
             // 죽은 캐릭터가 메인캐릭터라면 패배
             OnBattleEnd(BattleResult.Defeat).Forget();
@@ -375,9 +373,9 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>, IObserv
     #endregion
 
     #region Public OnEvent
-    public static void OnDamage(CharacterUnitModel sender, CharacterUnitModel receiver, float value, DamageType damageType = DamageType.Normal)
+    public void OnDamage(CharacterUnitModel sender, CharacterUnitModel receiver, float value, DamageType damageType = DamageType.Normal)
     {
-        if (instance == null || !instance.InBattle)
+        if (!InBattle)
             return;
 
         if (sender == null || sender.IsDead || receiver == null || receiver.IsDead)
@@ -390,14 +388,14 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>, IObserv
 
         // 적인 경우에만 대미지를 표시.
         if (receiver.TeamTag == TeamTag.Enemy)
-            instance.damageNumbersGroup.ShowDamage(damageType, receiver.Transform, finalDamage.ToString());
+            damageNumbersGroup.ShowDamage(damageType, receiver.Transform, finalDamage.ToString());
 
-        instance.OnHitBodyColor(receiver, damageType);
+        OnHitBodyColor(receiver, damageType);
     }
 
-    public static void OnHeal(CharacterUnitModel sender, CharacterUnitModel receiver, float value)
+    public void OnHeal(CharacterUnitModel sender, CharacterUnitModel receiver, float value)
     {
-        if (instance == null || !instance.InBattle)
+        if (!InBattle)
             return;
 
         if (sender == null || sender.IsDead || receiver == null || receiver.IsDead)
@@ -407,9 +405,9 @@ public class BattleSystemManager : BaseMonoManager<BattleSystemManager>, IObserv
 
         receiver.AddHp(value);
 
-        instance.damageNumbersGroup.ShowDamage(damageType, receiver.Transform, value.ToString());
+        damageNumbersGroup.ShowDamage(damageType, receiver.Transform, value.ToString());
 
-        instance.OnHitBodyColor(receiver, damageType);
+        OnHitBodyColor(receiver, damageType);
     }
 
 #if CHEAT

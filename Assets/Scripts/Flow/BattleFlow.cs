@@ -9,8 +9,6 @@ public class BattleFlow : BaseFlow<BattleFlowModel>
     public override FlowType FlowType => FlowType.BattleFlow;
 
     private BattleSceneManager battleSceneManager;
-    private BattleSystemManager battleSystemManager;
-    private BattleUIManager battleUIManager;
     private float attackCoolTime = 0;
     private float rollCoolTime = 0;
 
@@ -27,31 +25,22 @@ public class BattleFlow : BaseFlow<BattleFlowModel>
             return;
         }
 
-        // BattleSceneManager 하위의 매니저들
-        battleSystemManager = BattleSystemManager.Instance;
-        battleUIManager = BattleUIManager.Instance;
-
         battleTeam = await CreatePlayerBattleTeam(PlayerManager.Instance.User.UserCharacterInfo.CurrentDeck,
             battleSceneManager.PlayerStartTransform);
 
         battleInfo = CreateBattleInfo(Model.DataDungeon, battleTeam);
        
-        await battleSystemManager.Prepare(battleInfo);
         await battleSceneManager.Prepare(battleInfo);
-        await battleUIManager.Prepare();
     }
 
     public override async UniTask Process()
     {
-        await battleSystemManager.StartBattle();
-        await battleSceneManager.StartSpawn();
-        await battleUIManager.ShowHpBar(battleInfo.MainCharModel);
+        await battleSceneManager.StartBattle();
         EnableBattleInput();
     }
 
     public override async UniTask Exit()
     {
-        battleSystemManager.Stop();
         battleSceneManager.Stop();
         DisableBattleInput();
     }

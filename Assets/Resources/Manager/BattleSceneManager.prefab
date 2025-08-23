@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5658117965233408352}
   - component: {fileID: 8302334995925619294}
   m_Layer: 0
-  m_Name: BattleSystemManager
+  m_Name: BattleSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -390,6 +390,8 @@ MonoBehaviour:
   cinemachineCamera: {fileID: 3432115595563684008}
   objectContainer: {fileID: 9151639476228099314}
   infinityTile: {fileID: 2569268483276811176}
+  battleSystem: {fileID: 8302334995925619294}
+  battleWorldUI: {fileID: 4060806478846726228}
   enemyWeightInfo: {fileID: 11400000, guid: c93d6a7caf947b34f8086816ee695c7f, type: 2}
 --- !u!1 &6620468501725758362
 GameObject:
@@ -435,7 +437,7 @@ GameObject:
   - component: {fileID: 7081525284851400429}
   - component: {fileID: 4060806478846726228}
   m_Layer: 0
-  m_Name: BattleUIManager
+  m_Name: BattleWorldUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

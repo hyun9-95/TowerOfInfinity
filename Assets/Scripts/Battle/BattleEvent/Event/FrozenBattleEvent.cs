@@ -24,7 +24,7 @@ public class FrozenBattleEvent : BattleEvent
 
     private void DelayDamage()
     {
-        UniTaskUtils.DelayAction(1f, () => BattleSystemManager.OnDamage
+        UniTaskUtils.DelayAction(1f, () => BattleApi.OnDamage
             (Model.Sender, Model.Receiver, GetAppliableStatValue()), frozenTokenSource.Token).Forget();
     }
 

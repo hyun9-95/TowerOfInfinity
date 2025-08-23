@@ -17,9 +17,16 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>, IO
     private BattleInfinityTile infinityTile;
 
     [SerializeField]
+    private BattleSystem battleSystem;
+
+    [SerializeField]
+    private BattleWorldUI battleWorldUI;
+
+    [SerializeField]
     private ScriptableEnemyWeightInfo enemyWeightInfo;
 
     private BattleEnemySpawner enemySpawn;
+    private BattleApiModel battleApiModel;
     private List<CharacterUnit> enemyCharacters = new();
     private BattleInfo battleInfo;
 
@@ -36,9 +43,35 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>, IO
         SetCurrentCharacter(battleInfo.MainCharacter);
         CreateEnemyGenerator(battleInfo.DataDungeon);
 
+        await battleSystem.Prepare(battleInfo);
         await infinityTile.Prepare(battleInfo.MainCharacter.transform);
-        
+        await battleWorldUI.Prepare();
+
+        PrepareBattleApi();
+
         ObserverManager.AddObserver(BattleObserverID.DeadCharacter, this);
+    }
+
+    private void PrepareBattleApi()
+    {
+        battleApiModel = new BattleApiModel();
+
+        // BattleScene
+        battleApiModel.SetOnGetAliveCharModelById(OnGetAliveCharModel);
+
+        // BattleSystem
+        battleApiModel.SetOnDamage(battleSystem.OnDamage);
+        battleApiModel.SetOnHeal(battleSystem.OnHeal);
+        battleApiModel.SetOnExpGainRangeUp(battleSystem.OnExpGainRangeUp);
+
+#if CHEAT
+        battleApiModel.SetOnCheatSpawnBoss(CheatSpawnBoss);
+        battleApiModel.SetOnCheatLevelUpWithDraw(battleSystem.CheatLevelUpWithDraw);
+        battleApiModel.SetOnCheatLevelUp(battleSystem.CheatLevelUp);
+        battleApiModel.SetOnCheatAddWave(battleSystem.CheatAddWave);
+#endif
+
+        BattleApi.InitializeModel(battleApiModel);
     }
 
 
@@ -87,12 +120,15 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>, IO
     }
     #endregion
 
-    public async UniTask StartSpawn()
+    public async UniTask StartBattle()
     {
+        await battleSystem.StartBattle();
+        await battleWorldUI.ShowHpBar(battleInfo.MainCharModel);
+
         enemySpawn.StartGenerateAsync().Forget();
     }
 
-    public static CharacterUnitModel GetAliveCharModel(int instanceId)
+    public static CharacterUnitModel OnGetAliveCharModel(int instanceId)
     {
         if (Instance == null)
             return null;
@@ -103,21 +139,6 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>, IO
             return null;
 
         return liveCharacterModelDic[instanceId];
-    }
-
-    public static CharacterUnitModel GetAliveCharModel(Transform transform)
-    {
-        return GetAliveCharModel(transform.gameObject.GetInstanceID());
-    }
-
-    public static CharacterUnitModel GetAliveCharModel(GameObject gameObject)
-    {
-        return GetAliveCharModel(gameObject.GetInstanceID());
-    }
-
-    public static CharacterUnitModel GetAliveCharModel(Collider2D collider)
-    {
-        return GetAliveCharModel(collider.gameObject.GetInstanceID());
     }
 
     private void AddLiveCharacter(int instanceId, CharacterUnitModel model)
@@ -131,6 +152,13 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>, IO
         liveCharacterModelDic.Remove(instanceId);
     }
 
+    public void Stop()
+    {
+        battleSystem.Stop();
+        enemySpawn.Cancel();
+        ObserverManager.RemoveObserver(BattleObserverID.DeadCharacter, this);
+    }
+
     void IObserver.HandleMessage(Enum observerMessage, IObserverParam observerParam)
     {
         if (observerParam is not BattleObserverParam battleObserverParam)
@@ -142,12 +170,6 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>, IO
                 RemoveLiveCharacter(battleObserverParam.IntValue);
                 break;
         }
-    }
-
-    public void Stop()
-    {
-        enemySpawn.Cancel();
-        ObserverManager.RemoveObserver(BattleObserverID.DeadCharacter, this);
     }
 
     #endregion

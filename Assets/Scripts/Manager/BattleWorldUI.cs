@@ -6,7 +6,7 @@ using UnityEngine;
 /// <summary>
 /// 대미지나 효과등의 단발성 UI나 이펙트를 관리한다.
 /// </summary>
-public class BattleUIManager : BaseMonoManager<BattleUIManager>
+public class BattleWorldUI : MonoBehaviour
 {
     #region Property
     #endregion
