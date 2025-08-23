@@ -102,7 +102,7 @@ public class CharacterUnitModel : IBaseUnitModel
             DistanceToTarget.Nearby => BattleDefine.UPDATE_INTERVAL_NEARBY,
             DistanceToTarget.Far => BattleDefine.UPDATE_INTERVAL_FAR,
             DistanceToTarget.VeryFar => BattleDefine.UPDATE_INTERVAL_VERY_FAR,
-            _ => 0
+            _ => BattleDefine.UPDATE_INTERVAL_CLOSE
         };
     }
 

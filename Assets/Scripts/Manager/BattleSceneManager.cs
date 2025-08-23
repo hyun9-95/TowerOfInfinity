@@ -104,30 +104,48 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>, IO
         enemyModel.SetTarget(battleInfo.MainCharacter.Model);
         enemyModel.SetPathFindType(PathFindType.AStar);
 
-        enemy.Initialize();
-        enemy.Activate();
-
-        enemyCharacters.Add(enemy);
-        AddLiveCharacter(enemy.gameObject.GetInstanceID(), enemyModel);
-
         if (enemyModel.CharacterType == CharacterType.Boss)
-            BossBledingAsync(enemy.transform).Forget();
+        {
+            BossBlendingAsync(enemy).Forget();
+        }
+        else
+        {
+            enemy.Initialize();
+            enemy.Activate();
+
+            enemyCharacters.Add(enemy);
+            AddLiveCharacter(enemy.gameObject.GetInstanceID(), enemyModel);
+        }
     }
 
-    private async UniTask BossBledingAsync(Transform tr)
+    private async UniTask BossBlendingAsync(CharacterUnit enemy)
     {
         InputManager.EnableMoveInput(false);
         InputManager.EnableActionButtons(false);
 
+        enemy.Initialize();
+
+        var animator = enemy.GetComponent<Animator>();
+        animator.updateMode = AnimatorUpdateMode.UnscaledTime;
+        animator.SetInteger(StringDefine.CHARACTER_ANIM_STATE_KEY, 0);
+
+        bossBlendingCamera.SetTarget(enemy.transform);
+
         Time.timeScale = 0;
 
-        bossBlendingCamera.SetTarget(tr);
         await bossBlendingCamera.StartBlending(2f, false);
 
         Time.timeScale = 1;
 
+        animator.updateMode = AnimatorUpdateMode.Normal;
+
         InputManager.EnableMoveInput(true);
         InputManager.EnableActionButtons(true);
+
+        enemy.Activate();
+
+        enemyCharacters.Add(enemy);
+        AddLiveCharacter(enemy.gameObject.GetInstanceID(), enemy.Model);
     }
 
     private float OnGetEnemySpawnWeight(CharacterDefine enemy, int currentWave)

@@ -81,13 +81,14 @@ public class CameraManager : BaseMonoManager<CameraManager>
     public async UniTask BlendingAsync(CinemachineCamera targetCamera, float time)
     {
         float originTime = cinemachineBrain.DefaultBlend.Time;
+        int originPriority = targetCamera.Priority;
 
         if (time != cinemachineBrain.DefaultBlend.Time)
             cinemachineBrain.DefaultBlend.Time = time;
 
         targetCamera.Priority = 99;
 
-        await UniTaskUtils.WaitForLastUpdate();
+        await UniTask.WaitUntil(() => cinemachineBrain.IsBlending);
 
         while (cinemachineBrain.IsBlending)
             await UniTaskUtils.NextFrame();
@@ -95,6 +96,7 @@ public class CameraManager : BaseMonoManager<CameraManager>
         targetCamera.Priority = 0;
 
         cinemachineBrain.DefaultBlend.Time = originTime;
+        targetCamera.Priority = originPriority;
     }
 
     public bool IsVisibleFromWorldCamera(Vector3 pos)

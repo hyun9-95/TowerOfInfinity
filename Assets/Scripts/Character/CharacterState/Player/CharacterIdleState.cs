@@ -13,11 +13,6 @@ public class CharacterIdleState : ScriptableCharacterState
 
     public override void OnEnterState(CharacterUnitModel model)
     {
-        if (model.Target != null)
-        {
-            var direction = (model.Target.Transform.position - model.Transform.position).normalized;
-            model.ActionHandler.Flip(direction);
-        }
     }
 
     public override bool CheckEnterCondition(CharacterUnitModel model)

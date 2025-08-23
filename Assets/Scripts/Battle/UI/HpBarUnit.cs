@@ -28,7 +28,8 @@ public class HpBarUnit : BaseUnit<HpBarUnitModel>
         gameObject.SetActive(false);
     }
 
-    private void LateUpdate()
+    // 카메라 팔로우 댐핑때문에 LateUpdate하면 간극이 커져서 HpBar는 Fixed에서 처리
+    private void FixedUpdate()
     {
         if (!acitvated)
             return;

@@ -16,7 +16,8 @@ public class BattleDefine
     public const float UPDATE_INTERVAL_VERY_FAR = 1.5f;
     public const float UPDATE_INTERVAL_FAR = 1f;
     public const float UPDATE_INTERVAL_NEARBY = 0.5f;
-    
+    public const float UPDATE_INTERVAL_CLOSE = 0f;
+
     public const float REPATH_COOLTIME_CLOSE = 0.5f;
     public const float REPATH_COOLTIME_NEARBY = 1f;
     public const float REPATH_COOLTIME_DEFAULT = 2f;

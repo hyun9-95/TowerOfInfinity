@@ -40,7 +40,6 @@ public class CharacterAttackState : ScriptableCharacterState
 
     public override void OnExitState(CharacterUnitModel model)
     {
-        model.SetReadyCoolTime(0);
     }
 
     public override void OnStateAction(CharacterUnitModel model)
@@ -50,6 +49,9 @@ public class CharacterAttackState : ScriptableCharacterState
 
         if (model.AbilityProcessor.IsPrimaryWeaponSlotReady() && model.IsAttackState())
             model.AbilityProcessor.CastPrimaryWeapon(model.GetAnimationDelay(AnimState)).Forget();
+
+        // 어택 후 무조건 Ready 1회
+        model.SetReadyCoolTime(0);
     }
 
     private bool IsInAttackRange(CharacterUnitModel model)

@@ -1,9 +1,9 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "ScriptableObject/Character/State/Enemy/Ability Ready")]
-public class CharacterAbilityReadyState : ScriptableCharacterState
+[CreateAssetMenu(menuName = "ScriptableObject/Character/State/Enemy/Ready")]
+public class CharacterReadyState : ScriptableCharacterState
 {
-    public override int Priority => 2;
+    public override int Priority => 90;
     public override CharacterAnimState AnimState => CharacterAnimState.Ready;
 
     public override bool CheckEnterCondition(CharacterUnitModel model)
@@ -13,7 +13,7 @@ public class CharacterAbilityReadyState : ScriptableCharacterState
 
     public override bool CheckExitCondition(CharacterUnitModel model)
     {
-        if (Time.time - model.StateEnterTime < FloatDefine.DEFAULT_MINIMUM_STATE_DURATION)
+        if (IsJustEntered(model))
             return false;
 
         return model.CurrentAnimState != AnimState;

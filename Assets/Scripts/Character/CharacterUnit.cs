@@ -285,17 +285,10 @@ public class CharacterUnit : PoolableMono
 
     protected void CheckNextState()
     {
-        if (CurrentState == defaultState || CurrentState.CheckExitCondition(Model))
-        {
+        // 기본 상태이거나 / 현재 상태가 ExitCondition이거나 / 죽었을 때 상태 선택
+        if (CurrentState == defaultState || CurrentState.CheckExitCondition(Model) ||
+            Model.IsDead)
             SelectState();
-        }
-        else
-        {
-            var candidateState = FindCandidateState();
-
-            if (candidateState != null)
-                ChangeState(candidateState);
-        }
     }
 
     private bool CheckUpdatableState()
@@ -364,28 +357,6 @@ public class CharacterUnit : PoolableMono
             Model.SetCurrentAnimState(animState);
 
         lastAnimStateHash = currentStateInfo.shortNameHash;
-    }
-
-    private ScriptableCharacterState FindCandidateState()
-    {
-        var currentPriority = CurrentState.Priority;
-        var stateList = stateGroup.StateList;
-        
-        for (int i = 0; i < stateList.Count; i++)
-        {
-            var state = stateList[i];
-            
-            if (state == null || state == CurrentState)
-                continue;
-
-            if (state.Priority <= currentPriority)
-                continue;
-
-            if (state.CheckEnterCondition(Model))
-                return state;
-        }
-
-        return null;
     }
 
     /// <summary>
