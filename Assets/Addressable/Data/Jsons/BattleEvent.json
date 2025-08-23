@@ -226,5 +226,17 @@
     "StatusDirection": "Increase",
     "Stackable": true,
     "ValueApplyType": "Multiply"
+  },
+  {
+    "id": 20019,
+    "Type": "ExpRangeUp",
+    "AffectStat": "None",
+    "BattleEventCategory": "Passive",
+    "BattleEventGroup": "None",
+    "StatReference": "Sender",
+    "StatReferenceCondition": "CurrentStat",
+    "StatusDirection": "Increase",
+    "Stackable": true,
+    "ValueApplyType": "Multiply"
   }
 ]

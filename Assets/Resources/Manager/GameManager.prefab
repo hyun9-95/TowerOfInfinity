@@ -2866,6 +2866,7 @@ GameObject:
   - component: {fileID: 5946383257802823958}
   - component: {fileID: 2180883231435273197}
   - component: {fileID: 9139917944593094228}
+  - component: {fileID: 4220251116951066455}
   m_Layer: 5
   m_Name: CheatManager
   m_TagString: Untagged
@@ -2908,6 +2909,7 @@ MonoBehaviour:
   stateObjects:
   - {fileID: 7868074832954481286}
   - {fileID: 370625336900292296}
+  statsObject: {fileID: 8807960151358789973}
   expandObject: {fileID: 4092696010260657421}
   fpsText: {fileID: 8502668174230580716}
   memoryText: {fileID: 3820873401099619361}
@@ -2978,6 +2980,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 32
+--- !u!114 &4220251116951066455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2860522195031989202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81e71393e51759a4984468eb08f159dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rectTransform: {fileID: 8209172264292516198}
 --- !u!1 &2992788526716202977
 GameObject:
   m_ObjectHideFlags: 0

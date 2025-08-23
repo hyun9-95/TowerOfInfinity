@@ -6,8 +6,18 @@ public class SafeArea : MonoBehaviour
     public delegate void RefreshSafeArea();
     public static RefreshSafeArea OnEventRefreshSafeArea;
 
-    private RectTransform rectTransform;
     private bool isInitialize = true;
+
+    [SerializeField]
+    private RectTransform rectTransform;
+
+#if UNITY_EDITOR
+    private void Reset()
+    {
+        if (rectTransform == null)
+            rectTransform = GetComponent<RectTransform>();
+    }
+#endif
 
     private void Awake()
     {

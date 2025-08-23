@@ -1,5 +1,6 @@
 #pragma warning disable CS1998
 using Cysharp.Threading.Tasks;
+using System;
 using System.Threading;
 
 /// <summary>
@@ -15,18 +16,27 @@ public class BattleViewController : BaseController<BattleViewModel>
 
     private CancellationTokenSource cts;
 
-    public void RefreshBattleInfo(BattleInfo battleInfo)
+    public void RefreshBattleInfo(BattleInfoParam battleInfoParam)
     {
-        Model.SetLevel(battleInfo.Level);
-        Model.SetBattleExp(battleInfo.BattleExp);
-        Model.SetNextBattleExp(battleInfo.NextBattleExp);
-        Model.SetKillCount(battleInfo.KillCount);
-        Model.SetCurrentWave(battleInfo.CurrentWave);
-        Model.SetBattleStartTime(battleInfo.BattleStartTime);
-        Model.SetBattleState(battleInfo.BattleState);
+        Model.SetLevel(battleInfoParam.Level);
+        Model.SetBattleExp(battleInfoParam.BattleExp);
+        Model.SetNextBattleExp(battleInfoParam.NextBattleExp);
+        Model.SetKillCount(battleInfoParam.KillCount);
+        Model.SetCurrentWave(battleInfoParam.CurrentWave);
+        Model.SetBattleStartTime(battleInfoParam.BattleStartTime);
+        Model.SetBattleState(battleInfoParam.BattleState);
 
-        if (battleInfo.BattleState == BattleState.End)
+        if (battleInfoParam.BattleState == BattleState.End)
             cts.Cancel();
+
+        if (battleInfoParam.AbilitySlotDic != null)
+        {
+            if (Model.AbilitySlotUnitModel == null)
+                Model.SetAbilitySlotUnitModel(new AbilitySlotUnitModel());
+
+            Model.AbilitySlotUnitModel.SyncWithAbilityProcessor(battleInfoParam.AbilitySlotDic);
+            View.ShowAblitySlotUnit();
+        }
     }
 
     public override async UniTask Process()

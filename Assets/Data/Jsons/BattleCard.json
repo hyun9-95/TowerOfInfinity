@@ -37,10 +37,10 @@
   },
   {
     "id": 100004,
-    "CardType": "ExpGainRangeUp",
+    "CardType": "GetAbility",
     "Tier": "Common",
-    "Ability": "None",
-    "IconPath": "BattleCore/BattleExpGem_Sprite",
+    "Ability": "AB_PASSIVE_LONG_ARMS",
+    "IconPath": "",
     "Name": "LOCAL_EXP_GAIN_RANGE_UP_NAME",
     "Desc": "LOCAL_EXP_GAIN_RANGE_UP_DESC"
   },

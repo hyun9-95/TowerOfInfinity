@@ -9,17 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dceb0da3ed51b6e47a7efb36ff83fcff, type: 3}
-  m_Name: AB_ACTIVE_HEAL
+  m_Script: {fileID: 11500000, guid: ed11842cc8ba12d40aca11dedabb0006, type: 3}
+  m_Name: BE_EXP_RANGE_UP_LONG_ARMS
   m_EditorClassIdentifier: 
-  type: 51013
-  Speed: []
-  Range: []
-  Duration: []
-  HitCount: 
-  Scale: []
-  CoolTime:
-  - 5
-  SpawnCount: 
-  HitForce: []
-  SpawnInterval: []
+  define: 20019
+  value: []
+  value2: []
+  duration: []
+  applyIntervalSeconds: []

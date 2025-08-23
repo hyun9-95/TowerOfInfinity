@@ -12,6 +12,9 @@ public class BattleView : BaseView
     private Slider expSlider;
 
     [SerializeField]
+    private AbilitySlotUnit abilitySlotUnit;
+
+    [SerializeField]
     private TextMeshProUGUI timeText;
 
     [SerializeField]
@@ -36,5 +39,11 @@ public class BattleView : BaseView
     private void ShowSlider()
     {
         expSlider.value = Model.GetExpSliderValue();
+    }
+
+    public void ShowAblitySlotUnit()
+    {
+        abilitySlotUnit.SetModel(Model.AbilitySlotUnitModel);
+        abilitySlotUnit.ShowAsync().Forget();
     }
 }

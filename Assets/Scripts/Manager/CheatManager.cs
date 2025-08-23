@@ -38,6 +38,9 @@ public class CheatManager : BaseMonoManager<CheatManager>
     private GameObject[] stateObjects;
 
     [SerializeField]
+    private GameObject statsObject;
+
+    [SerializeField]
     private GameObject expandObject;
 
     [SerializeField]
@@ -68,10 +71,14 @@ public class CheatManager : BaseMonoManager<CheatManager>
     #region Function
     private void OnEnable()
     {
+#if !UNITY_EDITOR
+        statsObject.SafeSetActive(false);
+#endif
     }
 
     private void Update()
     {
+#if UNITY_EDITOR
         deltaTime += (Time.unscaledDeltaTime - deltaTime) * 0.1f;
         
         if (Time.time - lastUpdateTime >= updateInterval)
@@ -79,6 +86,7 @@ public class CheatManager : BaseMonoManager<CheatManager>
             UpdatePerformanceDisplay();
             lastUpdateTime = Time.time;
         }
+#endif
     }
     
     private void UpdatePerformanceDisplay()
@@ -258,6 +266,6 @@ public class CheatManager : BaseMonoManager<CheatManager>
     }
 
     #endregion
-    #endregion
+#endregion
 #endif
     }

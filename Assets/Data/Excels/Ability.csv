@@ -24,6 +24,10 @@ Id,NameId,SlotType,CastingType,BattleEvents,TriggerType,TargetType,CastEffectPat
 51009,AB_ACTIVE_DAGGER_THROW,Active,OnRoll,BE_DAMAGE_DAGGER_THROW,FrontAngleProjectile,Enemy,NULL,Ability/DaggerThrow/DaggerThrow_Projectile,Ability/DaggerThrow/DaggerThrow_Projectile_Icon,NULL
 51010,AB_ACTIVE_REPULSOR_DOME,Active,Auto,BE_DAMAGE_REPULSOR_DOME,FollowCollider,Enemy,NULL,Ability/RepulsorDome/RepulsorDome_Collider,Ability/RepulsorDome/RepulsorDome_Collider_Icon,NULL
 51011,AB_ACTIVE_SHADOW_GRASP,Active,Auto,BE_DAMAGE_SHADOW_GRASP,InRangeRandom,Enemy,NULL,Ability/ShadowGrasp/ShadowGrasp_InRangeRandom,Ability/ShadowGrasp/ShadowGrasp_InRangeRandom_Icon,NULL
-51012,AB_PASSIVE_GOLDEN_BOOTS,Passive,Instant,BE_BUFF_GOLDEN_BOOTS,Self,Ally,NULL,NULL,Ability/GoldenBoots/GoldenBoots_Icon,NULL
-51013,AB_ACTIVE_HELL_GATE,Active,Auto,BE_DAMAGE_HELL_GATE,Blackhole,Enemy,NULL,Ability/HellGate/HellGate_Blackhole,Ability/HellGate/HellGate_Blackhole_Icon,NULL
-51014,AB_ACTIVE_HEAL,Passive,Auto,BE_HEAL_HEAL,Self,Ally,AbilityCast/Heal/HealEffect,NULL,Ability/Heal/Heal_Icon,NULL
+51012,AB_ACTIVE_HELL_GATE,Active,Auto,BE_DAMAGE_HELL_GATE,Blackhole,Enemy,NULL,Ability/HellGate/HellGate_Blackhole,Ability/HellGate/HellGate_Blackhole_Icon,NULL
+51013,AB_ACTIVE_HEAL,Passive,Auto,BE_HEAL_HEAL,Self,Ally,AbilityCast/Heal/HealEffect,NULL,Ability/Heal/Heal_Icon,NULL
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+52000,AB_PASSIVE_GOLDEN_BOOTS,Passive,Instant,BE_BUFF_GOLDEN_BOOTS,Self,Ally,NULL,NULL,Ability/GoldenBoots/GoldenBoots_Icon,NULL
+52001,AB_PASSIVE_LONG_ARMS,Passive,Instant,BE_EXP_RANGE_UP_LONG_ARMS,Self,Ally,NULL,NULL,BattleCore/BattleExpGem_Sprite,NULL

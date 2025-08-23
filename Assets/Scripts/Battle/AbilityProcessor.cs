@@ -4,7 +4,6 @@ using System.Collections.Generic;
 public class AbilityProcessor
 {
     #region Property
-
     #endregion
 
     #region Value
@@ -33,13 +32,6 @@ public class AbilityProcessor
 
     public void AddAbility(int newAbilityDataId)
     {
-        // 같은 데이터를 쓰는 능력은 중복 불가함
-        if (abilityDicById.ContainsKey(newAbilityDataId))
-        {
-            LevelUpAbility(newAbilityDataId);
-            return;
-        }
-
         var newAbility = AbilityFactory.Create<Ability>(newAbilityDataId, owner);
 
         if (newAbility == null)
@@ -162,6 +154,11 @@ public class AbilityProcessor
         return GetPrimaryWeapon().Model.Range;
     }
 
+    public IReadOnlyDictionary<AbilitySlotType, List<Ability>> GetAbilitySlotDic()
+    {
+        return abilitySlotDic;
+    }
+
     private Ability GetPrimaryWeapon()
     {
         if (!abilitySlotDic.TryGetValue(AbilitySlotType.Weapon, out var weaponAbilities))
@@ -190,6 +187,11 @@ public class AbilityProcessor
             return false;
 
         return true;
+    }
+
+    public bool IsContain(int dataId)
+    {
+        return abilityDicById.ContainsKey(dataId);
     }
 
     public int GetLevel(int dataId)

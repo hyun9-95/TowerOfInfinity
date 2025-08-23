@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceb0da3ed51b6e47a7efb36ff83fcff, type: 3}
   m_Name: AB_PASSIVE_GOLDEN_BOOTS
   m_EditorClassIdentifier: 
-  type: 51012
+  type: 52000
   Speed: []
   Range: []
   Duration: []

@@ -225,20 +225,6 @@
   },
   {
     "id": 51012,
-    "SlotType": "Passive",
-    "CastingType": "Instant",
-    "BattleEvents": [
-      "BE_BUFF_GOLDEN_BOOTS"
-    ],
-    "TriggerType": "Self",
-    "TargetType": "Ally",
-    "CastEffectPath": "",
-    "TriggerUnitPath": "",
-    "IconPath": "Ability/GoldenBoots/GoldenBoots_Icon",
-    "HitEffectPrefabName": ""
-  },
-  {
-    "id": 51013,
     "SlotType": "Active",
     "CastingType": "Auto",
     "BattleEvents": [
@@ -252,7 +238,7 @@
     "HitEffectPrefabName": ""
   },
   {
-    "id": 51014,
+    "id": 51013,
     "SlotType": "Passive",
     "CastingType": "Auto",
     "BattleEvents": [
@@ -263,6 +249,34 @@
     "CastEffectPath": "AbilityCast/Heal/HealEffect",
     "TriggerUnitPath": "",
     "IconPath": "Ability/Heal/Heal_Icon",
+    "HitEffectPrefabName": ""
+  },
+  {
+    "id": 52000,
+    "SlotType": "Passive",
+    "CastingType": "Instant",
+    "BattleEvents": [
+      "BE_BUFF_GOLDEN_BOOTS"
+    ],
+    "TriggerType": "Self",
+    "TargetType": "Ally",
+    "CastEffectPath": "",
+    "TriggerUnitPath": "",
+    "IconPath": "Ability/GoldenBoots/GoldenBoots_Icon",
+    "HitEffectPrefabName": ""
+  },
+  {
+    "id": 52001,
+    "SlotType": "Passive",
+    "CastingType": "Instant",
+    "BattleEvents": [
+      "BE_EXP_RANGE_UP_LONG_ARMS"
+    ],
+    "TriggerType": "Self",
+    "TargetType": "Ally",
+    "CastEffectPath": "",
+    "TriggerUnitPath": "",
+    "IconPath": "BattleCore/BattleExpGem_Sprite",
     "HitEffectPrefabName": ""
   }
 ]

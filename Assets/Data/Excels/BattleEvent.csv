@@ -20,3 +20,4 @@ Id,NameId,Type,AffectStat,BattleEventCategory,BattleEventGroup,StatReference,Sta
 20016,BE_BUFF_GOLDEN_BOOTS,Buff,MoveSpeed,Passive,Buff,None,CurrentStat,Increase,TRUE,Fixed
 20017,BE_DAMAGE_HELL_GATE,Damage,Attack,Active,None,Sender,CurrentStat,Increase,FALSE,Multiply
 20018,BE_HEAL_HEAL,Heal,MaxHp,Active,Buff,Sender,CurrentStat,Increase,TRUE,Multiply
+20019,BE_EXP_RANGE_UP_LONG_ARMS,ExpRangeUp,None,Passive,None,Sender,CurrentStat,Increase,TRUE,Multiply

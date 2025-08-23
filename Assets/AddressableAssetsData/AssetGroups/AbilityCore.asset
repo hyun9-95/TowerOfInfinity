@@ -33,6 +33,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 26d46ccdeeb462b4eb8f7419cc89a22e
+    m_Address: AbilityCore/BattleEventBalance/BE_EXP_RANGE_UP_LONG_ARMS
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 26ed42bc1da8a4e48aab9c16b2ca4801
     m_Address: AbilityCore/AbilityBalance/AB_ACTIVE_REPULSOR_DOME
     m_ReadOnly: 0
@@ -77,6 +83,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4ef9683261f97e849b6fd9b1055eb0de
     m_Address: AbilityCore/BattleEventBalance/BE_DAMAGE_GREEN_OGRE_SMASH
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 557874e06c9562b4490a5bae4ae282e7
+    m_Address: AbilityCore/AbilityBalance/AB_PASSIVE_LONG_ARMS
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main

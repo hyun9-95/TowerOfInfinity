@@ -27,19 +27,25 @@ public class AbilitySlotUnit : BaseUnit<AbilitySlotUnitModel>
 		if (passiveSlotUnits == null)
 			passiveSlotUnits = new List<AbilityThumbnailUnit>(IntDefine.MAX_ABILITY_SLOT_COUNT);
 
-		await ShowAbilitySlotUnits(activeThumbnailLoader, acitveSlotUnits, Model.ActiveAbilityThumbUnitModels);
-		await ShowAbilitySlotUnits(passiveThumbnailLoader, passiveSlotUnits, Model.PassiveAbilityThumbUnitModels);
+		if (Model.AbilityThumbUnitModelsBySlotType.TryGetValue(AbilitySlotType.Active, out var activeModels))
+			await ShowAbilitySlotUnits(activeThumbnailLoader, acitveSlotUnits, activeModels);
+		
+		if (Model.AbilityThumbUnitModelsBySlotType.TryGetValue(AbilitySlotType.Passive, out var passiveModels))
+			await ShowAbilitySlotUnits(passiveThumbnailLoader, passiveSlotUnits, passiveModels);
     }
 
-	private async UniTask ShowAbilitySlotUnits(AddressableLoader loader, List<AbilityThumbnailUnit> acitveSlotUnits, IReadOnlyList<AbilityThumbnailUnitModel> modelList)
+	private async UniTask ShowAbilitySlotUnits(AddressableLoader loader, List<AbilityThumbnailUnit> slotUnits, IReadOnlyList<AbilityThumbnailUnitModel> modelList)
 	{
         for (int i = 0; i < modelList.Count; i++)
         {
-            if (acitveSlotUnits[i] == null)
-                acitveSlotUnits[i] = await loader.LoadAsync<AbilityThumbnailUnit>();
+            if (i >= slotUnits.Count)
+			{
+				var newUnit = await loader.InstantiateAsyc<AbilityThumbnailUnit>();
+				slotUnits.Add(newUnit);
+            }
 
-            acitveSlotUnits[i].SetModel(modelList[i]);
-            await acitveSlotUnits[i].ShowAsync();
+            slotUnits[i].SetModel(modelList[i]);
+            await slotUnits[i].ShowAsync();
         }
     }
 	#endregion

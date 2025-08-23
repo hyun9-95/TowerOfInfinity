@@ -74,7 +74,7 @@ public class BattleSystem : MonoBehaviour, IObserver
         if (battleInfo != null)
         {
             battleInfo.SetCurrentWave(battleInfo.CurrentWave + 1);
-            RefreshBattleView();
+            NotifyChangedBattleInfo();
         }
 
         var observerParam = new BattleObserverParam();
@@ -103,7 +103,7 @@ public class BattleSystem : MonoBehaviour, IObserver
         BattleViewModel viewModel = new BattleViewModel();
         battleViewController.SetModel(viewModel);
 
-        battleViewController.RefreshBattleInfo(battleInfo);
+        battleViewController.RefreshBattleInfo(new BattleInfoParam(battleInfo));
 
         await UIManager.Instance.ChangeView(battleViewController, true);
     }
@@ -155,12 +155,16 @@ public class BattleSystem : MonoBehaviour, IObserver
         };
     }
 
-    private void RefreshBattleView()
+    // BattleInfo 직접 노출 안시키도록
+    private void NotifyChangedBattleInfo(BattleInfoParam param = null)
     {
         if (battleViewController == null)
             battleViewController = UIManager.Instance.GetCurrentViewController<BattleViewController>();
 
-        battleViewController.RefreshBattleInfo(battleInfo);
+        if (param == null)
+            param = new BattleInfoParam(battleInfo);
+
+        battleViewController.RefreshBattleInfo(param);
     }
 
     #region OnEvent
@@ -192,7 +196,7 @@ public class BattleSystem : MonoBehaviour, IObserver
 
         battleInfo.OnExpGain(exp);
 
-        RefreshBattleView();
+        NotifyChangedBattleInfo();
 
         if (battleInfo.Level > prevLevel)
             OnLevelUp();
@@ -221,9 +225,11 @@ public class BattleSystem : MonoBehaviour, IObserver
             for (int i = 0; i < cards.Length; i++)
             {
                 var card = cards[i];
-                int level =
-                    card.CardType == BattleCardType.GetAbility ?
-                    abProcessor.GetLevel((int)card.Ability) : expGainer.Model.Level;
+                int expectedLevel = 0;
+                int abilityId = (int)card.Ability;
+
+                if (abProcessor.IsContain(abilityId))
+                    expectedLevel = abProcessor.GetLevel(abilityId) + 1;
 
                 var model = new BattleCardUnitModel();
                 model.SetCardData(card);
@@ -241,7 +247,7 @@ public class BattleSystem : MonoBehaviour, IObserver
 
                 model.SetNameText(LocalizationManager.GetLocalization(card.Name));
                 model.SetDescriptionText(LocalizationManager.GetLocalization(card.Desc));
-                model.SetLevel(level);
+                model.SetLevel(expectedLevel);
 
                 cardUnitModelList.Add(model);
             }
@@ -265,13 +271,7 @@ public class BattleSystem : MonoBehaviour, IObserver
             case BattleCardType.GetAbility:
                 OnGetAbility((int)card.Ability);
                 break;
-
-            case BattleCardType.ExpGainRangeUp:
-                OnExpGainRangeUp();
-                break;
         }
-
-        RefreshBattleView();
     }
 
     private void OnGetAbility(int abilityDataId)
@@ -282,23 +282,25 @@ public class BattleSystem : MonoBehaviour, IObserver
             return;
 
         var characterModel = currentCharacter.Model;
-        characterModel.AbilityProcessor.AddAbility(abilityDataId);
+        var abProcessor = characterModel.AbilityProcessor;
+
+        if (abProcessor.IsContain(abilityDataId))
+        {
+            characterModel.AbilityProcessor.LevelUpAbility(abilityDataId);
+        }
+        else
+        {
+            characterModel.AbilityProcessor.AddAbility(abilityDataId);
+        }
+
+        var currentAbilitySlotDic = characterModel.AbilityProcessor.GetAbilitySlotDic();
+
+        BattleInfoParam param = new BattleInfoParam(battleInfo);
+        param.AbilitySlotDic = currentAbilitySlotDic;
+
+        NotifyChangedBattleInfo(param);
     }
-
-    public void OnExpGainRangeUp()
-    {
-        if (expGainer == null)
-            return;
-
-        int prevLevel = 0;
-        var model = expGainer.Model;
-        model.SetLevel(model.Level + 1);
-
-        expGainer.UpdateRadius();
-
-        Logger.BattleLog($"Exp gainer level up : {prevLevel} => {model.Level}");
-    }
-
+            
     private void OnHitBodyColor(CharacterUnitModel receiver, DamageType damageType)
     {
         if (!receiver.IsDead)
@@ -312,7 +314,7 @@ public class BattleSystem : MonoBehaviour, IObserver
         battleInfo.SetBattleResult(result);
         battleInfo.SetBattleState(BattleState.End);
 
-        RefreshBattleView();
+        NotifyChangedBattleInfo();
         ObserverManager.NotifyObserver(BattleObserverID.BattleEnd, noValueObserverParam);
 
         var battleResultController = new BattleResultController();
@@ -345,7 +347,7 @@ public class BattleSystem : MonoBehaviour, IObserver
             if (deadCharacterModel.DistanceToTarget < DistanceToTarget.OutOfRange)
                 battleInfo.AddKill();
 
-            RefreshBattleView();
+            NotifyChangedBattleInfo();
 
             // 죽은 캐릭터가 보스라면 승리
             if (deadCharacterModel.CharacterDefine == battleInfo.FinalBoss)
@@ -410,6 +412,21 @@ public class BattleSystem : MonoBehaviour, IObserver
         OnHitBodyColor(receiver, damageType);
     }
 
+    public void OnExpGainRangeUp()
+    {
+        if (expGainer == null)
+            return;
+
+        int prevLevel = 0;
+        var model = expGainer.Model;
+        model.SetLevel(model.Level + 1);
+
+        expGainer.UpdateRadius();
+
+        Logger.BattleLog($"Exp gainer level up : {prevLevel} => {model.Level}");
+    }
+
+
 #if CHEAT
     public void CheatLevelUp()
     {
@@ -428,7 +445,7 @@ public class BattleSystem : MonoBehaviour, IObserver
 
         battleInfo.OnExpGain(exp);
 
-        RefreshBattleView();
+        NotifyChangedBattleInfo();
 
         if (battleInfo.Level > prevLevel)
             OnLevelUp(tier);

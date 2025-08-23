@@ -4,6 +4,7 @@ using UnityEngine;
 public class BattleViewModel : IBaseViewModel
 {
     #region Property
+    public AbilitySlotUnitModel AbilitySlotUnitModel { get; private set; }
     public int Level { get; private set; }
     public float BattleExp { get; private set; }
     public float NextBattleExp { get; private set; }
@@ -14,6 +15,11 @@ public class BattleViewModel : IBaseViewModel
     #endregion
 
     #region Value
+    public void SetAbilitySlotUnitModel(AbilitySlotUnitModel abilitySlotUnitModel)
+    {
+        AbilitySlotUnitModel = abilitySlotUnitModel;
+    }
+
     public void SetBattleState(BattleState state)
     {
         BattleState = state;

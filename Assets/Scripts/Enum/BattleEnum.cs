@@ -31,6 +31,7 @@ public enum BattleEventType
     Frozen,
     Buff,
     Heal,
+    ExpRangeUp,
 }
 
 public enum BattleEventGroup
@@ -67,7 +68,6 @@ public enum BattleCardType
 {
     None,
     GetAbility,            // 능력 추가 or 기존 능력 레벨업
-    ExpGainRangeUp,         // 경험치 획득 범위 증가
 }
 
 public enum BattleCardTier

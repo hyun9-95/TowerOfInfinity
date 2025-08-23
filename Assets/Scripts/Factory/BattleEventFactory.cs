@@ -19,8 +19,11 @@ public struct BattleEventFactory
             case BattleEventType.Heal:
                 return new HealBattleEvent();
 
+            case BattleEventType.ExpRangeUp:
+                return new ExpRangeUpBattleEvent();
+
             default:
-                Logger.Error($"정의되지 않은 BattleStatusEffect : {eventType}");
+                Logger.Error($"정의되지 않은 BattleEvent : {eventType}");
                 break;
         }
 
