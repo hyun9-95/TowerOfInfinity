@@ -125,6 +125,8 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>, IO
 
         enemy.Initialize();
 
+        await battleWorldUI.ShowHpBar(enemy.Model);
+
         var animator = enemy.GetComponent<Animator>();
         animator.updateMode = AnimatorUpdateMode.UnscaledTime;
         animator.SetInteger(StringDefine.CHARACTER_ANIM_STATE_KEY, 0);
@@ -146,6 +148,8 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>, IO
 
         enemyCharacters.Add(enemy);
         AddLiveCharacter(enemy.gameObject.GetInstanceID(), enemy.Model);
+
+        
     }
 
     private float OnGetEnemySpawnWeight(CharacterDefine enemy, int currentWave)

@@ -167,14 +167,14 @@ public static class ExtensionUtils
         renderer.color = color;
     }
 
-    public static void FollowWorldPosition(this RectTransform rectTransform, Vector3 pos, Camera worldCamera, RectTransform parentRect, Vector2 offset)
+    public static void FollowWorldPosition(this RectTransform rectTransform, Vector3 pos, Camera worldCamera, Camera uiCam, RectTransform parentRect, Vector2 offset)
     {
         Vector3 screenPos = worldCamera.WorldToScreenPoint(pos);
 
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
             parentRect,
             screenPos,
-            worldCamera,
+            uiCam,
             out Vector2 localPoint
         );
 

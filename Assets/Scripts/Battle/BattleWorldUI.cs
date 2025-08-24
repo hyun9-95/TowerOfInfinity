@@ -19,7 +19,7 @@ public class BattleWorldUI : MonoBehaviour
     private RectTransform battleUICanvasRect;
 
     [SerializeField]
-    private HpBarUnit hpBarUnit;
+    private AddressableLoader hpBarUnitLoader;
 
     private Camera battleUICamera;
     #endregion
@@ -35,6 +35,8 @@ public class BattleWorldUI : MonoBehaviour
     {
         if (owner == null)
             return;
+
+        var hpBarUnit = await hpBarUnitLoader.InstantiateAsyc<HpBarUnit>();
 
         if (hpBarUnit.Model == null)
             hpBarUnit.SetModel(new HpBarUnitModel());

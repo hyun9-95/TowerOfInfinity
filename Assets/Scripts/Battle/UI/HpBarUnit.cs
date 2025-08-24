@@ -1,5 +1,6 @@
 #pragma warning disable CS1998
 using Cysharp.Threading.Tasks;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,6 +21,7 @@ public class HpBarUnit : BaseUnit<HpBarUnitModel>
     {
         acitvated = true;
         gameObject.SetActive(true);
+        CinemachineCore.CameraUpdatedEvent.AddListener(UpdatePos);
     }
 
     public void Hide()
@@ -28,8 +30,7 @@ public class HpBarUnit : BaseUnit<HpBarUnitModel>
         gameObject.SetActive(false);
     }
 
-    // 카메라 팔로우 댐핑때문에 LateUpdate하면 간극이 커져서 HpBar는 Fixed에서 처리
-    private void FixedUpdate()
+    private void UpdatePos(CinemachineBrain brain)
     {
         if (!acitvated)
             return;
@@ -44,6 +45,7 @@ public class HpBarUnit : BaseUnit<HpBarUnitModel>
 
         rectTransform.FollowWorldPosition(
             Model.Owner.Transform.position,
+            brain.OutputCamera,
             Model.BattleUICamera,
             Model.BattleUICanvasRect,
             localOffset
@@ -53,5 +55,6 @@ public class HpBarUnit : BaseUnit<HpBarUnitModel>
     private void OnDisable()
     {
         acitvated = false;
+        CinemachineCore.CameraUpdatedEvent.RemoveListener(UpdatePos);
     }
 }

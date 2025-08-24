@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5533286404027192748}
   - component: {fileID: 2777091800040069733}
   - component: {fileID: 6281134929441217228}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: Gauge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 3557412455550618363}
   - component: {fileID: 1544890129127227180}
   - component: {fileID: 6989609507632330969}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,7 +160,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7099055734445155521}
   - component: {fileID: 5844886960344509060}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: HpBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
