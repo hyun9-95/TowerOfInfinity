@@ -7,7 +7,6 @@ public class MainCharacterInfo : CharacterAbilityInfo
     public string MainCharacterPath => PathDefine.CHARACTER_MAIN_CHARACTER_PATH;
     public MainCharacterPartsInfo PartsInfo { get; private set; } = new MainCharacterPartsInfo();
     public CharacterRace CharacterRace { get; private set; }
-    public int HairPartsId { get; private set; }
     public IReadOnlyDictionary<EquipmentType, Equipment> EquippedEquipments => equippedEquipments;
     #endregion
 
@@ -19,11 +18,6 @@ public class MainCharacterInfo : CharacterAbilityInfo
     public void SetCharacterRace(CharacterRace characterRace)
     {
         CharacterRace = characterRace;
-    }
-
-    public void SetHairPartsId(int hairDataId)
-    {
-        HairPartsId = hairDataId;
     }
 
     public void SetPartsInfo(MainCharacterPartsInfo partsInfo)

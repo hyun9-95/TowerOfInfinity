@@ -74,8 +74,8 @@ public class CharacterSpriteLibraryBuilder : AddressableMono
             // 둘 다 파츠가 있는 경우 주소 비교
             if (hasNewPart && hasLoadedPart)
             {
-                var newPartsName = newPartsData.PartsName;
-                var newColorCode = newPartsData.ColorCode;
+                var newPartsName = newPartsData?.PartsName;
+                var newColorCode = newPartsData?.ColorCode;
                 var newFinalPartsName = string.IsNullOrEmpty(newColorCode) ? newPartsName : $"{newPartsName}{newColorCode}";
                 var newAddress = BuildPartsAddress(partType, newPartsName);
 
@@ -102,11 +102,14 @@ public class CharacterSpriteLibraryBuilder : AddressableMono
                 int index = (int)partType;
                 if (userCharacterPartsInfo.PartsInfoDic.TryGetValue(partType, out var partsData))
                 {
-                    var partsName = partsData.PartsName;
-                    var colorCode = partsData.ColorCode;
+                    var partsName = partsData?.PartsName;
+                    var colorCode = partsData?.ColorCode;
 
                     if (string.IsNullOrEmpty(partsName))
+                    {
+                        parts[index] = null;
                         continue;
+                    }
 
                     parts[index] = string.IsNullOrEmpty(colorCode) ? partsName : $"{partsName}{colorCode}";
                 }
@@ -129,7 +132,7 @@ public class CharacterSpriteLibraryBuilder : AddressableMono
         return await CreateNewSpriteLibrary(partsNames, partsEnumArray);
     }
 
-    public async UniTask<SpriteLibraryAsset> UpdateParts(IEnumerable<DataCharacterParts> partsDataArray)
+    public async UniTask<SpriteLibraryAsset> UpdateParts(IEnumerable<DataCharacterParts> partsDataArray, IEnumerable<CharacterPartsType> removeTypes = null)
     {
         if (partsDataArray == null || partsDataArray.Count() == 0)
             return null;
@@ -154,6 +157,9 @@ public class CharacterSpriteLibraryBuilder : AddressableMono
             var finalPartsName = string.IsNullOrEmpty(colorCode) ? partsName : $"{partsName}{colorCode}";
             currentPartsNames[(int)partsData.PartsType] = finalPartsName;
         }
+
+        foreach (var removeType in removeTypes)
+            currentPartsNames[(int)removeType] = null;
 
         return await CreateNewSpriteLibrary(currentPartsNames, partsEnumArray);
     }

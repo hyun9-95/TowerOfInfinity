@@ -79,7 +79,7 @@ public class CharacterCustomizationView : BaseView
         hairDropDown.ClearOptions();
         
         var hairOptions = Model.SelectableHairDatas.Select(hairData => 
-            string.IsNullOrEmpty(hairData.PartsName) ? "None" : 
+            hairData == null ? "None" : 
             hairData.PartsName.Substring(hairData.PartsName.LastIndexOf('/') + 1)).ToList();
         hairDropDown.AddOptions(hairOptions);
     }
@@ -119,7 +119,13 @@ public class CharacterCustomizationView : BaseView
         if (hairDropDown == null || Model.SelectableHairDatas == null)
             return;
 
-        for (int i = 0; i < Model.SelectableHairDatas.Length; i++)
+        if (Model.SelectHairData == null)
+        {
+            hairDropDown.value = 0;
+            return;
+        }
+
+        for (int i = 1; i < Model.SelectableHairDatas.Length; i++)
         {
             if (Model.SelectableHairDatas[i].Id == Model.SelectHairData.Id)
             {

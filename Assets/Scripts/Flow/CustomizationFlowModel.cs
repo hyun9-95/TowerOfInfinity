@@ -2,6 +2,9 @@ public class CustomizationFlowModel : BaseFlowModel
 {
     public CustomizationFlowModel()
     {
-        SetSceneDefine(SceneDefine.Town_Customization);
+        DataTown dataTown = DataManager.Instance.GetDataById<DataTown>((int)TownDefine.TOWN_CUSTOMIZATION);
+
+        SetSceneDefine(dataTown.TownScene);
+        SetFlowBGMPath(dataTown.BGM);
     }
 }

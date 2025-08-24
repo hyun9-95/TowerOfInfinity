@@ -4,6 +4,7 @@ public class MainCharacterPartsInfo
 {
     public CharacterRace Race { get; private set; }
     public int HairPartsId { get; private set; }
+    public bool ShowHelmet { get; private set; }
     public Dictionary<CharacterPartsType, DataCharacterParts> PartsInfoDic { get; private set; } = new();
 
     #region Value
@@ -21,6 +22,7 @@ public class MainCharacterPartsInfo
 
         HairPartsId = 0;
         Race = CharacterRace.Human;
+        ShowHelmet = true;
     }
 
     public void SetRaceParts(CharacterRace race)
@@ -45,20 +47,21 @@ public class MainCharacterPartsInfo
         HairPartsId = hairPartsId;
         
         var hairData = partsContainer.GetById(hairPartsId);
-
-        if (hairData.IsNullOrEmpty())
-        {
-            HairPartsId = (int)CharacterPartsDefine.PARTS_HAIR_HAIR_HAIR1;
-            hairData = partsContainer.GetById(HairPartsId);
-        }
-        
         PartsInfoDic[CharacterPartsType.Hair] = hairData;
+    }
+
+    public void SetShowHelmet(bool value)
+    {
+        ShowHelmet = value;
     }
 
     public void SetEquipmentParts(Dictionary<EquipmentType, EquipmentDefine> equipmentInfo)
     {
         foreach (var equipInfo in equipmentInfo)
         {
+            if (equipInfo.Key == EquipmentType.Helmet && !ShowHelmet)
+                continue;
+
             var equipmentData = equipmentContainer.GetById((int)equipInfo.Value);
 
             if (equipmentData.IsNullOrEmpty())

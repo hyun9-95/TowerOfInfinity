@@ -41,7 +41,15 @@ public class IntroFlow : BaseFlow<IntroFlowModel>
 
     private void EnterGame()
     {
-        FlowManager.Instance.ChangeCurrentTownFlow().Forget();
+        if (PlayerManager.Instance.User.IsCompletePrologue)
+        {
+            FlowManager.Instance.ChangeCurrentTownFlow().Forget();
+        }
+        else
+        {
+            var customizationFlowModel = new CustomizationFlowModel();
+            FlowManager.Instance.ChangeFlow(FlowType.CustomizationFlow, customizationFlowModel).Forget();
+        }
     }
 
     private void CheatEnterGame()
@@ -57,7 +65,7 @@ public class IntroFlow : BaseFlow<IntroFlowModel>
         }
         else
         {
-            FlowManager.Instance.ChangeCurrentTownFlow().Forget();
+            EnterGame();
         }
 #endif
     }

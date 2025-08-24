@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 public class CharacterCustomizationController : BaseController<CharacterCustomizationViewModel>
@@ -28,7 +29,11 @@ public class CharacterCustomizationController : BaseController<CharacterCustomiz
         Model.SetIsShowHelmet(false);
 
         var datas = partsContainer.FindAll(data => data.PartsType == CharacterPartsType.Hair);
-        Model.SetSelectableHairDatas(datas);
+        var selectableDatas = new List<DataCharacterParts>(datas.Length + 1);
+        selectableDatas.Add(null);
+        selectableDatas.AddRange(datas);
+
+        Model.SetSelectableHairDatas(selectableDatas.ToArray());
 
         SetCurrentParts();
     }
@@ -96,7 +101,16 @@ public class CharacterCustomizationController : BaseController<CharacterCustomiz
             return;
 
         var changePartsList = Model.SelectRaceParts.Values.ToList();
-        changePartsList.Add(Model.SelectHairData);
+        var removePartsList = new List<CharacterPartsType>();
+
+        if (Model.SelectHairData != null)
+        {
+            changePartsList.Add(Model.SelectHairData);
+        }
+        else
+        {
+            removePartsList.Add(CharacterPartsType.Hair);
+        }
 
         if (showEquipments)
         {
@@ -133,8 +147,12 @@ public class CharacterCustomizationController : BaseController<CharacterCustomiz
                 changePartsList.Add(partsData);
             }
         }
+        else
+        {
+            removePartsList.Add(CharacterPartsType.Helmet);
+        }
 
-        await mainPlayerCharacter.UpdateSpriteLibraryAsset(changePartsList);
+        await mainPlayerCharacter.UpdateSpriteLibraryAsset(changePartsList, removePartsList);
     }
 
     private void OnCompleteCustomize()
@@ -142,12 +160,12 @@ public class CharacterCustomizationController : BaseController<CharacterCustomiz
         // 유저 정보에 반영
         var mainCharacterInfo = PlayerManager.Instance.GetMainCharacterInfo();
         mainCharacterInfo.SetCharacterRace(Model.SelectRace);
-        mainCharacterInfo.SetHairPartsId(Model.SelectHairData.Id);
-
+       
         // 파츠정보에 반영
         var partsInfo = mainCharacterInfo.PartsInfo;
         partsInfo.SetRaceParts(Model.SelectRace);
-        partsInfo.SetHairParts(Model.SelectHairData.Id);
+        partsInfo.SetHairParts(Model.SelectHairData != null ? Model.SelectHairData.Id : 0);
+        partsInfo.SetShowHelmet(Model.IsShowHelmet);
 
         // 도입부 플래그
         PlayerManager.Instance.User.SetCompletePrologue(true);
@@ -161,7 +179,7 @@ public class CharacterCustomizationController : BaseController<CharacterCustomiz
         townFlowModel.SetDataTown(townData);
         townFlowModel.AddStateEvent(FlowState.TranstionIn, async() =>
         {
-            await OnChangePartsAsync(true, true);
+            await OnChangePartsAsync(true, Model.IsShowHelmet);
             mainPlayerCharacter.LibraryBuilder.ResetPreload();
         });
 

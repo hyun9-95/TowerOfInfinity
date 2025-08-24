@@ -28,10 +28,13 @@ public class CustomizationFlow : BaseFlow<CustomizationFlowModel>
     {
         await ActiveCharacters();
         await ShowCustomizationView();
+
+        InputManager.EnableMoveInput(true);
     }
 
     public override async UniTask Exit()
     {
+        InputManager.EnableMoveInput(false);
     }
 
     private async UniTask LoadPlayerCharacters()

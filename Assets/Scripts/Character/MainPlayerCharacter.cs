@@ -64,7 +64,7 @@ public class MainPlayerCharacter : MonoBehaviour
         characterUnit.SetSpriteLibraryAsset(spriteLibraryAsset);
     }
 
-    public async UniTask UpdateSpriteLibraryAsset(IEnumerable<DataCharacterParts> changeParts)
+    public async UniTask UpdateSpriteLibraryAsset(IEnumerable<DataCharacterParts> changeParts, IEnumerable<CharacterPartsType> removeTypes)
     {
         var spriteLibrary = characterUnit.SpriteLibrary;
 
@@ -74,7 +74,7 @@ public class MainPlayerCharacter : MonoBehaviour
             DestroyImmediate(spriteLibrary.spriteLibraryAsset);
         }
 
-        var spriteLibraryAsset = await LibraryBuilder.UpdateParts(changeParts);
+        var spriteLibraryAsset = await LibraryBuilder.UpdateParts(changeParts, removeTypes);
         characterUnit.SetSpriteLibraryAsset(spriteLibraryAsset);
     }
 }

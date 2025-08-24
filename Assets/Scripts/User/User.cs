@@ -25,7 +25,7 @@ public class User
     {
         UserId = userSaveInfo.Id;
         IsCompletePrologue = userSaveInfo.IsCompletePrologue;
-        CurrentTown = userSaveInfo.CurrentTown;
+        CurrentTown = (TownDefine)userSaveInfo.CurrentTown;
 
 #if CHEAT
         if (CheatManager.CheatConfig.TownDefine != TownDefine.None)
@@ -70,11 +70,12 @@ public class User
     {
         var mainCharacterInfo = new MainCharacterInfo();
         mainCharacterInfo.SetCharacterRace(userSaveInfo.CharacterRace);
-        mainCharacterInfo.SetHairPartsId(userSaveInfo.HairPartsId);
 
         var mainCharacterPartsInfo = new MainCharacterPartsInfo();
         mainCharacterPartsInfo.SetRaceParts(mainCharacterInfo.CharacterRace);
-        mainCharacterPartsInfo.SetHairParts(mainCharacterInfo.HairPartsId);
+        mainCharacterPartsInfo.SetHairParts(userSaveInfo.HairPartsId);
+        mainCharacterPartsInfo.SetShowHelmet(userSaveInfo.ShowHelmet);
+
         var equippedEquipments = UserEquipmentInfo.CreateEquippedMainCharacterEquipments(userSaveInfo);
         mainCharacterInfo.SetEquippedEquipments(equippedEquipments);
         
@@ -156,10 +157,12 @@ public class User
 
         // 메인 캐릭터
         var characterRace = UserCharacterInfo.MainCharacterInfo.CharacterRace;
-        var hairPartsId = UserCharacterInfo.MainCharacterInfo.HairPartsId;
-        
+        var hairPartsId = UserCharacterInfo.MainCharacterInfo.PartsInfo.HairPartsId;
+        var showHelmet = UserCharacterInfo.MainCharacterInfo.PartsInfo.ShowHelmet;
+
         userSaveInfo.SetCharacterRace(characterRace);
         userSaveInfo.SetHairPartsId(hairPartsId);
+        userSaveInfo.SetShowHelmet(showHelmet);
 
         // 장비
         var ownedEquipmentIds = new List<int>();
@@ -181,7 +184,7 @@ public class User
 
         userSaveInfo.SetEquippedMainCharacterEquipmentIds(equippedMainCharacterEquipmentIds);
 
-        userSaveInfo.SetCurrentTown(CurrentTown);
+        userSaveInfo.SetCurrentTown((int)CurrentTown);
 
         userSaveInfo.CheckDefaultValue();
         

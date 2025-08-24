@@ -26,6 +26,9 @@ public class UserSaveInfo
     public int HairPartsId { get; private set; }
 
     [JsonProperty]
+    public bool ShowHelmet { get; private set; }
+
+    [JsonProperty]
     public List<int> OwnedEquipmentIds { get; private set; }
 
     [JsonProperty]
@@ -35,7 +38,10 @@ public class UserSaveInfo
     public Dictionary<EquipmentType, int> EquippedMainCharacterEquipmentIds { get; private set; }
 
     [JsonProperty]
-    public TownDefine CurrentTown;
+    public Dictionary<CharacterPartsType, int> PartsInfoDic { get; private set; }
+
+    [JsonProperty]
+    public int CurrentTown;
     #endregion
 
     #region Value
@@ -86,11 +92,13 @@ public class UserSaveInfo
             };
         }
 
-        if (CurrentTown == TownDefine.None)
-        {
-            CurrentTown = IsCompletePrologue ?
-                        TownDefine.TOWN_RUINS : TownDefine.TOWN_CUSTOMIZATION;
-        }
+        if (CurrentTown == 0)
+            CurrentTown = (int)TownDefine.TOWN_RUINS;
+
+#if CHEAT
+        if (CheatManager.CheatConfig.IsEnterCustomizationFlow)
+            IsCompletePrologue = false;
+#endif
     }
 
     public void SetId(string id) => Id = id;
@@ -102,6 +110,8 @@ public class UserSaveInfo
     public void SetOwnedEquipmentIds(List<int> ownedEquipmentIds) => OwnedEquipmentIds = ownedEquipmentIds;
     public void SetEquipmentLevels(Dictionary<int, int> equipmentLevels) => EquipmentLevels = equipmentLevels;
     public void SetEquippedMainCharacterEquipmentIds(Dictionary<EquipmentType, int> equippedMainCharacterEquipmentIds) => EquippedMainCharacterEquipmentIds = equippedMainCharacterEquipmentIds;
-    public void SetCurrentTown(TownDefine currentTown) => CurrentTown = currentTown;
+    public void SetCurrentTown(int currentTown) => CurrentTown = currentTown;
+    public void SetPartsInfoDic(Dictionary<CharacterPartsType, int> partsInfoDic) => PartsInfoDic = partsInfoDic;
+    public void SetShowHelmet(bool showHelmet) => ShowHelmet = showHelmet;
     #endregion
 }
