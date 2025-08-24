@@ -75,7 +75,7 @@ public class CharacterSpriteLibraryBuilder : AddressableMono
             if (hasNewPart && hasLoadedPart)
             {
                 var newPartsName = newPartsData?.PartsName;
-                var newColorCode = newPartsData?.ColorCode;
+                var newColorCode = "";
                 var newFinalPartsName = string.IsNullOrEmpty(newColorCode) ? newPartsName : $"{newPartsName}{newColorCode}";
                 var newAddress = BuildPartsAddress(partType, newPartsName);
 
@@ -103,7 +103,7 @@ public class CharacterSpriteLibraryBuilder : AddressableMono
                 if (userCharacterPartsInfo.PartsInfoDic.TryGetValue(partType, out var partsData))
                 {
                     var partsName = partsData?.PartsName;
-                    var colorCode = partsData?.ColorCode;
+                    var colorCode = "";
 
                     if (string.IsNullOrEmpty(partsName))
                     {
@@ -149,8 +149,8 @@ public class CharacterSpriteLibraryBuilder : AddressableMono
                 continue;
 
             var partsName = partsData.PartsName;
-            var colorCode = partsData.ColorCode;
-            
+            var colorCode = "";
+
             if (string.IsNullOrEmpty(partsName))
                 continue;
 

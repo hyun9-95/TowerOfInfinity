@@ -13,8 +13,6 @@ public class DataCharacterParts : IBaseData
     public readonly CharacterPartsType PartsType;
     [JsonProperty(PropertyName = "PartsName")]
     public readonly string PartsName;
-    [JsonProperty(PropertyName = "ColorCode")]
-    public readonly string ColorCode;
 	
 	public int Id => id;
     public bool IsEmpty => id == 0;
