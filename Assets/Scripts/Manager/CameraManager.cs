@@ -31,6 +31,11 @@ public class CameraManager : BaseMonoManager<CameraManager>
         return worldCamera;
     }
 
+    public CinemachineBrain GetCinemachineBrain()
+    {
+        return cinemachineBrain;
+    }
+
     public float CalculateCameraDiagonalLengthFromCenter()
     {
         Bounds camBounds = GetOrthographicCameraBounds(worldCamera);

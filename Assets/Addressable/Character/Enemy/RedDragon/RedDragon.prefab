@@ -14,7 +14,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 0279081965bf9da449f9adebe85bb89c, type: 2}
     - target: {fileID: -5463155225954161578, guid: 3f669f6d112971a4ca167399c23c3769, type: 3}
       propertyPath: debugLog
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -5463155225954161578, guid: 3f669f6d112971a4ca167399c23c3769, type: 3}
       propertyPath: customStateGroupAddress

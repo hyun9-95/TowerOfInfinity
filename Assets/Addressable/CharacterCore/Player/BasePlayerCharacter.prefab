@@ -183,6 +183,8 @@ MonoBehaviour:
     _serializedList:
     - Key: 10
       Value: 0.12
+  alternativeAnimDic:
+    _serializedList: []
   customStateGroupAddress: 
   debugLog: 0
 --- !u!61 &2477859979652061185
@@ -290,7 +292,7 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4

@@ -1,9 +1,9 @@
 #pragma warning disable CS1998
 using Cysharp.Threading.Tasks;
-using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.UI;
 
+[DefaultExecutionOrder(10000)]
 public class HpBarUnit : BaseUnit<HpBarUnitModel>
 {
     [SerializeField]
@@ -15,13 +15,20 @@ public class HpBarUnit : BaseUnit<HpBarUnitModel>
     [SerializeField]
     private Vector2 localOffset;
 
+    [SerializeField]
+    private PlayerLoopTiming timing = PlayerLoopTiming.Initialization;
+
     private bool acitvated = false;
+    private Camera worldCamera;
 
     public override async UniTask ShowAsync()
     {
+        worldCamera = CameraManager.Instance.GetCinemachineBrain().OutputCamera;
         acitvated = true;
         gameObject.SetActive(true);
-        CinemachineCore.CameraUpdatedEvent.AddListener(UpdatePos);
+
+        UpdatePos();
+        UpdatePosAsync().Forget();
     }
 
     public void Hide()
@@ -30,7 +37,16 @@ public class HpBarUnit : BaseUnit<HpBarUnitModel>
         gameObject.SetActive(false);
     }
 
-    private void UpdatePos(CinemachineBrain brain)
+    private async UniTask UpdatePosAsync()
+    {
+        while (acitvated && gameObject.SafeActiveSelf())
+        {
+            UpdatePos();
+            await UniTask.Yield(timing);
+        }
+    }
+
+    private void UpdatePos()
     {
         if (!acitvated)
             return;
@@ -45,7 +61,7 @@ public class HpBarUnit : BaseUnit<HpBarUnitModel>
 
         rectTransform.FollowWorldPosition(
             Model.Owner.Transform.position,
-            brain.OutputCamera,
+            worldCamera,
             Model.BattleUICamera,
             Model.BattleUICanvasRect,
             localOffset
@@ -55,6 +71,5 @@ public class HpBarUnit : BaseUnit<HpBarUnitModel>
     private void OnDisable()
     {
         acitvated = false;
-        CinemachineCore.CameraUpdatedEvent.RemoveListener(UpdatePos);
     }
 }
