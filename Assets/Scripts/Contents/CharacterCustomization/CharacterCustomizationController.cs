@@ -2,6 +2,7 @@ using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 public class CharacterCustomizationController : BaseController<CharacterCustomizationViewModel>
 {
@@ -22,6 +23,9 @@ public class CharacterCustomizationController : BaseController<CharacterCustomiz
         Model.SetOnSelectHair(OnSelectHair);
         Model.SetOnShowHelemet(OnShowHelmet);
         Model.SetOnShowEquipments(OnShowEquipment);
+        Model.SetOnSelectPartsForEdit(OnSelectPartsForEdit);
+        Model.SetOnChangeColor(OnChangeColor);
+        Model.SetOnChangeHSV(OnChangeHSV);
         Model.SetSelectableRaces((CharacterRace[])Enum.GetValues(typeof(CharacterRace)));
 
         // 장비와 헬멧은 기본적으로 숨김
@@ -52,8 +56,16 @@ public class CharacterCustomizationController : BaseController<CharacterCustomiz
             Model.SetSelectRaceParts(partsData.PartsType, partsData);
         }
 
-        var hairData = mainCharacterInfo.PartsInfo.GetPartsData(CharacterPartsType.Hair);
-        Model.SetSelectHair(hairData);
+        var hairInfo = mainCharacterInfo.PartsInfo.GetPartsInfo(CharacterPartsType.Hair);
+        if (hairInfo != null)
+        {
+            Model.SetSelectHair(hairInfo);
+        }
+        else
+        {
+            var hairData = mainCharacterInfo.PartsInfo.GetPartsData(CharacterPartsType.Hair);
+            Model.SetSelectHair(hairData);
+        }
     }
 
     public override async UniTask LoadingProcess()
@@ -90,6 +102,23 @@ public class CharacterCustomizationController : BaseController<CharacterCustomiz
         OnChangeParts();
     }
 
+    private void OnSelectPartsForEdit(CharacterPartsType partsType)
+    {
+        Model.SetCurrentEditingParts(partsType);
+    }
+
+    private void OnChangeColor(Color color)
+    {
+        Model.UpdateCurrentPartsColor(color);
+        OnChangeParts();
+    }
+
+    private void OnChangeHSV(Vector3 hsv)
+    {
+        Model.UpdateCurrentPartsHSV(hsv);
+        OnChangeParts();
+    }
+
     private void OnChangeParts()
     {
         OnChangePartsAsync(Model.IsShowEquipments, Model.IsShowHelmet).Forget();
@@ -103,9 +132,9 @@ public class CharacterCustomizationController : BaseController<CharacterCustomiz
         var changePartsList = Model.SelectRaceParts.Values.ToList();
         var removePartsList = new List<CharacterPartsType>();
 
-        if (Model.SelectHairData != null)
+        if (Model.SelectHairInfo != null)
         {
-            changePartsList.Add(Model.SelectHairData);
+            changePartsList.Add(Model.SelectHairInfo);
         }
         else
         {
@@ -131,7 +160,8 @@ public class CharacterCustomizationController : BaseController<CharacterCustomiz
                 if (equippedEquipment != null)
                 {
                     var partsData = partsContainer.GetById((int)equippedEquipment.PartsData);
-                    changePartsList.Add(partsData);
+                    var partsInfo = new CharacterPartsInfo(partsData);
+                    changePartsList.Add(partsInfo);
                 }
             }
         }
@@ -144,7 +174,8 @@ public class CharacterCustomizationController : BaseController<CharacterCustomiz
             if (equippedHelmet != null)
             {
                 var partsData = partsContainer.GetById((int)equippedHelmet.PartsData);
-                changePartsList.Add(partsData);
+                var partsInfo = new CharacterPartsInfo(partsData);
+                changePartsList.Add(partsInfo);
             }
         }
         else
@@ -164,7 +195,7 @@ public class CharacterCustomizationController : BaseController<CharacterCustomiz
         // 파츠정보에 반영
         var partsInfo = mainCharacterInfo.PartsInfo;
         partsInfo.SetRaceParts(Model.SelectRace);
-        partsInfo.SetHairParts(Model.SelectHairData != null ? Model.SelectHairData.Id : 0);
+        partsInfo.SetHairParts(Model.SelectHairInfo != null && Model.SelectHairInfo.IsValid() ? Model.SelectHairInfo.PartsDataId : 0);
         partsInfo.SetShowHelmet(Model.IsShowHelmet);
 
         // 도입부 플래그

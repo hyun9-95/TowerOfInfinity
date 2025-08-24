@@ -64,22 +64,25 @@ public class CharacterSpriteLibraryBuilder : AddressableMono
         foreach (CharacterPartsType partType in partsEnumArray)
         {
             // 새로운 파츠 정보에서 해당 타입의 파츠 확인
-            bool hasNewPart = newPartsInfo.PartsInfoDic.TryGetValue(partType, out var newPartsData);
+            bool hasNewPart = newPartsInfo.PartsInfoDic.TryGetValue(partType, out var newCharacterPartsInfo);
             bool hasLoadedPart = loadedParts.TryGetValue(partType, out var loadedPartsInfo);
 
             // 한쪽에만 파츠가 있는 경우 변경됨
             if (hasNewPart != hasLoadedPart)
                 return true;
 
-            // 둘 다 파츠가 있는 경우 주소 비교
+            // 둘 다 파츠가 있는 경우 상세 비교
             if (hasNewPart && hasLoadedPart)
             {
-                var newPartsName = newPartsData?.PartsName;
-                var newColorCode = "";
-                var newFinalPartsName = string.IsNullOrEmpty(newColorCode) ? newPartsName : $"{newPartsName}{newColorCode}";
+                var newPartsData = newCharacterPartsInfo.GetPartsData();
+                if (newPartsData == null)
+                    return true;
+
+                var newPartsName = newPartsData.PartsName;
+                var newFinalPartsName = newCharacterPartsInfo.GetFormattedPartsName();
                 var newAddress = BuildPartsAddress(partType, newPartsName);
 
-                // 주소가 다르면 변경됨
+                // 주소가 다르거나 색상 정보가 다르면 변경됨
                 if (loadedPartsInfo.Address != newAddress || 
                     loadedPartsInfo.PartName != newFinalPartsName)
                     return true;
@@ -100,18 +103,23 @@ public class CharacterSpriteLibraryBuilder : AddressableMono
             foreach (CharacterPartsType partType in partsEnumArray)
             {
                 int index = (int)partType;
-                if (userCharacterPartsInfo.PartsInfoDic.TryGetValue(partType, out var partsData))
+                if (userCharacterPartsInfo.PartsInfoDic.TryGetValue(partType, out var partsInfo))
                 {
-                    var partsName = partsData?.PartsName;
-                    var colorCode = "";
+                    var partsData = partsInfo?.GetPartsData();
+                    if (partsData == null)
+                    {
+                        parts[index] = null;
+                        continue;
+                    }
 
+                    var partsName = partsData.PartsName;
                     if (string.IsNullOrEmpty(partsName))
                     {
                         parts[index] = null;
                         continue;
                     }
 
-                    parts[index] = string.IsNullOrEmpty(colorCode) ? partsName : $"{partsName}{colorCode}";
+                    parts[index] = partsInfo.GetFormattedPartsName();
                 }
             }
         }
@@ -132,9 +140,9 @@ public class CharacterSpriteLibraryBuilder : AddressableMono
         return await CreateNewSpriteLibrary(partsNames, partsEnumArray);
     }
 
-    public async UniTask<SpriteLibraryAsset> UpdateParts(IEnumerable<DataCharacterParts> partsDataArray, IEnumerable<CharacterPartsType> removeTypes = null)
+    public async UniTask<SpriteLibraryAsset> UpdateParts(IEnumerable<CharacterPartsInfo> partsInfoArray, IEnumerable<CharacterPartsType> removeTypes = null)
     {
-        if (partsDataArray == null || partsDataArray.Count() == 0)
+        if (partsInfoArray == null || partsInfoArray.Count() == 0)
             return null;
 
         if (partsContainer == null)
@@ -143,18 +151,19 @@ public class CharacterSpriteLibraryBuilder : AddressableMono
         var partsEnumArray = Enum.GetValues(typeof(CharacterPartsType));
         var currentPartsNames = GetCurrentPartsNames();
         
-        foreach (var partsData in partsDataArray)
+        foreach (var partsInfo in partsInfoArray)
         {
-            if (partsData.IsNullOrEmpty())
+            if (partsInfo == null || !partsInfo.IsValid())
                 continue;
 
-            var partsName = partsData.PartsName;
-            var colorCode = "";
-
-            if (string.IsNullOrEmpty(partsName))
+            var partsData = partsInfo.GetPartsData();
+            if (partsData == null)
+                continue;
+            
+            var finalPartsName = partsInfo.GetFormattedPartsName();
+            if (string.IsNullOrEmpty(finalPartsName))
                 continue;
 
-            var finalPartsName = string.IsNullOrEmpty(colorCode) ? partsName : $"{partsName}{colorCode}";
             currentPartsNames[(int)partsData.PartsType] = finalPartsName;
         }
 

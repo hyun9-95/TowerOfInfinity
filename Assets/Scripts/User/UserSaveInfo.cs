@@ -38,7 +38,7 @@ public class UserSaveInfo
     public Dictionary<EquipmentType, int> EquippedMainCharacterEquipmentIds { get; private set; }
 
     [JsonProperty]
-    public Dictionary<CharacterPartsType, int> PartsInfoDic { get; private set; }
+    public Dictionary<CharacterPartsType, CharacterPartsInfo> PartsInfoDic { get; private set; }
 
     [JsonProperty]
     public int CurrentTown;
@@ -111,7 +111,7 @@ public class UserSaveInfo
     public void SetEquipmentLevels(Dictionary<int, int> equipmentLevels) => EquipmentLevels = equipmentLevels;
     public void SetEquippedMainCharacterEquipmentIds(Dictionary<EquipmentType, int> equippedMainCharacterEquipmentIds) => EquippedMainCharacterEquipmentIds = equippedMainCharacterEquipmentIds;
     public void SetCurrentTown(int currentTown) => CurrentTown = currentTown;
-    public void SetPartsInfoDic(Dictionary<CharacterPartsType, int> partsInfoDic) => PartsInfoDic = partsInfoDic;
+    public void SetPartsInfoDic(Dictionary<CharacterPartsType, CharacterPartsInfo> partsInfoDic) => PartsInfoDic = partsInfoDic;
     public void SetShowHelmet(bool showHelmet) => ShowHelmet = showHelmet;
     #endregion
 }

@@ -24,6 +24,37 @@ public class CharacterCustomizationView : BaseView
     [SerializeField]
     private Button completeButton;
 
+    [Header("Color Customization")]
+    [SerializeField]
+    private GameObject colorCustomizationPanel;
+
+    [SerializeField] 
+    private Button[] partsEditButtons;
+
+    [SerializeField]
+    private Slider redSlider;
+
+    [SerializeField]
+    private Slider greenSlider;
+
+    [SerializeField]
+    private Slider blueSlider;
+
+    [SerializeField]
+    private Image colorPreview;
+
+    [SerializeField]
+    private Slider hueSlider;
+
+    [SerializeField]
+    private Slider saturationSlider;
+
+    [SerializeField]
+    private Slider valueSlider;
+
+    [SerializeField]
+    private Button resetColorButton;
+
     private void Start()
     {
         SetupEventListeners();
@@ -51,6 +82,8 @@ public class CharacterCustomizationView : BaseView
 
         if (completeButton != null)
             completeButton.onClick.AddListener(OnCompleteCustomize);
+
+        SetupColorCustomizationListeners();
     }
 
     private void SetupDropdownOptions()
@@ -119,18 +152,22 @@ public class CharacterCustomizationView : BaseView
         if (hairDropDown == null || Model.SelectableHairDatas == null)
             return;
 
-        if (Model.SelectHairData == null)
+        if (Model.SelectHairInfo == null)
         {
             hairDropDown.value = 0;
             return;
         }
 
-        for (int i = 1; i < Model.SelectableHairDatas.Length; i++)
+        var currentHairData = Model.SelectHairInfo.GetPartsData();
+        if (currentHairData != null)
         {
-            if (Model.SelectableHairDatas[i].Id == Model.SelectHairData.Id)
+            for (int i = 1; i < Model.SelectableHairDatas.Length; i++)
             {
-                hairDropDown.value = i;
-                return;
+                if (Model.SelectableHairDatas[i] != null && Model.SelectableHairDatas[i].Id == currentHairData.Id)
+                {
+                    hairDropDown.value = i;
+                    return;
+                }
             }
         }
     }
@@ -166,5 +203,108 @@ public class CharacterCustomizationView : BaseView
     private void OnCompleteCustomize()
     {
         Model.OnCompleteCustomize?.Invoke();
+    }
+
+    private void SetupColorCustomizationListeners()
+    {
+        if (partsEditButtons != null)
+        {
+            for (int i = 0; i < partsEditButtons.Length; i++)
+            {
+                var partsType = (CharacterPartsType)i;
+                partsEditButtons[i]?.onClick.AddListener(() => OnSelectPartsForEdit(partsType));
+            }
+        }
+
+        redSlider?.onValueChanged.AddListener(OnColorSliderChanged);
+        greenSlider?.onValueChanged.AddListener(OnColorSliderChanged);
+        blueSlider?.onValueChanged.AddListener(OnColorSliderChanged);
+
+        hueSlider?.onValueChanged.AddListener(OnHSVSliderChanged);
+        saturationSlider?.onValueChanged.AddListener(OnHSVSliderChanged);
+        valueSlider?.onValueChanged.AddListener(OnHSVSliderChanged);
+
+        resetColorButton?.onClick.AddListener(OnResetColor);
+    }
+
+    private void OnSelectPartsForEdit(CharacterPartsType partsType)
+    {
+        Model.OnSelectPartsForEdit?.Invoke(partsType);
+        UpdateColorCustomizationPanel();
+    }
+
+    private void OnColorSliderChanged(float value)
+    {
+        if (redSlider == null || greenSlider == null || blueSlider == null)
+            return;
+
+        var color = new Color(redSlider.value / 255f, greenSlider.value / 255f, blueSlider.value / 255f);
+        UpdateColorPreview(color);
+        Model.OnChangeColor?.Invoke(color);
+    }
+
+    private void OnHSVSliderChanged(float value)
+    {
+        if (hueSlider == null || saturationSlider == null || valueSlider == null)
+            return;
+
+        var hsv = new Vector3(hueSlider.value, saturationSlider.value, valueSlider.value);
+        Model.OnChangeHSV?.Invoke(hsv);
+    }
+
+    private void OnResetColor()
+    {
+        if (redSlider != null) redSlider.value = 255f;
+        if (greenSlider != null) greenSlider.value = 255f;
+        if (blueSlider != null) blueSlider.value = 255f;
+
+        if (hueSlider != null) hueSlider.value = 0f;
+        if (saturationSlider != null) saturationSlider.value = 0f;
+        if (valueSlider != null) valueSlider.value = 0f;
+
+        UpdateColorPreview(Color.white);
+        Model.OnChangeColor?.Invoke(Color.white);
+        Model.OnChangeHSV?.Invoke(Vector3.zero);
+    }
+
+    private void UpdateColorCustomizationPanel()
+    {
+        if (colorCustomizationPanel == null)
+            return;
+
+        bool hasEditingParts = Model.CurrentEditingPartsInfo != null;
+        colorCustomizationPanel.SetActive(hasEditingParts);
+
+        if (hasEditingParts)
+        {
+            UpdateColorSliders();
+            UpdateHSVSliders();
+        }
+    }
+
+    private void UpdateColorSliders()
+    {
+        var currentColor = Model.GetCurrentPartsColor();
+        
+        if (redSlider != null) redSlider.value = currentColor.r * 255f;
+        if (greenSlider != null) greenSlider.value = currentColor.g * 255f;
+        if (blueSlider != null) blueSlider.value = currentColor.b * 255f;
+
+        UpdateColorPreview(currentColor);
+    }
+
+    private void UpdateHSVSliders()
+    {
+        var currentHSV = Model.GetCurrentPartsHSV();
+
+        if (hueSlider != null) hueSlider.value = currentHSV.x;
+        if (saturationSlider != null) saturationSlider.value = currentHSV.y;
+        if (valueSlider != null) valueSlider.value = currentHSV.z;
+    }
+
+    private void UpdateColorPreview(Color color)
+    {
+        if (colorPreview != null)
+            colorPreview.color = color;
     }
 }

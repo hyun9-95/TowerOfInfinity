@@ -5,7 +5,7 @@ public class MainCharacterPartsInfo
     public CharacterRace Race { get; private set; }
     public int HairPartsId { get; private set; }
     public bool ShowHelmet { get; private set; }
-    public Dictionary<CharacterPartsType, DataCharacterParts> PartsInfoDic { get; private set; } = new();
+    public Dictionary<CharacterPartsType, CharacterPartsInfo> PartsInfoDic { get; private set; } = new();
 
     #region Value
     private DataContainer<DataCharacterParts> partsContainer;
@@ -38,7 +38,7 @@ public class MainCharacterPartsInfo
             if (data.IsNullOrEmpty())
                 continue;
 
-            PartsInfoDic[data.PartsType] = data;
+            PartsInfoDic[data.PartsType] = new CharacterPartsInfo(data);
         }
     }
 
@@ -47,7 +47,7 @@ public class MainCharacterPartsInfo
         HairPartsId = hairPartsId;
         
         var hairData = partsContainer.GetById(hairPartsId);
-        PartsInfoDic[CharacterPartsType.Hair] = hairData;
+        PartsInfoDic[CharacterPartsType.Hair] = new CharacterPartsInfo(hairData);
     }
 
     public void SetShowHelmet(bool value)
@@ -72,15 +72,23 @@ public class MainCharacterPartsInfo
             if (equipmentPartsData.IsNullOrEmpty())
                 continue;
 
-            PartsInfoDic[equipmentPartsData.PartsType] = equipmentPartsData;
+            PartsInfoDic[equipmentPartsData.PartsType] = new CharacterPartsInfo(equipmentPartsData);
         }
     }
 
     public DataCharacterParts GetPartsData(CharacterPartsType partsType)
     {
-        if (PartsInfoDic.TryGetValue(partsType, out var partsData))
-            return partsData;
+        if (PartsInfoDic.TryGetValue(partsType, out var partsInfo))
+            return partsInfo.GetPartsData();
 
         return default;
+    }
+
+    public CharacterPartsInfo GetPartsInfo(CharacterPartsType partsType)
+    {
+        if (PartsInfoDic.TryGetValue(partsType, out var partsInfo))
+            return partsInfo;
+
+        return null;
     }
 }

@@ -64,7 +64,7 @@ public class MainPlayerCharacter : MonoBehaviour
         characterUnit.SetSpriteLibraryAsset(spriteLibraryAsset);
     }
 
-    public async UniTask UpdateSpriteLibraryAsset(IEnumerable<DataCharacterParts> changeParts, IEnumerable<CharacterPartsType> removeTypes)
+    public async UniTask UpdateSpriteLibraryAsset(IEnumerable<CharacterPartsInfo> changeParts, IEnumerable<CharacterPartsType> removeTypes)
     {
         var spriteLibrary = characterUnit.SpriteLibrary;
 
