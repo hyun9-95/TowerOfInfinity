@@ -26,7 +26,7 @@ public class BlackholeColliderTriggerUnit : BaseTriggerUnit<BlackholeTriggerUnit
 
         if (Model.IsEnableFollow)
         {
-            FollowAsync(offset).Forget();
+            FollowAsync(offset, followTime).Forget();
         }
         else
         {
@@ -35,41 +35,6 @@ public class BlackholeColliderTriggerUnit : BaseTriggerUnit<BlackholeTriggerUnit
 
         ShowRenderer();
 
-        await EnableColliderAsync();
-        await base.ShowAsync();
-    }
-
-    protected virtual async UniTask EnableColliderAsync()
-    {
-        if (detectStartTime > 0)
-            await UniTaskUtils.DelaySeconds(detectStartTime, TokenPool.Get(GetHashCode()));
-
-        hitCollider.enabled = true;
-
-        if (detectDuration == 0)
-        {
-            await UniTaskUtils.WaitForFixedUpdate(TokenPool.Get(GetHashCode()));
-        }
-        else
-        {
-            await UniTaskUtils.DelaySeconds(detectDuration, TokenPool.Get(GetHashCode()));
-        }
-
-        hitCollider.enabled = false;
-    }
-
-    protected async UniTask FollowAsync(Vector3 localPosOffset)
-    {
-        float startTime = Time.time;
-        
-        while (!gameObject.CheckSafeNull() && gameObject.activeSelf)
-        {
-            if (followTime > 0 && Time.time - startTime >= followTime)
-                break;
-                
-            transform.position = Model.FollowTargetTransform.transform.position;
-            transform.localPosition += localPosOffset;
-            await UniTaskUtils.WaitForFixedUpdate(TokenPool.Get(GetHashCode()));
-        }
+        await EnableColliderAsync(detectStartTime, detectDuration);
     }
 }

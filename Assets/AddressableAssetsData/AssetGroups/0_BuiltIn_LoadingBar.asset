@@ -33,6 +33,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: badd5eb8c0c667748b4a45dcc38d42ba
+    m_Address: 0_BuiltIn/LoadingBar/RedSlider
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c5166d02c90b0b4428dbcb840981bbe7
     m_Address: 0_BuiltIn/LoadingBar/F_UI_BlueBar
     m_ReadOnly: 0

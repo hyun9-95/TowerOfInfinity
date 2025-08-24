@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: AB_WEAPON_ARROW
   m_EditorClassIdentifier: 
   type: 50000
-  Speed: []
+  Speed:
+  - 10
   Range:
   - 5
   - 5.2

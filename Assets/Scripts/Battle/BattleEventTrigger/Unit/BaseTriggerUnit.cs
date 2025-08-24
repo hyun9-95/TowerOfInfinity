@@ -26,17 +26,15 @@ public abstract class BaseTriggerUnit<T> : PoolableBaseUnit<T>, IBattleEventTrig
         OnUnitAwake();
     }
 
-    protected virtual void OnUnitAwake() { }
+    protected virtual void OnUnitAwake()
+    {
+
+    }
 
     protected override void OnDisable()
     {
         OnUnitDisable();
         base.OnDisable();
-    }
-
-    public override async UniTask ShowAsync()
-    {
-        AddEnemyKilledObserver();
     }
 
     protected virtual void OnUnitDisable()
@@ -46,6 +44,40 @@ public abstract class BaseTriggerUnit<T> : PoolableBaseUnit<T>, IBattleEventTrig
 
         RemoveEnemyKilledObserver();
         nextAllowedTime.Clear();
+    }
+
+    protected virtual async UniTask EnableColliderAsync(float detectStartTime, float detectDuration)
+    {
+        if (detectStartTime > 0)
+            await UniTaskUtils.DelaySeconds(detectStartTime, TokenPool.Get(GetHashCode()));
+
+        hitCollider.enabled = true;
+
+        if (detectDuration == 0)
+        {
+            await UniTaskUtils.WaitForFixedUpdate(TokenPool.Get(GetHashCode()));
+        }
+        else
+        {
+            await UniTaskUtils.DelaySeconds(detectDuration, TokenPool.Get(GetHashCode()));
+        }
+
+        hitCollider.enabled = false;
+    }
+
+    protected async UniTask FollowAsync(Vector3 localPosOffset, float followTime)
+    {
+        float startTime = Time.time;
+
+        while (!gameObject.CheckSafeNull() && gameObject.activeSelf)
+        {
+            if (followTime > 0 && Time.time - startTime >= followTime)
+                break;
+
+            transform.position = Model.FollowTargetTransform.transform.position;
+            transform.localPosition += localPosOffset;
+            await UniTaskUtils.WaitForFixedUpdate(TokenPool.Get(GetHashCode()));
+        }
     }
 
     #endregion
@@ -95,7 +127,6 @@ public abstract class BaseTriggerUnit<T> : PoolableBaseUnit<T>, IBattleEventTrig
         if (nextAllowedTime != null && nextAllowedTime.TryGetValue(targetModel, out var time) && nowTime < time)
             return;
 
-        // 회전이 반영된
         Vector2 attackPos = hitCollider.transform.position;
 
         Model.OnEventHit(other, attackPos);

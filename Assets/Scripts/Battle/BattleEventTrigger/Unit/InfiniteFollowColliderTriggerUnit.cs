@@ -10,7 +10,7 @@ public class InfiniteFollowColliderTriggerUnit : ColliderTriggerUnit
 	#endregion
 	
 	#region Function
-	protected override async UniTask EnableColliderAsync()
+	protected override async UniTask EnableColliderAsync(float detectStartTime, float detectDuration)
 	{
 		hitCollider.enabled = true;
 	}

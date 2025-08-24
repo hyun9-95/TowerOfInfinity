@@ -127,6 +127,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 370888382610883416, guid: 3940ba4195ef515439c4944acbc4ba79, type: 3}
+      propertyPath: orthographic size
+      value: 5.625
+      objectReference: {fileID: 0}
     - target: {fileID: 1800559472857223554, guid: 3940ba4195ef515439c4944acbc4ba79, type: 3}
       propertyPath: m_Name
       value: GameManager
@@ -164,8 +168,20 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6563164855511301765, guid: 3940ba4195ef515439c4944acbc4ba79, type: 3}
+      propertyPath: cheatConfig.ToggleInvincible
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6563164855511301765, guid: 3940ba4195ef515439c4944acbc4ba79, type: 3}
       propertyPath: cheatConfig.IsEnterBattleDirectly
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6563164855511301765, guid: 3940ba4195ef515439c4944acbc4ba79, type: 3}
+      propertyPath: cheatConfig.cheatAbility.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6563164855511301765, guid: 3940ba4195ef515439c4944acbc4ba79, type: 3}
+      propertyPath: 'cheatConfig.cheatAbility.Array.data[0]'
+      value: 50000
       objectReference: {fileID: 0}
     - target: {fileID: 8370250158373965001, guid: 3940ba4195ef515439c4944acbc4ba79, type: 3}
       propertyPath: m_LocalPosition.x
@@ -211,7 +227,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6969289197343423153, guid: 3940ba4195ef515439c4944acbc4ba79, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
