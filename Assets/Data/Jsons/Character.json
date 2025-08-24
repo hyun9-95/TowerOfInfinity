@@ -1,6 +1,7 @@
 [
   {
     "id": 10000,
+    "Name": "None",
     "PrefabName": "Character/Player/Thief/Thief",
     "PrimaryWeaponAbility": "AB_WEAPON_STING",
     "ActiveSkill": "None",
@@ -8,6 +9,7 @@
   },
   {
     "id": 10001,
+    "Name": "None",
     "PrefabName": "Character/Player/Archer/Archer",
     "PrimaryWeaponAbility": "AB_WEAPON_ARROW",
     "ActiveSkill": "None",
@@ -15,6 +17,7 @@
   },
   {
     "id": 10002,
+    "Name": "None",
     "PrefabName": "Character/Player/Guard/Guard",
     "PrimaryWeaponAbility": "AB_WEAPON_STING",
     "ActiveSkill": "None",
@@ -22,6 +25,7 @@
   },
   {
     "id": 11000,
+    "Name": "None",
     "PrefabName": "Character/Enemy/Bat/Bat",
     "PrimaryWeaponAbility": "None",
     "ActiveSkill": "None",
@@ -29,6 +33,7 @@
   },
   {
     "id": 11001,
+    "Name": "None",
     "PrefabName": "Character/Enemy/GreenOgre/GreenOgre",
     "PrimaryWeaponAbility": "AB_WEAPON_GREEN_OGRE_SMASH",
     "ActiveSkill": "None",
@@ -36,6 +41,7 @@
   },
   {
     "id": 11002,
+    "Name": "LOCAL_NAME_RED_DRAGON",
     "PrefabName": "Character/Enemy/RedDragon/RedDragon",
     "PrimaryWeaponAbility": "AB_WEAPON_DRAGON_BITE",
     "ActiveSkill": "None",
@@ -43,6 +49,7 @@
   },
   {
     "id": 11003,
+    "Name": "None",
     "PrefabName": "Character/Enemy/BlueSpirit/BlueSpirit",
     "PrimaryWeaponAbility": "None",
     "ActiveSkill": "None",
@@ -50,6 +57,7 @@
   },
   {
     "id": 11004,
+    "Name": "None",
     "PrefabName": "Character/Enemy/DarkStump/DarkStump",
     "PrimaryWeaponAbility": "None",
     "ActiveSkill": "None",
@@ -57,6 +65,7 @@
   },
   {
     "id": 11005,
+    "Name": "None",
     "PrefabName": "Character/Enemy/GreyRat/GreyRat",
     "PrimaryWeaponAbility": "None",
     "ActiveSkill": "None",

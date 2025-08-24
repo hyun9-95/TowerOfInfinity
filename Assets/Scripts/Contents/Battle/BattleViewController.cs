@@ -39,9 +39,29 @@ public class BattleViewController : BaseController<BattleViewModel>
         }
     }
 
+    public void SetBossModel(CharacterUnitModel model)
+    {
+        DataCharacter bossData = DataManager.Instance.GetDataById<DataCharacter>(model.CharacterDataId);
+
+        if (bossData.IsNullOrEmpty())
+            return;
+
+        var bossName = LocalizationManager.GetLocalization(bossData.Name);
+
+        if (string.IsNullOrEmpty(bossName))
+            bossName = LocalizationManager.GetLocalization(LocalizationDefine.LOCAL_WORD_BOSS);
+
+        Model.SetBossModel(model);
+        Model.SetBossName(bossName);
+
+        View.ShowBossUI(true);
+    }
+
     public override async UniTask Process()
     {
+        View.ShowBossUI(false);
         View.UpdateUI();
+
         ShowBattleUIAsync().Forget();
     }
 
@@ -54,7 +74,9 @@ public class BattleViewController : BaseController<BattleViewModel>
             if (View)
                 View.UpdateUI();
 
-            await UniTaskUtils.WaitForLastUpdate(cts.Token); 
+            await UniTaskUtils.NextFrame(cts.Token); 
         }
+
+        View.ShowBossUI(false);
     }
 }

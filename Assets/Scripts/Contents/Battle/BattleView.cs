@@ -23,6 +23,15 @@ public class BattleView : BaseView
     [SerializeField]
     private TextMeshProUGUI waveText;
 
+    [SerializeField]
+    private TextMeshProUGUI bossNameText;
+
+    [SerializeField]
+    private TextMeshProUGUI hpText;
+
+    [SerializeField]
+    private Slider hpSlider;
+
     public override async UniTask ShowAsync()
     {
         UpdateUI();
@@ -34,6 +43,25 @@ public class BattleView : BaseView
         killCountText.SafeSetText(Model.GetKillCountText());
         waveText.SafeSetText(Model.GetWaveText());
         timeText.SafeSetText(Model.GetElapsedTimeText());
+
+        if (Model.BossModel != null)
+            UpdateBossUI();
+    }
+
+    public void UpdateBossUI()
+    {
+        hpText.SafeSetText(Model.GetBossHpText());
+        hpSlider.value = Model.GetBossHpSliderValue();
+    }
+
+    public void ShowBossUI(bool value)
+    {
+        if (value)
+            bossNameText.SafeSetText(Model.BossName);
+
+        bossNameText.gameObject.SafeSetActive(value);
+        hpText.gameObject.SafeSetActive(value);
+        hpSlider.gameObject.SafeSetActive(value);
     }
 
     private void ShowSlider()

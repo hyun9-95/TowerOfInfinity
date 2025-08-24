@@ -295,7 +295,7 @@ public class BattleSystem : MonoBehaviour, IObserver
 
         var currentAbilitySlotDic = characterModel.AbilityProcessor.GetAbilitySlotDic();
 
-        BattleInfoParam param = new BattleInfoParam(battleInfo);
+        BattleInfoParam param = new(battleInfo);
         param.AbilitySlotDic = currentAbilitySlotDic;
 
         NotifyChangedBattleInfo(param);

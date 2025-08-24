@@ -7,6 +7,8 @@ public class DataCharacter : IBaseData
 {
     [JsonProperty(PropertyName = "id")]
     private readonly int id;
+    [JsonProperty(PropertyName = "Name")]
+    public readonly LocalizationDefine Name;
     [JsonProperty(PropertyName = "PrefabName")]
     public readonly string PrefabName;
     [JsonProperty(PropertyName = "PrimaryWeaponAbility")]

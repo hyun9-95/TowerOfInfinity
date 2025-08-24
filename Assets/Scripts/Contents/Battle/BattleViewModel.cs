@@ -5,6 +5,8 @@ public class BattleViewModel : IBaseViewModel
 {
     #region Property
     public AbilitySlotUnitModel AbilitySlotUnitModel { get; private set; }
+    public CharacterUnitModel BossModel { get; private set; }
+    public string BossName { get; private set; }
     public int Level { get; private set; }
     public float BattleExp { get; private set; }
     public float NextBattleExp { get; private set; }
@@ -15,6 +17,19 @@ public class BattleViewModel : IBaseViewModel
     #endregion
 
     #region Value
+    #endregion
+
+    #region Function
+    public void SetBossModel(CharacterUnitModel characterUnitModel)
+    {
+        BossModel = characterUnitModel;
+    }
+
+    public void SetBossName(string name)
+    {
+        BossName = name;
+    }
+
     public void SetAbilitySlotUnitModel(AbilitySlotUnitModel abilitySlotUnitModel)
     {
         AbilitySlotUnitModel = abilitySlotUnitModel;
@@ -88,6 +103,26 @@ public class BattleViewModel : IBaseViewModel
         sb.Append((CurrentWave + 1).ToString());
 
         return sb.ToString();
+    }
+
+    public string GetBossHpText()
+    {
+        var sb = GlobalStringBuilder.Get();
+        sb.Append(BossModel.Hp);
+        sb.Append(" / ");
+        sb.Append(BossModel.GetStatValue(StatType.MaxHp, StatReferenceCondition.CurrentStat));
+        
+        return sb.ToString();
+    }
+
+    public float GetBossHpSliderValue()
+    {
+        if (BossModel.Hp <= 0)
+            return 0;
+
+        var maxHp = BossModel.GetStatValue(StatType.MaxHp, StatReferenceCondition.CurrentStat);
+
+        return Mathf.Clamp01(BossModel.Hp / maxHp);
     }
 
     public float GetExpSliderValue()

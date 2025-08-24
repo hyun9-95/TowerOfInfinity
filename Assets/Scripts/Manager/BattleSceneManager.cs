@@ -146,6 +146,11 @@ public class BattleSceneManager : BackgroundSceneManager<BattleSceneManager>, IO
 
         enemyCharacters.Add(enemy);
         AddLiveCharacter(enemy.gameObject.GetInstanceID(), enemy.Model);
+
+        var battleViewCon = UIManager.Instance.GetCurrentViewController<BattleViewController>();
+
+        if (battleViewCon != null)
+            battleViewCon.SetBossModel(enemy.Model);
     }
 
     private float OnGetEnemySpawnWeight(CharacterDefine enemy, int currentWave)

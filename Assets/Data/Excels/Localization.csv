@@ -60,3 +60,5 @@ Id,NameId,Korean,English,SimplifiedChinese
 70056,LOCAL_AB_HEAL_NAME,치유,Heal,治愈
 70057,LOCAL_AB_HEAL_DESC,주기적으로 체력을 회복합니다.,Periodically restores health.,定期恢复生命值。
 70058,LOCAL_WORD_WAVE,웨이브,Wave,波次
+70059,LOCAL_WORD_BOSS,보스,Boss,首领
+70060,LOCAL_NAME_RED_DRAGON,레드 드래곤,Red Dragon,红龙
