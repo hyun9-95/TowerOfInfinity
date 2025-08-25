@@ -17,6 +17,7 @@ namespace Tools
         private ScriptGenerator.ScriptType ScriptType => GetParameter<ScriptGenerator.ScriptType>("ScriptType");
         private ScriptGenerator.ManagerType ManagerType => GetParameter<ScriptGenerator.ManagerType>("ManagerType");
         private string ContentsName => GetParameter<string>("ContentsName");
+        private bool IsPopup => GetParameter<bool>("IsPopup");
 
         [MenuItem("Tools/Code Generation/Script Generator")]
         public static void OpenScriptGenerateorWindow()
@@ -45,6 +46,10 @@ namespace Tools
                             scriptGenerator.GenerateManager(ManagerType, ContentsName);
                             break;
 
+                        case ScriptGenerator.ScriptType.MVC:
+                            scriptGenerator.GenerateMVC(ContentsName, IsPopup);
+                            break;
+
                         default:
                             scriptGenerator.Generate(ScriptType, ContentsName);
                             break;
@@ -67,6 +72,11 @@ namespace Tools
                 "ScriptType",
                 ScriptGenerator.ScriptType.Manager,
                 typeof(ScriptGenerator.ManagerType));
+
+            AddConditionalParameter("IsPopup", 
+                false, 
+                "ScriptType", 
+                ScriptGenerator.ScriptType.MVC);
 
             AddLabel("[스크립트 이름 형식] - {ContentsName}{ScriptType}.cs");
 

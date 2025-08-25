@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class #name#View : BaseView
+public class #name##suffix# : BaseView
 {
-    public #name#ViewModel Model => GetModel<#name#ViewModel>();
+    public #name##suffix#Model Model => GetModel<#name##suffix#Model>();
 }

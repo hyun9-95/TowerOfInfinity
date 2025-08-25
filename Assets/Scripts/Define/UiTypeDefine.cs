@@ -7,4 +7,5 @@ public enum UIType
 	CharacterCustomizationView,
 	BattleCardSelectPopup,
 	BattleResultPopup,
+	UserSettingPopup,
 }

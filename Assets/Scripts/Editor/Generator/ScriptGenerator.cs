@@ -31,6 +31,13 @@ namespace Tools
             SaveFileAtPath(folderPath, saveName, contents);
         }
 
+        private void GenerateScriptWithSuffix(string templatePath, string name, string saveName, string suffix, bool isPopup)
+        {
+            string uiCanvasType = isPopup ? "Popup" : "View";
+            string contents = GetDataTemplate(templatePath, ("name", name), ("suffix", suffix), ("uiCanvasType", uiCanvasType));
+            SaveFileAtPath(folderPath, saveName, contents);
+        }
+
         #region GenerateScript By Type
         private void CreateFolderPath(ScriptType type, string name = null)
         {
@@ -67,7 +74,7 @@ namespace Tools
             switch (type)
             {
                 case ScriptType.MVC:
-                    GenerateMVC(name);
+                    GenerateMVC(name, false);
                     break;
 
                 case ScriptType.Unit:
@@ -103,19 +110,24 @@ namespace Tools
             AssetDatabase.Refresh();
         }
 
-        private void GenerateMVC(string name)
+        public void GenerateMVC(string name, bool isPopup)
         {
-            string controllerName = $"{name}Controller.cs";
-            string modelName = $"{name}ViewModel.cs";
-            string viewName = $"{name}View.cs";
+            CreateFolderPath(ScriptType.MVC, name);
+            
+            string suffix = isPopup ? "Popup" : "View";
+            string modelSuffix = isPopup ? "PopupModel" : "ViewModel";
+            
+            string controllerName = $"{name}{suffix}Controller.cs";
+            string modelName = $"{name}{modelSuffix}.cs";
+            string viewName = $"{name}{suffix}.cs";
 
-            GenerateScript(TemplatePathDefine.MVC_ControllerTemplate, name, controllerName);
-            GenerateScript(TemplatePathDefine.MVC_ViewModelTemplate, name, modelName);
-            GenerateScript(TemplatePathDefine.MVC_ViewTemplate, name, viewName);
+            GenerateScriptWithSuffix(TemplatePathDefine.MVC_ControllerTemplate, name, controllerName, suffix, isPopup);
+            GenerateScriptWithSuffix(TemplatePathDefine.MVC_ViewModelTemplate, name, modelName, suffix, isPopup);
+            GenerateScriptWithSuffix(TemplatePathDefine.MVC_ViewTemplate, name, viewName, suffix, isPopup);
 
-            RefreshUITypeEnum(name);
+            RefreshUITypeEnum(name, isPopup);
 
-            CreatePrefab(name, Path.GetFileNameWithoutExtension(viewName));
+            CreatePrefab(name, Path.GetFileNameWithoutExtension(viewName), isPopup);
         }
 
         private void GenerateUnit(string name)
@@ -126,7 +138,7 @@ namespace Tools
             GenerateScript(TemplatePathDefine.UnitTemplate, name, unitName);
             GenerateScript(TemplatePathDefine.UnitModelTemplate, name, modelName);
 
-            CreatePrefab(name, Path.GetFileNameWithoutExtension(unitName));
+            CreatePrefab(name, Path.GetFileNameWithoutExtension(unitName), false);
         }
 
         private void GenerateEditorWindow(string name)
@@ -136,28 +148,30 @@ namespace Tools
             GenerateScript(TemplatePathDefine.EditorWindowTemplate, name, EditorWindowName);
         }
 
-        private void RefreshUITypeEnum(string addName)
+        private void RefreshUITypeEnum(string addName, bool isPopup)
         {
             folderPath = PathDefine.DefinePath;
-            string viewName = $"{addName}View";
+            string typeName = isPopup ? $"{addName}Popup" : $"{addName}View";
 
             string currentEnums = string.Join(",\n\t", Enum.GetNames(typeof(UIType)));
 
-            if (currentEnums.Contains(viewName))
+            if (currentEnums.Contains(typeName))
                 return;
 
-            currentEnums += $",\n\t{addName}View,";
+            currentEnums += $",\n\t{typeName},";
 
             GenerateScript(TemplatePathDefine.UITypeTemplate, currentEnums, NameDefine.UITypeDefineScriptName);
         }
 
-        private void CreatePrefab(string folderName, string prefabName)
+        private void CreatePrefab(string folderName, string prefabName, bool isPopup = false)
         {
             AssetDatabase.Refresh();
 
             GameObject newPrefab = new (prefabName);
 
-            string prefabFolderPath = $"{PathDefine.UIAddressableFullPath}/{folderName}";
+            string suffix = isPopup ? "Popup" : "View";
+            string folderNameWithSuffix = isPopup ? $"{folderName}Popup" : $"{folderName}View";
+            string prefabFolderPath = $"{PathDefine.UIAddressableFullPath}/{folderNameWithSuffix}";
 
             if (!Directory.Exists(prefabFolderPath))
                 Directory.CreateDirectory(prefabFolderPath);
