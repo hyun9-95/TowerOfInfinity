@@ -21,6 +21,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: edd15f7e395520249ac7644c466e47ea
+    m_Address: UI/CharacterCustomizationView/ColorSelectUnit
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
   m_SchemaSet:

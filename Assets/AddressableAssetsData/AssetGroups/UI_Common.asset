@@ -39,6 +39,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7244c6fe3c6a8024eb218dea21617ca0
+    m_Address: UI/Common/HandleSlider
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ad99d7c84643d9149aacaa48d6b2a543
     m_Address: UI/Common/RedButton_Small
     m_ReadOnly: 0
