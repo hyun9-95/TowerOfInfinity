@@ -1,6 +1,7 @@
 #pragma warning disable CS1998
 
 using Cysharp.Threading.Tasks;
+using System;
 using UnityEngine;
 
 public class FlowManager : BaseManager<FlowManager>
@@ -69,11 +70,14 @@ public class FlowManager : BaseManager<FlowManager>
         baseFlowModel.ClearStateEvent();
     }
 
-    public async UniTask ChangeCurrentTownFlow()
+    public async UniTask ChangeCurrentTownFlow(Func<UniTask> transtionInAsync = null)
     {
         var townFlowModel = new TownFlowModel();
         var townData = PlayerManager.Instance.GetCurrentTownData();
         townFlowModel.SetDataTown(townData);
+
+        if (transtionInAsync != null)
+            townFlowModel.AddStateEvent(FlowState.Process, transtionInAsync);
 
         await ChangeFlow(FlowType.TownFlow, townFlowModel);
     }

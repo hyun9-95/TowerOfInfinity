@@ -14,13 +14,17 @@ public class IntroController : BaseController<IntroViewModel>
     public override void Enter()
     {
         InitializeDataLoader();
+        Model.SetOnClickNewGame(OnClickNewGame);
+        Model.SetOnClickContinue(OnClickContinue);
+        Model.SetOnClickSettings(OnClickSettings);
+        Model.SetOnClickExit(OnClickExit);
     }
 
     public override async UniTask Process()
     {
         await LoadResources();
         await LoadDatas();
-        await LoadUser();
+        LoadUser();
 
         View.ShowComplete(true);
     }
@@ -76,7 +80,7 @@ public class IntroController : BaseController<IntroViewModel>
         await BattleEventBalanceFactory.Instance.Initialize();
     }
 
-    private async UniTask LoadUser()
+    private void LoadUser()
     {
         Model.SetLoadingState(IntroViewModel.LoadingState.UserLoading);
         View.UpdateLoadingUI();
@@ -84,7 +88,42 @@ public class IntroController : BaseController<IntroViewModel>
         // 유저 로드
         PlayerManager.Instance.LoadUser();
 
-        // 메인 캐릭터 로드
-        await PlayerManager.Instance.LoadMainPlayerCharacter();
+        Model.SetShowContinue(PlayerManager.Instance.User.IsCompletePrologue);
+    }
+
+    private async UniTask StartGameAsync()
+    {
+        Model.OnEnterGame();
+    }
+
+    private void OnClickNewGame()
+    {
+        PlayerManager.Instance.LoadUser(true);
+        StartGameAsync().Forget();
+    }
+
+    private void OnClickContinue()
+    {
+        StartGameAsync().Forget();
+    }
+
+    private void OnClickSettings()
+    {
+        UserSettingPopupModel model = new UserSettingPopupModel();
+        model.SetMasterVolume(UserSettings.Volume.Master);
+        model.SetVolume(SoundType.Bgm, UserSettings.Volume.Bgm);
+        model.SetVolume(SoundType.Amb, UserSettings.Volume.Amb);
+        model.SetVolume(SoundType.Sfx, UserSettings.Volume.Sfx);
+        model.SetLocalizationType(UserSettings.Localization.Type);
+
+        UserSettingPopupController controller = new UserSettingPopupController();
+        controller.SetModel(model);
+
+        UIManager.Instance.OpenPopup(controller).Forget();
+    }   
+
+    private void OnClickExit()
+    {
+        Application.Quit();
     }
 }

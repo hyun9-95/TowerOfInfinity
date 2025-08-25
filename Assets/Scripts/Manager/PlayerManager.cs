@@ -18,27 +18,32 @@ public class PlayerManager : BaseMonoManager<PlayerManager>
     private User user;
     #endregion
 
-    public void LoadUser()
+    public void LoadUser(bool reset = false)
     {
+        UserSaveInfo userSaveInfo = null;
         string userSaveInfoPath = Path.Combine(Application.persistentDataPath,
                                         string.Format(PathDefine.PATH_USER_SAVE_INFO, NameDefine.UserSaveInfo));
 
-        string directory = Path.GetDirectoryName(userSaveInfoPath);
-
-        if (!Directory.Exists(directory))
-            Directory.CreateDirectory(directory);
-
-        UserSaveInfo userSaveInfo = null;
-
-        if (File.Exists(userSaveInfoPath))
+        if (reset)
         {
-            var userSaveInfoJson = File.ReadAllText(userSaveInfoPath);
+            
+            string directory = Path.GetDirectoryName(userSaveInfoPath);
 
-            if (!string.IsNullOrEmpty(userSaveInfoJson))
-                userSaveInfo = JsonConvert.DeserializeObject<UserSaveInfo>(userSaveInfoJson);
+            if (!Directory.Exists(directory))
+                Directory.CreateDirectory(directory);
+
+            
+
+            if (File.Exists(userSaveInfoPath))
+            {
+                var userSaveInfoJson = File.ReadAllText(userSaveInfoPath);
+
+                if (!string.IsNullOrEmpty(userSaveInfoJson))
+                    userSaveInfo = JsonConvert.DeserializeObject<UserSaveInfo>(userSaveInfoJson);
+            }
         }
- 
-        // 이래도 없으면 새로 생성
+        
+        //없으면 새로 생성
         if (userSaveInfo == null)
             userSaveInfo = new UserSaveInfo();
 

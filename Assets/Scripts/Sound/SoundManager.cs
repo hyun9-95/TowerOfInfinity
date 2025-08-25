@@ -189,6 +189,16 @@ public class SoundManager : BaseMonoManager<SoundManager>
         audioSource.Play();
     }
 
+    public void UpdateVolume()
+    {
+        for (int i = 0; i < soloSoundAudioSources.Length; i++)
+        {
+            SoundType soundType = (SoundType)i;
+
+            soloSoundAudioSources[i].volume = GetVolume(soundType);
+        }
+    }
+
     private float GetVolume(SoundType soundType)
     {
         var masterVolume = UserSettings.Volume.Master;

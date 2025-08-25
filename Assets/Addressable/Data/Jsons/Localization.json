@@ -370,5 +370,59 @@
     "Korean": "적용",
     "English": "Apply",
     "SimplifiedChinese": "应用"
+  },
+  {
+    "id": 70062,
+    "Korean": "새 게임",
+    "English": "New Game",
+    "SimplifiedChinese": "新游戏"
+  },
+  {
+    "id": 70063,
+    "Korean": "이어하기",
+    "English": "Continue",
+    "SimplifiedChinese": "继续"
+  },
+  {
+    "id": 70064,
+    "Korean": "설정",
+    "English": "Settings",
+    "SimplifiedChinese": "设置"
+  },
+  {
+    "id": 70065,
+    "Korean": "종료",
+    "English": "Exit",
+    "SimplifiedChinese": "退出"
+  },
+  {
+    "id": 70066,
+    "Korean": "언어",
+    "English": "Language",
+    "SimplifiedChinese": "语言"
+  },
+  {
+    "id": 70067,
+    "Korean": "배경음",
+    "English": "BGM",
+    "SimplifiedChinese": "背景音乐"
+  },
+  {
+    "id": 70068,
+    "Korean": "환경음",
+    "English": "Ambient",
+    "SimplifiedChinese": "环境音"
+  },
+  {
+    "id": 70069,
+    "Korean": "효과음",
+    "English": "SFX",
+    "SimplifiedChinese": "音效"
+  },
+  {
+    "id": 70070,
+    "Korean": "음량",
+    "English": "Volume",
+    "SimplifiedChinese": "音量"
   }
 ]

@@ -27,6 +27,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2adde9229a3bd9c4b892c59ac850c8cf
+    m_Address: UI/Common/HandleSlider_Text
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 31501ecde3476704b8a66143cd75c6be
     m_Address: UI/Common/DropDown
     m_ReadOnly: 0
@@ -39,8 +45,20 @@ MonoBehaviour:
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 44f1aca11bc9e8840804fd9f57559ef8
+    m_Address: UI/Common/BasicPopup
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7244c6fe3c6a8024eb218dea21617ca0
     m_Address: UI/Common/HandleSlider
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 836f83b840e23c44480806cccdd9f863
+    m_Address: UI/Common/GreyButton
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main

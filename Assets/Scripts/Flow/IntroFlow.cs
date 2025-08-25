@@ -17,7 +17,7 @@ public class IntroFlow : BaseFlow<IntroFlowModel>
         IntroController IntroController = new IntroController();
         IntroViewModel viewModel = new IntroViewModel();
         viewModel.SetLoadDataType(loadDataType);
-        viewModel.SetOnComplteLoading(OnCompleteLoading);
+        viewModel.SetOnEnterGame(OnClickStart);
 
         IntroController.SetModel(viewModel);
 
@@ -30,7 +30,7 @@ public class IntroFlow : BaseFlow<IntroFlowModel>
         ShowIntroView(Model.LoadDataType).Forget();
     }
 
-    private void OnCompleteLoading()
+    private void OnClickStart()
     {
 #if UNITY_EDITOR && CHEAT
         CheatEnterGame();
@@ -43,13 +43,19 @@ public class IntroFlow : BaseFlow<IntroFlowModel>
     {
         if (PlayerManager.Instance.User.IsCompletePrologue)
         {
-            FlowManager.Instance.ChangeCurrentTownFlow().Forget();
+            FlowManager.Instance.ChangeCurrentTownFlow(LoadMainPC).Forget();
         }
         else
         {
             var customizationFlowModel = new CustomizationFlowModel();
+            customizationFlowModel.AddStateEvent(FlowState.TranstionIn, LoadMainPC);
             FlowManager.Instance.ChangeFlow(FlowType.CustomizationFlow, customizationFlowModel).Forget();
         }
+    }
+
+    private async UniTask LoadMainPC()
+    {
+        await PlayerManager.Instance.LoadMainPlayerCharacter();
     }
 
     private void CheatEnterGame()

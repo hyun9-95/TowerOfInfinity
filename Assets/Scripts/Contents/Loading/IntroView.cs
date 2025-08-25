@@ -9,7 +9,10 @@ public class IntroView : BaseView
     private AddressableLoader loadingBarLoader;
 
     [SerializeField]
-    private GameObject touchToStart;
+    private GameObject menuPanel;
+
+    [SerializeField]
+    private GameObject buttonContinue;
 
     private LoadingBar loadingBar;
 
@@ -42,11 +45,30 @@ public class IntroView : BaseView
     public void ShowComplete(bool value)
     {
         loadingBar.SetComplete(value);
-        touchToStart.SafeSetActive(value);
+
+        if (value)
+            buttonContinue.SafeSetActive(Model.ShowContinue);
+
+        menuPanel.SafeSetActive(value);
     }
 
-    public void OnClickStart()
+    public void OnClickNewGame()
     {
-        Model.OnCompleteLoading?.Invoke();
+        Model.OnClickNewGame();
+    }
+
+    public void OnClickContinue()
+    {
+        Model.OnClickContinue();
+    }
+
+    public void OnClickSettings()
+    {
+        Model.OnClickSettings();
+    }
+
+    public void OnClickExit()
+    {
+        Model.OnClickExit();
     }
 }

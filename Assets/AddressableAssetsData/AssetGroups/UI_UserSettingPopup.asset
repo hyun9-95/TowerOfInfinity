@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: UI_UserSettingPopup
+  m_EditorClassIdentifier: 
+  m_GroupName: UI_UserSettingPopup
+  m_GUID: c0b0370a51525af4aaf23394ac0c1d7d
+  m_SerializeEntries:
+  - m_GUID: a49fd62b9cd358d47a08211d35e7f3aa
+    m_Address: UI/UserSettingPopup/UserSettingPopup
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 48c452b80eba58b49ac3de237945ab22, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 134d47ba29f117546aea07dcdbb9bc1a, type: 2}
+    - {fileID: 11400000, guid: 0e79226ed2188714484ae40cca7a558c, type: 2}

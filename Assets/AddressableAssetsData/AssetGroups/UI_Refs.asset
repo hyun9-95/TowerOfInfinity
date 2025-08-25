@@ -33,6 +33,18 @@ MonoBehaviour:
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 13f37e4ffca9f3846992c62aaa565321
+    m_Address: UI/Common/Refs/T_gray_button_pick
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1d2d756e7ecd41f4586ca69fd6e098df
+    m_Address: UI/Common/Refs/T_gray_button_s
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 210d142b64945444190ea8d4117026b5
     m_Address: UI/Common/Refs/T_bot_arrow
     m_ReadOnly: 0
@@ -51,6 +63,18 @@ MonoBehaviour:
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3ee0a0509ae7bce449f20638b3d12523
+    m_Address: UI/Common/Refs/1_basic_button_s
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 42e24f113466554418a43f25f336a033
+    m_Address: UI/Common/Refs/T_gray_button_s_pick
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 44168ef17beb46d4397aa423b9f037e2
     m_Address: UI/Common/Refs/F_UI_Gems Tile Map 22x22
     m_ReadOnly: 0
@@ -59,6 +83,18 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 537aa108002f44a4e913022f025d201c
     m_Address: UI/Common/Refs/F_UI_SlideBar_B5
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 69cbaa938c5e72c4f925c2e61d05e24c
+    m_Address: UI/Common/Refs/1_basic_button
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6e824c063d3f1a147a8f12a8f0ddd1c2
+    m_Address: UI/Common/Refs/T_gray_button
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main

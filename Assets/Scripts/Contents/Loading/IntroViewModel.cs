@@ -1,5 +1,4 @@
 using System;
-using UnityEngine;
 
 public class IntroViewModel : IBaseViewModel
 {
@@ -30,9 +29,24 @@ public class IntroViewModel : IBaseViewModel
 
     public LoadDataType LoadDataType { get; private set; }
 
-    public Action OnCompleteLoading { get; private set; }
+    public bool ShowContinue { get; private set; }
+
+    public Action OnEnterGame { get; private set; }
+
+    public Action OnClickNewGame { get; private set; }
+
+    public Action OnClickContinue { get; private set; }
+
+    public Action OnClickSettings { get; private set; }
+
+    public Action OnClickExit { get; private set; }
 
     public LoadingState CurrentLoadingState { get; private set; }
+
+    public void SetShowContinue(bool showContinue)
+    {
+        ShowContinue = showContinue;
+    }
 
     public void SetLoadingState(LoadingState loadingState)
     {
@@ -54,9 +68,29 @@ public class IntroViewModel : IBaseViewModel
         AddressableDataLoader = addressableDataLoader;
     }
 
-    public void SetOnComplteLoading(Action onCompleteLoading)
+    public void SetOnEnterGame(Action onEnterGame)
     {
-        OnCompleteLoading = onCompleteLoading;
+        OnEnterGame = onEnterGame;
+    }
+
+    public void SetOnClickNewGame(Action action)
+    {
+        OnClickNewGame = action;
+    }
+
+    public void SetOnClickContinue(Action action)
+    {
+        OnClickContinue = action;
+    }
+
+    public void SetOnClickSettings(Action action)
+    {
+        OnClickSettings = action;
+    }
+
+    public void SetOnClickExit(Action action)
+    {
+        OnClickExit = action;
     }
 
     public string GetLoadingProgressText()
