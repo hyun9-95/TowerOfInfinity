@@ -1,9 +1,4 @@
-public class #name#UnitModel<T> : IBaseUnitModel where T : IBaseData
+public class #name#UnitModel : IBaseUnitModel
 {
-    public readonly T Data;
-
-    public #name#UnitModel(T data)
-    {
-        Data = data;
-    }
+    
 }

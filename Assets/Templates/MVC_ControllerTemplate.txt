@@ -1,10 +1,13 @@
-using UnityEngine;
-
-public class #name#Controller : BaseController<#name#View, #name#ViewModel>
+public class #name#Controller : BaseController<#name#ViewModel>
 {
     public override UIType UIType => UIType.#name#View;
-	
-	protected override void Enter()
+
+    public override UICanvasType UICanvasType => UICanvasType.Popup;
+
+	public #name#View View => GetView<#name#View>();
+
+    public override void Enter()
     {
-	}
+        
+    }
 }
