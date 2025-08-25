@@ -81,8 +81,20 @@ MonoBehaviour:
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4bfe9ab9515f54344b59da51db9ec5b0
+    m_Address: UI/Common/Refs/Handles tile
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 537aa108002f44a4e913022f025d201c
     m_Address: UI/Common/Refs/F_UI_SlideBar_B5
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 647f16945d3f23d4781d8e166e58030b
+    m_Address: UI/Common/Refs/SpriteAtlas_CommonUI
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
@@ -123,6 +135,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Main
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b063d4c680543a644b230a944c99c314
+    m_Address: UI/Common/Refs/1_exit
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b39aedb207d30774a8122ddeea09b1e7
     m_Address: UI/Common/Refs/2_options_on
     m_ReadOnly: 0
@@ -137,6 +155,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b6f3374714cb57a48b662e17ad5c16d3
     m_Address: UI/Common/Refs/F_UI_RedBar
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bb3c0305726ba6f439f408eb7d182bba
+    m_Address: UI/Common/Refs/Hp_frame_short
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
@@ -161,6 +185,18 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e6989eb00b9d34e47be8dcc487fc4af7
     m_Address: UI/Common/Refs/1_orange_button
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f30f69cf1b3ff6045a89afa799bf3897
+    m_Address: UI/Common/Refs/Hp_frame_Empty
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Main
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f4c9834e8e886c446b81a8150f46fe5e
+    m_Address: UI/Common/Refs/F_UI_Panel_I
     m_ReadOnly: 0
     m_SerializedLabels:
     - Main
