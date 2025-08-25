@@ -21,11 +21,9 @@ public class CharacterCustomizationController : BaseController<CharacterCustomiz
         Model.SetOnCompleteCustomize(OnCompleteCustomize);
         Model.SetOnSelectRace(OnSelectRace);
         Model.SetOnSelectHair(OnSelectHair);
+        Model.SetOnSelectHairColor(OnSelectHairColor);
         Model.SetOnShowHelemet(OnShowHelmet);
         Model.SetOnShowEquipments(OnShowEquipment);
-        Model.SetOnSelectPartsForEdit(OnSelectPartsForEdit);
-        Model.SetOnChangeColor(OnChangeColor);
-        Model.SetOnChangeHSV(OnChangeHSV);
         Model.SetSelectableRaces((CharacterRace[])Enum.GetValues(typeof(CharacterRace)));
 
         // 장비와 헬멧은 기본적으로 숨김
@@ -56,16 +54,8 @@ public class CharacterCustomizationController : BaseController<CharacterCustomiz
             Model.SetSelectRaceParts(partsData.PartsType, partsData);
         }
 
-        var hairInfo = mainCharacterInfo.PartsInfo.GetPartsInfo(CharacterPartsType.Hair);
-        if (hairInfo != null)
-        {
-            Model.SetSelectHair(hairInfo);
-        }
-        else
-        {
-            var hairData = mainCharacterInfo.PartsInfo.GetPartsData(CharacterPartsType.Hair);
-            Model.SetSelectHair(hairData);
-        }
+        var hairData = mainCharacterInfo.PartsInfo.GetPartsData(CharacterPartsType.Hair);
+        Model.SetSelectHair(hairData);
     }
 
     public override async UniTask LoadingProcess()
@@ -74,6 +64,7 @@ public class CharacterCustomizationController : BaseController<CharacterCustomiz
             return;
 
         var libraryBuilder = mainPlayerCharacter.LibraryBuilder;
+        libraryBuilder.Initialize();
 
         // 커스터마이즈 가능한 파츠들을 미리 로드
         libraryBuilder.SetMode(CharacterSpriteLibraryBuilder.Mode.Preload);
@@ -102,21 +93,18 @@ public class CharacterCustomizationController : BaseController<CharacterCustomiz
         OnChangeParts();
     }
 
-    private void OnSelectPartsForEdit(CharacterPartsType partsType)
+    private void OnSelectHairColor(string hexCode)
     {
-        Model.SetCurrentEditingParts(partsType);
-    }
+        var originhexCode = string.Empty;
 
-    private void OnChangeColor(Color color)
-    {
-        Model.UpdateCurrentPartsColor(color);
-        OnChangeParts();
-    }
+        if (Model.ColorCodeDic.TryGetValue(CharacterPartsType.Hair, out var origin))
+            originhexCode = origin;
 
-    private void OnChangeHSV(Vector3 hsv)
-    {
-        Model.UpdateCurrentPartsHSV(hsv);
-        OnChangeParts();
+        if (origin != hexCode)
+        {
+            Model.ColorCodeDic[CharacterPartsType.Hair] = hexCode;
+            OnChangeParts();
+        }
     }
 
     private void OnChangeParts()
@@ -132,9 +120,9 @@ public class CharacterCustomizationController : BaseController<CharacterCustomiz
         var changePartsList = Model.SelectRaceParts.Values.ToList();
         var removePartsList = new List<CharacterPartsType>();
 
-        if (Model.SelectHairInfo != null)
+        if (Model.SelectHairData != null)
         {
-            changePartsList.Add(Model.SelectHairInfo);
+            changePartsList.Add(Model.SelectHairData);
         }
         else
         {
@@ -160,8 +148,7 @@ public class CharacterCustomizationController : BaseController<CharacterCustomiz
                 if (equippedEquipment != null)
                 {
                     var partsData = partsContainer.GetById((int)equippedEquipment.PartsData);
-                    var partsInfo = new CharacterPartsInfo(partsData);
-                    changePartsList.Add(partsInfo);
+                    changePartsList.Add(partsData);
                 }
             }
         }
@@ -174,8 +161,7 @@ public class CharacterCustomizationController : BaseController<CharacterCustomiz
             if (equippedHelmet != null)
             {
                 var partsData = partsContainer.GetById((int)equippedHelmet.PartsData);
-                var partsInfo = new CharacterPartsInfo(partsData);
-                changePartsList.Add(partsInfo);
+                changePartsList.Add(partsData);
             }
         }
         else
@@ -183,7 +169,24 @@ public class CharacterCustomizationController : BaseController<CharacterCustomiz
             removePartsList.Add(CharacterPartsType.Helmet);
         }
 
-        await mainPlayerCharacter.UpdateSpriteLibraryAsset(changePartsList, removePartsList);
+        List<CharacterPartsInfo> characterPartsInfos = new List<CharacterPartsInfo>();
+
+        foreach (var parts in changePartsList)
+        {
+            string colorCode = string.Empty;
+            Vector3 hsv = Vector3.zero;
+
+            if (Model.ColorCodeDic.TryGetValue(parts.PartsType, out var partsColorCode))
+                colorCode = partsColorCode;
+
+            if (Model.HsvDic.TryGetValue(parts.PartsType, out var partsHsv))
+                hsv = partsHsv;
+
+            var newCharacterPartsInfo = new CharacterPartsInfo(parts, colorCode, hsv);
+            characterPartsInfos.Add(newCharacterPartsInfo);
+        }
+
+        await mainPlayerCharacter.UpdateSpriteLibraryAsset(characterPartsInfos, removePartsList);
     }
 
     private void OnCompleteCustomize()
@@ -195,7 +198,7 @@ public class CharacterCustomizationController : BaseController<CharacterCustomiz
         // 파츠정보에 반영
         var partsInfo = mainCharacterInfo.PartsInfo;
         partsInfo.SetRaceParts(Model.SelectRace);
-        partsInfo.SetHairParts(Model.SelectHairInfo != null && Model.SelectHairInfo.IsValid() ? Model.SelectHairInfo.PartsDataId : 0);
+        partsInfo.SetHairParts(Model.SelectHairData != null ? Model.SelectHairData.Id : 0);
         partsInfo.SetShowHelmet(Model.IsShowHelmet);
 
         // 도입부 플래그

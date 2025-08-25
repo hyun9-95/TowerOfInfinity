@@ -23,6 +23,9 @@ public class MainPlayerCharacter : MonoBehaviour
         if (characterUnit.Model == null)
             characterUnit.SetModel(new CharacterUnitModel());
 
+        if (!libraryBuilder.IsInitialized)
+            libraryBuilder.Initialize();
+
         CharacterFactory.Instance.SetCharacterUnitModel(
             characterUnit.Model, TeamTag.Ally, CharacterType.Main, mainCharacterInfo);
 

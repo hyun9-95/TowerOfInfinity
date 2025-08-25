@@ -81,7 +81,7 @@ public class MainCharacterPartsInfo
         if (PartsInfoDic.TryGetValue(partsType, out var partsInfo))
             return partsInfo.GetPartsData();
 
-        return default;
+        return null;
     }
 
     public CharacterPartsInfo GetPartsInfo(CharacterPartsType partsType)

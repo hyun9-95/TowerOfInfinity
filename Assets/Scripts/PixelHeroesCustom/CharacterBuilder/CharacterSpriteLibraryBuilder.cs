@@ -10,6 +10,8 @@ using UnityEngine.U2D.Animation;
 
 public class CharacterSpriteLibraryBuilder : AddressableMono
 {
+    public bool IsInitialized => isInitialized;
+
     public enum Mode
     {
         OnDemand, // 필요한것만
@@ -40,14 +42,27 @@ public class CharacterSpriteLibraryBuilder : AddressableMono
     private DataContainer<DataCharacterParts> partsContainer;
     private Texture2D mergedTexture;
     private Dictionary<string, Sprite> sprites;
-    private Dictionary<CharacterPartsType, LibraryBuildInfo> loadedParts = new Dictionary<CharacterPartsType, LibraryBuildInfo>();
-    private Dictionary<string, LibraryBuildInfo> preloadedParts = new Dictionary<string, LibraryBuildInfo>();
-    private HashSet<string> currentlyUsedAddresses = new HashSet<string>();
+    private Dictionary<CharacterPartsType, LibraryBuildInfo> loadedParts;
+    private Dictionary<string, LibraryBuildInfo> preloadedParts;
+    private HashSet<string> currentlyUsedAddresses;
+    private Array partsEnumArray;
     private bool isPreloaded = false;
+    private bool isInitialized = false;
 
     public void SetMode(Mode mode)
     {
         CurrentMode = mode;
+    }
+
+    public void Initialize()
+    {
+        partsEnumArray = Enum.GetValues(typeof(CharacterPartsType));
+        partsContainer = DataManager.Instance.GetDataContainer<DataCharacterParts>();
+        loadedParts = new Dictionary<CharacterPartsType, LibraryBuildInfo>();
+        preloadedParts = new Dictionary<string, LibraryBuildInfo>();
+        currentlyUsedAddresses = new HashSet<string>();
+
+        isInitialized = true;
     }
 
     public bool CheckPartsChange(MainCharacterPartsInfo newPartsInfo)
@@ -58,8 +73,6 @@ public class CharacterSpriteLibraryBuilder : AddressableMono
         // 현재 로드된 파츠가 없으면 변경된 것으로 간주
         if (loadedParts.Count == 0)
             return true;
-
-        var partsEnumArray = Enum.GetValues(typeof(CharacterPartsType));
 
         foreach (CharacterPartsType partType in partsEnumArray)
         {
@@ -80,7 +93,7 @@ public class CharacterSpriteLibraryBuilder : AddressableMono
 
                 var newPartsName = newPartsData.PartsName;
                 var newFinalPartsName = newCharacterPartsInfo.GetFormattedPartsName();
-                var newAddress = BuildPartsAddress(partType, newPartsName);
+                var newAddress = CommonUtils.BuildPartsAddress(partType, newPartsName);
 
                 // 주소가 다르거나 색상 정보가 다르면 변경됨
                 if (loadedPartsInfo.Address != newAddress || 
@@ -95,8 +108,7 @@ public class CharacterSpriteLibraryBuilder : AddressableMono
 
     public async UniTask<SpriteLibraryAsset> CreateNewSpriteLibrary(MainCharacterPartsInfo userCharacterPartsInfo)
     {
-        var partsEnumArray = Enum.GetValues(typeof(CharacterPartsType));
-        var parts = new string[partsEnumArray.Length];
+        var partsNames = new string[partsEnumArray.Length];
 
         if (userCharacterPartsInfo.PartsInfoDic != null)
         {
@@ -108,36 +120,23 @@ public class CharacterSpriteLibraryBuilder : AddressableMono
                     var partsData = partsInfo?.GetPartsData();
                     if (partsData == null)
                     {
-                        parts[index] = null;
+                        partsNames[index] = null;
                         continue;
                     }
 
                     var partsName = partsData.PartsName;
                     if (string.IsNullOrEmpty(partsName))
                     {
-                        parts[index] = null;
+                        partsNames[index] = null;
                         continue;
                     }
 
-                    parts[index] = partsInfo.GetFormattedPartsName();
+                    partsNames[index] = partsInfo.GetFormattedPartsName();
                 }
             }
         }
 
-        return await CreateNewSpriteLibrary(parts);
-    }
-
-    public async UniTask<SpriteLibraryAsset> CreateNewSpriteLibrary(string[] partsNames)
-    {
-        var partsEnumArray = Enum.GetValues(typeof(CharacterPartsType));
-
-        if (partsEnumArray.Length != partsNames.Length)
-            return null;
-
-        if (partsContainer == null)
-            partsContainer = DataManager.Instance.GetDataContainer<DataCharacterParts>();
-
-        return await CreateNewSpriteLibrary(partsNames, partsEnumArray);
+        return await CreateNewSpriteLibrary(partsNames);
     }
 
     public async UniTask<SpriteLibraryAsset> UpdateParts(IEnumerable<CharacterPartsInfo> partsInfoArray, IEnumerable<CharacterPartsType> removeTypes = null)
@@ -145,10 +144,6 @@ public class CharacterSpriteLibraryBuilder : AddressableMono
         if (partsInfoArray == null || partsInfoArray.Count() == 0)
             return null;
 
-        if (partsContainer == null)
-            partsContainer = DataManager.Instance.GetDataContainer<DataCharacterParts>();
-
-        var partsEnumArray = Enum.GetValues(typeof(CharacterPartsType));
         var currentPartsNames = GetCurrentPartsNames();
         
         foreach (var partsInfo in partsInfoArray)
@@ -170,12 +165,12 @@ public class CharacterSpriteLibraryBuilder : AddressableMono
         foreach (var removeType in removeTypes)
             currentPartsNames[(int)removeType] = null;
 
-        return await CreateNewSpriteLibrary(currentPartsNames, partsEnumArray);
+        return await CreateNewSpriteLibrary(currentPartsNames);
     }
 
-    public async UniTask<SpriteLibraryAsset> CreateNewSpriteLibrary(string[] partsNames, Array partsEnumArray)
+    public async UniTask<SpriteLibraryAsset> CreateNewSpriteLibrary(string[] partsNames)
     {
-        var libraryBuildInfos = BuildLibraryBuildInfos(partsNames, partsEnumArray);
+        var libraryBuildInfos = BuildLibraryBuildInfos(partsNames);
         await LoadTextures(libraryBuildInfos);
 
         UpdateCurrentlyUsedParts(libraryBuildInfos);
@@ -218,7 +213,7 @@ public class CharacterSpriteLibraryBuilder : AddressableMono
         }
     }
 
-    private List<LibraryBuildInfo> BuildLibraryBuildInfos(string[] partsNames, Array partsEnumArray)
+    private List<LibraryBuildInfo> BuildLibraryBuildInfos(string[] partsNames)
     {
         var libraryBuildInfos = new List<LibraryBuildInfo>();
 
@@ -230,7 +225,7 @@ public class CharacterSpriteLibraryBuilder : AddressableMono
                 continue;
 
             string partsName = partsNames[index];
-            string address = GetPartsPathFromData(partEnum, partsName);
+            string address = GetPartsAddressFromData(partEnum, partsName);
             
             var partsInfo = new LibraryBuildInfo(partEnum, address, partsName);
             
@@ -508,15 +503,7 @@ public class CharacterSpriteLibraryBuilder : AddressableMono
         AddressableManager.Instance.ReleaseFromTracker(libraryBuildInfo.Texture, gameObject);
     }
 
-    private string BuildPartsAddress(CharacterPartsType partsType, string partsName)
-    {
-        if (string.IsNullOrEmpty(partsName))
-            return null;
-            
-        return $"CharacterBuilder/{partsType}/{partsName}";
-    }
-    
-    private string GetPartsPathFromData(CharacterPartsType partsType, string partName)
+    private string GetPartsAddressFromData(CharacterPartsType partsType, string partName)
     {
         if (partsContainer == null)
             partsContainer = DataManager.Instance.GetDataContainer<DataCharacterParts>();
@@ -528,7 +515,7 @@ public class CharacterSpriteLibraryBuilder : AddressableMono
             p.PartsType == partsType && 
             p.PartsName == partName);
             
-        return targetPart.IsNullOrEmpty() ? null : BuildPartsAddress(partsType, targetPart.PartsName);
+        return targetPart.IsNullOrEmpty() ? null : CommonUtils.BuildPartsAddress(partsType, targetPart.PartsName);
     }
     
     private string GetPartNameFromPath(string partsPath)
@@ -700,7 +687,7 @@ public class CharacterSpriteLibraryBuilder : AddressableMono
             if (string.IsNullOrEmpty(part.PartsName))
                 continue;
 
-            preloadTasks.Add(PreloadTexture(part.PartsType, part.PartsName, BuildPartsAddress(part.PartsType, part.PartsName)));
+            preloadTasks.Add(PreloadTexture(part.PartsType, part.PartsName, CommonUtils.BuildPartsAddress(part.PartsType, part.PartsName)));
         }
         
         return preloadTasks;

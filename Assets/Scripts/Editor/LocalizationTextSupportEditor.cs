@@ -124,7 +124,7 @@ public class LocalizationTextSupportEditor : Editor
 
         try
         {
-            string jsonDataPath = PathDefine.Json;
+            string jsonDataPath = "Assets/" + PathDefine.Json;
             
             if (!System.IO.Directory.Exists(jsonDataPath))
             {
