@@ -118,16 +118,9 @@ public class CharacterCustomizationController : BaseController<CharacterCustomiz
             return;
 
         var changePartsList = Model.SelectRaceParts.Values.ToList();
-        var removePartsList = new List<CharacterPartsType>();
 
         if (Model.SelectHairData != null)
-        {
             changePartsList.Add(Model.SelectHairData);
-        }
-        else
-        {
-            removePartsList.Add(CharacterPartsType.Hair);
-        }
 
         if (showEquipments)
         {
@@ -164,12 +157,8 @@ public class CharacterCustomizationController : BaseController<CharacterCustomiz
                 changePartsList.Add(partsData);
             }
         }
-        else
-        {
-            removePartsList.Add(CharacterPartsType.Helmet);
-        }
 
-        List<CharacterPartsInfo> characterPartsInfos = new List<CharacterPartsInfo>();
+        var characterPartsInfoDic = new Dictionary<CharacterPartsType, CharacterPartsInfo>();
 
         foreach (var parts in changePartsList)
         {
@@ -183,10 +172,10 @@ public class CharacterCustomizationController : BaseController<CharacterCustomiz
                 hsv = partsHsv;
 
             var newCharacterPartsInfo = new CharacterPartsInfo(parts, colorCode, hsv);
-            characterPartsInfos.Add(newCharacterPartsInfo);
+            characterPartsInfoDic[parts.PartsType] = newCharacterPartsInfo;
         }
 
-        await mainPlayerCharacter.UpdateSpriteLibraryAsset(characterPartsInfos, removePartsList);
+        await mainPlayerCharacter.UpdateSpriteLibraryAsset(characterPartsInfoDic);
     }
 
     private void OnCompleteCustomize()

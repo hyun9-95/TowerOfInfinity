@@ -55,19 +55,10 @@ public class MainPlayerCharacter : MonoBehaviour
         if (!isChangedParts)
             return;
 
-        var spriteLibrary = characterUnit.SpriteLibrary;
-
-        if (spriteLibrary != null && spriteLibrary.spriteLibraryAsset != null)
-        {
-            // 기존 스프라이트 라이브러리 에셋은 제거
-            DestroyImmediate(spriteLibrary.spriteLibraryAsset);
-        }
-
-        var spriteLibraryAsset = await LibraryBuilder.CreateNewSpriteLibrary(mainCharacterPartsInfo);
-        characterUnit.SetSpriteLibraryAsset(spriteLibraryAsset);
+        await UpdateSpriteLibraryAsset(mainCharacterPartsInfo.PartsInfoDic);
     }
 
-    public async UniTask UpdateSpriteLibraryAsset(IEnumerable<CharacterPartsInfo> changeParts, IEnumerable<CharacterPartsType> removeTypes)
+    public async UniTask UpdateSpriteLibraryAsset(Dictionary<CharacterPartsType, CharacterPartsInfo> partsInfoDic)
     {
         var spriteLibrary = characterUnit.SpriteLibrary;
 
@@ -77,7 +68,7 @@ public class MainPlayerCharacter : MonoBehaviour
             DestroyImmediate(spriteLibrary.spriteLibraryAsset);
         }
 
-        var spriteLibraryAsset = await LibraryBuilder.UpdateParts(changeParts, removeTypes);
+        var spriteLibraryAsset = await LibraryBuilder.CreateNewSpriteLibrary(partsInfoDic);
         characterUnit.SetSpriteLibraryAsset(spriteLibraryAsset);
     }
 }
