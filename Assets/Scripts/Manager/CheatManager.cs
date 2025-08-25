@@ -73,6 +73,8 @@ public class CheatManager : BaseMonoManager<CheatManager>
     {
 #if !UNITY_EDITOR
         statsObject.SafeSetActive(false);
+#else
+        statsObject.SafeSetActive(true);
 #endif
     }
 

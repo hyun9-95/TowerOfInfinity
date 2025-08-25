@@ -39,6 +39,17 @@ public class CharacterCustomizationView : BaseView
         await SetUpHairColorSelectUnit();
     }
 
+    public async UniTask RefreshHairPartsIconPath()
+    {
+        if (hairColorSelectUnit == null || hairColorSelectUnit.Model == null)
+            return;
+
+        hairColorSelectUnit.Model.SetPartsImagePath(Model.HairPartsIconPath);
+        hairColorSelectUnit.Model.SetPreviewImagePath(Model.HairPartsPreviewImagePath);
+
+        await hairColorSelectUnit.UpdatePartsImage();
+    }
+
     private void SetUpEventListeners()
     {
         if (raceDropDown != null)
@@ -104,9 +115,9 @@ public class CharacterCustomizationView : BaseView
 
         ColorSelectUnitModel colorSelectUnitModel = new();
         colorSelectUnitModel.SetOnColorConfirmed(OnHairColorChanged);
-
-        var previewPath = CommonUtils.BuildPartsAddress(CharacterPartsType.Hair, Model.SelectHairData.PartsName);
-        colorSelectUnitModel.SetPreviewImage(previewPath);
+        colorSelectUnitModel.SetPartsImagePath(Model.HairPartsIconPath);
+        colorSelectUnitModel.SetPreviewImagePath(Model.HairPartsPreviewImagePath);
+        colorSelectUnitModel.SetCurrntColor(Model.ColorCodeDic[CharacterPartsType.Hair]);
 
         hairColorSelectUnit.SetModel(colorSelectUnitModel);
 

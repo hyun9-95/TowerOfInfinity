@@ -5,6 +5,9 @@ using UnityEngine.UI;
 public class ColorSelectUnit : BaseUnit<ColorSelectUnitModel>
 {
     [SerializeField]
+    private Image partsImage;
+
+    [SerializeField]
     private Image colorPreview;
 
     [SerializeField]
@@ -26,7 +29,31 @@ public class ColorSelectUnit : BaseUnit<ColorSelectUnitModel>
 
     public async override UniTask ShowAsync()
     {
-        await colorPreview.SafeLoadAsync(Model.PreviewImagePath);
+        await UpdatePartsImage();
+        InitializeSliderValues();
+    }
+
+    public async UniTask UpdatePartsImage()
+    {
+        if (string.IsNullOrEmpty(Model.PartsImagePath))
+        {
+            partsImage.gameObject.SafeSetActive(false);
+        }
+        else
+        {
+            await partsImage.SafeLoadAsync(Model.PartsImagePath);
+            partsImage.gameObject.SafeSetActive(true);
+        }
+
+        if (string.IsNullOrEmpty(Model.PreviewImagePath))
+        {
+            colorPreview.gameObject.SafeSetActive(false);
+        }
+        else
+        {
+            await colorPreview.SafeLoadAsync(Model.PreviewImagePath);
+            colorPreview.gameObject.SafeSetActive(true);
+        }
     }
 
     private void SetUpEventListener()
@@ -44,7 +71,7 @@ public class ColorSelectUnit : BaseUnit<ColorSelectUnitModel>
             confirmButton.onClick.AddListener(OnConfirmColor);
     }
 
-    private void OnHairColorSliderChanged(float _)
+    private void OnHairColorSliderChanged(float value)
     {
         UpdatePreviewColorFromSliders();
     }
@@ -66,5 +93,28 @@ public class ColorSelectUnit : BaseUnit<ColorSelectUnitModel>
     {
         string hex = $"#{ColorUtility.ToHtmlStringRGB(colorPreview.color)}";
         Model.OnColorConfirmed(hex);
+    }
+
+    private void InitializeSliderValues()
+    {
+        if (string.IsNullOrEmpty(Model.CurrentColor))
+            return;
+
+        Color color;
+
+        if (ColorUtility.TryParseHtmlString(Model.CurrentColor, out color))
+        {
+            if (colorSlider_R != null)
+                colorSlider_R.value = color.r * 255f;
+
+            if (colorSlider_G != null)
+                colorSlider_G.value = color.g * 255f;
+
+            if (colorSlider_B != null)
+                colorSlider_B.value = color.b * 255f;
+
+            if (colorPreview != null)
+                colorPreview.color = color;
+        }
     }
 }

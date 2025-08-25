@@ -55,7 +55,10 @@ public class CharacterCustomizationController : BaseController<CharacterCustomiz
         }
 
         var hairData = mainCharacterInfo.PartsInfo.GetPartsData(CharacterPartsType.Hair);
-        Model.SetSelectHair(hairData);
+        SelectHairRelatedValue(hairData);
+
+        var hairColorCode = mainCharacterInfo.PartsInfo.HairColorCode;
+        Model.ColorCodeDic[CharacterPartsType.Hair] = hairColorCode;
     }
 
     public override async UniTask LoadingProcess()
@@ -89,8 +92,28 @@ public class CharacterCustomizationController : BaseController<CharacterCustomiz
 
     private void OnSelectHair(DataCharacterParts hairData)
     {
-        Model.SetSelectHair(hairData);
+        if (Model.SelectHairData == hairData)
+            return;
+
+        SelectHairRelatedValue(hairData);
+
+        View.RefreshHairPartsIconPath().Forget();
         OnChangeParts();
+    }
+
+    private void SelectHairRelatedValue(DataCharacterParts hairData)
+    {
+        Model.SetSelectHair(hairData);
+
+        var previewPath = hairData != null ?
+            CommonUtils.GetPartsAddress(CharacterPartsType.Hair, hairData.PartsName) : null;
+
+        Model.SetHairPreviewImagePath(previewPath);
+
+        // 대머리 아이콘
+        var partsIconPath = CommonUtils.GetPartsIconAddress(CharacterPartsType.Head, CharacterRace.Human.ToString());
+
+        Model.SetHairPartsIconPath(partsIconPath);
     }
 
     private void OnSelectHairColor(string hexCode)
@@ -183,11 +206,15 @@ public class CharacterCustomizationController : BaseController<CharacterCustomiz
         // 유저 정보에 반영
         var mainCharacterInfo = PlayerManager.Instance.GetMainCharacterInfo();
         mainCharacterInfo.SetCharacterRace(Model.SelectRace);
-       
+
+        int hairDataID = Model.SelectHairData != null ? Model.SelectHairData.Id : 0;
+        string hairColorCode = Model.ColorCodeDic.ContainsKey(CharacterPartsType.Hair) ?
+            Model.ColorCodeDic[CharacterPartsType.Hair] : string.Empty;
+
         // 파츠정보에 반영
         var partsInfo = mainCharacterInfo.PartsInfo;
         partsInfo.SetRaceParts(Model.SelectRace);
-        partsInfo.SetHairParts(Model.SelectHairData != null ? Model.SelectHairData.Id : 0);
+        partsInfo.SetHairParts(hairDataID, hairColorCode);
         partsInfo.SetShowHelmet(Model.IsShowHelmet);
 
         // 도입부 플래그

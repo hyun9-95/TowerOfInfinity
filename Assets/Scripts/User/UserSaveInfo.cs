@@ -26,6 +26,9 @@ public class UserSaveInfo
     public int HairPartsId { get; private set; }
 
     [JsonProperty]
+    public string HairColorCode { get; private set; }
+
+    [JsonProperty]
     public bool ShowHelmet { get; private set; }
 
     [JsonProperty]
@@ -107,6 +110,7 @@ public class UserSaveInfo
     public void SetSubCharacterSlotIndexDic(Dictionary<int, int> subCharacterSlotIndexDic) => SubCharacterSlotIndexDic = subCharacterSlotIndexDic;
     public void SetCharacterRace(CharacterRace characterRace) => CharacterRace = characterRace;
     public void SetHairPartsId(int hairPartsId) => HairPartsId = hairPartsId;
+    public void SetHairColorCode(string hairColorCode) => HairColorCode = hairColorCode;
     public void SetOwnedEquipmentIds(List<int> ownedEquipmentIds) => OwnedEquipmentIds = ownedEquipmentIds;
     public void SetEquipmentLevels(Dictionary<int, int> equipmentLevels) => EquipmentLevels = equipmentLevels;
     public void SetEquippedMainCharacterEquipmentIds(Dictionary<EquipmentType, int> equippedMainCharacterEquipmentIds) => EquippedMainCharacterEquipmentIds = equippedMainCharacterEquipmentIds;

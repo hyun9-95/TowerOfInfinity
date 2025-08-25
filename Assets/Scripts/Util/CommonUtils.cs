@@ -121,12 +121,20 @@ public static class CommonUtils
         }
     }
 
-    public static string BuildPartsAddress(CharacterPartsType partsType, string partsName)
+    public static string GetPartsAddress(CharacterPartsType partsType, string partsName)
     {
         if (string.IsNullOrEmpty(partsName))
             return null;
 
         return $"CharacterBuilder/{partsType}/{partsName}";
+    }
+
+    public static string GetPartsIconAddress(CharacterPartsType partsType, string partsName)
+    {
+        if (string.IsNullOrEmpty(partsName))
+            return null;
+
+        return $"CharacterPartsIcon/{partsType}/{partsName}";
     }
     #endregion
 }

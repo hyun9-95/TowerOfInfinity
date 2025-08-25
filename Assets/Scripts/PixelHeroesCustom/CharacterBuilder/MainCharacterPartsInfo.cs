@@ -4,6 +4,7 @@ public class MainCharacterPartsInfo
 {
     public CharacterRace Race { get; private set; }
     public int HairPartsId { get; private set; }
+    public string HairColorCode { get; private set; }
     public bool ShowHelmet { get; private set; }
     public Dictionary<CharacterPartsType, CharacterPartsInfo> PartsInfoDic { get; private set; } = new();
 
@@ -21,6 +22,7 @@ public class MainCharacterPartsInfo
             equipmentContainer = equipmentContainer = DataManager.Instance.GetDataContainer<DataEquipment>();
 
         HairPartsId = 0;
+        HairColorCode = string.Empty;
         Race = CharacterRace.Human;
         ShowHelmet = true;
     }
@@ -42,12 +44,13 @@ public class MainCharacterPartsInfo
         }
     }
 
-    public void SetHairParts(int hairPartsId)
+    public void SetHairParts(int hairPartsId, string hairColorCode)
     {
         HairPartsId = hairPartsId;
+        HairColorCode = hairColorCode;
         
         var hairData = partsContainer.GetById(hairPartsId);
-        PartsInfoDic[CharacterPartsType.Hair] = new CharacterPartsInfo(hairData);
+        PartsInfoDic[CharacterPartsType.Hair] = new CharacterPartsInfo(hairData, hairColorCode);
     }
 
     public void SetShowHelmet(bool value)

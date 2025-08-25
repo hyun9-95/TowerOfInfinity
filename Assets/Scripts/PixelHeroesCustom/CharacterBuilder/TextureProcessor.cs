@@ -7,13 +7,6 @@ namespace TowerOfInfinity.CharacterBuilder
 {
     public static class TextureProcessor
     {
-        // Ported from SpriteCollection.Palette
-        public static readonly List<Color32> Palette = new List<Color32>
-        {
-            new Color32(255, 0, 64, 255), new Color32(19, 19, 19, 255), new Color32(27, 27, 27, 255), new Color32(39, 39, 39, 255), new Color32(61, 61, 61, 255), new Color32(93, 93, 93, 255), new Color32(133, 133, 133, 255), new Color32(180, 180, 180, 255), new Color32(255, 255, 255, 255), new Color32(199, 207, 221, 255), new Color32(146, 161, 185, 255), new Color32(101, 115, 146, 255), new Color32(66, 76, 110, 255), new Color32(42, 47, 78, 255), new Color32(26, 25, 50, 255), new Color32(14, 7, 27, 255), new Color32(28, 18, 28, 255), new Color32(57, 31, 33, 255), new Color32(93, 44, 40, 255), new Color32(138, 72, 54, 255), new Color32(191, 111, 74, 255), new Color32(230, 156, 105, 255), new Color32(246, 202, 159, 255), new Color32(249, 230, 207, 255), new Color32(237, 171, 80, 255), new Color32(224, 116, 56, 255), new Color32(198, 69, 36, 255), new Color32(142, 37, 29, 255), new Color32(255, 80, 0, 255), new Color32(237, 118, 20, 255), new Color32(255, 162, 20, 255), new Color32(255, 200, 37, 255), new Color32(255, 235, 87, 255), new Color32(211, 252, 126, 255), new Color32(153, 230, 95, 255), new Color32(90, 197, 79, 255), new Color32(51, 152, 75, 255), new Color32(30, 111, 80, 255), new Color32(19, 76, 76, 255), new Color32(12, 46, 68, 255), new Color32(0, 57, 109, 255), new Color32(0, 105, 170, 255), new Color32(0, 152, 220, 255), new Color32(0, 205, 249, 255), new Color32(12, 241, 255, 255), new Color32(148, 253, 255, 255), new Color32(253, 210, 237, 255), new Color32(243, 137, 245, 255), new Color32(219, 63, 253, 255), new Color32(122, 9, 250, 255), new Color32(48, 3, 217, 255), new Color32(12, 2, 147, 255), new Color32(3, 25, 63, 255), new Color32(59, 20, 67, 255), new Color32(98, 36, 97, 255), new Color32(147, 56, 143, 255), new Color32(202, 82, 201, 255), new Color32(200, 80, 134, 255), new Color32(246, 129, 135, 255), new Color32(245, 85, 93, 255), new Color32(234, 50, 60, 255), new Color32(196, 36, 48, 255), new Color32(137, 30, 43, 255), new Color32(87, 29, 40, 255), new Color32(55, 19, 30, 255), new Color32(34, 12, 20, 255), new Color32(20, 7, 12, 255), new Color32(10, 4, 6, 255), new Color32(255, 255, 255, 255)
-        };
-
-        // Ported from TextureHelper.MergeLayers
         public static Texture2D MergeLayers(Texture2D texture, params Color32[][] layers)
         {
             if (layers.Length == 0) throw new Exception("No layers to merge.");
@@ -36,14 +29,10 @@ namespace TowerOfInfinity.CharacterBuilder
             return texture;
         }
 
-        // Ported from TextureHelper.Repaint3C
         public static Color32[] Repaint3C(Color32[] pixels, Color32 paint, List<Color32> palette)
         {
             var dict = new Dictionary<Color32, int>();
 
-            // Assuming 64x64 block for now, original had hardcoded values.
-            // This needs to be dynamic based on the actual sprite dimensions.
-            // For now, using the full pixel array length.
             for (var i = 0; i < pixels.Length; i++)
             {
                 var c = pixels[i];
@@ -73,9 +62,8 @@ namespace TowerOfInfinity.CharacterBuilder
 
             if (colors.Count != 2 && colors.Count != 3)
             {
-                // Original threw NotSupportedException, but for a utility, a warning might be better.
                 Debug.LogWarning("Sprite should have 2 or 3 colors only (+black outline).");
-                return pixels; // Return original pixels if not supported
+                return pixels;
             }
 
             var replacement = palette.GetRange(palette.IndexOf(paint) - 1, 3).OrderBy(i => ((Color)i).grayscale).ToList();
@@ -101,7 +89,6 @@ namespace TowerOfInfinity.CharacterBuilder
             return pixels;
         }
 
-        // Ported from TextureHelper.AdjustColor
         public static Color AdjustColor(Color color, float hue, float saturation, float value)
         {
             hue /= 180f;
@@ -137,7 +124,6 @@ namespace TowerOfInfinity.CharacterBuilder
             return color;
         }
 
-        // Ported from TextureHelper.ApplyPalette (static Color32[] version)
         public static Color32[] ApplyPalette(Color32[] pixels, List<Color32> palette)
         {
             var unique = new ColorDistinctor(pixels).UniqueColors.OrderByDescending(i => pixels.Count(j => FastEquals(i, j))).ToList();
@@ -154,7 +140,7 @@ namespace TowerOfInfinity.CharacterBuilder
                 if (used)
                 {
                     var match = mapInvert[nearest];
-                    var dist = GetEuclidean(color, match); // Using ported GetEuclidean
+                    var dist = GetEuclidean(color, match);
 
                     if (dist > 2500)
                     {
@@ -185,11 +171,11 @@ namespace TowerOfInfinity.CharacterBuilder
 
             for (var i = 0; i < pixels.Length; i++)
             {
-                if (pixels[i].a < 255) // 알파 값이 255 미만인 경우
+                if (pixels[i].a < 255) 
                 {
-                    pixels[i] = new Color32(); // 완전히 투명하게 만듭니다.
+                    pixels[i] = new Color32();
                 }
-                else // 알파 값이 255인 경우에만 팔레트 매핑을 수행합니다.
+                else
                 {
                     var color = map[pixels[i]];
 
@@ -201,13 +187,11 @@ namespace TowerOfInfinity.CharacterBuilder
             return pixels;
         }
 
-        // Ported from TextureHelper.FastEquals
         public static bool FastEquals(this Color32 a, Color32 b)
         {
             return a.r == b.r && a.g == b.g && a.b == b.b && a.a == b.a;
         }
 
-        // Ported from ColorDiff.GetEuclidean
         public static float GetEuclidean(Color32 a, Color32 b, bool sqrt = false)
         {
             var dr = a.r - b.r;
@@ -221,7 +205,6 @@ namespace TowerOfInfinity.CharacterBuilder
             return sqrt ? Mathf.Sqrt(difference2) : difference2;
         }
 
-        // Ported from Layer.FindNearest (private method, but needed for ApplyPalette)
         private static Color32 FindNearest(Color32 color, List<Color32> palette, int ignore = -1)
         {
             var nearest = palette[ignore == 0 ? 1 : 0];
@@ -243,7 +226,6 @@ namespace TowerOfInfinity.CharacterBuilder
         }
     }
 
-    // Ported from ColorDistinctor.cs
     public class ColorDistinctor
     {
         public List<Color32> UniqueColors { get; } = new List<Color32>();

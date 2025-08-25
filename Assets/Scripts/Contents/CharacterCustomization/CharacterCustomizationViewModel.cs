@@ -29,9 +29,13 @@ public class CharacterCustomizationViewModel : IBaseViewModel
 
     public Action<bool> OnShowEquipments { get; private set; }
 
-    public Action OnChangeParts { get; set; }
+    public Action OnChangeParts { get; private set; }
 
-    public Action OnCompleteCustomize { get; set; }
+    public Action OnCompleteCustomize { get; private set; }
+
+    public string HairPartsIconPath { get; private set; }
+    public string HairPartsPreviewImagePath { get; private set; }
+
     public Dictionary<CharacterPartsType, string> ColorCodeDic { get; private set; } = new();
     public Dictionary<CharacterPartsType, Vector3> HsvDic { get; private set; } = new();
     #endregion
@@ -104,6 +108,16 @@ public class CharacterCustomizationViewModel : IBaseViewModel
     public void SetIsShowEquipments(bool value)
     {
         IsShowEquipments = value;
+    }
+
+    public void SetHairPartsIconPath(string path)
+    {
+        HairPartsIconPath = path;
+    }
+
+    public void SetHairPreviewImagePath(string path)
+    {
+        HairPartsPreviewImagePath = path;
     }
     #endregion
 }

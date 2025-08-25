@@ -73,7 +73,7 @@ public class User
 
         var mainCharacterPartsInfo = new MainCharacterPartsInfo();
         mainCharacterPartsInfo.SetRaceParts(mainCharacterInfo.CharacterRace);
-        mainCharacterPartsInfo.SetHairParts(userSaveInfo.HairPartsId);
+        mainCharacterPartsInfo.SetHairParts(userSaveInfo.HairPartsId, userSaveInfo.HairColorCode);
         mainCharacterPartsInfo.SetShowHelmet(userSaveInfo.ShowHelmet);
 
         var equippedEquipments = UserEquipmentInfo.CreateEquippedMainCharacterEquipments(userSaveInfo);
@@ -158,10 +158,12 @@ public class User
         // 메인 캐릭터
         var characterRace = UserCharacterInfo.MainCharacterInfo.CharacterRace;
         var hairPartsId = UserCharacterInfo.MainCharacterInfo.PartsInfo.HairPartsId;
+        var hairColorCode = UserCharacterInfo.MainCharacterInfo.PartsInfo.HairColorCode;
         var showHelmet = UserCharacterInfo.MainCharacterInfo.PartsInfo.ShowHelmet;
 
         userSaveInfo.SetCharacterRace(characterRace);
         userSaveInfo.SetHairPartsId(hairPartsId);
+        userSaveInfo.SetHairColorCode(hairColorCode);
         userSaveInfo.SetShowHelmet(showHelmet);
 
         // 장비
